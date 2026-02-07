@@ -24,4 +24,8 @@ export const mainConfig: Configuration = {
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx", ".css", ".json"],
   },
+  externals: {
+    // Mark uiohook-napi as external so webpack doesn't bundle the native module
+    "uiohook-napi": "commonjs uiohook-napi",
+  },
 };
