@@ -1,3 +1,4 @@
-import './index.css';
+import "./index.css";
+import "./renderer/recorder";
 
-console.log('[StayFree] Renderer loaded');
+console.log("[StayFree] Renderer loaded");
