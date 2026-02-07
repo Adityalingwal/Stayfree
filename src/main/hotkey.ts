@@ -1,5 +1,5 @@
-import { EventEmitter } from 'events';
-import { uIOhook, UiohookKey } from 'uiohook-napi';
+import { EventEmitter } from "events";
+import { uIOhook, UiohookKey } from "uiohook-napi";
 
 /**
  * Hotkey Manager
@@ -25,36 +25,42 @@ export class HotkeyManager extends EventEmitter {
   constructor(config?: Partial<HotkeyConfig>) {
     super();
 
-    // Default: Try Fn key first (keycode 63), fallback to Ctrl+Shift
+    // Default: Use Left Option (Alt) key for push-to-talk
+    // Note: Fn key cannot be detected on macOS (hardware-level key)
+    // Left Alt keycode = 56 on macOS
     this.config = {
-      useFnKey: true,
-      fnKeyCode: 63, // macOS Fn key
-      keys: [UiohookKey.Ctrl, UiohookKey.Shift], // fallback combo
+      useFnKey: false, // Fn key doesn't work on macOS
+      fnKeyCode: 56, // Left Option/Alt key instead
+      keys: [56], // Left Option key (single key, not combo)
       ...config,
     };
   }
 
   start(): void {
-    console.log('[Hotkey] Starting hotkey listener...');
+    console.log("[Hotkey] Starting hotkey listener...");
     console.log(
-      `[Hotkey] Mode: ${this.config.useFnKey ? 'Fn key' : `Combo: ${this.config.keys.join('+')}`}`
+      "[Hotkey] Mode: Left Option (Alt) key - HOLD to record, RELEASE to stop",
     );
 
-    uIOhook.on('keydown', (event) => {
+    uIOhook.on("keydown", (event) => {
+      // DEBUG: Log ALL key presses to see if uiohook is working
+      console.log(`[Hotkey DEBUG] Key DOWN: keycode=${event.keycode}`);
       this.handleKeyDown(event.keycode);
     });
 
-    uIOhook.on('keyup', (event) => {
+    uIOhook.on("keyup", (event) => {
+      // DEBUG: Log ALL key releases
+      console.log(`[Hotkey DEBUG] Key UP: keycode=${event.keycode}`);
       this.handleKeyUp(event.keycode);
     });
 
     // Start the hook
     uIOhook.start();
-    console.log('[Hotkey] Listener started');
+    console.log("[Hotkey] Listener started");
   }
 
   stop(): void {
-    console.log('[Hotkey] Stopping hotkey listener...');
+    console.log("[Hotkey] Stopping hotkey listener...");
     uIOhook.stop();
     this.pressedKeys.clear();
     this.isRecording = false;
@@ -75,8 +81,8 @@ export class HotkeyManager extends EventEmitter {
 
     if (shouldStartRecording && !this.isRecording) {
       this.isRecording = true;
-      console.log('[Hotkey] Recording started');
-      this.emit('recording-start');
+      console.log("[Hotkey] Recording started");
+      this.emit("recording-start");
     }
   }
 
@@ -91,8 +97,8 @@ export class HotkeyManager extends EventEmitter {
 
       if (shouldStopRecording) {
         this.isRecording = false;
-        console.log('[Hotkey] Recording stopped');
-        this.emit('recording-stop');
+        console.log("[Hotkey] Recording stopped");
+        this.emit("recording-stop");
       }
     }
   }
@@ -106,7 +112,7 @@ export class HotkeyManager extends EventEmitter {
   setConfig(config: Partial<HotkeyConfig>): void {
     this.config = { ...this.config, ...config };
     console.log(
-      `[Hotkey] Config updated: ${this.config.useFnKey ? 'Fn key' : `Combo: ${this.config.keys.join('+')}`}`
+      `[Hotkey] Config updated: ${this.config.useFnKey ? "Fn key" : `Combo: ${this.config.keys.join("+")}`}`,
     );
   }
 
@@ -118,7 +124,9 @@ export class HotkeyManager extends EventEmitter {
 // Singleton instance
 let hotkeyManagerInstance: HotkeyManager | null = null;
 
-export function getHotkeyManager(config?: Partial<HotkeyConfig>): HotkeyManager {
+export function getHotkeyManager(
+  config?: Partial<HotkeyConfig>,
+): HotkeyManager {
   if (!hotkeyManagerInstance) {
     hotkeyManagerInstance = new HotkeyManager(config);
   }
