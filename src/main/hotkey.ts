@@ -43,14 +43,10 @@ export class HotkeyManager extends EventEmitter {
     );
 
     uIOhook.on("keydown", (event) => {
-      // DEBUG: Log ALL key presses to see if uiohook is working
-      console.log(`[Hotkey DEBUG] Key DOWN: keycode=${event.keycode}`);
       this.handleKeyDown(event.keycode);
     });
 
     uIOhook.on("keyup", (event) => {
-      // DEBUG: Log ALL key releases
-      console.log(`[Hotkey DEBUG] Key UP: keycode=${event.keycode}`);
       this.handleKeyUp(event.keycode);
     });
 

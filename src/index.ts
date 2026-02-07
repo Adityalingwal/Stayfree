@@ -211,8 +211,17 @@ app.on("ready", () => {
   ipcMain.on("audio-captured", (_event, audioData: Buffer) => {
     console.log(`[Main] Received audio data: ${audioData.length} bytes`);
 
-    // Save to file for testing (Phase 3 verification)
-    const audioPath = path.join(app.getPath("desktop"), "stayfree-test-audio.webm");
+    // Save to recordings folder in project directory
+    const recordingsDir = path.join(__dirname, "..", "..", "recordings");
+
+    // Create folder if it doesn't exist
+    if (!fs.existsSync(recordingsDir)) {
+      fs.mkdirSync(recordingsDir, { recursive: true });
+    }
+
+    // Save with timestamp filename
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const audioPath = path.join(recordingsDir, `recording-${timestamp}.webm`);
     fs.writeFileSync(audioPath, audioData);
     console.log(`[Main] Audio saved to: ${audioPath}`);
 
