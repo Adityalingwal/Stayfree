@@ -131,7 +131,7 @@ function createRecorderWindow(): void {
   console.log("[StayFree] Hidden recorder window created");
 }
 
-// --- Settings Window ---
+// --- Settings / Dashboard Window ---
 
 function openSettingsWindow(): void {
   if (settingsWindow) {
@@ -139,21 +139,28 @@ function openSettingsWindow(): void {
     return;
   }
 
+  // Show dock so the dashboard window is discoverable
+  if (process.platform === "darwin") {
+    app.dock.show();
+  }
+
   settingsWindow = new BrowserWindow({
-    width: 480,
-    height: 520,
-    title: "StayFree Settings",
-    resizable: false,
-    minimizable: false,
-    maximizable: false,
-    fullscreenable: false,
+    width: 860,
+    height: 640,
+    title: "StayFree",
+    minWidth: 700,
+    minHeight: 500,
     show: false,
+    titleBarStyle: "hiddenInset",
+    trafficLightPosition: { x: 16, y: 16 },
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      nodeIntegration: false,
+      contextIsolation: true,
     },
   });
 
-  settingsWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  settingsWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#settings`);
 
   settingsWindow.once("ready-to-show", () => {
     settingsWindow.show();
@@ -161,6 +168,9 @@ function openSettingsWindow(): void {
 
   settingsWindow.on("closed", () => {
     settingsWindow = null;
+    if (process.platform === "darwin") {
+      app.dock.hide();
+    }
   });
 }
 
@@ -261,6 +271,56 @@ function registerPermissionHandlers(): void {
   });
 }
 
+// --- Settings IPC Handlers ---
+
+function registerSettingsHandlers(): void {
+  ipcMain.handle("get-settings", () => {
+    return {
+      groqApiKey: store.get("groqApiKey"),
+      selectedMicId: store.get("selectedMicId"),
+      soundEnabled: store.get("soundEnabled"),
+      dictionary: store.get("dictionary"),
+    };
+  });
+
+  ipcMain.handle("save-api-key", (_event, key: string) => {
+    store.set("groqApiKey", key);
+    console.log("[Settings] API key saved");
+  });
+
+  ipcMain.on("save-selected-mic", (_event, deviceId: string) => {
+    store.set("selectedMicId", deviceId);
+    console.log(`[Settings] Microphone saved: ${deviceId || "system default"}`);
+  });
+
+  ipcMain.on("save-sound-enabled", (_event, enabled: boolean) => {
+    store.set("soundEnabled", enabled);
+    console.log(`[Settings] Sound ${enabled ? "enabled" : "disabled"}`);
+  });
+
+  ipcMain.handle("get-dictionary", () => {
+    return store.get("dictionary");
+  });
+
+  ipcMain.on("save-dictionary", (_event, dictionary: Record<string, string>) => {
+    store.set("dictionary", dictionary);
+    console.log(`[Settings] Dictionary saved (${Object.keys(dictionary).length} entries)`);
+  });
+
+  ipcMain.handle("get-transcription-history", () => {
+    return store.get("transcriptionHistory");
+  });
+
+  ipcMain.on("clear-transcription-history", () => {
+    store.set("transcriptionHistory", []);
+    console.log("[Settings] History cleared");
+  });
+
+  ipcMain.handle("get-app-version", () => {
+    return app.getVersion();
+  });
+}
+
 // --- App Lifecycle ---
 
 app.on("ready", () => {
@@ -269,8 +329,9 @@ app.on("ready", () => {
     app.dock.hide();
   }
 
-  // Register permission IPC handlers (needed before onboarding window loads)
+  // Register IPC handlers (needed before any window loads)
   registerPermissionHandlers();
+  registerSettingsHandlers();
 
   // Create system tray
   tray = new Tray(createTrayIcon("idle"));
@@ -382,6 +443,17 @@ app.on("ready", () => {
 
       // Store for fallback paste (Ctrl+Cmd+V)
       store.set("lastTranscript", formattedText);
+
+      // Save to transcription history (keep last 100)
+      const history = store.get("transcriptionHistory") as Array<{ text: string; rawText: string; timestamp: number; durationMs: number }>;
+      history.unshift({
+        text: formattedText,
+        rawText: transcript,
+        timestamp: Date.now(),
+        durationMs: Date.now() - pipelineStart,
+      });
+      if (history.length > 100) history.length = 100;
+      store.set("transcriptionHistory", history);
 
       // --- Step 3: Paste ---
       const pasteStart = Date.now();

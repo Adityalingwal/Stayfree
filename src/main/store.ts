@@ -5,6 +5,13 @@ import Store from "electron-store";
  * Persists user settings (API key, hotkey config, dictionary, etc.)
  */
 
+export interface TranscriptionEntry {
+  text: string;
+  rawText: string;
+  timestamp: number;
+  durationMs: number;
+}
+
 interface StoreSchema {
   groqApiKey: string;
   hotkey: {
@@ -15,6 +22,9 @@ interface StoreSchema {
   dictionary: Record<string, string>; // term -> replacement
   lastTranscript: string;
   onboardingComplete: boolean;
+  selectedMicId: string; // '' = system default
+  transcriptionHistory: TranscriptionEntry[];
+  soundEnabled: boolean;
 }
 
 const store = new Store<StoreSchema>({
@@ -28,6 +38,9 @@ const store = new Store<StoreSchema>({
     dictionary: {},
     lastTranscript: "",
     onboardingComplete: false,
+    selectedMicId: "",
+    transcriptionHistory: [],
+    soundEnabled: true,
   },
 });
 
