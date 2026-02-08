@@ -184,17 +184,57 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
    - Fallback Ctrl+Cmd+V works
    - Test in apps that might block paste (Terminal, some password fields)
 
-### Phase 7: Full Pipeline Wiring
+### Phase 7: Pipeline Polish & Timing
 
-**Goal:** Wire everything end-to-end with timing
+**Goal:** Add detailed timing, handle edge cases, error handling, and polish the pipeline
 
-1. `src/main/ipc-handlers.ts`:
-   - On `audio-captured` event: run full pipeline
-   - Pipeline: audio -> `transcribe()` -> `formatText()` -> `applyDictionary()` -> `pasteText()`
-   - Timing: log `L_asr`, `L_llm`, `L_paste`, `L_total` to console
-   - Update tray icon: idle -> recording -> processing -> idle
-   - Catch errors, show notification, reset tray to idle
-2. **Verify:** Full end-to-end: hold Fn, speak, release, text appears in active app. Check timing logs.
+**This is a QA & Polish phase - making the pipeline production-ready**
+
+1. **ADD DETAILED TIMING LOGS:**
+
+   ```
+   [Pipeline] Started
+   [Pipeline] ASR: 634ms
+   [Pipeline] LLM: 165ms
+   [Pipeline] Paste: 45ms
+   [Pipeline] ═══════════════
+   [Pipeline] TOTAL: 844ms ✅
+   ```
+
+   - Track each step's duration
+   - Log total end-to-end time
+   - Useful for debugging and optimization
+
+2. **HANDLE EDGE CASES:**
+   - Empty audio (< 1000 bytes) → Don't process, log "Audio too short"
+   - Very short recording (< 0.5 sec) → Skip with warning
+   - Empty transcript from Whisper → Don't paste blank text, show notification
+   - Very long audio (> 60 sec) → Handle gracefully, maybe warn user
+   - Network error → Show notification "Network error. Check internet connection."
+
+3. **ACCESSIBILITY CHECK ON STARTUP:**
+   - Check `systemPreferences.isTrustedAccessibilityClient(false)` on app launch
+   - If NOT granted → Show dialog explaining how to enable:
+     - "StayFree needs Accessibility permission to paste text"
+     - "Go to System Settings → Privacy & Security → Accessibility → Enable StayFree"
+   - Option to open System Settings directly
+
+4. **ERROR HANDLING:**
+   - If transcription fails → Show notification, reset tray to idle
+   - If formatting fails → Use raw transcript as fallback (don't fail completely)
+   - If paste fails → Show notification with fallback instruction
+   - ALL errors → Always reset tray icon to idle state
+
+5. **CODE CLEANUP (Optional):**
+   - Consider moving pipeline logic to `src/main/pipeline.ts` if index.ts is too large
+   - Or keep in index.ts if it's clean and readable
+   - Ensure consistent logging format across all modules
+
+6. **VERIFY FULL FLOW:**
+   - Test in 5+ different apps (Notes, VS Code, Chrome, Terminal, Slack)
+   - Test error scenarios (no internet, very short audio, empty speech)
+   - Test timing under different conditions (short vs long audio)
+   - Verify tray icon always returns to idle after any operation
 
 ### Phase 8: Settings UI
 

@@ -1,4 +1,10 @@
-import { clipboard, systemPreferences, Notification, dialog, shell } from "electron";
+import {
+  clipboard,
+  systemPreferences,
+  Notification,
+  dialog,
+  shell,
+} from "electron";
 import { exec } from "child_process";
 import { promisify } from "util";
 
@@ -18,7 +24,9 @@ export function checkAccessibilityPermission(): boolean {
 
   // false = don't prompt, just check
   const trusted = systemPreferences.isTrustedAccessibilityClient(false);
-  console.log(`[Paste] Accessibility permission: ${trusted ? "granted" : "DENIED"}`);
+  console.log(
+    `[Paste] Accessibility permission: ${trusted ? "granted" : "DENIED"}`,
+  );
   return trusted;
 }
 
@@ -27,32 +35,36 @@ export function requestAccessibilityPermission(): void {
   systemPreferences.isTrustedAccessibilityClient(true);
 
   // Also show our own dialog pointing user to the right place
-  dialog.showMessageBox({
-    type: "info",
-    title: "Accessibility Permission Required",
-    message: "StayFree needs Accessibility permission to paste text.",
-    detail:
-      "Please go to System Settings → Privacy & Security → Accessibility and enable StayFree (or Electron).\n\nAfter enabling, restart the app.",
-    buttons: ["Open System Settings", "Later"],
-  }).then(({ response }) => {
-    if (response === 0) {
-      shell.openExternal(
-        "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
-      );
-    }
-  });
+  dialog
+    .showMessageBox({
+      type: "info",
+      title: "Accessibility Permission Required",
+      message: "StayFree needs Accessibility permission to paste text.",
+      detail:
+        "Please go to System Settings → Privacy & Security → Accessibility and enable StayFree (or Electron).\n\nAfter enabling, restart the app.",
+      buttons: ["Open System Settings", "Later"],
+    })
+    .then(({ response }) => {
+      if (response === 0) {
+        shell.openExternal(
+          "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
+        );
+      }
+    });
 }
 
 export function writeToClipboard(text: string): void {
   clipboard.writeText(text);
-  console.log(`[Paste] Wrote to clipboard: "${text.substring(0, 50)}${text.length > 50 ? "..." : ""}"`);
+  console.log(
+    `[Paste] Wrote to clipboard: "${text.substring(0, 50)}${text.length > 50 ? "..." : ""}"`,
+  );
 }
 
 async function simulatePaste(): Promise<boolean> {
   try {
     // Use osascript to simulate Cmd+V into the currently focused app
     await execAsync(
-      'osascript -e "tell application \\"System Events\\" to keystroke \\"v\\" using command down"'
+      'osascript -e "tell application \\"System Events\\" to keystroke \\"v\\" using command down"',
     );
     return true;
   } catch (error) {
@@ -64,17 +76,18 @@ async function simulatePaste(): Promise<boolean> {
 export async function pasteText(text: string): Promise<boolean> {
   // Check accessibility permission first
   if (!checkAccessibilityPermission()) {
-    console.error("[Paste] Cannot paste - Accessibility permission not granted");
+    console.error(
+      "[Paste] Cannot paste - Accessibility permission not granted",
+    );
     requestAccessibilityPermission();
     showPasteFailedNotification();
     return false;
   }
 
-  // Write text to clipboard (intentionally kept - no restore)
   writeToClipboard(text);
 
-  // Small delay to ensure clipboard write completes
-  await new Promise((resolve) => setTimeout(resolve, 30));
+  // Minimal delay - writeText is sync but tiny buffer for safety
+  await new Promise((resolve) => setTimeout(resolve, 10));
 
   // Simulate Cmd+V
   const success = await simulatePaste();
