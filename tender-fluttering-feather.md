@@ -236,50 +236,231 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
    - Test timing under different conditions (short vs long audio)
    - Verify tray icon always returns to idle after any operation
 
-### Phase 8: Settings UI
+### Phase 8: Permission Onboarding
 
-**Goal:** User can configure the app
+**Goal:** Guide new users through macOS permissions on first launch
 
-1. `src/renderer/settings.html` + `settings.ts` + `styles.css`:
-   - Groq API key input (with show/hide toggle)
-   - Hotkey configuration (record new key combo)
-   - Microphone selection dropdown
-   - Custom dictionary: editable table (term -> replacement)
-   - macOS Fn key setup instructions
-2. Settings window opened from tray menu (new `BrowserWindow`)
-3. All settings persisted via `electron-store`
-4. **Verify:** Change API key, restart, persists. Add dictionary entry, verify it applies.
+**WHY FIRST?** User needs permissions BEFORE they can use the app. Without these, nothing works!
 
-### Phase 9: Permission Onboarding
+**Permissions Required:**
 
-**Goal:** Guide user through macOS permissions on first launch
+1. **Microphone** - For audio capture
+2. **Accessibility** - For simulating Cmd+V paste via osascript
 
-1. Check `systemPreferences.getMediaAccessStatus('microphone')`
-2. Check Accessibility permission (needed for osascript paste)
-3. Show dialog with:
-   - Why permissions are needed
-   - Button to open System Settings > Privacy > Accessibility
-   - Instructions to set Fn key to "Do Nothing" in System Settings > Keyboard
-4. **Verify:** On first run, permission flow guides user correctly.
+**What We Build:**
+
+1. **Permission Check on App Launch:**
+
+   ```typescript
+   // Check microphone permission
+   const micStatus = systemPreferences.getMediaAccessStatus("microphone");
+   // Returns: 'granted' | 'denied' | 'not-determined'
+
+   // Check accessibility permission
+   const accessibilityGranted =
+     systemPreferences.isTrustedAccessibilityClient(false);
+   ```
+
+2. **Onboarding Dialog (if permissions missing):**
+
+   ```
+   ┌──────────────────────────────────────────────────────────┐
+   │              Welcome to StayFree! 🎤                      │
+   │                                                           │
+   │   We need 2 permissions to work properly:                │
+   │                                                           │
+   │   1. 🎙️ Microphone Access                                │
+   │      To capture your voice                                │
+   │      Status: ✅ Granted / ❌ Not Granted                  │
+   │      [Grant Permission]                                   │
+   │                                                           │
+   │   2. ⌨️ Accessibility Access                             │
+   │      To paste text into apps                              │
+   │      Status: ✅ Granted / ❌ Not Granted                  │
+   │      [Open System Settings]                               │
+   │                                                           │
+   │   ─────────────────────────────────────────────────────  │
+   │   Optional: Fn Key Setup                                  │
+   │   Go to System Settings > Keyboard and set                │
+   │   "Press Fn key to" → "Do Nothing"                       │
+   │   ─────────────────────────────────────────────────────  │
+   │                                                           │
+   │                    [Continue]                             │
+   └──────────────────────────────────────────────────────────┘
+   ```
+
+3. **Implementation:**
+   - `src/main/onboarding.ts` - Permission checking logic
+   - Can be simple dialog OR React component (your choice)
+   - Store `onboardingComplete: true` in electron-store after completion
+   - Only show on first launch OR when permissions are missing
+
+4. **Permission Request Methods:**
+
+   ```typescript
+   // Request microphone permission
+   systemPreferences.askForMediaAccess("microphone");
+
+   // Open Accessibility settings
+   shell.openExternal(
+     "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
+   );
+
+   // Open Keyboard settings (for Fn key)
+   shell.openExternal(
+     "x-apple.systempreferences:com.apple.preference.keyboard",
+   );
+   ```
+
+**Verify:**
+
+- First run shows onboarding dialog
+- Microphone permission request works
+- Accessibility link opens correct System Settings page
+- After granting all permissions, app works normally
+- Subsequent launches don't show onboarding (unless permissions revoked)
+
+---
+
+### Phase 9: Settings UI (React + Tailwind)
+
+**Goal:** User can configure the app via a beautiful settings window
+
+**Technology:** React + Tailwind CSS (not plain HTML/CSS/JS)
+
+**Setup:**
+
+1. Install dependencies:
+
+   ```bash
+   npm install react react-dom
+   npm install -D tailwindcss postcss autoprefixer @types/react @types/react-dom
+   npx tailwindcss init
+   ```
+
+2. Update Webpack config for React + Tailwind support
+
+3. Create settings components:
+   ```
+   src/renderer/settings/
+   ├── index.tsx           # Entry point
+   ├── App.tsx             # Main settings component
+   ├── components/
+   │   ├── ApiKeySection.tsx       # API key with show/hide
+   │   ├── MicrophoneSection.tsx   # Mic dropdown
+   │   ├── DictionarySection.tsx   # Custom word replacements
+   │   └── Button.tsx              # Reusable button
+   └── styles/
+       └── tailwind.css
+   ```
+
+**Features to Build:**
+
+1. **API Key Section:**
+   - Password input with show/hide toggle (👁️)
+   - Validate on save (test API call)
+   - Status indicator (✅ Valid / ❌ Invalid)
+
+2. **Microphone Selection:**
+   - Dropdown with all audio input devices
+   - Uses `navigator.mediaDevices.enumerateDevices()`
+   - Save selected device ID
+
+3. **Custom Dictionary:**
+   - Editable table (term → replacement)
+   - Add new entry button
+   - Delete entry button
+   - Example: "stayfree" → "StayFree"
+
+4. **Settings Window:**
+   - Opened from tray menu "Settings..."
+   - New `BrowserWindow` (~500x600px)
+   - Dark mode styling with Tailwind
+
+5. **Persistence:**
+   - All settings saved via `electron-store`
+   - IPC handlers for read/write settings
+
+**Verify:**
+
+- Change API key, restart, persists
+- Add dictionary entry, verify it applies to next transcription
+- Change microphone, verify audio captures from selected device
+
+---
+
+## 🎉 MVP COMPLETE AFTER PHASE 9!
+
+After Phase 9, the app is fully functional for personal use:
+
+- ✅ Hold hotkey → Speak → Text appears in any app
+- ✅ Clean, formatted text with punctuation
+- ✅ Custom dictionary for personal terms
+- ✅ Settings UI for configuration
+- ✅ Permission onboarding for new users
+
+---
+
+## Future Enhancements (NOT for MVP - Build Later)
+
+These are optional enhancements to consider after MVP is complete:
+
+### Phase 10: App Distribution
+
+**Goal:** Distribute the app to other users
+
+- Build DMG installer for macOS using `electron-builder`
+- Code signing with Apple Developer account ($99/year)
+- Notarization for macOS Gatekeeper approval
+- Auto-update mechanism using `electron-updater`
+- Create app icon and branding assets
+
+### Phase 11: Multi-Language Support
+
+**Goal:** Support languages beyond English
+
+- Add language selection dropdown in Settings
+- Whisper supports 99 languages! (Hindi, Spanish, French, etc.)
+- Auto-detect language option
+- Language-specific formatting rules
+
+### Phase 12: Latency Optimization
+
+**Goal:** Reduce end-to-end latency to <500ms
+
+- Streaming audio to server while speaking (not batch after release)
+- Deploy to Mumbai/India server for lower network latency
+- On-device Whisper using whisper.cpp or CoreML (offline mode)
+- Audio compression to reduce upload size
+
+### Phase 13: Advanced Features
+
+**Goal:** Power user features
+
+- Context awareness (detect active app: VS Code vs Email vs Chat)
+- App-specific formatting rules
+- History of past transcriptions with search
+- Keyboard shortcuts for undo/redo last paste
+- Multiple hotkey profiles
 
 ---
 
 ## IPC Communication Design
 
-```
-Main Process                          Renderer (Hidden Window)
-     |                                        |
-     |-- 'start-recording' ----------------->|  (Fn key pressed)
-     |                                        |  MediaRecorder.start()
-     |                                        |
-     |-- 'stop-recording' ------------------>|  (Fn key released)
-     |                                        |  MediaRecorder.stop()
-     |                                        |
-     |<-- 'audio-captured' (ArrayBuffer) ----|  (blob ready)
-     |                                        |
-     |  [transcribe -> format -> paste]       |
-     |                                        |
-     |-- 'recording-state' (state) --------->|  (for any UI updates)
+Main Process Renderer (Hidden Window)
+| |
+|-- 'start-recording' ----------------->| (Fn key pressed)
+| | MediaRecorder.start()
+| |
+|-- 'stop-recording' ------------------>| (Fn key released)
+| | MediaRecorder.stop()
+| |
+|<-- 'audio-captured' (ArrayBuffer) ----| (blob ready)
+| |
+| [transcribe -> format -> paste] |
+| |
+|-- 'recording-state' (state) --------->| (for any UI updates)
+
 ```
 
 ---
@@ -298,3 +479,4 @@ Main Process                          Renderer (Hidden Window)
 - [ ] Permission prompts shown on first launch
 - [ ] Timing logs show < 2s total latency on good network
 - [ ] App stable for 10+ minutes of repeated use
+```

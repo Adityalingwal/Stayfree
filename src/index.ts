@@ -1,8 +1,8 @@
-import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, globalShortcut, Notification } from "electron";
+import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, globalShortcut, Notification, systemPreferences, shell } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
 import { formatText } from "./main/formatting";
-import { pasteText, checkAccessibilityPermission, requestAccessibilityPermission } from "./main/paste";
+import { pasteText } from "./main/paste";
 import store from "./main/store";
 import * as fs from "fs";
 import * as path from "path";
@@ -20,6 +20,7 @@ if (require("electron-squirrel-startup")) {
 let tray: Tray | null = null;
 let settingsWindow: BrowserWindow | null = null;
 let recorderWindow: BrowserWindow | null = null;
+let onboardingWindow: BrowserWindow | null = null;
 
 // --- App State ---
 type AppState = "idle" | "recording" | "processing";
@@ -163,6 +164,103 @@ function openSettingsWindow(): void {
   });
 }
 
+// --- Onboarding Window ---
+
+function needsOnboarding(): boolean {
+  if (store.get("onboardingComplete")) {
+    // Even if onboarding was completed, re-show if permissions were revoked
+    const micStatus = systemPreferences.getMediaAccessStatus("microphone");
+    const accessibilityGranted = systemPreferences.isTrustedAccessibilityClient(false);
+    if (micStatus === "granted" && accessibilityGranted) {
+      return false;
+    }
+    console.log("[Onboarding] Permissions revoked since last onboarding - re-showing");
+  }
+  return true;
+}
+
+function showOnboardingWindow(): void {
+  if (onboardingWindow) {
+    onboardingWindow.focus();
+    return;
+  }
+
+  // Temporarily show dock so the onboarding window is discoverable
+  if (process.platform === "darwin") {
+    app.dock.show();
+  }
+
+  onboardingWindow = new BrowserWindow({
+    width: 520,
+    height: 600,
+    title: "Welcome to StayFree",
+    resizable: false,
+    minimizable: false,
+    maximizable: false,
+    fullscreenable: false,
+    show: false,
+    webPreferences: {
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      nodeIntegration: false,
+      contextIsolation: true,
+    },
+  });
+
+  // Hash routing: renderer.ts checks window.location.hash to decide what to render
+  onboardingWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#onboarding`);
+
+  onboardingWindow.once("ready-to-show", () => {
+    onboardingWindow.show();
+  });
+
+  onboardingWindow.on("closed", () => {
+    onboardingWindow = null;
+    // Hide dock again after onboarding closes
+    if (process.platform === "darwin") {
+      app.dock.hide();
+    }
+  });
+
+  console.log("[Onboarding] Window created");
+}
+
+// --- Permission IPC Handlers ---
+
+function registerPermissionHandlers(): void {
+  ipcMain.handle("check-permissions", () => {
+    const mic = systemPreferences.getMediaAccessStatus("microphone");
+    const accessibility = systemPreferences.isTrustedAccessibilityClient(false);
+    return { mic, accessibility };
+  });
+
+  ipcMain.handle("request-mic-permission", async () => {
+    const granted = await systemPreferences.askForMediaAccess("microphone");
+    return granted;
+  });
+
+  ipcMain.on("open-accessibility-settings", () => {
+    // Prompt the system dialog
+    systemPreferences.isTrustedAccessibilityClient(true);
+    shell.openExternal(
+      "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
+    );
+  });
+
+  ipcMain.on("open-keyboard-settings", () => {
+    shell.openExternal(
+      "x-apple.systempreferences:com.apple.preference.keyboard"
+    );
+  });
+
+  ipcMain.on("complete-onboarding", () => {
+    store.set("onboardingComplete", true);
+    console.log("[Onboarding] Completed");
+    if (onboardingWindow) {
+      onboardingWindow.close();
+    }
+  });
+}
+
 // --- App Lifecycle ---
 
 app.on("ready", () => {
@@ -171,10 +269,8 @@ app.on("ready", () => {
     app.dock.hide();
   }
 
-  // Check accessibility permission on startup (needed for auto-paste)
-  if (!checkAccessibilityPermission()) {
-    requestAccessibilityPermission();
-  }
+  // Register permission IPC handlers (needed before onboarding window loads)
+  registerPermissionHandlers();
 
   // Create system tray
   tray = new Tray(createTrayIcon("idle"));
@@ -187,6 +283,11 @@ app.on("ready", () => {
 
   // Create hidden recorder window (for Web Audio API access)
   createRecorderWindow();
+
+  // Show onboarding if first launch or permissions missing
+  if (needsOnboarding()) {
+    showOnboardingWindow();
+  }
 
   // Initialize hotkey manager (Fn key for push-to-talk)
   const hotkeyManager = getHotkeyManager({ useFnKey: true });

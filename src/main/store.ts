@@ -14,6 +14,7 @@ interface StoreSchema {
   };
   dictionary: Record<string, string>; // term -> replacement
   lastTranscript: string;
+  onboardingComplete: boolean;
 }
 
 const store = new Store<StoreSchema>({
@@ -26,6 +27,7 @@ const store = new Store<StoreSchema>({
     },
     dictionary: {},
     lastTranscript: "",
+    onboardingComplete: false,
   },
 });
 
