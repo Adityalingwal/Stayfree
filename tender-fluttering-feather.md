@@ -322,72 +322,285 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 
 ---
 
-### Phase 9: Settings UI (React + Tailwind)
+### Phase 9: Dashboard UI + Floating Widget (React + Tailwind)
 
-**Goal:** User can configure the app via a beautiful settings window
+**Goal:** Build Wispr-style UI with main dashboard window AND floating dictation widget
 
-**Technology:** React + Tailwind CSS (not plain HTML/CSS/JS)
-
-**Setup:**
-
-1. Install dependencies:
-
-   ```bash
-   npm install react react-dom
-   npm install -D tailwindcss postcss autoprefixer @types/react @types/react-dom
-   npx tailwindcss init
-   ```
-
-2. Update Webpack config for React + Tailwind support
-
-3. Create settings components:
-   ```
-   src/renderer/settings/
-   ├── index.tsx           # Entry point
-   ├── App.tsx             # Main settings component
-   ├── components/
-   │   ├── ApiKeySection.tsx       # API key with show/hide
-   │   ├── MicrophoneSection.tsx   # Mic dropdown
-   │   ├── DictionarySection.tsx   # Custom word replacements
-   │   └── Button.tsx              # Reusable button
-   └── styles/
-       └── tailwind.css
-   ```
-
-**Features to Build:**
-
-1. **API Key Section:**
-   - Password input with show/hide toggle (👁️)
-   - Validate on save (test API call)
-   - Status indicator (✅ Valid / ❌ Invalid)
-
-2. **Microphone Selection:**
-   - Dropdown with all audio input devices
-   - Uses `navigator.mediaDevices.enumerateDevices()`
-   - Save selected device ID
-
-3. **Custom Dictionary:**
-   - Editable table (term → replacement)
-   - Add new entry button
-   - Delete entry button
-   - Example: "stayfree" → "StayFree"
-
-4. **Settings Window:**
-   - Opened from tray menu "Settings..."
-   - New `BrowserWindow` (~500x600px)
-   - Dark mode styling with Tailwind
-
-5. **Persistence:**
-   - All settings saved via `electron-store`
-   - IPC handlers for read/write settings
-
-**Verify:**
-
-- Change API key, restart, persists
-- Add dictionary entry, verify it applies to next transcription
-- Change microphone, verify audio captures from selected device
+**Technology:** React + Tailwind CSS
 
 ---
+
+#### Part A: Main Dashboard Window (Wispr-style)
+
+**Single window with sidebar navigation:**
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ 🔴🟡🟢  StayFree                                                    │
+├────────────┬────────────────────────────────────────────────────────┤
+│            │                                                         │
+│  SIDEBAR   │              CONTENT AREA                              │
+│  (Fixed)   │              (Changes on click)                        │
+│            │                                                         │
+│ 🏠 Home    │  Shows: Transcription history, usage stats            │
+│ 📖 Dictionary│ Shows: Custom word list (term → replacement)        │
+│ ⚙️ Settings │ Shows: API key, mic selection, preferences           │
+│            │                                                         │
+└────────────┴────────────────────────────────────────────────────────┘
+```
+
+**Pages:**
+
+1. **Home Page:** Recent transcriptions, usage stats, quick actions
+2. **Dictionary Page:** Custom word replacements (add/edit/delete)
+3. **Settings Page:** API key, microphone selection, hotkey config
+
+**Window Behavior:**
+
+- Opened from tray icon (left click) or tray menu "Home"
+- Single BrowserWindow (~600x500px)
+- macOS native look (hiddenInset title bar, vibrancy)
+- Dark mode styling
+
+---
+
+#### Part B: Floating Dictation Widget (NEW!)
+
+**A draggable floating widget that shows recording status:**
+
+**4 STATES:**
+
+```
+1️⃣ IDLE (Minimized)
+┌─────────────────┐
+│       🎤        │  Small flat icon, bottom center
+└─────────────────┘
+• Click → Start recording (with buttons)
+• Hotkey (Option) → Start recording (without buttons)
+• Hover → Expand to state 2
+
+2️⃣ HOVER/READY (Expanded)
+┌────────────────────────────────────────────┐
+│   Click or hold Option to start dictating  │
+│              ─────────────                 │
+└────────────────────────────────────────────┘
+• Shows instructions
+• Dotted line placeholder
+
+3️⃣ RECORDING (Active) - TWO MODES:
+
+   A) HOTKEY TRIGGERED (Option key held):
+   ┌─────────────────────────────────────┐
+   │        ▁▃▅▇▅▃▁ (wave only)          │
+   └─────────────────────────────────────┘
+   • Only wave animation, NO buttons
+   • Release Option key → Stops recording, starts processing
+
+   B) CLICK TRIGGERED (Clicked on widget):
+   ┌────────────────────────────────────────────┐
+   │   ✕   │   ▁▃▅▇▅▃▁ (wave)   │      🔴      │
+   │ Cancel│                     │ Stop & Paste │
+   └────────────────────────────────────────────┘
+   • Left: ✕ Cancel button → Discards recording, back to idle
+   • Middle: Smooth wave animation synced with voice volume
+   • Right: 🔴 Stop button → Stop recording, start processing
+
+4️⃣ PROCESSING (Loading)
+┌─────────────────────────────────────┐
+│     ▁▁▁▁▁ (frozen)      ⏳          │
+│                         Loading      │
+└─────────────────────────────────────┘
+• NO cancel button in processing
+• Wave animation frozen
+• Spinner on right side
+• After paste success → Back to IDLE
+• If paste fails → Show notification for Ctrl+Cmd+V
+```
+
+**Widget Properties:**
+
+- **Position:** Bottom center by default, BUT user can drag to move
+- **Visibility:** Only when StayFree app is running
+- **Always on top:** Floats above other windows
+- **Frameless:** No window chrome, just the widget
+- **Transparent background:** Blends with screen
+
+**Technical Implementation:**
+
+```
+Widget = Separate small BrowserWindow
+├── width: ~250px (expands on recording)
+├── height: ~50px
+├── transparent: true
+├── frame: false
+├── alwaysOnTop: true
+├── skipTaskbar: true
+├── movable: true (draggable)
+└── React component inside
+```
+
+**Wave Animation:**
+
+- CSS/Canvas animation for smooth wave effect
+- Connected to AudioContext for real volume levels
+- Bars: 5-7 vertical bars that animate based on audio input
+
+---
+
+#### Part C: Setup & File Structure
+
+**Install dependencies:**
+
+```bash
+npm install react react-dom
+npm install -D tailwindcss postcss autoprefixer @types/react @types/react-dom
+npx tailwindcss init
+```
+
+**File Structure:**
+
+```
+src/renderer/
+├── dashboard/                    # Main dashboard window
+│   ├── index.html
+│   ├── index.tsx
+│   ├── App.tsx
+│   ├── components/
+│   │   ├── Sidebar.tsx
+│   │   ├── HomePage.tsx
+│   │   ├── DictionaryPage.tsx
+│   │   ├── SettingsPage.tsx
+│   │   └── Button.tsx
+│   └── styles/
+│       └── tailwind.css
+│
+└── widget/                       # Floating dictation widget
+    ├── index.html
+    ├── index.tsx
+    ├── App.tsx
+    ├── components/
+    │   ├── IdleState.tsx
+    │   ├── HoverState.tsx
+    │   ├── RecordingState.tsx
+    │   ├── ProcessingState.tsx
+    │   └── WaveAnimation.tsx
+    └── styles/
+        └── widget.css
+```
+
+---
+
+#### Part D: Verification
+
+**Dashboard Window:**
+
+- [ ] Tray left-click opens dashboard
+- [ ] Sidebar navigation works (Home → Dictionary → Settings)
+- [ ] Settings persist on restart
+- [ ] Dictionary changes apply to next transcription
+
+**Floating Widget:**
+
+- [ ] Widget appears at bottom center when app starts
+- [ ] User can drag widget to reposition
+- [ ] Hover expands widget with instructions
+- [ ] Click starts recording (shows state 3)
+- [ ] Option key also starts recording
+- [ ] Cancel button (✕) discards and returns to idle
+- [ ] Stop button (🔴) triggers transcription
+- [ ] Wave animation synced with voice
+- [ ] Processing state shows spinner
+- [ ] Success → back to idle
+- [ ] Failure → notification appears
+
+**Audio Feedback:**
+
+- [ ] Key DOWN sound plays when recording starts
+- [ ] Key UP sound plays when recording stops
+
+---
+
+#### Part E: Audio Feedback Sounds (NEW!)
+
+**Pleasant sounds for recording start/stop:**
+
+**IMPORTANT: Sound plays ONCE only, NOT continuously!**
+
+```
+KEY DOWN (Start Recording):
+├── Play "start" sound ONCE
+├── ~100-200ms duration
+├── Plays immediately when key is pressed
+└── Then stops - does NOT loop or repeat
+
+KEY UP (Stop Recording):
+├── Play "stop" sound ONCE
+├── ~100-200ms duration
+├── Plays immediately when key is released
+└── Then stops - does NOT loop or repeat
+
+TIMELINE:
+─────────────────────────────────────────────────────
+Key Down        Recording...              Key Up
+   │                                        │
+   🔊 (beep)    [silence, just wave]       🔊 (beep)
+   │                                        │
+  100ms                                   100ms
+─────────────────────────────────────────────────────
+```
+
+**Implementation:**
+
+```typescript
+// In main process or renderer
+const startSound = new Audio("assets/sounds/start.mp3");
+const stopSound = new Audio("assets/sounds/stop.mp3");
+
+// On key down
+startSound.play();
+
+// On key up
+stopSound.play();
+```
+
+**Sound Files Needed:**
+
+- `assets/sounds/start.mp3` - Recording start sound
+- `assets/sounds/stop.mp3` - Recording stop sound
+
+**Sound Quality Requirements (IMPORTANT!):**
+
+```
+✅ GOOD (What we want):
+├── Pleasant, soothing tones
+├── Soft, gentle sounds (like Apple notification sounds)
+├── Similar to Wispr Flow's feedback sounds
+├── Calming, not jarring
+├── Think: soft chime, gentle pop, subtle ding
+└── Like macOS system sounds - refined and elegant
+
+❌ BAD (What to avoid):
+├── Harsh beeps
+├── Loud, annoying sounds
+├── Robotic or mechanical sounds
+├── Jarring or startling tones
+└── Anything that feels "cheap" or unpolished
+```
+
+**Recommended Sound Sources:**
+
+- Apple's built-in system sounds as inspiration
+- Wispr Flow's sounds (for reference)
+- Freesound.org (royalty-free)
+- Create custom tones using soft sine waves
+
+**Notes:**
+
+- Use royalty-free sounds or create simple soft tones
+- Keep volume moderate (not too loud)
+- Should work even when system volume is set
+- Consider adding toggle in Settings to enable/disable sounds
+- Test sounds multiple times - they should feel nice even after 100 uses
 
 ## 🎉 MVP COMPLETE AFTER PHASE 9!
 
