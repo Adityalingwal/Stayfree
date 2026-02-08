@@ -1,6 +1,7 @@
 import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
+import { formatText } from "./main/formatting";
 import store from "./main/store";
 import * as fs from "fs";
 import * as path from "path";
@@ -227,10 +228,13 @@ app.on("ready", () => {
     if (transcript) {
       console.log(`[Main] ✓ Transcript: "${transcript}"`);
 
-      // Store last transcript for fallback paste (Phase 6)
-      store.set("lastTranscript", transcript);
+      // Format text: punctuation + voice commands + dictionary replacements
+      const formattedText = await formatText(transcript);
+      console.log(`[Main] ✓ Formatted: "${formattedText}"`);
 
-      // TODO: Phase 5 - Format text with LLM
+      // Store last transcript for fallback paste (Phase 6)
+      store.set("lastTranscript", formattedText);
+
       // TODO: Phase 6 - Auto-paste into active app
     } else {
       console.error("[Main] Transcription failed");
