@@ -1,4 +1,4 @@
-import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, globalShortcut } from "electron";
+import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, globalShortcut, Notification } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
 import { formatText } from "./main/formatting";
@@ -24,6 +24,7 @@ let recorderWindow: BrowserWindow | null = null;
 // --- App State ---
 type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
+let isProcessing = false; // Guard against concurrent pipeline runs
 
 // --- Tray Icon Creation (using PNG files for reliability) ---
 
@@ -202,7 +203,8 @@ app.on("ready", () => {
 
   hotkeyManager.on("recording-stop", () => {
     console.log("[Main] Hotkey released - stopping recording");
-    updateTrayState("idle");
+    // Go directly to "processing" - avoids idle flash between recording and processing
+    updateTrayState("processing");
 
     // Tell recorder window to stop and send audio
     if (recorderWindow) {
@@ -227,47 +229,89 @@ app.on("ready", () => {
     }
   });
 
-  // IPC Handler: Receive audio blob from renderer
+  // IPC Handler: Receive audio blob from renderer — full pipeline
   ipcMain.on("audio-captured", async (_event, audioData: Buffer) => {
-    console.log(`[Main] Received audio data: ${audioData.length} bytes`);
+    // Guard: prevent concurrent pipeline runs
+    if (isProcessing) {
+      console.warn("[Pipeline] Already processing - ignoring new audio");
+      return;
+    }
+    isProcessing = true;
 
-    // Update tray to processing state
+    const pipelineStart = Date.now();
+    console.log(`\n[Pipeline] ═══ START ═══ (${audioData.length} bytes)`);
+
+    // Tray should already be "processing" from recording-stop handler
     updateTrayState("processing");
 
-    // Save audio for debugging (optional)
-    const recordingsDir = path.join(__dirname, "..", "..", "recordings");
-    if (!fs.existsSync(recordingsDir)) {
-      fs.mkdirSync(recordingsDir, { recursive: true });
-    }
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const audioPath = path.join(recordingsDir, `recording-${timestamp}.webm`);
-    fs.writeFileSync(audioPath, audioData);
-    console.log(`[Main] Audio saved: ${audioPath}`);
+    try {
+      // --- Save audio for debugging ---
+      const recordingsDir = path.join(__dirname, "..", "..", "recordings");
+      if (!fs.existsSync(recordingsDir)) {
+        fs.mkdirSync(recordingsDir, { recursive: true });
+      }
+      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+      const audioPath = path.join(recordingsDir, `recording-${timestamp}.webm`);
+      fs.writeFileSync(audioPath, audioData);
+      console.log(`[Pipeline] Audio saved: ${audioPath}`);
 
-    // Transcribe audio using Groq Whisper API
-    const transcript = await transcribe(audioData);
+      // --- Step 1: ASR (Speech-to-Text) ---
+      const asrStart = Date.now();
+      const transcript = await transcribe(audioData);
+      const L_asr = Date.now() - asrStart;
 
-    if (transcript) {
-      console.log(`[Main] ✓ Transcript: "${transcript}"`);
+      if (!transcript) {
+        console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
+        new Notification({
+          title: "StayFree",
+          body: "Transcription failed. Please try again.",
+          silent: true,
+        }).show();
+        return; // finally block will reset tray + isProcessing
+      }
 
-      // Format text: punctuation + voice commands + dictionary replacements
+      console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
+
+      // --- Step 2: LLM Formatting ---
+      const llmStart = Date.now();
       const formattedText = await formatText(transcript);
-      console.log(`[Main] ✓ Formatted: "${formattedText}"`);
+      const L_llm = Date.now() - llmStart;
 
-      // Store for fallback paste
+      console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
+
+      // Store for fallback paste (Ctrl+Cmd+V)
       store.set("lastTranscript", formattedText);
 
-      // Auto-paste into active app
+      // --- Step 3: Paste ---
+      const pasteStart = Date.now();
       const pasted = await pasteText(formattedText);
-      if (!pasted) {
-        console.error("[Main] Auto-paste failed - text is in clipboard, user can Cmd+V manually");
-      }
-    } else {
-      console.error("[Main] Transcription failed");
-    }
+      const L_paste = Date.now() - pasteStart;
 
-    // Return to idle state
-    updateTrayState("idle");
+      if (pasted) {
+        console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
+      } else {
+        console.error(`[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual Cmd+V`);
+      }
+
+      // --- Timing Summary ---
+      const L_total = Date.now() - pipelineStart;
+      console.log(`[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`);
+
+    } catch (error) {
+      const L_total = Date.now() - pipelineStart;
+      console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);
+
+      new Notification({
+        title: "StayFree",
+        body: "Something went wrong. Please try again.",
+        silent: true,
+      }).show();
+
+    } finally {
+      // Always reset state — no matter what happened
+      isProcessing = false;
+      updateTrayState("idle");
+    }
   });
 });
 
