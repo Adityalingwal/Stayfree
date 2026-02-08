@@ -1,7 +1,8 @@
-import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain } from "electron";
+import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, globalShortcut } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
 import { formatText } from "./main/formatting";
+import { pasteText, checkAccessibilityPermission, requestAccessibilityPermission } from "./main/paste";
 import store from "./main/store";
 import * as fs from "fs";
 import * as path from "path";
@@ -79,9 +80,11 @@ function buildContextMenu(): Menu {
     {
       label: "Paste Last Transcript",
       accelerator: "Ctrl+Cmd+V",
-      click: () => {
-        // TODO: Phase 6 - paste last transcript functionality
-        console.log("[StayFree] Paste last transcript clicked");
+      click: async () => {
+        const lastTranscript = store.get("lastTranscript") as string;
+        if (lastTranscript) {
+          await pasteText(lastTranscript);
+        }
       },
     },
     { type: "separator" },
@@ -167,6 +170,11 @@ app.on("ready", () => {
     app.dock.hide();
   }
 
+  // Check accessibility permission on startup (needed for auto-paste)
+  if (!checkAccessibilityPermission()) {
+    requestAccessibilityPermission();
+  }
+
   // Create system tray
   tray = new Tray(createTrayIcon("idle"));
   tray.setContextMenu(buildContextMenu());
@@ -205,6 +213,20 @@ app.on("ready", () => {
   // Start listening for hotkeys
   hotkeyManager.start();
 
+  // Register fallback hotkey: Ctrl+Cmd+V pastes last transcript
+  globalShortcut.register("Ctrl+Cmd+V", async () => {
+    const lastTranscript = store.get("lastTranscript") as string;
+    if (lastTranscript) {
+      console.log("[Main] Fallback hotkey: pasting last transcript");
+      const pasted = await pasteText(lastTranscript);
+      if (!pasted) {
+        console.error("[Main] Fallback paste failed");
+      }
+    } else {
+      console.log("[Main] Fallback hotkey: no last transcript to paste");
+    }
+  });
+
   // IPC Handler: Receive audio blob from renderer
   ipcMain.on("audio-captured", async (_event, audioData: Buffer) => {
     console.log(`[Main] Received audio data: ${audioData.length} bytes`);
@@ -232,10 +254,14 @@ app.on("ready", () => {
       const formattedText = await formatText(transcript);
       console.log(`[Main] ✓ Formatted: "${formattedText}"`);
 
-      // Store last transcript for fallback paste (Phase 6)
+      // Store for fallback paste
       store.set("lastTranscript", formattedText);
 
-      // TODO: Phase 6 - Auto-paste into active app
+      // Auto-paste into active app
+      const pasted = await pasteText(formattedText);
+      if (!pasted) {
+        console.error("[Main] Auto-paste failed - text is in clipboard, user can Cmd+V manually");
+      }
     } else {
       console.error("[Main] Transcription failed");
     }
@@ -251,6 +277,9 @@ app.on("window-all-closed", () => {
 });
 
 app.on("before-quit", () => {
+  // Unregister global shortcuts
+  globalShortcut.unregisterAll();
+
   // Stop hotkey listener
   const hotkeyManager = getHotkeyManager();
   hotkeyManager.stop();

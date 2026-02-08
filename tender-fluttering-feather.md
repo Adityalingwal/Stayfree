@@ -146,17 +146,43 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 
 ### Phase 6: Clipboard + Auto-Paste
 
-**Goal:** Paste formatted text into the active app
+**Goal:** Paste formatted text into the active app where user's cursor is
+
+**IMPORTANT DESIGN DECISIONS:**
+
+- **DO NOT restore original clipboard** - Keep spoken word in clipboard so user can re-paste with Ctrl+Cmd+V
+- **Minimal latency** - Paste should take ~30-50ms, not 150ms
+- **Spoken word stays in clipboard** - This serves as fallback if auto-paste fails
 
 1. `src/main/paste.ts`:
-   - `saveClipboard()`: read `clipboard.readText()` + `clipboard.readImage()`
-   - `writeToClipboard(text)`: `clipboard.writeText(text)`
-   - `simulatePaste()`: `exec('osascript -e \'tell application "System Events" to keystroke "v" using command down\'')`
-   - `restoreClipboard()`: restore after 150ms delay
-   - `pasteText(text)`: orchestrate full sequence, store as lastTranscript
-2. Register fallback hotkey `Ctrl+Cmd+V` via `globalShortcut` -> paste lastTranscript
-3. On failure: `new Notification({ title: 'StayFree', body: 'Paste failed. Press Ctrl+Cmd+V to paste manually.' })`
-4. **Verify:** Dictate in Notes.app, VS Code, Chrome textarea. Text appears. Test clipboard preservation. Test fallback hotkey.
+   - `writeToClipboard(text)`: `clipboard.writeText(text)` (~2ms)
+   - `simulatePaste()`: Use osascript to simulate Cmd+V keystroke (~30-50ms)
+     ```typescript
+     exec(
+       'osascript -e "tell application \\"System Events\\" to keystroke \\"v\\" using command down"',
+     );
+     ```
+   - `pasteText(text)`: Main function - write to clipboard, simulate paste, return success/failure
+   - **NO saveClipboard() or restoreClipboard()** - We intentionally keep our text in clipboard
+
+2. Register fallback hotkey `Ctrl+Cmd+V` via `globalShortcut`:
+   - On press → `clipboard.writeText(store.get('lastTranscript'))` then simulate paste
+   - This lets user manually paste if auto-paste failed
+
+3. Error handling:
+   - On failure: Show notification "Paste failed. Press Ctrl+Cmd+V or just Cmd+V to paste."
+   - Store `lastTranscript` in electron-store for fallback
+
+4. **Accessibility Permission Required:**
+   - osascript needs "Accessibility" permission in System Settings → Privacy & Security
+   - Check permission with `systemPreferences.isTrustedAccessibilityClient(false)`
+   - If not granted, show dialog guiding user to enable it
+
+5. **Verify:**
+   - Dictate in Notes.app, VS Code, Chrome textarea → Text appears
+   - After dictation, Cmd+V pastes same text again (clipboard preserved)
+   - Fallback Ctrl+Cmd+V works
+   - Test in apps that might block paste (Terminal, some password fields)
 
 ### Phase 7: Full Pipeline Wiring
 
