@@ -1,11 +1,13 @@
 # StayFree - Voice Dictation MVP Implementation Plan
 
 ## Overview
+
 Build a Wispr Flow competitor: an Electron + TypeScript macOS app where user holds the **Fn key** to record speech, releases to get formatted text auto-pasted into any active app. Uses **Groq API** (Whisper large-v3-turbo for STT + Llama for formatting).
 
 ---
 
 ## Decisions
+
 - **STT**: Groq API with `whisper-large-v3-turbo` model (fast, matches PDF spec)
 - **Formatting**: Groq API with `llama-3.1-8b-instant` (matches PDF spec, one API key for everything)
 - **Hotkey**: Fn key (push-to-talk). Onboarding will instruct users to set macOS Fn key to "Do Nothing" in System Settings
@@ -58,14 +60,14 @@ StayFree/
 
 ## Key Dependencies
 
-| Package | Role |
-|---------|------|
-| `electron` (~v33) | Desktop app framework |
-| `@electron-forge/cli` | Build tooling, packaging, dev server |
-| `typescript` | Type safety |
-| `uiohook-napi` | Global keydown/keyup detection for Fn push-to-talk |
-| `electron-store` | Persist settings (hotkey, API key, dictionary) |
-| `groq-sdk` | Groq API SDK (OpenAI-compatible) for Whisper + Llama |
+| Package               | Role                                                 |
+| --------------------- | ---------------------------------------------------- |
+| `electron` (~v33)     | Desktop app framework                                |
+| `@electron-forge/cli` | Build tooling, packaging, dev server                 |
+| `typescript`          | Type safety                                          |
+| `uiohook-napi`        | Global keydown/keyup detection for Fn push-to-talk   |
+| `electron-store`      | Persist settings (hotkey, API key, dictionary)       |
+| `groq-sdk`            | Groq API SDK (OpenAI-compatible) for Whisper + Llama |
 
 No other heavy native modules. `osascript` (built into macOS) handles paste simulation.
 
@@ -74,6 +76,7 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 ## Implementation Phases
 
 ### Phase 1: Project Scaffold + Tray Icon
+
 **Goal:** Electron app that lives in system tray with a menu
 
 1. `npx create-electron-app StayFree --template=typescript-webpack`
@@ -83,6 +86,7 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 5. **Verify:** `npm start` -> app launches, tray icon visible, menu works, no dock icon
 
 ### Phase 2: Global Hotkey (Push-to-Talk with Fn Key)
+
 **Goal:** Hold Fn to enter recording state, release to stop
 
 1. `src/main/hotkey.ts`:
@@ -95,6 +99,7 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 3. **Verify:** Hold Fn, tray icon changes to recording state. Release, changes back.
 
 ### Phase 3: Audio Capture
+
 **Goal:** Record microphone audio while Fn is held
 
 1. Create hidden `BrowserWindow` (offscreen, for Web Audio API access)
@@ -109,6 +114,7 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 5. **Verify:** Hold Fn, speak, release. Audio ArrayBuffer logged in main process. Save to .webm file, verify playback.
 
 ### Phase 4: STT via Groq (Whisper large-v3-turbo)
+
 **Goal:** Send recorded audio to Groq Whisper API, get transcript
 
 1. `src/main/store.ts`:
@@ -120,21 +126,26 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 3. **Verify:** Speak a sentence, see raw transcript in console.
 
 ### Phase 5: LLM Formatting via Groq (Llama 3.1 8B)
+
 **Goal:** Clean up raw transcript
 
 1. `src/main/formatting.ts`:
    - `formatText(rawText: string): Promise<string>`
    - Groq chat completion with `llama-3.1-8b-instant`
-   - System prompt: "Format this dictated text. Add punctuation, proper casing. Remove filler words (um, uh, like). Return ONLY the formatted text."
+   - System prompt includes ALL formatting instructions:
+     - Add punctuation and proper casing
+     - Remove filler words (um, uh, like, you know)
+     - Handle voice commands in prompt (e.g., "new line" → `\n`, "new paragraph" → `\n\n`)
+     - Return ONLY the formatted text
    - Temperature: 0.1
-2. `src/main/voice-commands.ts`:
-   - Pre-formatting: replace "new line" -> `\n`, "new paragraph" -> `\n\n`
-   - Case-insensitive matching
-3. `src/main/dictionary.ts`:
+   - **NOTE:** No separate `voice-commands.ts` needed - LLM handles everything via prompt
+2. `src/main/dictionary.ts`:
    - Post-formatting: apply user's find/replace rules from store
-4. **Verify:** Speak messy sentences with "um", "uh". Verify clean output.
+   - Custom word replacements (e.g., "stayfree" → "StayFree")
+3. **Verify:** Speak messy sentences with "um", "uh", "new line". Verify clean formatted output.
 
 ### Phase 6: Clipboard + Auto-Paste
+
 **Goal:** Paste formatted text into the active app
 
 1. `src/main/paste.ts`:
@@ -148,17 +159,19 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 4. **Verify:** Dictate in Notes.app, VS Code, Chrome textarea. Text appears. Test clipboard preservation. Test fallback hotkey.
 
 ### Phase 7: Full Pipeline Wiring
+
 **Goal:** Wire everything end-to-end with timing
 
 1. `src/main/ipc-handlers.ts`:
    - On `audio-captured` event: run full pipeline
-   - Pipeline: audio -> `transcribe()` -> `processVoiceCommands()` -> `formatText()` -> `applyDictionary()` -> `pasteText()`
+   - Pipeline: audio -> `transcribe()` -> `formatText()` -> `applyDictionary()` -> `pasteText()`
    - Timing: log `L_asr`, `L_llm`, `L_paste`, `L_total` to console
    - Update tray icon: idle -> recording -> processing -> idle
    - Catch errors, show notification, reset tray to idle
 2. **Verify:** Full end-to-end: hold Fn, speak, release, text appears in active app. Check timing logs.
 
 ### Phase 8: Settings UI
+
 **Goal:** User can configure the app
 
 1. `src/renderer/settings.html` + `settings.ts` + `styles.css`:
@@ -172,6 +185,7 @@ No other heavy native modules. `osascript` (built into macOS) handles paste simu
 4. **Verify:** Change API key, restart, persists. Add dictionary entry, verify it applies.
 
 ### Phase 9: Permission Onboarding
+
 **Goal:** Guide user through macOS permissions on first launch
 
 1. Check `systemPreferences.getMediaAccessStatus('microphone')`
