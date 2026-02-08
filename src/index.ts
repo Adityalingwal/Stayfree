@@ -1,4 +1,15 @@
-import { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, globalShortcut, Notification, systemPreferences, shell } from "electron";
+import {
+  app,
+  Tray,
+  Menu,
+  nativeImage,
+  BrowserWindow,
+  ipcMain,
+  globalShortcut,
+  Notification,
+  systemPreferences,
+  shell,
+} from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
 import { formatText } from "./main/formatting";
@@ -145,11 +156,11 @@ function openSettingsWindow(): void {
   }
 
   settingsWindow = new BrowserWindow({
-    width: 860,
-    height: 640,
+    width: 1200,
+    height: 800,
     title: "StayFree",
-    minWidth: 700,
-    minHeight: 500,
+    minWidth: 800,
+    minHeight: 600,
     show: false,
     titleBarStyle: "hiddenInset",
     trafficLightPosition: { x: 16, y: 16 },
@@ -180,11 +191,14 @@ function needsOnboarding(): boolean {
   if (store.get("onboardingComplete")) {
     // Even if onboarding was completed, re-show if permissions were revoked
     const micStatus = systemPreferences.getMediaAccessStatus("microphone");
-    const accessibilityGranted = systemPreferences.isTrustedAccessibilityClient(false);
+    const accessibilityGranted =
+      systemPreferences.isTrustedAccessibilityClient(false);
     if (micStatus === "granted" && accessibilityGranted) {
       return false;
     }
-    console.log("[Onboarding] Permissions revoked since last onboarding - re-showing");
+    console.log(
+      "[Onboarding] Permissions revoked since last onboarding - re-showing",
+    );
   }
   return true;
 }
@@ -252,13 +266,13 @@ function registerPermissionHandlers(): void {
     // Prompt the system dialog
     systemPreferences.isTrustedAccessibilityClient(true);
     shell.openExternal(
-      "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
+      "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
     );
   });
 
   ipcMain.on("open-keyboard-settings", () => {
     shell.openExternal(
-      "x-apple.systempreferences:com.apple.preference.keyboard"
+      "x-apple.systempreferences:com.apple.preference.keyboard",
     );
   });
 
@@ -302,10 +316,15 @@ function registerSettingsHandlers(): void {
     return store.get("dictionary");
   });
 
-  ipcMain.on("save-dictionary", (_event, dictionary: Record<string, string>) => {
-    store.set("dictionary", dictionary);
-    console.log(`[Settings] Dictionary saved (${Object.keys(dictionary).length} entries)`);
-  });
+  ipcMain.on(
+    "save-dictionary",
+    (_event, dictionary: Record<string, string>) => {
+      store.set("dictionary", dictionary);
+      console.log(
+        `[Settings] Dictionary saved (${Object.keys(dictionary).length} entries)`,
+      );
+    },
+  );
 
   ipcMain.handle("get-transcription-history", () => {
     return store.get("transcriptionHistory");
@@ -445,7 +464,12 @@ app.on("ready", () => {
       store.set("lastTranscript", formattedText);
 
       // Save to transcription history (keep last 100)
-      const history = store.get("transcriptionHistory") as Array<{ text: string; rawText: string; timestamp: number; durationMs: number }>;
+      const history = store.get("transcriptionHistory") as Array<{
+        text: string;
+        rawText: string;
+        timestamp: number;
+        durationMs: number;
+      }>;
       history.unshift({
         text: formattedText,
         rawText: transcript,
@@ -463,13 +487,16 @@ app.on("ready", () => {
       if (pasted) {
         console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
       } else {
-        console.error(`[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual Cmd+V`);
+        console.error(
+          `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual Cmd+V`,
+        );
       }
 
       // --- Timing Summary ---
       const L_total = Date.now() - pipelineStart;
-      console.log(`[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`);
-
+      console.log(
+        `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
+      );
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
       console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);
@@ -479,7 +506,6 @@ app.on("ready", () => {
         body: "Something went wrong. Please try again.",
         silent: true,
       }).show();
-
     } finally {
       // Always reset state — no matter what happened
       isProcessing = false;
