@@ -33,6 +33,12 @@ let settingsWindow: BrowserWindow | null = null;
 let recorderWindow: BrowserWindow | null = null;
 let onboardingWindow: BrowserWindow | null = null;
 
+// Prevent duplicate app instances (and duplicate tray icons).
+const gotSingleInstanceLock = app.requestSingleInstanceLock();
+if (!gotSingleInstanceLock) {
+  app.quit();
+}
+
 // --- App State ---
 type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
@@ -41,24 +47,22 @@ let isProcessing = false; // Guard against concurrent pipeline runs
 // --- Tray Icon Creation (using PNG files for reliability) ---
 
 // Get the path to icon files
-function getIconPath(state: AppState): string {
-  const iconName = `tray-${state}.png`;
+function getIconPath(): string {
+  const iconName = "trayTemplate.png";
   // Assets are copied to 'assets' folder in webpack output
   return path.join(__dirname, "assets", iconName);
 }
 
-function createTrayIcon(state: AppState): Electron.NativeImage {
-  const iconPath = getIconPath(state);
+function createTrayIcon(): Electron.NativeImage {
+  const iconPath = getIconPath();
   const image = nativeImage.createFromPath(iconPath);
 
   if (image.isEmpty()) {
     console.error(`[StayFree] ERROR: Icon not found at: ${iconPath}`);
   }
 
-  // For idle state, mark as template so macOS can adapt to dark/light mode
-  if (state === "idle") {
-    image.setTemplateImage(true);
-  }
+  // Mark as template so macOS can adapt icon color to menu bar style.
+  image.setTemplateImage(true);
 
   return image;
 }
@@ -66,7 +70,7 @@ function createTrayIcon(state: AppState): Electron.NativeImage {
 function updateTrayState(state: AppState): void {
   currentState = state;
   if (tray) {
-    tray.setImage(createTrayIcon(state));
+    tray.setImage(createTrayIcon());
     tray.setToolTip(
       state === "idle"
         ? "StayFree - Ready (Hold Fn to dictate)"
@@ -353,7 +357,7 @@ app.on("ready", () => {
   registerSettingsHandlers();
 
   // Create system tray
-  tray = new Tray(createTrayIcon("idle"));
+  tray = new Tray(createTrayIcon());
   tray.setContextMenu(buildContextMenu());
   tray.setToolTip("StayFree - Ready (Hold Fn to dictate)");
 
