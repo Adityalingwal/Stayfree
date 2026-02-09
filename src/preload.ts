@@ -15,6 +15,9 @@ contextBridge.exposeInMainWorld("electron", {
   onStopRecording: (callback: () => void) => {
     ipcRenderer.on("stop-recording", callback);
   },
+  onCancelRecording: (callback: () => void) => {
+    ipcRenderer.on("cancel-recording", callback);
+  },
   sendAudioData: (audioBuffer: ArrayBuffer) => {
     const buffer = Buffer.from(audioBuffer);
     ipcRenderer.send("audio-captured", buffer);
@@ -72,6 +75,31 @@ contextBridge.exposeInMainWorld("electron", {
   getAppVersion: (): Promise<string> => {
     return ipcRenderer.invoke("get-app-version");
   },
+
+  // --- Floating Widget ---
+  onWidgetState: (
+    callback: (
+      _event: Electron.IpcRendererEvent,
+      state: "idle" | "recording-hotkey" | "recording-click" | "processing",
+    ) => void,
+  ) => {
+    ipcRenderer.on("widget-state", callback);
+  },
+  startWidgetRecording: () => {
+    ipcRenderer.send("widget-start-recording");
+  },
+  stopWidgetRecording: () => {
+    ipcRenderer.send("widget-stop-recording");
+  },
+  cancelWidgetRecording: () => {
+    ipcRenderer.send("widget-cancel-recording");
+  },
+  setWidgetLayout: (layout: "idle" | "ready" | "recording" | "processing") => {
+    ipcRenderer.send("widget-set-layout", layout);
+  },
+  openSettingsFromWidget: () => {
+    ipcRenderer.send("widget-open-settings");
+  },
 });
 
 // Type declaration for TypeScript
@@ -81,6 +109,7 @@ declare global {
       // Recorder
       onStartRecording: (callback: () => void) => void;
       onStopRecording: (callback: () => void) => void;
+      onCancelRecording: (callback: () => void) => void;
       sendAudioData: (audioBuffer: ArrayBuffer) => void;
       // Onboarding / Permissions
       checkPermissions: () => Promise<{ mic: string; accessibility: boolean }>;
@@ -105,6 +134,24 @@ declare global {
       >;
       clearTranscriptionHistory: () => void;
       getAppVersion: () => Promise<string>;
+      // Floating Widget
+      onWidgetState: (
+        callback: (
+          _event: Electron.IpcRendererEvent,
+          state:
+            | "idle"
+            | "recording-hotkey"
+            | "recording-click"
+            | "processing",
+        ) => void,
+      ) => void;
+      startWidgetRecording: () => void;
+      stopWidgetRecording: () => void;
+      cancelWidgetRecording: () => void;
+      setWidgetLayout: (
+        layout: "idle" | "ready" | "recording" | "processing",
+      ) => void;
+      openSettingsFromWidget: () => void;
     };
   }
 }

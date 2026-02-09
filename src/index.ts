@@ -9,6 +9,7 @@ import {
   Notification,
   systemPreferences,
   shell,
+  screen,
 } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
@@ -32,6 +33,7 @@ let tray: Tray | null = null;
 let settingsWindow: BrowserWindow | null = null;
 let recorderWindow: BrowserWindow | null = null;
 let onboardingWindow: BrowserWindow | null = null;
+let widgetWindow: BrowserWindow | null = null;
 
 // Prevent duplicate app instances (and duplicate tray icons).
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
@@ -43,6 +45,15 @@ if (!gotSingleInstanceLock) {
 type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
 let isProcessing = false; // Guard against concurrent pipeline runs
+type RecordingSource = "hotkey" | "widget" | null;
+let activeRecordingSource: RecordingSource = null;
+
+type WidgetUiState =
+  | "idle"
+  | "recording-hotkey"
+  | "recording-click"
+  | "processing";
+type WidgetLayout = "idle" | "ready" | "recording" | "processing";
 
 // --- Tray Icon Creation (using PNG files for reliability) ---
 
@@ -79,6 +90,88 @@ function updateTrayState(state: AppState): void {
           : "StayFree - Processing...",
     );
   }
+}
+
+function getWidgetBounds(
+  layout: WidgetLayout,
+  _currentBounds?: Electron.Rectangle,
+): Electron.Rectangle {
+  const sizes: Record<WidgetLayout, { width: number; height: number }> = {
+    idle: { width: 60, height: 16 },
+    ready: { width: 60, height: 16 },
+    recording: { width: 120, height: 34 },
+    processing: { width: 60, height: 24 },
+  };
+  const target = sizes[layout];
+
+  // Always position at bottom center, close to dock
+  const display = screen.getPrimaryDisplay();
+  const workArea = display.workArea;
+  const x = Math.round(workArea.x + (workArea.width - target.width) / 2);
+  // Position very close to dock (8px from bottom of work area)
+  const y = Math.round(workArea.y + workArea.height - target.height - 8);
+  return { x, y, width: target.width, height: target.height };
+}
+
+function setWidgetLayout(layout: WidgetLayout): void {
+  if (!widgetWindow || widgetWindow.isDestroyed()) return;
+  const bounds = getWidgetBounds(layout, widgetWindow.getBounds());
+  widgetWindow.setBounds(bounds, true);
+}
+
+function sendWidgetState(state: WidgetUiState): void {
+  if (state === "idle") {
+    setWidgetLayout("idle");
+  } else if (state === "processing") {
+    setWidgetLayout("processing");
+  } else {
+    setWidgetLayout("recording");
+  }
+
+  if (!widgetWindow || widgetWindow.isDestroyed()) return;
+  widgetWindow.webContents.send("widget-state", state);
+}
+
+function createWidgetWindow(): void {
+  if (widgetWindow) return;
+
+  widgetWindow = new BrowserWindow({
+    ...getWidgetBounds("idle"),
+    show: false,
+    frame: false,
+    transparent: true,
+    hasShadow: false,
+    resizable: false,
+    minimizable: false,
+    maximizable: false,
+    fullscreenable: false,
+    skipTaskbar: true,
+    alwaysOnTop: true,
+    movable: false,
+    webPreferences: {
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      nodeIntegration: false,
+      contextIsolation: true,
+    },
+  });
+
+  widgetWindow.setAlwaysOnTop(true, "floating");
+  widgetWindow.setVisibleOnAllWorkspaces(true, {
+    visibleOnFullScreen: true,
+  });
+
+  widgetWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#widget`);
+
+  widgetWindow.once("ready-to-show", () => {
+    if (widgetWindow) {
+      widgetWindow.showInactive();
+      sendWidgetState("idle");
+    }
+  });
+
+  widgetWindow.on("closed", () => {
+    widgetWindow = null;
+  });
 }
 
 // Export for use by other modules later
@@ -344,6 +437,67 @@ function registerSettingsHandlers(): void {
   });
 }
 
+// --- Widget IPC Handlers ---
+
+function registerWidgetHandlers(): void {
+  ipcMain.on("widget-start-recording", () => {
+    if (isProcessing || currentState !== "idle") return;
+    if (!recorderWindow) {
+      console.error("[Widget] Recorder window unavailable");
+      return;
+    }
+
+    activeRecordingSource = "widget";
+    updateTrayState("recording");
+    sendWidgetState("recording-click");
+    recorderWindow.webContents.send("start-recording");
+  });
+
+  ipcMain.on("widget-stop-recording", () => {
+    if (currentState !== "recording" || activeRecordingSource !== "widget") {
+      return;
+    }
+    if (!recorderWindow) {
+      console.error("[Widget] Recorder window unavailable");
+      activeRecordingSource = null;
+      updateTrayState("idle");
+      sendWidgetState("idle");
+      return;
+    }
+
+    activeRecordingSource = null;
+    updateTrayState("processing");
+    sendWidgetState("processing");
+    recorderWindow.webContents.send("stop-recording");
+  });
+
+  ipcMain.on("widget-cancel-recording", () => {
+    if (currentState !== "recording" || activeRecordingSource !== "widget") {
+      return;
+    }
+    if (!recorderWindow) {
+      activeRecordingSource = null;
+      updateTrayState("idle");
+      sendWidgetState("idle");
+      return;
+    }
+
+    activeRecordingSource = null;
+    recorderWindow.webContents.send("cancel-recording");
+    updateTrayState("idle");
+    sendWidgetState("idle");
+  });
+
+  ipcMain.on("widget-set-layout", (_event, layout: WidgetLayout) => {
+    if (!["idle", "ready", "recording", "processing"].includes(layout)) return;
+    setWidgetLayout(layout);
+  });
+
+  ipcMain.on("widget-open-settings", () => {
+    openSettingsWindow();
+  });
+}
+
 // --- App Lifecycle ---
 
 app.on("ready", () => {
@@ -355,11 +509,15 @@ app.on("ready", () => {
   // Register IPC handlers (needed before any window loads)
   registerPermissionHandlers();
   registerSettingsHandlers();
+  registerWidgetHandlers();
 
   // Create system tray
   tray = new Tray(createTrayIcon());
   tray.setContextMenu(buildContextMenu());
   tray.setToolTip("StayFree - Ready (Hold Fn to dictate)");
+  tray.on("click", () => {
+    openSettingsWindow();
+  });
 
   console.log(
     "[StayFree] Running in system tray. Right-click tray icon for menu.",
@@ -367,6 +525,7 @@ app.on("ready", () => {
 
   // Create hidden recorder window (for Web Audio API access)
   createRecorderWindow();
+  createWidgetWindow();
 
   // Show onboarding if first launch or permissions missing
   if (needsOnboarding()) {
@@ -377,24 +536,41 @@ app.on("ready", () => {
   const hotkeyManager = getHotkeyManager({ useFnKey: true });
 
   hotkeyManager.on("recording-start", () => {
+    if (isProcessing || currentState !== "idle") return;
+    if (!recorderWindow) {
+      console.error("[Main] Recorder window unavailable");
+      return;
+    }
+
     console.log("[Main] Hotkey pressed - starting recording");
+    activeRecordingSource = "hotkey";
     updateTrayState("recording");
+    sendWidgetState("recording-hotkey");
 
     // Tell recorder window to start capturing audio
-    if (recorderWindow) {
-      recorderWindow.webContents.send("start-recording");
-    }
+    recorderWindow.webContents.send("start-recording");
   });
 
   hotkeyManager.on("recording-stop", () => {
+    if (currentState !== "recording" || activeRecordingSource !== "hotkey") {
+      return;
+    }
+    if (!recorderWindow) {
+      console.error("[Main] Recorder window unavailable");
+      activeRecordingSource = null;
+      updateTrayState("idle");
+      sendWidgetState("idle");
+      return;
+    }
+
     console.log("[Main] Hotkey released - stopping recording");
     // Go directly to "processing" - avoids idle flash between recording and processing
+    activeRecordingSource = null;
     updateTrayState("processing");
+    sendWidgetState("processing");
 
     // Tell recorder window to stop and send audio
-    if (recorderWindow) {
-      recorderWindow.webContents.send("stop-recording");
-    }
+    recorderWindow.webContents.send("stop-recording");
   });
 
   // Start listening for hotkeys
@@ -428,6 +604,7 @@ app.on("ready", () => {
 
     // Tray should already be "processing" from recording-stop handler
     updateTrayState("processing");
+    sendWidgetState("processing");
 
     try {
       // --- Save audio for debugging ---
@@ -512,8 +689,10 @@ app.on("ready", () => {
       }).show();
     } finally {
       // Always reset state — no matter what happened
+      activeRecordingSource = null;
       isProcessing = false;
       updateTrayState("idle");
+      sendWidgetState("idle");
     }
   });
 });
@@ -521,6 +700,14 @@ app.on("ready", () => {
 // Tray app: keep running when all windows closed
 app.on("window-all-closed", () => {
   // Do nothing - app lives in tray, not in windows
+});
+
+app.on("second-instance", () => {
+  if (settingsWindow) {
+    settingsWindow.focus();
+    return;
+  }
+  openSettingsWindow();
 });
 
 app.on("before-quit", () => {
@@ -534,5 +721,10 @@ app.on("before-quit", () => {
   if (tray) {
     tray.destroy();
     tray = null;
+  }
+
+  if (widgetWindow) {
+    widgetWindow.destroy();
+    widgetWindow = null;
   }
 });

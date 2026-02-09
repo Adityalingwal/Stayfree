@@ -104,7 +104,9 @@ class AudioRecorder {
     this.mediaRecorder.ondataavailable = (event) => {
       if (event.data.size > 0) {
         this.audioChunks.push(event.data);
-        console.log(`[Recorder] Audio chunk received: ${event.data.size} bytes`);
+        console.log(
+          `[Recorder] Audio chunk received: ${event.data.size} bytes`,
+        );
       }
     };
 
@@ -166,6 +168,21 @@ recorder
       console.log("[Recorder] Received STOP command");
       playStopSound();
       recorder.stopRecording();
+    });
+
+    window.electron.onCancelRecording(() => {
+      console.log("[Recorder] Received CANCEL command");
+      // Cancel: stop recording but don't process audio
+      if (
+        recorder["mediaRecorder"] &&
+        recorder["mediaRecorder"].state !== "inactive"
+      ) {
+        recorder["mediaRecorder"].onstop = () => {
+          console.log("[Recorder] Recording cancelled (audio discarded)");
+          recorder["audioChunks"] = [];
+        };
+        recorder["mediaRecorder"].stop();
+      }
     });
   })
   .catch((error) => {
