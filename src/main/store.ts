@@ -14,6 +14,8 @@ export interface TranscriptionEntry {
 
 interface StoreSchema {
   groqApiKey: string;
+  sarvamApiKey: string; // NEW: Sarvam AI API key
+  languagePreference: "english" | "hindi"; // NEW: Language mode
   hotkey: {
     useFnKey: boolean;
     fnKeyCode: number;
@@ -30,6 +32,8 @@ interface StoreSchema {
 const store = new Store<StoreSchema>({
   defaults: {
     groqApiKey: "",
+    sarvamApiKey: "", // NEW
+    languagePreference: "english", // NEW: Default to English
     hotkey: {
       useFnKey: false,
       fnKeyCode: 56, // Left Option/Alt

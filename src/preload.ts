@@ -43,6 +43,8 @@ contextBridge.exposeInMainWorld("electron", {
   // --- Settings / Dashboard ---
   getSettings: (): Promise<{
     groqApiKey: string;
+    sarvamApiKey: string; // NEW
+    languagePreference: "english" | "hindi"; // NEW
     selectedMicId: string;
     soundEnabled: boolean;
     dictionary: Record<string, string>;
@@ -58,6 +60,20 @@ contextBridge.exposeInMainWorld("electron", {
   saveSoundEnabled: (enabled: boolean) => {
     ipcRenderer.send("save-sound-enabled", enabled);
   },
+  // NEW: Language preference
+  getLanguagePreference: (): Promise<"english" | "hindi"> => {
+    return ipcRenderer.invoke("get-language-preference");
+  },
+  saveLanguagePreference: (pref: "english" | "hindi") => {
+    ipcRenderer.send("save-language-preference", pref);
+  },
+  // NEW: Sarvam API key
+  getSarvamApiKey: (): Promise<string> => {
+    return ipcRenderer.invoke("get-sarvam-api-key");
+  },
+  saveSarvamApiKey: (key: string) => {
+    ipcRenderer.send("save-sarvam-api-key", key);
+  },
   getDictionary: (): Promise<Record<string, string>> => {
     return ipcRenderer.invoke("get-dictionary");
   },
@@ -65,7 +81,12 @@ contextBridge.exposeInMainWorld("electron", {
     ipcRenderer.send("save-dictionary", dictionary);
   },
   getTranscriptionHistory: (): Promise<
-    Array<{ text: string; rawText: string; timestamp: number; durationMs: number }>
+    Array<{
+      text: string;
+      rawText: string;
+      timestamp: number;
+      durationMs: number;
+    }>
   > => {
     return ipcRenderer.invoke("get-transcription-history");
   },
@@ -120,6 +141,8 @@ declare global {
       // Settings / Dashboard
       getSettings: () => Promise<{
         groqApiKey: string;
+        sarvamApiKey: string;
+        languagePreference: "english" | "hindi";
         selectedMicId: string;
         soundEnabled: boolean;
         dictionary: Record<string, string>;
@@ -127,10 +150,19 @@ declare global {
       saveApiKey: (key: string) => Promise<void>;
       saveSelectedMic: (deviceId: string) => void;
       saveSoundEnabled: (enabled: boolean) => void;
+      getLanguagePreference: () => Promise<"english" | "hindi">;
+      saveLanguagePreference: (pref: "english" | "hindi") => void;
+      getSarvamApiKey: () => Promise<string>;
+      saveSarvamApiKey: (key: string) => void;
       getDictionary: () => Promise<Record<string, string>>;
       saveDictionary: (dictionary: Record<string, string>) => void;
       getTranscriptionHistory: () => Promise<
-        Array<{ text: string; rawText: string; timestamp: number; durationMs: number }>
+        Array<{
+          text: string;
+          rawText: string;
+          timestamp: number;
+          durationMs: number;
+        }>
       >;
       clearTranscriptionHistory: () => void;
       getAppVersion: () => Promise<string>;
@@ -138,11 +170,7 @@ declare global {
       onWidgetState: (
         callback: (
           _event: Electron.IpcRendererEvent,
-          state:
-            | "idle"
-            | "recording-hotkey"
-            | "recording-click"
-            | "processing",
+          state: "idle" | "recording-hotkey" | "recording-click" | "processing",
         ) => void,
       ) => void;
       startWidgetRecording: () => void;

@@ -435,6 +435,29 @@ function registerSettingsHandlers(): void {
   ipcMain.handle("get-app-version", () => {
     return app.getVersion();
   });
+
+  // NEW: Language preference handlers
+  ipcMain.on(
+    "save-language-preference",
+    (_event, pref: "english" | "hindi") => {
+      store.set("languagePreference", pref);
+      console.log(`[Settings] Language preference: ${pref}`);
+    },
+  );
+
+  ipcMain.handle("get-language-preference", () => {
+    return store.get("languagePreference");
+  });
+
+  // NEW: Sarvam API key handlers
+  ipcMain.on("save-sarvam-api-key", (_event, key: string) => {
+    store.set("sarvamApiKey", key);
+    console.log("[Settings] Sarvam API key saved");
+  });
+
+  ipcMain.handle("get-sarvam-api-key", () => {
+    return store.get("sarvamApiKey");
+  });
 }
 
 // --- Widget IPC Handlers ---
@@ -634,12 +657,23 @@ app.on("ready", () => {
 
       console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
 
-      // --- Step 2: LLM Formatting ---
-      const llmStart = Date.now();
-      const formattedText = await formatText(transcript);
-      const L_llm = Date.now() - llmStart;
+      // --- Step 2: LLM Formatting (English only) ---
+      // For Hindi/Hinglish, skip LLM and paste raw transcript
+      const langPref = (store.get("languagePreference") as string) || "english";
+      let formattedText: string;
+      let L_llm = 0;
 
-      console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
+      if (langPref === "english") {
+        console.log("[Pipeline] English mode - applying LLM formatting");
+        const llmStart = Date.now();
+        formattedText = await formatText(transcript);
+        L_llm = Date.now() - llmStart;
+        console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
+      } else {
+        console.log("[Pipeline] Hindi/Hinglish mode - skipping LLM formatting");
+        formattedText = transcript; // Direct paste, no formatting
+        console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
+      }
 
       // Store for fallback paste (Ctrl+Cmd+V)
       store.set("lastTranscript", formattedText);

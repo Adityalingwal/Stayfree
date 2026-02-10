@@ -53,6 +53,7 @@
     "dotenv": "^17.2.4",
     "electron-squirrel-startup": "^1.0.1",
     "electron-store": "^8.2.0",
+    "form-data": "^4.0.5",
     "groq-sdk": "^0.37.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
