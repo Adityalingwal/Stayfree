@@ -59,23 +59,22 @@ export async function transcribeWithSarvam(
     const formData = new FormData();
     formData.append("file", fs.createReadStream(tempAudioPath));
     formData.append("model", "saaras:v3");
-    formData.append("mode", "codemix"); // Perfect for Hinglish!
+    formData.append("mode", "translit"); // Roman script output (mera phone number hai...)
 
-    // Optional: You can also use "transcribe" mode for pure Hindi
-    // formData.append("mode", "transcribe");
+    // Note: Other modes available:
+    // - "transcribe": Original language with Devanagari (मेरा फोन नंबर है)
+    // - "codemix": Mixed script (मेरा phone number है)
+    // - "translate": English translation (My phone number is)
 
     // Call Sarvam API
-    const response = await fetch(
-      "https://api.sarvam.ai/speech-to-text/transcribe",
-      {
-        method: "POST",
-        headers: {
-          "api-subscription-key": sarvamApiKey,
-          ...formData.getHeaders(),
-        },
-        body: formData,
+    const response = await fetch("https://api.sarvam.ai/speech-to-text", {
+      method: "POST",
+      headers: {
+        "api-subscription-key": sarvamApiKey,
+        ...formData.getHeaders(),
       },
-    );
+      body: formData,
+    });
 
     // Clean up temp file
     fs.unlinkSync(tempAudioPath);
