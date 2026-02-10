@@ -7,8 +7,8 @@ import fetch from "node-fetch";
 /**
  * Sarvam AI Transcription Service
  *
- * Uses Saaras v3 model with "codemix" mode for Hinglish support
- * - Handles Hindi, English, and code-mixed speech
+ * Uses Saaras v3 model with "translit" mode for Hinglish
+ * - Pure Roman script output (bhai, meeting, etc)
  * - No LLM formatting (raw transcription for casual use)
  * - REST API for simplicity
  */
