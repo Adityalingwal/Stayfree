@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 interface TranscriptionEntry {
   text: string;
@@ -24,7 +24,7 @@ function formatDate(ts: number): string {
 }
 
 function groupByDate(
-  entries: TranscriptionEntry[]
+  entries: TranscriptionEntry[],
 ): Map<string, TranscriptionEntry[]> {
   const groups = new Map<string, TranscriptionEntry[]>();
   for (const entry of entries) {
@@ -38,16 +38,97 @@ function groupByDate(
 function computeStats(entries: TranscriptionEntry[]) {
   const totalWords = entries.reduce(
     (sum, e) => sum + e.text.split(/\s+/).filter(Boolean).length,
-    0
+    0,
   );
   const totalTranscriptions = entries.length;
   const avgDuration =
     entries.length > 0
       ? Math.round(
-          entries.reduce((sum, e) => sum + e.durationMs, 0) / entries.length
+          entries.reduce((sum, e) => sum + e.durationMs, 0) / entries.length,
         )
       : 0;
   return { totalWords, totalTranscriptions, avgDuration };
+}
+
+/** Copy button with clipboard icon → checkmark feedback */
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback for older Electron versions
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, [text]);
+
+  return (
+    <button
+      onClick={handleCopy}
+      title={copied ? "Copied!" : "Copy text"}
+      className="flex-shrink-0 p-1 rounded-md transition-all duration-200 hover:bg-gray-100 active:scale-90"
+      style={{
+        color: copied ? "#22c55e" : "#9ca3af",
+        cursor: "pointer",
+        border: "none",
+        background: "transparent",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      onMouseEnter={(e) => {
+        if (!copied)
+          (e.currentTarget as HTMLButtonElement).style.color = "#3b82f6";
+      }}
+      onMouseLeave={(e) => {
+        if (!copied)
+          (e.currentTarget as HTMLButtonElement).style.color = "#9ca3af";
+      }}
+    >
+      {copied ? (
+        /* Checkmark icon */
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        /* Clipboard/copy icon */
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+      )}
+    </button>
+  );
 }
 
 export default function HomePage() {
@@ -55,12 +136,10 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    window.electron
-      .getTranscriptionHistory()
-      .then((h) => {
-        setHistory(h);
-        setLoading(false);
-      });
+    window.electron.getTranscriptionHistory().then((h) => {
+      setHistory(h);
+      setLoading(false);
+    });
   }, []);
 
   const stats = computeStats(history);
@@ -109,12 +188,16 @@ export default function HomePage() {
       {/* Feature Card */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-8">
         <h2 className="text-lg font-semibold text-gray-900 mb-1">
-          Hold <span className="font-mono bg-amber-100 px-1.5 py-0.5 rounded text-sm">fn</span> to dictate
+          Hold{" "}
+          <span className="font-mono bg-amber-100 px-1.5 py-0.5 rounded text-sm">
+            fn
+          </span>{" "}
+          to dictate
         </h2>
         <p className="text-sm text-gray-600">
-          Press and hold your hotkey to dictate in any app. StayFree will
-          handle punctuation, formatting, and voice commands like "new line"
-          and "period" automatically.
+          Press and hold your hotkey to dictate in any app. StayFree will handle
+          punctuation, formatting, and voice commands like "new line" and
+          "period" automatically.
         </p>
       </div>
 
@@ -139,17 +222,18 @@ export default function HomePage() {
                 {entries.map((entry, i) => (
                   <div
                     key={`${entry.timestamp}-${i}`}
-                    className="bg-white rounded-lg px-4 py-3 border border-gray-200 flex gap-4"
+                    className="bg-white rounded-lg px-4 py-3 border border-gray-200 flex items-center gap-4"
                   >
-                    <span className="text-xs text-gray-400 font-mono whitespace-nowrap pt-0.5">
+                    <span className="text-xs text-gray-400 font-mono whitespace-nowrap">
                       {formatTime(entry.timestamp)}
                     </span>
                     <p className="text-sm text-gray-700 flex-1 whitespace-pre-wrap">
                       {entry.text}
                     </p>
-                    <span className="text-xs text-gray-300 whitespace-nowrap pt-0.5">
+                    <span className="text-xs text-gray-300 whitespace-nowrap">
                       {(entry.durationMs / 1000).toFixed(1)}s
                     </span>
+                    <CopyButton text={entry.text} />
                   </div>
                 ))}
               </div>
