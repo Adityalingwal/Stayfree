@@ -253,14 +253,14 @@ function openSettingsWindow(): void {
   }
 
   settingsWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    width: 1400,
+    height: 900,
     title: "StayFree",
-    minWidth: 800,
-    minHeight: 600,
+    minWidth: 900,
+    minHeight: 650,
     show: false,
     titleBarStyle: "hiddenInset",
-    trafficLightPosition: { x: 16, y: 16 },
+    trafficLightPosition: { x: 14, y: 14 },
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: false,
