@@ -5,6 +5,7 @@ interface TranscriptionEntry {
   rawText: string;
   timestamp: number;
   durationMs: number;
+  audioFilePath?: string;
 }
 
 function formatTime(ts: number): string {
@@ -132,16 +133,114 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-// ─── Main Home Page ────────────────────────────────────────────
+function DownloadButton({ filename }: { filename?: string }) {
+  const [status, setStatus] = useState<"idle" | "downloading" | "success">(
+    "idle",
+  );
+
+  // No audio available — just hide the button
+  if (!filename) return null;
+
+  const handleDownload = async () => {
+    setStatus("downloading");
+    const success = await window.electron.downloadAudioFile(filename);
+    if (success) {
+      setStatus("success");
+      setTimeout(() => setStatus("idle"), 2000);
+    } else {
+      setStatus("idle");
+      alert("Failed to download audio file.");
+    }
+  };
+
+  return (
+    <button
+      onClick={handleDownload}
+      disabled={status === "downloading"}
+      title={status === "success" ? "Saved to Downloads!" : "Download Audio"}
+      style={{
+        background: "none",
+        border: "none",
+        cursor: status === "downloading" ? "wait" : "pointer",
+        color: status === "success" ? "#16a34a" : "#cbd5e1",
+        padding: "4px",
+        borderRadius: "6px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "color 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        if (status === "idle")
+          (e.currentTarget as HTMLButtonElement).style.color = "#64748b";
+      }}
+      onMouseLeave={(e) => {
+        if (status === "idle")
+          (e.currentTarget as HTMLButtonElement).style.color = "#cbd5e1";
+      }}
+    >
+      {status === "downloading" ? (
+        <div
+          style={{
+            width: "14px",
+            height: "14px",
+            border: "2px solid #cbd5e1",
+            borderTopColor: "#64748b",
+            borderRadius: "50%",
+            animation: "spin 1s linear infinite",
+          }}
+        />
+      ) : status === "success" ? (
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      )}
+    </button>
+  );
+}
 export default function HomePage() {
   const [history, setHistory] = useState<TranscriptionEntry[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const refreshHistory = () => {
     window.electron.getTranscriptionHistory().then((h) => {
       setHistory(h);
       setLoading(false);
     });
+  };
+
+  useEffect(() => {
+    refreshHistory();
+
+    // Auto-refresh when a new recording is saved
+    const cleanup = window.electron.onTranscriptionHistoryUpdated?.(() => {
+      refreshHistory();
+    });
+    return () => cleanup?.();
   }, []);
 
   const stats = computeStats(history);
@@ -477,6 +576,7 @@ function TranscriptionRow({
         }}
       >
         <CopyButton text={entry.text} />
+        <DownloadButton filename={entry.audioFilePath} />
       </div>
     </div>
   );

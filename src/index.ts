@@ -20,6 +20,7 @@ import {
   saveAudioFile,
   deleteAudioFile,
   cleanupAllAudioFiles,
+  copyAudioToDownloads,
 } from "./main/storage";
 import * as path from "path";
 import "dotenv/config";
@@ -398,6 +399,10 @@ function registerSettingsHandlers(): void {
     };
   });
 
+  ipcMain.handle("download-audio-file", async (_event, filename: string) => {
+    return await copyAudioToDownloads(filename);
+  });
+
   ipcMain.handle("save-api-key", (_event, key: string) => {
     store.set("groqApiKey", key);
     console.log("[Settings] API key saved");
@@ -693,6 +698,11 @@ app.on("ready", () => {
         }
       }
       store.set("transcriptionHistory", history);
+
+      // Notify dashboard to refresh
+      if (settingsWindow && !settingsWindow.isDestroyed()) {
+        settingsWindow.webContents.send("transcription-history-updated");
+      }
 
       // --- Step 3: Paste ---
       const pasteStart = Date.now();

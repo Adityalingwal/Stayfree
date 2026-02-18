@@ -97,6 +97,17 @@ contextBridge.exposeInMainWorld("electron", {
     return ipcRenderer.invoke("get-app-version");
   },
 
+  downloadAudioFile: (filename: string): Promise<boolean> => {
+    return ipcRenderer.invoke("download-audio-file", filename);
+  },
+  onTranscriptionHistoryUpdated: (callback: () => void): (() => void) => {
+    const handler = () => callback();
+    ipcRenderer.on("transcription-history-updated", handler);
+    return () => {
+      ipcRenderer.removeListener("transcription-history-updated", handler);
+    };
+  },
+
   // --- Floating Widget ---
   onWidgetState: (
     callback: (
@@ -166,6 +177,8 @@ declare global {
       >;
       clearTranscriptionHistory: () => void;
       getAppVersion: () => Promise<string>;
+      downloadAudioFile: (filename: string) => Promise<boolean>;
+      onTranscriptionHistoryUpdated: (callback: () => void) => () => void;
       // Floating Widget
       onWidgetState: (
         callback: (

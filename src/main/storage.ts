@@ -90,3 +90,22 @@ export function cleanupAllAudioFiles(): void {
     console.error("[Storage] Cleanup failed:", error);
   }
 }
+
+/**
+ * Copies an audio file to the user's Downloads folder.
+ * Returns true on success, false on failure.
+ */
+export async function copyAudioToDownloads(filename: string): Promise<boolean> {
+  try {
+    const sourcePath = path.join(getRecordingsDir(), filename);
+    const downloadsDir = app.getPath("downloads");
+    const destPath = path.join(downloadsDir, filename);
+
+    await fs.promises.copyFile(sourcePath, destPath);
+    console.log(`[Storage] Copied to Downloads: ${destPath}`);
+    return true;
+  } catch (error) {
+    console.error("[Storage] Failed to copy to Downloads:", error);
+    return false;
+  }
+}
