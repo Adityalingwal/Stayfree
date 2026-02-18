@@ -15,8 +15,12 @@ import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
 import { formatText } from "./main/formatting";
 import { pasteText } from "./main/paste";
-import store from "./main/store";
-import * as fs from "fs";
+import store, { TranscriptionEntry } from "./main/store";
+import {
+  saveAudioFile,
+  deleteAudioFile,
+  cleanupAllAudioFiles,
+} from "./main/storage";
 import * as path from "path";
 import "dotenv/config";
 
@@ -428,8 +432,9 @@ function registerSettingsHandlers(): void {
   });
 
   ipcMain.on("clear-transcription-history", () => {
+    cleanupAllAudioFiles();
     store.set("transcriptionHistory", []);
-    console.log("[Settings] History cleared");
+    console.log("[Settings] History cleared (audio files deleted)");
   });
 
   ipcMain.handle("get-app-version", () => {
@@ -630,15 +635,9 @@ app.on("ready", () => {
     sendWidgetState("processing");
 
     try {
-      // --- Save audio for debugging ---
-      const recordingsDir = path.join(__dirname, "..", "..", "recordings");
-      if (!fs.existsSync(recordingsDir)) {
-        fs.mkdirSync(recordingsDir, { recursive: true });
-      }
+      // --- Save audio to userData ---
       const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-      const audioPath = path.join(recordingsDir, `recording-${timestamp}.webm`);
-      fs.writeFileSync(audioPath, audioData);
-      console.log(`[Pipeline] Audio saved: ${audioPath}`);
+      const audioFilename = await saveAudioFile(audioData, timestamp);
 
       // --- Step 1: ASR (Speech-to-Text) ---
       const asrStart = Date.now();
@@ -678,20 +677,21 @@ app.on("ready", () => {
       // Store for fallback paste (Ctrl+Cmd+V)
       store.set("lastTranscript", formattedText);
 
-      // Save to transcription history (keep last 100)
-      const history = store.get("transcriptionHistory") as Array<{
-        text: string;
-        rawText: string;
-        timestamp: number;
-        durationMs: number;
-      }>;
+      // Save to transcription history (keep last 50)
+      const history = store.get("transcriptionHistory") as TranscriptionEntry[];
       history.unshift({
         text: formattedText,
         rawText: transcript,
         timestamp: Date.now(),
         durationMs: Date.now() - pipelineStart,
+        audioFilePath: audioFilename ?? undefined,
       });
-      if (history.length > 100) history.length = 100;
+      while (history.length > 50) {
+        const removed = history.pop();
+        if (removed?.audioFilePath) {
+          deleteAudioFile(removed.audioFilePath);
+        }
+      }
       store.set("transcriptionHistory", history);
 
       // --- Step 3: Paste ---

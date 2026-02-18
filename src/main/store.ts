@@ -10,6 +10,7 @@ export interface TranscriptionEntry {
   rawText: string;
   timestamp: number;
   durationMs: number;
+  audioFilePath?: string;
 }
 
 interface StoreSchema {
