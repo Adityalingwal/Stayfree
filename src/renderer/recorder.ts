@@ -3,6 +3,10 @@
  *
  * Captures microphone audio using Web Audio API / MediaRecorder
  * Also handles recording sound effects via Web Audio API oscillator
+ *
+ * Two parallel capture paths:
+ * - WebM/Opus via MediaRecorder (always) → sent as audio-captured on stop
+ * - PCM16 at 16kHz via AudioWorklet (Hindi only) → streamed as audio-chunk-stream during recording
  */
 
 // --- Sound Effects ---
@@ -63,12 +67,66 @@ function playStopSound(): void {
   osc.stop(now + 0.15);
 }
 
+// --- PCM16 AudioWorklet (inline blob, avoids webpack bundling issues) ---
+
+const WORKLET_CODE = `
+const TARGET_SAMPLE_RATE = 16000;
+const CHUNK_DURATION_S = 0.1;
+
+class PCM16Processor extends AudioWorkletProcessor {
+  constructor() {
+    super();
+    this.samplesPerChunk = Math.round(TARGET_SAMPLE_RATE * CHUNK_DURATION_S);
+    this.buffer = new Float32Array(this.samplesPerChunk);
+    this.bufferIndex = 0;
+    this.active = true;
+    this.port.onmessage = (e) => { if (e.data === 'stop') this.active = false; };
+  }
+
+  process(inputs) {
+    if (!this.active) return false;
+    const input = inputs[0];
+    if (!input || !input[0]) return true;
+    const inputChannel = input[0];
+    const ratio = sampleRate / TARGET_SAMPLE_RATE;
+    const outputLen = Math.floor(inputChannel.length / ratio);
+    for (let i = 0; i < outputLen; i++) {
+      const srcIdx = Math.floor(i * ratio);
+      this.buffer[this.bufferIndex++] = inputChannel[srcIdx];
+      if (this.bufferIndex >= this.samplesPerChunk) {
+        const pcm16 = new Int16Array(this.samplesPerChunk);
+        for (let j = 0; j < this.samplesPerChunk; j++) {
+          const s = Math.max(-1, Math.min(1, this.buffer[j]));
+          pcm16[j] = s < 0 ? s * 0x8000 : s * 0x7fff;
+        }
+        this.port.postMessage(pcm16.buffer, [pcm16.buffer]);
+        this.bufferIndex = 0;
+      }
+    }
+    return true;
+  }
+}
+
+registerProcessor('pcm16-processor', PCM16Processor);
+`;
+
+function createWorkletBlobUrl(): string {
+  const blob = new Blob([WORKLET_CODE], { type: "application/javascript" });
+  return URL.createObjectURL(blob);
+}
+
 // --- Audio Recorder ---
 
 class AudioRecorder {
   private mediaRecorder: MediaRecorder | null = null;
   private audioChunks: Blob[] = [];
   private stream: MediaStream | null = null;
+
+  // PCM16 streaming (Hindi path)
+  private streamingAudioCtx: AudioContext | null = null;
+  private workletNode: AudioWorkletNode | null = null;
+  private workletBlobUrl: string | null = null;
+  private isHindiMode: boolean = false;
 
   async initialize(): Promise<void> {
     try {
@@ -87,7 +145,7 @@ class AudioRecorder {
     }
   }
 
-  startRecording(): void {
+  async startRecording(hindiMode: boolean): Promise<void> {
     if (!this.stream) {
       console.error("[Recorder] Cannot start - no audio stream");
       return;
@@ -95,8 +153,9 @@ class AudioRecorder {
 
     // Reset chunks
     this.audioChunks = [];
+    this.isHindiMode = hindiMode;
 
-    // Create MediaRecorder with WebM format
+    // --- MediaRecorder (WebM, always runs) ---
     this.mediaRecorder = new MediaRecorder(this.stream, {
       mimeType: "audio/webm;codecs=opus",
     });
@@ -115,10 +174,67 @@ class AudioRecorder {
     };
 
     this.mediaRecorder.start();
-    console.log("[Recorder] Recording started");
+    console.log("[Recorder] Recording started (WebM)");
+
+    // --- PCM16 AudioWorklet (Hindi only) ---
+    if (hindiMode) {
+      await this.startPCM16Streaming();
+    }
+  }
+
+  private async startPCM16Streaming(): Promise<void> {
+    try {
+      // Create a dedicated AudioContext at 16kHz for PCM16 capture
+      this.streamingAudioCtx = new AudioContext({ sampleRate: 16000 });
+
+      // Load worklet from blob URL
+      if (!this.workletBlobUrl) {
+        this.workletBlobUrl = createWorkletBlobUrl();
+      }
+      await this.streamingAudioCtx.audioWorklet.addModule(this.workletBlobUrl);
+
+      // Connect mic stream → worklet
+      const source = this.streamingAudioCtx.createMediaStreamSource(
+        this.stream!,
+      );
+      this.workletNode = new AudioWorkletNode(
+        this.streamingAudioCtx,
+        "pcm16-processor",
+      );
+
+      // Forward PCM16 chunks to main process
+      this.workletNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
+        window.electron.sendAudioChunk(event.data);
+      };
+
+      source.connect(this.workletNode);
+      // Don't connect to destination — we don't want to hear the mic
+
+      console.log("[Recorder] PCM16 streaming started (16kHz)");
+    } catch (error) {
+      console.error("[Recorder] Failed to start PCM16 streaming:", error);
+      // Non-fatal: WebM recording still works; main process will handle fallback
+    }
+  }
+
+  private stopPCM16Streaming(): void {
+    if (this.workletNode) {
+      this.workletNode.port.postMessage("stop");
+      this.workletNode.disconnect();
+      this.workletNode = null;
+    }
+    if (this.streamingAudioCtx) {
+      this.streamingAudioCtx.close().catch(() => {});
+      this.streamingAudioCtx = null;
+    }
   }
 
   stopRecording(): void {
+    // Stop PCM16 streaming first (signals flush to main process)
+    if (this.isHindiMode) {
+      this.stopPCM16Streaming();
+    }
+
     if (this.mediaRecorder && this.mediaRecorder.state !== "inactive") {
       this.mediaRecorder.stop();
       console.log("[Recorder] Recording stopped");
@@ -138,6 +254,11 @@ class AudioRecorder {
   }
 
   cleanup(): void {
+    this.stopPCM16Streaming();
+    if (this.workletBlobUrl) {
+      URL.revokeObjectURL(this.workletBlobUrl);
+      this.workletBlobUrl = null;
+    }
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
       this.stream = null;
@@ -158,10 +279,10 @@ recorder
     console.log("[Recorder] Initialized and ready");
 
     // Listen for recording commands from main process
-    window.electron.onStartRecording(() => {
-      console.log("[Recorder] Received START command");
+    window.electron.onStartRecording((hindiMode: boolean) => {
+      console.log(`[Recorder] Received START command (hindi=${hindiMode})`);
       playStartSound();
-      recorder.startRecording();
+      recorder.startRecording(hindiMode);
     });
 
     window.electron.onStopRecording(() => {
@@ -172,6 +293,9 @@ recorder
 
     window.electron.onCancelRecording(() => {
       console.log("[Recorder] Received CANCEL command");
+      // Stop PCM16 first
+      recorder["stopPCM16Streaming"]();
+
       // Cancel: stop recording but don't process audio
       if (
         recorder["mediaRecorder"] &&

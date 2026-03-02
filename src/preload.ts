@@ -9,8 +9,8 @@ import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld("electron", {
   // --- Recorder (hidden window) ---
-  onStartRecording: (callback: () => void) => {
-    ipcRenderer.on("start-recording", callback);
+  onStartRecording: (callback: (hindiMode: boolean) => void) => {
+    ipcRenderer.on("start-recording", (_event, hindiMode: boolean) => callback(hindiMode));
   },
   onStopRecording: (callback: () => void) => {
     ipcRenderer.on("stop-recording", callback);
@@ -21,6 +21,9 @@ contextBridge.exposeInMainWorld("electron", {
   sendAudioData: (audioBuffer: ArrayBuffer) => {
     const buffer = Buffer.from(audioBuffer);
     ipcRenderer.send("audio-captured", buffer);
+  },
+  sendAudioChunk: (chunk: ArrayBuffer) => {
+    ipcRenderer.send("audio-chunk-stream", Buffer.from(chunk));
   },
 
   // --- Onboarding / Permissions ---
@@ -139,10 +142,11 @@ declare global {
   interface Window {
     electron: {
       // Recorder
-      onStartRecording: (callback: () => void) => void;
+      onStartRecording: (callback: (hindiMode: boolean) => void) => void;
       onStopRecording: (callback: () => void) => void;
       onCancelRecording: (callback: () => void) => void;
       sendAudioData: (audioBuffer: ArrayBuffer) => void;
+      sendAudioChunk: (chunk: ArrayBuffer) => void;
       // Onboarding / Permissions
       checkPermissions: () => Promise<{ mic: string; accessibility: boolean }>;
       requestMicPermission: () => Promise<boolean>;

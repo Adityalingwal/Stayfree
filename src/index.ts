@@ -13,6 +13,7 @@ import {
 } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
+import { getSarvamStreamTranscriber } from "./main/transcription-sarvam-stream";
 import { formatText } from "./main/formatting";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry } from "./main/store";
@@ -473,7 +474,7 @@ function registerSettingsHandlers(): void {
 // --- Widget IPC Handlers ---
 
 function registerWidgetHandlers(): void {
-  ipcMain.on("widget-start-recording", () => {
+  ipcMain.on("widget-start-recording", async () => {
     if (isProcessing || currentState !== "idle") return;
     if (!recorderWindow) {
       console.error("[Widget] Recorder window unavailable");
@@ -483,7 +484,19 @@ function registerWidgetHandlers(): void {
     activeRecordingSource = "widget";
     updateTrayState("recording");
     sendWidgetState("recording-click");
-    recorderWindow.webContents.send("start-recording");
+
+    const langPref = (store.get("languagePreference") as string) || "english";
+    const hindiMode = langPref === "hindi";
+
+    if (hindiMode) {
+      try {
+        await getSarvamStreamTranscriber().connect();
+      } catch (err) {
+        console.error("[Widget] Sarvam stream connect failed:", err);
+      }
+    }
+
+    recorderWindow.webContents.send("start-recording", hindiMode);
   });
 
   ipcMain.on("widget-stop-recording", () => {
@@ -568,7 +581,7 @@ app.on("ready", () => {
   // Initialize hotkey manager (Fn key for push-to-talk)
   const hotkeyManager = getHotkeyManager({ useFnKey: true });
 
-  hotkeyManager.on("recording-start", () => {
+  hotkeyManager.on("recording-start", async () => {
     if (isProcessing || currentState !== "idle") return;
     if (!recorderWindow) {
       console.error("[Main] Recorder window unavailable");
@@ -580,8 +593,21 @@ app.on("ready", () => {
     updateTrayState("recording");
     sendWidgetState("recording-hotkey");
 
-    // Tell recorder window to start capturing audio
-    recorderWindow.webContents.send("start-recording");
+    const langPref = (store.get("languagePreference") as string) || "english";
+    const hindiMode = langPref === "hindi";
+
+    // For Hindi: open WebSocket stream before telling renderer to start
+    if (hindiMode) {
+      try {
+        await getSarvamStreamTranscriber().connect();
+      } catch (err) {
+        console.error("[Main] Sarvam stream connect failed:", err);
+        // Non-fatal: audio-captured fallback will handle it
+      }
+    }
+
+    // Tell recorder window to start capturing audio (with hindi flag)
+    recorderWindow.webContents.send("start-recording", hindiMode);
   });
 
   hotkeyManager.on("recording-stop", () => {
@@ -623,6 +649,14 @@ app.on("ready", () => {
     }
   });
 
+  // IPC Handler: Forward PCM16 chunks to Sarvam streaming transcriber (Hindi)
+  ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer) => {
+    const streamer = getSarvamStreamTranscriber();
+    if (streamer.isConnected) {
+      streamer.sendChunk(chunk);
+    }
+  });
+
   // IPC Handler: Receive audio blob from renderer — full pipeline
   ipcMain.on("audio-captured", async (_event, audioData: Buffer) => {
     // Guard: prevent concurrent pipeline runs
@@ -646,7 +680,24 @@ app.on("ready", () => {
 
       // --- Step 1: ASR (Speech-to-Text) ---
       const asrStart = Date.now();
-      const transcript = await transcribe(audioData);
+      const langPrefPipeline = (store.get("languagePreference") as string) || "english";
+      let transcript: string | null;
+
+      if (langPrefPipeline === "hindi") {
+        // Hindi: flush the streaming transcriber (WebSocket already received all chunks)
+        const streamer = getSarvamStreamTranscriber();
+        try {
+          transcript = await streamer.flush();
+        } catch (err) {
+          console.error("[Pipeline] Sarvam stream flush failed, falling back to REST:", err);
+          transcript = await transcribe(audioData);
+        } finally {
+          streamer.disconnect();
+        }
+      } else {
+        transcript = await transcribe(audioData);
+      }
+
       const L_asr = Date.now() - asrStart;
 
       if (!transcript) {
@@ -663,11 +714,10 @@ app.on("ready", () => {
 
       // --- Step 2: LLM Formatting (English only) ---
       // For Hindi/Hinglish, skip LLM and paste raw transcript
-      const langPref = (store.get("languagePreference") as string) || "english";
       let formattedText: string;
       let L_llm = 0;
 
-      if (langPref === "english") {
+      if (langPrefPipeline === "english") {
         console.log("[Pipeline] English mode - applying LLM formatting");
         const llmStart = Date.now();
         formattedText = await formatText(transcript);
@@ -733,6 +783,8 @@ app.on("ready", () => {
       }).show();
     } finally {
       // Always reset state — no matter what happened
+      // Ensure streaming transcriber is disconnected (no-op if already done)
+      getSarvamStreamTranscriber().disconnect();
       activeRecordingSource = null;
       isProcessing = false;
       updateTrayState("idle");
