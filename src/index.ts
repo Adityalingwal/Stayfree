@@ -315,6 +315,12 @@ function createRecorderWindow(): void {
 
   recorderWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
+  // Forward renderer console to main process (debug only)
+  recorderWindow.webContents.on("console-message", (_e, level, message) => {
+    const prefix = ["[Recorder:log]", "[Recorder:warn]", "[Recorder:err]", "[Recorder:dbg]"][level] ?? "[Recorder]";
+    console.log(prefix, message);
+  });
+
   recorderWindow.on("closed", () => {
     recorderWindow = null;
   });
@@ -858,6 +864,8 @@ app.on("ready", () => {
       isProcessing = false;
       updateTrayState("idle");
       sendWidgetState("idle");
+      // Re-warm the Sarvam connection after each recording so next use is instant
+      warmSarvamConnection().catch(() => {});
     }
   });
 });

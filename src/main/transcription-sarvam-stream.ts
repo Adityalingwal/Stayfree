@@ -4,18 +4,56 @@ import store from "./store";
 /**
  * Sarvam AI Streaming Transcription (WebSocket)
  *
- * Docs: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe/ws
+ * Protocol verified from sarvamai SDK source (v0.1.25):
  *
- * Protocol:
- * - Connect to wss://api.sarvam.ai/speech-to-text/ws
- * - Auth via "Api-Subscription-Key" header
- * - Send audio as JSON: { "audio": "<base64 PCM16 @ 16kHz>" }
- * - Send flush: { "type": "flush" }
- * - Receive: { "type": "data", "data": { "transcript": "...", ... } }
+ * Connect:
+ *   URL: wss://api.sarvam.ai/speech-to-text/ws?language-code=hi-IN&model=saaras:v3&mode=translit
+ *   Header: "api-subscription-key": "<key>"   ← lowercase, this is what the server expects
+ *
+ * Send audio chunk:
+ *   { "audio": { "data": "<base64 WAV>", "sample_rate": 16000, "encoding": "audio/wav" } }
+ *   NOTE: data must be a complete WAV file (44-byte header + PCM16 samples).
+ *         "audio/wav" encoding requires actual WAV format, not raw PCM16.
+ *
+ * Send flush:
+ *   { "type": "flush" }
+ *
+ * Receive transcript:
+ *   { "type": "data", "data": { "transcript": "...", "request_id": "...", ... } }
  */
 
 const SARVAM_WS_URL =
-  "wss://api.sarvam.ai/speech-to-text/ws?model=saaras:v3&language_code=hi-IN&mode=translit";
+  "wss://api.sarvam.ai/speech-to-text/ws?language-code=hi-IN&model=saaras:v3&mode=translit";
+
+/**
+ * Wrap raw PCM16 samples in a minimal WAV container.
+ * Sarvam expects encoding="audio/wav" which means a proper WAV file —
+ * raw PCM16 without the header produces an invalid base64 length error.
+ */
+function wrapPcm16InWav(pcm16: Buffer, sampleRate = 16000): Buffer {
+  const numChannels = 1;
+  const bitsPerSample = 16;
+  const byteRate = (sampleRate * numChannels * bitsPerSample) / 8;
+  const blockAlign = (numChannels * bitsPerSample) / 8;
+  const dataSize = pcm16.length;
+  const header = Buffer.alloc(44);
+
+  header.write("RIFF", 0);
+  header.writeUInt32LE(36 + dataSize, 4);   // ChunkSize
+  header.write("WAVE", 8);
+  header.write("fmt ", 12);
+  header.writeUInt32LE(16, 16);             // Subchunk1Size (PCM)
+  header.writeUInt16LE(1, 20);              // AudioFormat (PCM = 1)
+  header.writeUInt16LE(numChannels, 22);
+  header.writeUInt32LE(sampleRate, 24);
+  header.writeUInt32LE(byteRate, 28);
+  header.writeUInt16LE(blockAlign, 32);
+  header.writeUInt16LE(bitsPerSample, 34);
+  header.write("data", 36);
+  header.writeUInt32LE(dataSize, 40);       // Subchunk2Size
+
+  return Buffer.concat([header, pcm16]);
+}
 
 export class SarvamStreamingTranscriber {
   private ws: WebSocket | null = null;
@@ -41,13 +79,20 @@ export class SarvamStreamingTranscriber {
     const apiKey = this.getApiKey();
     if (!apiKey) throw new Error("Sarvam API key not configured");
 
+    // Reuse existing warm connection — don't reconnect if already open
+    if (this.isConnected) {
+      console.log("[Sarvam Stream] Reusing warm connection");
+      return;
+    }
+
     this.forceClose();
 
     return new Promise((resolve, reject) => {
       this.connectTime = Date.now();
 
+      // Header name must be lowercase — Sarvam gateway is case-sensitive
       this.ws = new WebSocket(SARVAM_WS_URL, {
-        headers: { "Api-Subscription-Key": apiKey },
+        headers: { "api-subscription-key": apiKey },
       });
 
       this.ws.on("open", () => {
@@ -71,6 +116,7 @@ export class SarvamStreamingTranscriber {
 
       this.ws.on("close", (code: number) => {
         console.log(`[Sarvam Stream] Connection closed (code=${code})`);
+        this.ws = null;
         this.rejectPendingFlush(
           new Error(`WebSocket closed before transcript (code=${code})`),
         );
@@ -87,7 +133,7 @@ export class SarvamStreamingTranscriber {
       return;
     }
 
-    // Response format: { "type": "data", "data": { "transcript": "..." } }
+    // Response: { "type": "data", "data": { "transcript": "...", ... } }
     if (parsed.type === "data" && parsed.data) {
       const data = parsed.data as Record<string, unknown>;
       const transcript = (data.transcript as string) || "";
@@ -125,9 +171,16 @@ export class SarvamStreamingTranscriber {
 
   sendChunk(pcm16: Buffer): void {
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) return;
-    // Sarvam expects base64-encoded audio in JSON frames
-    const b64 = pcm16.toString("base64");
-    this.ws.send(JSON.stringify({ audio: b64 }));
+    // Sarvam requires a complete WAV file per chunk (header + PCM16 samples)
+    const wav = wrapPcm16InWav(pcm16);
+    const frame = {
+      audio: {
+        data: wav.toString("base64"),
+        sample_rate: 16000,
+        encoding: "audio/wav",
+      },
+    };
+    this.ws.send(JSON.stringify(frame));
   }
 
   flush(): Promise<string> {
@@ -144,7 +197,7 @@ export class SarvamStreamingTranscriber {
       this.transcriptResolve = resolve;
       this.transcriptReject = reject;
 
-      // Flush signal per Sarvam docs: { "type": "flush" }
+      // SttFlushSignal: { "type": "flush" }
       this.ws.send(JSON.stringify({ type: "flush" }));
 
       // Safety timeout: 8 seconds

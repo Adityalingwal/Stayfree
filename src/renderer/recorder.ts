@@ -110,9 +110,13 @@ class PCM16Processor extends AudioWorkletProcessor {
 registerProcessor('pcm16-processor', PCM16Processor);
 `;
 
-function createWorkletBlobUrl(): string {
-  const blob = new Blob([WORKLET_CODE], { type: "application/javascript" });
-  return URL.createObjectURL(blob);
+function createWorkletDataUrl(): string {
+  // Use data: URL instead of blob: URL — blob: is blocked by Electron's CSP,
+  // but data: is explicitly allowed in script-src.
+  return (
+    "data:application/javascript;base64," +
+    btoa(unescape(encodeURIComponent(WORKLET_CODE)))
+  );
 }
 
 // --- Audio Recorder ---
@@ -125,7 +129,7 @@ class AudioRecorder {
   // PCM16 streaming (Hindi path)
   private streamingAudioCtx: AudioContext | null = null;
   private workletNode: AudioWorkletNode | null = null;
-  private workletBlobUrl: string | null = null;
+  private workletDataUrl: string | null = null;
   private isHindiMode: boolean = false;
 
   async initialize(): Promise<void> {
@@ -187,11 +191,11 @@ class AudioRecorder {
       // Create a dedicated AudioContext at 16kHz for PCM16 capture
       this.streamingAudioCtx = new AudioContext({ sampleRate: 16000 });
 
-      // Load worklet from blob URL
-      if (!this.workletBlobUrl) {
-        this.workletBlobUrl = createWorkletBlobUrl();
+      // Load worklet from data: URL (blob: URLs are blocked by Electron CSP)
+      if (!this.workletDataUrl) {
+        this.workletDataUrl = createWorkletDataUrl();
       }
-      await this.streamingAudioCtx.audioWorklet.addModule(this.workletBlobUrl);
+      await this.streamingAudioCtx.audioWorklet.addModule(this.workletDataUrl);
 
       // Connect mic stream → worklet
       const source = this.streamingAudioCtx.createMediaStreamSource(
@@ -255,10 +259,6 @@ class AudioRecorder {
 
   cleanup(): void {
     this.stopPCM16Streaming();
-    if (this.workletBlobUrl) {
-      URL.revokeObjectURL(this.workletBlobUrl);
-      this.workletBlobUrl = null;
-    }
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
       this.stream = null;
