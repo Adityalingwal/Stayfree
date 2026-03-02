@@ -573,7 +573,9 @@ function registerWidgetHandlers(): void {
 
     if (hindiMode) {
       try {
-        await getSarvamStreamTranscriber().connect();
+        const streamer = getSarvamStreamTranscriber();
+        await streamer.connect();
+        streamer.markRecordingStart();
       } catch (err) {
         console.error("[Widget] Sarvam stream connect failed:", err);
       }
@@ -685,7 +687,9 @@ app.on("ready", () => {
     // For Hindi: open WebSocket stream before telling renderer to start
     if (hindiMode) {
       try {
-        await getSarvamStreamTranscriber().connect();
+        const streamer = getSarvamStreamTranscriber();
+        await streamer.connect();
+        streamer.markRecordingStart();
       } catch (err) {
         console.error("[Main] Sarvam stream connect failed:", err);
         // Non-fatal: audio-captured fallback will handle it
