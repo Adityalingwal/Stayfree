@@ -60,8 +60,8 @@ export class SarvamStreamingTranscriber {
   private apiKey: string | null = null;
   private transcriptResolve: ((transcript: string) => void) | null = null;
   private transcriptReject: ((err: Error) => void) | null = null;
-  private connectTime: number = 0;
-  private recordingStartTime: number = 0;
+  private connectTime = 0;
+  private recordingStartTime = 0;
   private flushTimeout: ReturnType<typeof setTimeout> | null = null;
   // Sarvam sends interim VAD transcripts mid-stream; accumulate all segments
   // so the final result is the complete utterance, not just the last VAD chunk.

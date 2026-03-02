@@ -6,6 +6,7 @@ import {
   shell,
 } from "electron";
 import { keyboard, Key } from "@nut-tree-fork/nut-js";
+import { isMac, isWindows, pasteShortcutLabel } from "./platform";
 
 /**
  * Paste Service (nut-js powered)
@@ -23,7 +24,7 @@ keyboard.config.autoDelayMs = 0; // Remove delay between key actions
 let accessibilityGranted: boolean | null = null;
 
 export function checkAccessibilityPermission(): boolean {
-  if (process.platform !== "darwin") return true;
+  if (!isMac) return true;
 
   // Use cached value if available
   if (accessibilityGranted !== null) {
@@ -41,6 +42,8 @@ export function checkAccessibilityPermission(): boolean {
 }
 
 export function requestAccessibilityPermission(): void {
+  if (!isMac) return;
+
   // true = prompt the system dialog
   systemPreferences.isTrustedAccessibilityClient(true);
 
@@ -72,11 +75,12 @@ export function writeToClipboard(text: string): void {
 
 async function simulatePaste(): Promise<boolean> {
   try {
+    const modifier = isMac ? Key.LeftCmd : Key.LeftControl;
     // Use nut-js native keyboard automation with zero delays
-    await keyboard.pressKey(Key.LeftCmd);
+    await keyboard.pressKey(modifier);
     await keyboard.pressKey(Key.V);
     await keyboard.releaseKey(Key.V);
-    await keyboard.releaseKey(Key.LeftCmd);
+    await keyboard.releaseKey(modifier);
     return true;
   } catch (error) {
     console.error("[Paste] nut-js failed:", error);
@@ -102,7 +106,7 @@ export async function pasteText(text: string): Promise<boolean> {
   // Reduced delay from 10ms to 5ms
   await new Promise((resolve) => setTimeout(resolve, 5));
 
-  // Simulate Cmd+V
+  // Simulate platform paste shortcut
   const success = await simulatePaste();
 
   const pasteLatency = Date.now() - startPaste;
@@ -118,9 +122,10 @@ export async function pasteText(text: string): Promise<boolean> {
 }
 
 function showPasteFailedNotification(): void {
+  const fallbackPasteShortcut = isWindows ? "Ctrl+Shift+V" : "Cmd+Shift+V";
   new Notification({
     title: "StayFree",
-    body: "Paste failed. Press Ctrl+Cmd+V or just Cmd+V to paste manually.",
+    body: `Paste failed. Press ${fallbackPasteShortcut} or ${pasteShortcutLabel} to paste manually.`,
     silent: true,
   }).show();
 }

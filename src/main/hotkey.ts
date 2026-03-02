@@ -1,5 +1,6 @@
 import { EventEmitter } from "events";
 import { uIOhook, UiohookKey } from "uiohook-napi";
+import { isMac } from "./platform";
 
 /**
  * Hotkey Manager
@@ -25,13 +26,13 @@ export class HotkeyManager extends EventEmitter {
   constructor(config?: Partial<HotkeyConfig>) {
     super();
 
-    // Default: Use Left Option (Alt) key for push-to-talk
-    // Note: Fn key cannot be detected on macOS (hardware-level key)
-    // Left Alt keycode = 56 on macOS
+    // Default: Hold Alt/Option for push-to-talk.
+    // Fn is not reliably detectable via uiohook on macOS.
+    const defaultHoldKey = UiohookKey.Alt;
     this.config = {
       useFnKey: false, // Fn key doesn't work on macOS
-      fnKeyCode: 56, // Left Option/Alt key instead
-      keys: [56], // Left Option key (single key, not combo)
+      fnKeyCode: defaultHoldKey,
+      keys: [defaultHoldKey],
       ...config,
     };
   }
@@ -39,7 +40,7 @@ export class HotkeyManager extends EventEmitter {
   start(): void {
     console.log("[Hotkey] Starting hotkey listener...");
     console.log(
-      "[Hotkey] Mode: Left Option (Alt) key - HOLD to record, RELEASE to stop",
+      `[Hotkey] Mode: Left ${isMac ? "Option" : "Alt"} key - HOLD to record, RELEASE to stop`,
     );
 
     uIOhook.on("keydown", (event) => {

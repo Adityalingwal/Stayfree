@@ -6,7 +6,6 @@ import {
   BrowserWindow,
   ipcMain,
   globalShortcut,
-  Notification,
   systemPreferences,
   shell,
   screen,
@@ -26,6 +25,15 @@ import {
   cleanupAllAudioFiles,
   copyAudioToDownloads,
 } from "./main/storage";
+import {
+  isMac,
+  isWindows,
+  fallbackPasteShortcut,
+  holdKeyLabel,
+  pasteShortcutLabel,
+  quitShortcut,
+  settingsShortcut,
+} from "./main/platform";
 import * as path from "path";
 import "dotenv/config";
 
@@ -95,7 +103,7 @@ function updateTrayState(state: AppState): void {
     tray.setImage(createTrayIcon());
     tray.setToolTip(
       state === "idle"
-        ? "StayFree - Ready (Hold Fn to dictate)"
+        ? `StayFree - Ready (Hold ${holdKeyLabel} to dictate)`
         : state === "recording"
           ? "StayFree - Recording..."
           : "StayFree - Processing...",
@@ -103,10 +111,7 @@ function updateTrayState(state: AppState): void {
   }
 }
 
-function getWidgetBounds(
-  layout: WidgetLayout,
-  _currentBounds?: Electron.Rectangle,
-): Electron.Rectangle {
+function getWidgetBounds(layout: WidgetLayout): Electron.Rectangle {
   const sizes: Record<WidgetLayout, { width: number; height: number }> = {
     idle: { width: 60, height: 16 },
     recording: { width: 120, height: 34 },
@@ -125,7 +130,7 @@ function getWidgetBounds(
 
 function setWidgetLayout(layout: WidgetLayout): void {
   if (!widgetWindow || widgetWindow.isDestroyed()) return;
-  const bounds = getWidgetBounds(layout, widgetWindow.getBounds());
+  const bounds = getWidgetBounds(layout);
   widgetWindow.setBounds(bounds, true);
 }
 
@@ -272,7 +277,7 @@ function buildContextMenu(): Menu {
     { type: "separator" },
     {
       label: "Paste Last Transcript",
-      accelerator: "Ctrl+Cmd+V",
+      accelerator: fallbackPasteShortcut,
       click: async () => {
         const lastTranscript = store.get("lastTranscript") as string;
         if (lastTranscript) {
@@ -283,7 +288,7 @@ function buildContextMenu(): Menu {
     { type: "separator" },
     {
       label: "Settings...",
-      accelerator: "Cmd+,",
+      accelerator: settingsShortcut,
       click: () => {
         openSettingsWindow();
       },
@@ -291,7 +296,7 @@ function buildContextMenu(): Menu {
     { type: "separator" },
     {
       label: "Quit StayFree",
-      accelerator: "Cmd+Q",
+      accelerator: quitShortcut,
       click: () => {
         app.quit();
       },
@@ -337,25 +342,30 @@ function openSettingsWindow(): void {
   }
 
   // Show dock so the dashboard window is discoverable
-  if (process.platform === "darwin") {
+  if (isMac) {
     app.dock.show();
   }
 
-  settingsWindow = new BrowserWindow({
+  const settingsWindowOptions: Electron.BrowserWindowConstructorOptions = {
     width: 1400,
     height: 900,
     title: "StayFree",
     minWidth: 900,
     minHeight: 650,
     show: false,
-    titleBarStyle: "hiddenInset",
-    trafficLightPosition: { x: 14, y: 14 },
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: false,
       contextIsolation: true,
     },
-  });
+  };
+
+  if (isMac) {
+    settingsWindowOptions.titleBarStyle = "hiddenInset";
+    settingsWindowOptions.trafficLightPosition = { x: 14, y: 14 };
+  }
+
+  settingsWindow = new BrowserWindow(settingsWindowOptions);
 
   settingsWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#settings`);
 
@@ -365,10 +375,15 @@ function openSettingsWindow(): void {
 
   settingsWindow.on("closed", () => {
     settingsWindow = null;
-    if (process.platform === "darwin") {
+    if (isMac) {
       app.dock.hide();
     }
   });
+}
+
+function getInputAutomationStatus(): boolean | null {
+  if (!isMac) return null;
+  return systemPreferences.isTrustedAccessibilityClient(false);
 }
 
 // --- Onboarding Window ---
@@ -377,9 +392,12 @@ function needsOnboarding(): boolean {
   if (store.get("onboardingComplete")) {
     // Even if onboarding was completed, re-show if permissions were revoked
     const micStatus = systemPreferences.getMediaAccessStatus("microphone");
-    const accessibilityGranted =
-      systemPreferences.isTrustedAccessibilityClient(false);
-    if (micStatus === "granted" && accessibilityGranted) {
+    const inputAutomation = getInputAutomationStatus();
+    const onboardingReady = isMac
+      ? micStatus === "granted" && inputAutomation
+      : micStatus === "granted";
+
+    if (onboardingReady) {
       return false;
     }
     console.log(
@@ -396,7 +414,7 @@ function showOnboardingWindow(): void {
   }
 
   // Temporarily show dock so the onboarding window is discoverable
-  if (process.platform === "darwin") {
+  if (isMac) {
     app.dock.show();
   }
 
@@ -426,7 +444,7 @@ function showOnboardingWindow(): void {
   onboardingWindow.on("closed", () => {
     onboardingWindow = null;
     // Hide dock again after onboarding closes
-    if (process.platform === "darwin") {
+    if (isMac) {
       app.dock.hide();
     }
   });
@@ -439,27 +457,45 @@ function showOnboardingWindow(): void {
 function registerPermissionHandlers(): void {
   ipcMain.handle("check-permissions", () => {
     const mic = systemPreferences.getMediaAccessStatus("microphone");
-    const accessibility = systemPreferences.isTrustedAccessibilityClient(false);
-    return { mic, accessibility };
+    const inputAutomation = getInputAutomationStatus();
+    return { mic, inputAutomation, platform: process.platform };
   });
 
   ipcMain.handle("request-mic-permission", async () => {
-    const granted = await systemPreferences.askForMediaAccess("microphone");
-    return granted;
+    if (isMac) {
+      return systemPreferences.askForMediaAccess("microphone");
+    }
+    if (isWindows) {
+      shell.openExternal("ms-settings:privacy-microphone");
+      const status = systemPreferences.getMediaAccessStatus("microphone");
+      return status === "granted";
+    }
+    return false;
   });
 
   ipcMain.on("open-accessibility-settings", () => {
-    // Prompt the system dialog
-    systemPreferences.isTrustedAccessibilityClient(true);
-    shell.openExternal(
-      "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
-    );
+    if (isMac) {
+      // Prompt the system dialog
+      systemPreferences.isTrustedAccessibilityClient(true);
+      shell.openExternal(
+        "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
+      );
+      return;
+    }
+
+    if (isWindows) {
+      shell.openExternal("ms-settings:easeofaccess-keyboard");
+    }
   });
 
   ipcMain.on("open-keyboard-settings", () => {
-    shell.openExternal(
-      "x-apple.systempreferences:com.apple.preference.keyboard",
-    );
+    if (isMac) {
+      shell.openExternal("x-apple.systempreferences:com.apple.preference.keyboard");
+      return;
+    }
+    if (isWindows) {
+      shell.openExternal("ms-settings:typing");
+    }
   });
 
   ipcMain.on("complete-onboarding", () => {
@@ -477,6 +513,8 @@ function registerSettingsHandlers(): void {
   ipcMain.handle("get-settings", () => {
     return {
       groqApiKey: store.get("groqApiKey"),
+      sarvamApiKey: store.get("sarvamApiKey"),
+      languagePreference: store.get("languagePreference"),
       selectedMicId: store.get("selectedMicId"),
       soundEnabled: store.get("soundEnabled"),
       dictionary: store.get("dictionary"),
@@ -633,7 +671,7 @@ function registerWidgetHandlers(): void {
 
 app.on("ready", () => {
   // Hide dock icon on macOS - this is a tray-only app
-  if (process.platform === "darwin") {
+  if (isMac) {
     app.dock.hide();
   }
 
@@ -645,7 +683,7 @@ app.on("ready", () => {
   // Create system tray
   tray = new Tray(createTrayIcon());
   tray.setContextMenu(buildContextMenu());
-  tray.setToolTip("StayFree - Ready (Hold Fn to dictate)");
+  tray.setToolTip(`StayFree - Ready (Hold ${holdKeyLabel} to dictate)`);
   tray.on("click", () => {
     openSettingsWindow();
   });
@@ -666,7 +704,7 @@ app.on("ready", () => {
     showOnboardingWindow();
   }
 
-  // Initialize hotkey manager (Fn key for push-to-talk)
+  // Initialize hotkey manager (hold key push-to-talk)
   const hotkeyManager = getHotkeyManager({ useFnKey: true });
 
   hotkeyManager.on("recording-start", async () => {
@@ -725,8 +763,8 @@ app.on("ready", () => {
   // Start listening for hotkeys
   hotkeyManager.start();
 
-  // Register fallback hotkey: Ctrl+Cmd+V pastes last transcript
-  globalShortcut.register("Ctrl+Cmd+V", async () => {
+  // Register fallback hotkey to paste last transcript
+  globalShortcut.register(fallbackPasteShortcut, async () => {
     const lastTranscript = store.get("lastTranscript") as string;
     if (lastTranscript) {
       console.log("[Main] Fallback hotkey: pasting last transcript");
@@ -812,7 +850,7 @@ app.on("ready", () => {
         console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
       }
 
-      // Store for fallback paste (Ctrl+Cmd+V)
+      // Store for fallback paste shortcut
       store.set("lastTranscript", formattedText);
 
       // Save to transcription history (keep last 50)
@@ -846,7 +884,7 @@ app.on("ready", () => {
         console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
       } else {
         console.error(
-          `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual Cmd+V`,
+          `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual ${pasteShortcutLabel}`,
         );
       }
 
@@ -869,7 +907,9 @@ app.on("ready", () => {
       updateTrayState("idle");
       sendWidgetState("idle");
       // Re-warm the Sarvam connection after each recording so next use is instant
-      warmSarvamConnection().catch(() => {});
+      warmSarvamConnection().catch((err) => {
+        console.warn("[Sarvam Stream] Re-warm failed:", err);
+      });
     }
   });
 });

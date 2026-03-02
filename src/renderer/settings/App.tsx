@@ -269,6 +269,15 @@ export default function App() {
             >
               StayFree
             </span>
+            <span
+              style={{
+                fontSize: "11px",
+                color: "#94a3b8",
+                fontWeight: 600,
+              }}
+            >
+              {version ? `v${version}` : ""}
+            </span>
           </div>
         </div>
 

@@ -1,5 +1,6 @@
 import store from "./store";
 import * as fs from "fs";
+import * as os from "os";
 import * as path from "path";
 import FormData from "form-data";
 import fetch from "node-fetch";
@@ -48,7 +49,7 @@ export async function transcribeWithSarvam(
     );
 
     // Save audio buffer to temporary file (Sarvam API needs file upload)
-    const tempDir = require("os").tmpdir();
+    const tempDir = os.tmpdir();
     const tempAudioPath = path.join(
       tempDir,
       `stayfree-sarvam-${Date.now()}.webm`,

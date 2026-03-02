@@ -2,14 +2,16 @@ import React, { useState, useEffect, useCallback } from "react";
 import { createRoot } from "react-dom/client";
 
 interface PermissionStatus {
-  mic: string; // 'granted' | 'denied' | 'not-determined'
-  accessibility: boolean;
+  mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";
+  inputAutomation: boolean | null;
+  platform: "darwin" | "win32" | "linux";
 }
 
 function OnboardingApp() {
   const [permissions, setPermissions] = useState<PermissionStatus>({
     mic: "not-determined",
-    accessibility: false,
+    inputAutomation: null,
+    platform: "darwin",
   });
   const [micRequesting, setMicRequesting] = useState(false);
 
@@ -45,7 +47,12 @@ function OnboardingApp() {
   };
 
   const allPermissionsGranted =
-    permissions.mic === "granted" && permissions.accessibility;
+    permissions.mic === "granted" &&
+    (permissions.platform === "darwin" ? permissions.inputAutomation : true);
+  const isMac = permissions.platform === "darwin";
+  const pasteShortcut = isMac ? "Cmd+V" : "Ctrl+V";
+  const platformLabel =
+    permissions.platform === "win32" ? "Windows" : "macOS";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8 select-none">
@@ -56,7 +63,7 @@ function OnboardingApp() {
             Welcome to StayFree
           </h1>
           <p className="text-gray-500 text-sm">
-            Voice dictation for macOS. Hold a key, speak, release — text
+            Voice dictation for {platformLabel}. Hold a key, speak, release — text
             appears.
           </p>
         </div>
@@ -99,42 +106,44 @@ function OnboardingApp() {
             </div>
           </div>
 
-          {/* Accessibility */}
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-            <div className="flex items-start justify-between">
-              <div className="flex items-start gap-3">
-                <div className="text-2xl mt-0.5">
-                  {permissions.accessibility ? (
-                    <span className="text-green-500">&#10003;</span>
-                  ) : (
-                    <span className="text-red-400">&#10007;</span>
-                  )}
+          {/* Input Automation / Accessibility */}
+          {isMac && (
+            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+              <div className="flex items-start justify-between">
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl mt-0.5">
+                    {permissions.inputAutomation ? (
+                      <span className="text-green-500">&#10003;</span>
+                    ) : (
+                      <span className="text-red-400">&#10007;</span>
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">
+                      Accessibility Access
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-0.5">
+                      To paste text into your active app via {pasteShortcut}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">
-                    Accessibility Access
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    To paste text into your active app via Cmd+V
-                  </p>
-                </div>
+                {!permissions.inputAutomation && (
+                  <button
+                    onClick={handleAccessibilitySettings}
+                    className="px-3 py-1.5 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 transition-colors whitespace-nowrap"
+                  >
+                    Open Settings
+                  </button>
+                )}
               </div>
-              {!permissions.accessibility && (
-                <button
-                  onClick={handleAccessibilitySettings}
-                  className="px-3 py-1.5 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 transition-colors whitespace-nowrap"
-                >
-                  Open Settings
-                </button>
+              {!permissions.inputAutomation && (
+                <p className="text-xs text-gray-400 mt-3 ml-9">
+                  System Settings &rarr; Privacy &amp; Security &rarr;
+                  Accessibility &rarr; Enable StayFree (or Electron)
+                </p>
               )}
             </div>
-            {!permissions.accessibility && (
-              <p className="text-xs text-gray-400 mt-3 ml-9">
-                System Settings &rarr; Privacy &amp; Security &rarr;
-                Accessibility &rarr; Enable StayFree (or Electron)
-              </p>
-            )}
-          </div>
+          )}
         </div>
 
         {/* Fn Key Setup (Optional) */}
@@ -150,16 +159,18 @@ function OnboardingApp() {
                   Fn Key Configuration
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  For the best experience, set your Fn key to &quot;Do
-                  Nothing&quot; in macOS settings so it can be used as
-                  push-to-talk.
+                  {isMac
+                    ? 'For the best experience, set your Fn key to "Do Nothing" in macOS settings so it can be used as push-to-talk.'
+                    : "For the best experience on Windows, keep your Alt key available for push-to-talk and avoid remapping it globally."}
                 </p>
-                <button
-                  onClick={handleKeyboardSettings}
-                  className="mt-2 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
-                >
-                  Open Keyboard Settings &rarr;
-                </button>
+                {isMac && (
+                  <button
+                    onClick={handleKeyboardSettings}
+                    className="mt-2 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                  >
+                    Open Keyboard Settings &rarr;
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -182,8 +193,7 @@ function OnboardingApp() {
 
         {allPermissionsGranted && (
           <p className="text-center text-xs text-gray-400 mt-3">
-            StayFree will run in your menu bar. Look for the icon in the top
-            right.
+            StayFree will run in your system tray.
           </p>
         )}
       </div>
