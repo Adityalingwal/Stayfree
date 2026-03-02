@@ -120,6 +120,9 @@ contextBridge.exposeInMainWorld("electron", {
   ) => {
     ipcRenderer.on("widget-state", callback);
   },
+  onErrorMessage: (callback: (_event: Electron.IpcRendererEvent, message: string) => void) => {
+    ipcRenderer.on("error-message", callback);
+  },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
   },
@@ -129,7 +132,7 @@ contextBridge.exposeInMainWorld("electron", {
   cancelWidgetRecording: () => {
     ipcRenderer.send("widget-cancel-recording");
   },
-  setWidgetLayout: (layout: "idle" | "ready" | "recording" | "processing") => {
+  setWidgetLayout: (layout: "idle" | "recording" | "processing") => {
     ipcRenderer.send("widget-set-layout", layout);
   },
   openSettingsFromWidget: () => {
@@ -190,11 +193,12 @@ declare global {
           state: "idle" | "recording-hotkey" | "recording-click" | "processing",
         ) => void,
       ) => void;
+      onErrorMessage: (callback: (_event: Electron.IpcRendererEvent, message: string) => void) => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;
       setWidgetLayout: (
-        layout: "idle" | "ready" | "recording" | "processing",
+        layout: "idle" | "recording" | "processing",
       ) => void;
       openSettingsFromWidget: () => void;
     };

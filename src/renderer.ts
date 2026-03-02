@@ -11,6 +11,9 @@ if (windowType === "#onboarding") {
 } else if (windowType === "#widget") {
   console.log("[StayFree] Loading floating widget");
   import("./renderer/widget");
+} else if (windowType === "#error") {
+  console.log("[StayFree] Loading error bubble");
+  import("./renderer/error-bubble");
 } else {
   // Default: hidden recorder window (no hash)
   console.log("[StayFree] Loading recorder");

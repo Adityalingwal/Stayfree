@@ -13,7 +13,10 @@ import {
 } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
-import { getSarvamStreamTranscriber } from "./main/transcription-sarvam-stream";
+import {
+  getSarvamStreamTranscriber,
+  warmSarvamConnection,
+} from "./main/transcription-sarvam-stream";
 import { formatText } from "./main/formatting";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry } from "./main/store";
@@ -40,6 +43,8 @@ let settingsWindow: BrowserWindow | null = null;
 let recorderWindow: BrowserWindow | null = null;
 let onboardingWindow: BrowserWindow | null = null;
 let widgetWindow: BrowserWindow | null = null;
+let errorWindow: BrowserWindow | null = null;
+let errorDismissTimer: ReturnType<typeof setTimeout> | null = null;
 
 // Prevent duplicate app instances (and duplicate tray icons).
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
@@ -59,7 +64,7 @@ type WidgetUiState =
   | "recording-hotkey"
   | "recording-click"
   | "processing";
-type WidgetLayout = "idle" | "ready" | "recording" | "processing";
+type WidgetLayout = "idle" | "recording" | "processing";
 
 // --- Tray Icon Creation (using PNG files for reliability) ---
 
@@ -104,7 +109,6 @@ function getWidgetBounds(
 ): Electron.Rectangle {
   const sizes: Record<WidgetLayout, { width: number; height: number }> = {
     idle: { width: 60, height: 16 },
-    ready: { width: 60, height: 16 },
     recording: { width: 120, height: 34 },
     processing: { width: 60, height: 24 },
   };
@@ -136,6 +140,79 @@ function sendWidgetState(state: WidgetUiState): void {
 
   if (!widgetWindow || widgetWindow.isDestroyed()) return;
   widgetWindow.webContents.send("widget-state", state);
+}
+
+function showErrorBubble(message: string): void {
+  // Clear any existing dismiss timer
+  if (errorDismissTimer) {
+    clearTimeout(errorDismissTimer);
+    errorDismissTimer = null;
+  }
+
+  // Get position: centered horizontally, just above the widget
+  const display = screen.getPrimaryDisplay();
+  const workArea = display.workArea;
+  const width = 280;
+  const height = 44;
+  const x = Math.round(workArea.x + (workArea.width - width) / 2);
+  // Position above the widget (widget is 16px tall + 8px from bottom)
+  const y = Math.round(workArea.y + workArea.height - 16 - 8 - height - 8);
+
+  if (!errorWindow || errorWindow.isDestroyed()) {
+    errorWindow = new BrowserWindow({
+      x,
+      y,
+      width,
+      height,
+      show: false,
+      frame: false,
+      transparent: true,
+      hasShadow: false,
+      resizable: false,
+      minimizable: false,
+      maximizable: false,
+      fullscreenable: false,
+      skipTaskbar: true,
+      alwaysOnTop: true,
+      movable: false,
+      webPreferences: {
+        preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+        nodeIntegration: false,
+        contextIsolation: true,
+      },
+    });
+
+    errorWindow.setAlwaysOnTop(true, "floating");
+    errorWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+    errorWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#error`);
+
+    errorWindow.once("ready-to-show", () => {
+      if (errorWindow) {
+        errorWindow.showInactive();
+        errorWindow.webContents.send("error-message", message);
+      }
+    });
+
+    errorWindow.on("closed", () => {
+      errorWindow = null;
+    });
+  } else {
+    errorWindow.setBounds({ x, y, width, height });
+    errorWindow.showInactive();
+    errorWindow.webContents.send("error-message", message);
+  }
+
+  // Auto-dismiss after 4 seconds
+  errorDismissTimer = setTimeout(() => {
+    if (errorWindow && !errorWindow.isDestroyed()) {
+      errorWindow.hide();
+    }
+    errorDismissTimer = null;
+  }, 4000);
+}
+
+function sendWidgetError(message: string): void {
+  showErrorBubble(message);
 }
 
 function createWidgetWindow(): void {
@@ -535,7 +612,7 @@ function registerWidgetHandlers(): void {
   });
 
   ipcMain.on("widget-set-layout", (_event, layout: WidgetLayout) => {
-    if (!["idle", "ready", "recording", "processing"].includes(layout)) return;
+    if (!["idle", "recording", "processing"].includes(layout)) return;
     setWidgetLayout(layout);
   });
 
@@ -572,6 +649,9 @@ app.on("ready", () => {
   // Create hidden recorder window (for Web Audio API access)
   createRecorderWindow();
   createWidgetWindow();
+
+  // Keep-warm: pre-connect Sarvam WebSocket for Hindi mode (zero first-use overhead)
+  warmSarvamConnection();
 
   // Show onboarding if first launch or permissions missing
   if (needsOnboarding()) {
@@ -684,13 +764,10 @@ app.on("ready", () => {
       let transcript: string | null;
 
       if (langPrefPipeline === "hindi") {
-        // Hindi: flush the streaming transcriber (WebSocket already received all chunks)
+        // Hindi: flush the streaming transcriber (WebSocket received chunks in real-time)
         const streamer = getSarvamStreamTranscriber();
         try {
           transcript = await streamer.flush();
-        } catch (err) {
-          console.error("[Pipeline] Sarvam stream flush failed, falling back to REST:", err);
-          transcript = await transcribe(audioData);
         } finally {
           streamer.disconnect();
         }
@@ -702,11 +779,7 @@ app.on("ready", () => {
 
       if (!transcript) {
         console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
-        new Notification({
-          title: "StayFree",
-          body: "Transcription failed. Please try again.",
-          silent: true,
-        }).show();
+        sendWidgetError("Transcription failed");
         return; // finally block will reset tray + isProcessing
       }
 
@@ -775,14 +848,10 @@ app.on("ready", () => {
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
       console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);
-
-      new Notification({
-        title: "StayFree",
-        body: "Something went wrong. Please try again.",
-        silent: true,
-      }).show();
+      const errMsg =
+        error instanceof Error ? error.message : "Something went wrong";
+      sendWidgetError(errMsg);
     } finally {
-      // Always reset state — no matter what happened
       // Ensure streaming transcriber is disconnected (no-op if already done)
       getSarvamStreamTranscriber().disconnect();
       activeRecordingSource = null;
@@ -822,5 +891,10 @@ app.on("before-quit", () => {
   if (widgetWindow) {
     widgetWindow.destroy();
     widgetWindow = null;
+  }
+
+  if (errorWindow) {
+    errorWindow.destroy();
+    errorWindow = null;
   }
 });

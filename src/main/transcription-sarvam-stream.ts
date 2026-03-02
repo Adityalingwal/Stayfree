@@ -1,17 +1,21 @@
+import WebSocket from "ws";
 import store from "./store";
 
 /**
  * Sarvam AI Streaming Transcription (WebSocket)
  *
- * Uses Sarvam's real-time WebSocket API:
- * - No 30-second limit (unlike REST)
- * - ~200-500ms latency vs ~2000ms for REST
- * - Streams PCM16 at 16kHz in real-time during recording
- * - flush_signal triggers final transcript on hotkey release
+ * Docs: https://docs.sarvam.ai/api-reference-docs/speech-to-text/transcribe/ws
+ *
+ * Protocol:
+ * - Connect to wss://api.sarvam.ai/speech-to-text/ws
+ * - Auth via "Api-Subscription-Key" header
+ * - Send audio as JSON: { "audio": "<base64 PCM16 @ 16kHz>" }
+ * - Send flush: { "type": "flush" }
+ * - Receive: { "type": "data", "data": { "transcript": "...", ... } }
  */
 
 const SARVAM_WS_URL =
-  "wss://api.sarvam.ai/speech-to-text-streaming?model=saaras:v3&language_code=hi-IN&mode=translit";
+  "wss://api.sarvam.ai/speech-to-text/ws?model=saaras:v3&language_code=hi-IN&mode=translit";
 
 export class SarvamStreamingTranscriber {
   private ws: WebSocket | null = null;
@@ -19,10 +23,12 @@ export class SarvamStreamingTranscriber {
   private transcriptResolve: ((transcript: string) => void) | null = null;
   private transcriptReject: ((err: Error) => void) | null = null;
   private connectTime: number = 0;
+  private flushTimeout: ReturnType<typeof setTimeout> | null = null;
 
   private getApiKey(): string | null {
     if (this.apiKey) return this.apiKey;
-    const key = process.env.SARVAM_API_KEY || (store.get("sarvamApiKey") as string);
+    const key =
+      process.env.SARVAM_API_KEY || (store.get("sarvamApiKey") as string);
     if (!key) {
       console.error("[Sarvam Stream] ERROR: SARVAM_API_KEY not found");
       return null;
@@ -35,117 +41,133 @@ export class SarvamStreamingTranscriber {
     const apiKey = this.getApiKey();
     if (!apiKey) throw new Error("Sarvam API key not configured");
 
-    // Close any stale connection
-    this.disconnect();
+    this.forceClose();
 
     return new Promise((resolve, reject) => {
       this.connectTime = Date.now();
 
-      const url = `${SARVAM_WS_URL}&api-subscription-key=${encodeURIComponent(apiKey)}`;
-      this.ws = new WebSocket(url);
-      this.ws.binaryType = "arraybuffer";
+      this.ws = new WebSocket(SARVAM_WS_URL, {
+        headers: { "Api-Subscription-Key": apiKey },
+      });
 
-      this.ws.onopen = () => {
+      this.ws.on("open", () => {
         console.log(
           `[Sarvam Stream] Connected (${Date.now() - this.connectTime}ms)`,
         );
         resolve();
-      };
+      });
 
-      this.ws.onmessage = (event) => {
-        this.handleMessage(event.data);
-      };
+      this.ws.on("message", (data: WebSocket.RawData) => {
+        this.handleMessage(data.toString());
+      });
 
-      this.ws.onerror = (event) => {
-        console.error("[Sarvam Stream] WebSocket error:", event);
-        if (this.transcriptReject) {
-          this.transcriptReject(new Error("Sarvam WebSocket error"));
-          this.transcriptResolve = null;
-          this.transcriptReject = null;
-        }
-        reject(new Error("Sarvam WebSocket connection failed"));
-      };
-
-      this.ws.onclose = (event) => {
-        console.log(
-          `[Sarvam Stream] Connection closed (code=${event.code})`,
+      this.ws.on("error", (err: Error) => {
+        console.error("[Sarvam Stream] WebSocket error:", err.message);
+        this.rejectPendingFlush(
+          new Error(`Sarvam WebSocket error: ${err.message}`),
         );
-        // If flush() is still waiting, reject
-        if (this.transcriptReject) {
-          this.transcriptReject(
-            new Error(`WebSocket closed before transcript (code=${event.code})`),
-          );
-          this.transcriptResolve = null;
-          this.transcriptReject = null;
-        }
-      };
+        reject(new Error(`Sarvam WebSocket connection failed: ${err.message}`));
+      });
+
+      this.ws.on("close", (code: number) => {
+        console.log(`[Sarvam Stream] Connection closed (code=${code})`);
+        this.rejectPendingFlush(
+          new Error(`WebSocket closed before transcript (code=${code})`),
+        );
+      });
     });
   }
 
-  private handleMessage(data: string | ArrayBuffer): void {
-    if (typeof data !== "string") return;
-
+  private handleMessage(raw: string): void {
     let parsed: Record<string, unknown>;
     try {
-      parsed = JSON.parse(data);
+      parsed = JSON.parse(raw);
     } catch {
-      console.warn("[Sarvam Stream] Non-JSON message:", data);
+      console.warn("[Sarvam Stream] Non-JSON message:", raw);
       return;
     }
 
-    // Sarvam sends { transcript: "..." } on flush or VAD completion
-    if ("transcript" in parsed) {
-      const transcript = (parsed.transcript as string) || "";
+    // Response format: { "type": "data", "data": { "transcript": "..." } }
+    if (parsed.type === "data" && parsed.data) {
+      const data = parsed.data as Record<string, unknown>;
+      const transcript = (data.transcript as string) || "";
       console.log(
         `[Sarvam Stream] transcript in ${Date.now() - this.connectTime}ms: "${transcript}"`,
       );
+      this.clearFlushTimeout();
       if (this.transcriptResolve) {
         this.transcriptResolve(transcript);
         this.transcriptResolve = null;
         this.transcriptReject = null;
       }
+    } else if (parsed.type === "error") {
+      const errMsg = JSON.stringify(parsed.data || parsed);
+      console.error("[Sarvam Stream] Server error:", errMsg);
+      this.rejectPendingFlush(new Error(`Sarvam server error: ${errMsg}`));
+    }
+  }
+
+  private rejectPendingFlush(err: Error): void {
+    this.clearFlushTimeout();
+    if (this.transcriptReject) {
+      this.transcriptReject(err);
+      this.transcriptResolve = null;
+      this.transcriptReject = null;
+    }
+  }
+
+  private clearFlushTimeout(): void {
+    if (this.flushTimeout) {
+      clearTimeout(this.flushTimeout);
+      this.flushTimeout = null;
     }
   }
 
   sendChunk(pcm16: Buffer): void {
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN) return;
-    // Send raw PCM16 binary frame
-    this.ws.send(pcm16);
+    // Sarvam expects base64-encoded audio in JSON frames
+    const b64 = pcm16.toString("base64");
+    this.ws.send(JSON.stringify({ audio: b64 }));
   }
 
   flush(): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
-        reject(new Error("Sarvam WebSocket not connected"));
+        reject(
+          new Error(
+            "Sarvam not connected — check API key and internet connection",
+          ),
+        );
         return;
       }
 
       this.transcriptResolve = resolve;
       this.transcriptReject = reject;
 
-      // Signal end of audio — Sarvam returns final transcript
-      this.ws.send(JSON.stringify({ type: "flush_signal" }));
+      // Flush signal per Sarvam docs: { "type": "flush" }
+      this.ws.send(JSON.stringify({ type: "flush" }));
 
       // Safety timeout: 8 seconds
-      setTimeout(() => {
-        if (this.transcriptReject) {
-          this.transcriptReject(new Error("Sarvam flush timeout"));
-          this.transcriptResolve = null;
-          this.transcriptReject = null;
-        }
+      this.flushTimeout = setTimeout(() => {
+        this.rejectPendingFlush(new Error("Sarvam transcription timed out"));
       }, 8000);
     });
   }
 
   disconnect(): void {
+    this.transcriptResolve = null;
+    this.transcriptReject = null;
+    this.clearFlushTimeout();
+    this.forceClose();
+  }
+
+  private forceClose(): void {
     if (this.ws) {
-      // Clear handlers first to prevent spurious rejection in onclose
-      this.transcriptResolve = null;
-      this.transcriptReject = null;
+      this.ws.removeAllListeners();
       try {
-        this.ws.close();
+        this.ws.terminate();
       } catch {
-        // Ignore
+        // ignore
       }
       this.ws = null;
     }
@@ -156,7 +178,6 @@ export class SarvamStreamingTranscriber {
   }
 }
 
-// Module-level singleton for the active recording session
 let activeTranscriber: SarvamStreamingTranscriber | null = null;
 
 export function getSarvamStreamTranscriber(): SarvamStreamingTranscriber {
@@ -164,4 +185,27 @@ export function getSarvamStreamTranscriber(): SarvamStreamingTranscriber {
     activeTranscriber = new SarvamStreamingTranscriber();
   }
   return activeTranscriber;
+}
+
+/**
+ * Keep-warm: pre-connect on app launch so first recording has zero connection overhead.
+ * Idle WebSocket connections have no billing impact on Sarvam.
+ */
+export async function warmSarvamConnection(): Promise<void> {
+  const langPref = (store.get("languagePreference") as string) || "english";
+  if (langPref !== "hindi") return;
+
+  const sarvamKey =
+    process.env.SARVAM_API_KEY || (store.get("sarvamApiKey") as string);
+  if (!sarvamKey) return;
+
+  try {
+    await getSarvamStreamTranscriber().connect();
+    console.log("[Sarvam Stream] Keep-warm connection established");
+  } catch (err) {
+    console.warn(
+      "[Sarvam Stream] Keep-warm failed (will retry on first use):",
+      err,
+    );
+  }
 }

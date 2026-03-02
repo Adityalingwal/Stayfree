@@ -3,25 +3,22 @@ import IdleState from "./components/IdleState";
 import RecordingState from "./components/RecordingState";
 import ProcessingState from "./components/ProcessingState";
 
-type WidgetState =
-  | "idle"
-  | "recording-hotkey"
-  | "recording-click"
-  | "processing";
+type WidgetState = "idle" | "recording-hotkey" | "recording-click" | "processing";
 
 /**
  * Floating Dictation Widget - Wispr Flow style
  *
- * 3 Main States (no hover):
- * 1. IDLE - Small mic icon
- * 2. RECORDING - Mic on top, controls below
- * 3. PROCESSING - Spinner only
+ * States:
+ * 1. IDLE - Small bar
+ * 2. RECORDING - Mic + waves
+ * 3. PROCESSING - Spinner
+ *
+ * Errors are shown in a separate overlay window (#error hash).
  */
 export default function App() {
   const [state, setState] = useState<WidgetState>("idle");
 
   useEffect(() => {
-    // Listen for state changes from main process
     window.electron.onWidgetState((_event, newState) => {
       setState(newState);
     });
