@@ -705,7 +705,7 @@ app.on("ready", () => {
   }
 
   // Initialize hotkey manager (hold key push-to-talk)
-  const hotkeyManager = getHotkeyManager({ useFnKey: true });
+  const hotkeyManager = getHotkeyManager();
 
   hotkeyManager.on("recording-start", async () => {
     if (isProcessing || currentState !== "idle") return;
