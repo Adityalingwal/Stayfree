@@ -9,6 +9,8 @@ rules.push({
 });
 
 export const rendererConfig: Configuration = {
+  // Use source-map instead of eval-based devtool — eval is blocked by CSP
+  devtool: 'source-map',
   module: {
     rules,
   },
