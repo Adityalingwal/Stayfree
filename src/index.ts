@@ -113,8 +113,8 @@ function updateTrayState(state: AppState): void {
 
 function getWidgetBounds(layout: WidgetLayout): Electron.Rectangle {
   const sizes: Record<WidgetLayout, { width: number; height: number }> = {
-    idle: { width: 60, height: 16 },
-    recording: { width: 120, height: 34 },
+    idle: { width: 44, height: 16 },
+    recording: { width: 110, height: 30 },
     processing: { width: 60, height: 24 },
   };
   const target = sizes[layout];
@@ -777,6 +777,13 @@ app.on("ready", () => {
     }
   });
 
+  // IPC Handler: Forward audio level to widget for dynamic wave visualisation
+  ipcMain.on("audio-level", (_event, level: number) => {
+    if (widgetWindow && !widgetWindow.isDestroyed()) {
+      widgetWindow.webContents.send("audio-level", level);
+    }
+  });
+
   // IPC Handler: Forward PCM16 chunks to Sarvam streaming transcriber (Hindi)
   ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer) => {
     const streamer = getSarvamStreamTranscriber();
@@ -825,10 +832,16 @@ app.on("ready", () => {
 
       const L_asr = Date.now() - asrStart;
 
-      if (!transcript) {
+      if (transcript === null || transcript === undefined) {
         console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
         sendWidgetError("Transcription failed");
         return; // finally block will reset tray + isProcessing
+      }
+
+      // Handle silent recording — no speech detected, use friendly fallback
+      if (transcript.trim() === "") {
+        console.log(`[Pipeline] No speech detected (${L_asr}ms) — using fallback greeting`);
+        transcript = "Hello 👋";
       }
 
       console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);

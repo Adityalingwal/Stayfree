@@ -25,6 +25,9 @@ contextBridge.exposeInMainWorld("electron", {
   sendAudioChunk: (chunk: ArrayBuffer) => {
     ipcRenderer.send("audio-chunk-stream", Buffer.from(chunk));
   },
+  sendAudioLevel: (level: number) => {
+    ipcRenderer.send("audio-level", level);
+  },
 
   // --- Onboarding / Permissions ---
   checkPermissions: (): Promise<{
@@ -127,6 +130,9 @@ contextBridge.exposeInMainWorld("electron", {
   onErrorMessage: (callback: (_event: Electron.IpcRendererEvent, message: string) => void) => {
     ipcRenderer.on("error-message", callback);
   },
+  onAudioLevel: (callback: (_event: Electron.IpcRendererEvent, level: number) => void) => {
+    ipcRenderer.on("audio-level", callback);
+  },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
   },
@@ -154,6 +160,7 @@ declare global {
       onCancelRecording: (callback: () => void) => void;
       sendAudioData: (audioBuffer: ArrayBuffer) => void;
       sendAudioChunk: (chunk: ArrayBuffer) => void;
+      sendAudioLevel: (level: number) => void;
       // Onboarding / Permissions
       checkPermissions: () => Promise<{
         mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";
@@ -202,6 +209,7 @@ declare global {
         ) => void,
       ) => void;
       onErrorMessage: (callback: (_event: Electron.IpcRendererEvent, message: string) => void) => void;
+      onAudioLevel: (callback: (_event: Electron.IpcRendererEvent, level: number) => void) => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;

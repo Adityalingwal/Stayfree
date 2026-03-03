@@ -5,22 +5,25 @@ interface RecordingStateProps {
   mode: "hotkey" | "click";
   onCancel: () => void;
   onStop: () => void;
+  audioLevels: number[];
 }
 
 /**
  * Recording State - Wispr style
  * Just: X button | waves | stop button (no mic icon)
+ * Waves are driven by real-time audio levels (rolling history).
  */
 export default function RecordingState({
   mode,
   onCancel,
   onStop,
+  audioLevels,
 }: RecordingStateProps) {
   if (mode === "hotkey") {
     // Hotkey mode: just waves
     return (
       <div className="widget-recording-hotkey">
-        <WaveAnimation isActive={true} />
+        <WaveAnimation isActive={true} audioLevels={audioLevels} />
       </div>
     );
   }
@@ -50,7 +53,7 @@ export default function RecordingState({
       </button>
 
       {/* Wave Animation */}
-      <WaveAnimation isActive={true} />
+      <WaveAnimation isActive={true} audioLevels={audioLevels} />
 
       {/* Stop Button */}
       <button

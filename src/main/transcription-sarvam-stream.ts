@@ -227,7 +227,7 @@ export class SarvamStreamingTranscriber {
       // SttFlushSignal: { "type": "flush" }
       this.ws.send(JSON.stringify({ type: "flush" }));
 
-      // Safety timeout: 8 seconds
+      // Safety timeout: 1.5 seconds (quick response for silent recordings)
       this.flushTimeout = setTimeout(() => {
         // On timeout, if we have buffered VAD segments, use them rather than failing
         if (this.transcriptSegments.length > 0) {
@@ -240,9 +240,16 @@ export class SarvamStreamingTranscriber {
             this.transcriptReject = null;
           }
         } else {
-          this.rejectPendingFlush(new Error("Sarvam transcription timed out"));
+          // No speech detected — resolve with empty string instead of error
+          console.log("[Sarvam Stream] flush timeout — no speech detected");
+          this.clearFlushTimeout();
+          if (this.transcriptResolve) {
+            this.transcriptResolve("");
+            this.transcriptResolve = null;
+            this.transcriptReject = null;
+          }
         }
-      }, 8000);
+      }, 1500);
     });
   }
 

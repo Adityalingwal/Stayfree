@@ -7,7 +7,9 @@
   box-sizing: border-box;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -38,7 +40,7 @@ html, body, #app {
 /* ==================== */
 
 .widget-idle {
-  width: 48px;
+  width: 40px;
   height: 5px;
   background: rgba(90, 90, 95, 0.65);
   border-radius: 2.5px;
@@ -62,10 +64,10 @@ html, body, #app {
 /* ==================== */
 
 .widget-recording {
-  height: 26px;
+  height: 24px;
   padding: 0 5px;
   background: rgba(45, 45, 50, 0.8);
-  border-radius: 13px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -74,10 +76,10 @@ html, body, #app {
 }
 
 .widget-recording-hotkey {
-  height: 26px;
+  height: 24px;
   padding: 0 10px;
   background: rgba(45, 45, 50, 0.8);
-  border-radius: 13px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,27 +138,11 @@ html, body, #app {
   background: #4ade80;
 }
 
-/* Wave Animation - smooth */
-@keyframes wave1 {
-  0%, 100% { height: 3px; }
-  50% { height: 10px; }
+/* Voice-reactive active bars — rAF handles smoothing, no CSS transition needed */
+.widget-wave-bar.active-bar {
+  transform: translateZ(0);
+  /* GPU acceleration */
 }
-
-@keyframes wave2 {
-  0%, 100% { height: 4px; }
-  50% { height: 14px; }
-}
-
-@keyframes wave3 {
-  0%, 100% { height: 5px; }
-  50% { height: 12px; }
-}
-
-.widget-wave-bar.animate:nth-child(1) { animation: wave1 0.75s ease-in-out infinite; }
-.widget-wave-bar.animate:nth-child(2) { animation: wave2 0.6s ease-in-out infinite 0.06s; }
-.widget-wave-bar.animate:nth-child(3) { animation: wave3 0.65s ease-in-out infinite; }
-.widget-wave-bar.animate:nth-child(4) { animation: wave2 0.6s ease-in-out infinite 0.1s; }
-.widget-wave-bar.animate:nth-child(5) { animation: wave1 0.75s ease-in-out infinite 0.03s; }
 
 /* Frozen Wave */
 .widget-frozen-wave {
@@ -199,7 +185,9 @@ html, body, #app {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ==================== */
@@ -224,8 +212,15 @@ html, body, #app {
 }
 
 @keyframes error-pop {
-  from { transform: scale(0.85); opacity: 0; }
-  to   { transform: scale(1);    opacity: 1; }
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .widget-error-icon {

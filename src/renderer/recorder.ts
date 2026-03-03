@@ -132,6 +132,12 @@ class AudioRecorder {
   private workletDataUrl: string | null = null;
   private isHindiMode = false;
 
+  // Audio level monitoring (for dynamic wave visualisation)
+  private levelAnalyser: AnalyserNode | null = null;
+  private levelSource: MediaStreamAudioSourceNode | null = null;
+  private levelContext: AudioContext | null = null;
+  private levelIntervalId: ReturnType<typeof setInterval> | null = null;
+
   async initialize(): Promise<void> {
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({
@@ -179,6 +185,9 @@ class AudioRecorder {
 
     this.mediaRecorder.start();
     console.log("[Recorder] Recording started (WebM)");
+
+    // --- Audio level monitoring (for dynamic wave visualisation) ---
+    this.startLevelMonitoring();
 
     // --- PCM16 AudioWorklet (Hindi only) ---
     if (hindiMode) {
@@ -238,6 +247,9 @@ class AudioRecorder {
   }
 
   stopRecording(): void {
+    // Stop level monitoring
+    this.stopLevelMonitoring();
+
     // Stop PCM16 streaming first (signals flush to main process)
     if (this.isHindiMode) {
       this.stopPCM16Streaming();
@@ -261,7 +273,64 @@ class AudioRecorder {
     console.log("[Recorder] Audio sent to main process");
   }
 
+  private startLevelMonitoring(): void {
+    if (!this.stream) return;
+    try {
+      this.levelContext = new AudioContext();
+      this.levelAnalyser = this.levelContext.createAnalyser();
+      this.levelAnalyser.fftSize = 256;
+      this.levelSource = this.levelContext.createMediaStreamSource(this.stream);
+      this.levelSource.connect(this.levelAnalyser);
+
+      const dataArray = new Uint8Array(this.levelAnalyser.frequencyBinCount);
+
+      this.levelIntervalId = setInterval(() => {
+        if (!this.levelAnalyser) return;
+        this.levelAnalyser.getByteTimeDomainData(dataArray);
+
+        // Compute RMS from waveform data (values centred at 128)
+        let sumSq = 0;
+        for (let i = 0; i < dataArray.length; i++) {
+          const v = (dataArray[i] - 128) / 128;
+          sumSq += v * v;
+        }
+        const rms = Math.sqrt(sumSq / dataArray.length);
+
+        // Normalise: lower divisor so conversational speech fills the range
+        const raw = Math.min(1, rms / 0.10);
+
+        // Power curve for better dynamic range in the mid-levels
+        const level = Math.pow(raw, 0.7);
+
+        window.electron.sendAudioLevel(level);
+      }, 60);
+
+      console.log("[Recorder] Level monitoring started");
+    } catch (err) {
+      console.warn("[Recorder] Failed to start level monitoring:", err);
+    }
+  }
+
+  private stopLevelMonitoring(): void {
+    if (this.levelIntervalId !== null) {
+      clearInterval(this.levelIntervalId);
+      this.levelIntervalId = null;
+    }
+    if (this.levelSource) {
+      this.levelSource.disconnect();
+      this.levelSource = null;
+    }
+    this.levelAnalyser = null;
+    if (this.levelContext) {
+      this.levelContext.close().catch(() => {});
+      this.levelContext = null;
+    }
+    // Send one final zero level so widget goes flat
+    window.electron.sendAudioLevel(0);
+  }
+
   cleanup(): void {
+    this.stopLevelMonitoring();
     this.stopPCM16Streaming();
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
