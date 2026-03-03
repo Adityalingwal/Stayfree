@@ -122,7 +122,7 @@ export async function pasteText(text: string): Promise<boolean> {
 }
 
 function showPasteFailedNotification(): void {
-  const fallbackPasteShortcut = isWindows ? "Ctrl+Shift+V" : "Cmd+Shift+V";
+  const fallbackPasteShortcut = isMac ? "Cmd+Shift+V" : "Ctrl+Shift+V";
   new Notification({
     title: "StayFree",
     body: `Paste failed. Press ${fallbackPasteShortcut} or ${pasteShortcutLabel} to paste manually.`,

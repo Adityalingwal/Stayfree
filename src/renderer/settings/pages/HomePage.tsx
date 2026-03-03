@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+// Synchronous platform guess from browser — available immediately, no async needed.
+// checkPermissions() will confirm/correct it once it resolves.
+function guessPlatform(): "darwin" | "win32" | "linux" {
+  const p = navigator.platform.toLowerCase();
+  if (p.includes("mac")) return "darwin";
+  if (p.includes("win")) return "win32";
+  return "linux";
+}
+
 interface TranscriptionEntry {
   text: string;
   rawText: string;
@@ -230,7 +239,7 @@ export default function HomePage() {
   const [history, setHistory] = useState<TranscriptionEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
-    "darwin",
+    guessPlatform(),
   );
 
   const refreshHistory = () => {

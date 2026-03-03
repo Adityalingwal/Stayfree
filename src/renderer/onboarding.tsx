@@ -7,11 +7,20 @@ interface PermissionStatus {
   platform: "darwin" | "win32" | "linux";
 }
 
+// Synchronous platform guess from browser — available immediately, no async needed.
+// checkPermissions() will confirm/correct it once it resolves.
+function guessPlatform(): "darwin" | "win32" | "linux" {
+  const p = navigator.platform.toLowerCase();
+  if (p.includes("mac")) return "darwin";
+  if (p.includes("win")) return "win32";
+  return "linux";
+}
+
 function OnboardingApp() {
   const [permissions, setPermissions] = useState<PermissionStatus>({
     mic: "not-determined",
     inputAutomation: null,
-    platform: "darwin",
+    platform: guessPlatform(),
   });
   const [micRequesting, setMicRequesting] = useState(false);
 

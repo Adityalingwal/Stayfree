@@ -67,18 +67,22 @@ export async function transcribeWithSarvam(
     // - "codemix": Mixed script (मेरा phone number है)
     // - "translate": English translation (My phone number is)
 
-    // Call Sarvam API
-    const response = await fetch("https://api.sarvam.ai/speech-to-text", {
-      method: "POST",
-      headers: {
-        "api-subscription-key": sarvamApiKey,
-        ...formData.getHeaders(),
-      },
-      body: formData,
-    });
-
-    // Clean up temp file
-    fs.unlinkSync(tempAudioPath);
+    // Call Sarvam API — cleanup temp file in finally so it always runs
+    let response;
+    try {
+      response = await fetch("https://api.sarvam.ai/speech-to-text", {
+        method: "POST",
+        headers: {
+          "api-subscription-key": sarvamApiKey,
+          ...formData.getHeaders(),
+        },
+        body: formData,
+      });
+    } finally {
+      if (fs.existsSync(tempAudioPath)) {
+        fs.unlinkSync(tempAudioPath);
+      }
+    }
 
     if (!response.ok) {
       const errorText = await response.text();

@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
 
+// Synchronous platform guess from browser — available immediately, no async needed.
+// checkPermissions() will confirm/correct it once it resolves.
+function guessPlatform(): "darwin" | "win32" | "linux" {
+  const p = navigator.platform.toLowerCase();
+  if (p.includes("mac")) return "darwin";
+  if (p.includes("win")) return "win32";
+  return "linux";
+}
+
 interface AudioDevice {
   deviceId: string;
   label: string;
@@ -7,7 +16,7 @@ interface AudioDevice {
 
 export default function SettingsPage() {
   const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
-    "darwin",
+    guessPlatform(),
   );
   const [apiKey, setApiKey] = useState("");
   const [sarvamApiKey, setSarvamApiKey] = useState(""); // NEW
@@ -39,6 +48,7 @@ export default function SettingsPage() {
       .then((status) => setPlatform(status.platform))
       .catch((error) => {
         console.warn("[Settings] Failed to load platform:", error);
+        setPlatform(guessPlatform());
       });
 
     // Enumerate microphones

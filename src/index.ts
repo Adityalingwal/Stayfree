@@ -466,9 +466,9 @@ function registerPermissionHandlers(): void {
       return systemPreferences.askForMediaAccess("microphone");
     }
     if (isWindows) {
-      shell.openExternal("ms-settings:privacy-microphone");
-      const status = systemPreferences.getMediaAccessStatus("microphone");
-      return status === "granted";
+      await shell.openExternal("ms-settings:privacy-microphone");
+      // User must grant permission manually in Settings — renderer re-checks via check-permissions polling
+      return false;
     }
     return false;
   });
@@ -764,7 +764,7 @@ app.on("ready", () => {
   hotkeyManager.start();
 
   // Register fallback hotkey to paste last transcript
-  globalShortcut.register(fallbackPasteShortcut, async () => {
+  const fallbackRegistered = globalShortcut.register(fallbackPasteShortcut, async () => {
     const lastTranscript = store.get("lastTranscript") as string;
     if (lastTranscript) {
       console.log("[Main] Fallback hotkey: pasting last transcript");
@@ -776,6 +776,9 @@ app.on("ready", () => {
       console.log("[Main] Fallback hotkey: no last transcript to paste");
     }
   });
+  if (!fallbackRegistered) {
+    console.warn(`[Main] Failed to register fallback shortcut: ${fallbackPasteShortcut}`);
+  }
 
   // IPC Handler: Forward PCM16 chunks to Sarvam streaming transcriber (Hindi)
   ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer) => {

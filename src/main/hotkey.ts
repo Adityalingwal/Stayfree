@@ -86,7 +86,8 @@ export class HotkeyManager extends EventEmitter {
   }
 
   private isHotkeyComboPressed(): boolean {
-    // Check if ALL keys in the combo are currently pressed
+    // Guard: empty keys array — every() returns true vacuously, would trigger on any keypress
+    if (this.config.keys.length === 0) return false;
     return this.config.keys.every((key) => this.pressedKeys.has(key));
   }
 
