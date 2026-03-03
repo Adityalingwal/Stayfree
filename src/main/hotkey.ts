@@ -9,7 +9,7 @@ import { isMac } from "./platform";
  * Emits 'recording-start' on keydown, 'recording-stop' on keyup.
  *
  * macOS: Option (Alt) key
- * Windows: Ctrl key — Alt avoided because Windows OS intercepts Alt keyup for menu bar activation
+ * Windows: Ctrl+Win — single keys have OS conflicts (Alt=menu bar, Win=Start menu)
  */
 
 export interface HotkeyConfig {
@@ -25,10 +25,10 @@ export class HotkeyManager extends EventEmitter {
     super();
 
     // Mac: Option (Alt) key — reliable keyup events
-    // Windows: Ctrl key — Alt is unreliable on Windows (OS intercepts keyup for menu bar activation)
-    const defaultHoldKey = isMac ? UiohookKey.Alt : UiohookKey.Ctrl;
+    // Windows: Ctrl+Win combo — avoids single-key OS conflicts (Alt=menu bar, Win alone=Start menu)
+    const defaultKeys = isMac ? [UiohookKey.Alt] : [UiohookKey.Ctrl, UiohookKey.Meta];
     this.config = {
-      keys: [defaultHoldKey],
+      keys: defaultKeys,
       ...config,
     };
   }
@@ -36,7 +36,7 @@ export class HotkeyManager extends EventEmitter {
   start(): void {
     console.log("[Hotkey] Starting hotkey listener...");
     console.log(
-      `[Hotkey] Mode: Left ${isMac ? "Option" : "Ctrl"} key - HOLD to record, RELEASE to stop`,
+      `[Hotkey] Mode: ${isMac ? "Option" : "Ctrl+Win"} - HOLD to record, RELEASE to stop`,
     );
 
     uIOhook.on("keydown", (event) => {
