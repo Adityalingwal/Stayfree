@@ -5,17 +5,15 @@ import { isMac } from "./platform";
 /**
  * Hotkey Manager
  *
- * Detects Fn key press/release for push-to-talk functionality.
- * Emits 'recording-start' when Fn is pressed, 'recording-stop' when released.
+ * Push-to-talk: hold key to record, release to stop.
+ * Emits 'recording-start' on keydown, 'recording-stop' on keyup.
  *
- * macOS Fn key: UiohookKey.Fn (keycode 63)
- * Fallback: Ctrl+Shift combo
+ * macOS: Option (Alt) key
+ * Windows: Ctrl key — Alt avoided because Windows OS intercepts Alt keyup for menu bar activation
  */
 
 export interface HotkeyConfig {
-  keys: number[]; // Key codes
-  useFnKey: boolean; // if true, use Fn; if false, use keys combo
-  fnKeyCode: number; // Fn key code (63 on macOS)
+  keys: number[]; // Key codes to hold for push-to-talk
 }
 
 export class HotkeyManager extends EventEmitter {
@@ -26,12 +24,10 @@ export class HotkeyManager extends EventEmitter {
   constructor(config?: Partial<HotkeyConfig>) {
     super();
 
-    // Default: Hold Alt/Option for push-to-talk.
-    // Fn is not reliably detectable via uiohook on macOS.
-    const defaultHoldKey = UiohookKey.Alt;
+    // Mac: Option (Alt) key — reliable keyup events
+    // Windows: Ctrl key — Alt is unreliable on Windows (OS intercepts keyup for menu bar activation)
+    const defaultHoldKey = isMac ? UiohookKey.Alt : UiohookKey.Ctrl;
     this.config = {
-      useFnKey: false, // Fn key doesn't work on macOS
-      fnKeyCode: defaultHoldKey,
       keys: [defaultHoldKey],
       ...config,
     };
@@ -40,7 +36,7 @@ export class HotkeyManager extends EventEmitter {
   start(): void {
     console.log("[Hotkey] Starting hotkey listener...");
     console.log(
-      `[Hotkey] Mode: Left ${isMac ? "Option" : "Alt"} key - HOLD to record, RELEASE to stop`,
+      `[Hotkey] Mode: Left ${isMac ? "Option" : "Ctrl"} key - HOLD to record, RELEASE to stop`,
     );
 
     uIOhook.on("keydown", (event) => {
@@ -71,12 +67,7 @@ export class HotkeyManager extends EventEmitter {
 
     this.pressedKeys.add(keycode);
 
-    // Check if this triggers recording
-    const shouldStartRecording = this.config.useFnKey
-      ? keycode === this.config.fnKeyCode
-      : this.isHotkeyComboPressed();
-
-    if (shouldStartRecording && !this.isRecording) {
+    if (this.isHotkeyComboPressed() && !this.isRecording) {
       this.isRecording = true;
       console.log("[Hotkey] Recording started");
       this.emit("recording-start");
@@ -87,16 +78,10 @@ export class HotkeyManager extends EventEmitter {
     this.pressedKeys.delete(keycode);
 
     // If we were recording and the hotkey is no longer pressed, stop
-    if (this.isRecording) {
-      const shouldStopRecording = this.config.useFnKey
-        ? keycode === this.config.fnKeyCode
-        : !this.isHotkeyComboPressed();
-
-      if (shouldStopRecording) {
-        this.isRecording = false;
-        console.log("[Hotkey] Recording stopped");
-        this.emit("recording-stop");
-      }
+    if (this.isRecording && !this.isHotkeyComboPressed()) {
+      this.isRecording = false;
+      console.log("[Hotkey] Recording stopped");
+      this.emit("recording-stop");
     }
   }
 
@@ -108,9 +93,7 @@ export class HotkeyManager extends EventEmitter {
   // Allow changing hotkey config at runtime
   setConfig(config: Partial<HotkeyConfig>): void {
     this.config = { ...this.config, ...config };
-    console.log(
-      `[Hotkey] Config updated: ${this.config.useFnKey ? "Fn key" : `Combo: ${this.config.keys.join("+")}`}`,
-    );
+    console.log(`[Hotkey] Config updated: keys=${this.config.keys.join("+")}`);
   }
 
   getConfig(): HotkeyConfig {

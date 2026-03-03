@@ -6,5 +6,5 @@ export const settingsShortcut = "CommandOrControl+,";
 export const quitShortcut = isMac ? "CommandOrControl+Q" : "Alt+F4";
 export const fallbackPasteShortcut = "CommandOrControl+Shift+V";
 
-export const holdKeyLabel = isMac ? "Option" : "Alt";
+export const holdKeyLabel = isMac ? "Option" : "Ctrl";
 export const pasteShortcutLabel = isMac ? "Cmd+V" : "Ctrl+V";
