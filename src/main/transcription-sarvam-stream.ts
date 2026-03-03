@@ -23,7 +23,7 @@ import store from "./store";
  */
 
 const SARVAM_WS_URL =
-  "wss://api.sarvam.ai/speech-to-text/ws?language-code=hi-IN&model=saaras:v3&mode=translit";
+  "wss://api.sarvam.ai/speech-to-text/ws?language-code=hi-IN&model=saaras:v3&mode=translit&flush_signal=true";
 
 /**
  * Wrap raw PCM16 samples in a minimal WAV container.
@@ -63,8 +63,7 @@ export class SarvamStreamingTranscriber {
   private connectTime = 0;
   private recordingStartTime = 0;
   private flushTimeout: ReturnType<typeof setTimeout> | null = null;
-  // Sarvam sends interim VAD transcripts mid-stream; accumulate all segments
-  // so the final result is the complete utterance, not just the last VAD chunk.
+  // VAD sends interim segments mid-stream even with flush_signal=true — accumulate all of them
   private transcriptSegments: string[] = [];
 
   private getApiKey(): string | null {
@@ -88,7 +87,6 @@ export class SarvamStreamingTranscriber {
       console.log("[Sarvam Stream] Reusing warm connection");
       return;
     }
-    this.transcriptSegments = [];
 
     this.forceClose();
 
@@ -104,7 +102,6 @@ export class SarvamStreamingTranscriber {
         console.log(
           `[Sarvam Stream] Connected (${Date.now() - this.connectTime}ms)`,
         );
-        this.transcriptSegments = [];
         resolve();
       });
 
@@ -145,30 +142,28 @@ export class SarvamStreamingTranscriber {
       return;
     }
 
-    // Sarvam sends { "type": "data", "data": { "transcript": "..." } } in two cases:
-    //   1. Mid-stream VAD silence detected (interim segment) — transcriptResolve is null
-    //   2. Post-flush final response — transcriptResolve is set
-    // Accumulate ALL segments; on flush deliver the joined full transcript.
     if (parsed.type === "data" && parsed.data) {
       const data = parsed.data as Record<string, unknown>;
-      const segment = (data.transcript as string) || "";
+      const transcript = (data.transcript as string) || "";
       const elapsed = Date.now() - this.recordingStartTime;
 
-      if (segment) {
-        this.transcriptSegments.push(segment);
-        console.log(`[Sarvam Stream] segment (+${elapsed}ms): "${segment}"`);
-      }
-
       if (this.transcriptResolve) {
-        // This is the response to our flush — deliver combined transcript
+        // Response to our flush signal — join with any VAD interim segments collected so far
+        if (transcript) this.transcriptSegments.push(transcript);
         const fullTranscript = this.transcriptSegments.join(" ").trim();
         console.log(
-          `[Sarvam Stream] final transcript in ${elapsed}ms: "${fullTranscript}"`,
+          `[Sarvam Stream] transcript in ${elapsed}ms: "${fullTranscript}"`,
         );
         this.clearFlushTimeout();
         this.transcriptResolve(fullTranscript);
         this.transcriptResolve = null;
         this.transcriptReject = null;
+      } else {
+        // VAD interim segment — accumulate it, will be joined on flush
+        if (transcript) {
+          this.transcriptSegments.push(transcript);
+          console.log(`[Sarvam Stream] segment (+${elapsed}ms): "${transcript}"`);
+        }
       }
     } else if (parsed.type === "error") {
       const errMsg = JSON.stringify(parsed.data || parsed);
@@ -210,38 +205,18 @@ export class SarvamStreamingTranscriber {
   flush(): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
-        // Connection closed — if we accumulated VAD segments, return them
-        if (this.transcriptSegments.length > 0) {
-          const fallback = this.transcriptSegments.join(" ").trim();
-          console.log(`[Sarvam Stream] flush on closed WS — using ${this.transcriptSegments.length} buffered segment(s): "${fallback}"`);
-          resolve(fallback);
-        } else {
-          reject(new Error("Sarvam not connected — check API key and internet connection"));
-        }
+        reject(new Error("Sarvam not connected — check API key and internet connection"));
         return;
       }
 
       this.transcriptResolve = resolve;
       this.transcriptReject = reject;
 
-      // SttFlushSignal: { "type": "flush" }
       this.ws.send(JSON.stringify({ type: "flush" }));
 
       // Safety timeout: 8 seconds
       this.flushTimeout = setTimeout(() => {
-        // On timeout, if we have buffered VAD segments, use them rather than failing
-        if (this.transcriptSegments.length > 0) {
-          const fallback = this.transcriptSegments.join(" ").trim();
-          console.log(`[Sarvam Stream] flush timeout — using ${this.transcriptSegments.length} buffered segment(s): "${fallback}"`);
-          this.clearFlushTimeout();
-          if (this.transcriptResolve) {
-            this.transcriptResolve(fallback);
-            this.transcriptResolve = null;
-            this.transcriptReject = null;
-          }
-        } else {
-          this.rejectPendingFlush(new Error("Sarvam transcription timed out"));
-        }
+        this.rejectPendingFlush(new Error("Sarvam transcription timed out"));
       }, 8000);
     });
   }
