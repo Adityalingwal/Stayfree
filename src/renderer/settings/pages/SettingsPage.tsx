@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
 
+// Synchronous platform guess from browser — available immediately, no async needed.
+// checkPermissions() will confirm/correct it once it resolves.
+function guessPlatform(): "darwin" | "win32" | "linux" {
+  const p = navigator.platform.toLowerCase();
+  if (p.includes("mac")) return "darwin";
+  if (p.includes("win")) return "win32";
+  return "linux";
+}
+
 interface AudioDevice {
   deviceId: string;
   label: string;
 }
 
 export default function SettingsPage() {
+  const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
+    guessPlatform(),
+  );
   const [apiKey, setApiKey] = useState("");
   const [sarvamApiKey, setSarvamApiKey] = useState(""); // NEW
   const [showApiKey, setShowApiKey] = useState(false);
@@ -30,6 +42,14 @@ export default function SettingsPage() {
       setSoundEnabled(settings.soundEnabled);
       setLoading(false);
     });
+
+    window.electron
+      .checkPermissions()
+      .then((status) => setPlatform(status.platform))
+      .catch((error) => {
+        console.warn("[Settings] Failed to load platform:", error);
+        setPlatform(guessPlatform());
+      });
 
     // Enumerate microphones
     navigator.mediaDevices
@@ -79,6 +99,9 @@ export default function SettingsPage() {
   if (loading) {
     return <div className="text-center py-12 text-gray-400">Loading...</div>;
   }
+
+  const platformLabel = platform === "win32" ? "Windows" : "macOS";
+  const hotkeyLabel = platform === "win32" ? "Left Alt" : "Left Option (Alt)";
 
   return (
     <div>
@@ -342,7 +365,7 @@ export default function SettingsPage() {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-500">Platform</span>
-              <span className="text-gray-900">macOS</span>
+              <span className="text-gray-900">{platformLabel}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Language Mode</span>
@@ -368,7 +391,7 @@ export default function SettingsPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Hotkey</span>
-              <span className="text-gray-900 font-mono">Left Option (Alt)</span>
+              <span className="text-gray-900 font-mono">{hotkeyLabel}</span>
             </div>
           </div>
         </div>

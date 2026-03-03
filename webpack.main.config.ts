@@ -1,6 +1,5 @@
 import type { Configuration } from "webpack";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import path from "path";
 
 import { rules } from "./webpack.rules";
 import { plugins } from "./webpack.plugins";

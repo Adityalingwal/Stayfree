@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * AudioWorkletProcessor — PCM16 streaming for Sarvam Hindi path
  *
@@ -8,6 +7,21 @@
  * Loaded via AudioWorklet.addModule(). NOT bundled by webpack — loaded
  * as a raw script URL.
  */
+
+declare const sampleRate: number;
+declare abstract class AudioWorkletProcessor {
+  readonly port: MessagePort;
+  constructor(options?: unknown);
+  process(
+    inputs: Float32Array[][],
+    outputs: Float32Array[][],
+    parameters: Record<string, Float32Array>,
+  ): boolean;
+}
+declare function registerProcessor(
+  name: string,
+  processorCtor: typeof AudioWorkletProcessor,
+): void;
 
 const TARGET_SAMPLE_RATE = 16000;
 const CHUNK_DURATION_S = 0.1; // 100ms chunks
@@ -28,7 +42,7 @@ class PCM16Processor extends AudioWorkletProcessor {
     this.bufferIndex = 0;
     this.active = true;
 
-    this.port.onmessage = (e) => {
+    this.port.onmessage = (e: MessageEvent<string>) => {
       if (e.data === "stop") {
         this.active = false;
       }

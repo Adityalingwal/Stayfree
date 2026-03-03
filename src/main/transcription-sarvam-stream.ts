@@ -60,8 +60,8 @@ export class SarvamStreamingTranscriber {
   private apiKey: string | null = null;
   private transcriptResolve: ((transcript: string) => void) | null = null;
   private transcriptReject: ((err: Error) => void) | null = null;
-  private connectTime: number = 0;
-  private recordingStartTime: number = 0;
+  private connectTime = 0;
+  private recordingStartTime = 0;
   private flushTimeout: ReturnType<typeof setTimeout> | null = null;
   // VAD sends interim segments mid-stream even with flush_signal=true — accumulate all of them
   private transcriptSegments: string[] = [];

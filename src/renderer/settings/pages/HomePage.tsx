@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+// Synchronous platform guess from browser — available immediately, no async needed.
+// checkPermissions() will confirm/correct it once it resolves.
+function guessPlatform(): "darwin" | "win32" | "linux" {
+  const p = navigator.platform.toLowerCase();
+  if (p.includes("mac")) return "darwin";
+  if (p.includes("win")) return "win32";
+  return "linux";
+}
+
 interface TranscriptionEntry {
   text: string;
   rawText: string;
@@ -35,8 +44,12 @@ function groupByDate(
   const groups = new Map<string, TranscriptionEntry[]>();
   for (const entry of entries) {
     const key = formatDateLabel(entry.timestamp);
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key)!.push(entry);
+    const existing = groups.get(key);
+    if (existing) {
+      existing.push(entry);
+    } else {
+      groups.set(key, [entry]);
+    }
   }
   return groups;
 }
@@ -225,6 +238,9 @@ function DownloadButton({ filename }: { filename?: string }) {
 export default function HomePage() {
   const [history, setHistory] = useState<TranscriptionEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
+    guessPlatform(),
+  );
 
   const refreshHistory = () => {
     window.electron.getTranscriptionHistory().then((h) => {
@@ -235,6 +251,12 @@ export default function HomePage() {
 
   useEffect(() => {
     refreshHistory();
+    window.electron
+      .checkPermissions()
+      .then((status) => setPlatform(status.platform))
+      .catch((error) => {
+        console.warn("[Home] Failed to detect platform:", error);
+      });
 
     // Auto-refresh when a new recording is saved
     const cleanup = window.electron.onTranscriptionHistoryUpdated?.(() => {
@@ -245,6 +267,7 @@ export default function HomePage() {
 
   const stats = computeStats(history);
   const grouped = groupByDate(history);
+  const holdKeyLabel = platform === "win32" ? "alt" : "option";
 
   return (
     <div>
@@ -329,7 +352,7 @@ export default function HomePage() {
               fontWeight: 800,
             }}
           >
-            fn
+            {holdKeyLabel}
           </span>{" "}
           to dictate and let StayFree format for you
         </h2>
@@ -342,7 +365,7 @@ export default function HomePage() {
             margin: "0 0 16px 0",
           }}
         >
-          Press and hold <strong>fn</strong> to dictate in any app. StayFree's{" "}
+          Press and hold <strong>{holdKeyLabel}</strong> to dictate in any app. StayFree's{" "}
           <strong>Smart Formatting</strong> and <strong>Backtrack</strong> will
           handle punctuation, new lines, lists, and adjust when you change your
           mind mid-sentence.
@@ -441,7 +464,7 @@ export default function HomePage() {
               No transcriptions yet
             </h3>
             <p style={{ color: "#94a3b8", fontSize: "13px", margin: 0 }}>
-              Hold your hotkey (Fn) and start speaking!
+              Hold your hotkey ({platform === "win32" ? "Alt" : "Option"}) and start speaking!
             </p>
           </div>
         ) : (

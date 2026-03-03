@@ -27,7 +27,11 @@ contextBridge.exposeInMainWorld("electron", {
   },
 
   // --- Onboarding / Permissions ---
-  checkPermissions: (): Promise<{ mic: string; accessibility: boolean }> => {
+  checkPermissions: (): Promise<{
+    mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";
+    inputAutomation: boolean | null;
+    platform: "darwin" | "win32" | "linux";
+  }> => {
     return ipcRenderer.invoke("check-permissions");
   },
   requestMicPermission: (): Promise<boolean> => {
@@ -151,7 +155,11 @@ declare global {
       sendAudioData: (audioBuffer: ArrayBuffer) => void;
       sendAudioChunk: (chunk: ArrayBuffer) => void;
       // Onboarding / Permissions
-      checkPermissions: () => Promise<{ mic: string; accessibility: boolean }>;
+      checkPermissions: () => Promise<{
+        mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";
+        inputAutomation: boolean | null;
+        platform: "darwin" | "win32" | "linux";
+      }>;
       requestMicPermission: () => Promise<boolean>;
       openAccessibilitySettings: () => void;
       openKeyboardSettings: () => void;

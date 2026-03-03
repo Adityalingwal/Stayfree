@@ -130,7 +130,7 @@ class AudioRecorder {
   private streamingAudioCtx: AudioContext | null = null;
   private workletNode: AudioWorkletNode | null = null;
   private workletDataUrl: string | null = null;
-  private isHindiMode: boolean = false;
+  private isHindiMode = false;
 
   async initialize(): Promise<void> {
     try {
@@ -198,9 +198,11 @@ class AudioRecorder {
       await this.streamingAudioCtx.audioWorklet.addModule(this.workletDataUrl);
 
       // Connect mic stream → worklet
-      const source = this.streamingAudioCtx.createMediaStreamSource(
-        this.stream!,
-      );
+      const stream = this.stream;
+      if (!stream) {
+        throw new Error("Microphone stream unavailable for PCM16 streaming");
+      }
+      const source = this.streamingAudioCtx.createMediaStreamSource(stream);
       this.workletNode = new AudioWorkletNode(
         this.streamingAudioCtx,
         "pcm16-processor",
@@ -228,7 +230,9 @@ class AudioRecorder {
       this.workletNode = null;
     }
     if (this.streamingAudioCtx) {
-      this.streamingAudioCtx.close().catch(() => {});
+      this.streamingAudioCtx.close().catch((error) => {
+        console.warn("[Recorder] Failed to close streaming audio context:", error);
+      });
       this.streamingAudioCtx = null;
     }
   }
