@@ -153,6 +153,9 @@ contextBridge.exposeInMainWorld("electron", {
   ) => {
     ipcRenderer.on("error-message", callback);
   },
+  dismissErrorBubble: () => {
+    ipcRenderer.send("dismiss-error-bubble");
+  },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
   },
@@ -234,6 +237,7 @@ declare global {
           payload: WidgetErrorPayload | string,
         ) => void,
       ) => void;
+      dismissErrorBubble: () => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;

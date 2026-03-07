@@ -261,17 +261,27 @@ function showErrorBubble(payload: WidgetErrorPayload | string): void {
     errorWindow.webContents.send("error-message", normalizedPayload);
   }
 
-  // Auto-dismiss after 4 seconds
+  // Auto-dismiss after 2 seconds
   errorDismissTimer = setTimeout(() => {
     if (errorWindow && !errorWindow.isDestroyed()) {
       errorWindow.hide();
     }
     errorDismissTimer = null;
-  }, 4000);
+  }, 2000);
 }
 
 function sendWidgetError(payload: WidgetErrorPayload | string): void {
   showErrorBubble(payload);
+}
+
+function dismissErrorBubble(): void {
+  if (errorDismissTimer) {
+    clearTimeout(errorDismissTimer);
+    errorDismissTimer = null;
+  }
+  if (errorWindow && !errorWindow.isDestroyed()) {
+    errorWindow.hide();
+  }
 }
 
 function createHindiSession(): HindiRecordingSession {
@@ -311,7 +321,6 @@ function mapPipelineError(error: unknown): PipelineError {
     return new PipelineError(
       "STREAM_TIMEOUT",
       "Couldn't get transcript in time. Please try again.",
-      "retry",
     );
   }
 
@@ -322,7 +331,6 @@ function mapPipelineError(error: unknown): PipelineError {
     return new PipelineError(
       "WS_CLOSED",
       "Connection dropped during transcription. Try again.",
-      "retry",
     );
   }
 
@@ -330,14 +338,12 @@ function mapPipelineError(error: unknown): PipelineError {
     return new PipelineError(
       "SERVER_ERROR",
       "Transcription service error. Please try again.",
-      "retry",
     );
   }
 
   return new PipelineError(
     "SERVER_ERROR",
     "Something went wrong during transcription. Please try again.",
-    "retry",
   );
 }
 
@@ -428,7 +434,6 @@ async function transcribeHindiWithRetries(
     new PipelineError(
       "SERVER_ERROR",
       "Something went wrong during transcription. Please try again.",
-      "retry",
     )
   );
 }
@@ -880,6 +885,10 @@ function registerWidgetHandlers(): void {
   ipcMain.on("widget-open-settings", () => {
     openSettingsWindow();
   });
+
+  ipcMain.on("dismiss-error-bubble", () => {
+    dismissErrorBubble();
+  });
 }
 
 // --- App Lifecycle ---
@@ -1070,7 +1079,6 @@ app.on("ready", () => {
         sendWidgetError({
           code: "SERVER_ERROR",
           message: "Transcription failed. Please try again.",
-          action: "retry",
         });
         return; // finally block will reset tray + isProcessing
       }
@@ -1144,7 +1152,6 @@ app.on("ready", () => {
       sendWidgetError({
         code: mappedError.code,
         message: mappedError.message,
-        action: mappedError.action,
       });
     } finally {
       // Ensure streaming transcriber is disconnected (no-op if already done)

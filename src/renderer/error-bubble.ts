@@ -7,7 +7,6 @@
 type WidgetErrorPayload = {
   code: "NO_AUDIO" | "STREAM_TIMEOUT" | "WS_CLOSED" | "SERVER_ERROR";
   message: string;
-  action?: "retry";
 };
 
 // Inject styles
@@ -27,7 +26,7 @@ style.textContent = `
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 14px;
     gap: 7px;
     background: rgba(24, 14, 14, 0.94);
@@ -64,25 +63,27 @@ style.textContent = `
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: -0.01em;
+    flex: 1;
   }
 
-  .error-action {
-    border: 1px solid rgba(248, 113, 113, 0.5);
-    background: rgba(127, 29, 29, 0.5);
+  .error-close {
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 9px;
+    background: rgba(239, 68, 68, 0.16);
     color: rgba(254, 202, 202, 0.95);
-    font-size: 11px;
-    font-weight: 600;
-    border-radius: 10px;
-    height: 22px;
-    padding: 0 8px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
     cursor: pointer;
-    display: none;
+    flex-shrink: 0;
   }
 
-  .error-action:hover {
-    background: rgba(153, 27, 27, 0.62);
+  .error-close:hover {
+    background: rgba(239, 68, 68, 0.3);
   }
+
 `;
 document.head.appendChild(style);
 
@@ -93,35 +94,27 @@ if (app) {
     <div class="error-bubble">
       <span class="error-icon">⚠︎</span>
       <span class="error-text" id="error-msg">Error</span>
-      <button class="error-action" id="error-action-btn" type="button">Retry</button>
+      <button class="error-close" id="error-close-btn" type="button">×</button>
     </div>
   `;
+}
+
+const closeBtn = document.getElementById("error-close-btn");
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    window.electron.dismissErrorBubble();
+  });
 }
 
 // Listen for message updates from main process
 window.electron.onErrorMessage((_event, payload: WidgetErrorPayload | string) => {
   const el = document.getElementById("error-msg");
-  const actionBtn = document.getElementById(
-    "error-action-btn",
-  ) as HTMLButtonElement | null;
   const normalizedPayload: WidgetErrorPayload =
     typeof payload === "string"
       ? { code: "SERVER_ERROR", message: payload }
       : payload;
 
   if (el) el.textContent = normalizedPayload.message;
-
-  if (actionBtn) {
-    if (normalizedPayload.action === "retry") {
-      actionBtn.style.display = "inline-block";
-      actionBtn.onclick = () => {
-        window.electron.startWidgetRecording();
-      };
-    } else {
-      actionBtn.style.display = "none";
-      actionBtn.onclick = null;
-    }
-  }
 });
 
 export {};
