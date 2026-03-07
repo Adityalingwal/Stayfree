@@ -202,7 +202,7 @@ export class SarvamStreamingTranscriber {
     this.ws.send(JSON.stringify(frame));
   }
 
-  flush(): Promise<string> {
+  flush(timeoutMs = 1500): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
         reject(new Error("Sarvam not connected — check API key and internet connection"));
@@ -212,12 +212,18 @@ export class SarvamStreamingTranscriber {
       this.transcriptResolve = resolve;
       this.transcriptReject = reject;
 
+      const flushStart = Date.now();
       this.ws.send(JSON.stringify({ type: "flush" }));
+      console.log(`[Sarvam Stream] flush sent (timeout=${timeoutMs}ms)`);
 
-      // Safety timeout: 8 seconds
+      // Safety timeout per attempt
       this.flushTimeout = setTimeout(() => {
+        const elapsed = Date.now() - flushStart;
+        console.warn(
+          `[Sarvam Stream] flush timeout after ${elapsed}ms (limit=${timeoutMs}ms)`,
+        );
         this.rejectPendingFlush(new Error("Sarvam transcription timed out"));
-      }, 8000);
+      }, timeoutMs);
     });
   }
 

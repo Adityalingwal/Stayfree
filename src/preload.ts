@@ -1,5 +1,23 @@
 import { contextBridge, ipcRenderer } from "electron";
 
+type WidgetErrorPayload = {
+  code: "NO_AUDIO" | "STREAM_TIMEOUT" | "WS_CLOSED" | "SERVER_ERROR";
+  message: string;
+  action?: "retry";
+};
+
+type AudioStreamStatsPayload = {
+  chunkCount: number;
+  pcmBytes: number;
+  avgRms: number;
+  maxRms: number;
+  baselineRms: number;
+  voicedMs: number;
+  hasSpeech: boolean;
+  isBorderlineSpeech: boolean;
+  streamingFailed: boolean;
+};
+
 /**
  * Preload script - exposes safe IPC APIs to renderer process
  *
@@ -24,6 +42,9 @@ contextBridge.exposeInMainWorld("electron", {
   },
   sendAudioChunk: (chunk: ArrayBuffer) => {
     ipcRenderer.send("audio-chunk-stream", Buffer.from(chunk));
+  },
+  sendAudioStreamStats: (stats: AudioStreamStatsPayload) => {
+    ipcRenderer.send("audio-stream-stats", stats);
   },
 
   // --- Onboarding / Permissions ---
@@ -124,8 +145,16 @@ contextBridge.exposeInMainWorld("electron", {
   ) => {
     ipcRenderer.on("widget-state", callback);
   },
-  onErrorMessage: (callback: (_event: Electron.IpcRendererEvent, message: string) => void) => {
+  onErrorMessage: (
+    callback: (
+      _event: Electron.IpcRendererEvent,
+      payload: WidgetErrorPayload | string,
+    ) => void,
+  ) => {
     ipcRenderer.on("error-message", callback);
+  },
+  dismissErrorBubble: () => {
+    ipcRenderer.send("dismiss-error-bubble");
   },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
@@ -154,6 +183,7 @@ declare global {
       onCancelRecording: (callback: () => void) => void;
       sendAudioData: (audioBuffer: ArrayBuffer) => void;
       sendAudioChunk: (chunk: ArrayBuffer) => void;
+      sendAudioStreamStats: (stats: AudioStreamStatsPayload) => void;
       // Onboarding / Permissions
       checkPermissions: () => Promise<{
         mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";
@@ -201,7 +231,13 @@ declare global {
           state: "idle" | "recording-hotkey" | "recording-click" | "processing",
         ) => void,
       ) => void;
-      onErrorMessage: (callback: (_event: Electron.IpcRendererEvent, message: string) => void) => void;
+      onErrorMessage: (
+        callback: (
+          _event: Electron.IpcRendererEvent,
+          payload: WidgetErrorPayload | string,
+        ) => void,
+      ) => void;
+      dismissErrorBubble: () => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;

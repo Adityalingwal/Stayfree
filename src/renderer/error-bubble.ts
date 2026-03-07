@@ -4,6 +4,10 @@
  * Standalone floating window that shows an error message above the widget.
  * No React — just a single div rendered directly.
  */
+type WidgetErrorPayload = {
+  code: "NO_AUDIO" | "STREAM_TIMEOUT" | "WS_CLOSED" | "SERVER_ERROR";
+  message: string;
+};
 
 // Inject styles
 const style = document.createElement("style");
@@ -22,7 +26,7 @@ style.textContent = `
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 14px;
     gap: 7px;
     background: rgba(24, 14, 14, 0.94);
@@ -59,7 +63,27 @@ style.textContent = `
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: -0.01em;
+    flex: 1;
   }
+
+  .error-close {
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 9px;
+    background: rgba(239, 68, 68, 0.16);
+    color: rgba(254, 202, 202, 0.95);
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .error-close:hover {
+    background: rgba(239, 68, 68, 0.3);
+  }
+
 `;
 document.head.appendChild(style);
 
@@ -70,15 +94,27 @@ if (app) {
     <div class="error-bubble">
       <span class="error-icon">⚠︎</span>
       <span class="error-text" id="error-msg">Error</span>
+      <button class="error-close" id="error-close-btn" type="button">×</button>
     </div>
   `;
 }
 
+const closeBtn = document.getElementById("error-close-btn");
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    window.electron.dismissErrorBubble();
+  });
+}
+
 // Listen for message updates from main process
-window.electron.onErrorMessage((_event, message) => {
+window.electron.onErrorMessage((_event, payload: WidgetErrorPayload | string) => {
   const el = document.getElementById("error-msg");
-  if (el) el.textContent = message;
+  const normalizedPayload: WidgetErrorPayload =
+    typeof payload === "string"
+      ? { code: "SERVER_ERROR", message: payload }
+      : payload;
+
+  if (el) el.textContent = normalizedPayload.message;
 });
 
 export {};
-

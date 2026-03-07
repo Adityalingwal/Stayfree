@@ -131,6 +131,22 @@ class AudioRecorder {
   private workletNode: AudioWorkletNode | null = null;
   private workletDataUrl: string | null = null;
   private isHindiMode = false;
+  private pcmChunkCount = 0;
+  private pcmBytes = 0;
+  private rmsSum = 0;
+  private rmsMax = 0;
+  private rmsCount = 0;
+  private baselineRmsSum = 0;
+  private baselineRmsCount = 0;
+  private voicedMs = 0;
+  private recordingStartMs = 0;
+  private streamingFailed = false;
+
+  private readonly baselineWindowMs = 300;
+  private readonly chunkDurationMs = 100;
+  private readonly minVoicedMs = 180;
+  private readonly minDelta = 0.0035;
+  private readonly baselineMultiplier = 2.0;
 
   async initialize(): Promise<void> {
     try {
@@ -158,6 +174,8 @@ class AudioRecorder {
     // Reset chunks
     this.audioChunks = [];
     this.isHindiMode = hindiMode;
+    this.resetStreamingStats();
+    this.recordingStartMs = Date.now();
 
     // --- MediaRecorder (WebM, always runs) ---
     this.mediaRecorder = new MediaRecorder(this.stream, {
@@ -210,6 +228,8 @@ class AudioRecorder {
 
       // Forward PCM16 chunks to main process
       this.workletNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
+        const pcm = new Int16Array(event.data);
+        this.trackAudioEnergy(pcm);
         window.electron.sendAudioChunk(event.data);
       };
 
@@ -219,6 +239,7 @@ class AudioRecorder {
       console.log("[Recorder] PCM16 streaming started (16kHz)");
     } catch (error) {
       console.error("[Recorder] Failed to start PCM16 streaming:", error);
+      this.streamingFailed = true;
       // Non-fatal: WebM recording still works; main process will handle fallback
     }
   }
@@ -257,8 +278,83 @@ class AudioRecorder {
 
     const arrayBuffer = await audioBlob.arrayBuffer();
 
+    if (this.isHindiMode) {
+      window.electron.sendAudioStreamStats(this.buildStreamingStats());
+    }
+
     window.electron.sendAudioData(arrayBuffer);
     console.log("[Recorder] Audio sent to main process");
+  }
+
+  private resetStreamingStats(): void {
+    this.pcmChunkCount = 0;
+    this.pcmBytes = 0;
+    this.rmsSum = 0;
+    this.rmsMax = 0;
+    this.rmsCount = 0;
+    this.baselineRmsSum = 0;
+    this.baselineRmsCount = 0;
+    this.voicedMs = 0;
+    this.streamingFailed = false;
+  }
+
+  private computeRms(pcm: Int16Array): number {
+    if (pcm.length === 0) return 0;
+    let squareSum = 0;
+    for (let i = 0; i < pcm.length; i += 1) {
+      const normalized = pcm[i] / 32768;
+      squareSum += normalized * normalized;
+    }
+    return Math.sqrt(squareSum / pcm.length);
+  }
+
+  private trackAudioEnergy(pcm: Int16Array): void {
+    this.pcmChunkCount += 1;
+    this.pcmBytes += pcm.byteLength;
+
+    const rms = this.computeRms(pcm);
+    this.rmsSum += rms;
+    this.rmsCount += 1;
+    this.rmsMax = Math.max(this.rmsMax, rms);
+
+    const elapsed = Date.now() - this.recordingStartMs;
+    if (elapsed <= this.baselineWindowMs) {
+      this.baselineRmsSum += rms;
+      this.baselineRmsCount += 1;
+      return;
+    }
+
+    const baseline =
+      this.baselineRmsCount > 0
+        ? this.baselineRmsSum / this.baselineRmsCount
+        : 0.001;
+    const speechThreshold = Math.max(
+      baseline * this.baselineMultiplier,
+      baseline + this.minDelta,
+    );
+    if (rms >= speechThreshold) {
+      this.voicedMs += this.chunkDurationMs;
+    }
+  }
+
+  private buildStreamingStats() {
+    const avgRms = this.rmsCount > 0 ? this.rmsSum / this.rmsCount : 0;
+    const baselineRms =
+      this.baselineRmsCount > 0 ? this.baselineRmsSum / this.baselineRmsCount : 0;
+    const hasSpeech = this.voicedMs >= this.minVoicedMs;
+    const isBorderlineSpeech = !hasSpeech && this.voicedMs > 0;
+
+    return {
+      chunkCount: this.pcmChunkCount,
+      pcmBytes: this.pcmBytes,
+      avgRms,
+      maxRms: this.rmsMax,
+      baselineRms,
+      voicedMs: this.voicedMs,
+      hasSpeech,
+      isBorderlineSpeech,
+      streamingFailed: this.streamingFailed,
+    };
   }
 
   cleanup(): void {

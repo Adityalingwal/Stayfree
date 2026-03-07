@@ -54,6 +54,51 @@ let widgetWindow: BrowserWindow | null = null;
 let errorWindow: BrowserWindow | null = null;
 let errorDismissTimer: ReturnType<typeof setTimeout> | null = null;
 
+type ErrorCode = "NO_AUDIO" | "STREAM_TIMEOUT" | "WS_CLOSED" | "SERVER_ERROR";
+type ErrorAction = "retry";
+
+interface WidgetErrorPayload {
+  code: ErrorCode;
+  message: string;
+  action?: ErrorAction;
+}
+
+interface AudioStreamStatsPayload {
+  chunkCount: number;
+  pcmBytes: number;
+  avgRms: number;
+  maxRms: number;
+  baselineRms: number;
+  voicedMs: number;
+  hasSpeech: boolean;
+  isBorderlineSpeech: boolean;
+  streamingFailed: boolean;
+}
+
+interface HindiRecordingSession {
+  sessionId: string;
+  startTs: number;
+  stopTs: number | null;
+  pcmChunks: Buffer[];
+  chunkCount: number;
+  chunkBytes: number;
+  energySummary: AudioStreamStatsPayload | null;
+}
+
+class PipelineError extends Error {
+  code: ErrorCode;
+  action?: ErrorAction;
+
+  constructor(code: ErrorCode, message: string, action?: ErrorAction) {
+    super(message);
+    this.code = code;
+    this.action = action;
+  }
+}
+
+const HINDI_STREAM_MAX_ATTEMPTS = 3;
+const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 1500;
+
 // Prevent duplicate app instances (and duplicate tray icons).
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
 if (!gotSingleInstanceLock) {
@@ -66,6 +111,7 @@ let currentState: AppState = "idle";
 let isProcessing = false; // Guard against concurrent pipeline runs
 type RecordingSource = "hotkey" | "widget" | null;
 let activeRecordingSource: RecordingSource = null;
+let activeHindiSession: HindiRecordingSession | null = null;
 
 type WidgetUiState =
   | "idle"
@@ -147,7 +193,15 @@ function sendWidgetState(state: WidgetUiState): void {
   widgetWindow.webContents.send("widget-state", state);
 }
 
-function showErrorBubble(message: string): void {
+function showErrorBubble(payload: WidgetErrorPayload | string): void {
+  const normalizedPayload: WidgetErrorPayload =
+    typeof payload === "string"
+      ? {
+          code: "SERVER_ERROR",
+          message: payload,
+        }
+      : payload;
+
   // Clear any existing dismiss timer
   if (errorDismissTimer) {
     clearTimeout(errorDismissTimer);
@@ -194,7 +248,7 @@ function showErrorBubble(message: string): void {
     errorWindow.once("ready-to-show", () => {
       if (errorWindow) {
         errorWindow.showInactive();
-        errorWindow.webContents.send("error-message", message);
+        errorWindow.webContents.send("error-message", normalizedPayload);
       }
     });
 
@@ -204,20 +258,184 @@ function showErrorBubble(message: string): void {
   } else {
     errorWindow.setBounds({ x, y, width, height });
     errorWindow.showInactive();
-    errorWindow.webContents.send("error-message", message);
+    errorWindow.webContents.send("error-message", normalizedPayload);
   }
 
-  // Auto-dismiss after 4 seconds
+  // Auto-dismiss after 2 seconds
   errorDismissTimer = setTimeout(() => {
     if (errorWindow && !errorWindow.isDestroyed()) {
       errorWindow.hide();
     }
     errorDismissTimer = null;
-  }, 4000);
+  }, 2000);
 }
 
-function sendWidgetError(message: string): void {
-  showErrorBubble(message);
+function sendWidgetError(payload: WidgetErrorPayload | string): void {
+  showErrorBubble(payload);
+}
+
+function dismissErrorBubble(): void {
+  if (errorDismissTimer) {
+    clearTimeout(errorDismissTimer);
+    errorDismissTimer = null;
+  }
+  if (errorWindow && !errorWindow.isDestroyed()) {
+    errorWindow.hide();
+  }
+}
+
+function createHindiSession(): HindiRecordingSession {
+  return {
+    sessionId: `hindi-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+    startTs: Date.now(),
+    stopTs: null,
+    pcmChunks: [],
+    chunkCount: 0,
+    chunkBytes: 0,
+    energySummary: null,
+  };
+}
+
+function startHindiSession(): void {
+  activeHindiSession = createHindiSession();
+}
+
+function stopHindiSession(): void {
+  if (activeHindiSession) {
+    activeHindiSession.stopTs = Date.now();
+  }
+}
+
+function clearHindiSession(): void {
+  activeHindiSession = null;
+}
+
+function mapPipelineError(error: unknown): PipelineError {
+  if (error instanceof PipelineError) return error;
+
+  const message =
+    error instanceof Error ? error.message : "Unknown transcription error";
+  const normalizedMessage = message.toLowerCase();
+
+  if (normalizedMessage.includes("timed out")) {
+    return new PipelineError(
+      "STREAM_TIMEOUT",
+      "Couldn't get transcript in time. Please try again.",
+    );
+  }
+
+  if (
+    normalizedMessage.includes("websocket closed") ||
+    normalizedMessage.includes("connection closed")
+  ) {
+    return new PipelineError(
+      "WS_CLOSED",
+      "Connection dropped during transcription. Try again.",
+    );
+  }
+
+  if (normalizedMessage.includes("server error")) {
+    return new PipelineError(
+      "SERVER_ERROR",
+      "Transcription service error. Please try again.",
+    );
+  }
+
+  return new PipelineError(
+    "SERVER_ERROR",
+    "Something went wrong during transcription. Please try again.",
+  );
+}
+
+async function transcribeHindiWithRetries(
+  session: HindiRecordingSession | null,
+): Promise<string> {
+  if (!session || session.chunkCount === 0 || session.chunkBytes === 0) {
+    throw new PipelineError(
+      "NO_AUDIO",
+      "No audio detected. Try again and speak a bit louder.",
+    );
+  }
+
+  const stats = session.energySummary;
+  console.log(
+    `[Sarvam Stream] session=${session.sessionId} chunks=${session.chunkCount} bytes=${session.chunkBytes} speech=${stats?.hasSpeech ?? "unknown"} borderline=${stats?.isBorderlineSpeech ?? "unknown"} voicedMs=${stats?.voicedMs ?? 0}`,
+  );
+  if (stats?.streamingFailed && session.chunkCount === 0) {
+    throw new PipelineError(
+      "NO_AUDIO",
+      "No audio detected. Try again and speak a bit louder.",
+    );
+  }
+
+  if (stats && !stats.hasSpeech && !stats.isBorderlineSpeech) {
+    throw new PipelineError(
+      "NO_AUDIO",
+      "No audio detected. Try again and speak a bit louder.",
+    );
+  }
+
+  const maxAttempts =
+    stats?.isBorderlineSpeech && !stats.hasSpeech ? 1 : HINDI_STREAM_MAX_ATTEMPTS;
+  const streamer = getSarvamStreamTranscriber();
+  let lastError: PipelineError | null = null;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const attemptStart = Date.now();
+    const shouldReplay = attempt > 1 || !streamer.isConnected;
+
+    try {
+      if (shouldReplay) {
+        streamer.disconnect();
+        await streamer.connect();
+        streamer.markRecordingStart();
+
+        for (const pcmChunk of session.pcmChunks) {
+          streamer.sendChunk(pcmChunk);
+        }
+      }
+
+      const transcript = (
+        await streamer.flush(HINDI_STREAM_ATTEMPT_TIMEOUT_MS)
+      ).trim();
+      const elapsed = Date.now() - attemptStart;
+      console.log(
+        `[Sarvam Stream] flush attempt ${attempt}/${maxAttempts} completed in ${elapsed}ms (session=${session.sessionId})`,
+      );
+
+      if (!transcript) {
+        throw new PipelineError(
+          "NO_AUDIO",
+          "No audio detected. Try again and speak a bit louder.",
+        );
+      }
+
+      return transcript;
+    } catch (error) {
+      const elapsed = Date.now() - attemptStart;
+      const mappedError = mapPipelineError(error);
+      lastError = mappedError;
+      console.warn(
+        `[Sarvam Stream] attempt ${attempt}/${maxAttempts} failed in ${elapsed}ms (session=${session.sessionId}): ${mappedError.code}`,
+      );
+
+      if (mappedError.code === "NO_AUDIO") {
+        throw mappedError;
+      }
+
+      if (attempt >= maxAttempts) {
+        throw mappedError;
+      }
+    }
+  }
+
+  throw (
+    lastError ??
+    new PipelineError(
+      "SERVER_ERROR",
+      "Something went wrong during transcription. Please try again.",
+    )
+  );
 }
 
 function createWidgetWindow(): void {
@@ -603,6 +821,11 @@ function registerWidgetHandlers(): void {
 
     const langPref = (store.get("languagePreference") as string) || "english";
     const hindiMode = langPref === "hindi";
+    if (hindiMode) {
+      startHindiSession();
+    } else {
+      clearHindiSession();
+    }
 
     if (hindiMode) {
       try {
@@ -630,6 +853,7 @@ function registerWidgetHandlers(): void {
     }
 
     activeRecordingSource = null;
+    stopHindiSession();
     updateTrayState("processing");
     sendWidgetState("processing");
     recorderWindow.webContents.send("stop-recording");
@@ -647,6 +871,7 @@ function registerWidgetHandlers(): void {
     }
 
     activeRecordingSource = null;
+    clearHindiSession();
     recorderWindow.webContents.send("cancel-recording");
     updateTrayState("idle");
     sendWidgetState("idle");
@@ -659,6 +884,10 @@ function registerWidgetHandlers(): void {
 
   ipcMain.on("widget-open-settings", () => {
     openSettingsWindow();
+  });
+
+  ipcMain.on("dismiss-error-bubble", () => {
+    dismissErrorBubble();
   });
 }
 
@@ -716,6 +945,11 @@ app.on("ready", () => {
 
     const langPref = (store.get("languagePreference") as string) || "english";
     const hindiMode = langPref === "hindi";
+    if (hindiMode) {
+      startHindiSession();
+    } else {
+      clearHindiSession();
+    }
 
     // For Hindi: open WebSocket stream before telling renderer to start
     if (hindiMode) {
@@ -748,6 +982,7 @@ app.on("ready", () => {
     console.log("[Main] Hotkey released - stopping recording");
     // Go directly to "processing" - avoids idle flash between recording and processing
     activeRecordingSource = null;
+    stopHindiSession();
     updateTrayState("processing");
     sendWidgetState("processing");
 
@@ -777,11 +1012,33 @@ app.on("ready", () => {
 
   // IPC Handler: Forward PCM16 chunks to Sarvam streaming transcriber (Hindi)
   ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer) => {
+    if (activeHindiSession) {
+      activeHindiSession.pcmChunks.push(chunk);
+      activeHindiSession.chunkCount += 1;
+      activeHindiSession.chunkBytes += chunk.length;
+    }
+
     const streamer = getSarvamStreamTranscriber();
     if (streamer.isConnected) {
       streamer.sendChunk(chunk);
     }
   });
+
+  ipcMain.on(
+    "audio-stream-stats",
+    (_event, stats: AudioStreamStatsPayload) => {
+      if (!activeHindiSession) return;
+      activeHindiSession.energySummary = stats;
+      activeHindiSession.chunkCount = Math.max(
+        activeHindiSession.chunkCount,
+        stats.chunkCount,
+      );
+      activeHindiSession.chunkBytes = Math.max(
+        activeHindiSession.chunkBytes,
+        stats.pcmBytes,
+      );
+    },
+  );
 
   // IPC Handler: Receive audio blob from renderer — full pipeline
   ipcMain.on("audio-captured", async (_event, audioData: Buffer) => {
@@ -810,13 +1067,7 @@ app.on("ready", () => {
       let transcript: string | null;
 
       if (langPrefPipeline === "hindi") {
-        // Hindi: flush the streaming transcriber (WebSocket received chunks in real-time)
-        const streamer = getSarvamStreamTranscriber();
-        try {
-          transcript = await streamer.flush();
-        } finally {
-          streamer.disconnect();
-        }
+        transcript = await transcribeHindiWithRetries(activeHindiSession);
       } else {
         transcript = await transcribe(audioData);
       }
@@ -825,7 +1076,10 @@ app.on("ready", () => {
 
       if (!transcript) {
         console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
-        sendWidgetError("Transcription failed");
+        sendWidgetError({
+          code: "SERVER_ERROR",
+          message: "Transcription failed. Please try again.",
+        });
         return; // finally block will reset tray + isProcessing
       }
 
@@ -894,12 +1148,15 @@ app.on("ready", () => {
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
       console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);
-      const errMsg =
-        error instanceof Error ? error.message : "Something went wrong";
-      sendWidgetError(errMsg);
+      const mappedError = mapPipelineError(error);
+      sendWidgetError({
+        code: mappedError.code,
+        message: mappedError.message,
+      });
     } finally {
       // Ensure streaming transcriber is disconnected (no-op if already done)
       getSarvamStreamTranscriber().disconnect();
+      clearHindiSession();
       activeRecordingSource = null;
       isProcessing = false;
       updateTrayState("idle");
