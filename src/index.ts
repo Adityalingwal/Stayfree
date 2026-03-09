@@ -28,7 +28,7 @@ import {
 import {
   isMac,
   isWindows,
-
+  fallbackPasteShortcut,
   holdKeyLabel,
   pasteShortcutLabel,
   quitShortcut,
@@ -491,6 +491,17 @@ function buildContextMenu(): Menu {
     {
       label: `StayFree v${app.getVersion()}`,
       enabled: false,
+    },
+    { type: "separator" },
+    {
+      label: "Paste Last Transcript",
+      accelerator: fallbackPasteShortcut,
+      click: async () => {
+        const lastTranscript = store.get("lastTranscript") as string;
+        if (lastTranscript) {
+          await pasteText(lastTranscript);
+        }
+      },
     },
     { type: "separator" },
     {
@@ -982,6 +993,22 @@ app.on("ready", () => {
   // Start listening for hotkeys
   hotkeyManager.start();
 
+  // Register fallback hotkey to paste last transcript
+  const fallbackRegistered = globalShortcut.register(fallbackPasteShortcut, async () => {
+    const lastTranscript = store.get("lastTranscript") as string;
+    if (lastTranscript) {
+      console.log("[Main] Fallback hotkey: pasting last transcript");
+      const pasted = await pasteText(lastTranscript);
+      if (!pasted) {
+        console.error("[Main] Fallback paste failed");
+      }
+    } else {
+      console.log("[Main] Fallback hotkey: no last transcript to paste");
+    }
+  });
+  if (!fallbackRegistered) {
+    console.warn(`[Main] Failed to register fallback shortcut: ${fallbackPasteShortcut}`);
+  }
 
   // IPC Handler: Forward PCM16 chunks to Sarvam streaming transcriber (Hindi)
   ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer) => {

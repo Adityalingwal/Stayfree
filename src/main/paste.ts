@@ -6,7 +6,7 @@ import {
   shell,
 } from "electron";
 import { keyboard, Key } from "@nut-tree-fork/nut-js";
-import { isMac, isWindows } from "./platform";
+import { isMac, isWindows, pasteShortcutLabel } from "./platform";
 
 /**
  * Paste Service (nut-js powered)
@@ -66,55 +66,6 @@ export function requestAccessibilityPermission(): void {
     });
 }
 
-interface ClipboardSnapshot {
-  text: string;
-  html: string;
-  rtf: string;
-  image: Electron.NativeImage | null;
-  hasContent: boolean;
-}
-
-function saveClipboard(): ClipboardSnapshot | null {
-  const formats = clipboard.availableFormats();
-  if (formats.length === 0) return null;
-
-  const hasUnsupportedFormat = formats.some(
-    (f) =>
-      f.includes("file") ||
-      f.includes("pdf") ||
-      f.includes("url") ||
-      f === "public.file-url" ||
-      f === "NSFilenamesPboardType",
-  );
-  if (hasUnsupportedFormat) return null;
-
-  const image = formats.some((f) => f.startsWith("image/"))
-    ? clipboard.readImage()
-    : null;
-
-  return {
-    text: clipboard.readText(),
-    html: clipboard.readHTML(),
-    rtf: clipboard.readRTF(),
-    image: image && !image.isEmpty() ? image : null,
-    hasContent: true,
-  };
-}
-
-function restoreClipboard(snapshot: ClipboardSnapshot | null): void {
-  if (!snapshot || !snapshot.hasContent) return;
-
-  const writeData: Electron.Data = {};
-  if (snapshot.text) writeData.text = snapshot.text;
-  if (snapshot.html) writeData.html = snapshot.html;
-  if (snapshot.rtf) writeData.rtf = snapshot.rtf;
-  if (snapshot.image) writeData.image = snapshot.image;
-
-  if (Object.keys(writeData).length > 0) {
-    clipboard.write(writeData);
-  }
-}
-
 export function writeToClipboard(text: string): void {
   clipboard.writeText(text);
   console.log(
@@ -150,22 +101,13 @@ export async function pasteText(text: string): Promise<boolean> {
     return false;
   }
 
-  const previousClipboard = saveClipboard();
-  console.log(`[Paste] Previous clipboard text: "${clipboard.readText().substring(0, 30)}"`);
-
   writeToClipboard(text);
-  console.log(`[Paste] Clipboard after write: "${clipboard.readText().substring(0, 30)}"`);
 
+  // Reduced delay from 10ms to 5ms
   await new Promise((resolve) => setTimeout(resolve, 5));
 
+  // Simulate platform paste shortcut
   const success = await simulatePaste();
-
-  // Restore clipboard in background — don't block paste latency
-  // 100ms gives OS enough time to complete the paste event
-  setTimeout(() => {
-    restoreClipboard(previousClipboard);
-    console.log(`[Paste] Clipboard restored to: "${clipboard.readText().substring(0, 30)}"`);
-  }, 50);
 
   const pasteLatency = Date.now() - startPaste;
 
@@ -180,9 +122,10 @@ export async function pasteText(text: string): Promise<boolean> {
 }
 
 function showPasteFailedNotification(): void {
+  const fallbackPasteShortcut = isMac ? "Cmd+Shift+V" : "Ctrl+Shift+V";
   new Notification({
     title: "StayFree",
-    body: `Paste failed. Please focus a text field and try again.`,
+    body: `Paste failed. Press ${fallbackPasteShortcut} or ${pasteShortcutLabel} to paste manually.`,
     silent: true,
   }).show();
 }
