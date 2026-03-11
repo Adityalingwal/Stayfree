@@ -19,7 +19,10 @@ export interface HotkeyConfig {
 export class HotkeyManager extends EventEmitter {
   private pressedKeys = new Set<number>();
   private isRecording = false;
+  private isCommandRecording = false;
   private config: HotkeyConfig;
+  // Right Option keycode (AltRight = 3640, confirmed in uiohook-napi types)
+  private commandKeys: number[] = isMac ? [UiohookKey.AltRight] : [];
 
   constructor(config?: Partial<HotkeyConfig>) {
     super();
@@ -57,6 +60,7 @@ export class HotkeyManager extends EventEmitter {
     uIOhook.stop();
     this.pressedKeys.clear();
     this.isRecording = false;
+    this.isCommandRecording = false;
   }
 
   private handleKeyDown(keycode: number): void {
@@ -67,10 +71,24 @@ export class HotkeyManager extends EventEmitter {
 
     this.pressedKeys.add(keycode);
 
-    if (this.isHotkeyComboPressed() && !this.isRecording) {
+    // Dictation hotkey — only if not already in command mode
+    if (this.isHotkeyComboPressed() && !this.isRecording && !this.isCommandRecording) {
       this.isRecording = true;
       console.log("[Hotkey] Recording started");
       this.emit("recording-start");
+      return;
+    }
+
+    // Command hotkey (Right Option) — only if not already in dictation mode
+    if (
+      this.commandKeys.length > 0 &&
+      this.isCommandComboPressed() &&
+      !this.isCommandRecording &&
+      !this.isRecording
+    ) {
+      this.isCommandRecording = true;
+      console.log("[Hotkey] Command recording started");
+      this.emit("command-start");
     }
   }
 
@@ -83,12 +101,24 @@ export class HotkeyManager extends EventEmitter {
       console.log("[Hotkey] Recording stopped");
       this.emit("recording-stop");
     }
+
+    // If we were in command mode and command keys no longer pressed, stop
+    if (this.isCommandRecording && !this.isCommandComboPressed()) {
+      this.isCommandRecording = false;
+      console.log("[Hotkey] Command recording stopped");
+      this.emit("command-stop");
+    }
   }
 
   private isHotkeyComboPressed(): boolean {
     // Guard: empty keys array — every() returns true vacuously, would trigger on any keypress
     if (this.config.keys.length === 0) return false;
     return this.config.keys.every((key) => this.pressedKeys.has(key));
+  }
+
+  private isCommandComboPressed(): boolean {
+    if (this.commandKeys.length === 0) return false;
+    return this.commandKeys.every((key) => this.pressedKeys.has(key));
   }
 
   // Allow changing hotkey config at runtime

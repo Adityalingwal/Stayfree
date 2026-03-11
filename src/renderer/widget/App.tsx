@@ -3,7 +3,7 @@ import IdleState from "./components/IdleState";
 import RecordingState from "./components/RecordingState";
 import ProcessingState from "./components/ProcessingState";
 
-type WidgetState = "idle" | "recording-hotkey" | "recording-click" | "processing";
+type WidgetState = "idle" | "recording-hotkey" | "recording-click" | "recording-command" | "processing";
 
 /**
  * Floating Dictation Widget - Wispr Flow style
@@ -49,9 +49,9 @@ export default function App() {
     <div className="widget-container">
       {state === "idle" && <IdleState onClick={handleClick} />}
 
-      {(state === "recording-hotkey" || state === "recording-click") && (
+      {(state === "recording-hotkey" || state === "recording-click" || state === "recording-command") && (
         <RecordingState
-          mode={state === "recording-hotkey" ? "hotkey" : "click"}
+          mode={state === "recording-hotkey" ? "hotkey" : state === "recording-command" ? "command" : "click"}
           onCancel={handleCancel}
           onStop={handleStop}
         />

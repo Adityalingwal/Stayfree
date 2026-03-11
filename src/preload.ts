@@ -171,7 +171,56 @@ contextBridge.exposeInMainWorld("electron", {
   openSettingsFromWidget: () => {
     ipcRenderer.send("widget-open-settings");
   },
+
+  // --- Notes ---
+  getNotes: (): Promise<import("./main/store").Note[]> =>
+    ipcRenderer.invoke("get-notes"),
+  searchNotes: (query: string): Promise<import("./main/store").Note[]> =>
+    ipcRenderer.invoke("search-notes", query),
+  createNote: (params: {
+    content: string;
+    title?: string;
+  }): Promise<import("./main/store").Note> =>
+    ipcRenderer.invoke("create-note", params),
+  updateNote: (
+    id: string,
+    updates: Record<string, unknown>,
+  ): Promise<import("./main/store").Note | null> =>
+    ipcRenderer.invoke("update-note", id, updates),
+  deleteNote: (id: string): Promise<boolean> =>
+    ipcRenderer.invoke("delete-note", id),
+  promoteToNote: (entry: {
+    text: string;
+    rawText: string;
+    timestamp: number;
+    durationMs: number;
+  }): Promise<import("./main/store").Note> =>
+    ipcRenderer.invoke("promote-to-note", entry),
+  onNotesUpdated: (callback: () => void): (() => void) => {
+    const handler = () => callback();
+    ipcRenderer.on("notes-updated", handler);
+    return () => ipcRenderer.removeListener("notes-updated", handler);
+  },
+  onNavigateToTab: (callback: (tab: string) => void): (() => void) => {
+    const handler = (_e: Electron.IpcRendererEvent, tab: string) =>
+      callback(tab);
+    ipcRenderer.on("navigate-to-tab", handler);
+    return () => ipcRenderer.removeListener("navigate-to-tab", handler);
+  },
 });
+
+type Note = {
+  id: string;
+  title: string;
+  content: string;
+  rawContent: string;
+  createdAt: number;
+  updatedAt: number;
+  source: "voice" | "text" | "clipboard" | "transcription";
+  pinned: boolean;
+  archived: boolean;
+  tags: string[];
+};
 
 // Type declaration for TypeScript
 declare global {
@@ -228,7 +277,7 @@ declare global {
       onWidgetState: (
         callback: (
           _event: Electron.IpcRendererEvent,
-          state: "idle" | "recording-hotkey" | "recording-click" | "processing",
+          state: "idle" | "recording-hotkey" | "recording-click" | "recording-command" | "processing",
         ) => void,
       ) => void;
       onErrorMessage: (
@@ -245,6 +294,20 @@ declare global {
         layout: "idle" | "recording" | "processing",
       ) => void;
       openSettingsFromWidget: () => void;
+      // Notes
+      getNotes: () => Promise<Note[]>;
+      searchNotes: (query: string) => Promise<Note[]>;
+      createNote: (params: { content: string; title?: string }) => Promise<Note>;
+      updateNote: (id: string, updates: Record<string, unknown>) => Promise<Note | null>;
+      deleteNote: (id: string) => Promise<boolean>;
+      promoteToNote: (entry: {
+        text: string;
+        rawText: string;
+        timestamp: number;
+        durationMs: number;
+      }) => Promise<Note>;
+      onNotesUpdated: (callback: () => void) => () => void;
+      onNavigateToTab: (callback: (tab: string) => void) => () => void;
     };
   }
 }

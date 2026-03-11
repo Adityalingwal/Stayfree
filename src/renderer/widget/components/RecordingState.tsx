@@ -2,7 +2,7 @@ import React from "react";
 import WaveAnimation from "./WaveAnimation";
 
 interface RecordingStateProps {
-  mode: "hotkey" | "click";
+  mode: "hotkey" | "click" | "command";
   onCancel: () => void;
   onStop: () => void;
 }
@@ -17,9 +17,18 @@ export default function RecordingState({
   onStop,
 }: RecordingStateProps) {
   if (mode === "hotkey") {
-    // Hotkey mode: just waves
+    // Hotkey mode: just waves (red)
     return (
       <div className="widget-recording-hotkey">
+        <WaveAnimation isActive={true} />
+      </div>
+    );
+  }
+
+  if (mode === "command") {
+    // Command mode: purple/blue wave (no buttons — released on key-up)
+    return (
+      <div className="widget-recording-hotkey" style={{ filter: "hue-rotate(200deg)" }}>
         <WaveAnimation isActive={true} />
       </div>
     );

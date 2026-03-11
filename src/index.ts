@@ -9,6 +9,7 @@ import {
   systemPreferences,
   shell,
   screen,
+  clipboard,
 } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
 import { transcribe } from "./main/transcription";
@@ -19,6 +20,16 @@ import {
 import { formatText } from "./main/formatting";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry } from "./main/store";
+import {
+  createNote,
+  createNoteFromClipboard,
+  deleteNote,
+  getNotes,
+  promoteTranscriptionToNote,
+  searchNotes,
+  updateNote,
+} from "./main/notes";
+import { parseCommand } from "./main/commands";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -109,14 +120,16 @@ if (!gotSingleInstanceLock) {
 type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
 let isProcessing = false; // Guard against concurrent pipeline runs
-type RecordingSource = "hotkey" | "widget" | null;
+type RecordingSource = "hotkey" | "widget" | "command" | null;
 let activeRecordingSource: RecordingSource = null;
+let lastRecordingSource: RecordingSource = null;
 let activeHindiSession: HindiRecordingSession | null = null;
 
 type WidgetUiState =
   | "idle"
   | "recording-hotkey"
   | "recording-click"
+  | "recording-command"
   | "processing";
 type WidgetLayout = "idle" | "recording" | "processing";
 
@@ -272,6 +285,12 @@ function showErrorBubble(payload: WidgetErrorPayload | string): void {
 
 function sendWidgetError(payload: WidgetErrorPayload | string): void {
   showErrorBubble(payload);
+}
+
+function notifyNotesUpdated(): void {
+  if (settingsWindow && !settingsWindow.isDestroyed()) {
+    settingsWindow.webContents.send("notes-updated");
+  }
 }
 
 function dismissErrorBubble(): void {
@@ -548,9 +567,12 @@ function createRecorderWindow(): void {
 
 // --- Settings / Dashboard Window ---
 
-function openSettingsWindow(): void {
+function openSettingsWindow(navigateToTab?: string): void {
   if (settingsWindow) {
     settingsWindow.focus();
+    if (navigateToTab) {
+      settingsWindow.webContents.send("navigate-to-tab", navigateToTab);
+    }
     return;
   }
 
@@ -584,6 +606,9 @@ function openSettingsWindow(): void {
 
   settingsWindow.once("ready-to-show", () => {
     settingsWindow.show();
+    if (navigateToTab) {
+      settingsWindow.webContents.send("navigate-to-tab", navigateToTab);
+    }
   });
 
   settingsWindow.on("closed", () => {
@@ -816,6 +841,7 @@ function registerWidgetHandlers(): void {
     }
 
     activeRecordingSource = "widget";
+    lastRecordingSource = "widget";
     updateTrayState("recording");
     sendWidgetState("recording-click");
 
@@ -891,6 +917,48 @@ function registerWidgetHandlers(): void {
   });
 }
 
+// --- Notes IPC Handlers ---
+
+function registerNotesHandlers(): void {
+  ipcMain.handle("get-notes", () => {
+    return getNotes();
+  });
+
+  ipcMain.handle("search-notes", (_event, query: string) => {
+    return searchNotes(query);
+  });
+
+  ipcMain.handle(
+    "create-note",
+    (_event, params: { content: string; title?: string }) => {
+      const note = createNote({ content: params.content, source: "text", title: params.title });
+      notifyNotesUpdated();
+      return note;
+    },
+  );
+
+  ipcMain.handle(
+    "update-note",
+    (_event, id: string, updates: Record<string, unknown>) => {
+      const note = updateNote(id, updates as Parameters<typeof updateNote>[1]);
+      notifyNotesUpdated();
+      return note;
+    },
+  );
+
+  ipcMain.handle("delete-note", (_event, id: string) => {
+    const result = deleteNote(id);
+    notifyNotesUpdated();
+    return result;
+  });
+
+  ipcMain.handle("promote-to-note", (_event, entry: TranscriptionEntry) => {
+    const note = promoteTranscriptionToNote(entry);
+    notifyNotesUpdated();
+    return note;
+  });
+}
+
 // --- App Lifecycle ---
 
 app.on("ready", () => {
@@ -903,6 +971,7 @@ app.on("ready", () => {
   registerPermissionHandlers();
   registerSettingsHandlers();
   registerWidgetHandlers();
+  registerNotesHandlers();
 
   // Create system tray
   tray = new Tray(createTrayIcon());
@@ -940,6 +1009,7 @@ app.on("ready", () => {
 
     console.log("[Main] Hotkey pressed - starting recording");
     activeRecordingSource = "hotkey";
+    lastRecordingSource = "hotkey";
     updateTrayState("recording");
     sendWidgetState("recording-hotkey");
 
@@ -987,6 +1057,41 @@ app.on("ready", () => {
     sendWidgetState("processing");
 
     // Tell recorder window to stop and send audio
+    recorderWindow.webContents.send("stop-recording");
+  });
+
+  hotkeyManager.on("command-start", async () => {
+    if (isProcessing || currentState !== "idle") return;
+    if (!recorderWindow) {
+      console.error("[Main] Recorder window unavailable for command");
+      return;
+    }
+
+    console.log("[Main] Command key pressed - starting command recording");
+    activeRecordingSource = "command";
+    lastRecordingSource = "command";
+    updateTrayState("recording");
+    sendWidgetState("recording-command");
+    // Commands always use English transcription
+    recorderWindow.webContents.send("start-recording", false);
+  });
+
+  hotkeyManager.on("command-stop", () => {
+    if (currentState !== "recording" || activeRecordingSource !== "command") {
+      return;
+    }
+    if (!recorderWindow) {
+      console.error("[Main] Recorder window unavailable");
+      activeRecordingSource = null;
+      updateTrayState("idle");
+      sendWidgetState("idle");
+      return;
+    }
+
+    console.log("[Main] Command key released - stopping command recording");
+    activeRecordingSource = null;
+    updateTrayState("processing");
+    sendWidgetState("processing");
     recorderWindow.webContents.send("stop-recording");
   });
 
@@ -1049,102 +1154,152 @@ app.on("ready", () => {
     }
     isProcessing = true;
 
+    // Capture source before any async work (activeRecordingSource may change)
+    const capturedSource = lastRecordingSource;
+
     const pipelineStart = Date.now();
-    console.log(`\n[Pipeline] ═══ START ═══ (${audioData.length} bytes)`);
+    console.log(`\n[Pipeline] ═══ START ═══ source=${capturedSource} (${audioData.length} bytes)`);
 
     // Tray should already be "processing" from recording-stop handler
     updateTrayState("processing");
     sendWidgetState("processing");
 
     try {
-      // --- Save audio to userData ---
-      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-      const audioFilename = await saveAudioFile(audioData, timestamp);
+      if (capturedSource === "command") {
+        // ── COMMAND PIPELINE ──────────────────────────────────────────
+        // Transcribe only (English, no LLM), then parse + execute command
+        const asrStart = Date.now();
+        const transcript = await transcribe(audioData);
+        const L_asr = Date.now() - asrStart;
 
-      // --- Step 1: ASR (Speech-to-Text) ---
-      const asrStart = Date.now();
-      const langPrefPipeline = (store.get("languagePreference") as string) || "english";
-      let transcript: string | null;
-
-      if (langPrefPipeline === "hindi") {
-        transcript = await transcribeHindiWithRetries(activeHindiSession);
-      } else {
-        transcript = await transcribe(audioData);
-      }
-
-      const L_asr = Date.now() - asrStart;
-
-      if (!transcript) {
-        console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
-        sendWidgetError({
-          code: "SERVER_ERROR",
-          message: "Transcription failed. Please try again.",
-        });
-        return; // finally block will reset tray + isProcessing
-      }
-
-      console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
-
-      // --- Step 2: LLM Formatting (English only) ---
-      // For Hindi/Hinglish, skip LLM and paste raw transcript
-      let formattedText: string;
-      let L_llm = 0;
-
-      if (langPrefPipeline === "english") {
-        console.log("[Pipeline] English mode - applying LLM formatting");
-        const llmStart = Date.now();
-        formattedText = await formatText(transcript);
-        L_llm = Date.now() - llmStart;
-        console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
-      } else {
-        console.log("[Pipeline] Hindi/Hinglish mode - skipping LLM formatting");
-        formattedText = transcript; // Direct paste, no formatting
-        console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
-      }
-
-      // Store for fallback paste shortcut
-      store.set("lastTranscript", formattedText);
-
-      // Save to transcription history (keep last 50)
-      const history = store.get("transcriptionHistory") as TranscriptionEntry[];
-      history.unshift({
-        text: formattedText,
-        rawText: transcript,
-        timestamp: Date.now(),
-        durationMs: Date.now() - pipelineStart,
-        audioFilePath: audioFilename ?? undefined,
-      });
-      while (history.length > 50) {
-        const removed = history.pop();
-        if (removed?.audioFilePath) {
-          deleteAudioFile(removed.audioFilePath);
+        if (!transcript) {
+          console.error(`[Command] ✗ ASR failed (${L_asr}ms)`);
+          showErrorBubble("Couldn't hear the command. Please try again.");
+          return;
         }
-      }
-      store.set("transcriptionHistory", history);
 
-      // Notify dashboard to refresh
-      if (settingsWindow && !settingsWindow.isDestroyed()) {
-        settingsWindow.webContents.send("transcription-history-updated");
-      }
+        console.log(`[Command] ✓ ASR (${L_asr}ms): "${transcript}"`);
+        const command = parseCommand(transcript);
+        console.log(`[Command] Parsed: type=${command.type}`);
 
-      // --- Step 3: Paste ---
-      const pasteStart = Date.now();
-      const pasted = await pasteText(formattedText);
-      const L_paste = Date.now() - pasteStart;
-
-      if (pasted) {
-        console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
+        switch (command.type) {
+          case "save-note": {
+            const content = command.content ?? transcript;
+            createNote({ content, rawContent: transcript, source: "voice" });
+            notifyNotesUpdated();
+            showErrorBubble("Saved to Notes");
+            break;
+          }
+          case "save-clipboard": {
+            const clipText = clipboard.readText();
+            if (clipText) {
+              createNoteFromClipboard(clipText);
+              notifyNotesUpdated();
+              showErrorBubble("Clipboard saved to Notes");
+            } else {
+              showErrorBubble("Clipboard is empty");
+            }
+            break;
+          }
+          case "open-notes":
+            openSettingsWindow("notes");
+            break;
+          case "unknown":
+          default:
+            showErrorBubble("Command not recognized");
+            break;
+        }
       } else {
-        console.error(
-          `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual ${pasteShortcutLabel}`,
+        // ── DICTATION PIPELINE (unchanged) ───────────────────────────
+        // --- Save audio to userData ---
+        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+        const audioFilename = await saveAudioFile(audioData, timestamp);
+
+        // --- Step 1: ASR (Speech-to-Text) ---
+        const asrStart = Date.now();
+        const langPrefPipeline = (store.get("languagePreference") as string) || "english";
+        let transcript: string | null;
+
+        if (langPrefPipeline === "hindi") {
+          transcript = await transcribeHindiWithRetries(activeHindiSession);
+        } else {
+          transcript = await transcribe(audioData);
+        }
+
+        const L_asr = Date.now() - asrStart;
+
+        if (!transcript) {
+          console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
+          sendWidgetError({
+            code: "SERVER_ERROR",
+            message: "Transcription failed. Please try again.",
+          });
+          return; // finally block will reset tray + isProcessing
+        }
+
+        console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
+
+        // --- Step 2: LLM Formatting (English only) ---
+        // For Hindi/Hinglish, skip LLM and paste raw transcript
+        let formattedText: string;
+        let L_llm = 0;
+
+        if (langPrefPipeline === "english") {
+          console.log("[Pipeline] English mode - applying LLM formatting");
+          const llmStart = Date.now();
+          formattedText = await formatText(transcript);
+          L_llm = Date.now() - llmStart;
+          console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
+        } else {
+          console.log("[Pipeline] Hindi/Hinglish mode - skipping LLM formatting");
+          formattedText = transcript; // Direct paste, no formatting
+          console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
+        }
+
+        // Store for fallback paste shortcut
+        store.set("lastTranscript", formattedText);
+
+        // Save to transcription history (keep last 50)
+        const history = store.get("transcriptionHistory") as TranscriptionEntry[];
+        history.unshift({
+          text: formattedText,
+          rawText: transcript,
+          timestamp: Date.now(),
+          durationMs: Date.now() - pipelineStart,
+          audioFilePath: audioFilename ?? undefined,
+        });
+        while (history.length > 50) {
+          const removed = history.pop();
+          if (removed?.audioFilePath) {
+            deleteAudioFile(removed.audioFilePath);
+          }
+        }
+        store.set("transcriptionHistory", history);
+
+        // Notify dashboard to refresh
+        if (settingsWindow && !settingsWindow.isDestroyed()) {
+          settingsWindow.webContents.send("transcription-history-updated");
+        }
+
+        // --- Step 3: Paste ---
+        const pasteStart = Date.now();
+        const pasted = await pasteText(formattedText);
+        const L_paste = Date.now() - pasteStart;
+
+        if (pasted) {
+          console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
+        } else {
+          console.error(
+            `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual ${pasteShortcutLabel}`,
+          );
+        }
+
+        // --- Timing Summary ---
+        const L_total = Date.now() - pipelineStart;
+        console.log(
+          `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
         );
       }
-
-      // --- Timing Summary ---
-      const L_total = Date.now() - pipelineStart;
-      console.log(
-        `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
-      );
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
       console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);

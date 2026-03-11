@@ -13,6 +13,19 @@ export interface TranscriptionEntry {
   audioFilePath?: string;
 }
 
+export interface Note {
+  id: string;              // crypto.randomUUID()
+  title: string;           // Auto-generated from first ~60 chars, user-editable
+  content: string;         // Note text (formatted for voice, raw for text/clipboard)
+  rawContent: string;      // Original raw transcription before any formatting
+  createdAt: number;       // Date.now()
+  updatedAt: number;       // Date.now()
+  source: "voice" | "text" | "clipboard" | "transcription";
+  pinned: boolean;
+  archived: boolean;
+  tags: string[];          // Empty in Phase 1, auto-tagged in Phase 2
+}
+
 interface StoreSchema {
   groqApiKey: string;
   sarvamApiKey: string; // NEW: Sarvam AI API key
@@ -28,6 +41,7 @@ interface StoreSchema {
   selectedMicId: string; // '' = system default
   transcriptionHistory: TranscriptionEntry[];
   soundEnabled: boolean;
+  notes: Note[];
 }
 
 const store = new Store<StoreSchema>({
@@ -46,6 +60,7 @@ const store = new Store<StoreSchema>({
     selectedMicId: "",
     transcriptionHistory: [],
     soundEnabled: true,
+    notes: [],
   },
 });
 
