@@ -13,6 +13,20 @@ export interface TranscriptionEntry {
   audioFilePath?: string;
 }
 
+export type StylePreset =
+  | "default"
+  | "bullets"
+  | "action-items"
+  | "casual-memo"
+  | "formal-doc"
+  | "tweet-thread";
+
+export interface ExtractedTask {
+  person: string;   // "Me", "John", etc.
+  action: string;   // "Send the report"
+  deadline: string; // "by Friday", "ASAP", "unspecified"
+}
+
 export interface Note {
   id: string;              // crypto.randomUUID()
   title: string;           // Auto-generated from first ~60 chars, user-editable
@@ -23,7 +37,15 @@ export interface Note {
   source: "voice" | "text" | "clipboard" | "transcription";
   pinned: boolean;
   archived: boolean;
-  tags: string[];          // Empty in Phase 1, auto-tagged in Phase 2
+  tags: string[];
+  // Phase 2 additions
+  cleanContent: string;     // AI-cleaned version ("" until processed)
+  aiProcessed: boolean;     // true after cleanup+tagging completes
+  aiProcessing: boolean;    // true while background AI is running
+  stylePreset: StylePreset; // current style applied
+  styledContent: string;    // content reformatted to selected style ("" until requested)
+  suggestedTags: string[];  // AI-suggested tags (user can approve/remove)
+  tasks: ExtractedTask[];   // AI-extracted action items
 }
 
 interface StoreSchema {

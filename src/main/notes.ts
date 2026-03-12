@@ -1,11 +1,26 @@
 import { randomUUID } from "crypto";
-import store, { Note, TranscriptionEntry } from "./store";
+import store, { Note, StylePreset, TranscriptionEntry } from "./store";
 
 const MAX_NOTES = 500;
 
 function autoTitle(content: string): string {
   const firstLine = content.split("\n")[0].trim();
   return firstLine.length > 60 ? firstLine.slice(0, 60) + "…" : firstLine;
+}
+
+// Patches old notes missing Phase 2 fields with safe defaults
+function normalizeNote(note: Partial<Note> & { id: string }): Note {
+  return {
+    cleanContent: "",
+    aiProcessed: false,
+    aiProcessing: false,
+    stylePreset: "default" as StylePreset,
+    styledContent: "",
+    suggestedTags: [],
+    tasks: [],
+    // existing fields override defaults
+    ...(note as Note),
+  };
 }
 
 export function createNote(params: {
@@ -26,6 +41,14 @@ export function createNote(params: {
     pinned: false,
     archived: false,
     tags: [],
+    // Phase 2 defaults
+    cleanContent: "",
+    aiProcessed: false,
+    aiProcessing: params.source === "voice", // voice notes get auto-AI
+    stylePreset: "default",
+    styledContent: "",
+    suggestedTags: [],
+    tasks: [],
   };
 
   const notes = store.get("notes") as Note[];
@@ -39,13 +62,17 @@ export function createNote(params: {
 
 export function updateNote(
   id: string,
-  updates: Partial<Pick<Note, "title" | "content" | "pinned" | "archived" | "tags">>,
+  updates: Partial<Pick<Note,
+    | "title" | "content" | "pinned" | "archived" | "tags"
+    | "cleanContent" | "aiProcessed" | "aiProcessing" | "stylePreset"
+    | "styledContent" | "suggestedTags" | "tasks"
+  >>,
 ): Note | null {
   const notes = store.get("notes") as Note[];
   const idx = notes.findIndex((n) => n.id === id);
   if (idx === -1) return null;
 
-  const updated: Note = { ...notes[idx], ...updates, updatedAt: Date.now() };
+  const updated: Note = { ...normalizeNote(notes[idx]), ...updates, updatedAt: Date.now() };
   notes[idx] = updated;
   store.set("notes", notes);
   return updated;
@@ -61,18 +88,20 @@ export function deleteNote(id: string): boolean {
 
 export function getNotes(opts?: { includeArchived?: boolean }): Note[] {
   const notes = store.get("notes") as Note[];
-  if (opts?.includeArchived) return notes;
-  return notes.filter((n) => !n.archived);
+  const normalized = notes.map(normalizeNote);
+  if (opts?.includeArchived) return normalized;
+  return normalized.filter((n) => !n.archived);
 }
 
 export function searchNotes(query: string): Note[] {
   const lower = query.toLowerCase();
   const notes = store.get("notes") as Note[];
-  return notes.filter(
+  return notes.map(normalizeNote).filter(
     (n) =>
       n.title.toLowerCase().includes(lower) ||
       n.content.toLowerCase().includes(lower) ||
-      n.tags.some((t) => t.toLowerCase().includes(lower)),
+      n.tags.some((t) => t.toLowerCase().includes(lower)) ||
+      n.suggestedTags.some((t) => t.toLowerCase().includes(lower)),
   );
 }
 

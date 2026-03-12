@@ -1,6 +1,13 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 
 type NoteSource = "voice" | "text" | "clipboard" | "transcription";
+type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread";
+
+interface ExtractedTask {
+  person: string;
+  action: string;
+  deadline: string;
+}
 
 interface Note {
   id: string;
@@ -13,7 +20,24 @@ interface Note {
   pinned: boolean;
   archived: boolean;
   tags: string[];
+  // Phase 2
+  cleanContent: string;
+  aiProcessed: boolean;
+  aiProcessing: boolean;
+  stylePreset: StylePreset;
+  styledContent: string;
+  suggestedTags: string[];
+  tasks: ExtractedTask[];
 }
+
+const STYLE_OPTIONS: { value: StylePreset; label: string }[] = [
+  { value: "default", label: "Default" },
+  { value: "bullets", label: "Bullets" },
+  { value: "action-items", label: "Actions" },
+  { value: "casual-memo", label: "Casual" },
+  { value: "formal-doc", label: "Formal" },
+  { value: "tweet-thread", label: "Thread" },
+];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -86,7 +110,7 @@ function NoteInput({ onCreated }: { onCreated: () => void }) {
   }, [value, creating, onCreated]);
 
   return (
-    <div style={{ display: "flex", gap: "8px", marginBottom: "28px" }}>
+    <div style={{ display: "flex", gap: "8px", marginBottom: "20px" }}>
       <input
         type="text"
         value={value}
@@ -125,7 +149,6 @@ function NoteInput({ onCreated }: { onCreated: () => void }) {
           alignItems: "center",
           justifyContent: "center",
           flexShrink: 0,
-          transition: "background-color 0.15s",
           fontSize: "20px",
           fontWeight: 300,
           lineHeight: 1,
@@ -137,13 +160,41 @@ function NoteInput({ onCreated }: { onCreated: () => void }) {
   );
 }
 
+// ─── ActionBtn ────────────────────────────────────────────────────────────────
+
+function ActionBtn({
+  children, title, color, hoverColor, onClick,
+}: {
+  children: React.ReactNode;
+  title: string;
+  color: string;
+  hoverColor?: string;
+  onClick: () => void;
+}) {
+  const [h, setH] = useState(false);
+  return (
+    <button
+      title={title}
+      onClick={onClick}
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        background: "none", border: "none", cursor: "pointer",
+        color: h && hoverColor ? hoverColor : color,
+        padding: "4px", borderRadius: "5px",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        transition: "color 0.15s",
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
 // ─── NoteCard ─────────────────────────────────────────────────────────────────
 
 function NoteCard({
-  note,
-  onUpdate,
-  onDelete,
-  onClick,
+  note, onUpdate, onDelete, onClick,
 }: {
   note: Note;
   onUpdate: (id: string, updates: Record<string, unknown>) => void;
@@ -170,36 +221,39 @@ function NoteCard({
         userSelect: "none",
       }}
     >
+      {/* AI processing dot */}
+      {note.aiProcessing && (
+        <div style={{
+          position: "absolute", top: "12px", left: "12px",
+          width: "6px", height: "6px", borderRadius: "50%",
+          backgroundColor: "#7c3aed",
+          animation: "pulse 1.5s ease-in-out infinite",
+        }} />
+      )}
+
       {/* Title */}
       <p style={{
-        fontSize: "13px",
-        fontWeight: 600,
-        color: "#0f172a",
+        fontSize: "13px", fontWeight: 600, color: "#0f172a",
         margin: "0 0 5px 0",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
+        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         paddingRight: hovered ? "72px" : "0",
+        paddingLeft: note.aiProcessing ? "14px" : "0",
       }}>
         {note.title || "Untitled"}
       </p>
 
       {/* Content preview */}
       <p style={{
-        fontSize: "12px",
-        color: "#64748b",
-        margin: "0 0 10px 0",
+        fontSize: "12px", color: "#64748b", margin: "0 0 10px 0",
         lineHeight: "1.5",
         display: "-webkit-box",
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: "vertical",
-        overflow: "hidden",
+        WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden",
       } as React.CSSProperties}>
-        {note.content}
+        {note.cleanContent || note.content}
       </p>
 
       {/* Footer */}
-      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "6px", flexWrap: "wrap" }}>
         <span style={{ color: "#94a3b8", display: "flex", alignItems: "center" }}>
           {sourceIcon(note.source)}
         </span>
@@ -209,35 +263,38 @@ function NoteCard({
         {note.pinned && (
           <span style={{ fontSize: "11px", color: "#7c3aed", fontWeight: 600 }}>· pinned</span>
         )}
+        {note.tasks?.length > 0 && (
+          <span style={{ fontSize: "10px", color: "#0284c7", fontWeight: 600 }}>
+            · {note.tasks.length} task{note.tasks.length !== 1 ? "s" : ""}
+          </span>
+        )}
+        {/* Tags */}
+        {note.tags.slice(0, 3).map((tag) => (
+          <span key={tag} style={{
+            fontSize: "10px", padding: "1px 6px",
+            backgroundColor: "#f1f5f9", borderRadius: "4px",
+            color: "#64748b", fontWeight: 500,
+          }}>
+            {tag}
+          </span>
+        ))}
       </div>
 
       {/* Hover actions */}
       {hovered && (
         <div
-          style={{
-            position: "absolute",
-            top: "12px",
-            right: "12px",
-            display: "flex",
-            gap: "4px",
-          }}
+          style={{ position: "absolute", top: "12px", right: "12px", display: "flex", gap: "4px" }}
           onClick={(e) => e.stopPropagation()}
         >
-          <ActionBtn
-            title={note.pinned ? "Unpin" : "Pin"}
-            color={note.pinned ? "#7c3aed" : "#94a3b8"}
-            onClick={() => onUpdate(note.id, { pinned: !note.pinned })}
-          >
+          <ActionBtn title={note.pinned ? "Unpin" : "Pin"} color={note.pinned ? "#7c3aed" : "#94a3b8"}
+            onClick={() => onUpdate(note.id, { pinned: !note.pinned })}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill={note.pinned ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
             </svg>
           </ActionBtn>
           <ActionBtn title="Archive" color="#94a3b8" onClick={() => onUpdate(note.id, { archived: true })}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="21 8 21 21 3 21 3 8" />
-              <rect x="1" y="3" width="22" height="5" />
-              <line x1="10" y1="12" x2="14" y2="12" />
+              <polyline points="21 8 21 21 3 21 3 8" /><rect x="1" y="3" width="22" height="5" /><line x1="10" y1="12" x2="14" y2="12" />
             </svg>
           </ActionBtn>
           <ActionBtn title="Delete" color="#94a3b8" hoverColor="#ef4444" onClick={() => onDelete(note.id)}>
@@ -252,51 +309,10 @@ function NoteCard({
   );
 }
 
-function ActionBtn({
-  children,
-  title,
-  color,
-  hoverColor,
-  onClick,
-}: {
-  children: React.ReactNode;
-  title: string;
-  color: string;
-  hoverColor?: string;
-  onClick: () => void;
-}) {
-  const [h, setH] = useState(false);
-  return (
-    <button
-      title={title}
-      onClick={onClick}
-      onMouseEnter={() => setH(true)}
-      onMouseLeave={() => setH(false)}
-      style={{
-        background: "none",
-        border: "none",
-        cursor: "pointer",
-        color: h && hoverColor ? hoverColor : color,
-        padding: "4px",
-        borderRadius: "5px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "color 0.15s",
-      }}
-    >
-      {children}
-    </button>
-  );
-}
-
 // ─── NoteDetailModal ──────────────────────────────────────────────────────────
 
 function NoteDetailModal({
-  note,
-  onClose,
-  onUpdate,
-  onDelete,
+  note, onClose, onUpdate, onDelete,
 }: {
   note: Note;
   onClose: () => void;
@@ -305,8 +321,21 @@ function NoteDetailModal({
 }) {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
+  const [viewMode, setViewMode] = useState<"raw" | "clean">(
+    note.aiProcessed && note.cleanContent ? "clean" : "raw"
+  );
+  const [restyling, setRestyling] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [newTag, setNewTag] = useState("");
+  const [addingTag, setAddingTag] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Sync state when note updates (e.g., AI finishes)
+  useEffect(() => {
+    if (note.aiProcessed && note.cleanContent && viewMode === "raw") {
+      // Don't auto-switch — let user stay where they are
+    }
+  }, [note.aiProcessed]);
 
   // Auto-resize textarea
   useEffect(() => {
@@ -316,143 +345,287 @@ function NoteDetailModal({
     }
   }, [content]);
 
+  const displayContent = viewMode === "raw"
+    ? note.rawContent
+    : (note.styledContent || note.cleanContent || note.content);
+
   const handleSave = useCallback(() => {
-    if (title !== note.title || content !== note.content) {
-      onUpdate(note.id, { title, content });
-    }
-  }, [note, title, content, onUpdate]);
+    const updates: Record<string, unknown> = {};
+    if (title !== note.title) updates.title = title;
+    if (content !== note.content && viewMode === "raw") updates.content = content;
+    if (Object.keys(updates).length > 0) onUpdate(note.id, updates);
+  }, [note, title, content, viewMode, onUpdate]);
 
   const handleCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(content);
-    } catch {
+    const text = displayContent;
+    try { await navigator.clipboard.writeText(text); }
+    catch {
       const ta = document.createElement("textarea");
-      ta.value = content;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select(); document.execCommand("copy");
       document.body.removeChild(ta);
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  }, [content]);
+  }, [displayContent]);
 
-  const handleDelete = () => {
-    onDelete(note.id);
-    onClose();
+  const handleRestyle = async (style: StylePreset) => {
+    if (restyling) return;
+    setRestyling(true);
+    try {
+      const updated = await window.electron.restyleNote(note.id, style);
+      if (updated) {
+        onUpdate(note.id, { stylePreset: style, styledContent: updated.styledContent });
+        setViewMode("clean");
+      }
+    } finally {
+      setRestyling(false);
+    }
   };
+
+  const handleApproveTag = async (tag: string) => {
+    await window.electron.approveTag(note.id, tag);
+  };
+
+  const handleRemoveSuggestedTag = async (tag: string) => {
+    await window.electron.removeSuggestedTag(note.id, tag);
+  };
+
+  const handleRemoveApprovedTag = async (tag: string) => {
+    const tags = note.tags.filter((t) => t !== tag);
+    onUpdate(note.id, { tags });
+  };
+
+  const handleAddTag = async () => {
+    const tag = newTag.trim().toLowerCase();
+    if (!tag) return;
+    const tags = [...new Set([...note.tags, tag])];
+    onUpdate(note.id, { tags });
+    setNewTag("");
+    setAddingTag(false);
+  };
+
+  const handleReprocess = async () => {
+    await window.electron.reprocessNote(note.id);
+  };
+
+  const showToggle = note.aiProcessed || note.aiProcessing;
+  const showStyles = note.aiProcessed;
 
   return (
     <div
       onClick={onClose}
       style={{
-        position: "fixed",
-        inset: 0,
+        position: "fixed", inset: 0,
         backgroundColor: "rgba(0,0,0,0.4)",
-        zIndex: 1000,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center",
         backdropFilter: "blur(2px)",
       }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          backgroundColor: "#fff",
-          borderRadius: "16px",
-          width: "560px",
-          maxHeight: "80vh",
-          display: "flex",
-          flexDirection: "column",
+          backgroundColor: "#fff", borderRadius: "16px",
+          width: "600px", maxHeight: "85vh",
+          display: "flex", flexDirection: "column",
           boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
           overflow: "hidden",
         }}
       >
         {/* Header */}
-        <div style={{
-          padding: "20px 24px 0",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-        }}>
+        <div style={{ padding: "20px 24px 0", display: "flex", alignItems: "center", gap: "12px" }}>
           <input
-            type="text"
-            value={title}
+            type="text" value={title}
             onChange={(e) => setTitle(e.target.value)}
             onBlur={handleSave}
             placeholder="Untitled"
             style={{
-              flex: 1,
-              fontSize: "17px",
-              fontWeight: 700,
-              color: "#0f172a",
-              border: "none",
-              outline: "none",
-              fontFamily: "inherit",
-              backgroundColor: "transparent",
+              flex: 1, fontSize: "17px", fontWeight: 700, color: "#0f172a",
+              border: "none", outline: "none", fontFamily: "inherit", backgroundColor: "transparent",
             }}
           />
-          <button
-            onClick={onClose}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              color: "#94a3b8",
-              padding: "4px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: "4px", display: "flex", alignItems: "center" }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
         </div>
 
-        {/* Metadata */}
-        <div style={{ padding: "6px 24px 12px", display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ color: "#94a3b8", display: "flex", alignItems: "center" }}>
-            {sourceIcon(note.source)}
-          </span>
+        {/* Metadata + AI status */}
+        <div style={{ padding: "6px 24px 10px", display: "flex", alignItems: "center", gap: "8px" }}>
+          <span style={{ color: "#94a3b8", display: "flex", alignItems: "center" }}>{sourceIcon(note.source)}</span>
           <span style={{ fontSize: "12px", color: "#94a3b8" }}>
-            {new Date(note.createdAt).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
+            {new Date(note.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}
           </span>
+          {note.aiProcessing && (
+            <span style={{ fontSize: "11px", color: "#7c3aed", display: "flex", alignItems: "center", gap: "4px" }}>
+              <div style={{ width: "8px", height: "8px", borderRadius: "50%", border: "1.5px solid #7c3aed", borderTopColor: "transparent", animation: "spin 0.8s linear infinite" }} />
+              AI processing...
+            </span>
+          )}
+          {note.aiProcessed && !note.aiProcessing && (
+            <button
+              onClick={handleReprocess}
+              title="Re-run AI"
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: "11px", color: "#94a3b8", padding: "0 4px" }}
+            >
+              ↻ AI
+            </button>
+          )}
         </div>
+
+        {/* Raw / Clean toggle */}
+        {showToggle && (
+          <div style={{ padding: "0 24px 10px" }}>
+            <div style={{ display: "inline-flex", border: "1px solid #e2e8f0", borderRadius: "8px", overflow: "hidden" }}>
+              {(["raw", "clean"] as const).map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => setViewMode(mode)}
+                  disabled={mode === "clean" && note.aiProcessing && !note.aiProcessed}
+                  style={{
+                    padding: "5px 14px", border: "none", cursor: "pointer",
+                    fontSize: "12px", fontWeight: 500,
+                    backgroundColor: viewMode === mode ? "#0f172a" : "#fff",
+                    color: viewMode === mode ? "#fff" : "#64748b",
+                    fontFamily: "inherit",
+                    transition: "background-color 0.15s",
+                  }}
+                >
+                  {mode === "raw" ? "Raw" : note.aiProcessing ? "Cleaning..." : "Clean"}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Style preset selector */}
+        {showStyles && viewMode === "clean" && (
+          <div style={{ padding: "0 24px 10px", display: "flex", gap: "6px", flexWrap: "wrap" }}>
+            {STYLE_OPTIONS.map(({ value, label }) => {
+              const isActive = note.stylePreset === value;
+              return (
+                <button
+                  key={value}
+                  onClick={() => handleRestyle(value)}
+                  disabled={restyling}
+                  style={{
+                    padding: "4px 10px", border: `1px solid ${isActive ? "#0f172a" : "#e2e8f0"}`,
+                    borderRadius: "6px", cursor: restyling ? "wait" : "pointer",
+                    fontSize: "11px", fontWeight: 500,
+                    backgroundColor: isActive ? "#0f172a" : "#fff",
+                    color: isActive ? "#fff" : "#64748b",
+                    fontFamily: "inherit", transition: "all 0.15s",
+                    opacity: restyling && !isActive ? 0.5 : 1,
+                  }}
+                >
+                  {restyling && isActive ? "..." : label}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         <div style={{ width: "100%", height: "1px", backgroundColor: "#f1f5f9" }} />
 
-        {/* Content */}
+        {/* Scrollable content area */}
         <div style={{ flex: 1, overflowY: "auto", padding: "16px 24px" }}>
+          {/* Content textarea — editable only in raw mode */}
           <textarea
             ref={textareaRef}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            onBlur={handleSave}
+            value={viewMode === "raw" ? content : displayContent}
+            onChange={(e) => {
+              if (viewMode === "raw") setContent(e.target.value);
+            }}
+            readOnly={viewMode === "clean"}
+            onBlur={() => { if (viewMode === "raw") handleSave(); }}
             style={{
-              width: "100%",
-              minHeight: "120px",
-              border: "none",
-              outline: "none",
-              resize: "none",
-              fontSize: "14px",
-              lineHeight: "1.7",
-              color: "#334155",
-              fontFamily: "inherit",
-              backgroundColor: "transparent",
+              width: "100%", minHeight: "100px", border: "none", outline: "none",
+              resize: "none", fontSize: "14px", lineHeight: "1.7",
+              color: "#334155", fontFamily: "inherit", backgroundColor: "transparent",
               boxSizing: "border-box",
+              opacity: viewMode === "clean" ? 0.9 : 1,
             }}
           />
+
+          {/* Tags section */}
+          <div style={{ marginTop: "16px" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", alignItems: "center" }}>
+              {/* Approved tags */}
+              {note.tags.map((tag) => (
+                <span key={tag} style={{
+                  display: "inline-flex", alignItems: "center", gap: "4px",
+                  fontSize: "11px", padding: "3px 8px",
+                  backgroundColor: "#f1f5f9", borderRadius: "6px",
+                  color: "#334155", fontWeight: 500,
+                }}>
+                  {tag}
+                  <button onClick={() => handleRemoveApprovedTag(tag)} style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: "0", lineHeight: 1, fontSize: "12px" }}>×</button>
+                </span>
+              ))}
+
+              {/* Suggested tags */}
+              {note.suggestedTags?.map((tag) => (
+                <span key={tag} style={{
+                  display: "inline-flex", alignItems: "center", gap: "4px",
+                  fontSize: "11px", padding: "3px 8px",
+                  backgroundColor: "transparent",
+                  border: "1px dashed #c4b5fd", borderRadius: "6px",
+                  color: "#7c3aed", fontWeight: 500,
+                }}>
+                  {tag}
+                  <button onClick={() => handleApproveTag(tag)} title="Approve" style={{ background: "none", border: "none", cursor: "pointer", color: "#7c3aed", padding: "0", lineHeight: 1, fontSize: "11px" }}>✓</button>
+                  <button onClick={() => handleRemoveSuggestedTag(tag)} title="Dismiss" style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: "0", lineHeight: 1, fontSize: "12px" }}>×</button>
+                </span>
+              ))}
+
+              {/* Add tag */}
+              {addingTag ? (
+                <input
+                  autoFocus
+                  type="text"
+                  value={newTag}
+                  onChange={(e) => setNewTag(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") handleAddTag(); if (e.key === "Escape") { setAddingTag(false); setNewTag(""); } }}
+                  onBlur={handleAddTag}
+                  placeholder="tag name"
+                  style={{
+                    fontSize: "11px", padding: "3px 8px", border: "1px solid #94a3b8",
+                    borderRadius: "6px", outline: "none", fontFamily: "inherit", width: "80px",
+                  }}
+                />
+              ) : (
+                <button onClick={() => setAddingTag(true)} style={{
+                  fontSize: "11px", padding: "3px 8px", border: "1px dashed #e2e8f0",
+                  borderRadius: "6px", background: "none", cursor: "pointer", color: "#94a3b8",
+                }}>
+                  + tag
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Tasks section */}
+          {note.tasks?.length > 0 && (
+            <div style={{ marginTop: "16px" }}>
+              <p style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px 0" }}>Tasks</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                {note.tasks.map((task, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "baseline", gap: "6px", fontSize: "13px" }}>
+                    <span style={{ color: "#334155", fontWeight: 600, minWidth: "40px" }}>{task.person}</span>
+                    <span style={{ color: "#94a3b8" }}>—</span>
+                    <span style={{ color: "#475569", flex: 1 }}>{task.action}</span>
+                    {task.deadline !== "unspecified" && (
+                      <>
+                        <span style={{ color: "#94a3b8" }}>—</span>
+                        <span style={{ color: "#94a3b8", fontStyle: "italic", fontSize: "12px" }}>{task.deadline}</span>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div style={{ width: "100%", height: "1px", backgroundColor: "#f1f5f9" }} />
@@ -462,19 +635,9 @@ function NoteDetailModal({
           <button
             onClick={handleCopy}
             style={{
-              padding: "8px 14px",
-              border: "1px solid #e2e8f0",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              fontSize: "13px",
-              fontWeight: 500,
-              cursor: "pointer",
-              color: copied ? "#16a34a" : "#64748b",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-              transition: "color 0.15s",
-              fontFamily: "inherit",
+              padding: "8px 14px", border: "1px solid #e2e8f0", borderRadius: "8px",
+              backgroundColor: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer",
+              color: copied ? "#16a34a" : "#64748b", fontFamily: "inherit",
             }}
           >
             {copied ? "Copied!" : "Copy"}
@@ -482,15 +645,9 @@ function NoteDetailModal({
           <button
             onClick={() => { onUpdate(note.id, { pinned: !note.pinned }); onClose(); }}
             style={{
-              padding: "8px 14px",
-              border: "1px solid #e2e8f0",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              fontSize: "13px",
-              fontWeight: 500,
-              cursor: "pointer",
-              color: note.pinned ? "#7c3aed" : "#64748b",
-              fontFamily: "inherit",
+              padding: "8px 14px", border: "1px solid #e2e8f0", borderRadius: "8px",
+              backgroundColor: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer",
+              color: note.pinned ? "#7c3aed" : "#64748b", fontFamily: "inherit",
             }}
           >
             {note.pinned ? "Unpin" : "Pin"}
@@ -498,32 +655,20 @@ function NoteDetailModal({
           <button
             onClick={() => { onUpdate(note.id, { archived: true }); onClose(); }}
             style={{
-              padding: "8px 14px",
-              border: "1px solid #e2e8f0",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              fontSize: "13px",
-              fontWeight: 500,
-              cursor: "pointer",
-              color: "#64748b",
-              fontFamily: "inherit",
+              padding: "8px 14px", border: "1px solid #e2e8f0", borderRadius: "8px",
+              backgroundColor: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer",
+              color: "#64748b", fontFamily: "inherit",
             }}
           >
             Archive
           </button>
           <div style={{ flex: 1 }} />
           <button
-            onClick={handleDelete}
+            onClick={() => { onDelete(note.id); onClose(); }}
             style={{
-              padding: "8px 14px",
-              border: "1px solid #fee2e2",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              fontSize: "13px",
-              fontWeight: 500,
-              cursor: "pointer",
-              color: "#ef4444",
-              fontFamily: "inherit",
+              padding: "8px 14px", border: "1px solid #fee2e2", borderRadius: "8px",
+              backgroundColor: "#fff", fontSize: "13px", fontWeight: 500, cursor: "pointer",
+              color: "#ef4444", fontFamily: "inherit",
             }}
           >
             Delete
@@ -536,13 +681,7 @@ function NoteDetailModal({
 
 // ─── SearchBar ────────────────────────────────────────────────────────────────
 
-function SearchBar({
-  onResults,
-  onClear,
-}: {
-  onResults: (results: Note[]) => void;
-  onClear: () => void;
-}) {
+function SearchBar({ onResults, onClear }: { onResults: (r: Note[]) => void; onClear: () => void }) {
   const [query, setQuery] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -550,51 +689,30 @@ function SearchBar({
     const q = e.target.value;
     setQuery(q);
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (!q.trim()) {
-      onClear();
-      return;
-    }
+    if (!q.trim()) { onClear(); return; }
     debounceRef.current = setTimeout(async () => {
       const results = await window.electron.searchNotes(q);
-      onResults(results);
+      onResults(results as Note[]);
     }, 300);
   };
 
   return (
     <div style={{ position: "relative" }}>
-      <svg
-        style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }}
-        width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-      >
-        <circle cx="11" cy="11" r="8" />
-        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <svg style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#94a3b8" }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
       <input
-        type="text"
-        value={query}
-        onChange={handleChange}
+        type="text" value={query} onChange={handleChange}
         placeholder="Search notes..."
         style={{
-          height: "34px",
-          padding: "0 12px 0 32px",
-          border: "1px solid #e2e8f0",
-          borderRadius: "8px",
-          fontSize: "13px",
-          color: "#0f172a",
-          outline: "none",
-          fontFamily: "inherit",
-          backgroundColor: "#fafbfc",
-          width: "180px",
+          height: "34px", padding: "0 12px 0 32px",
+          border: "1px solid #e2e8f0", borderRadius: "8px",
+          fontSize: "13px", color: "#0f172a", outline: "none",
+          fontFamily: "inherit", backgroundColor: "#fafbfc", width: "180px",
           transition: "border-color 0.15s, width 0.2s",
         }}
-        onFocus={(e) => {
-          (e.target as HTMLInputElement).style.borderColor = "#94a3b8";
-          (e.target as HTMLInputElement).style.width = "220px";
-        }}
-        onBlur={(e) => {
-          (e.target as HTMLInputElement).style.borderColor = "#e2e8f0";
-          (e.target as HTMLInputElement).style.width = "180px";
-        }}
+        onFocus={(e) => { (e.target as HTMLInputElement).style.borderColor = "#94a3b8"; (e.target as HTMLInputElement).style.width = "220px"; }}
+        onBlur={(e) => { (e.target as HTMLInputElement).style.borderColor = "#e2e8f0"; (e.target as HTMLInputElement).style.width = "180px"; }}
       />
     </div>
   );
@@ -604,14 +722,7 @@ function SearchBar({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <h3 style={{
-      fontSize: "11px",
-      fontWeight: 700,
-      color: "#94a3b8",
-      textTransform: "uppercase",
-      letterSpacing: "0.1em",
-      margin: "0 0 12px 0",
-    }}>
+    <h3 style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", margin: "0 0 12px 0" }}>
       {children}
     </h3>
   );
@@ -619,13 +730,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 // ─── NotesGrid ────────────────────────────────────────────────────────────────
 
-function NotesGrid({
-  notes,
-  onUpdate,
-  onDelete,
-  onNoteClick,
-  viewMode,
-}: {
+function NotesGrid({ notes, onUpdate, onDelete, onNoteClick, viewMode }: {
   notes: Note[];
   onUpdate: (id: string, updates: Record<string, unknown>) => void;
   onDelete: (id: string) => void;
@@ -635,23 +740,35 @@ function NotesGrid({
   if (viewMode === "list") {
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "1px", border: "1px solid #f1f5f9", borderRadius: "12px", overflow: "hidden" }}>
-        {notes.map((note, i) => (
+        {notes.map((note) => (
           <NoteCard key={note.id} note={note} onUpdate={onUpdate} onDelete={onDelete} onClick={onNoteClick} />
         ))}
       </div>
     );
   }
-
   return (
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-      gap: "10px",
-    }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "10px" }}>
       {notes.map((note) => (
         <NoteCard key={note.id} note={note} onUpdate={onUpdate} onDelete={onDelete} onClick={onNoteClick} />
       ))}
     </div>
+  );
+}
+
+// ─── ViewToggleBtn ────────────────────────────────────────────────────────────
+
+function ViewToggleBtn({ active, onClick, title, children }: {
+  active: boolean; onClick: () => void; title: string; children: React.ReactNode;
+}) {
+  return (
+    <button onClick={onClick} title={title} style={{
+      border: "none", borderRadius: 0, padding: "5px 9px", cursor: "pointer",
+      backgroundColor: active ? "#f1f5f9" : "#fff",
+      color: active ? "#0f172a" : "#94a3b8",
+      display: "flex", alignItems: "center", transition: "background-color 0.15s",
+    }}>
+      {children}
+    </button>
   );
 }
 
@@ -663,11 +780,18 @@ export default function NotesPage() {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [searchResults, setSearchResults] = useState<Note[] | null>(null);
+  const [activeTagFilter, setActiveTagFilter] = useState<string | null>(null);
 
   const refreshNotes = useCallback(async () => {
     const data = await window.electron.getNotes();
-    setNotes(data);
+    setNotes(data as Note[]);
     setLoading(false);
+    // If a note is open in modal, update it too
+    setSelectedNote((prev) => {
+      if (!prev) return null;
+      const updated = (data as Note[]).find((n) => n.id === prev.id);
+      return updated ?? null;
+    });
   }, []);
 
   useEffect(() => {
@@ -690,25 +814,30 @@ export default function NotesPage() {
     setSelectedNote((prev) => prev?.id === id ? null : prev);
   }, []);
 
+  // Compute all unique tags across notes
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    notes.forEach((n) => n.tags.forEach((t) => tagSet.add(t)));
+    return Array.from(tagSet).sort();
+  }, [notes]);
+
   const displayNotes = searchResults ?? notes;
-  const pinned = displayNotes.filter((n) => n.pinned);
-  const recents = displayNotes.filter((n) => !n.pinned);
+  const filteredNotes = activeTagFilter
+    ? displayNotes.filter((n) => n.tags.includes(activeTagFilter))
+    : displayNotes;
+
+  const pinned = filteredNotes.filter((n) => n.pinned);
+  const recents = filteredNotes.filter((n) => !n.pinned);
 
   return (
     <div>
       {/* Header */}
       <div style={{ marginBottom: "24px" }}>
         <h1 style={{
-          fontSize: "30px",
-          fontWeight: 700,
-          color: "#0f172a",
-          margin: "0 0 6px 0",
-          letterSpacing: "-0.03em",
-          lineHeight: 1.2,
+          fontSize: "30px", fontWeight: 700, color: "#0f172a",
+          margin: "0 0 6px 0", letterSpacing: "-0.03em", lineHeight: 1.2,
           fontFamily: "Georgia, 'Times New Roman', serif",
-        }}>
-          Notes
-        </h1>
+        }}>Notes</h1>
         <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
           For quick thoughts you want to come back to later.
         </p>
@@ -717,73 +846,80 @@ export default function NotesPage() {
       {/* Note Input */}
       <NoteInput onCreated={refreshNotes} />
 
+      {/* Tag filter bar */}
+      {allTags.length > 0 && (
+        <div style={{
+          display: "flex", gap: "6px", flexWrap: "wrap",
+          marginBottom: "16px", paddingBottom: "8px",
+        }}>
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setActiveTagFilter(activeTagFilter === tag ? null : tag)}
+              style={{
+                padding: "3px 10px", border: "1px solid",
+                borderColor: activeTagFilter === tag ? "#0f172a" : "#e2e8f0",
+                borderRadius: "20px", cursor: "pointer", fontSize: "12px", fontWeight: 500,
+                backgroundColor: activeTagFilter === tag ? "#0f172a" : "#fff",
+                color: activeTagFilter === tag ? "#fff" : "#64748b",
+                fontFamily: "inherit", transition: "all 0.15s",
+              }}
+            >
+              {tag}
+            </button>
+          ))}
+          {activeTagFilter && (
+            <button
+              onClick={() => setActiveTagFilter(null)}
+              style={{
+                padding: "3px 10px", border: "1px solid #e2e8f0", borderRadius: "20px",
+                cursor: "pointer", fontSize: "12px", color: "#94a3b8",
+                backgroundColor: "#fff", fontFamily: "inherit",
+              }}
+            >
+              clear ×
+            </button>
+          )}
+        </div>
+      )}
+
       {/* Content */}
       {loading ? (
         <div style={{ display: "flex", justifyContent: "center", padding: "60px 0" }}>
-          <div style={{
-            width: "28px",
-            height: "28px",
-            border: "3px solid #e2e8f0",
-            borderTopColor: "#0f172a",
-            borderRadius: "50%",
-            animation: "spin 0.7s linear infinite",
-          }} />
+          <div style={{ width: "28px", height: "28px", border: "3px solid #e2e8f0", borderTopColor: "#0f172a", borderRadius: "50%", animation: "spin 0.7s linear infinite" }} />
         </div>
-      ) : displayNotes.length === 0 ? (
-        <div style={{
-          textAlign: "center",
-          padding: "60px 0",
-          border: "1px dashed #e2e8f0",
-          borderRadius: "14px",
-        }}>
-          <div style={{
-            width: "56px",
-            height: "56px",
-            borderRadius: "50%",
-            backgroundColor: "#f1f5f9",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0 auto 14px",
-          }}>
+      ) : filteredNotes.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "60px 0", border: "1px dashed #e2e8f0", borderRadius: "14px" }}>
+          <div style={{ width: "56px", height: "56px", borderRadius: "50%", backgroundColor: "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 14px" }}>
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
+              <line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
             </svg>
           </div>
           <h3 style={{ fontSize: "16px", fontWeight: 600, color: "#334155", marginBottom: "6px" }}>
-            {searchResults !== null ? "No matching notes" : "No notes yet"}
+            {searchResults !== null || activeTagFilter ? "No matching notes" : "No notes yet"}
           </h3>
-          <p style={{ color: "#94a3b8", fontSize: "13px", margin: 0, maxWidth: "280px", marginLeft: "auto", marginRight: "auto" }}>
-            {searchResults !== null
-              ? "Try a different search term."
+          <p style={{ color: "#94a3b8", fontSize: "13px", margin: "0 auto", maxWidth: "280px" }}>
+            {searchResults !== null || activeTagFilter
+              ? "Try a different search or filter."
               : "Hold Right Option and say \"save to notes\" to create your first voice note, or type one above."}
           </p>
         </div>
       ) : (
         <div>
-          {/* Pinned section */}
           {pinned.length > 0 && (
             <div style={{ marginBottom: "28px" }}>
               <SectionLabel>Pinned</SectionLabel>
               <NotesGrid notes={pinned} onUpdate={handleUpdate} onDelete={handleDelete} onNoteClick={setSelectedNote} viewMode={viewMode} />
             </div>
           )}
-
-          {/* Recents section */}
           {recents.length > 0 && (
             <div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
                 <SectionLabel>Recents</SectionLabel>
                 <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <SearchBar
-                    onResults={setSearchResults}
-                    onClear={() => setSearchResults(null)}
-                  />
-                  {/* View toggle */}
+                  <SearchBar onResults={(r) => setSearchResults(r)} onClear={() => setSearchResults(null)} />
                   <div style={{ display: "flex", border: "1px solid #e2e8f0", borderRadius: "7px", overflow: "hidden" }}>
                     <ViewToggleBtn active={viewMode === "grid"} onClick={() => setViewMode("grid")} title="Grid view">
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -816,39 +952,10 @@ export default function NotesPage() {
         />
       )}
 
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      `}</style>
     </div>
-  );
-}
-
-function ViewToggleBtn({
-  active,
-  onClick,
-  title,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      title={title}
-      style={{
-        border: "none",
-        borderRadius: 0,
-        padding: "5px 9px",
-        cursor: "pointer",
-        backgroundColor: active ? "#f1f5f9" : "#fff",
-        color: active ? "#0f172a" : "#94a3b8",
-        display: "flex",
-        alignItems: "center",
-        transition: "background-color 0.15s",
-      }}
-    >
-      {children}
-    </button>
   );
 }

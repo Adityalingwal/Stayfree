@@ -207,7 +207,24 @@ contextBridge.exposeInMainWorld("electron", {
     ipcRenderer.on("navigate-to-tab", handler);
     return () => ipcRenderer.removeListener("navigate-to-tab", handler);
   },
+  // Notes AI (Phase 2)
+  restyleNote: (noteId: string, style: string): Promise<import("./main/store").Note | null> =>
+    ipcRenderer.invoke("restyle-note", noteId, style),
+  approveTag: (noteId: string, tag: string): Promise<import("./main/store").Note | null> =>
+    ipcRenderer.invoke("approve-tag", noteId, tag),
+  removeSuggestedTag: (noteId: string, tag: string): Promise<import("./main/store").Note | null> =>
+    ipcRenderer.invoke("remove-suggested-tag", noteId, tag),
+  reprocessNote: (noteId: string): Promise<import("./main/store").Note | null> =>
+    ipcRenderer.invoke("reprocess-note", noteId),
 });
+
+type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread";
+
+type ExtractedTask = {
+  person: string;
+  action: string;
+  deadline: string;
+};
 
 type Note = {
   id: string;
@@ -220,6 +237,14 @@ type Note = {
   pinned: boolean;
   archived: boolean;
   tags: string[];
+  // Phase 2
+  cleanContent: string;
+  aiProcessed: boolean;
+  aiProcessing: boolean;
+  stylePreset: StylePreset;
+  styledContent: string;
+  suggestedTags: string[];
+  tasks: ExtractedTask[];
 };
 
 // Type declaration for TypeScript
@@ -308,6 +333,11 @@ declare global {
       }) => Promise<Note>;
       onNotesUpdated: (callback: () => void) => () => void;
       onNavigateToTab: (callback: (tab: string) => void) => () => void;
+      // Notes AI (Phase 2)
+      restyleNote: (noteId: string, style: string) => Promise<Note | null>;
+      approveTag: (noteId: string, tag: string) => Promise<Note | null>;
+      removeSuggestedTag: (noteId: string, tag: string) => Promise<Note | null>;
+      reprocessNote: (noteId: string) => Promise<Note | null>;
     };
   }
 }

@@ -30,6 +30,8 @@ import {
   updateNote,
 } from "./main/notes";
 import { parseCommand } from "./main/commands";
+import { processNoteInBackground, applyStyle } from "./main/note-ai";
+import { StylePreset } from "./main/store";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -955,7 +957,49 @@ function registerNotesHandlers(): void {
   ipcMain.handle("promote-to-note", (_event, entry: TranscriptionEntry) => {
     const note = promoteTranscriptionToNote(entry);
     notifyNotesUpdated();
+    processNoteInBackground(note.id, notifyNotesUpdated).catch((err) => {
+      console.error("[NoteAI] Background processing failed:", err);
+    });
     return note;
+  });
+
+  ipcMain.handle("restyle-note", async (_event, noteId: string, style: string) => {
+    const notes = getNotes({ includeArchived: true });
+    const note = notes.find((n) => n.id === noteId);
+    if (!note) return null;
+    const sourceContent = note.cleanContent || note.content;
+    const styledContent = await applyStyle(sourceContent, style as StylePreset);
+    const updated = updateNote(noteId, { stylePreset: style as StylePreset, styledContent });
+    notifyNotesUpdated();
+    return updated;
+  });
+
+  ipcMain.handle("approve-tag", (_event, noteId: string, tag: string) => {
+    const notes = getNotes({ includeArchived: true });
+    const note = notes.find((n) => n.id === noteId);
+    if (!note) return null;
+    const suggestedTags = note.suggestedTags.filter((t) => t !== tag);
+    const tags = [...new Set([...note.tags, tag])];
+    const updated = updateNote(noteId, { tags, suggestedTags });
+    notifyNotesUpdated();
+    return updated;
+  });
+
+  ipcMain.handle("remove-suggested-tag", (_event, noteId: string, tag: string) => {
+    const notes = getNotes({ includeArchived: true });
+    const note = notes.find((n) => n.id === noteId);
+    if (!note) return null;
+    const suggestedTags = note.suggestedTags.filter((t) => t !== tag);
+    const updated = updateNote(noteId, { suggestedTags });
+    notifyNotesUpdated();
+    return updated;
+  });
+
+  ipcMain.handle("reprocess-note", async (_event, noteId: string) => {
+    updateNote(noteId, { aiProcessing: true, aiProcessed: false });
+    notifyNotesUpdated();
+    await processNoteInBackground(noteId, notifyNotesUpdated);
+    return getNotes({ includeArchived: true }).find((n) => n.id === noteId) ?? null;
   });
 }
 
@@ -1167,6 +1211,7 @@ app.on("ready", () => {
     try {
       if (capturedSource === "command") {
         // ── COMMAND PIPELINE ──────────────────────────────────────────
+        // Widget stays in "processing" state until command is fully resolved
         // Transcribe only (English, no LLM), then parse + execute command
         const asrStart = Date.now();
         const transcript = await transcribe(audioData);
@@ -1185,17 +1230,24 @@ app.on("ready", () => {
         switch (command.type) {
           case "save-note": {
             const content = command.content ?? transcript;
-            createNote({ content, rawContent: transcript, source: "voice" });
+            const note = createNote({ content, rawContent: transcript, source: "voice" });
             notifyNotesUpdated();
             showErrorBubble("Saved to Notes");
+            // Fire background AI (non-blocking)
+            processNoteInBackground(note.id, notifyNotesUpdated).catch((err) => {
+              console.error("[NoteAI] Background processing failed:", err);
+            });
             break;
           }
           case "save-clipboard": {
             const clipText = clipboard.readText();
             if (clipText) {
-              createNoteFromClipboard(clipText);
+              const note = createNoteFromClipboard(clipText);
               notifyNotesUpdated();
               showErrorBubble("Clipboard saved to Notes");
+              processNoteInBackground(note.id, notifyNotesUpdated).catch((err) => {
+                console.error("[NoteAI] Background processing failed:", err);
+              });
             } else {
               showErrorBubble("Clipboard is empty");
             }
@@ -1204,6 +1256,24 @@ app.on("ready", () => {
           case "open-notes":
             openSettingsWindow("notes");
             break;
+          case "restyle-note": {
+            const allNotes = getNotes();
+            if (allNotes.length === 0) {
+              showErrorBubble("No notes to restyle");
+              break;
+            }
+            const target = allNotes[0]; // most recent note
+            const style = command.style ?? "default";
+            try {
+              const styledContent = await applyStyle(target.cleanContent || target.content, style);
+              updateNote(target.id, { stylePreset: style, styledContent });
+              notifyNotesUpdated();
+              showErrorBubble(`Restyled as ${style.replace(/-/g, " ")}`);
+            } catch {
+              showErrorBubble("Restyle failed");
+            }
+            break;
+          }
           case "unknown":
           default:
             showErrorBubble("Command not recognized");
