@@ -25,13 +25,23 @@ import {
   createNoteFromClipboard,
   deleteNote,
   getNotes,
+  getNotesByTimeRange,
+  getTasksFromAllNotes,
   promoteTranscriptionToNote,
   searchNotes,
   updateNote,
 } from "./main/notes";
 import { parseCommand } from "./main/commands";
+import { handleChatQuery } from "./main/chat";
+import { speak, stopSpeaking } from "./main/tts";
 import { processNoteInBackground, applyStyle } from "./main/note-ai";
 import { StylePreset } from "./main/store";
+import { registerNotesHandlers } from "./main/ipc/notes-handlers";
+import { registerChatHandlers } from "./main/ipc/chat-handlers";
+import { registerCollectionHandlers } from "./main/ipc/collection-handlers";
+import { registerStyleHandlers } from "./main/ipc/style-handlers";
+import { vectorStore } from "./main/vector-store";
+import { generateEmbedding } from "./main/embeddings";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -919,89 +929,7 @@ function registerWidgetHandlers(): void {
   });
 }
 
-// --- Notes IPC Handlers ---
-
-function registerNotesHandlers(): void {
-  ipcMain.handle("get-notes", () => {
-    return getNotes();
-  });
-
-  ipcMain.handle("search-notes", (_event, query: string) => {
-    return searchNotes(query);
-  });
-
-  ipcMain.handle(
-    "create-note",
-    (_event, params: { content: string; title?: string }) => {
-      const note = createNote({ content: params.content, source: "text", title: params.title });
-      notifyNotesUpdated();
-      return note;
-    },
-  );
-
-  ipcMain.handle(
-    "update-note",
-    (_event, id: string, updates: Record<string, unknown>) => {
-      const note = updateNote(id, updates as Parameters<typeof updateNote>[1]);
-      notifyNotesUpdated();
-      return note;
-    },
-  );
-
-  ipcMain.handle("delete-note", (_event, id: string) => {
-    const result = deleteNote(id);
-    notifyNotesUpdated();
-    return result;
-  });
-
-  ipcMain.handle("promote-to-note", (_event, entry: TranscriptionEntry) => {
-    const note = promoteTranscriptionToNote(entry);
-    notifyNotesUpdated();
-    processNoteInBackground(note.id, notifyNotesUpdated).catch((err) => {
-      console.error("[NoteAI] Background processing failed:", err);
-    });
-    return note;
-  });
-
-  ipcMain.handle("restyle-note", async (_event, noteId: string, style: string) => {
-    const notes = getNotes({ includeArchived: true });
-    const note = notes.find((n) => n.id === noteId);
-    if (!note) return null;
-    const sourceContent = note.cleanContent || note.content;
-    const styledContent = await applyStyle(sourceContent, style as StylePreset);
-    const updated = updateNote(noteId, { stylePreset: style as StylePreset, styledContent });
-    notifyNotesUpdated();
-    return updated;
-  });
-
-  ipcMain.handle("approve-tag", (_event, noteId: string, tag: string) => {
-    const notes = getNotes({ includeArchived: true });
-    const note = notes.find((n) => n.id === noteId);
-    if (!note) return null;
-    const suggestedTags = note.suggestedTags.filter((t) => t !== tag);
-    const tags = [...new Set([...note.tags, tag])];
-    const updated = updateNote(noteId, { tags, suggestedTags });
-    notifyNotesUpdated();
-    return updated;
-  });
-
-  ipcMain.handle("remove-suggested-tag", (_event, noteId: string, tag: string) => {
-    const notes = getNotes({ includeArchived: true });
-    const note = notes.find((n) => n.id === noteId);
-    if (!note) return null;
-    const suggestedTags = note.suggestedTags.filter((t) => t !== tag);
-    const updated = updateNote(noteId, { suggestedTags });
-    notifyNotesUpdated();
-    return updated;
-  });
-
-  ipcMain.handle("reprocess-note", async (_event, noteId: string) => {
-    updateNote(noteId, { aiProcessing: true, aiProcessed: false });
-    notifyNotesUpdated();
-    await processNoteInBackground(noteId, notifyNotesUpdated);
-    return getNotes({ includeArchived: true }).find((n) => n.id === noteId) ?? null;
-  });
-}
+// Notes IPC handlers extracted to src/main/ipc/notes-handlers.ts
 
 // --- App Lifecycle ---
 
@@ -1015,7 +943,10 @@ app.on("ready", () => {
   registerPermissionHandlers();
   registerSettingsHandlers();
   registerWidgetHandlers();
-  registerNotesHandlers();
+  registerNotesHandlers({ notifyNotesUpdated });
+  registerChatHandlers();
+  registerCollectionHandlers();
+  registerStyleHandlers();
 
   // Create system tray
   tray = new Tray(createTrayIcon());
@@ -1035,6 +966,29 @@ app.on("ready", () => {
 
   // Keep-warm: pre-connect Sarvam WebSocket for Hindi mode (zero first-use overhead)
   warmSarvamConnection();
+
+  // Load vector store for note embeddings
+  vectorStore.load().catch((err) =>
+    console.error("[Main] Vector store load failed:", err),
+  );
+
+  // Background re-embed interval: regenerate stale embeddings every 30s
+  setInterval(async () => {
+    const staleIds = vectorStore.getStaleIds();
+    for (const id of staleIds) {
+      const note = getNotes({ includeArchived: true }).find((n) => n.id === id);
+      if (note) {
+        try {
+          const text = note.cleanContent || note.content;
+          const embedding = await generateEmbedding(text);
+          vectorStore.add(id, embedding);
+          console.log(`[Main] Re-embedded stale note ${id}`);
+        } catch (err) {
+          console.error(`[Main] Re-embed failed for ${id}:`, err);
+        }
+      }
+    }
+  }, 30000);
 
   // Show onboarding if first launch or permissions missing
   if (needsOnboarding()) {
@@ -1224,7 +1178,7 @@ app.on("ready", () => {
         }
 
         console.log(`[Command] ✓ ASR (${L_asr}ms): "${transcript}"`);
-        const command = parseCommand(transcript);
+        const command = await parseCommand(transcript);
         console.log(`[Command] Parsed: type=${command.type}`);
 
         switch (command.type) {
@@ -1271,6 +1225,63 @@ app.on("ready", () => {
               showErrorBubble(`Restyled as ${style.replace(/-/g, " ")}`);
             } catch {
               showErrorBubble("Restyle failed");
+            }
+            break;
+          }
+          case "find-notes": {
+            const topic = command.query ?? transcript;
+            openSettingsWindow("notes");
+            // Notify UI to prefill search
+            if (settingsWindow) {
+              settingsWindow.webContents.send("navigate-to-notes", { search: topic });
+            }
+            break;
+          }
+          case "summarize-notes": {
+            const topic2 = command.query ?? transcript;
+            try {
+              const answer = await handleChatQuery(`Summarize my notes about: ${topic2}`);
+              showErrorBubble(answer.content.slice(0, 300));
+              speak(answer.content).catch(() => {});
+            } catch {
+              showErrorBubble("Couldn't summarize notes");
+            }
+            break;
+          }
+          case "show-tasks": {
+            const tasks = getTasksFromAllNotes();
+            if (tasks.length === 0) {
+              showErrorBubble("No tasks found in your notes");
+            } else {
+              const taskText = tasks.slice(0, 10).map((t) =>
+                `${t.person}: ${t.action}${t.deadline !== "unspecified" ? ` (${t.deadline})` : ""}`,
+              ).join("\n");
+              showErrorBubble(taskText.slice(0, 300));
+              speak(tasks.slice(0, 5).map((t) => `${t.person}: ${t.action}`).join(". ")).catch(() => {});
+            }
+            break;
+          }
+          case "ask-question": {
+            try {
+              const answer2 = await handleChatQuery(command.query ?? transcript);
+              showErrorBubble(answer2.content.slice(0, 300));
+              speak(answer2.content).catch(() => {});
+            } catch {
+              showErrorBubble("Couldn't answer your question");
+            }
+            break;
+          }
+          case "time-query": {
+            if (command.timeRange) {
+              const timeNotes = getNotesByTimeRange(command.timeRange.start, command.timeRange.end);
+              if (timeNotes.length === 0) {
+                showErrorBubble("No notes found for that time period");
+              } else {
+                showErrorBubble(`Found ${timeNotes.length} note${timeNotes.length !== 1 ? "s" : ""}`);
+                openSettingsWindow("notes");
+              }
+            } else {
+              showErrorBubble("Couldn't determine the time period");
             }
             break;
           }

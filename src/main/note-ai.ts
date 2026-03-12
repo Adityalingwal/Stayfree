@@ -1,17 +1,8 @@
-import Groq from "groq-sdk";
 import store, { ExtractedTask, StylePreset } from "./store";
 import { getNotes, updateNote } from "./notes";
-
-let groqClient: Groq | null = null;
-
-function ensureGroq(): Groq {
-  if (!groqClient) {
-    const apiKey = process.env.GROQ_API_KEY || store.get("groqApiKey");
-    if (!apiKey) throw new Error("[NoteAI] Groq API key not configured");
-    groqClient = new Groq({ apiKey });
-  }
-  return groqClient;
-}
+import { getGroqClient } from "./groq-client";
+import { generateEmbedding } from "./embeddings";
+import { vectorStore } from "./vector-store";
 
 async function llm(
   systemPrompt: string,
@@ -19,7 +10,7 @@ async function llm(
   temperature: number,
   maxTokens: number,
 ): Promise<string> {
-  const client = ensureGroq();
+  const client = getGroqClient();
   const response = await client.chat.completions.create({
     model: "llama-3.1-8b-instant",
     messages: [
@@ -117,7 +108,7 @@ Example output: [{"person":"John","action":"Send the Q2 report","deadline":"by F
 
 // ─── Style Presets ────────────────────────────────────────────────────────────
 
-const STYLE_PROMPTS: Record<StylePreset, string> = {
+const STYLE_PROMPTS: Record<Exclude<StylePreset, "my-style">, string> = {
   default:
     "Rewrite this as coherent paragraphs with clean, professional writing. Preserve all information.",
   bullets:
@@ -133,6 +124,13 @@ const STYLE_PROMPTS: Record<StylePreset, string> = {
 };
 
 export async function applyStyle(content: string, style: StylePreset): Promise<string> {
+  if (style === "my-style") {
+    const stylePrompt = store.get("writingStylePrompt") as string;
+    if (!stylePrompt) return content;
+    const prompt = `Rewrite this text matching the user's personal writing style: ${stylePrompt}. Preserve all information. Match their tone and structure.`;
+    const result = await llm(prompt, content, 0.3, 2048);
+    return result || content;
+  }
   const result = await llm(STYLE_PROMPTS[style], content, 0.3, 2048);
   return result || content;
 }
@@ -170,6 +168,16 @@ export async function processNoteInBackground(
       suggestedTags,
       tasks,
     });
+
+    // Generate embedding after AI processing
+    try {
+      const textToEmbed = cleanContent || sourceContent;
+      const embedding = await generateEmbedding(textToEmbed);
+      vectorStore.add(noteId, embedding);
+      console.log(`[NoteAI] Embedding generated for note ${noteId}`);
+    } catch (embErr) {
+      console.error("[NoteAI] Embedding generation failed (non-fatal):", embErr);
+    }
 
     console.log(
       `[NoteAI] Done: tags=${suggestedTags.length} tasks=${tasks.length} cleaned=${needsCleanup}`,

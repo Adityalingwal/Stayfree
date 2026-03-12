@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
-import store, { Note, StylePreset, TranscriptionEntry } from "./store";
+import store, { ExtractedTask, Note, StylePreset, TranscriptionEntry } from "./store";
+import { vectorStore } from "./vector-store";
 
 const MAX_NOTES = 500;
 
@@ -72,9 +73,16 @@ export function updateNote(
   const idx = notes.findIndex((n) => n.id === id);
   if (idx === -1) return null;
 
+  const oldContent = notes[idx].content;
   const updated: Note = { ...normalizeNote(notes[idx]), ...updates, updatedAt: Date.now() };
   notes[idx] = updated;
   store.set("notes", notes);
+
+  // Mark embedding stale if content changed
+  if (updates.content && updates.content !== oldContent) {
+    vectorStore.markStale(id);
+  }
+
   return updated;
 }
 
@@ -83,6 +91,7 @@ export function deleteNote(id: string): boolean {
   const filtered = notes.filter((n) => n.id !== id);
   if (filtered.length === notes.length) return false;
   store.set("notes", filtered);
+  vectorStore.remove(id);
   return true;
 }
 
@@ -118,4 +127,35 @@ export function createNoteFromClipboard(clipboardText: string): Note {
     content: clipboardText,
     source: "clipboard",
   });
+}
+
+export function getTasksFromAllNotes(): Array<ExtractedTask & { noteId: string; noteTitle: string }> {
+  const notes = getNotes({ includeArchived: false });
+  const tasks: Array<ExtractedTask & { noteId: string; noteTitle: string }> = [];
+  for (const note of notes) {
+    for (const task of note.tasks) {
+      tasks.push({ ...task, noteId: note.id, noteTitle: note.title });
+    }
+  }
+  return tasks;
+}
+
+export function getNotesByTimeRange(start: number, end: number): Note[] {
+  const notes = getNotes({ includeArchived: false });
+  return notes.filter((n) => n.createdAt >= start && n.createdAt < end);
+}
+
+const RELATED_SCORE_THRESHOLD = 0.3;
+
+export function getRelatedNotes(noteId: string): Note[] {
+  const embedding = vectorStore.get(noteId);
+  if (!embedding) return [];
+
+  const results = vectorStore.search(embedding, 5, noteId);
+  const notes = getNotes({ includeArchived: false });
+  const noteMap = new Map(notes.map((n) => [n.id, n]));
+
+  return results
+    .filter((r) => r.score > RELATED_SCORE_THRESHOLD && noteMap.has(r.id))
+    .map((r) => noteMap.get(r.id)!);
 }

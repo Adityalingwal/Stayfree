@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 
 type NoteSource = "voice" | "text" | "clipboard" | "transcription";
-type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread";
+type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread" | "my-style";
 
 interface ExtractedTask {
   person: string;
@@ -28,6 +28,15 @@ interface Note {
   styledContent: string;
   suggestedTags: string[];
   tasks: ExtractedTask[];
+}
+
+interface LocalCollection {
+  id: string;
+  name: string;
+  description: string;
+  noteIds: string[];
+  suggested: boolean;
+  dismissed: boolean;
 }
 
 const STYLE_OPTIONS: { value: StylePreset; label: string }[] = [
@@ -312,12 +321,13 @@ function NoteCard({
 // ─── NoteDetailModal ──────────────────────────────────────────────────────────
 
 function NoteDetailModal({
-  note, onClose, onUpdate, onDelete,
+  note, onClose, onUpdate, onDelete, onNoteClick,
 }: {
   note: Note;
   onClose: () => void;
   onUpdate: (id: string, updates: Record<string, unknown>) => void;
   onDelete: (id: string) => void;
+  onNoteClick?: (note: Note) => void;
 }) {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
@@ -328,7 +338,19 @@ function NoteDetailModal({
   const [copied, setCopied] = useState(false);
   const [newTag, setNewTag] = useState("");
   const [addingTag, setAddingTag] = useState(false);
+  const [relatedNotes, setRelatedNotes] = useState<Note[]>([]);
+  const [hasMyStyle, setHasMyStyle] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Fetch related notes and style config on mount
+  useEffect(() => {
+    window.electron.getRelatedNotes(note.id).then((related) => {
+      setRelatedNotes(related as Note[]);
+    }).catch(() => {});
+    window.electron.getStyleConfig().then((config) => {
+      setHasMyStyle(!!config.prompt);
+    }).catch(() => {});
+  }, [note.id]);
 
   // Sync state when note updates (e.g., AI finishes)
   useEffect(() => {
@@ -502,7 +524,7 @@ function NoteDetailModal({
         {/* Style preset selector */}
         {showStyles && viewMode === "clean" && (
           <div style={{ padding: "0 24px 10px", display: "flex", gap: "6px", flexWrap: "wrap" }}>
-            {STYLE_OPTIONS.map(({ value, label }) => {
+            {[...STYLE_OPTIONS, ...(hasMyStyle ? [{ value: "my-style" as StylePreset, label: "My Style" }] : [])].map(({ value, label }) => {
               const isActive = note.stylePreset === value;
               return (
                 <button
@@ -621,6 +643,41 @@ function NoteDetailModal({
                         <span style={{ color: "#94a3b8", fontStyle: "italic", fontSize: "12px" }}>{task.deadline}</span>
                       </>
                     )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Related Notes section */}
+          {relatedNotes.length > 0 && (
+            <div style={{ marginTop: "16px" }}>
+              <p style={{ fontSize: "11px", fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", margin: "0 0 8px 0" }}>Related Notes</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                {relatedNotes.slice(0, 5).map((related) => (
+                  <div
+                    key={related.id}
+                    onClick={() => onNoteClick?.(related)}
+                    style={{
+                      padding: "8px 12px", borderRadius: "8px",
+                      border: "1px solid #f1f5f9", cursor: "pointer",
+                      transition: "border-color 0.15s, background-color 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "#e2e8f0";
+                      (e.currentTarget as HTMLDivElement).style.backgroundColor = "#fafbfc";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "#f1f5f9";
+                      (e.currentTarget as HTMLDivElement).style.backgroundColor = "transparent";
+                    }}
+                  >
+                    <p style={{ fontSize: "12px", fontWeight: 600, color: "#334155", margin: "0 0 2px 0", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {related.title || "Untitled"}
+                    </p>
+                    <p style={{ fontSize: "11px", color: "#94a3b8", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {(related.cleanContent || related.content).slice(0, 80)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -772,6 +829,222 @@ function ViewToggleBtn({ active, onClick, title, children }: {
   );
 }
 
+// ─── ChatMessage type (local) ────────────────────────────────────────────────
+
+interface ChatMsg {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: number;
+  citedNoteIds?: string[];
+}
+
+// ─── ChatDrawer ──────────────────────────────────────────────────────────────
+
+function ChatDrawer({ onNoteClick }: { onNoteClick: (noteId: string) => void }) {
+  const [messages, setMessages] = useState<ChatMsg[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    window.electron.getChatHistory().then((history) => {
+      setMessages(history as ChatMsg[]);
+    });
+  }, []);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const handleSend = async () => {
+    const question = input.trim();
+    if (!question || loading) return;
+
+    const userMsg: ChatMsg = {
+      id: `temp-${Date.now()}`,
+      role: "user",
+      content: question,
+      timestamp: Date.now(),
+    };
+    setMessages((prev) => [...prev, userMsg]);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const response = await window.electron.chatQuery(question);
+      setMessages((prev) => [...prev.filter((m) => m.id !== userMsg.id), userMsg, response as ChatMsg]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { id: `err-${Date.now()}`, role: "assistant", content: "Something went wrong. Please try again.", timestamp: Date.now() },
+      ]);
+    } finally {
+      setLoading(false);
+      inputRef.current?.focus();
+    }
+  };
+
+  const handleClear = () => {
+    window.electron.clearChatHistory();
+    setMessages([]);
+  };
+
+  const EXAMPLE_QUERIES = [
+    "What are my recent action items?",
+    "Summarize my notes about work",
+    "What did I capture about ideas?",
+  ];
+
+  return (
+    <div style={{
+      width: "350px", height: "100%", display: "flex", flexDirection: "column",
+      borderLeft: "1px solid #e2e8f0", backgroundColor: "#fafbfc",
+    }}>
+      {/* Header */}
+      <div style={{
+        padding: "16px 16px 12px", display: "flex", alignItems: "center", justifyContent: "space-between",
+        borderBottom: "1px solid #f1f5f9",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          <span style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a" }}>Ask StayFree</span>
+        </div>
+        {messages.length > 0 && (
+          <button
+            onClick={handleClear}
+            title="Clear conversation"
+            style={{ background: "none", border: "none", cursor: "pointer", color: "#94a3b8", padding: "4px", display: "flex" }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+            </svg>
+          </button>
+        )}
+      </div>
+
+      {/* Messages area */}
+      <div style={{ flex: 1, overflowY: "auto", padding: "12px 16px" }}>
+        {messages.length === 0 ? (
+          <div style={{ textAlign: "center", paddingTop: "40px" }}>
+            <p style={{ fontSize: "13px", color: "#94a3b8", margin: "0 0 16px 0" }}>
+              Ask me anything about your notes
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              {EXAMPLE_QUERIES.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => { setInput(q); inputRef.current?.focus(); }}
+                  style={{
+                    padding: "8px 12px", border: "1px solid #e2e8f0", borderRadius: "8px",
+                    backgroundColor: "#fff", cursor: "pointer", fontSize: "12px",
+                    color: "#64748b", fontFamily: "inherit", textAlign: "left",
+                    transition: "border-color 0.15s",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "#94a3b8"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "#e2e8f0"; }}
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {messages.map((msg) => (
+              <div key={msg.id} style={{ display: "flex", justifyContent: msg.role === "user" ? "flex-end" : "flex-start" }}>
+                <div style={{
+                  maxWidth: "85%", padding: "8px 12px", borderRadius: "12px",
+                  fontSize: "13px", lineHeight: "1.5",
+                  backgroundColor: msg.role === "user" ? "#0f172a" : "#fff",
+                  color: msg.role === "user" ? "#fff" : "#334155",
+                  border: msg.role === "assistant" ? "1px solid #e2e8f0" : "none",
+                }}>
+                  <p style={{ margin: 0, whiteSpace: "pre-wrap" }}>{msg.content}</p>
+                  {/* Cited notes */}
+                  {msg.citedNoteIds && msg.citedNoteIds.length > 0 && (
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "4px", marginTop: "6px" }}>
+                      {msg.citedNoteIds.map((id) => (
+                        <button
+                          key={id}
+                          onClick={() => onNoteClick(id)}
+                          style={{
+                            padding: "2px 8px", borderRadius: "4px",
+                            backgroundColor: "#f1f5f9", border: "none",
+                            cursor: "pointer", fontSize: "10px", color: "#7c3aed",
+                            fontWeight: 600, fontFamily: "inherit",
+                          }}
+                        >
+                          Open note
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+            {loading && (
+              <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                <div style={{
+                  padding: "8px 12px", borderRadius: "12px", backgroundColor: "#fff",
+                  border: "1px solid #e2e8f0", fontSize: "13px", color: "#94a3b8",
+                  display: "flex", alignItems: "center", gap: "6px",
+                }}>
+                  <div style={{ width: "12px", height: "12px", border: "2px solid #e2e8f0", borderTopColor: "#7c3aed", borderRadius: "50%", animation: "spin 0.7s linear infinite" }} />
+                  Thinking...
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+        )}
+      </div>
+
+      {/* Input bar */}
+      <div style={{ padding: "12px 16px", borderTop: "1px solid #f1f5f9" }}>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter") handleSend(); }}
+            placeholder="Ask about your notes..."
+            disabled={loading}
+            style={{
+              flex: 1, height: "36px", padding: "0 12px",
+              border: "1px solid #e2e8f0", borderRadius: "8px",
+              fontSize: "13px", color: "#0f172a", outline: "none",
+              fontFamily: "inherit", backgroundColor: "#fff",
+            }}
+          />
+          <button
+            onClick={handleSend}
+            disabled={!input.trim() || loading}
+            style={{
+              width: "36px", height: "36px", border: "none", borderRadius: "8px",
+              backgroundColor: input.trim() && !loading ? "#7c3aed" : "#e2e8f0",
+              color: input.trim() && !loading ? "#fff" : "#94a3b8",
+              cursor: input.trim() && !loading ? "pointer" : "default",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main NotesPage ───────────────────────────────────────────────────────────
 
 export default function NotesPage() {
@@ -781,6 +1054,16 @@ export default function NotesPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [searchResults, setSearchResults] = useState<Note[] | null>(null);
   const [activeTagFilter, setActiveTagFilter] = useState<string | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [collections, setCollections] = useState<LocalCollection[]>([]);
+  const [activeCollectionFilter, setActiveCollectionFilter] = useState<string | null>(null);
+
+  const refreshCollections = useCallback(async () => {
+    try {
+      const data = await window.electron.getCollections();
+      setCollections(data as LocalCollection[]);
+    } catch {}
+  }, []);
 
   const refreshNotes = useCallback(async () => {
     const data = await window.electron.getNotes();
@@ -796,11 +1079,12 @@ export default function NotesPage() {
 
   useEffect(() => {
     refreshNotes();
+    refreshCollections();
     const cleanup = window.electron.onNotesUpdated?.(() => {
       refreshNotes();
     });
     return () => cleanup?.();
-  }, [refreshNotes]);
+  }, [refreshNotes, refreshCollections]);
 
   const handleUpdate = useCallback(async (id: string, updates: Record<string, unknown>) => {
     await window.electron.updateNote(id, updates);
@@ -822,29 +1106,113 @@ export default function NotesPage() {
   }, [notes]);
 
   const displayNotes = searchResults ?? notes;
-  const filteredNotes = activeTagFilter
-    ? displayNotes.filter((n) => n.tags.includes(activeTagFilter))
+  const activeCollection = activeCollectionFilter
+    ? collections.find((c) => c.id === activeCollectionFilter) : null;
+  const collectionFiltered = activeCollection
+    ? displayNotes.filter((n) => activeCollection.noteIds.includes(n.id))
     : displayNotes;
+  const filteredNotes = activeTagFilter
+    ? collectionFiltered.filter((n) => n.tags.includes(activeTagFilter))
+    : collectionFiltered;
 
   const pinned = filteredNotes.filter((n) => n.pinned);
   const recents = filteredNotes.filter((n) => !n.pinned);
 
+  const handleChatNoteClick = useCallback((noteId: string) => {
+    const note = notes.find((n) => n.id === noteId);
+    if (note) setSelectedNote(note);
+  }, [notes]);
+
   return (
-    <div>
+    <div style={{ display: "flex", height: "100%" }}>
+    <div style={{ flex: 1, overflow: "auto" }}>
       {/* Header */}
-      <div style={{ marginBottom: "24px" }}>
-        <h1 style={{
-          fontSize: "30px", fontWeight: 700, color: "#0f172a",
-          margin: "0 0 6px 0", letterSpacing: "-0.03em", lineHeight: 1.2,
-          fontFamily: "Georgia, 'Times New Roman', serif",
-        }}>Notes</h1>
-        <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
-          For quick thoughts you want to come back to later.
-        </p>
+      <div style={{ marginBottom: "24px", display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+        <div>
+          <h1 style={{
+            fontSize: "30px", fontWeight: 700, color: "#0f172a",
+            margin: "0 0 6px 0", letterSpacing: "-0.03em", lineHeight: 1.2,
+            fontFamily: "Georgia, 'Times New Roman', serif",
+          }}>Notes</h1>
+          <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>
+            For quick thoughts you want to come back to later.
+          </p>
+        </div>
+        <button
+          onClick={() => setChatOpen(!chatOpen)}
+          title={chatOpen ? "Close chat" : "Ask StayFree"}
+          style={{
+            padding: "8px 14px", border: "1px solid",
+            borderColor: chatOpen ? "#7c3aed" : "#e2e8f0",
+            borderRadius: "8px", cursor: "pointer",
+            backgroundColor: chatOpen ? "#7c3aed" : "#fff",
+            color: chatOpen ? "#fff" : "#64748b",
+            fontSize: "13px", fontWeight: 500, fontFamily: "inherit",
+            display: "flex", alignItems: "center", gap: "6px",
+            transition: "all 0.15s", flexShrink: 0,
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          Brain
+        </button>
       </div>
 
       {/* Note Input */}
       <NoteInput onCreated={refreshNotes} />
+
+      {/* Collection filter bar */}
+      {collections.length > 0 && (
+        <div style={{
+          display: "flex", gap: "6px", flexWrap: "wrap",
+          marginBottom: "10px",
+        }}>
+          {collections.map((col) => (
+            <button
+              key={col.id}
+              onClick={() => setActiveCollectionFilter(activeCollectionFilter === col.id ? null : col.id)}
+              style={{
+                padding: "4px 12px", border: "1px solid",
+                borderColor: activeCollectionFilter === col.id ? "#7c3aed" : "#e2e8f0",
+                borderRadius: "20px", cursor: "pointer", fontSize: "12px", fontWeight: 500,
+                backgroundColor: activeCollectionFilter === col.id ? "#7c3aed" : "#fff",
+                color: activeCollectionFilter === col.id ? "#fff" : "#64748b",
+                fontFamily: "inherit", transition: "all 0.15s",
+                display: "flex", alignItems: "center", gap: "4px",
+              }}
+            >
+              {col.name}
+              <span style={{
+                fontSize: "10px", fontWeight: 600, opacity: 0.7,
+              }}>
+                {col.noteIds.length}
+              </span>
+              {col.suggested && (
+                <span style={{
+                  fontSize: "9px", padding: "1px 4px",
+                  backgroundColor: activeCollectionFilter === col.id ? "rgba(255,255,255,0.2)" : "#f5f3ff",
+                  borderRadius: "3px", color: activeCollectionFilter === col.id ? "#fff" : "#7c3aed",
+                }}>
+                  AI
+                </span>
+              )}
+            </button>
+          ))}
+          {activeCollectionFilter && (
+            <button
+              onClick={() => setActiveCollectionFilter(null)}
+              style={{
+                padding: "4px 10px", border: "1px solid #e2e8f0", borderRadius: "20px",
+                cursor: "pointer", fontSize: "12px", color: "#94a3b8",
+                backgroundColor: "#fff", fontFamily: "inherit",
+              }}
+            >
+              clear
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Tag filter bar */}
       {allTags.length > 0 && (
@@ -949,6 +1317,7 @@ export default function NotesPage() {
           onClose={() => setSelectedNote(null)}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
+          onNoteClick={setSelectedNote}
         />
       )}
 
@@ -956,6 +1325,12 @@ export default function NotesPage() {
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
       `}</style>
+    </div>
+
+    {/* Chat Drawer */}
+    {chatOpen && (
+      <ChatDrawer onNoteClick={handleChatNoteClick} />
+    )}
     </div>
   );
 }

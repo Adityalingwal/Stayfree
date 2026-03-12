@@ -208,6 +208,8 @@ contextBridge.exposeInMainWorld("electron", {
     return () => ipcRenderer.removeListener("navigate-to-tab", handler);
   },
   // Notes AI (Phase 2)
+  getRelatedNotes: (noteId: string): Promise<import("./main/store").Note[]> =>
+    ipcRenderer.invoke("get-related-notes", noteId),
   restyleNote: (noteId: string, style: string): Promise<import("./main/store").Note | null> =>
     ipcRenderer.invoke("restyle-note", noteId, style),
   approveTag: (noteId: string, tag: string): Promise<import("./main/store").Note | null> =>
@@ -216,14 +218,81 @@ contextBridge.exposeInMainWorld("electron", {
     ipcRenderer.invoke("remove-suggested-tag", noteId, tag),
   reprocessNote: (noteId: string): Promise<import("./main/store").Note | null> =>
     ipcRenderer.invoke("reprocess-note", noteId),
+
+  onNavigateToNotes: (callback: (opts: { search?: string }) => void): (() => void) => {
+    const handler = (_e: Electron.IpcRendererEvent, opts: { search?: string }) => callback(opts);
+    ipcRenderer.on("navigate-to-notes", handler);
+    return () => ipcRenderer.removeListener("navigate-to-notes", handler);
+  },
+
+  // --- Chat (Phase 3) ---
+  chatQuery: (question: string): Promise<import("./main/store").ChatMessage> =>
+    ipcRenderer.invoke("chat-query", question),
+  getChatHistory: (): Promise<import("./main/store").ChatMessage[]> =>
+    ipcRenderer.invoke("get-chat-history"),
+  clearChatHistory: () => {
+    ipcRenderer.send("clear-chat-history");
+  },
+
+  // --- Collections (Phase 3) ---
+  getCollections: (): Promise<import("./main/store").Collection[]> =>
+    ipcRenderer.invoke("get-collections"),
+  createCollection: (params: { name: string; description?: string; noteIds?: string[] }): Promise<import("./main/store").Collection> =>
+    ipcRenderer.invoke("create-collection", params),
+  updateCollection: (id: string, updates: Record<string, unknown>): Promise<import("./main/store").Collection | null> =>
+    ipcRenderer.invoke("update-collection", id, updates),
+  deleteCollection: (id: string): Promise<boolean> =>
+    ipcRenderer.invoke("delete-collection", id),
+  addNoteToCollection: (collectionId: string, noteId: string): Promise<import("./main/store").Collection | null> =>
+    ipcRenderer.invoke("add-note-to-collection", collectionId, noteId),
+  removeNoteFromCollection: (collectionId: string, noteId: string): Promise<import("./main/store").Collection | null> =>
+    ipcRenderer.invoke("remove-note-from-collection", collectionId, noteId),
+  mergeCollections: (sourceId: string, targetId: string): Promise<import("./main/store").Collection | null> =>
+    ipcRenderer.invoke("merge-collections", sourceId, targetId),
+  dismissCollection: (id: string) => {
+    ipcRenderer.send("dismiss-collection", id);
+  },
+  suggestCollections: (): Promise<import("./main/store").Collection[]> =>
+    ipcRenderer.invoke("suggest-collections"),
+
+  // --- Style Training (Phase 3) ---
+  addStyleExample: (text: string) => {
+    ipcRenderer.send("add-style-example", text);
+  },
+  removeStyleExample: (index: number) => {
+    ipcRenderer.send("remove-style-example", index);
+  },
+  getStyleConfig: (): Promise<{ examples: string[]; prompt: string }> =>
+    ipcRenderer.invoke("get-style-config"),
+  learnStyle: (): Promise<string> =>
+    ipcRenderer.invoke("learn-style"),
 });
 
-type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread";
+type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread" | "my-style";
 
 type ExtractedTask = {
   person: string;
   action: string;
   deadline: string;
+};
+
+type ChatMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: number;
+  citedNoteIds?: string[];
+};
+
+type Collection = {
+  id: string;
+  name: string;
+  description: string;
+  noteIds: string[];
+  suggested: boolean;
+  dismissed: boolean;
+  createdAt: number;
+  updatedAt: number;
 };
 
 type Note = {
@@ -333,11 +402,32 @@ declare global {
       }) => Promise<Note>;
       onNotesUpdated: (callback: () => void) => () => void;
       onNavigateToTab: (callback: (tab: string) => void) => () => void;
-      // Notes AI (Phase 2)
+      onNavigateToNotes: (callback: (opts: { search?: string }) => void) => () => void;
+      // Notes AI (Phase 2+3)
+      getRelatedNotes: (noteId: string) => Promise<Note[]>;
       restyleNote: (noteId: string, style: string) => Promise<Note | null>;
       approveTag: (noteId: string, tag: string) => Promise<Note | null>;
       removeSuggestedTag: (noteId: string, tag: string) => Promise<Note | null>;
       reprocessNote: (noteId: string) => Promise<Note | null>;
+      // Chat (Phase 3)
+      chatQuery: (question: string) => Promise<ChatMessage>;
+      getChatHistory: () => Promise<ChatMessage[]>;
+      clearChatHistory: () => void;
+      // Collections (Phase 3)
+      getCollections: () => Promise<Collection[]>;
+      createCollection: (params: { name: string; description?: string; noteIds?: string[] }) => Promise<Collection>;
+      updateCollection: (id: string, updates: Record<string, unknown>) => Promise<Collection | null>;
+      deleteCollection: (id: string) => Promise<boolean>;
+      addNoteToCollection: (collectionId: string, noteId: string) => Promise<Collection | null>;
+      removeNoteFromCollection: (collectionId: string, noteId: string) => Promise<Collection | null>;
+      mergeCollections: (sourceId: string, targetId: string) => Promise<Collection | null>;
+      dismissCollection: (id: string) => void;
+      suggestCollections: () => Promise<Collection[]>;
+      // Style Training (Phase 3)
+      addStyleExample: (text: string) => void;
+      removeStyleExample: (index: number) => void;
+      getStyleConfig: () => Promise<{ examples: string[]; prompt: string }>;
+      learnStyle: () => Promise<string>;
     };
   }
 }

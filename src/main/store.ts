@@ -19,12 +19,32 @@ export type StylePreset =
   | "action-items"
   | "casual-memo"
   | "formal-doc"
-  | "tweet-thread";
+  | "tweet-thread"
+  | "my-style";
 
 export interface ExtractedTask {
   person: string;   // "Me", "John", etc.
   action: string;   // "Send the report"
   deadline: string; // "by Friday", "ASAP", "unspecified"
+}
+
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: number;
+  citedNoteIds?: string[];
+}
+
+export interface Collection {
+  id: string;
+  name: string;
+  description: string;
+  noteIds: string[];
+  suggested: boolean;   // true = AI-suggested, false = user-created
+  dismissed: boolean;   // true = user dismissed this suggestion
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface Note {
@@ -64,6 +84,10 @@ interface StoreSchema {
   transcriptionHistory: TranscriptionEntry[];
   soundEnabled: boolean;
   notes: Note[];
+  chatHistory: ChatMessage[];
+  collections: Collection[];
+  writingStyleExamples: string[];
+  writingStylePrompt: string;
 }
 
 const store = new Store<StoreSchema>({
@@ -83,6 +107,10 @@ const store = new Store<StoreSchema>({
     transcriptionHistory: [],
     soundEnabled: true,
     notes: [],
+    chatHistory: [],
+    collections: [],
+    writingStyleExamples: [],
+    writingStylePrompt: "",
   },
 });
 
