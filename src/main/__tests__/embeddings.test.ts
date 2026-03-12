@@ -1,22 +1,24 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { cosineSimilarity, findSimilar } from "../embeddings";
 
-// Mock groq-client for generateEmbedding tests
-vi.mock("../groq-client", () => ({
-  getGroqClient: vi.fn(),
-}));
+// mockCreate must be defined before vi.mock (hoisted by Vitest)
+const mockCreate = vi.fn();
+
+// Mock the openai module — Fireworks uses OpenAI SDK with custom baseURL
+// Must use a regular function (not arrow) so `new OpenAI()` works as a constructor
+vi.mock("openai", () => {
+  return {
+    default: vi.fn(function () {
+      return { embeddings: { create: mockCreate } };
+    }),
+  };
+});
 
 import { generateEmbedding, generateEmbeddings } from "../embeddings";
-import { getGroqClient } from "../groq-client";
-
-const mockCreate = vi.fn();
-const mockClient = {
-  embeddings: { create: mockCreate },
-};
 
 beforeEach(() => {
   vi.clearAllMocks();
-  (getGroqClient as ReturnType<typeof vi.fn>).mockReturnValue(mockClient);
+  process.env.FIREWORKS_API_KEY = "fw_test_key";
 });
 
 describe("cosineSimilarity", () => {
@@ -65,7 +67,7 @@ describe("cosineSimilarity", () => {
     const a = Array.from({ length: 768 }, (_, i) => Math.sin(i));
     const b = Array.from({ length: 768 }, (_, i) => Math.sin(i + 0.1));
     const score = cosineSimilarity(a, b);
-    expect(score).toBeGreaterThan(0.9); // similar but not identical
+    expect(score).toBeGreaterThan(0.9);
     expect(score).toBeLessThan(1.0);
   });
 });
@@ -74,8 +76,8 @@ describe("findSimilar", () => {
   const candidates = new Map<string, number[]>([
     ["a", [1, 0, 0]],
     ["b", [0, 1, 0]],
-    ["c", [0.9, 0.1, 0]],  // similar to a
-    ["d", [0.1, 0.9, 0]],  // similar to b
+    ["c", [0.9, 0.1, 0]], // similar to a
+    ["d", [0.1, 0.9, 0]], // similar to b
   ]);
 
   it("returns top-K results sorted by score", () => {
@@ -112,7 +114,7 @@ describe("findSimilar", () => {
 });
 
 describe("generateEmbedding", () => {
-  it("calls Groq API and returns embedding", async () => {
+  it("calls Fireworks API and returns embedding", async () => {
     const fakeEmbedding = [0.1, 0.2, 0.3];
     mockCreate.mockResolvedValueOnce({
       data: [{ embedding: fakeEmbedding }],
@@ -122,7 +124,7 @@ describe("generateEmbedding", () => {
     expect(result).toEqual(fakeEmbedding);
     expect(mockCreate).toHaveBeenCalledWith({
       input: "hello world",
-      model: "nomic-embed-text-v1_5",
+      model: "nomic-ai/nomic-embed-text-v1.5",
     });
   });
 
@@ -153,7 +155,7 @@ describe("generateEmbeddings", () => {
     expect(result[1]).toEqual([0, 1]);
     expect(mockCreate).toHaveBeenCalledWith({
       input: ["text1", "text2"],
-      model: "nomic-embed-text-v1_5",
+      model: "nomic-ai/nomic-embed-text-v1.5",
     });
   });
 });

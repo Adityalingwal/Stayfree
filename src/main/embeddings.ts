@@ -1,14 +1,28 @@
-import { getGroqClient } from "./groq-client";
+import OpenAI from "openai";
 
 /**
  * Embedding generation and vector similarity operations.
- * Uses Groq's nomic-embed-text-v1_5 model (768-dimensional vectors).
+ * Uses Fireworks AI's nomic-embed-text-v1.5 model (768-dimensional vectors)
+ * via their OpenAI-compatible API endpoint.
  */
 
-const EMBEDDING_MODEL = "nomic-embed-text-v1_5";
+const EMBEDDING_MODEL = "nomic-ai/nomic-embed-text-v1.5";
+
+function getFireworksClient(): OpenAI {
+  const apiKey = process.env.FIREWORKS_API_KEY;
+  if (!apiKey) {
+    throw new Error(
+      "Fireworks API key not configured. Set FIREWORKS_API_KEY env var.",
+    );
+  }
+  return new OpenAI({
+    apiKey,
+    baseURL: "https://api.fireworks.ai/inference/v1",
+  });
+}
 
 export async function generateEmbedding(text: string): Promise<number[]> {
-  const client = getGroqClient();
+  const client = getFireworksClient();
   const response = await client.embeddings.create({
     input: text,
     model: EMBEDDING_MODEL,
@@ -18,12 +32,12 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 
 export async function generateEmbeddings(texts: string[]): Promise<number[][]> {
   if (texts.length === 0) return [];
-  const client = getGroqClient();
+  const client = getFireworksClient();
   const response = await client.embeddings.create({
     input: texts,
     model: EMBEDDING_MODEL,
   });
-  // Groq returns embeddings in the same order as input
+  // Fireworks returns embeddings in the same order as input
   return response.data.map((d) => d.embedding as number[]);
 }
 

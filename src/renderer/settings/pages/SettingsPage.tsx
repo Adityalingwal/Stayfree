@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-// Synchronous platform guess from browser — available immediately, no async needed.
-// checkPermissions() will confirm/correct it once it resolves.
 function guessPlatform(): "darwin" | "win32" | "linux" {
   const p = navigator.platform.toLowerCase();
   if (p.includes("mac")) return "darwin";
@@ -14,29 +12,359 @@ interface AudioDevice {
   label: string;
 }
 
+// ─── Icons ──────────────────────────────────────────────────────
+
+function MicIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <line x1="12" y1="19" x2="12" y2="23" />
+      <line x1="8" y1="23" x2="16" y2="23" />
+    </svg>
+  );
+}
+
+function SoundIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+    </svg>
+  );
+}
+
+function GlobeIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
+function InfoIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="16" x2="12" y2="12" />
+      <line x1="12" y1="8" x2="12.01" y2="8" />
+    </svg>
+  );
+}
+
+function ChevronIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
+// ─── Section Card ───────────────────────────────────────────────
+
+function SectionCard({
+  icon,
+  title,
+  description,
+  children,
+  accent = "#6366f1",
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  children: React.ReactNode;
+  accent?: string;
+}) {
+  return (
+    <div
+      style={{
+        background: "#fff",
+        borderRadius: "16px",
+        border: "1px solid #e8eaf0",
+        overflow: "hidden",
+        boxShadow: "0 1px 4px rgba(0,0,0,0.05), 0 0 0 0 transparent",
+        transition: "box-shadow 0.2s ease",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLDivElement).style.boxShadow =
+          "0 4px 16px rgba(0,0,0,0.08)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLDivElement).style.boxShadow =
+          "0 1px 4px rgba(0,0,0,0.05)";
+      }}
+    >
+      {/* Card Header */}
+      <div
+        style={{
+          padding: "16px 20px",
+          borderBottom: "1px solid #f1f3f8",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          background: "linear-gradient(135deg, #fafbff 0%, #ffffff 100%)",
+        }}
+      >
+        <div
+          style={{
+            width: "36px",
+            height: "36px",
+            borderRadius: "10px",
+            background: `linear-gradient(135deg, ${accent}18, ${accent}10)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: accent,
+            flexShrink: 0,
+          }}
+        >
+          {icon}
+        </div>
+        <div>
+          <div
+            style={{
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#0f172a",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {title}
+          </div>
+          <div style={{ fontSize: "11.5px", color: "#94a3b8", marginTop: "1px" }}>
+            {description}
+          </div>
+        </div>
+      </div>
+
+      {/* Card Body */}
+      <div style={{ padding: "20px" }}>{children}</div>
+    </div>
+  );
+}
+
+// ─── Toggle Switch ──────────────────────────────────────────────
+
+function Toggle({
+  checked,
+  onChange,
+  accent = "#6366f1",
+}: {
+  checked: boolean;
+  onChange: () => void;
+  accent?: string;
+}) {
+  return (
+    <button
+      onClick={onChange}
+      style={{
+        position: "relative",
+        width: "44px",
+        height: "24px",
+        borderRadius: "12px",
+        border: "none",
+        cursor: "pointer",
+        background: checked
+          ? `linear-gradient(135deg, ${accent}, ${accent}cc)`
+          : "#e2e8f0",
+        transition: "background 0.25s ease",
+        flexShrink: 0,
+        padding: 0,
+        boxShadow: checked ? `0 0 0 3px ${accent}22` : "none",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: "2px",
+          left: checked ? "22px" : "2px",
+          width: "20px",
+          height: "20px",
+          borderRadius: "50%",
+          background: "#fff",
+          boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+          transition: "left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        }}
+      />
+    </button>
+  );
+}
+
+// ─── Radio Option ───────────────────────────────────────────────
+
+function RadioOption({
+  label,
+  description,
+  checked,
+  onChange,
+  badge,
+}: {
+  label: string;
+  description: string;
+  checked: boolean;
+  onChange: () => void;
+  badge?: string;
+}) {
+  return (
+    <label
+      onClick={onChange}
+      style={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: "12px",
+        padding: "14px 16px",
+        borderRadius: "12px",
+        border: `1.5px solid ${checked ? "#6366f1" : "#e8eaf0"}`,
+        cursor: "pointer",
+        transition: "all 0.18s ease",
+        background: checked
+          ? "linear-gradient(135deg, #6366f108, #8b5cf608)"
+          : "#fafbff",
+        boxShadow: checked ? "0 0 0 3px #6366f115" : "none",
+      }}
+      onMouseEnter={(e) => {
+        if (!checked) {
+          (e.currentTarget as HTMLLabelElement).style.borderColor = "#c7d2fe";
+          (e.currentTarget as HTMLLabelElement).style.background = "#f8faff";
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!checked) {
+          (e.currentTarget as HTMLLabelElement).style.borderColor = "#e8eaf0";
+          (e.currentTarget as HTMLLabelElement).style.background = "#fafbff";
+        }
+      }}
+    >
+      {/* Custom radio dot */}
+      <div
+        style={{
+          width: "18px",
+          height: "18px",
+          borderRadius: "50%",
+          border: `2px solid ${checked ? "#6366f1" : "#cbd5e1"}`,
+          background: checked ? "#6366f1" : "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          marginTop: "1px",
+          transition: "all 0.18s ease",
+          boxShadow: checked ? "0 0 0 3px #6366f122" : "none",
+        }}
+      >
+        {checked && (
+          <div
+            style={{
+              width: "6px",
+              height: "6px",
+              borderRadius: "50%",
+              background: "#fff",
+            }}
+          />
+        )}
+      </div>
+
+      <div style={{ flex: 1 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            marginBottom: "2px",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "13px",
+              fontWeight: 600,
+              color: checked ? "#4f46e5" : "#0f172a",
+              transition: "color 0.18s ease",
+            }}
+          >
+            {label}
+          </span>
+          {badge && (
+            <span
+              style={{
+                fontSize: "10px",
+                fontWeight: 700,
+                color: "#6366f1",
+                background: "#ede9fe",
+                padding: "1px 7px",
+                borderRadius: "20px",
+                letterSpacing: "0.03em",
+                textTransform: "uppercase",
+              }}
+            >
+              {badge}
+            </span>
+          )}
+        </div>
+        <p
+          style={{
+            fontSize: "12px",
+            color: "#94a3b8",
+            margin: 0,
+            lineHeight: "1.5",
+          }}
+        >
+          {description}
+        </p>
+      </div>
+    </label>
+  );
+}
+
+// ─── About Row ──────────────────────────────────────────────────
+
+function AboutRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "10px 0",
+        borderBottom: "1px solid #f1f3f8",
+      }}
+    >
+      <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: 500 }}>
+        {label}
+      </span>
+      <span
+        style={{
+          fontSize: "13px",
+          color: "#0f172a",
+          fontWeight: 600,
+          fontFamily: label === "Hotkey" ? "monospace" : "inherit",
+          background: label === "Hotkey" ? "#f1f5f9" : "transparent",
+          padding: label === "Hotkey" ? "2px 8px" : "0",
+          borderRadius: label === "Hotkey" ? "6px" : "0",
+        }}
+      >
+        {value}
+      </span>
+    </div>
+  );
+}
+
+// ─── Main Component ─────────────────────────────────────────────
+
 export default function SettingsPage() {
   const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
     guessPlatform(),
   );
-  const [apiKey, setApiKey] = useState("");
-  const [sarvamApiKey, setSarvamApiKey] = useState(""); // NEW
-  const [showApiKey, setShowApiKey] = useState(false);
-  const [showSarvamKey, setShowSarvamKey] = useState(false); // NEW
-  const [apiKeySaved, setApiKeySaved] = useState(false);
-  const [sarvamKeySaved, setSarvamKeySaved] = useState(false); // NEW
   const [selectedMic, setSelectedMic] = useState("");
   const [microphones, setMicrophones] = useState<AudioDevice[]>([]);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [languagePreference, setLanguagePreference] = useState<
-    "english" | "hindi"
-  >("english"); // NEW
+  const [languagePreference, setLanguagePreference] = useState<"english" | "hindi">("english");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load settings
     window.electron.getSettings().then((settings) => {
-      setApiKey(settings.groqApiKey);
-      setSarvamApiKey(settings.sarvamApiKey || "");
       setLanguagePreference(settings.languagePreference || "english");
       setSelectedMic(settings.selectedMicId);
       setSoundEnabled(settings.soundEnabled);
@@ -46,12 +374,8 @@ export default function SettingsPage() {
     window.electron
       .checkPermissions()
       .then((status) => setPlatform(status.platform))
-      .catch((error) => {
-        console.warn("[Settings] Failed to load platform:", error);
-        setPlatform(guessPlatform());
-      });
+      .catch(() => setPlatform(guessPlatform()));
 
-    // Enumerate microphones
     navigator.mediaDevices
       .enumerateDevices()
       .then((devices) => {
@@ -63,22 +387,8 @@ export default function SettingsPage() {
           }));
         setMicrophones(mics);
       })
-      .catch(() => {
-        // Mic enumeration may fail without permission
-      });
+      .catch(() => {});
   }, []);
-
-  const handleSaveApiKey = async () => {
-    await window.electron.saveApiKey(apiKey);
-    setApiKeySaved(true);
-    setTimeout(() => setApiKeySaved(false), 2000);
-  };
-
-  const handleSaveSarvamKey = async () => {
-    window.electron.saveSarvamApiKey(sarvamApiKey);
-    setSarvamKeySaved(true);
-    setTimeout(() => setSarvamKeySaved(false), 2000);
-  };
 
   const handleMicChange = (deviceId: string) => {
     setSelectedMic(deviceId);
@@ -97,304 +407,214 @@ export default function SettingsPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12 text-gray-400">Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "200px",
+          color: "#94a3b8",
+          fontSize: "14px",
+        }}
+      >
+        Loading…
+      </div>
+    );
   }
 
   const platformLabel = platform === "win32" ? "Windows" : "macOS";
   const hotkeyLabel = platform === "win32" ? "Left Alt" : "Left Option (Alt)";
+  const sttModel = languagePreference === "english" ? "Whisper v3 Turbo" : "Saaras v3";
+  const formatter = languagePreference === "english" ? "Llama 3.1 8B" : "None (raw)";
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">Settings</h1>
-      <p className="text-gray-500 text-sm mb-6">Configure StayFree.</p>
+    <div style={{ maxWidth: "600px" }}>
+      {/* Page Header */}
+      <div style={{ marginBottom: "28px" }}>
+        <h1
+          style={{
+            fontSize: "22px",
+            fontWeight: 800,
+            color: "#0f172a",
+            margin: "0 0 4px 0",
+            letterSpacing: "-0.03em",
+          }}
+        >
+          Settings
+        </h1>
+        <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0 }}>
+          Customize your StayFree experience
+        </p>
+      </div>
 
-      <div className="space-y-6">
-        {/* Language Selection - NEW */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-gray-900 mb-1">Language</h2>
-          <p className="text-xs text-gray-400 mb-4">
-            Choose your primary dictation language
-          </p>
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
 
-          <div className="space-y-3">
-            <label className="flex items-start cursor-pointer group">
-              <input
-                type="radio"
-                name="language"
-                value="english"
-                checked={languagePreference === "english"}
-                onChange={(e) =>
-                  handleLanguageChange(e.target.value as "english")
-                }
-                className="mt-1 mr-3 w-4 h-4 text-blue-500"
-              />
-              <div className="flex-1">
-                <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
-                  English
-                </div>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  Best for pure English dictation with LLM formatting
-                </p>
-              </div>
-            </label>
-
-            <label className="flex items-start cursor-pointer group">
-              <input
-                type="radio"
-                name="language"
-                value="hindi"
-                checked={languagePreference === "hindi"}
-                onChange={(e) =>
-                  handleLanguageChange(e.target.value as "hindi")
-                }
-                className="mt-1 mr-3 w-4 h-4 text-blue-500"
-              />
-              <div className="flex-1">
-                <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
-                  Hinglish
-                </div>
-                <p className="text-xs text-gray-500 mt-0.5">
-                  For mixed Hindi-English in Roman script (bhai, meeting, etc)
-                </p>
-              </div>
-            </label>
+        {/* ── Language ── */}
+        <SectionCard
+          icon={<GlobeIcon />}
+          title="Language"
+          description="Choose your primary dictation language"
+          accent="#6366f1"
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <RadioOption
+              label="English"
+              description="Pure English dictation with LLM formatting via Groq"
+              checked={languagePreference === "english"}
+              onChange={() => handleLanguageChange("english")}
+            />
+            <RadioOption
+              label="Hinglish"
+              description="Mixed Hindi-English in Roman script (bhai, meeting, etc)"
+              checked={languagePreference === "hindi"}
+              onChange={() => handleLanguageChange("hindi")}
+              badge="Beta"
+            />
           </div>
-        </div>
+        </SectionCard>
 
-        {/* Groq API Key */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-gray-900 mb-1">
-            Groq API Key
-          </h2>
-          <p className="text-xs text-gray-400 mb-3">
-            {languagePreference === "english" ? (
-              <>
-                Required for English transcription and formatting. Get your key
-                at <span className="text-blue-500">console.groq.com</span>
-              </>
-            ) : (
-              <>Not required for Hinglish (using Sarvam AI)</>
-            )}
-          </p>
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <input
-                type={showApiKey ? "text" : "password"}
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="gsk_..."
-                disabled={languagePreference === "hindi"}
-                className={`w-full px-3 py-2 pr-10 rounded-lg border border-gray-300 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  languagePreference === "hindi"
-                    ? "bg-gray-100 text-gray-400"
-                    : ""
-                }`}
-              />
-              <button
-                onClick={() => setShowApiKey(!showApiKey)}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                {showApiKey ? (
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                    <line x1="1" y1="1" x2="23" y2="23" />
-                  </svg>
-                ) : (
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                )}
-              </button>
-            </div>
-            <button
-              onClick={handleSaveApiKey}
-              disabled={languagePreference === "hindi"}
-              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
-                apiKeySaved
-                  ? "bg-green-500 text-white"
-                  : languagePreference === "hindi"
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-blue-500 text-white hover:bg-blue-600"
-              }`}
+        {/* ── Microphone ── */}
+        <SectionCard
+          icon={<MicIcon />}
+          title="Microphone"
+          description="Select input device for dictation"
+          accent="#0ea5e9"
+        >
+          <div style={{ position: "relative" }}>
+            <select
+              value={selectedMic}
+              onChange={(e) => handleMicChange(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "10px 36px 10px 14px",
+                borderRadius: "10px",
+                border: "1.5px solid #e8eaf0",
+                fontSize: "13px",
+                fontWeight: 500,
+                color: "#0f172a",
+                background: "#fafbff",
+                appearance: "none",
+                WebkitAppearance: "none",
+                outline: "none",
+                cursor: "pointer",
+                transition: "border-color 0.18s ease, box-shadow 0.18s ease",
+              }}
+              onFocus={(e) => {
+                (e.target as HTMLSelectElement).style.borderColor = "#6366f1";
+                (e.target as HTMLSelectElement).style.boxShadow = "0 0 0 3px #6366f115";
+              }}
+              onBlur={(e) => {
+                (e.target as HTMLSelectElement).style.borderColor = "#e8eaf0";
+                (e.target as HTMLSelectElement).style.boxShadow = "none";
+              }}
             >
-              {apiKeySaved ? "Saved" : "Save"}
-            </button>
-          </div>
-        </div>
-
-        {/* Sarvam AI API Key - NEW (shown only when Hindi selected) */}
-        {languagePreference === "hindi" && (
-          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-            <h2 className="text-sm font-semibold text-gray-900 mb-1">
-              Sarvam AI API Key
-            </h2>
-            <p className="text-xs text-gray-400 mb-3">
-              Required for Hinglish transcription. Get free ₹1000 credits at{" "}
-              <a
-                href="https://dashboard.sarvam.ai/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 underline hover:text-blue-600"
-              >
-                dashboard.sarvam.ai
-              </a>
-            </p>
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <input
-                  type={showSarvamKey ? "text" : "password"}
-                  value={sarvamApiKey}
-                  onChange={(e) => setSarvamApiKey(e.target.value)}
-                  placeholder="your_sarvam_api_key"
-                  className="w-full px-3 py-2 pr-10 rounded-lg border border-gray-300 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-                <button
-                  onClick={() => setShowSarvamKey(!showSarvamKey)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  {showSarvamKey ? (
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                      <line x1="1" y1="1" x2="23" y2="23" />
-                    </svg>
-                  ) : (
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                      <circle cx="12" cy="12" r="3" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-              <button
-                onClick={handleSaveSarvamKey}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${
-                  sarvamKeySaved
-                    ? "bg-green-500 text-white"
-                    : "bg-blue-500 text-white hover:bg-blue-600"
-                }`}
-              >
-                {sarvamKeySaved ? "Saved" : "Save"}
-              </button>
+              <option value="">System Default</option>
+              {microphones.map((mic) => (
+                <option key={mic.deviceId} value={mic.deviceId}>
+                  {mic.label}
+                </option>
+              ))}
+            </select>
+            <div
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                pointerEvents: "none",
+                color: "#94a3b8",
+              }}
+            >
+              <ChevronIcon />
             </div>
           </div>
-        )}
+        </SectionCard>
 
-        {/* Microphone Selection */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-gray-900 mb-1">
-            Microphone
-          </h2>
-          <p className="text-xs text-gray-400 mb-3">
-            Select which microphone to use for dictation.
-          </p>
-          <select
-            value={selectedMic}
-            onChange={(e) => handleMicChange(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
+        {/* ── Sound Effects ── */}
+        <SectionCard
+          icon={<SoundIcon />}
+          title="Sound Effects"
+          description="Audio feedback when recording starts and stops"
+          accent="#10b981"
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "4px 0",
+            }}
           >
-            <option value="">System Default</option>
-            {microphones.map((mic) => (
-              <option key={mic.deviceId} value={mic.deviceId}>
-                {mic.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Sound Effects */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-semibold text-gray-900 mb-1">
-                Sound Effects
-              </h2>
-              <p className="text-xs text-gray-400">
-                Play a sound when recording starts and stops.
-              </p>
-            </div>
-            <button
-              onClick={handleSoundToggle}
-              className={`relative w-11 h-6 rounded-full transition-colors ${
-                soundEnabled ? "bg-blue-500" : "bg-gray-300"
-              }`}
-            >
               <div
-                className="absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform"
                 style={{
-                  transform: soundEnabled
-                    ? "translateX(22px)"
-                    : "translateX(2px)",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  color: "#0f172a",
+                  marginBottom: "2px",
                 }}
-              />
-            </button>
+              >
+                {soundEnabled ? "Enabled" : "Disabled"}
+              </div>
+              <div style={{ fontSize: "12px", color: "#94a3b8" }}>
+                {soundEnabled
+                  ? "You'll hear a beep on record start/stop"
+                  : "Silent mode — no audio cues"}
+              </div>
+            </div>
+            <Toggle
+              checked={soundEnabled}
+              onChange={handleSoundToggle}
+              accent="#10b981"
+            />
           </div>
-        </div>
+        </SectionCard>
 
-        {/* About */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-gray-900 mb-3">About</h2>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-gray-500">Platform</span>
-              <span className="text-gray-900">{platformLabel}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">Language Mode</span>
-              <span className="text-gray-900">
-                {languagePreference === "english" ? "English" : "Hinglish"}
+        {/* ── About ── */}
+        <SectionCard
+          icon={<InfoIcon />}
+          title="About"
+          description="System information and configuration details"
+          accent="#f59e0b"
+        >
+          <div>
+            <AboutRow label="Platform" value={platformLabel} />
+            <AboutRow
+              label="Language Mode"
+              value={languagePreference === "english" ? "English" : "Hinglish"}
+            />
+            <AboutRow label="STT Model" value={sttModel} />
+            <AboutRow label="Formatter" value={formatter} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px 0 0 0",
+              }}
+            >
+              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: 500 }}>
+                Hotkey
               </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">STT Model</span>
-              <span className="text-gray-900">
-                {languagePreference === "english"
-                  ? "Whisper v3 Turbo"
-                  : "Saaras v3"}
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: "#0f172a",
+                  fontWeight: 700,
+                  fontFamily: "monospace",
+                  background: "#f1f5f9",
+                  padding: "3px 10px",
+                  borderRadius: "6px",
+                  border: "1px solid #e2e8f0",
+                }}
+              >
+                {hotkeyLabel}
               </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">Formatter</span>
-              <span className="text-gray-900">
-                {languagePreference === "english"
-                  ? "Llama 3.1 8B"
-                  : "None (raw)"}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">Hotkey</span>
-              <span className="text-gray-900 font-mono">{hotkeyLabel}</span>
             </div>
           </div>
-        </div>
+        </SectionCard>
+
       </div>
     </div>
   );
