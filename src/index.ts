@@ -122,16 +122,33 @@ class PipelineError extends Error {
 const HINDI_STREAM_MAX_ATTEMPTS = 3;
 const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 1500;
 
+/** Safety net: max time the app can stay in "processing" state before force-reset */
+const PROCESSING_TIMEOUT_MS = 30_000;
+
 // Prevent duplicate app instances (and duplicate tray icons).
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
 if (!gotSingleInstanceLock) {
   app.quit();
 }
 
+// --- Global error handler: prevent native Electron crash dialog ---
+process.on("uncaughtException", (error) => {
+  console.error("[Main] Uncaught exception (handled gracefully):", error);
+  // If we're stuck in processing state due to the error, force reset
+  if (isProcessing) {
+    console.warn("[Main] Force-resetting processing state after uncaught exception");
+    isProcessing = false;
+    activeRecordingSource = null;
+    updateTrayState("idle");
+    sendWidgetState("idle");
+  }
+});
+
 // --- App State ---
 type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
 let isProcessing = false; // Guard against concurrent pipeline runs
+let processingTimer: ReturnType<typeof setTimeout> | null = null; // Failsafe timer
 type RecordingSource = "hotkey" | "widget" | "command" | null;
 let activeRecordingSource: RecordingSource = null;
 let lastRecordingSource: RecordingSource = null;
@@ -417,7 +434,7 @@ async function transcribeHindiWithRetries(
 
     try {
       if (shouldReplay) {
-        streamer.disconnect();
+        streamer.resetSession();
         await streamer.connect();
         streamer.markRecordingStart();
 
@@ -1152,6 +1169,21 @@ app.on("ready", () => {
     }
     isProcessing = true;
 
+    // Start processing timeout failsafe — ensures we never stay stuck forever
+    if (processingTimer) clearTimeout(processingTimer);
+    processingTimer = setTimeout(() => {
+      if (isProcessing) {
+        console.error(`[Pipeline] ✗ Processing timeout after ${PROCESSING_TIMEOUT_MS}ms — force resetting`);
+        getSarvamStreamTranscriber().resetSession();
+        clearHindiSession();
+        activeRecordingSource = null;
+        isProcessing = false;
+        updateTrayState("idle");
+        sendWidgetState("idle");
+      }
+      processingTimer = null;
+    }, PROCESSING_TIMEOUT_MS);
+
     // Capture source before any async work (activeRecordingSource may change)
     const capturedSource = lastRecordingSource;
 
@@ -1390,17 +1422,19 @@ app.on("ready", () => {
         message: mappedError.message,
       });
     } finally {
-      // Ensure streaming transcriber is disconnected (no-op if already done)
-      getSarvamStreamTranscriber().disconnect();
+      // Reset transcript state — connection stays alive for next recording
+      getSarvamStreamTranscriber().resetSession();
       clearHindiSession();
       activeRecordingSource = null;
       isProcessing = false;
+      // Clear the processing timeout failsafe
+      if (processingTimer) {
+        clearTimeout(processingTimer);
+        processingTimer = null;
+      }
       updateTrayState("idle");
       sendWidgetState("idle");
-      // Re-warm the Sarvam connection after each recording so next use is instant
-      warmSarvamConnection().catch((err) => {
-        console.warn("[Sarvam Stream] Re-warm failed:", err);
-      });
+      // No re-warm needed — connection stays alive via keepalive pings
     }
   });
 });
@@ -1425,6 +1459,9 @@ app.on("before-quit", () => {
   // Stop hotkey listener
   const hotkeyManager = getHotkeyManager();
   hotkeyManager.stop();
+
+  // Shut down Sarvam WebSocket cleanly (no auto-reconnect)
+  getSarvamStreamTranscriber().shutdown();
 
   if (tray) {
     tray.destroy();
