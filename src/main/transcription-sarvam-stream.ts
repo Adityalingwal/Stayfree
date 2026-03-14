@@ -40,8 +40,8 @@ const KEEPALIVE_INTERVAL_MS = 30_000;
 /** Delay before auto-reconnect after unexpected close */
 const RECONNECT_DELAY_MS = 1_000;
 
-/** Maximum consecutive reconnect attempts before backing off */
-const MAX_RECONNECT_ATTEMPTS = 5;
+/** Maximum consecutive reconnect attempts before giving up */
+const MAX_RECONNECT_ATTEMPTS = 2;
 
 /**
  * Wrap raw PCM16 samples in a minimal WAV container.
@@ -143,6 +143,9 @@ export class SarvamStreamingTranscriber {
       console.log("[Sarvam Stream] Waiting for in-flight connection...");
       return this.connectPromise;
     }
+
+    // Cancel any pending auto-reconnect — this manual connect supersedes it
+    this.cancelReconnect();
 
     // Clean up any dead socket without throwing
     this.cleanupSocket();
