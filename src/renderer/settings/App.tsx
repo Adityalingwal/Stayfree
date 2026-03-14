@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import DictionaryPage from "./pages/DictionaryPage";
 import SettingsPage from "./pages/SettingsPage";
+import NotesPage from "./pages/NotesPage";
 
 type Page = "home" | "dictionary" | "snippets" | "style" | "notes" | "settings";
 
@@ -169,12 +170,23 @@ export default function App() {
     window.electron.getAppVersion().then(setVersion);
   }, []);
 
+  useEffect(() => {
+    const cleanup = window.electron.onNavigateToTab?.((tab) => {
+      if (["home", "dictionary", "snippets", "style", "notes", "settings"].includes(tab)) {
+        setActivePage(tab as Page);
+      }
+    });
+    return () => cleanup?.();
+  }, []);
+
   const renderPage = () => {
     switch (activePage) {
       case "home":
         return <HomePage />;
       case "dictionary":
         return <DictionaryPage />;
+      case "notes":
+        return <NotesPage />;
       case "settings":
         return <SettingsPage />;
       default:

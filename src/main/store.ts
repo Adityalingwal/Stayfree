@@ -13,6 +13,61 @@ export interface TranscriptionEntry {
   audioFilePath?: string;
 }
 
+export type StylePreset =
+  | "default"
+  | "bullets"
+  | "action-items"
+  | "casual-memo"
+  | "formal-doc"
+  | "tweet-thread"
+  | "my-style";
+
+export interface ExtractedTask {
+  person: string;   // "Me", "John", etc.
+  action: string;   // "Send the report"
+  deadline: string; // "by Friday", "ASAP", "unspecified"
+}
+
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: number;
+  citedNoteIds?: string[];
+}
+
+export interface Collection {
+  id: string;
+  name: string;
+  description: string;
+  noteIds: string[];
+  suggested: boolean;   // true = AI-suggested, false = user-created
+  dismissed: boolean;   // true = user dismissed this suggestion
+  createdAt: number;
+  updatedAt: number;
+}
+
+export interface Note {
+  id: string;              // crypto.randomUUID()
+  title: string;           // Auto-generated from first ~60 chars, user-editable
+  content: string;         // Note text (formatted for voice, raw for text/clipboard)
+  rawContent: string;      // Original raw transcription before any formatting
+  createdAt: number;       // Date.now()
+  updatedAt: number;       // Date.now()
+  source: "voice" | "text" | "clipboard" | "transcription";
+  pinned: boolean;
+  archived: boolean;
+  tags: string[];
+  // Phase 2 additions
+  cleanContent: string;     // AI-cleaned version ("" until processed)
+  aiProcessed: boolean;     // true after cleanup+tagging completes
+  aiProcessing: boolean;    // true while background AI is running
+  stylePreset: StylePreset; // current style applied
+  styledContent: string;    // content reformatted to selected style ("" until requested)
+  suggestedTags: string[];  // AI-suggested tags (user can approve/remove)
+  tasks: ExtractedTask[];   // AI-extracted action items
+}
+
 interface StoreSchema {
   groqApiKey: string;
   sarvamApiKey: string; // NEW: Sarvam AI API key
@@ -28,6 +83,11 @@ interface StoreSchema {
   selectedMicId: string; // '' = system default
   transcriptionHistory: TranscriptionEntry[];
   soundEnabled: boolean;
+  notes: Note[];
+  chatHistory: ChatMessage[];
+  collections: Collection[];
+  writingStyleExamples: string[];
+  writingStylePrompt: string;
 }
 
 const store = new Store<StoreSchema>({
@@ -46,6 +106,11 @@ const store = new Store<StoreSchema>({
     selectedMicId: "",
     transcriptionHistory: [],
     soundEnabled: true,
+    notes: [],
+    chatHistory: [],
+    collections: [],
+    writingStyleExamples: [],
+    writingStylePrompt: "",
   },
 });
 

@@ -1,5 +1,5 @@
-import Groq from "groq-sdk";
 import store from "./store";
+import { getGroqClient } from "./groq-client";
 
 /**
  * Text Formatting Service
@@ -16,20 +16,6 @@ import store from "./store";
  *    - "exclamation mark" → !
  * 4. Apply custom dictionary replacements
  */
-
-let groqClient: Groq | null = null;
-
-function initializeGroq(): void {
-  const apiKey = process.env.GROQ_API_KEY || store.get("groqApiKey");
-
-  if (!apiKey) {
-    console.error("[Formatting] ERROR: GROQ_API_KEY not found");
-    return;
-  }
-
-  groqClient = new Groq({ apiKey });
-  console.log("[Formatting] Groq client initialized");
-}
 
 function buildSystemPrompt(): string {
   // Get user's custom dictionary for the prompt
@@ -76,16 +62,8 @@ Return ONLY the formatted text. No explanations, no quotes, no extra commentary.
 }
 
 export async function formatText(rawText: string): Promise<string> {
-  if (!groqClient) {
-    initializeGroq();
-  }
-
-  if (!groqClient) {
-    console.error("[Formatting] Cannot format - Groq client not initialized");
-    return rawText; // Return original if formatting fails
-  }
-
   try {
+    const groqClient = getGroqClient();
     const startTime = Date.now();
     console.log(`[Formatting] Formatting: "${rawText}"`);
 

@@ -146,6 +146,67 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+function SaveAsNoteButton({
+  entry,
+}: {
+  entry: TranscriptionEntry;
+}) {
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = useCallback(async () => {
+    if (saved) return;
+    try {
+      await window.electron.promoteToNote({
+        text: entry.text,
+        rawText: entry.rawText,
+        timestamp: entry.timestamp,
+        durationMs: entry.durationMs,
+      });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    } catch {
+      // ignore
+    }
+  }, [entry, saved]);
+
+  return (
+    <button
+      onClick={handleSave}
+      title={saved ? "Saved to Notes!" : "Save as Note"}
+      style={{
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        color: saved ? "#7c3aed" : "#cbd5e1",
+        padding: "4px",
+        borderRadius: "6px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        transition: "color 0.2s",
+      }}
+      onMouseEnter={(e) => {
+        if (!saved)
+          (e.currentTarget as HTMLButtonElement).style.color = "#64748b";
+      }}
+      onMouseLeave={(e) => {
+        if (!saved)
+          (e.currentTarget as HTMLButtonElement).style.color = "#cbd5e1";
+      }}
+    >
+      {saved ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
 function DownloadButton({ filename }: { filename?: string }) {
   const [status, setStatus] = useState<"idle" | "downloading" | "success">(
     "idle",
@@ -599,6 +660,7 @@ function TranscriptionRow({
         }}
       >
         <CopyButton text={entry.text} />
+        <SaveAsNoteButton entry={entry} />
         <DownloadButton filename={entry.audioFilePath} />
       </div>
     </div>
