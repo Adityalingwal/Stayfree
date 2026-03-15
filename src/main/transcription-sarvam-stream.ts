@@ -271,6 +271,21 @@ export class SarvamStreamingTranscriber {
     this.reconnectAttempts = 0;
   }
 
+  /**
+   * Force a fresh connection by closing the current one and reconnecting.
+   * Used for RETRY scenarios where the server may have stale buffered audio
+   * from a previous flush attempt on the same connection (e.g., flush timed
+   * out on client but server still processing — its late response would
+   * corrupt the next flush result if we reuse the same connection).
+   */
+  async reconnect(): Promise<void> {
+    this.resetSession();
+    this.cancelReconnect();
+    this.stopKeepalive();
+    this.cleanupSocket();
+    await this.connect();
+  }
+
   // ─── Recording lifecycle ────────────────────────────────────────────────
 
   /** Call this when recording actually starts (after connect/reuse) for accurate latency logs. */
