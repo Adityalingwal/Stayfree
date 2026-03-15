@@ -434,8 +434,9 @@ async function transcribeHindiWithRetries(
 
     try {
       if (shouldReplay) {
-        streamer.resetSession();
-        await streamer.connect();
+        // Force fresh connection — reusing the same WS after a flush timeout
+        // causes stale server responses to corrupt the next flush result
+        await streamer.reconnect();
         streamer.markRecordingStart();
 
         for (const pcmChunk of session.pcmChunks) {
