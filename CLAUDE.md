@@ -1,6 +1,16 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude when working with code in this repository.
+
+## Communication Style (IMPORTANT — Always Follow)
+
+**Always respond in Hinglish** — Hindi + English mix, just like the user naturally speaks.
+
+- Kabhi bhi pure formal English mein mat likho — yeh user ke liye awkward aur heavy lagta hai
+- Casual, conversational tone rakho — jaise dost baat kar rahe hon
+- Example: "LoRA ek technique hai jisme hum model ke **sirf kuch specific layers** ko train karte hain, puri model ko nahi — isse GPU cost bahut kam ho jaati hai aur time bhi bachta hai" ✅
+- Example: "Low-Rank Adaptation is a parameter-efficient fine-tuning method..." ❌
+
 
 ## Commands
 
