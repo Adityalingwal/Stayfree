@@ -7,18 +7,20 @@ import SwiftUI
 struct MRMURApp: App {
     @State private var appVM: AppViewModel
     @State private var settings: Settings
-    @State private var hotkeyService: HotkeyService
-    @State private var audioService: AudioService
-    @State private var permissionService: PermissionService
 
     init() {
         let settings = Settings()
         let appVM = AppViewModel(settings: settings)
+
+        // Services
         let hotkeyService = HotkeyService()
         let audioService = AudioService()
         let permissionService = PermissionService()
+        let transcriptionRouter = TranscriptionRouter(settings: settings, groqAPIKey: APIKeys.groq)
+        let formattingService = FormattingService(settings: settings, groqAPIKey: APIKeys.groq)
+        let pasteService = PasteService()
 
-        // Wire hotkey callbacks to AppViewModel
+        // Wire hotkey callbacks → AppViewModel (minimal callback, async dispatch inside)
         hotkeyService.onRecordingStart = { [weak appVM] in
             appVM?.handleRecordingStart()
         }
@@ -26,21 +28,24 @@ struct MRMURApp: App {
             appVM?.handleRecordingStop()
         }
 
-        // Inject services into AppViewModel
+        // Inject services
         appVM.hotkeyService = hotkeyService
         appVM.audioService = audioService
         appVM.permissionService = permissionService
+        appVM.transcriptionService = transcriptionRouter
+        appVM.formattingService = formattingService
+        appVM.pasteService = pasteService
 
         // Store as @State
         _appVM = State(initialValue: appVM)
         _settings = State(initialValue: settings)
-        _hotkeyService = State(initialValue: hotkeyService)
-        _audioService = State(initialValue: audioService)
-        _permissionService = State(initialValue: permissionService)
 
-        // Start hotkey listener if permissions are granted
+        // Start hotkey listener if accessibility granted
         if permissionService.checkAccessibility() {
             hotkeyService.start()
+            print("[App] Hotkey listener started")
+        } else {
+            print("[App] Accessibility not granted — hotkey disabled")
         }
 
         print("[App] MRMUR initialized — language: \(settings.language.rawValue)")
