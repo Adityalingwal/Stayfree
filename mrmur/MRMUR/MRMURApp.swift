@@ -18,7 +18,12 @@ struct MRMURApp: App {
         let hotkeyService = HotkeyService()
         let audioService = AudioService()
         let permissionService = PermissionService()
-        let transcriptionRouter = TranscriptionRouter(settings: settings, groqAPIKey: APIKeys.groq)
+        let sarvamKey: String? = {
+            if let env = ProcessInfo.processInfo.environment["SARVAM_API_KEY"], !env.isEmpty { return env }
+            if let plist = Bundle.main.object(forInfoDictionaryKey: "SARVAM_API_KEY") as? String, !plist.isEmpty { return plist }
+            return nil
+        }()
+        let transcriptionRouter = TranscriptionRouter(settings: settings, groqAPIKey: APIKeys.groq, sarvamAPIKey: sarvamKey)
         let formattingService = FormattingService(settings: settings, groqAPIKey: APIKeys.groq)
         let pasteService = PasteService()
         let soundService = SoundService(isEnabled: { [weak settings] in settings?.soundEnabled ?? true })
@@ -40,6 +45,7 @@ struct MRMURApp: App {
         appVM.transcriptionService = transcriptionRouter
         appVM.formattingService = formattingService
         appVM.pasteService = pasteService
+        appVM.sarvamService = transcriptionRouter.sarvamService
 
         // Store as @State
         _appVM = State(initialValue: appVM)
@@ -76,6 +82,18 @@ struct MRMURApp: App {
             print("[App] Hotkey listener started")
         } else {
             print("[App] Accessibility not granted — hotkey disabled")
+        }
+
+        // Warm Sarvam connection if Hindi mode
+        if settings.language == .hindi, let sarvam = transcriptionRouter.sarvamService {
+            Task {
+                do {
+                    try await sarvam.connect()
+                    print("[App] Sarvam keep-warm connection established")
+                } catch {
+                    print("[App] Sarvam keep-warm failed (will retry on first use): \(error.localizedDescription)")
+                }
+            }
         }
 
         print("[App] MRMUR initialized — language: \(settings.language.rawValue)")

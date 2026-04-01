@@ -20,6 +20,9 @@ final class AppViewModel {
     /// Callback for widget window to resize on state changes.
     var onStateChange: ((AppState, RecordingSource?) -> Void)?
 
+    /// Reference to Sarvam streaming service for Hindi mode (connect/stream/flush).
+    var sarvamService: SarvamStreamingService?
+
     /// Guard against concurrent pipeline runs (matches Electron isProcessing pattern).
     private var isProcessing = false
 
@@ -34,9 +37,29 @@ final class AppViewModel {
         updateState(.recording, source: .hotkey)
         lastError = nil
 
+        let isHindi = settings.language == .hindi
+
+        // Hindi mode: connect Sarvam + wire audio chunk streaming
+        if isHindi, let sarvam = sarvamService {
+            Task { @MainActor in
+                do {
+                    try await sarvam.connect()
+                    await sarvam.markRecordingStart()
+                } catch {
+                    print("[AppVM] Sarvam connect failed: \(error)")
+                    // Continue anyway — flush will fail gracefully
+                }
+            }
+            // Wire audio chunks → Sarvam
+            audioService?.onAudioChunk = { [weak sarvam] chunkData in
+                guard let sarvam else { return }
+                Task { await sarvam.sendChunk(chunkData) }
+            }
+        }
+
         do {
-            try audioService?.startCapture(hindiMode: settings.language == .hindi)
-            print("[AppVM] Recording started (hotkey)")
+            try audioService?.startCapture(hindiMode: isHindi)
+            print("[AppVM] Recording started (hotkey, hindi=\(isHindi))")
         } catch {
             print("[AppVM] Failed to start capture: \(error)")
             resetState()
@@ -57,9 +80,27 @@ final class AppViewModel {
         updateState(.recording, source: .widget)
         lastError = nil
 
+        let isHindi = settings.language == .hindi
+
+        // Hindi mode: connect Sarvam + wire audio chunk streaming
+        if isHindi, let sarvam = sarvamService {
+            Task { @MainActor in
+                do {
+                    try await sarvam.connect()
+                    await sarvam.markRecordingStart()
+                } catch {
+                    print("[AppVM] Sarvam connect failed: \(error)")
+                }
+            }
+            audioService?.onAudioChunk = { [weak sarvam] chunkData in
+                guard let sarvam else { return }
+                Task { await sarvam.sendChunk(chunkData) }
+            }
+        }
+
         do {
-            try audioService?.startCapture(hindiMode: settings.language == .hindi)
-            print("[AppVM] Recording started (widget)")
+            try audioService?.startCapture(hindiMode: isHindi)
+            print("[AppVM] Recording started (widget, hindi=\(isHindi))")
         } catch {
             print("[AppVM] Failed to start capture: \(error)")
             resetState()
@@ -76,6 +117,10 @@ final class AppViewModel {
     func cancelRecording() {
         guard state == .recording else { return }
         audioService?.cancelCapture()
+        audioService?.onAudioChunk = nil
+        if let sarvam = sarvamService {
+            Task { await sarvam.resetSession() }
+        }
         resetState()
         print("[AppVM] Recording cancelled")
     }
@@ -95,6 +140,7 @@ final class AppViewModel {
         Task { @MainActor in
             defer {
                 isProcessing = false
+                audioService?.onAudioChunk = nil
                 resetState()
             }
 

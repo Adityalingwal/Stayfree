@@ -1,14 +1,21 @@
 import Foundation
 
 /// Routes transcription to the correct backend based on language preference.
-/// English → Groq Whisper. Hindi → Sarvam (wired in Phase 5).
+/// English → Groq Whisper (REST, sends full audio after recording).
+/// Hindi → Sarvam Streaming (WebSocket, streams chunks during recording, flush on stop).
 struct TranscriptionRouter: TranscriptionServiceProtocol {
     private let settings: Settings
     private let groqService: GroqTranscriptionService
+    let sarvamService: SarvamStreamingService?
 
-    init(settings: Settings, groqAPIKey: String) {
+    init(settings: Settings, groqAPIKey: String, sarvamAPIKey: String?) {
         self.settings = settings
         self.groqService = GroqTranscriptionService(apiKey: groqAPIKey)
+        if let sarvamKey = sarvamAPIKey, !sarvamKey.isEmpty {
+            self.sarvamService = SarvamStreamingService(apiKey: sarvamKey)
+        } else {
+            self.sarvamService = nil
+        }
     }
 
     func transcribe(audio: Data) async throws -> String {
@@ -18,11 +25,13 @@ struct TranscriptionRouter: TranscriptionServiceProtocol {
             return try await groqService.transcribe(audio: audio)
 
         case .hindi:
-            // Sarvam streaming handles Hindi transcription separately in the pipeline.
-            // This REST fallback path is for non-streaming scenarios.
-            // Will be wired in Phase 5 with SarvamStreamingService.
-            print("[Router] Hindi REST fallback — not yet implemented")
-            throw PipelineError.transcriptionFailed("Hindi transcription not yet implemented")
+            // Hindi uses Sarvam streaming — audio was already streamed during recording.
+            // This path is reached for flush (getting the transcript after recording stops).
+            guard let sarvam = sarvamService else {
+                throw PipelineError.transcriptionFailed("Sarvam API key not configured")
+            }
+            print("[Router] Using Sarvam streaming flush for Hindi")
+            return try await sarvam.flush()
         }
     }
 }
