@@ -9,6 +9,9 @@ struct MRMURApp: App {
     @State private var settings: Settings
     private let widgetWindow: FloatingWidgetWindow
     private let soundService: SoundService
+    private let settingsWindowController = SettingsWindowController()
+    private let onboardingWindowController = OnboardingWindowController()
+    private let permissionService: PermissionService
 
     init() {
         let settings = Settings()
@@ -18,6 +21,7 @@ struct MRMURApp: App {
         let hotkeyService = HotkeyService()
         let audioService = AudioService()
         let permissionService = PermissionService()
+        self.permissionService = permissionService
         let sarvamKey: String? = {
             if let env = ProcessInfo.processInfo.environment["SARVAM_API_KEY"], !env.isEmpty { return env }
             if let plist = Bundle.main.object(forInfoDictionaryKey: "SARVAM_API_KEY") as? String, !plist.isEmpty { return plist }
@@ -96,14 +100,31 @@ struct MRMURApp: App {
             }
         }
 
+        // Show onboarding on first launch
+        if !settings.onboardingComplete {
+            onboardingWindowController.show(
+                settings: settings,
+                permissionService: permissionService,
+                onComplete: { [hotkeyService, permissionService] in
+                    // Start hotkey after onboarding grants accessibility
+                    if permissionService.checkAccessibility() {
+                        hotkeyService.start()
+                        print("[App] Hotkey listener started after onboarding")
+                    }
+                }
+            )
+        }
+
         print("[App] MRMUR initialized — language: \(settings.language.rawValue)")
     }
 
     var body: some Scene {
         MenuBarExtra("MRMUR", systemImage: "mic.fill") {
-            MenuBarView()
-                .environment(appVM)
-                .environment(settings)
+            MenuBarView(onOpenSettings: { [settingsWindowController, appVM, settings] in
+                settingsWindowController.show(appVM: appVM, settings: settings)
+            })
+            .environment(appVM)
+            .environment(settings)
         }
         .menuBarExtraStyle(.menu)
     }

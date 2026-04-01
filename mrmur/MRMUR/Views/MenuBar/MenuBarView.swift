@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     @Environment(AppViewModel.self) private var appVM
+    var onOpenSettings: (() -> Void)?
 
     var body: some View {
         VStack {
@@ -13,8 +14,7 @@ struct MenuBarView: View {
             Divider()
 
             Button("Open Settings") {
-                // Settings window will be wired in Phase 6
-                print("[MenuBar] Open Settings tapped")
+                onOpenSettings?()
             }
             .keyboardShortcut(",", modifiers: .command)
 
