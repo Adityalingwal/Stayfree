@@ -17,6 +17,9 @@ final class AppViewModel {
     var formattingService: (any FormattingServiceProtocol)?
     var pasteService: (any PasteServiceProtocol)?
 
+    /// Callback for widget window to resize on state changes.
+    var onStateChange: ((AppState, RecordingSource?) -> Void)?
+
     /// Guard against concurrent pipeline runs (matches Electron isProcessing pattern).
     private var isProcessing = false
 
@@ -28,8 +31,7 @@ final class AppViewModel {
 
     func handleRecordingStart() {
         guard state == .idle, !isProcessing else { return }
-        state = .recording
-        activeRecordingSource = .hotkey
+        updateState(.recording, source: .hotkey)
         lastError = nil
 
         do {
@@ -52,8 +54,7 @@ final class AppViewModel {
 
     func startWidgetRecording() {
         guard state == .idle, !isProcessing else { return }
-        state = .recording
-        activeRecordingSource = .widget
+        updateState(.recording, source: .widget)
         lastError = nil
 
         do {
@@ -88,7 +89,7 @@ final class AppViewModel {
         }
         guard !isProcessing else { return }
 
-        state = .processing
+        updateState(.processing)
         isProcessing = true
 
         Task { @MainActor in
@@ -168,9 +169,21 @@ final class AppViewModel {
 
     // MARK: - State
 
+    private func updateState(_ newState: AppState, source: RecordingSource? = nil) {
+        state = newState
+        switch newState {
+        case .idle:
+            activeRecordingSource = nil
+        case .recording:
+            if let source { activeRecordingSource = source }
+        case .processing:
+            break // preserve activeRecordingSource from recording phase
+        }
+        onStateChange?(state, activeRecordingSource)
+    }
+
     func resetState() {
-        state = .idle
-        activeRecordingSource = nil
+        updateState(.idle)
     }
 }
 
