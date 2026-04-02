@@ -80,12 +80,13 @@ struct MRMURApp: App {
             }
         }
 
-        // Start hotkey listener if accessibility granted
-        if permissionService.checkAccessibility() {
+        // Start hotkey listener if accessibility granted AND onboarding done
+        // (avoids double start() — onboarding completion also calls start())
+        if permissionService.checkAccessibility() && settings.onboardingComplete {
             hotkeyService.start()
             print("[App] Hotkey listener started")
         } else {
-            print("[App] Accessibility not granted — hotkey disabled")
+            print("[App] Hotkey deferred (accessibility: \(permissionService.checkAccessibility()), onboarding: \(settings.onboardingComplete))")
         }
 
         // Warm Sarvam connection if Hindi mode

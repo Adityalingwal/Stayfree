@@ -16,6 +16,10 @@ final class HotkeyService: HotkeyServiceProtocol {
     // Left Option = keycode 58
     private let dictationKeyCode: CGKeyCode = 58
 
+    deinit {
+        stop()
+    }
+
     func start() {
         guard eventTap == nil else { return }
 

@@ -45,6 +45,7 @@ struct WidgetError: Equatable {
         case transcriptionFailed = "TRANSCRIPTION_FAILED"
         case formattingFailed = "FORMATTING_FAILED"
         case pasteFailed = "PASTE_FAILED"
+        case cancelled = "CANCELLED"
     }
 }
 

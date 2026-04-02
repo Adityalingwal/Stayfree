@@ -32,7 +32,7 @@ enum PipelineError: Error, LocalizedError {
         case .transcriptionFailed: return WidgetError(code: .transcriptionFailed, message: errorDescription!)
         case .formattingFailed: return WidgetError(code: .formattingFailed, message: errorDescription!)
         case .pasteFailed: return WidgetError(code: .pasteFailed, message: errorDescription!)
-        case .cancelled: return WidgetError(code: .serverError, message: errorDescription!)
+        case .cancelled: return WidgetError(code: .cancelled, message: errorDescription!)
         }
     }
 }
