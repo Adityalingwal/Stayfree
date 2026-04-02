@@ -250,11 +250,12 @@ final class DictationPipelineTests: XCTestCase {
 
         try await Task.sleep(for: .milliseconds(200))
 
-        // Formatting failure should show error, not crash
+        // Formatting failure should show error and reset state
+        XCTAssertNotNil(appVM.lastError, "Should show error for formatting failure")
         XCTAssertEqual(appVM.state, .idle)
     }
 
-    func testPasteFailureCopiesClipboard() async throws {
+    func testPasteFailureHandledGracefully() async throws {
         paste.shouldSucceed = false
 
         appVM.handleRecordingStart()

@@ -16,7 +16,7 @@ struct IdleStateView: View {
             .onHover { hovering in
                 isHovering = hovering
             }
-            .onTapGesture(perform: onTap)
             .contentShape(Rectangle())
+            .onTapGesture(perform: onTap)
     }
 }

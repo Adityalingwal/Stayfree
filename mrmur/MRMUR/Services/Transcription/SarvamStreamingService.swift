@@ -156,33 +156,40 @@ actor SarvamStreamingService {
 
     /// Send flush signal and wait for the final transcript.
     /// Accumulates any VAD interim segments with the flush response.
+    ///
+    /// IMPORTANT: Continuation is set BEFORE sending flush to avoid race condition
+    /// where server responds before continuation is registered (causing missed response → timeout).
     func flush(timeoutSeconds: TimeInterval = defaultFlushTimeoutSeconds) async throws -> String {
         guard let ws = wsTask, ws.state == .running else {
             throw PipelineError.transcriptionFailed("Sarvam not connected")
         }
 
-        // Send flush signal
-        let flushJSON = #"{"type":"flush"}"#
-        do {
-            try await ws.send(.string(flushJSON))
-            print("[Sarvam] Flush sent (timeout=\(timeoutSeconds)s)")
-        } catch {
-            throw PipelineError.transcriptionFailed("Failed to send flush: \(error.localizedDescription)")
-        }
-
         // Wait for transcript response with timeout
         return try await withThrowingTimeout(seconds: timeoutSeconds) { [self] in
             try await withCheckedThrowingContinuation { continuation in
-                Task { await self.setFlushContinuation(continuation) }
+                // Step 1: Register continuation FIRST so handleMessage can resolve it
+                self.flushContinuation?.resume(throwing: PipelineError.cancelled)
+                self.flushContinuation = continuation
+
+                // Step 2: NOW send flush signal — any response will find the continuation ready
+                let flushJSON = #"{"type":"flush"}"#
+                ws.send(.string(flushJSON)) { error in
+                    if let error {
+                        print("[Sarvam] Flush send error: \(error.localizedDescription)")
+                        Task { await self.cancelFlushContinuation(with: error) }
+                    } else {
+                        print("[Sarvam] Flush sent (timeout=\(timeoutSeconds)s)")
+                    }
+                }
             }
         }
     }
 
-    /// Store the flush continuation (called from within the actor).
-    private func setFlushContinuation(_ continuation: CheckedContinuation<String, Error>) {
-        // Cancel any existing pending flush
-        flushContinuation?.resume(throwing: PipelineError.cancelled)
-        flushContinuation = continuation
+    /// Cancel pending flush continuation with an error (e.g., send failure).
+    private func cancelFlushContinuation(with error: Error) {
+        guard let cont = flushContinuation else { return }
+        flushContinuation = nil
+        cont.resume(throwing: PipelineError.transcriptionFailed("Failed to send flush: \(error.localizedDescription)"))
     }
 
     // MARK: - Recording Lifecycle

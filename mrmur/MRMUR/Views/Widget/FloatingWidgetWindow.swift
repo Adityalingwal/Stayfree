@@ -69,7 +69,7 @@ final class FloatingWidgetWindow: NSPanel {
         }
     }
 
-    /// Recalculate position without changing size (e.g., on screen change).
+    /// Recalculate position and size for the given layout (e.g., on screen change). Not animated.
     func updatePosition(for layout: Layout) {
         let frame = calculateFrame(for: layout)
         setFrame(frame, display: true)
