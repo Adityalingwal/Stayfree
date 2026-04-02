@@ -8,6 +8,8 @@ final class AudioService: AudioServiceProtocol {
     var onAudioChunk: ((Data) -> Void)?
 
     private var engine: AVAudioEngine?
+    /// Serial queue protecting all mutable state accessed from the audio render thread.
+    private let audioQueue = DispatchQueue(label: "com.mrmur.audioservice")
     private var pcmBuffer = Data()
     private var isCapturing = false
     private var hindiMode = false
@@ -54,10 +56,14 @@ final class AudioService: AudioServiceProtocol {
         self.recordingStartTime = Date()
         resetStreamingStats()
 
-        // Install tap on input node
+        // Install tap on input node — callback runs on audio render thread,
+        // so dispatch to our serial queue to protect shared state.
         inputNode.installTap(onBus: 0, bufferSize: bufferSize, format: inputFormat) { [weak self] buffer, _ in
-            guard let self, self.isCapturing else { return }
-            self.processAudioBuffer(buffer, converter: converter, outputFormat: outputFormat)
+            guard let self else { return }
+            self.audioQueue.sync {
+                guard self.isCapturing else { return }
+                self.processAudioBuffer(buffer, converter: converter, outputFormat: outputFormat)
+            }
         }
 
         try engine.start()
@@ -67,35 +73,42 @@ final class AudioService: AudioServiceProtocol {
     }
 
     func stopCapture() -> Data {
-        guard isCapturing else { return Data() }
-        teardownEngine()
-        print("[Audio] Capture stopped — \(pcmBuffer.count) bytes")
-        return pcmBuffer
+        return audioQueue.sync {
+            guard isCapturing else { return Data() }
+            teardownEngine()
+            let result = pcmBuffer
+            print("[Audio] Capture stopped — \(result.count) bytes")
+            return result
+        }
     }
 
     func cancelCapture() {
-        guard isCapturing else { return }
-        teardownEngine()
-        pcmBuffer = Data()
-        print("[Audio] Capture cancelled")
+        audioQueue.sync {
+            guard isCapturing else { return }
+            teardownEngine()
+            pcmBuffer = Data()
+            print("[Audio] Capture cancelled")
+        }
     }
 
     func getStreamStats() -> AudioStreamStats {
-        let avgRms = rmsCount > 0 ? rmsSum / Float(rmsCount) : 0
-        let baselineRms = baselineRmsCount > 0 ? baselineRmsSum / Float(baselineRmsCount) : 0
-        let hasSpeech = voicedMs >= AudioStreamStats.minVoicedMs
-        let isBorderline = !hasSpeech && voicedMs > 0
+        return audioQueue.sync {
+            let avgRms = rmsCount > 0 ? rmsSum / Float(rmsCount) : 0
+            let baselineRms = baselineRmsCount > 0 ? baselineRmsSum / Float(baselineRmsCount) : 0
+            let hasSpeech = voicedMs >= AudioStreamStats.minVoicedMs
+            let isBorderline = !hasSpeech && voicedMs > 0
 
-        return AudioStreamStats(
-            chunkCount: chunkCount,
-            pcmBytes: pcmBytes,
-            avgRms: avgRms,
-            maxRms: rmsMax,
-            baselineRms: baselineRms,
-            voicedMs: voicedMs,
-            hasSpeech: hasSpeech,
-            isBorderlineSpeech: isBorderline
-        )
+            return AudioStreamStats(
+                chunkCount: chunkCount,
+                pcmBytes: pcmBytes,
+                avgRms: avgRms,
+                maxRms: rmsMax,
+                baselineRms: baselineRms,
+                voicedMs: voicedMs,
+                hasSpeech: hasSpeech,
+                isBorderlineSpeech: isBorderline
+            )
+        }
     }
 
     // MARK: - Private

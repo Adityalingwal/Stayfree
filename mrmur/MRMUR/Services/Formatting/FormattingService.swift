@@ -33,7 +33,11 @@ struct FormattingService: FormattingServiceProtocol {
         let trimmed = rawText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return "" }
 
+        #if DEBUG
         print("[Formatting] Formatting: \"\(trimmed)\"")
+        #else
+        print("[Formatting] Formatting \(trimmed.count) chars")
+        #endif
         let startTime = Date()
 
         let messages: [[String: Any]] = [
@@ -54,10 +58,21 @@ struct FormattingService: FormattingServiceProtocol {
             responseType: ChatResponse.self
         )
 
-        let formatted = response.choices.first?.message.content?.trimmingCharacters(in: .whitespacesAndNewlines) ?? trimmed
+        let formatted: String
+        if let content = response.choices.first?.message.content?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !content.isEmpty {
+            formatted = content
+        } else {
+            print("[Formatting] Warning: API returned empty choices/content — using raw text")
+            formatted = trimmed
+        }
 
         let duration = Int(Date().timeIntervalSince(startTime) * 1000)
+        #if DEBUG
         print("[Formatting] Done in \(duration)ms: \"\(formatted)\"")
+        #else
+        print("[Formatting] Done in \(duration)ms (\(formatted.count) chars)")
+        #endif
 
         return formatted
     }

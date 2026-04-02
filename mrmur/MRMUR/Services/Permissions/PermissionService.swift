@@ -37,7 +37,10 @@ final class PermissionService: PermissionServiceProtocol {
 
     func openAccessibilitySettings() {
         // Open System Settings > Privacy & Security > Accessibility
-        let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") else {
+            print("[Permissions] Failed to create Accessibility settings URL")
+            return
+        }
         NSWorkspace.shared.open(url)
     }
 

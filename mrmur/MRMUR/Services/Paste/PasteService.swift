@@ -103,16 +103,18 @@ struct PasteService: PasteServiceProtocol {
             return false
         }
 
-        // Get current value to append (don't replace entire content)
+        // Get current value — if field already has content, we can't insert at cursor
+        // position via setValue (it would blindly append at end). Let Tier 2 handle it
+        // since clipboard paste respects cursor position.
         var currentValue: AnyObject?
         if AXUIElementCopyAttributeValue(element, kAXValueAttribute as CFString, &currentValue) == .success,
-           let currentText = currentValue as? String {
-            // Append at cursor position or end
-            let newText = currentText + text
-            return AXUIElementSetAttributeValue(element, kAXValueAttribute as CFString, newText as CFTypeRef) == .success
+           let currentText = currentValue as? String,
+           !currentText.isEmpty {
+            // Field has existing content — fall back to Tier 2 for cursor-aware paste
+            return false
         }
 
-        // No current value — just set it
+        // Empty or no current value — safe to set directly
         return AXUIElementSetAttributeValue(element, kAXValueAttribute as CFString, text as CFTypeRef) == .success
     }
 
@@ -155,7 +157,7 @@ struct PasteService: PasteServiceProtocol {
         // If changeCount changed beyond our write, another app wrote to clipboard.
         // In that case, skip restore to avoid overwriting their data.
         let postChangeCount = pasteboard.changeCount
-        let ourWriteCount = preChangeCount + 1 // Our clearContents + setString increments once
+        let ourWriteCount = preChangeCount + 2 // clearContents increments once, setString increments again
 
         if postChangeCount != ourWriteCount {
             print("[Paste] changeCount mismatch (\(postChangeCount) vs expected \(ourWriteCount)) — skipping restore")
