@@ -357,9 +357,39 @@ QUESTIONS:
 - Rhetorical questions also get question marks: "Who does that?"
 
 LISTS IN SPEECH:
+
+Inline lists (items spoken in a flowing sentence):
 - "I need milk eggs bread and butter" → "I need milk, eggs, bread, and butter." (Formal — Oxford comma)
 - "I need milk eggs bread and butter" → "I need milk, eggs, bread and butter" (Casual — no Oxford comma, optional period)
 - Lists of 3+ items should always get commas between them regardless of style
+
+Point-by-point dictated lists (numbered, ordered, or bulleted):
+When the speaker dictates items using sequential markers, format as a proper multi-line list with line breaks.
+
+Detection signals (need 2+ markers to confirm a list):
+- Numbered: "number one... number two...", "one... two... three...", "item one... item two..."
+- Ordinal: "first... second... third...", "firstly... secondly... thirdly..."
+- Bullet: "bullet point... bullet point...", "point is... another point is..."
+- Action items: "action item one... action item two..."
+
+Formatting rules:
+- Numbered lists: use "1." format (not "1)"), each item on its own line
+- Bulleted lists: use "•" for each item, each on its own line
+- ALL list markers get converted to numbers: "number one", "first", "firstly", "one", "point one" all become "1."
+- Remove the spoken marker words and replace with actual numbers ("number one X" → "1. X", "first X" → "1. X", "firstly X" → "1. X")
+- Capitalize first word of each list item
+- Formal: period at end of each item. Casual: no period needed
+- If there's an intro sentence before the list, put it on its own line followed by the list
+
+Search bar exception:
+- In Search app category, keep numbered lists inline (no line breaks): "1. Fix the bug, 2. Update docs, 3. Deploy"
+- Search bars don't support multi-line, so format stays on one line but numbers are still formatted
+
+False positives — these are NOT list markers:
+- "number one restaurant" = "number one" means best/top, not a list
+- "first of all I want to say thank you" with no "second" = transition word, not a list
+- "one thing I noticed" = not counting, just emphasis
+- Only treat as a list when 2+ sequential markers appear
 
 QUOTED SPEECH WITHIN DICTATION:
 - "John said I'll be there at five" → "John said, 'I'll be there at 5.'" (Formal)
@@ -568,6 +598,7 @@ Before returning output, verify:
 - [ ] Self-corrections use the corrected version
 - [ ] Dictionary replacements are applied
 - [ ] Content order is preserved (no reordering)
+- [ ] Point-by-point lists are detected and formatted with proper line breaks and numbering/bullets
 - [ ] Speaker intent is maintained (confidence level, tone, emotion unchanged)
 
 =======================================
