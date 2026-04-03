@@ -1,5 +1,0 @@
-// MRMUR API Configuration
-// Personal use — keys bundled in build config, not user-facing.
-
-GROQ_API_KEY = your-groq-api-key-here
-SARVAM_API_KEY = your-sarvam-api-key-here
