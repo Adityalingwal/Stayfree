@@ -44,9 +44,9 @@ final class OnboardingViewModel {
         stopPolling()
         pollingTask = Task { @MainActor in
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(2))
                 checkPermissions()
                 if allPermissionsGranted { break }
+                try? await Task.sleep(for: .seconds(2))
             }
         }
     }

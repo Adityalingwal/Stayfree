@@ -10,10 +10,14 @@ final class HomeViewModel {
         let grouped = Dictionary(grouping: entries) { entry in
             dateLabel(for: entry.timestamp)
         }
-        // Sort groups: most recent date first
+        // Sort by most recent timestamp in each group (descending)
         return grouped
-            .sorted { $0.key > $1.key }
-            .map { (label: dateLabel(for: $0.value.first!.timestamp), entries: $0.value) }
+            .sorted { lhs, rhs in
+                guard let lhsDate = lhs.value.first?.timestamp,
+                      let rhsDate = rhs.value.first?.timestamp else { return false }
+                return lhsDate > rhsDate
+            }
+            .map { (label: $0.key, entries: $0.value) }
     }
 
     var totalWords: Int {

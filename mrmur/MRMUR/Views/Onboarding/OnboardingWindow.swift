@@ -4,6 +4,8 @@ import SwiftUI
 /// NSWindow for first-launch onboarding. 520x600, fixed size.
 final class OnboardingWindowController {
     private var window: NSWindow?
+    private var onComplete: (() -> Void)?
+    private var closeDelegate: OnboardingCloseDelegate?
 
     func show(settings: Settings, permissionService: any PermissionServiceProtocol, onComplete: @escaping () -> Void) {
         if let existing = window, existing.isVisible {
@@ -11,9 +13,10 @@ final class OnboardingWindowController {
             return
         }
 
+        self.onComplete = onComplete
+
         let onboardingView = OnboardingView(onComplete: { [weak self] in
             self?.close()
-            onComplete()
         })
         .environment(settings)
 
@@ -32,6 +35,13 @@ final class OnboardingWindowController {
         window.styleMask.remove(.resizable)
         window.center()
 
+        // Handle X button close — same cleanup as Continue button
+        let delegate = OnboardingCloseDelegate { [weak self] in
+            self?.cleanup()
+        }
+        window.delegate = delegate
+        self.closeDelegate = delegate
+
         // Show dock icon during onboarding
         NSApp.setActivationPolicy(.regular)
         window.makeKeyAndOrderFront(nil)
@@ -42,8 +52,29 @@ final class OnboardingWindowController {
 
     func close() {
         window?.close()
+        cleanup()
+    }
+
+    private func cleanup() {
         window = nil
+        closeDelegate = nil
         NSApp.setActivationPolicy(.accessory)
+        onComplete?()
+        onComplete = nil
+    }
+}
+
+// MARK: - Window Close Delegate
+
+private final class OnboardingCloseDelegate: NSObject, NSWindowDelegate {
+    let onClose: () -> Void
+
+    init(onClose: @escaping () -> Void) {
+        self.onClose = onClose
+    }
+
+    func windowWillClose(_ notification: Notification) {
+        onClose()
     }
 }
 
