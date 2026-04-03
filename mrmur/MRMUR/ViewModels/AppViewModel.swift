@@ -202,12 +202,13 @@ final class AppViewModel {
 
     private func showError(_ error: PipelineError) {
         print("[Pipeline] Error: \(error.localizedDescription)")
-        lastError = error.widgetError
+        let widgetError = error.widgetError
+        lastError = widgetError
 
         // Auto-dismiss after 2 seconds
         Task { @MainActor in
             try? await Task.sleep(for: .seconds(2))
-            if lastError?.message == error.localizedDescription {
+            if lastError == widgetError {
                 lastError = nil
             }
         }

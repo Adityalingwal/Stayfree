@@ -25,8 +25,10 @@ struct TranscriptionRouter: TranscriptionServiceProtocol {
             return try await groqService.transcribe(audio: audio)
 
         case .hindi:
-            // Hindi uses Sarvam streaming — audio was already streamed during recording.
-            // This path is reached for flush (getting the transcript after recording stops).
+            // Hindi uses Sarvam streaming — audio chunks were already sent via WebSocket
+            // DURING recording (AppViewModel.onAudioChunk → sarvam.sendChunk).
+            // The `audio` parameter is intentionally unused here — we only call flush()
+            // to retrieve the final transcript from the server.
             guard let sarvam = sarvamService else {
                 throw PipelineError.transcriptionFailed("Sarvam API key not configured")
             }

@@ -56,7 +56,7 @@ final class WAVEncoderTests: XCTestCase {
     }
 
     func testDataSizeField() {
-        let pcm = Data(repeating: 0, count: 3200) // 200ms at 16kHz
+        let pcm = Data(repeating: 0, count: 3200) // 100ms at 16kHz mono
         let wav = WAVEncoder.encode(pcm16: pcm)
         // Data size at bytes 40-43
         let dataSize = wav[40...43].withUnsafeBytes { $0.load(as: UInt32.self).littleEndian }

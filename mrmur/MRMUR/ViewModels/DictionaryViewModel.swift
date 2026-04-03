@@ -31,7 +31,7 @@ final class DictionaryViewModel {
     }
 
     func removeEntry(at index: Int) {
-        guard index < entries.count else { return }
+        guard entries.indices.contains(index) else { return }
         let term = entries[index].term
         var dict = settings.dictionary
         dict.removeValue(forKey: term)
