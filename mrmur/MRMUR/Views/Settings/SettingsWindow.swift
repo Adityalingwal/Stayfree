@@ -5,6 +5,7 @@ import SwiftUI
 /// Opened via tray menu "Open Settings" or Cmd+,.
 final class SettingsWindowController {
     private var window: NSWindow?
+    private var windowDelegate: WindowCloseDelegate?
 
     func show(appVM: AppViewModel, settings: Settings) {
         if let existing = window, existing.isVisible {
@@ -36,11 +37,14 @@ final class SettingsWindowController {
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
 
-        window.delegate = WindowCloseDelegate { [weak self] in
+        let delegate = WindowCloseDelegate { [weak self] in
             self?.window = nil
+            self?.windowDelegate = nil
             // Hide dock icon again
             NSApp.setActivationPolicy(.accessory)
         }
+        window.delegate = delegate
+        self.windowDelegate = delegate
 
         self.window = window
     }

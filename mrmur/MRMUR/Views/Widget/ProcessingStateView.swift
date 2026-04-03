@@ -12,6 +12,7 @@ struct ProcessingStateView: View {
             .frame(width: 10, height: 10)
             .rotationEffect(.degrees(rotation))
             .onAppear {
+                rotation = 0
                 withAnimation(.linear(duration: 0.45).repeatForever(autoreverses: false)) {
                     rotation = 360
                 }

@@ -45,5 +45,6 @@ struct FloatingWidgetView: View {
             }
         }
         .animation(.easeInOut(duration: 0.15), value: vm.uiState)
+        .animation(.easeInOut(duration: 0.15), value: vm.error != nil)
     }
 }
