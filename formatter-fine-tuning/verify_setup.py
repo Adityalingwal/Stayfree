@@ -1,86 +1,119 @@
 """
 StayFree Formatter Fine-Tuning - Setup Verification
 Run after setup.sh to verify everything is installed correctly.
+
+Usage:
+  source .venv/bin/activate
+  export $(cat .env | grep -v '^#' | xargs)
+  python verify_setup.py
 """
 
 import sys
 import os
 
-print("=" * 50)
+print("=" * 55)
 print("StayFree Formatter Fine-Tuning - Setup Verification")
-print("=" * 50)
+print("=" * 55)
 print()
 
 errors = []
+warnings = []
 
-# 1. Python version check
-print(f"[1/6] Python version: {sys.version}")
+# 1. Python version
+print(f"[1/7] Python version: {sys.version.split()[0]}")
 if sys.version_info < (3, 11):
     errors.append("Python 3.11+ required")
-    print("  ❌ FAIL: Need Python 3.11+")
+    print("  FAIL")
 else:
-    print("  ✓ OK")
+    print("  OK")
 
 # 2. Tinker SDK
-print("\n[2/6] Tinker SDK...")
+print("\n[2/7] Tinker SDK...")
 try:
     import tinker
-    print(f"  ✓ OK - tinker version: {tinker.__version__ if hasattr(tinker, '__version__') else 'installed'}")
+    ver = getattr(tinker, "__version__", "installed")
+    print(f"  OK — tinker {ver}")
 except ImportError as e:
     errors.append(f"tinker not installed: {e}")
-    print(f"  ❌ FAIL: {e}")
+    print(f"  FAIL: {e}")
 
 # 3. Tinker Cookbook
-print("\n[3/6] Tinker Cookbook...")
+print("\n[3/7] Tinker Cookbook...")
 try:
-    from tinker_cookbook import renderers, tokenizer_utils
-    from tinker_cookbook.hyperparam_utils import get_lr
-    print("  ✓ OK - renderers, tokenizer_utils, get_lr all available")
+    from tinker_cookbook import renderers, model_info
+    from tinker_cookbook.supervised.data import FromConversationFileBuilder
+    from tinker_cookbook.supervised.data import conversation_to_datum
+    print("  OK — renderers, model_info, FromConversationFileBuilder available")
 except ImportError as e:
     errors.append(f"tinker_cookbook not installed: {e}")
-    print(f"  ❌ FAIL: {e}")
+    print(f"  FAIL: {e}")
 
-# 4. Torch
-print("\n[4/6] PyTorch...")
+# 4. PyTorch
+print("\n[4/7] PyTorch...")
 try:
     import torch
-    print(f"  ✓ OK - torch version: {torch.__version__}")
+    print(f"  OK — torch {torch.__version__}")
 except ImportError as e:
     errors.append(f"torch not installed: {e}")
-    print(f"  ❌ FAIL: {e}")
+    print(f"  FAIL: {e}")
 
-# 5. TINKER_API_KEY
-print("\n[5/6] TINKER_API_KEY...")
+# 5. Transformers
+print("\n[5/7] Transformers...")
+try:
+    import transformers
+    print(f"  OK — transformers {transformers.__version__}")
+except ImportError as e:
+    errors.append(f"transformers not installed: {e}")
+    print(f"  FAIL: {e}")
+
+# 6. TINKER_API_KEY
+print("\n[6/7] TINKER_API_KEY...")
 api_key = os.environ.get("TINKER_API_KEY")
-if api_key:
-    print(f"  ✓ OK - Key set ({api_key[:8]}...)")
+if api_key and api_key != "your-key-here":
+    print(f"  OK — Key set ({api_key[:8]}...)")
 else:
-    errors.append("TINKER_API_KEY not set")
-    print("  ⚠ WARNING: TINKER_API_KEY not set")
-    print("  Set it with: export TINKER_API_KEY='your-key-here'")
+    warnings.append("TINKER_API_KEY not set or still placeholder")
+    print("  WARNING: Set your API key in .env")
 
-# 6. Tinker connection test (only if API key is set)
-print("\n[6/6] Tinker Service Connection...")
-if api_key:
-    try:
-        service_client = tinker.ServiceClient()
-        # Try to check available models
-        print("  ✓ OK - ServiceClient created")
-        print("  (Full connection test requires API call - will test during training)")
-    except Exception as e:
-        errors.append(f"ServiceClient failed: {e}")
-        print(f"  ❌ FAIL: {e}")
-else:
-    print("  ⏭ SKIPPED (no API key)")
+# 7. Data files
+print("\n[7/7] Training data...")
+import json
+from pathlib import Path
+
+splits_dir = Path(__file__).parent / "data" / "splits"
+all_ok = True
+for split in ["train.jsonl", "val.jsonl", "test.jsonl"]:
+    fpath = splits_dir / split
+    if fpath.exists():
+        count = sum(1 for _ in open(fpath))
+        # Verify format
+        with open(fpath) as f:
+            row = json.loads(f.readline())
+            has_messages = "messages" in row
+            roles = [m["role"] for m in row["messages"]]
+            format_ok = roles == ["system", "user", "assistant"]
+        status = "OK" if (has_messages and format_ok) else "BAD FORMAT"
+        print(f"  {split}: {count} examples — {status}")
+        if not format_ok:
+            errors.append(f"{split} has wrong message format: {roles}")
+    else:
+        errors.append(f"{split} not found")
+        print(f"  {split}: NOT FOUND")
+        all_ok = False
 
 # Summary
-print("\n" + "=" * 50)
+print("\n" + "=" * 55)
 if errors:
-    print(f"❌ {len(errors)} issue(s) found:")
+    print(f"FAIL — {len(errors)} error(s):")
     for err in errors:
         print(f"  - {err}")
+elif warnings:
+    print(f"OK with {len(warnings)} warning(s):")
+    for w in warnings:
+        print(f"  - {w}")
+    print("\nFix warnings, then you're ready for training!")
 else:
-    print("✓ All checks passed! Ready for fine-tuning.")
-print("=" * 50)
+    print("ALL CHECKS PASSED — Ready for fine-tuning!")
+print("=" * 55)
 
 sys.exit(1 if errors else 0)
