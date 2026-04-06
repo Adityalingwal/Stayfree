@@ -32,16 +32,6 @@
 {"input": "add it to the sprint backlog wait actually the icebox", "output": "Add it to the icebox", "app_name": "Linear", "app_category": "Other", "style": "Casual", "dictionary": {}}
 {"input": "i said no to the proposal and they were not happy", "output": "I said no to the proposal and they were not happy.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "i said no to the proposal and they were not happy", "output": "I said no to the proposal and they were not happy", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "no no no that is completely wrong we need to redo this", "output": "No, no, no, that is completely wrong. We need to redo this.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "no no no that is completely wrong we need to redo this", "output": "No no no that is completely wrong we need to redo this", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "wait wait wait i just realized something", "output": "Wait, wait, wait, I just realized something.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "wait wait wait i just realized something", "output": "Wait wait wait I just realized something", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "yes yes that's exactly what i was thinking", "output": "Yes, yes, that's exactly what I was thinking.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "yes yes that's exactly what i was thinking", "output": "Yes yes that's exactly what I was thinking", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "it's very very important that we don't miss this deadline", "output": "It's very, very important that we don't miss this deadline.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "it's very very important that we don't miss this deadline", "output": "It's very very important that we don't miss this deadline", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the the server keeps crashing under load", "output": "The server keeps crashing under load.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the the server keeps crashing under load", "output": "The server keeps crashing under load", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "i i think we should reconsider the approach", "output": "I think we should reconsider the approach.", "app_name": "Teams", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "i i think we should reconsider the approach", "output": "I think we should reconsider the approach", "app_name": "Teams", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "we should we should probably start testing earlier next sprint", "output": "We should probably start testing earlier next sprint.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
@@ -49,7 +39,7 @@
 {"input": "go to the store the grocery store and pick up milk", "output": "Go to the grocery store and pick up milk.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
 {"input": "go to the store the grocery store and pick up milk", "output": "Go to the grocery store and pick up milk", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
 {"input": "can you can you check if the build passed", "output": "Can you check if the build passed?", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "can you can you check if the build passed", "output": "Can you check if the build passed", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
+{"input": "can you can you check if the build passed", "output": "Can you check if the build passed?", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "so basically what what happened was the deploy failed at the last step", "output": "Basically, what happened was the deploy failed at the last step.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "so basically what what happened was the deploy failed at the last step", "output": "Basically what happened was the deploy failed at the last step", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "i need the report by by friday end of day", "output": "I need the report by Friday end of day.", "app_name": "Gmail", "app_category": "Email", "style": "Formal", "dictionary": {}}
@@ -76,8 +66,6 @@
 {"input": "the issue is in the frontend no wait the backend api", "output": "The issue is in the backend API", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "add two tablespoons of sugar scratch that one tablespoon", "output": "Add 1 tablespoon of sugar.", "app_name": "Notes", "app_category": "Other", "style": "Formal", "dictionary": {}}
 {"input": "add two tablespoons of sugar scratch that one tablespoon", "output": "Add 1 tablespoon of sugar", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "go go go we need to ship this today", "output": "Go, go, go! We need to ship this today.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "go go go we need to ship this today", "output": "Go go go we need to ship this today", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "the answer is no i don't think that's a good idea", "output": "The answer is no, I don't think that's a good idea.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "the answer is no i don't think that's a good idea", "output": "The answer is no I don't think that's a good idea", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "please wait for the build to finish before merging", "output": "Please wait for the build to finish before merging.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
@@ -98,8 +86,6 @@
 {"input": "rename the file to utils dot js sorry utils dot ts", "output": "Rename the file to utils.ts", "app_name": "VS Code", "app_category": "Other", "style": "Casual", "dictionary": {}}
 {"input": "move it to the done column i mean in progress", "output": "Move it to the in progress column.", "app_name": "Linear", "app_category": "Other", "style": "Formal", "dictionary": {}}
 {"input": "move it to the done column i mean in progress", "output": "Move it to the in progress column", "app_name": "Linear", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "that was so so good like seriously amazing", "output": "That was so, so good, like seriously amazing.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "that was so so good like seriously amazing", "output": "That was so so good like seriously amazing", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
 {"input": "reply with thanks wait no say thank you for the quick turnaround", "output": "Thank you for the quick turnaround.", "app_name": "Gmail", "app_category": "Email", "style": "Formal", "dictionary": {}}
 {"input": "reply with thanks wait no say thank you for the quick turnaround", "output": "Thank you for the quick turnaround", "app_name": "Gmail", "app_category": "Email", "style": "Casual", "dictionary": {}}
 {"input": "i'll take the large no the medium coffee please", "output": "I'll take the medium coffee please.", "app_name": "iMessage", "app_category": "Personal", "style": "Formal", "dictionary": {}}

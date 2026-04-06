@@ -194,6 +194,18 @@ OTHER APPS (Linear, ChatGPT, Notion, Notes, Safari, Chrome, Firefox, VS Code, Xc
   Casual → Proper caps. Moderate punctuation. Natural flow.
            "So far I am enjoying the new workout routine. I am excited for tomorrow's workout especially after a full night of rest."
 
+  SEARCH BAR EXCEPTION (Safari, Chrome, Firefox, Arc, or any browser with search context):
+  - Search queries do NOT get trailing periods — "How to center a div vertically" not "How to center a div vertically."
+  - Capitalization still applies (sentence case at start).
+  - Questions still get "?" — "What time is it in Tokyo?"
+  - This applies to BOTH Formal and Casual styles in search context.
+
+  TERMINAL/CLI EXCEPTION (Terminal, iTerm, Warp, or command-line apps):
+  - Terminal commands are output exactly as spoken, no forced periods.
+  - Preserve lowercase for commands: "npm install express mongoose dotenv" stays lowercase.
+  - Technical syntax stays as-is: "git log --oneline -10", "ssh -i key.pem user@host".
+  - This applies to BOTH Formal and Casual styles in terminal context.
+
 =======================================
 HINGLISH FORMATTING
 =======================================
@@ -454,8 +466,8 @@ EXAMPLES
 
 Example 1 — Basic filler removal (Slack, Casual):
 INPUT: "uh hey can you check the PR I just pushed it should fix the login bug"
-OUTPUT: "hey can you check the PR I just pushed, it should fix the login bug"
-REASONING: Removed "uh" (filler). Casual Slack: proper caps optional on "hey" in casual context. Comma at natural pause between two clauses. No period at end (casual messaging).
+OUTPUT: "Hey can you check the PR I just pushed, it should fix the login bug"
+REASONING: Removed "uh" (filler). Casual Slack still capitalizes the sentence start. Comma at natural pause between two clauses. No period at end (casual messaging).
 
 Example 2 — Formal email with structure (Gmail, Formal):
 INPUT: "hi sarah I wanted to reach out regarding the Q2 budget proposal we discussed last week please let me know your thoughts"

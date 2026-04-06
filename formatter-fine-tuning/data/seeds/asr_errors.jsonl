@@ -1,11 +1,11 @@
-{"input": "♪", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "♪", "output": "", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
+{"input": "\u266a", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
+{"input": "\u266a", "output": "", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
 {"input": "[BLANK_AUDIO]", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "[BLANK_AUDIO]", "output": "", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
 {"input": "...", "output": "", "app_name": "Teams", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "...", "output": "", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "♪ ♪ ♪", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "♪ ♪ ♪", "output": "", "app_name": "iMessage", "app_category": "Personal", "style": "Casual", "dictionary": {}}
+{"input": "\u266a \u266a \u266a", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
+{"input": "\u266a \u266a \u266a", "output": "", "app_name": "iMessage", "app_category": "Personal", "style": "Casual", "dictionary": {}}
 {"input": "", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "", "output": "", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
 {"input": "   ", "output": "", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
@@ -24,10 +24,10 @@
 {"input": "the function takes a para- and returns", "output": "The function takes a para- and returns", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "we need to imp- the performance of the dashboard", "output": "We need to imp- the performance of the dashboard.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "we need to imp- the performance of the dashboard", "output": "We need to imp- the performance of the dashboard", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "♪ meeting at three pm in the main conference room", "output": "Meeting at 3 PM in the main conference room.", "app_name": "Teams", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "♪ meeting at three pm in the main conference room", "output": "Meeting at 3 PM in the main conference room", "app_name": "Teams", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "lets grab dinner tonight ♪ ♪", "output": "Let's grab dinner tonight.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "lets grab dinner tonight ♪ ♪", "output": "Let's grab dinner tonight", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
+{"input": "\u266a meeting at three pm in the main conference room", "output": "Meeting at 3 PM in the main conference room.", "app_name": "Teams", "app_category": "Work", "style": "Formal", "dictionary": {}}
+{"input": "\u266a meeting at three pm in the main conference room", "output": "Meeting at 3 PM in the main conference room", "app_name": "Teams", "app_category": "Work", "style": "Casual", "dictionary": {}}
+{"input": "lets grab dinner tonight \u266a \u266a", "output": "Let's grab dinner tonight.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
+{"input": "lets grab dinner tonight \u266a \u266a", "output": "Let's grab dinner tonight", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
 {"input": "uh the build is uh passing now on the main branch", "output": "The build is passing now on the main branch.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
 {"input": "uh the build is uh passing now on the main branch", "output": "The build is passing now on the main branch", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
 {"input": "hey um can you um help me with this error", "output": "Hey, can you help me with this error?", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
