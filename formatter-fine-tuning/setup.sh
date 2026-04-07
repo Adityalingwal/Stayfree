@@ -1,11 +1,11 @@
 #!/bin/bash
-# StayFree Formatter Fine-Tuning - Setup Script
+# MRMUR Formatter Fine-Tuning - Setup Script
 # Run this from the formatter-fine-tuning/ folder on your Mac
 # Requires Python 3.11+
 
 set -e
 
-echo "=== StayFree Formatter Fine-Tuning Setup ==="
+echo "=== MRMUR Formatter Fine-Tuning Setup ==="
 echo ""
 
 # ── 1. Check Python version ──────────────────────────────────────────
@@ -43,7 +43,7 @@ if [ -d "$COOKBOOK_PATH" ]; then
 else
     echo "    ERROR: tinker-cookbook not found at $COOKBOOK_PATH"
     echo "    Expected folder structure:"
-    echo "      StayFree/"
+    echo "      MRMUR/"
     echo "        ├── formatter-fine-tuning/   ← you are here"
     echo "        └── tinker-cookbook/          ← should be here"
     exit 1

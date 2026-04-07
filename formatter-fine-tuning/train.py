@@ -1,5 +1,5 @@
 """
-StayFree Formatter — Fine-Tuning Training Script
+MRMUR Formatter — Fine-Tuning Training Script
 
 Trains Llama 3.1 8B Instruct with LoRA on our voice dictation formatter dataset
 using Tinker's supervised learning pipeline.
@@ -115,9 +115,9 @@ TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 SAVE_EVERY = 25
 
 # Rolling checkpoints (lightweight, for resume if training crashes).
-# Saved every 10 steps, auto-deleted after 2 hours.
+# Saved every 10 steps, auto-deleted after 1 day.
 ROLLING_SAVE_EVERY = 10
-ROLLING_TTL_SECONDS = 7200  # 2 hours
+ROLLING_TTL_SECONDS = 86400  # 1 day
 
 # ── Evaluation ───────────────────────────────────────────────────────────
 # NLL evaluation every N steps (cheap: just forward pass on val data).
@@ -130,7 +130,7 @@ INFREQUENT_EVAL_EVERY = 25
 # ── Logging ──────────────────────────────────────────────────────────────
 # WandB project name. Set to None to disable WandB (metrics still saved locally).
 # If enabled and WANDB_API_KEY is in .env, see live curves at wandb.ai.
-WANDB_PROJECT = "stayfree-formatter"
+WANDB_PROJECT = "mrmur.ai"
 
 # ── Paths ────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
@@ -258,11 +258,11 @@ def main():
     from datetime import datetime
 
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
-    run_name = f"stayfree-formatter-r{LORA_RANK}-lr{LEARNING_RATE:.2e}-b{BATCH_SIZE}-{timestamp}"
+    run_name = f"mrmur-formatter-r{LORA_RANK}-lr{LEARNING_RATE:.2e}-b{BATCH_SIZE}-{timestamp}"
     log_path = f"{LOG_DIR}/{run_name}"
 
     print("=" * 65)
-    print("  StayFree Formatter — Fine-Tuning")
+    print("  MRMUR Formatter — Fine-Tuning")
     print("=" * 65)
     print(f"  Model:          {MODEL_NAME}")
     print(f"  LoRA rank:      {LORA_RANK}")
@@ -359,7 +359,7 @@ def main():
         infrequent_eval_every=INFREQUENT_EVAL_EVERY,
         rolling_save_every=ROLLING_SAVE_EVERY,
         rolling_ttl_seconds=ROLLING_TTL_SECONDS,
-        ttl_seconds=604800,  # Keep checkpoints for 7 days
+        ttl_seconds=2592000,  # Keep checkpoints for 30 days (1 month)
 
         # Logging
         wandb_project=WANDB_PROJECT,

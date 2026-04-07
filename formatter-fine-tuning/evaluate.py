@@ -1,5 +1,5 @@
 """
-StayFree Formatter — Post-Training Evaluation Script
+MRMUR Formatter — Post-Training Evaluation Script
 
 Runs comprehensive evaluation on the test set after training completes.
 This uses data the model has NEVER seen during training.
@@ -10,7 +10,7 @@ Usage:
   python evaluate.py --checkpoint <path-to-checkpoint>
 
   # Example:
-  python evaluate.py --checkpoint logs/stayfree-formatter-r32-.../final
+  python evaluate.py --checkpoint logs/mrmur-formatter-r32-.../final
 
 What this does:
   1. Loads the trained model from a Tinker checkpoint
@@ -84,7 +84,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     """Run full evaluation on test set."""
 
     print("=" * 65)
-    print("  StayFree Formatter — Post-Training Evaluation")
+    print("  MRMUR Formatter — Post-Training Evaluation")
     print("=" * 65)
 
     # Verify test file
@@ -278,7 +278,17 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         print(f"\n  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<")
 
     # ── Save detailed results ────────────────────────────────────────────
-    output_path = SCRIPT_DIR / "evaluation_results.json"
+    # Save results in evaluation-results/ folder.
+    # Each checkpoint gets its own file so all 3 epoch results are kept separately.
+    eval_dir = SCRIPT_DIR / "evaluation-results"
+    eval_dir.mkdir(exist_ok=True)  # Create folder if it doesn't exist
+
+    # Build filename from checkpoint name (e.g. "step_25") or "base_model"
+    if checkpoint_path:
+        run_label = Path(checkpoint_path).name  # e.g. "step_25", "final"
+    else:
+        run_label = "base_model"
+    output_path = eval_dir / f"eval_{run_label}.json"
     output = {
         "checkpoint": checkpoint_path or "base_model",
         "model": MODEL_NAME,
