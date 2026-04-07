@@ -1,5 +1,5 @@
 """
-StayFree Formatter Fine-Tuning - Setup Verification
+MRMUR Formatter Fine-Tuning - Setup Verification
 Run after setup.sh to verify everything is installed correctly.
 
 Usage:
@@ -12,7 +12,7 @@ import sys
 import os
 
 print("=" * 55)
-print("StayFree Formatter Fine-Tuning - Setup Verification")
+print("MRMUR Formatter Fine-Tuning - Setup Verification")
 print("=" * 55)
 print()
 
