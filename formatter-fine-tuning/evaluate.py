@@ -11,6 +11,7 @@ Usage:
 
   # Example:
   python evaluate.py --checkpoint logs/mrmur-formatter-r32-.../final
+  python evaluate.py --checkpoint logs/mrmur-formatter-r32-.../checkpoints.jsonl
 
 What this does:
   1. Loads the trained model from a Tinker checkpoint
@@ -60,22 +61,105 @@ SCRIPT_DIR = Path(__file__).parent
 TEST_FILE = str(SCRIPT_DIR / "data" / "splits" / "test.jsonl")
 
 
+def safe_label(value: str) -> str:
+    """Convert a checkpoint/run label into a filesystem-safe stem."""
+    return "".join(ch if ch.isalnum() or ch in "._-" else "_" for ch in value).strip("_")
+
+
+def load_checkpoint_records(checkpoints_file: Path) -> list[dict]:
+    """Load checkpoint records from a Tinker checkpoints.jsonl file."""
+    records = []
+    with checkpoints_file.open() as f:
+        for line in f:
+            if line.strip():
+                records.append(json.loads(line))
+    return records
+
+
+def select_sampler_checkpoint(
+    records: list[dict],
+    checkpoint_name: str | None = None,
+) -> dict:
+    """Select a sampler checkpoint record, preferring an explicit or final record."""
+    sampler_records = [record for record in records if record.get("sampler_path")]
+    if not sampler_records:
+        raise ValueError("No sampler_path records found in checkpoints.jsonl")
+
+    if checkpoint_name is not None:
+        matches = [record for record in sampler_records if record.get("name") == checkpoint_name]
+        if matches:
+            return matches[-1]
+        raise ValueError(
+            f"No sampler checkpoint named {checkpoint_name!r} found in checkpoints.jsonl"
+        )
+
+    final_records = [record for record in sampler_records if record.get("name") == "final"]
+    return final_records[-1] if final_records else sampler_records[-1]
+
+
+def resolve_sampling_checkpoint(checkpoint_arg: str) -> tuple[str, str]:
+    """
+    Resolve a CLI checkpoint argument to a Tinker sampler checkpoint path.
+
+    Accepts:
+      - tinker://.../sampler_weights/<name>
+      - logs/<run>/checkpoints.jsonl
+      - logs/<run> (prefers final sampler checkpoint)
+      - logs/<run>/final or logs/<run>/<checkpoint_name>
+    """
+    if checkpoint_arg.startswith("tinker://"):
+        return checkpoint_arg, safe_label(checkpoint_arg.removeprefix("tinker://"))
+
+    path = Path(checkpoint_arg).expanduser()
+
+    if path.is_file():
+        if path.name != "checkpoints.jsonl":
+            raise ValueError(
+                f"Unsupported checkpoint file {path}. Pass checkpoints.jsonl or a tinker:// sampler path."
+            )
+        record = select_sampler_checkpoint(load_checkpoint_records(path))
+        return record["sampler_path"], safe_label(f"{path.parent.name}_{record['name']}")
+
+    if path.is_dir():
+        checkpoints_file = path / "checkpoints.jsonl"
+        if checkpoints_file.exists():
+            record = select_sampler_checkpoint(load_checkpoint_records(checkpoints_file))
+            return record["sampler_path"], safe_label(f"{path.name}_{record['name']}")
+        raise ValueError(f"No checkpoints.jsonl found in checkpoint directory: {path}")
+
+    checkpoints_file = path.parent / "checkpoints.jsonl"
+    if checkpoints_file.exists():
+        record = select_sampler_checkpoint(load_checkpoint_records(checkpoints_file), path.name)
+        return record["sampler_path"], safe_label(f"{path.parent.name}_{record['name']}")
+
+    raise ValueError(
+        "Could not resolve checkpoint. Pass a tinker:// sampler path, a run log directory, "
+        "logs/<run>/checkpoints.jsonl, or logs/<run>/<checkpoint_name>."
+    )
+
+
 def load_test_data(test_file: str) -> list[dict]:
-    """Load test examples and extract bucket info from the original seed data."""
+    """Load test examples with evaluator metadata."""
     examples = []
     with open(test_file) as f:
-        for line in f:
+        for line_no, line in enumerate(f, 1):
             row = json.loads(line)
-            # Extract metadata from user message JSON
-            user_data = json.loads(row["messages"][1]["content"])
+            missing = {"source_bucket", "style", "app_name", "app_category", "dictionary", "messages"} - set(row)
+            if missing:
+                raise ValueError(f"{test_file}:{line_no} missing keys: {sorted(missing)}")
+            messages = row["messages"]
+            roles = [message.get("role") for message in messages]
+            if roles != ["system", "user", "assistant"]:
+                raise ValueError(f"{test_file}:{line_no} wrong roles: {roles}")
             examples.append({
-                "messages": row["messages"],
-                "input": user_data["input"],
-                "style": user_data["style"],
-                "app_name": user_data["app_name"],
-                "app_category": user_data["app_category"],
-                "dictionary": user_data["dictionary"],
-                "expected": row["messages"][2]["content"],
+                "messages": messages,
+                "input": messages[1]["content"],
+                "style": row["style"],
+                "app_name": row["app_name"],
+                "app_category": row["app_category"],
+                "dictionary": row["dictionary"],
+                "source_bucket": row["source_bucket"],
+                "expected": messages[2]["content"],
             })
     return examples
 
@@ -109,11 +193,16 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
 
     # Create sampling client
     service_client = tinker.ServiceClient()
+    resolved_checkpoint_path = None
+    run_label = "base_model"
     if checkpoint_path and not use_base:
+        resolved_checkpoint_path, run_label = resolve_sampling_checkpoint(checkpoint_path)
         sampling_client = service_client.create_sampling_client(
-            model_path=checkpoint_path
+            model_path=resolved_checkpoint_path
         )
-        print(f"  Loaded fine-tuned model from checkpoint")
+        print("  Loaded fine-tuned model from checkpoint")
+        if resolved_checkpoint_path != checkpoint_path:
+            print(f"  Resolved sampler path: {resolved_checkpoint_path}")
     else:
         sampling_client = service_client.create_sampling_client(
             base_model=MODEL_NAME
@@ -128,9 +217,11 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
 
     # ── Run evaluation ───────────────────────────────────────────────────
     results = []
-    bucket_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
+    source_bucket_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
+    category_style_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
     style_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
     overall = {"exact": 0, "fuzzy": 0, "total": 0, "errors": 0}
+    parse_failures = 0
     latencies = []
 
     print("Evaluating...")
@@ -153,7 +244,9 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             latency_ms = (time.time() - start_time) * 1000
             latencies.append(latency_ms)
 
-            response_msg = renderer.parse_response(response.sequences[0].tokens)[0]
+            response_msg, parse_success = renderer.parse_response(response.sequences[0].tokens)
+            if not parse_success:
+                parse_failures += 1
             generated = renderers.get_text_content(response_msg).strip()
         except Exception as e:
             generated = f"ERROR: {e}"
@@ -175,13 +268,20 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         if is_fuzzy:
             overall["fuzzy"] += 1
 
-        # Bucket tracking (infer bucket from app_category + style)
-        bucket_key = f"{ex['app_category']}_{ex['style']}"
-        bucket_stats[bucket_key]["total"] += 1
+        # Source bucket tracking
+        source_bucket_stats[ex["source_bucket"]]["total"] += 1
         if is_exact:
-            bucket_stats[bucket_key]["exact"] += 1
+            source_bucket_stats[ex["source_bucket"]]["exact"] += 1
         if is_fuzzy:
-            bucket_stats[bucket_key]["fuzzy"] += 1
+            source_bucket_stats[ex["source_bucket"]]["fuzzy"] += 1
+
+        # Category + style tracking
+        category_style_key = f"{ex['app_category']}_{ex['style']}"
+        category_style_stats[category_style_key]["total"] += 1
+        if is_exact:
+            category_style_stats[category_style_key]["exact"] += 1
+        if is_fuzzy:
+            category_style_stats[category_style_key]["fuzzy"] += 1
 
         # Style tracking
         style_stats[ex["style"]]["total"] += 1
@@ -198,6 +298,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             "generated": generated,
             "exact_match": is_exact,
             "fuzzy_match": is_fuzzy,
+            "source_bucket": ex["source_bucket"],
             "style": ex["style"],
             "app_name": ex["app_name"],
             "app_category": ex["app_category"],
@@ -220,13 +321,16 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     print(f"    Fuzzy match:  {overall['fuzzy']}/{total} ({overall['fuzzy']/total*100:.1f}%)")
     if overall["errors"] > 0:
         print(f"    Errors:       {overall['errors']}")
+    if parse_failures > 0:
+        print(f"    Parse fails:  {parse_failures}")
 
     # Latency stats
+    p50 = p95 = p99 = None
     if latencies:
         latencies.sort()
         p50 = latencies[len(latencies) // 2]
-        p95 = latencies[int(len(latencies) * 0.95)]
-        p99 = latencies[int(len(latencies) * 0.99)]
+        p95 = latencies[min(int(len(latencies) * 0.95), len(latencies) - 1)]
+        p99 = latencies[min(int(len(latencies) * 0.99), len(latencies) - 1)]
         print(f"\n  Latency:")
         print(f"    p50: {p50:.0f}ms")
         print(f"    p95: {p95:.0f}ms")
@@ -241,10 +345,18 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             fuzzy_pct = s["fuzzy"] / s["total"] * 100
             print(f"    {style:8s}: exact={exact_pct:5.1f}%  fuzzy={fuzzy_pct:5.1f}%  (n={s['total']})")
 
-    # Bucket breakdown
+    # Source bucket breakdown
+    print(f"\n  By Source Bucket:")
+    for bucket in sorted(source_bucket_stats):
+        s = source_bucket_stats[bucket]
+        if s["total"] > 0:
+            exact_pct = s["exact"] / s["total"] * 100
+            print(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
+
+    # Category + style breakdown
     print(f"\n  By Category+Style:")
-    for bucket in sorted(bucket_stats):
-        s = bucket_stats[bucket]
+    for bucket in sorted(category_style_stats):
+        s = category_style_stats[bucket]
         if s["total"] > 0:
             exact_pct = s["exact"] / s["total"] * 100
             print(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
@@ -254,7 +366,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     if mismatches:
         print(f"\n  Mismatches: {len(mismatches)} total (showing first 10):")
         for r in mismatches[:10]:
-            print(f"\n    [{r['index']}] {r['app_name']} / {r['style']}")
+            print(f"\n    [{r['index']}] {r['source_bucket']} / {r['app_name']} / {r['style']}")
             print(f"      Input:    {r['input'][:80]}...")
             print(f"      Expected: {r['expected'][:80]}")
             print(f"      Got:      {r['generated'][:80]}")
@@ -262,7 +374,8 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     # ── Go/No-Go Gate ────────────────────────────────────────────────────
     exact_pct = overall["exact"] / total * 100
     fuzzy_pct = overall["fuzzy"] / total * 100
-    latency_ok = p95 < 200 if latencies else False
+    latency_ok = p95 is not None and p95 < 200
+    errors_ok = overall["errors"] == 0 and parse_failures == 0
 
     print(f"\n" + "=" * 65)
     print(f"  GO/NO-GO GATE")
@@ -270,8 +383,9 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     print(f"  Accuracy (fuzzy) >= 95%: {fuzzy_pct:.1f}% {'PASS' if fuzzy_pct >= 95 else 'FAIL'}")
     print(f"  Latency p95 < 200ms:     {p95:.0f}ms {'PASS' if latency_ok else 'FAIL'}" if latencies else "  Latency: N/A")
     print(f"  Errors == 0:             {overall['errors']} {'PASS' if overall['errors'] == 0 else 'FAIL'}")
+    print(f"  Parse failures == 0:     {parse_failures} {'PASS' if parse_failures == 0 else 'FAIL'}")
 
-    gate_pass = fuzzy_pct >= 95 and overall["errors"] == 0
+    gate_pass = fuzzy_pct >= 95 and latency_ok and errors_ok
     if gate_pass:
         print(f"\n  >>> GATE: PASS — Model is ready for deployment! <<<")
     else:
@@ -283,14 +397,10 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     eval_dir = SCRIPT_DIR / "evaluation-results"
     eval_dir.mkdir(exist_ok=True)  # Create folder if it doesn't exist
 
-    # Build filename from checkpoint name (e.g. "step_25") or "base_model"
-    if checkpoint_path:
-        run_label = Path(checkpoint_path).name  # e.g. "step_25", "final"
-    else:
-        run_label = "base_model"
     output_path = eval_dir / f"eval_{run_label}.json"
     output = {
         "checkpoint": checkpoint_path or "base_model",
+        "resolved_checkpoint": resolved_checkpoint_path,
         "model": MODEL_NAME,
         "total_examples": total,
         "exact_match": overall["exact"],
@@ -298,10 +408,12 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         "fuzzy_match": overall["fuzzy"],
         "fuzzy_match_pct": round(fuzzy_pct, 2),
         "errors": overall["errors"],
+        "parse_failures": parse_failures,
         "latency_p50_ms": round(p50, 1) if latencies else None,
         "latency_p95_ms": round(p95, 1) if latencies else None,
         "style_breakdown": dict(style_stats),
-        "bucket_breakdown": dict(bucket_stats),
+        "source_bucket_breakdown": dict(source_bucket_stats),
+        "category_style_breakdown": dict(category_style_stats),
         "gate_pass": gate_pass,
         "detailed_results": results,
     }
