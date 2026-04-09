@@ -1,0 +1,88 @@
+🎯 Monitoring Setup (pehle yeh set up kar lena)
+Training start karte hi terminal pe pehle kuchh lines mein WandB ka link print hoga, kuchh aisa:
+wandb: 🚀 View run at https://wandb.ai/your-entity/mrmur.ai/runs/abc123
+Is link ko browser mein open kar. Wahan tujhe 4 charts live update hote dikhenge.
+📊 Chart #1: train_mean_nll (SABSE IMPORTANT)
+Yeh kya hai: Har training step ke baad, current batch pe average negative log-likelihood. Simple words: "model kitna confused hai correct answer pe". Kam = achha.
+Healthy behavior:
+
+Step 0-5: High value (kuchh bhi ho sakti hai, 2.0 – 5.0 range). Pehla batch pe model ne kuchh nahi seekha.
+Step 5-25 (epoch 1): Rapidly dropping — clear downward slope. Half honi chahiye.
+Step 25-50 (epoch 2): Slowly dropping — flatter curve.
+Step 50-75 (epoch 3): Almost flat — minor improvements.
+
+🚨 RED FLAGS → Ctrl+C:
+
+Loss spike hota dikhe (suddenly up jaaye — diverging)
+Loss NaN ya inf ho jaaye (learning rate too high)
+Loss constant rahe 10 steps tak (nothing learning — stuck)
+Loss oscillate kar rahi ho wildly (LR too high ya bad batch)
+
+📊 Chart #2: test/val_nll (eval har 5 steps)
+Yeh kya hai: Val set pe NLL. train_mean_nll se slower frequency pe update hoti hai.
+Healthy behavior: train_nll ke saath parallel drop. Train aur val dono saath mein ghatte rahenge.
+🚨 RED FLAG → OVERFITTING:
+
+train_nll drop ho rahi hai lekin val_nll increase ya flat — matlab model training data memorize kar raha hai lekin generalize nahi kar raha. Agar yeh step 50 ke baad dikhe toh epoch 2 ka checkpoint best hoga (epoch 3 mat chalne do).
+Agar step 25 pe hi dikhe → dataset issue hai, stop karo, data quality review karo.
+
+📊 Chart #3: val/exact_match + val/fuzzy_match (har 25 steps)
+Yeh kya hai: Custom FormatterEvaluator jo 50 val examples pe actual generation karta hai aur count karta hai kitne exact match hue.
+Healthy behavior:
+
+Step 25 (epoch 1 end): ~50-70% exact match (model ne kuchh seekh liya)
+Step 50 (epoch 2 end): ~75-90% exact match
+Step 75 (final): ≥95% fuzzy match target
+
+🚨 RED FLAG: Agar step 25 pe exact_match < 30% ho → kuchh fundamental galat hai (data format issue, tokenizer mismatch, LR bahut kam). Stop karo, debug karo.
+📊 Chart #4: learning_rate
+Yeh kya hai: Current LR. Linear schedule ke saath step 0 pe 2.86e-4 hoga, linearly step 75 pe 0 pe jayega.
+Yeh sirf sanity check hai — agar sahi dikh raha hai (smooth linear decay), cool. Nahi dikh raha to schedule config issue hai.
+
+🖥️ Terminal Logs — Kya Dekhna Hai
+Terminal pe tujhe har step ke baad kuch aisa output aayega (rough format):
+[step 10] epoch=0 train_mean_nll=1.234 learning_rate=2.48e-04 ...
+[step 15] epoch=0 train_mean_nll=0.987 test/val/nll=1.102 ...
+Visually scan karta rehna:
+
+train_mean_nll monotonically decreasing ya nahi
+Koi ERROR ya WARNING ka red text toh nahi
+num_tokens aur num_loss_tokens reasonable hain (loss_tokens > 0, warna sab padding hai)
+
+⏱️ Timing Expectations
+
+Startup (training client init, dataset load): ~1-2 min
+Per step: ~15-20 seconds (Tinker cloud GPU se depend karta hai)
+Full 75 steps: ~20-25 min
+Post-training (final checkpoint export): ~1-2 min
+
+Agar startup 5 min se zyada le raha hai → Tinker queue mein wait ho raha hai. Normal, chill kar.
+Agar per-step 60 seconds se zyada le raha hai → backend slow hai ya GPU contention hai. Progress chalte rahe to chhod, lekin agar stuck hai 5+ min ek step pe → kuchh gadbad hai, Ctrl+C karo aur retry.
+
+📋 Training Ke Dauraan Simple Checklist
+Training chale toh yeh checklist use kar:
+Every 2-3 minutes WandB pe check kar:
+
+ train_mean_nll — drop ho rahi hai?
+ test/val_nll — drop ho rahi hai aur train ke paas hai?
+ Koi spike ya NaN toh nahi?
+ Terminal mein red errors toh nahi?
+
+Step 25 (epoch 1 end) pe special check:
+
+ val/exact_match print hua hai? Value ~50%+ hai?
+ train_mean_nll < initial value ke aadha hai?
+ Agar haan → sab theek hai, continue.
+ Agar nahi → Ctrl+C, investigate.
+
+Step 50 (epoch 2 end) pe:
+
+ val_nll abhi bhi dropping hai?
+ Ya plateau ho gaya hai? (Plateau OK hai, increase NOT OK)
+ val/exact_match ~75%+?
+
+Final step (75) pe:
+
+ Final checkpoint save hua hai?
+ val/exact_match ~85%+?
+ Training complete message aaya?
