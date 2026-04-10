@@ -130,7 +130,7 @@ INFREQUENT_EVAL_EVERY = 25
 # ── Logging ──────────────────────────────────────────────────────────────
 # WandB project name. Set to None to disable WandB (metrics still saved locally).
 # If enabled and WANDB_API_KEY is in .env, see live curves at wandb.ai.
-WANDB_PROJECT = "mrmur.ai"
+WANDB_PROJECT = None  # Set to "mrmur.ai" to enable WandB logging (needs WANDB_API_KEY in .env)
 
 # ── Paths ────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
