@@ -79,11 +79,11 @@ MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 #   Sweep results show rank 32-64 works best for Llama-class models.
 LORA_RANK = 32
 
-# Learning rate: calculated via Tinker's calibrated formula for Llama.
-#   Formula: LR = 5e-5 * 10 * (2000 / hidden_size) ^ 0.781
-#   For Llama 3.1 8B: hidden_size=4096 → LR ≈ 2.86e-4
-#   This is ~3x higher than the naive default (1e-4) — empirically optimal.
-LEARNING_RATE = get_lr(MODEL_NAME, is_lora=True)
+# Learning rate: for continuation training from Step 75 checkpoint.
+#   Original Tinker formula gives 2.86e-4 for fresh starts.
+#   Using 1/3 of that (1e-4) to preserve already-learned patterns.
+#   See ITERATION_2_PLAN.md for detailed rationale.
+LEARNING_RATE = 1e-4
 
 # LR schedule: "linear" decays from max to 0. Prevents overfitting in later steps.
 #   Other options: "cosine" (smoother decay), "constant" (no decay — risky for small data).
@@ -95,9 +95,9 @@ LR_SCHEDULE = "linear"
 BATCH_SIZE = 64
 
 # Epochs: full passes through the training data.
-#   4 epochs reaches Tinker's 100+ step recommendation with this dataset.
-#   Small datasets (<5K) typically need 3-5 epochs.
-NUM_EPOCHS = 4
+#   3 epochs with ~800 new examples at batch 64 = ~36 total steps.
+#   Conservative choice — iteration 1 showed overfitting starting at epoch 4.
+NUM_EPOCHS = 3
 
 # Max sequence length in tokens is derived from the regenerated dataset:
 #   max_observed_length + 128 tokens of headroom, rounded up to the next 512 bucket.
@@ -110,9 +110,14 @@ MAX_LENGTH_BUCKET = 512
 #   System prompt + user message get 0 weight — model learns to FORMAT, not repeat.
 TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 
+# ── Continuation Checkpoint ──────────────────────────────────────────────
+# Load Step 75 checkpoint from iteration 1 (sampler weights, fresh optimizer).
+# Set to None for fresh training from base model.
+LOAD_CHECKPOINT_PATH = "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/sampler_weights/000075"
+
 # ── Checkpointing ────────────────────────────────────────────────────────
-# Save full checkpoint every N steps. ~25 steps/epoch → save every epoch.
-SAVE_EVERY = 25
+# Save full checkpoint every N steps. ~12 steps/epoch → save every epoch.
+SAVE_EVERY = 12
 
 # Rolling checkpoints (lightweight, for resume if training crashes).
 # Saved every 10 steps, auto-deleted after 1 day.
@@ -121,11 +126,11 @@ ROLLING_TTL_SECONDS = 86400  # 1 day
 
 # ── Evaluation ───────────────────────────────────────────────────────────
 # NLL evaluation every N steps (forward-only, but still non-trivial on long prompts).
-EVAL_EVERY = 10
+EVAL_EVERY = 6
 
 # Custom exact-match evaluation every N steps (expensive: runs generation).
 # Set to ~once per epoch.
-INFREQUENT_EVAL_EVERY = 25
+INFREQUENT_EVAL_EVERY = 12
 
 # ── Logging ──────────────────────────────────────────────────────────────
 # WandB project name. Set to None to disable WandB (metrics still saved locally).
@@ -134,9 +139,9 @@ WANDB_PROJECT = None  # Set to "mrmur.ai" to enable WandB logging (needs WANDB_A
 
 # ── Paths ────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
-TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits" / "train.jsonl")
-VAL_FILE = str(SCRIPT_DIR / "data" / "splits" / "val.jsonl")
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits" / "test.jsonl")
+TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "train.jsonl")
+VAL_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "val.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "test.jsonl")
 LOG_DIR = str(SCRIPT_DIR / "logs")
 TRAIN_PRICE_PER_MTOKENS = 0.40
 PREFILL_PRICE_PER_MTOKENS = 0.13
@@ -381,7 +386,7 @@ def main():
     renderer_name = checkpoint_utils.resolve_renderer_name_from_checkpoint_or_default(
         model_name=MODEL_NAME,
         explicit_renderer_name=None,
-        load_checkpoint_path=None,
+        load_checkpoint_path=LOAD_CHECKPOINT_PATH,
         base_url=None,
     )
 
@@ -414,7 +419,7 @@ def main():
     print("=" * 65)
     print(f"  Model:          {MODEL_NAME}")
     print(f"  LoRA rank:      {LORA_RANK}")
-    print(f"  Learning rate:  {LEARNING_RATE:.6f} (from get_lr formula)")
+    print(f"  Learning rate:  {LEARNING_RATE:.6f} (hardcoded for continuation training)")
     print(f"  LR schedule:    {LR_SCHEDULE}")
     print(f"  Batch size:     {BATCH_SIZE}")
     print(f"  Epochs:         {NUM_EPOCHS}")
@@ -465,7 +470,7 @@ def main():
         log_path=log_path,
         model_name=MODEL_NAME,
         renderer_name=renderer_name,
-        load_checkpoint_path=None,
+        load_checkpoint_path=LOAD_CHECKPOINT_PATH,
         dataset_builder=dataset_builder,
 
         # Evaluators: NLL (frequent) + exact match (infrequent)

@@ -18,8 +18,10 @@ from prompt_utils import SEED_REQUIRED_KEYS, build_messages
 
 
 SCRIPT_DIR = Path(__file__).parent
-SEED_DIR = SCRIPT_DIR / "data" / "seeds"
-SPLIT_DIR = SCRIPT_DIR / "data" / "splits"
+# Iteration 2: read from seeds_v2 (new targeted examples).
+# Original seeds are preserved in data/seeds/ for reference.
+SEED_DIR = SCRIPT_DIR / "data" / "seeds_v2"
+SPLIT_DIR = SCRIPT_DIR / "data" / "splits_v2"
 
 SPLIT_SEED = 42
 TRAIN_RATIO = 0.80
