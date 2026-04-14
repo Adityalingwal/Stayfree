@@ -111,9 +111,10 @@ MAX_LENGTH_BUCKET = 512
 TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 
 # ── Continuation Checkpoint ──────────────────────────────────────────────
-# Load Step 75 checkpoint from iteration 1 (sampler weights, fresh optimizer).
+# Load Step 75 checkpoint from iteration 1 (full model weights, fresh optimizer).
+# Must use state_path ("weights/000075"), NOT sampler_path ("sampler_weights/000075").
 # Set to None for fresh training from base model.
-LOAD_CHECKPOINT_PATH = "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/sampler_weights/000075"
+LOAD_CHECKPOINT_PATH = "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/weights/000075"
 
 # ── Checkpointing ────────────────────────────────────────────────────────
 # Save full checkpoint every N steps. ~12 steps/epoch → save every epoch.
