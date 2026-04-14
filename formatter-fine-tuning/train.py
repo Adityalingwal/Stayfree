@@ -56,7 +56,7 @@ import tinker
 from tinker import types as tinker_types
 
 from tinker_cookbook import checkpoint_utils, renderers
-from tinker_cookbook.eval.evaluators import SamplingClientEvaluator
+
 from tinker_cookbook.hyperparam_utils import get_lr
 from tinker_cookbook.supervised import train
 from tinker_cookbook.supervised.data import (
@@ -79,11 +79,11 @@ MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 #   Sweep results show rank 32-64 works best for Llama-class models.
 LORA_RANK = 32
 
-# Learning rate: calculated via Tinker's calibrated formula for Llama.
-#   Formula: LR = 5e-5 * 10 * (2000 / hidden_size) ^ 0.781
-#   For Llama 3.1 8B: hidden_size=4096 → LR ≈ 2.86e-4
-#   This is ~3x higher than the naive default (1e-4) — empirically optimal.
-LEARNING_RATE = get_lr(MODEL_NAME, is_lora=True)
+# Learning rate: for continuation training from Step 75 checkpoint.
+#   Original Tinker formula gives 2.86e-4 for fresh starts.
+#   Using 1/3 of that (1e-4) to preserve already-learned patterns.
+#   See ITERATION_2_PLAN.md for detailed rationale.
+LEARNING_RATE = 1e-4
 
 # LR schedule: "linear" decays from max to 0. Prevents overfitting in later steps.
 #   Other options: "cosine" (smoother decay), "constant" (no decay — risky for small data).
@@ -95,9 +95,9 @@ LR_SCHEDULE = "linear"
 BATCH_SIZE = 64
 
 # Epochs: full passes through the training data.
-#   4 epochs reaches Tinker's 100+ step recommendation with this dataset.
-#   Small datasets (<5K) typically need 3-5 epochs.
-NUM_EPOCHS = 4
+#   3 epochs with ~800 new examples at batch 64 = ~36 total steps.
+#   Conservative choice — iteration 1 showed overfitting starting at epoch 4.
+NUM_EPOCHS = 3
 
 # Max sequence length in tokens is derived from the regenerated dataset:
 #   max_observed_length + 128 tokens of headroom, rounded up to the next 512 bucket.
@@ -110,9 +110,14 @@ MAX_LENGTH_BUCKET = 512
 #   System prompt + user message get 0 weight — model learns to FORMAT, not repeat.
 TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 
+# ── Continuation Checkpoint ──────────────────────────────────────────────
+# Load Step 75 checkpoint from iteration 1 (sampler weights, fresh optimizer).
+# Set to None for fresh training from base model.
+LOAD_CHECKPOINT_PATH = "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/sampler_weights/000075"
+
 # ── Checkpointing ────────────────────────────────────────────────────────
-# Save full checkpoint every N steps. ~25 steps/epoch → save every epoch.
-SAVE_EVERY = 25
+# Save full checkpoint every N steps. ~12 steps/epoch → save every epoch.
+SAVE_EVERY = 12
 
 # Rolling checkpoints (lightweight, for resume if training crashes).
 # Saved every 10 steps, auto-deleted after 1 day.
@@ -121,22 +126,20 @@ ROLLING_TTL_SECONDS = 86400  # 1 day
 
 # ── Evaluation ───────────────────────────────────────────────────────────
 # NLL evaluation every N steps (forward-only, but still non-trivial on long prompts).
-EVAL_EVERY = 10
+EVAL_EVERY = 6
 
-# Custom exact-match evaluation every N steps (expensive: runs generation).
-# Set to ~once per epoch.
-INFREQUENT_EVAL_EVERY = 25
+
 
 # ── Logging ──────────────────────────────────────────────────────────────
 # WandB project name. Set to None to disable WandB (metrics still saved locally).
 # If enabled and WANDB_API_KEY is in .env, see live curves at wandb.ai.
-WANDB_PROJECT = "mrmur.ai"
+WANDB_PROJECT = None  # Set to "mrmur.ai" to enable WandB logging (needs WANDB_API_KEY in .env)
 
 # ── Paths ────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
-TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits" / "train.jsonl")
-VAL_FILE = str(SCRIPT_DIR / "data" / "splits" / "val.jsonl")
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits" / "test.jsonl")
+TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "train.jsonl")
+VAL_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "val.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "test.jsonl")
 LOG_DIR = str(SCRIPT_DIR / "logs")
 TRAIN_PRICE_PER_MTOKENS = 0.40
 PREFILL_PRICE_PER_MTOKENS = 0.13
@@ -225,105 +228,11 @@ def print_token_audit(
     print(
         "  Rough cost: "
         f"train=${train_cost:.2f}, "
-        f"val_nll=${nll_eval_cost:.2f}, "
-        "custom generation eval not included"
+        f"val_nll=${nll_eval_cost:.2f}"
     )
 
 
-# ══════════════════════════════════════════════════════════════════════════
-#  CUSTOM FORMATTER EVALUATOR
-#  Runs during training to measure exact-match accuracy on val set.
-# ══════════════════════════════════════════════════════════════════════════
 
-class FormatterEvaluator(SamplingClientEvaluator):
-    """
-    Evaluates the formatter model by generating outputs for val examples
-    and comparing against expected outputs (exact match + fuzzy match).
-
-    This runs as an "infrequent evaluator" during training (~once per epoch).
-    """
-
-    def __init__(
-        self,
-        val_file: str,
-        model_name: str,
-        renderer_name: str,
-        max_eval_examples: int = 50,  # Limit to keep eval fast
-    ):
-        self.model_name = model_name
-        self.max_eval_examples = max_eval_examples
-
-        # Load val examples
-        self.val_examples = []
-        with open(val_file) as f:
-            for line in f:
-                self.val_examples.append(json.loads(line))
-
-        # Subsample if too many (keep eval fast during training)
-        if len(self.val_examples) > max_eval_examples:
-            import random
-            rng = random.Random(42)
-            self.val_examples = rng.sample(self.val_examples, max_eval_examples)
-
-        # Setup tokenizer + renderer
-        self.tokenizer = get_tokenizer(model_name)
-        self.renderer = renderers.get_renderer(renderer_name, self.tokenizer)
-
-    async def __call__(self, sampling_client: tinker.SamplingClient) -> dict[str, float]:
-        exact_match = 0
-        fuzzy_match = 0
-        errors = 0
-        parse_failures = 0
-        total = len(self.val_examples)
-
-        sampling_params = tinker_types.SamplingParams(
-            max_tokens=512,
-            temperature=0.0,  # Deterministic — we want consistent output
-            stop=self.renderer.get_stop_sequences(),
-        )
-
-        for ex in self.val_examples:
-            # Build prompt from system + user (exclude assistant)
-            prompt_messages = [
-                renderers.Message(role=m["role"], content=m["content"])
-                for m in ex["messages"][:2]  # system + user only
-            ]
-            model_input = self.renderer.build_generation_prompt(prompt_messages)
-
-            # Generate. Do not let a single sample failure crash training.
-            try:
-                result = await sampling_client.sample_async(
-                    prompt=model_input,
-                    num_samples=1,
-                    sampling_params=sampling_params,
-                )
-                response_msg, parse_success = self.renderer.parse_response(
-                    result.sequences[0].tokens
-                )
-                if not parse_success:
-                    parse_failures += 1
-                generated = renderers.get_text_content(response_msg).strip()
-            except Exception:
-                errors += 1
-                continue
-
-            expected = ex["messages"][2]["content"].strip()
-
-            # Exact match
-            if generated == expected:
-                exact_match += 1
-                fuzzy_match += 1
-            # Fuzzy match: normalize whitespace + case-insensitive
-            elif " ".join(generated.split()).lower() == " ".join(expected.split()).lower():
-                fuzzy_match += 1
-
-        return {
-            "val/exact_match": exact_match / total if total > 0 else 0.0,
-            "val/fuzzy_match": fuzzy_match / total if total > 0 else 0.0,
-            "val/total_examples": float(total),
-            "val/generation_errors": float(errors),
-            "val/parse_failures": float(parse_failures),
-        }
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -381,7 +290,7 @@ def main():
     renderer_name = checkpoint_utils.resolve_renderer_name_from_checkpoint_or_default(
         model_name=MODEL_NAME,
         explicit_renderer_name=None,
-        load_checkpoint_path=None,
+        load_checkpoint_path=LOAD_CHECKPOINT_PATH,
         base_url=None,
     )
 
@@ -414,7 +323,7 @@ def main():
     print("=" * 65)
     print(f"  Model:          {MODEL_NAME}")
     print(f"  LoRA rank:      {LORA_RANK}")
-    print(f"  Learning rate:  {LEARNING_RATE:.6f} (from get_lr formula)")
+    print(f"  Learning rate:  {LEARNING_RATE:.6f} (hardcoded for continuation training)")
     print(f"  LR schedule:    {LR_SCHEDULE}")
     print(f"  Batch size:     {BATCH_SIZE}")
     print(f"  Epochs:         {NUM_EPOCHS}")
@@ -426,7 +335,6 @@ def main():
     print(f"  WandB:          {WANDB_PROJECT or 'disabled'}")
     print(f"  Save every:     {SAVE_EVERY} steps (~1 epoch)")
     print(f"  NLL eval every: {EVAL_EVERY} steps")
-    print(f"  Gen eval every: {INFREQUENT_EVAL_EVERY} steps (~1 epoch)")
     print("=" * 65)
     print()
 
@@ -452,25 +360,18 @@ def main():
     # 1. NLL evaluator on val set (runs every eval_every steps)
     val_nll_evaluator = build_val_nll_evaluator(VAL_FILE, max_length, renderer_name)
 
-    # 2. Custom formatter evaluator on val set (runs every infrequent_eval_every, expensive)
-    formatter_evaluator = FormatterEvaluator(
-        val_file=VAL_FILE,
-        model_name=MODEL_NAME,
-        renderer_name=renderer_name,
-        max_eval_examples=50,  # Subsample for speed
-    )
+
 
     # Build training config
     config = train.Config(
         log_path=log_path,
         model_name=MODEL_NAME,
         renderer_name=renderer_name,
-        load_checkpoint_path=None,
+        load_checkpoint_path=LOAD_CHECKPOINT_PATH,
         dataset_builder=dataset_builder,
 
-        # Evaluators: NLL (frequent) + exact match (infrequent)
+        # Evaluators: NLL only (fast forward-pass)
         evaluator_builders=[lambda: val_nll_evaluator],
-        infrequent_evaluator_builders=[lambda: formatter_evaluator],
 
         # Hyperparameters
         learning_rate=LEARNING_RATE,
@@ -489,7 +390,6 @@ def main():
         # Checkpointing
         save_every=SAVE_EVERY,
         eval_every=EVAL_EVERY,
-        infrequent_eval_every=INFREQUENT_EVAL_EVERY,
         rolling_save_every=ROLLING_SAVE_EVERY,
         rolling_ttl_seconds=ROLLING_TTL_SECONDS,
         ttl_seconds=2592000,  # Keep checkpoints for 30 days (1 month)

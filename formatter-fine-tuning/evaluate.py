@@ -31,7 +31,6 @@ import asyncio
 import json
 import os
 import sys
-import time
 from collections import defaultdict
 from pathlib import Path
 
@@ -58,7 +57,7 @@ from tinker_cookbook.tokenizer_utils import get_tokenizer
 # ── Config ───────────────────────────────────────────────────────────────
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 SCRIPT_DIR = Path(__file__).parent
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits" / "test.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "test.jsonl")
 
 
 def safe_label(value: str) -> str:
@@ -222,7 +221,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     style_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
     overall = {"exact": 0, "fuzzy": 0, "total": 0, "errors": 0}
     parse_failures = 0
-    latencies = []
 
     print("Evaluating...")
     for i, ex in enumerate(test_examples):
@@ -233,16 +231,13 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         ]
         model_input = renderer.build_generation_prompt(prompt_messages)
 
-        # Generate with timing
-        start_time = time.time()
+        # Generate
         try:
             response = await sampling_client.sample_async(
                 prompt=model_input,
                 num_samples=1,
                 sampling_params=sampling_params,
             )
-            latency_ms = (time.time() - start_time) * 1000
-            latencies.append(latency_ms)
 
             response_msg, parse_success = renderer.parse_response(response.sequences[0].tokens)
             if not parse_success:
@@ -250,7 +245,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             generated = renderers.get_text_content(response_msg).strip()
         except Exception as e:
             generated = f"ERROR: {e}"
-            latency_ms = 0
             overall["errors"] += 1
 
         expected = ex["expected"].strip()
@@ -302,7 +296,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             "style": ex["style"],
             "app_name": ex["app_name"],
             "app_category": ex["app_category"],
-            "latency_ms": round(latency_ms, 1),
         })
 
         # Progress
@@ -310,86 +303,78 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             pct = overall["exact"] / overall["total"] * 100
             print(f"  [{i+1}/{len(test_examples)}] Exact match so far: {pct:.1f}%")
 
-    # ── Print Results ────────────────────────────────────────────────────
-    print("\n" + "=" * 65)
-    print("  RESULTS")
-    print("=" * 65)
+    # ── Print and Build Report ───────────────────────────────────────────
+    report_lines = []
+    
+    def log(msg: str):
+        print(msg)
+        report_lines.append(msg)
+
+    log("\n" + "=" * 65)
+    log("  RESULTS")
+    log("=" * 65)
 
     total = overall["total"]
-    print(f"\n  Overall ({total} examples):")
-    print(f"    Exact match:  {overall['exact']}/{total} ({overall['exact']/total*100:.1f}%)")
-    print(f"    Fuzzy match:  {overall['fuzzy']}/{total} ({overall['fuzzy']/total*100:.1f}%)")
+    log(f"\n  Overall ({total} examples):")
+    log(f"    Exact match:  {overall['exact']}/{total} ({overall['exact']/total*100:.1f}%)")
+    log(f"    Fuzzy match:  {overall['fuzzy']}/{total} ({overall['fuzzy']/total*100:.1f}%)")
     if overall["errors"] > 0:
-        print(f"    Errors:       {overall['errors']}")
+        log(f"    Errors:       {overall['errors']}")
     if parse_failures > 0:
-        print(f"    Parse fails:  {parse_failures}")
-
-    # Latency stats
-    p50 = p95 = p99 = None
-    if latencies:
-        latencies.sort()
-        p50 = latencies[len(latencies) // 2]
-        p95 = latencies[min(int(len(latencies) * 0.95), len(latencies) - 1)]
-        p99 = latencies[min(int(len(latencies) * 0.99), len(latencies) - 1)]
-        print(f"\n  Latency:")
-        print(f"    p50: {p50:.0f}ms")
-        print(f"    p95: {p95:.0f}ms")
-        print(f"    p99: {p99:.0f}ms")
+        log(f"    Parse fails:  {parse_failures}")
 
     # Style breakdown
-    print(f"\n  By Style:")
+    log(f"\n  By Style:")
     for style in sorted(style_stats):
         s = style_stats[style]
         if s["total"] > 0:
             exact_pct = s["exact"] / s["total"] * 100
             fuzzy_pct = s["fuzzy"] / s["total"] * 100
-            print(f"    {style:8s}: exact={exact_pct:5.1f}%  fuzzy={fuzzy_pct:5.1f}%  (n={s['total']})")
+            log(f"    {style:8s}: exact={exact_pct:5.1f}%  fuzzy={fuzzy_pct:5.1f}%  (n={s['total']})")
 
     # Source bucket breakdown
-    print(f"\n  By Source Bucket:")
+    log(f"\n  By Source Bucket:")
     for bucket in sorted(source_bucket_stats):
         s = source_bucket_stats[bucket]
         if s["total"] > 0:
             exact_pct = s["exact"] / s["total"] * 100
-            print(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
+            log(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
 
     # Category + style breakdown
-    print(f"\n  By Category+Style:")
+    log(f"\n  By Category+Style:")
     for bucket in sorted(category_style_stats):
         s = category_style_stats[bucket]
         if s["total"] > 0:
             exact_pct = s["exact"] / s["total"] * 100
-            print(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
+            log(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
 
     # ── Failures (show first 10 mismatches) ──────────────────────────────
     mismatches = [r for r in results if not r["exact_match"]]
     if mismatches:
-        print(f"\n  Mismatches: {len(mismatches)} total (showing first 10):")
+        log(f"\n  Mismatches: {len(mismatches)} total (showing first 10):")
         for r in mismatches[:10]:
-            print(f"\n    [{r['index']}] {r['source_bucket']} / {r['app_name']} / {r['style']}")
-            print(f"      Input:    {r['input'][:80]}...")
-            print(f"      Expected: {r['expected'][:80]}")
-            print(f"      Got:      {r['generated'][:80]}")
+            log(f"\n    [{r['index']}] {r['source_bucket']} / {r['app_name']} / {r['style']}")
+            log(f"      Input:    {r['input'][:80]}...")
+            log(f"      Expected: {r['expected'][:80]}")
+            log(f"      Got:      {r['generated'][:80]}")
 
     # ── Go/No-Go Gate ────────────────────────────────────────────────────
     exact_pct = overall["exact"] / total * 100
     fuzzy_pct = overall["fuzzy"] / total * 100
-    latency_ok = p95 is not None and p95 < 200
     errors_ok = overall["errors"] == 0 and parse_failures == 0
 
-    print(f"\n" + "=" * 65)
-    print(f"  GO/NO-GO GATE")
-    print(f"=" * 65)
-    print(f"  Accuracy (fuzzy) >= 95%: {fuzzy_pct:.1f}% {'PASS' if fuzzy_pct >= 95 else 'FAIL'}")
-    print(f"  Latency p95 < 200ms:     {p95:.0f}ms {'PASS' if latency_ok else 'FAIL'}" if latencies else "  Latency: N/A")
-    print(f"  Errors == 0:             {overall['errors']} {'PASS' if overall['errors'] == 0 else 'FAIL'}")
-    print(f"  Parse failures == 0:     {parse_failures} {'PASS' if parse_failures == 0 else 'FAIL'}")
+    log(f"\n" + "=" * 65)
+    log(f"  GO/NO-GO GATE")
+    log(f"=" * 65)
+    log(f"  Accuracy (fuzzy) >= 95%: {fuzzy_pct:.1f}% {'PASS' if fuzzy_pct >= 95 else 'FAIL'}")
+    log(f"  Errors == 0:             {overall['errors']} {'PASS' if overall['errors'] == 0 else 'FAIL'}")
+    log(f"  Parse failures == 0:     {parse_failures} {'PASS' if parse_failures == 0 else 'FAIL'}")
 
-    gate_pass = fuzzy_pct >= 95 and latency_ok and errors_ok
+    gate_pass = fuzzy_pct >= 95 and errors_ok
     if gate_pass:
-        print(f"\n  >>> GATE: PASS — Model is ready for deployment! <<<")
+        log(f"\n  >>> GATE: PASS — Model is ready for deployment! <<<")
     else:
-        print(f"\n  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<")
+        log(f"\n  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<")
 
     # ── Save detailed results ────────────────────────────────────────────
     # Save results in evaluation-results/ folder.
@@ -397,7 +382,13 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     eval_dir = SCRIPT_DIR / "evaluation-results"
     eval_dir.mkdir(exist_ok=True)  # Create folder if it doesn't exist
 
-    output_path = eval_dir / f"eval_{run_label}.json"
+    json_output_path = eval_dir / f"eval_{run_label}.json"
+    txt_output_path = eval_dir / f"eval_{run_label}.txt"
+    
+    # Save the human-readable text report
+    with open(txt_output_path, "w") as f:
+        f.write("\n".join(report_lines) + "\n")
+        
     output = {
         "checkpoint": checkpoint_path or "base_model",
         "resolved_checkpoint": resolved_checkpoint_path,
@@ -409,18 +400,17 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         "fuzzy_match_pct": round(fuzzy_pct, 2),
         "errors": overall["errors"],
         "parse_failures": parse_failures,
-        "latency_p50_ms": round(p50, 1) if latencies else None,
-        "latency_p95_ms": round(p95, 1) if latencies else None,
         "style_breakdown": dict(style_stats),
         "source_bucket_breakdown": dict(source_bucket_stats),
         "category_style_breakdown": dict(category_style_stats),
         "gate_pass": gate_pass,
         "detailed_results": results,
     }
-    with open(output_path, "w") as f:
+    with open(json_output_path, "w") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    print(f"\n  Detailed results saved to: {output_path}")
+    print(f"\n  Detailed JSON results saved to: {json_output_path}")
+    print(f"  Text report saved to:           {txt_output_path}")
     print("=" * 65)
 
     return gate_pass

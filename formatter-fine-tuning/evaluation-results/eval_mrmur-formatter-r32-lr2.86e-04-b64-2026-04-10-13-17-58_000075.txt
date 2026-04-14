@@ -1,0 +1,112 @@
+=================================================================
+  RESULTS
+=================================================================
+
+  Overall (206 examples):
+    Exact match:  145/206 (70.4%)
+    Fuzzy match:  149/206 (72.3%)
+
+  Latency:
+    p50: 1601ms
+    p95: 3013ms
+    p99: 7604ms
+
+  By Style:
+    Casual  : exact= 76.2%  fuzzy= 76.2%  (n=80)
+    Formal  : exact= 66.7%  fuzzy= 69.8%  (n=126)
+
+  By Source Bucket:
+    asr_errors               : exact= 50.0%  (n=2)
+    basic_formatting         : exact= 91.9%  (n=37)
+    dictionary               : exact= 80.0%  (n=15)
+    edge_cases               : exact= 80.0%  (n=15)
+    email_context            : exact= 50.0%  (n=24)
+    hinglish                 : exact= 46.9%  (n=49)
+    numbers_formatting       : exact= 95.7%  (n=23)
+    other_apps               : exact= 45.5%  (n=11)
+    self_correction          : exact=100.0%  (n=13)
+    voice_commands           : exact= 64.7%  (n=17)
+
+  By Category+Style:
+    Email_Casual             : exact= 66.7%  (n=9)
+    Email_Formal             : exact= 41.2%  (n=17)
+    Other_Casual             : exact= 71.4%  (n=14)
+    Other_Formal             : exact= 60.7%  (n=28)
+    Personal_Casual          : exact= 71.4%  (n=28)
+    Personal_Formal          : exact= 56.5%  (n=23)
+    Work_Casual              : exact= 86.2%  (n=29)
+    Work_Formal              : exact= 81.0%  (n=58)
+
+  Mismatches: 61 total (showing first 10):
+
+    [1] edge_cases / Slack / Formal
+      Input:    you know what i just realized we never tested the edge case where the user has n...
+      Expected: You know what, I just realized we never tested the edge case where the user has 
+      Got:      You know what I just realized, we never tested the edge case where the user has 
+
+    [2] voice_commands / WhatsApp / Formal
+      Input:    roses are red comma new line violets are blue comma new line this is a test comm...
+      Expected: Roses are red,
+violets are blue,
+this is a test,
+and so are you.
+      Got:      Roses are red,
+Violets are blue,
+This is a test,
+And so are you.
+
+    [4] hinglish / WhatsApp / Casual
+      Input:    arre haan yaad aaya kal toh tera birthday hai kya plan hai...
+      Expected: Arre haan yaad aaya! Kal toh tera birthday hai kya plan hai?
+      Got:      Arre haan yaad aaya kal toh tera birthday hai kya plan hai?
+
+    [8] hinglish / WhatsApp / Formal
+      Input:    yaar Netflix pe naya show aaya hai bahut achha hai kya naam hai uska stranger th...
+      Expected: Yaar, Netflix pe naya show aaya hai, bahut achha hai. Kya naam hai uska? Strange
+      Got:      Yaar, Netflix pe naya show aaya hai, bahut achha hai, kya naam hai uska? Strange
+
+    [16] hinglish / WhatsApp / Casual
+      Input:    bhai mere ghar aaja weekend pe FIFA khelenge order kar lenge khaana...
+      Expected: Bhai mere ghar aaja weekend pe, FIFA khelenge order kar lenge khaana
+      Got:      Bhai mere ghar aaja weekend pe FIFA khelenge order kar lenge khaana
+
+    [21] email_context / Gmail / Formal
+      Input:    hi samuel thank you for your interest in volunteering at the food bank our next ...
+      Expected: Hi Samuel,
+
+Thank you for your interest in volunteering at the food bank. Our ne
+      Got:      Hi Samuel,
+
+Thank you for your interest in volunteering at the food bank. Our ne
+
+    [25] voice_commands / VS Code / Formal
+      Input:    const x equals sign open parenthesis a comma b close parenthesis equals sign gre...
+      Expected: const x = (a, b) => a + b;
+      Got:      const x = (a, b) = a + b;
+
+    [26] hinglish / ChatGPT / Formal
+      Input:    mujhe samjhao ki async await aur promises mein kya difference hai javascript mei...
+      Expected: Mujhe samjhao ki async/await aur promises mein kya difference hai JavaScript mei
+      Got:      Mujhe samjhao ki async/await aur promises mein kya difference hai JavaScript mei
+
+    [27] other_apps / Safari / Formal
+      Input:    how to center a div vertically and horizontally using CSS flexbox...
+      Expected: How to center a div vertically and horizontally using CSS flexbox
+      Got:      How to center a div vertically and horizontally using CSS flexbox?
+
+    [31] basic_formatting / Slack / Formal
+      Input:    I may have found a workaround but I'm not a hundred percent sure it'll hold up i...
+      Expected: I may have found a workaround, but I'm not 100% sure it'll hold up in production
+      Got:      I may have found a workaround, but I'm not a hundred percent sure it'll hold up 
+
+=================================================================
+  GO/NO-GO GATE
+=================================================================
+  Accuracy (fuzzy) >= 95%: 72.3% FAIL
+  Latency p95 < 200ms:     3013ms FAIL
+  Errors == 0:             0 PASS
+  Parse failures == 0:     0 PASS
+
+  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<
+
+  Detailed results saved to: /Users/mac/Desktop/StayFree/formatter-fine-tuning/evaluation-results/eval_mrmur-formatter-r32-lr2.86e-04-b64-2026-04-10-13-17-58_000075.json\n

@@ -1,0 +1,112 @@
+=================================================================
+  RESULTS
+=================================================================
+
+  Overall (206 examples):
+    Exact match:  25/206 (12.1%)
+    Fuzzy match:  27/206 (13.1%)
+    Parse fails:  2
+
+  Latency:
+    p50: 1484ms
+    p95: 2671ms
+    p99: 6661ms
+
+  By Style:
+    Casual  : exact=  1.2%  fuzzy=  1.2%  (n=80)
+    Formal  : exact= 19.0%  fuzzy= 20.6%  (n=126)
+
+  By Source Bucket:
+    asr_errors               : exact= 50.0%  (n=2)
+    basic_formatting         : exact= 21.6%  (n=37)
+    dictionary               : exact= 13.3%  (n=15)
+    edge_cases               : exact=  6.7%  (n=15)
+    email_context            : exact=  4.2%  (n=24)
+    hinglish                 : exact=  2.0%  (n=49)
+    numbers_formatting       : exact= 26.1%  (n=23)
+    other_apps               : exact=  0.0%  (n=11)
+    self_correction          : exact= 23.1%  (n=13)
+    voice_commands           : exact= 11.8%  (n=17)
+
+  By Category+Style:
+    Email_Casual             : exact=  0.0%  (n=9)
+    Email_Formal             : exact=  5.9%  (n=17)
+    Other_Casual             : exact=  7.1%  (n=14)
+    Other_Formal             : exact= 14.3%  (n=28)
+    Personal_Casual          : exact=  0.0%  (n=28)
+    Personal_Formal          : exact= 17.4%  (n=23)
+    Work_Casual              : exact=  0.0%  (n=29)
+    Work_Formal              : exact= 25.9%  (n=58)
+
+  Mismatches: 181 total (showing first 10):
+
+    [0] email_context / Outlook / Formal
+      Input:    please see attached...
+      Expected: Please see attached.
+      Got:      Dear Mr. Smith,
+
+I am writing to inform you that the project deadline has been e
+
+    [1] edge_cases / Slack / Formal
+      Input:    you know what i just realized we never tested the edge case where the user has n...
+      Expected: You know what, I just realized we never tested the edge case where the user has 
+      Got:      The user does not have a profile picture.
+
+    [2] voice_commands / WhatsApp / Formal
+      Input:    roses are red comma new line violets are blue comma new line this is a test comm...
+      Expected: Roses are red,
+violets are blue,
+this is a test,
+and so are you.
+      Got:      Roses are red, 
+Violets are blue, 
+This is a test, 
+and so are you.
+
+    [3] voice_commands / Slack / Formal
+      Input:    the semi colon is used in JavaScript to end statements...
+      Expected: The semicolon is used in JavaScript to end statements.
+      Got:      The semi colon is used in JavaScript to end statements.
+
+    [4] hinglish / WhatsApp / Casual
+      Input:    arre haan yaad aaya kal toh tera birthday hai kya plan hai...
+      Expected: Arre haan yaad aaya! Kal toh tera birthday hai kya plan hai?
+      Got:      Arre haan yaad aaya kal toh tera birthday hai kya plan hai?
+
+    [5] numbers_formatting / Notes / Formal
+      Input:    ram is sixteen gb and processor is m three pro...
+      Expected: RAM is 16 GB and processor is M3 Pro.
+      Got:      Ram is 16 GB and processor is M3 Pro.
+
+    [6] voice_commands / Slack / Formal
+      Input:    go to the website dot com...
+      Expected: Go to the website.com.
+      Got:      go to https://www.website.com
+
+    [7] numbers_formatting / Slack / Casual
+      Input:    four point five stars on the app store with over two thousand reviews...
+      Expected: 4.5 stars on the App Store with over 2,000 reviews
+      Got:      Four and a half stars on the App Store with over two thousand reviews.
+
+    [8] hinglish / WhatsApp / Formal
+      Input:    yaar Netflix pe naya show aaya hai bahut achha hai kya naam hai uska stranger th...
+      Expected: Yaar, Netflix pe naya show aaya hai, bahut achha hai. Kya naam hai uska? Strange
+      Got:      Yaar, Netflix pe naya show aaya hai, bahut achha hai, kya naam hai uska? Strange
+
+    [9] self_correction / Notes / Casual
+      Input:    add two tablespoons of sugar scratch that one tablespoon...
+      Expected: Add 1 tablespoon of sugar
+      Got:      Add one tablespoon of sugar.
+
+=================================================================
+  GO/NO-GO GATE
+=================================================================
+  Accuracy (fuzzy) >= 95%: 13.1% FAIL
+  Latency p95 < 200ms:     2671ms FAIL
+  Errors == 0:             0 PASS
+  Parse failures == 0:     2 FAIL
+
+  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<
+
+  Detailed results saved to: /Users/mac/Desktop/StayFree/formatter-fine-tuning/evaluation-results/eval_base_model.json
+=================================================================\n
