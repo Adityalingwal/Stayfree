@@ -1,32 +1,32 @@
 {
-  "checkpoint": "logs/mrmur-formatter-r32-lr2.86e-04-b64-2026-04-10-13-17-58/000075",
-  "resolved_checkpoint": "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/sampler_weights/000075",
+  "checkpoint": "logs/mrmur-formatter-r32-lr2.86e-04-b64-2026-04-10-13-17-58/final",
+  "resolved_checkpoint": "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/sampler_weights/final",
   "model": "meta-llama/Llama-3.1-8B-Instruct",
   "total_examples": 206,
-  "exact_match": 145,
-  "exact_match_pct": 70.39,
-  "fuzzy_match": 149,
-  "fuzzy_match_pct": 72.33,
+  "exact_match": 150,
+  "exact_match_pct": 72.82,
+  "fuzzy_match": 153,
+  "fuzzy_match_pct": 74.27,
   "errors": 0,
   "parse_failures": 0,
-  "latency_p50_ms": 1601.3,
-  "latency_p95_ms": 3013.2,
+  "latency_p50_ms": 1332.6,
+  "latency_p95_ms": 2444.8,
   "style_breakdown": {
     "Formal": {
-      "exact": 84,
-      "fuzzy": 88,
+      "exact": 92,
+      "fuzzy": 94,
       "total": 126
     },
     "Casual": {
-      "exact": 61,
-      "fuzzy": 61,
+      "exact": 58,
+      "fuzzy": 59,
       "total": 80
     }
   },
   "source_bucket_breakdown": {
     "email_context": {
-      "exact": 12,
-      "fuzzy": 14,
+      "exact": 18,
+      "fuzzy": 18,
       "total": 24
     },
     "edge_cases": {
@@ -40,8 +40,8 @@
       "total": 17
     },
     "hinglish": {
-      "exact": 23,
-      "fuzzy": 23,
+      "exact": 22,
+      "fuzzy": 22,
       "total": 49
     },
     "numbers_formatting": {
@@ -50,7 +50,7 @@
       "total": 23
     },
     "self_correction": {
-      "exact": 13,
+      "exact": 12,
       "fuzzy": 13,
       "total": 13
     },
@@ -70,20 +70,20 @@
       "total": 11
     },
     "dictionary": {
-      "exact": 12,
-      "fuzzy": 12,
+      "exact": 13,
+      "fuzzy": 13,
       "total": 15
     }
   },
   "category_style_breakdown": {
     "Email_Formal": {
-      "exact": 7,
-      "fuzzy": 9,
+      "exact": 13,
+      "fuzzy": 13,
       "total": 17
     },
     "Work_Formal": {
-      "exact": 47,
-      "fuzzy": 47,
+      "exact": 49,
+      "fuzzy": 49,
       "total": 58
     },
     "Personal_Formal": {
@@ -92,8 +92,8 @@
       "total": 23
     },
     "Personal_Casual": {
-      "exact": 20,
-      "fuzzy": 20,
+      "exact": 18,
+      "fuzzy": 19,
       "total": 28
     },
     "Other_Formal": {
@@ -107,8 +107,8 @@
       "total": 29
     },
     "Other_Casual": {
-      "exact": 10,
-      "fuzzy": 10,
+      "exact": 9,
+      "fuzzy": 9,
       "total": 14
     },
     "Email_Casual": {
@@ -130,20 +130,20 @@
       "style": "Formal",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 7846.7
+      "latency_ms": 6846.7
     },
     {
       "index": 1,
       "input": "you know what i just realized we never tested the edge case where the user has no profile picture",
       "expected": "You know what, I just realized we never tested the edge case where the user has no profile picture.",
-      "generated": "You know what I just realized, we never tested the edge case where the user has no profile picture.",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "You know what, I just realized we never tested the edge case where the user has no profile picture.",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "edge_cases",
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1967.8
+      "latency_ms": 2223.2
     },
     {
       "index": 2,
@@ -156,7 +156,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1327.8
+      "latency_ms": 1590.1
     },
     {
       "index": 3,
@@ -169,20 +169,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1034.1
+      "latency_ms": 1073.0
     },
     {
       "index": 4,
       "input": "arre haan yaad aaya kal toh tera birthday hai kya plan hai",
       "expected": "Arre haan yaad aaya! Kal toh tera birthday hai kya plan hai?",
-      "generated": "Arre haan yaad aaya kal toh tera birthday hai kya plan hai?",
+      "generated": "Arre haan yaad aaya, kal toh tera birthday hai kya plan hai?",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1921.9
+      "latency_ms": 1544.6
     },
     {
       "index": 5,
@@ -195,7 +195,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1379.0
+      "latency_ms": 1546.6
     },
     {
       "index": 6,
@@ -208,7 +208,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1372.8
+      "latency_ms": 1184.6
     },
     {
       "index": 7,
@@ -221,7 +221,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1478.0
+      "latency_ms": 1638.5
     },
     {
       "index": 8,
@@ -234,7 +234,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 2411.4
+      "latency_ms": 1713.9
     },
     {
       "index": 9,
@@ -247,7 +247,7 @@
       "style": "Casual",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1463.1
+      "latency_ms": 1299.3
     },
     {
       "index": 10,
@@ -260,7 +260,7 @@
       "style": "Casual",
       "app_name": "Linear",
       "app_category": "Other",
-      "latency_ms": 1729.2
+      "latency_ms": 1436.4
     },
     {
       "index": 11,
@@ -273,7 +273,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1007.7
+      "latency_ms": 1238.3
     },
     {
       "index": 12,
@@ -286,7 +286,7 @@
       "style": "Formal",
       "app_name": "iMessage",
       "app_category": "Personal",
-      "latency_ms": 1368.0
+      "latency_ms": 1125.5
     },
     {
       "index": 13,
@@ -299,7 +299,7 @@
       "style": "Casual",
       "app_name": "VS Code",
       "app_category": "Other",
-      "latency_ms": 1204.4
+      "latency_ms": 1210.0
     },
     {
       "index": 14,
@@ -312,7 +312,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1111.1
+      "latency_ms": 1198.0
     },
     {
       "index": 15,
@@ -325,20 +325,20 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1189.7
+      "latency_ms": 1171.3
     },
     {
       "index": 16,
       "input": "bhai mere ghar aaja weekend pe FIFA khelenge order kar lenge khaana",
       "expected": "Bhai mere ghar aaja weekend pe, FIFA khelenge order kar lenge khaana",
-      "generated": "Bhai mere ghar aaja weekend pe FIFA khelenge order kar lenge khaana",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Bhai mere ghar aaja weekend pe, FIFA khelenge order kar lenge khaana",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1427.0
+      "latency_ms": 1216.1
     },
     {
       "index": 17,
@@ -351,7 +351,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1067.9
+      "latency_ms": 1249.5
     },
     {
       "index": 18,
@@ -364,7 +364,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1246.2
+      "latency_ms": 1234.0
     },
     {
       "index": 19,
@@ -377,7 +377,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1325.2
+      "latency_ms": 1310.4
     },
     {
       "index": 20,
@@ -390,20 +390,20 @@
       "style": "Casual",
       "app_name": "Instagram",
       "app_category": "Personal",
-      "latency_ms": 1602.3
+      "latency_ms": 1737.0
     },
     {
       "index": 21,
       "input": "hi samuel thank you for your interest in volunteering at the food bank our next orientation session is saturday february eighth from ten am to noon at the community center please bring a valid photo ID and wear comfortable clothes looking forward to seeing you there coordinator",
       "expected": "Hi Samuel,\n\nThank you for your interest in volunteering at the food bank. Our next orientation session is Saturday, February 8th from 10 AM to noon at the community center. Please bring a valid photo ID and wear comfortable clothes. Looking forward to seeing you there.\n\nCoordinator",
-      "generated": "Hi Samuel,\n\nThank you for your interest in volunteering at the food bank. Our next orientation session is Saturday, February 8th from 10 AM to noon at the community center. Please bring a valid photo ID and wear comfortable clothes.\n\nLooking forward to seeing you there.\n\nCoordinator",
-      "exact_match": false,
+      "generated": "Hi Samuel,\n\nThank you for your interest in volunteering at the food bank. Our next orientation session is Saturday, February 8th from 10 AM to noon at the community center. Please bring a valid photo ID and wear comfortable clothes. Looking forward to seeing you there.\n\nCoordinator",
+      "exact_match": true,
       "fuzzy_match": true,
       "source_bucket": "email_context",
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1909.4
+      "latency_ms": 1902.0
     },
     {
       "index": 22,
@@ -416,7 +416,7 @@
       "style": "Casual",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 1751.4
+      "latency_ms": 1735.5
     },
     {
       "index": 23,
@@ -429,7 +429,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2603.4
+      "latency_ms": 1541.6
     },
     {
       "index": 24,
@@ -442,7 +442,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1616.3
+      "latency_ms": 1305.8
     },
     {
       "index": 25,
@@ -455,7 +455,7 @@
       "style": "Formal",
       "app_name": "VS Code",
       "app_category": "Other",
-      "latency_ms": 1666.7
+      "latency_ms": 1178.0
     },
     {
       "index": 26,
@@ -468,7 +468,7 @@
       "style": "Formal",
       "app_name": "ChatGPT",
       "app_category": "Other",
-      "latency_ms": 1368.1
+      "latency_ms": 1364.2
     },
     {
       "index": 27,
@@ -481,7 +481,7 @@
       "style": "Formal",
       "app_name": "Safari",
       "app_category": "Other",
-      "latency_ms": 1636.1
+      "latency_ms": 1445.8
     },
     {
       "index": 28,
@@ -494,7 +494,7 @@
       "style": "Casual",
       "app_name": "Safari",
       "app_category": "Other",
-      "latency_ms": 2057.1
+      "latency_ms": 1219.2
     },
     {
       "index": 29,
@@ -507,7 +507,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1577.1
+      "latency_ms": 1307.1
     },
     {
       "index": 30,
@@ -520,7 +520,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1760.4
+      "latency_ms": 1310.7
     },
     {
       "index": 31,
@@ -533,7 +533,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1233.7
+      "latency_ms": 1559.0
     },
     {
       "index": 32,
@@ -546,20 +546,20 @@
       "style": "Casual",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1690.6
+      "latency_ms": 1265.0
     },
     {
       "index": 33,
       "input": "lets meet at starbucks wait no the office instead",
       "expected": "Let's meet at the office instead",
-      "generated": "Let's meet at the office instead",
-      "exact_match": true,
+      "generated": "Let's meet at The Office instead",
+      "exact_match": false,
       "fuzzy_match": true,
       "source_bucket": "self_correction",
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1455.5
+      "latency_ms": 1171.9
     },
     {
       "index": 34,
@@ -572,7 +572,7 @@
       "style": "Formal",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1445.9
+      "latency_ms": 1422.2
     },
     {
       "index": 35,
@@ -585,7 +585,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1025.5
+      "latency_ms": 1373.1
     },
     {
       "index": 36,
@@ -598,7 +598,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1481.7
+      "latency_ms": 1324.3
     },
     {
       "index": 37,
@@ -611,7 +611,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1515.7
+      "latency_ms": 1489.1
     },
     {
       "index": 38,
@@ -624,7 +624,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1650.1
+      "latency_ms": 1539.2
     },
     {
       "index": 39,
@@ -637,7 +637,7 @@
       "style": "Casual",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1251.7
+      "latency_ms": 1014.1
     },
     {
       "index": 40,
@@ -650,7 +650,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1064.4
+      "latency_ms": 1252.9
     },
     {
       "index": 41,
@@ -663,20 +663,20 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 2149.3
+      "latency_ms": 1946.0
     },
     {
       "index": 42,
       "input": "hi team big news we just received SOC two certification this means we can now pursue enterprise clients that require this compliance standard the security team has been working on this for six months and their effort has paid off let's keep up the momentum",
       "expected": "Hi team,\n\nBig news \u2014 we just received SOC 2 certification! This means we can now pursue enterprise clients that require this compliance standard. The security team has been working on this for 6 months, and their effort has paid off. Let's keep up the momentum!",
-      "generated": "Hi team,\n\nBig news! We just received SOC 2 certification. This means we can now pursue enterprise clients that require this compliance standard. The security team has been working on this for 6 months, and their effort has paid off. Let's keep up the momentum!",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Hi team,\n\nBig news \u2014 we just received SOC 2 certification! This means we can now pursue enterprise clients that require this compliance standard. The security team has been working on this for 6 months, and their effort has paid off. Let's keep up the momentum!",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "email_context",
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1909.4
+      "latency_ms": 1626.4
     },
     {
       "index": 43,
@@ -689,7 +689,7 @@
       "style": "Formal",
       "app_name": "iMessage",
       "app_category": "Personal",
-      "latency_ms": 2209.7
+      "latency_ms": 1426.5
     },
     {
       "index": 44,
@@ -702,7 +702,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1364.9
+      "latency_ms": 1045.6
     },
     {
       "index": 45,
@@ -715,7 +715,7 @@
       "style": "Casual",
       "app_name": "Spark",
       "app_category": "Email",
-      "latency_ms": 1424.8
+      "latency_ms": 1336.1
     },
     {
       "index": 46,
@@ -728,7 +728,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1391.2
+      "latency_ms": 1242.7
     },
     {
       "index": 47,
@@ -741,7 +741,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1361.1
+      "latency_ms": 1186.3
     },
     {
       "index": 48,
@@ -754,7 +754,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1445.6
+      "latency_ms": 1172.2
     },
     {
       "index": 49,
@@ -767,7 +767,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 7383.6
+      "latency_ms": 1325.9
     },
     {
       "index": 50,
@@ -780,7 +780,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 7032.7
+      "latency_ms": 1106.5
     },
     {
       "index": 51,
@@ -793,7 +793,7 @@
       "style": "Casual",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 7574.3
+      "latency_ms": 1477.7
     },
     {
       "index": 52,
@@ -806,7 +806,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 7186.6
+      "latency_ms": 1068.9
     },
     {
       "index": 53,
@@ -819,7 +819,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 7498.7
+      "latency_ms": 1120.8
     },
     {
       "index": 54,
@@ -832,7 +832,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1758.8
+      "latency_ms": 1244.9
     },
     {
       "index": 55,
@@ -845,7 +845,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2016.4
+      "latency_ms": 1243.3
     },
     {
       "index": 56,
@@ -858,7 +858,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1507.8
+      "latency_ms": 1027.3
     },
     {
       "index": 57,
@@ -871,7 +871,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1725.1
+      "latency_ms": 1414.1
     },
     {
       "index": 58,
@@ -884,7 +884,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 7136.1
+      "latency_ms": 6883.6
     },
     {
       "index": 59,
@@ -897,33 +897,33 @@
       "style": "Casual",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 2807.6
+      "latency_ms": 7309.0
     },
     {
       "index": 60,
       "input": "nahi nahi woh waala mat karo puraana code hai deprecate ho chuka hai naya version use karo",
       "expected": "Nahi woh waala mat karo, puraana code hai deprecate ho chuka hai, naya version use karo",
-      "generated": "Nahi woh waala mat karo puraana code hai deprecate ho chuka hai naya version use karo",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Nahi woh waala mat karo, puraana code hai deprecate ho chuka hai, naya version use karo",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1664.2
+      "latency_ms": 1642.6
     },
     {
       "index": 61,
       "input": "waise meine soch raha tha ki bear mein ek journal entry likhun daily reflections ke liye",
       "expected": "Waise, meine soch raha tha ki Bear mein ek journal entry likhun daily reflections ke liye.",
-      "generated": "Waise meine soch raha tha ki Bear mein ek journal entry likhun daily reflections ke liye.",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Waise, meine soch raha tha ki Bear mein ek journal entry likhun daily reflections ke liye.",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "hinglish",
       "style": "Formal",
       "app_name": "Bear",
       "app_category": "Other",
-      "latency_ms": 2000.9
+      "latency_ms": 1482.9
     },
     {
       "index": 62,
@@ -936,7 +936,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1665.0
+      "latency_ms": 1189.0
     },
     {
       "index": 63,
@@ -949,7 +949,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1728.2
+      "latency_ms": 1435.4
     },
     {
       "index": 64,
@@ -962,7 +962,7 @@
       "style": "Formal",
       "app_name": "ChatGPT",
       "app_category": "Other",
-      "latency_ms": 1856.9
+      "latency_ms": 1066.7
     },
     {
       "index": 65,
@@ -975,7 +975,7 @@
       "style": "Casual",
       "app_name": "Linear",
       "app_category": "Other",
-      "latency_ms": 1185.0
+      "latency_ms": 1596.7
     },
     {
       "index": 66,
@@ -988,7 +988,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1744.4
+      "latency_ms": 1194.3
     },
     {
       "index": 67,
@@ -1001,7 +1001,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1827.3
+      "latency_ms": 1177.0
     },
     {
       "index": 68,
@@ -1014,7 +1014,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2338.6
+      "latency_ms": 1512.3
     },
     {
       "index": 69,
@@ -1027,7 +1027,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1294.2
+      "latency_ms": 1243.9
     },
     {
       "index": 70,
@@ -1040,7 +1040,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2032.9
+      "latency_ms": 1702.6
     },
     {
       "index": 71,
@@ -1053,20 +1053,20 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1608.1
+      "latency_ms": 8203.8
     },
     {
       "index": 72,
       "input": "firstly the budget needs to be approved secondly we need to hire two more engineers thirdly the timeline should be revised and lastly we need a project manager",
       "expected": "1. The budget needs to be approved\n2. We need to hire 2 more engineers\n3. The timeline should be revised\n4. We need a project manager",
-      "generated": "Firstly the budget needs to be approved, secondly we need to hire 2 more engineers, thirdly the timeline should be revised and lastly we need a project manager",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "1. The budget needs to be approved\n2. We need to hire 2 more engineers\n3. The timeline should be revised\n4. We need a project manager",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "edge_cases",
       "style": "Casual",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1908.3
+      "latency_ms": 7200.0
     },
     {
       "index": 73,
@@ -1079,7 +1079,7 @@
       "style": "Casual",
       "app_name": "Notion",
       "app_category": "Other",
-      "latency_ms": 1428.7
+      "latency_ms": 1695.6
     },
     {
       "index": 74,
@@ -1092,7 +1092,7 @@
       "style": "Formal",
       "app_name": "VS Code",
       "app_category": "Other",
-      "latency_ms": 1735.6
+      "latency_ms": 1662.8
     },
     {
       "index": 75,
@@ -1105,7 +1105,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 2797.8
+      "latency_ms": 2614.0
     },
     {
       "index": 76,
@@ -1118,7 +1118,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1263.3
+      "latency_ms": 1369.9
     },
     {
       "index": 77,
@@ -1131,7 +1131,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1648.1
+      "latency_ms": 1207.5
     },
     {
       "index": 78,
@@ -1144,7 +1144,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1511.0
+      "latency_ms": 1481.5
     },
     {
       "index": 79,
@@ -1157,7 +1157,7 @@
       "style": "Casual",
       "app_name": "ChatGPT",
       "app_category": "Other",
-      "latency_ms": 1402.4
+      "latency_ms": 1085.6
     },
     {
       "index": 80,
@@ -1170,33 +1170,33 @@
       "style": "Formal",
       "app_name": "VS Code",
       "app_category": "Other",
-      "latency_ms": 1620.7
+      "latency_ms": 1484.1
     },
     {
       "index": 81,
       "input": "first of all thank you for your patience we really appreciate it",
       "expected": "First of all thank you for your patience we really appreciate it",
-      "generated": "First of all thank you for your patience we really appreciate it",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "First of all thank you for your patience, we really appreciate it",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "edge_cases",
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1502.3
+      "latency_ms": 1075.4
     },
     {
       "index": 82,
       "input": "pages mein ek letter likh do dear sir I would like to request a leave of absence for two weeks",
       "expected": "Pages mein ek letter likh do. Dear Sir, I would like to request a leave of absence for 2 weeks.",
-      "generated": "Pages mein ek letter likh do dear sir,\n\nI would like to request a leave of absence for 2 weeks.",
+      "generated": "Pages mein ek letter likh do dear sir. I would like to request a leave of absence for 2 weeks.",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Formal",
       "app_name": "Pages",
       "app_category": "Other",
-      "latency_ms": 1588.2
+      "latency_ms": 1361.6
     },
     {
       "index": 83,
@@ -1209,20 +1209,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1546.0
+      "latency_ms": 1241.9
     },
     {
       "index": 84,
       "input": "mere paas do options hain ek hai ki hum SaaS model pe jaayein monthly subscription ke saath aur doosra hai ki one time purchase rakhein lifetime license ke saath tumhara kya khayal hai",
       "expected": "Mere paas 2 options hain. Ek hai ki hum SaaS model pe jaayein, monthly subscription ke saath. Aur doosra hai ki one-time purchase rakhein, lifetime license ke saath. Tumhara kya khayal hai?",
-      "generated": "Mere paas 2 options hain: ek hai ki hum SaaS model pe jaayein, monthly subscription ke saath, aur doosra hai ki one-time purchase rakhein, lifetime license ke saath. Tumhara kya khayal hai?",
+      "generated": "Mere paas 2 options hain. Ek hai ki hum SaaS model pe jaayein, monthly subscription ke saath. Doosra hai ki one-time purchase rakhein, lifetime license ke saath. Tumhara kya khayal hai?",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 3013.2
+      "latency_ms": 1908.6
     },
     {
       "index": 85,
@@ -1235,7 +1235,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1554.3
+      "latency_ms": 1429.7
     },
     {
       "index": 86,
@@ -1248,7 +1248,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1675.6
+      "latency_ms": 1024.0
     },
     {
       "index": 87,
@@ -1261,7 +1261,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2201.4
+      "latency_ms": 1231.0
     },
     {
       "index": 88,
@@ -1274,7 +1274,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 2074.7
+      "latency_ms": 1965.4
     },
     {
       "index": 89,
@@ -1287,7 +1287,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2024.4
+      "latency_ms": 1906.0
     },
     {
       "index": 90,
@@ -1300,7 +1300,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1360.9
+      "latency_ms": 1324.9
     },
     {
       "index": 91,
@@ -1313,7 +1313,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1504.8
+      "latency_ms": 1225.2
     },
     {
       "index": 92,
@@ -1326,7 +1326,7 @@
       "style": "Casual",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 2142.2
+      "latency_ms": 1332.6
     },
     {
       "index": 93,
@@ -1339,7 +1339,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1563.2
+      "latency_ms": 1464.3
     },
     {
       "index": 94,
@@ -1352,7 +1352,7 @@
       "style": "Casual",
       "app_name": "Telegram",
       "app_category": "Personal",
-      "latency_ms": 1982.8
+      "latency_ms": 1187.6
     },
     {
       "index": 95,
@@ -1365,7 +1365,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 3626.4
+      "latency_ms": 1269.2
     },
     {
       "index": 96,
@@ -1378,7 +1378,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2086.7
+      "latency_ms": 1590.2
     },
     {
       "index": 97,
@@ -1391,7 +1391,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1961.3
+      "latency_ms": 1203.6
     },
     {
       "index": 98,
@@ -1404,33 +1404,33 @@
       "style": "Casual",
       "app_name": "Notion",
       "app_category": "Other",
-      "latency_ms": 2539.5
+      "latency_ms": 1392.4
     },
     {
       "index": 99,
       "input": "docker compose up minus d kar do aur phir logs check karo",
       "expected": "docker compose up -d kar do aur phir logs check karo",
-      "generated": "docker-compose up -d kar do aur phir logs check karo",
+      "generated": "docker-compose up -d, kar 2 aur phir logs check karo",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Formal",
       "app_name": "Terminal",
       "app_category": "Other",
-      "latency_ms": 1546.3
+      "latency_ms": 1345.2
     },
     {
       "index": 100,
       "input": "docker compose up minus d kar do aur phir logs check karo",
       "expected": "docker compose up -d kar do aur phir logs check karo",
-      "generated": "docker-compose up -d kar do aur phir logs check karo",
+      "generated": "docker-compose up -d, kar 2 aur phir logs check karo",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "Terminal",
       "app_category": "Other",
-      "latency_ms": 1451.5
+      "latency_ms": 1182.7
     },
     {
       "index": 101,
@@ -1443,7 +1443,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 2221.6
+      "latency_ms": 1014.4
     },
     {
       "index": 102,
@@ -1456,20 +1456,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1547.1
+      "latency_ms": 1261.1
     },
     {
       "index": 103,
       "input": "bear mein likho aaj maine gym kiya one hour cardio plus weight training",
       "expected": "Bear mein likho aaj maine gym kiya 1 hour cardio plus weight training",
-      "generated": "Bear mein likho aaj maine gym kiya 1 hour cardio plus weight training",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "Bear mein likho aaj maine gym kiya, 1 hour cardio plus weight training",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "Bear",
       "app_category": "Other",
-      "latency_ms": 1521.3
+      "latency_ms": 1734.7
     },
     {
       "index": 104,
@@ -1482,20 +1482,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1356.8
+      "latency_ms": 1239.7
     },
     {
       "index": 105,
       "input": "hey can you forward me that email from the client the one with the updated requirements thanks",
       "expected": "Hey, can you forward me that email from the client? The one with the updated requirements, thanks",
-      "generated": "Hey can you forward me that email from the client, the one with the updated requirements? Thanks",
+      "generated": "Hey, can you forward me that email from the client, the one with the updated requirements? Thanks",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "email_context",
       "style": "Casual",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1683.9
+      "latency_ms": 1952.3
     },
     {
       "index": 106,
@@ -1508,7 +1508,7 @@
       "style": "Casual",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 1946.7
+      "latency_ms": 1146.4
     },
     {
       "index": 107,
@@ -1521,7 +1521,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1618.3
+      "latency_ms": 1253.0
     },
     {
       "index": 108,
@@ -1534,7 +1534,7 @@
       "style": "Formal",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 1378.5
+      "latency_ms": 1221.3
     },
     {
       "index": 109,
@@ -1547,7 +1547,7 @@
       "style": "Casual",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1964.1
+      "latency_ms": 1804.5
     },
     {
       "index": 110,
@@ -1560,7 +1560,7 @@
       "style": "Formal",
       "app_name": "Instagram",
       "app_category": "Personal",
-      "latency_ms": 1646.8
+      "latency_ms": 1473.5
     },
     {
       "index": 111,
@@ -1573,7 +1573,7 @@
       "style": "Casual",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 1126.1
+      "latency_ms": 1201.9
     },
     {
       "index": 112,
@@ -1586,7 +1586,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1127.7
+      "latency_ms": 1244.6
     },
     {
       "index": 113,
@@ -1599,7 +1599,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1732.6
+      "latency_ms": 1249.6
     },
     {
       "index": 114,
@@ -1612,7 +1612,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1556.3
+      "latency_ms": 1347.1
     },
     {
       "index": 115,
@@ -1625,7 +1625,7 @@
       "style": "Formal",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1351.9
+      "latency_ms": 1250.3
     },
     {
       "index": 116,
@@ -1638,7 +1638,7 @@
       "style": "Formal",
       "app_name": "VS Code",
       "app_category": "Other",
-      "latency_ms": 1371.4
+      "latency_ms": 1429.4
     },
     {
       "index": 117,
@@ -1651,7 +1651,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1186.4
+      "latency_ms": 1017.8
     },
     {
       "index": 118,
@@ -1664,7 +1664,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1477.3
+      "latency_ms": 1175.1
     },
     {
       "index": 119,
@@ -1677,7 +1677,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1913.4
+      "latency_ms": 1015.4
     },
     {
       "index": 120,
@@ -1690,7 +1690,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1004.6
+      "latency_ms": 1103.5
     },
     {
       "index": 121,
@@ -1703,20 +1703,20 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1491.5
+      "latency_ms": 1297.6
     },
     {
       "index": 122,
       "input": "chrome mein search kar do how to center a div css",
       "expected": "Chrome mein search kar do how to center a div CSS.",
-      "generated": "Chrome mein search kar do how to center a div CSS.",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "Chrome mein search kar do how to center a div CSS",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Formal",
       "app_name": "Chrome",
       "app_category": "Other",
-      "latency_ms": 1618.8
+      "latency_ms": 1376.2
     },
     {
       "index": 123,
@@ -1729,7 +1729,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1063.3
+      "latency_ms": 1908.5
     },
     {
       "index": 124,
@@ -1742,7 +1742,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1229.1
+      "latency_ms": 959.4
     },
     {
       "index": 125,
@@ -1755,7 +1755,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1288.2
+      "latency_ms": 1229.5
     },
     {
       "index": 126,
@@ -1768,7 +1768,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1708.4
+      "latency_ms": 1067.0
     },
     {
       "index": 127,
@@ -1781,7 +1781,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1899.8
+      "latency_ms": 1248.6
     },
     {
       "index": 128,
@@ -1794,20 +1794,20 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1601.3
+      "latency_ms": 1620.7
     },
     {
       "index": 129,
       "input": "hello I noticed an error on my latest invoice the amount charged was five hundred dollars but the agreed price was four hundred and fifty dollars could you please issue a corrected invoice invoice number is INV dash twenty twenty five dash zero zero four two thank you",
       "expected": "Hello,\n\nI noticed an error on my latest invoice. The amount charged was $500, but the agreed price was $450. Could you please issue a corrected invoice? Invoice number is INV-2025-0042.\n\nThank you",
-      "generated": "Hello,\n\nI noticed an error on my latest invoice. The amount charged was $500, but the agreed price was $450. Could you please issue a corrected invoice? Invoice number is INV-2025-00042.\n\nThank you",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Hello,\n\nI noticed an error on my latest invoice. The amount charged was $500, but the agreed price was $450. Could you please issue a corrected invoice? Invoice number is INV-2025-0042.\n\nThank you",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "email_context",
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1816.3
+      "latency_ms": 1775.7
     },
     {
       "index": 130,
@@ -1820,7 +1820,7 @@
       "style": "Formal",
       "app_name": "Notion",
       "app_category": "Other",
-      "latency_ms": 1110.9
+      "latency_ms": 1072.6
     },
     {
       "index": 131,
@@ -1833,20 +1833,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1058.0
+      "latency_ms": 1374.4
     },
     {
       "index": 132,
       "input": "main aaj late aaunga office tera kaam hai kya kuch urgent toh bata de",
       "expected": "Main aaj late aaunga office, tera kaam hai kya kuch urgent toh bata de",
-      "generated": "Main aaj late aaunga office, tera kaam hai kya kuch urgent toh bata de",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "Main aaj late aaunga office, tera kaam hai kya kuch urgent? Toh bata de",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1198.6
+      "latency_ms": 1422.8
     },
     {
       "index": 133,
@@ -1859,7 +1859,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1300.5
+      "latency_ms": 1531.9
     },
     {
       "index": 134,
@@ -1872,7 +1872,7 @@
       "style": "Formal",
       "app_name": "Bear",
       "app_category": "Other",
-      "latency_ms": 1381.8
+      "latency_ms": 1722.5
     },
     {
       "index": 135,
@@ -1885,7 +1885,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1065.4
+      "latency_ms": 1245.2
     },
     {
       "index": 136,
@@ -1898,7 +1898,7 @@
       "style": "Formal",
       "app_name": "Discord",
       "app_category": "Personal",
-      "latency_ms": 1812.8
+      "latency_ms": 1379.7
     },
     {
       "index": 137,
@@ -1911,7 +1911,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1757.6
+      "latency_ms": 1023.6
     },
     {
       "index": 138,
@@ -1924,7 +1924,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 2149.8
+      "latency_ms": 1946.6
     },
     {
       "index": 139,
@@ -1937,7 +1937,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 997.9
+      "latency_ms": 1082.1
     },
     {
       "index": 140,
@@ -1950,20 +1950,20 @@
       "style": "Formal",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1308.9
+      "latency_ms": 1654.9
     },
     {
       "index": 141,
       "input": "usne bola ki uska macbook kharab ho gaya hai apple store le jaana padega warranty mein hai abhi",
       "expected": "Usne bola ki uska MacBook kharab ho gaya hai, Apple Store le jaana padega warranty mein hai abhi",
-      "generated": "Usne bola ki uska MacBook kharab ho gaya hai, Apple Store le jaana padega warranty mein hai abhi",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "Usne bola ki uska MacBook kharab ho gaya hai, Apple Store le jaana padega, warranty mein hai abhi",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1749.4
+      "latency_ms": 1189.8
     },
     {
       "index": 142,
@@ -1976,7 +1976,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 2257.3
+      "latency_ms": 1126.4
     },
     {
       "index": 143,
@@ -1989,7 +1989,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1380.2
+      "latency_ms": 1078.5
     },
     {
       "index": 144,
@@ -2002,7 +2002,7 @@
       "style": "Formal",
       "app_name": "iMessage",
       "app_category": "Personal",
-      "latency_ms": 1420.7
+      "latency_ms": 1303.6
     },
     {
       "index": 145,
@@ -2015,33 +2015,33 @@
       "style": "Formal",
       "app_name": "ChatGPT",
       "app_category": "Other",
-      "latency_ms": 2250.8
+      "latency_ms": 1500.2
     },
     {
       "index": 146,
       "input": "the manager told us everyone needs to submit their reports by friday",
       "expected": "The manager told us everyone needs to submit their reports by Friday",
-      "generated": "The manager told us everyone needs to submit their reports by Friday",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "The manager told us, 'Everyone needs to submit their reports by Friday'",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "edge_cases",
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1161.1
+      "latency_ms": 1254.4
     },
     {
       "index": 147,
       "input": "baarish ho rahi hai kya wahin pe abhi toh main nikal raha tha",
       "expected": "Baarish ho rahi hai kya wahin pe abhi? Toh main nikal raha tha",
-      "generated": "Baarish ho rahi hai kya wahin pe abhi? Main nikal raha tha",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Baarish ho rahi hai kya wahin pe abhi? Toh main nikal raha tha",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "iMessage",
       "app_category": "Personal",
-      "latency_ms": 2538.4
+      "latency_ms": 1454.8
     },
     {
       "index": 148,
@@ -2054,7 +2054,7 @@
       "style": "Casual",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 1984.1
+      "latency_ms": 1951.7
     },
     {
       "index": 149,
@@ -2067,7 +2067,7 @@
       "style": "Formal",
       "app_name": "Craft",
       "app_category": "Other",
-      "latency_ms": 2242.4
+      "latency_ms": 1610.5
     },
     {
       "index": 150,
@@ -2080,7 +2080,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1914.1
+      "latency_ms": 1682.1
     },
     {
       "index": 151,
@@ -2093,7 +2093,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 7604.0
+      "latency_ms": 1064.9
     },
     {
       "index": 152,
@@ -2106,7 +2106,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 8801.6
+      "latency_ms": 1733.2
     },
     {
       "index": 153,
@@ -2119,7 +2119,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1779.4
+      "latency_ms": 1424.7
     },
     {
       "index": 154,
@@ -2132,7 +2132,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1521.4
+      "latency_ms": 1287.2
     },
     {
       "index": 155,
@@ -2145,7 +2145,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1360.7
+      "latency_ms": 1251.3
     },
     {
       "index": 156,
@@ -2158,7 +2158,7 @@
       "style": "Casual",
       "app_name": "ChatGPT",
       "app_category": "Other",
-      "latency_ms": 1313.8
+      "latency_ms": 1246.3
     },
     {
       "index": 157,
@@ -2171,7 +2171,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1910.1
+      "latency_ms": 1200.2
     },
     {
       "index": 158,
@@ -2184,7 +2184,7 @@
       "style": "Casual",
       "app_name": "Telegram",
       "app_category": "Personal",
-      "latency_ms": 2018.6
+      "latency_ms": 1057.3
     },
     {
       "index": 159,
@@ -2197,7 +2197,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1451.8
+      "latency_ms": 1073.5
     },
     {
       "index": 160,
@@ -2210,7 +2210,7 @@
       "style": "Formal",
       "app_name": "Gmail",
       "app_category": "Email",
-      "latency_ms": 1917.6
+      "latency_ms": 1442.2
     },
     {
       "index": 161,
@@ -2223,7 +2223,7 @@
       "style": "Casual",
       "app_name": "Apple Mail",
       "app_category": "Email",
-      "latency_ms": 1878.4
+      "latency_ms": 1710.0
     },
     {
       "index": 162,
@@ -2236,7 +2236,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1543.8
+      "latency_ms": 1150.4
     },
     {
       "index": 163,
@@ -2249,7 +2249,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1524.3
+      "latency_ms": 1085.5
     },
     {
       "index": 164,
@@ -2262,7 +2262,7 @@
       "style": "Formal",
       "app_name": "Linear",
       "app_category": "Other",
-      "latency_ms": 1472.0
+      "latency_ms": 1602.2
     },
     {
       "index": 165,
@@ -2275,7 +2275,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1346.5
+      "latency_ms": 6598.7
     },
     {
       "index": 166,
@@ -2288,7 +2288,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1500.3
+      "latency_ms": 7952.4
     },
     {
       "index": 167,
@@ -2301,7 +2301,7 @@
       "style": "Formal",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1943.2
+      "latency_ms": 1491.4
     },
     {
       "index": 168,
@@ -2314,7 +2314,7 @@
       "style": "Formal",
       "app_name": "Bear",
       "app_category": "Other",
-      "latency_ms": 2670.9
+      "latency_ms": 2444.8
     },
     {
       "index": 169,
@@ -2327,33 +2327,33 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1161.0
+      "latency_ms": 1187.9
     },
     {
       "index": 170,
       "input": "kal se gym join kar raha hoon bhai saat baje subah daily jaaunga no excuses this time",
       "expected": "Kal se gym join kar raha hoon bhai 7 baje subah, daily jaaunga no excuses this time",
-      "generated": "Kal se gym join kar raha hoon bhai 7 baje subah daily jaaunga no excuses this time",
+      "generated": "Kal se gym join kar raha hoon bhai 7 baje subah daily jaaunga, no excuses this time",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "Instagram",
       "app_category": "Personal",
-      "latency_ms": 2033.3
+      "latency_ms": 1568.3
     },
     {
       "index": 171,
       "input": "hi I need access to the analytics dashboard my employee ID is EMP dash zero four five two and my manager is jennifer wu she should have already approved the request please process this at your earliest convenience",
       "expected": "Hi,\n\nI need access to the analytics dashboard. My employee ID is EMP-0452, and my manager is Jennifer Wu. She should have already approved the request. Please process this at your earliest convenience.",
-      "generated": "Hi,\n\nI need access to the analytics dashboard. My employee ID is EMP-00452, and my manager is Jennifer Wu. She should have already approved the request. Please process this at your earliest convenience.",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Hi,\n\nI need access to the analytics dashboard. My employee ID is EMP-0452, and my manager is Jennifer Wu. She should have already approved the request. Please process this at your earliest convenience.",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "email_context",
       "style": "Formal",
       "app_name": "Outlook",
       "app_category": "Email",
-      "latency_ms": 2024.0
+      "latency_ms": 1929.6
     },
     {
       "index": 172,
@@ -2366,20 +2366,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1581.2
+      "latency_ms": 1488.3
     },
     {
       "index": 173,
       "input": "dear mr johnson I regret to inform you that we will not be renewing your contract which expires on december thirty first after careful consideration we've decided to go in a different direction we appreciate your contributions over the past two years and wish you all the best in your future endeavors sincerely hr department",
       "expected": "Dear Mr. Johnson,\n\nI regret to inform you that we will not be renewing your contract, which expires on December 31st. After careful consideration, we've decided to go in a different direction. We appreciate your contributions over the past 2 years and wish you all the best in your future endeavors.\n\nSincerely,\nHR Department",
-      "generated": "Dear Mr. Johnson,\n\nI regret to inform you that we will not be renewing your contract, which expires on December 31st. After careful consideration, we've decided to go in a different direction.\n\nWe appreciate your contributions over the past 2 years and wish you all the best in your future endeavors.\n\nSincerely,\nHR Department",
-      "exact_match": false,
+      "generated": "Dear Mr. Johnson,\n\nI regret to inform you that we will not be renewing your contract, which expires on December 31st. After careful consideration, we've decided to go in a different direction. We appreciate your contributions over the past 2 years and wish you all the best in your future endeavors.\n\nSincerely,\nHR Department",
+      "exact_match": true,
       "fuzzy_match": true,
       "source_bucket": "email_context",
       "style": "Formal",
       "app_name": "ProtonMail",
       "app_category": "Email",
-      "latency_ms": 2895.5
+      "latency_ms": 2593.9
     },
     {
       "index": 174,
@@ -2392,7 +2392,7 @@
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1413.1
+      "latency_ms": 1102.3
     },
     {
       "index": 175,
@@ -2405,20 +2405,20 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1278.1
+      "latency_ms": 1123.3
     },
     {
       "index": 176,
       "input": "suno na mujhe yeh recipe save karni hai chicken biryani wali",
       "expected": "Suno na, mujhe yeh recipe save karni hai. Chicken biryani wali.",
-      "generated": "Suno na mujhe, yeh recipe save karni hai, chicken biryani wali.",
+      "generated": "Suno na, mujhe yeh recipe save karni hai \u2014 chicken biryani wali.",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Formal",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1300.2
+      "latency_ms": 1314.9
     },
     {
       "index": 177,
@@ -2431,7 +2431,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1344.6
+      "latency_ms": 1489.0
     },
     {
       "index": 178,
@@ -2444,20 +2444,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1675.3
+      "latency_ms": 1248.9
     },
     {
       "index": 179,
       "input": "yaar mere paas ek idea hai startup ka AI based content generator banana hai hindi market ke liye bahut potential hai",
       "expected": "Yaar mere paas ek idea hai startup ka, AI-based content generator banana hai Hindi market ke liye, bahut potential hai",
-      "generated": "Yaar mere paas ek idea hai startup ka, AI based content generator banana hai Hindi market ke liye bahut potential hai",
+      "generated": "Yaar mere paas ek idea hai startup ka, AI based content generator banana hai Hindi market ke liye, bahut potential hai",
       "exact_match": false,
       "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1847.3
+      "latency_ms": 1546.4
     },
     {
       "index": 180,
@@ -2470,20 +2470,20 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1898.2
+      "latency_ms": 1189.3
     },
     {
       "index": 181,
       "input": "yaar tera netflix ka password kya hai share kar na mujhe bhi dekhna hai woh show",
       "expected": "Yaar tera Netflix ka password kya hai? Share kar na mujhe bhi dekhna hai woh show",
-      "generated": "Yaar tera Netflix ka password kya hai? Share kar na mujhe bhi dekhna hai woh show",
-      "exact_match": true,
-      "fuzzy_match": true,
+      "generated": "Yaar tera Netflix ka password kya hai? Share kar na, mujhe bhi dekhna hai woh show",
+      "exact_match": false,
+      "fuzzy_match": false,
       "source_bucket": "hinglish",
       "style": "Casual",
       "app_name": "Telegram",
       "app_category": "Personal",
-      "latency_ms": 1728.1
+      "latency_ms": 1315.4
     },
     {
       "index": 182,
@@ -2496,7 +2496,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1322.4
+      "latency_ms": 1421.7
     },
     {
       "index": 183,
@@ -2509,20 +2509,20 @@
       "style": "Casual",
       "app_name": "Notes",
       "app_category": "Other",
-      "latency_ms": 1896.4
+      "latency_ms": 1429.5
     },
     {
       "index": 184,
       "input": "um i added the amplitude sdk to the ios build but haven't tested it yet",
       "expected": "I added the Amplitude SDK to the iOS build but haven't tested it yet.",
-      "generated": "I added the Amplitude SDK to the iOS build, but haven't tested it yet.",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "I added the Amplitude SDK to the iOS build but haven't tested it yet.",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "dictionary",
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1816.2
+      "latency_ms": 1669.4
     },
     {
       "index": 185,
@@ -2535,7 +2535,7 @@
       "style": "Formal",
       "app_name": "Teams",
       "app_category": "Work",
-      "latency_ms": 1879.2
+      "latency_ms": 1443.5
     },
     {
       "index": 186,
@@ -2548,7 +2548,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 2111.2
+      "latency_ms": 1499.7
     },
     {
       "index": 187,
@@ -2561,20 +2561,20 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 2330.1
+      "latency_ms": 1312.5
     },
     {
       "index": 188,
       "input": "hey everybody you're invited to my birthday party this friday at seven pm at the rooftop bar downtown bring your friends the more the merrier RSVP by wednesday so I can give the venue a headcount cheers nadia",
       "expected": "Hey everybody,\n\nYou're invited to my birthday party this Friday at 7 PM at the rooftop bar downtown. Bring your friends \u2014 the more the merrier! RSVP by Wednesday so I can give the venue a headcount.\n\nCheers,\nNadia",
-      "generated": "Hey everybody,\n\nYou're invited to my birthday party this Friday at 7 PM at the rooftop bar downtown. Bring your friends \u2014 the more the merrier. RSVP by Wednesday so I can give the venue a headcount.\n\nCheers,\nNadia",
-      "exact_match": false,
-      "fuzzy_match": false,
+      "generated": "Hey everybody,\n\nYou're invited to my birthday party this Friday at 7 PM at the rooftop bar downtown. Bring your friends \u2014 the more the merrier! RSVP by Wednesday so I can give the venue a headcount.\n\nCheers,\nNadia",
+      "exact_match": true,
+      "fuzzy_match": true,
       "source_bucket": "email_context",
       "style": "Formal",
       "app_name": "Apple Mail",
       "app_category": "Email",
-      "latency_ms": 2067.3
+      "latency_ms": 2402.9
     },
     {
       "index": 189,
@@ -2587,7 +2587,7 @@
       "style": "Formal",
       "app_name": "iMessage",
       "app_category": "Personal",
-      "latency_ms": 1508.4
+      "latency_ms": 1973.1
     },
     {
       "index": 190,
@@ -2600,7 +2600,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1340.9
+      "latency_ms": 1603.9
     },
     {
       "index": 191,
@@ -2613,7 +2613,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1315.3
+      "latency_ms": 1533.8
     },
     {
       "index": 192,
@@ -2626,7 +2626,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1551.5
+      "latency_ms": 1362.4
     },
     {
       "index": 193,
@@ -2639,7 +2639,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1198.9
+      "latency_ms": 1681.8
     },
     {
       "index": 194,
@@ -2652,7 +2652,7 @@
       "style": "Formal",
       "app_name": "ChatGPT",
       "app_category": "Other",
-      "latency_ms": 1278.2
+      "latency_ms": 1361.8
     },
     {
       "index": 195,
@@ -2665,7 +2665,7 @@
       "style": "Formal",
       "app_name": "Craft",
       "app_category": "Other",
-      "latency_ms": 1424.1
+      "latency_ms": 1307.6
     },
     {
       "index": 196,
@@ -2678,7 +2678,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1432.1
+      "latency_ms": 1261.5
     },
     {
       "index": 197,
@@ -2691,7 +2691,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1434.1
+      "latency_ms": 1260.8
     },
     {
       "index": 198,
@@ -2704,7 +2704,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1310.1
+      "latency_ms": 2505.1
     },
     {
       "index": 199,
@@ -2717,7 +2717,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1174.8
+      "latency_ms": 1528.1
     },
     {
       "index": 200,
@@ -2730,7 +2730,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1567.0
+      "latency_ms": 1525.8
     },
     {
       "index": 201,
@@ -2743,7 +2743,7 @@
       "style": "Casual",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1526.8
+      "latency_ms": 1134.5
     },
     {
       "index": 202,
@@ -2756,7 +2756,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1255.4
+      "latency_ms": 1120.9
     },
     {
       "index": 203,
@@ -2769,7 +2769,7 @@
       "style": "Casual",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1948.3
+      "latency_ms": 1138.2
     },
     {
       "index": 204,
@@ -2782,7 +2782,7 @@
       "style": "Formal",
       "app_name": "Slack",
       "app_category": "Work",
-      "latency_ms": 1703.1
+      "latency_ms": 1238.4
     },
     {
       "index": 205,
@@ -2795,7 +2795,7 @@
       "style": "Formal",
       "app_name": "WhatsApp",
       "app_category": "Personal",
-      "latency_ms": 1888.5
+      "latency_ms": 1254.1
     }
   ]
-}\n
+}
