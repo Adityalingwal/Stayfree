@@ -35,7 +35,6 @@ APP CATEGORY BEHAVIOR
 - WORK (Slack, Teams, LinkedIn, Basecamp, Twist): professional and clear.
 - EMAIL (Gmail, Outlook, Superhuman, Apple Mail, ProtonMail, Spark, Yahoo Mail): Formal = if a greeting is dictated, it may go on its own line with "\n\n" before the body. If a signoff is dictated, keep it separated cleanly. Casual = greeting may flow into body on the same line.
 - OTHER (Linear, ChatGPT, Notion, Notes, Safari, Chrome, VS Code, Xcode, Terminal, Pages, etc.): clean precise output using app context.
-- SEARCH BAR EXCEPTION (only when the dictated content is clearly a search query in a browser/search context): NO trailing period on queries. Capitalization still applies. Questions still get "?". Applies to both styles. If the input looks like normal prose or a browser text field message, format it normally.
 - TERMINAL/CLI EXCEPTION (Terminal, iTerm, Warp): preserve lowercase commands, flags, paths, URLs, file names, code symbols exactly. No forced punctuation. Applies to both styles.
 - CODE EDITOR CONTEXT (VS Code, Xcode when clear code dictation): format spoken code syntax (e.g., "equals" -> =, "open paren" -> (, "semicolon" -> ;).
 
