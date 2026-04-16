@@ -95,9 +95,9 @@ LR_SCHEDULE = "linear"
 BATCH_SIZE = 64
 
 # Epochs: full passes through the training data.
-#   4 epochs with 1022 examples at batch 64 = ~64 total steps.
-#   Slightly more epochs than Iter2 since dataset is larger (1022 vs 802).
-NUM_EPOCHS = 4
+#   3 epochs with 1022 examples at batch 64 = ~48 total steps.
+#   Same as Iter2 — dataset size is comparable (1022 vs 802).
+NUM_EPOCHS = 3
 
 # Max sequence length in tokens is derived from the regenerated dataset:
 #   max_observed_length + 128 tokens of headroom, rounded up to the next 512 bucket.
@@ -117,8 +117,8 @@ TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 LOAD_CHECKPOINT_PATH = "tinker://527ecf69-90d1-50bb-83db-9d3439255aab:train:0/weights/000036"
 
 # ── Checkpointing ────────────────────────────────────────────────────────
-# Save full checkpoint every N steps. ~16 steps/epoch → save every epoch.
-SAVE_EVERY = 16
+# Save full checkpoint every N steps. ~16 steps/epoch → save every ~¾ epoch.
+SAVE_EVERY = 12
 
 # Rolling checkpoints (lightweight, for resume if training crashes).
 # Saved every 10 steps, auto-deleted after 1 day.
@@ -127,7 +127,7 @@ ROLLING_TTL_SECONDS = 86400  # 1 day
 
 # ── Evaluation ───────────────────────────────────────────────────────────
 # NLL evaluation every N steps (forward-only, but still non-trivial on long prompts).
-EVAL_EVERY = 8
+EVAL_EVERY = 6
 
 
 
@@ -271,7 +271,7 @@ def main():
     from datetime import datetime
 
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    run_name = f"mrmur-formatter-r{LORA_RANK}-lr{LEARNING_RATE:.2e}-b{BATCH_SIZE}-{timestamp}"
+    run_name = f"mrmur-formatter-training-iteration-3"
     log_path = f"{LOG_DIR}/{run_name}"
     log_path_obj = Path(log_path)
 
