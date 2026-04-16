@@ -429,11 +429,21 @@ def parse_args():
         action="store_true",
         help="Evaluate the base model (no fine-tuning) for comparison",
     )
+    parser.add_argument(
+        "--test-file",
+        type=str,
+        default=None,
+        help="Override default test file path (e.g., data/splits_v2/test.jsonl)",
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
+
+    if args.test_file:
+        global TEST_FILE
+        TEST_FILE = str(Path(args.test_file).expanduser())
 
     if not args.checkpoint and not args.base:
         print("Usage:")
