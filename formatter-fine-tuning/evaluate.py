@@ -442,7 +442,6 @@ if __name__ == "__main__":
     args = parse_args()
 
     if args.test_file:
-        global TEST_FILE
         TEST_FILE = str(Path(args.test_file).expanduser())
 
     if not args.checkpoint and not args.base:
