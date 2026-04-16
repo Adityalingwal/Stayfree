@@ -79,25 +79,25 @@ MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 #   Sweep results show rank 32-64 works best for Llama-class models.
 LORA_RANK = 32
 
-# Learning rate: for continuation training from Step 75 checkpoint.
-#   Original Tinker formula gives 2.86e-4 for fresh starts.
-#   Using 1/3 of that (1e-4) to preserve already-learned patterns.
-#   See ITERATION_2_PLAN.md for detailed rationale.
-LEARNING_RATE = 1e-4
+# Learning rate: for continuation training from Iter2 Step 36 checkpoint.
+#   Iter1 fresh start: 2.86e-4, Iter2 continuation: 1e-4 (1/3 of fresh).
+#   Iter3: 5e-5 (half of Iter2) — dataset grows +27% (802→1022), conservative LR
+#   prevents overwriting already-learned hinglish/email patterns.
+LEARNING_RATE = 5e-5
 
 # LR schedule: "linear" decays from max to 0. Prevents overfitting in later steps.
 #   Other options: "cosine" (smoother decay), "constant" (no decay — risky for small data).
 LR_SCHEDULE = "linear"
 
 # Batch size: examples processed per step.
-#   64 gives ~25 steps/epoch (more granular updates than 128 which gives ~13).
+#   64 gives ~16 steps/epoch for 1022 examples (more granular than 128 which gives ~8).
 #   Execution guide recommends 64 for datasets < 5K examples.
 BATCH_SIZE = 64
 
 # Epochs: full passes through the training data.
-#   3 epochs with ~800 new examples at batch 64 = ~36 total steps.
-#   Conservative choice — iteration 1 showed overfitting starting at epoch 4.
-NUM_EPOCHS = 3
+#   4 epochs with 1022 examples at batch 64 = ~64 total steps.
+#   Slightly more epochs than Iter2 since dataset is larger (1022 vs 802).
+NUM_EPOCHS = 4
 
 # Max sequence length in tokens is derived from the regenerated dataset:
 #   max_observed_length + 128 tokens of headroom, rounded up to the next 512 bucket.
@@ -111,14 +111,14 @@ MAX_LENGTH_BUCKET = 512
 TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 
 # ── Continuation Checkpoint ──────────────────────────────────────────────
-# Load Step 75 checkpoint from iteration 1 (full model weights, fresh optimizer).
-# Must use state_path ("weights/000075"), NOT sampler_path ("sampler_weights/000075").
+# Load Step 36 checkpoint from iteration 2 (full model weights, fresh optimizer).
+# Must use state_path ("weights/000036"), NOT sampler_path ("sampler_weights/000036").
 # Set to None for fresh training from base model.
-LOAD_CHECKPOINT_PATH = "tinker://c093a1c0-0d2b-5858-a679-808a115f0a1d:train:0/weights/000075"
+LOAD_CHECKPOINT_PATH = "tinker://527ecf69-90d1-50bb-83db-9d3439255aab:train:0/weights/000036"
 
 # ── Checkpointing ────────────────────────────────────────────────────────
-# Save full checkpoint every N steps. ~12 steps/epoch → save every epoch.
-SAVE_EVERY = 12
+# Save full checkpoint every N steps. ~16 steps/epoch → save every epoch.
+SAVE_EVERY = 16
 
 # Rolling checkpoints (lightweight, for resume if training crashes).
 # Saved every 10 steps, auto-deleted after 1 day.
@@ -127,7 +127,7 @@ ROLLING_TTL_SECONDS = 86400  # 1 day
 
 # ── Evaluation ───────────────────────────────────────────────────────────
 # NLL evaluation every N steps (forward-only, but still non-trivial on long prompts).
-EVAL_EVERY = 6
+EVAL_EVERY = 8
 
 
 
@@ -138,9 +138,9 @@ WANDB_PROJECT = None  # Set to "mrmur.ai" to enable WandB logging (needs WANDB_A
 
 # ── Paths ────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
-TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "train.jsonl")
-VAL_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "val.jsonl")
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "test.jsonl")
+TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "train.jsonl")
+VAL_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "val.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "test.jsonl")
 LOG_DIR = str(SCRIPT_DIR / "logs")
 TRAIN_PRICE_PER_MTOKENS = 0.40
 PREFILL_PRICE_PER_MTOKENS = 0.13

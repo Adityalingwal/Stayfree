@@ -57,7 +57,7 @@ from tinker_cookbook.tokenizer_utils import get_tokenizer
 # ── Config ───────────────────────────────────────────────────────────────
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 SCRIPT_DIR = Path(__file__).parent
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "test.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "test.jsonl")
 
 
 def safe_label(value: str) -> str:
