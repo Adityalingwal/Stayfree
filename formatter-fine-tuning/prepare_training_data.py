@@ -51,8 +51,6 @@ def validate_seed_row(row: dict[str, Any], path: Path, line_no: int) -> None:
     missing = SEED_REQUIRED_KEYS - set(row)
     if missing:
         raise ValueError(f"{path}:{line_no} missing keys: {sorted(missing)}")
-    if not isinstance(row["dictionary"], dict):
-        raise ValueError(f"{path}:{line_no} 'dictionary' must be a JSON object")
 
 
 def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:

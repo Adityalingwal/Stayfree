@@ -1,26 +1,26 @@
-{"input": "so basically the the server went down due to high traffic", "output": "Basically the server went down due to high traffic", "app_category": "Work", "dictionary": {}}
-{"input": "we need to review the Q three metrics before thursday", "output": "We need to review the Q3 metrics before Thursday", "app_category": "Work", "dictionary": {}}
-{"input": "I'm running like ten minutes late save me a seat", "output": "I'm running like 10 minutes late, save me a seat", "app_category": "Personal", "dictionary": {}}
-{"input": "um I was actually thinking we could use a different color scheme", "output": "I was actually thinking we could use a different color scheme", "app_category": "Work", "dictionary": {}}
-{"input": "just wanted to say great job on the presentation today it was awesome", "output": "Just wanted to say great job on the presentation today it was awesome", "app_category": "Work", "dictionary": {}}
-{"input": "I'll definitely be there what time should I arrive", "output": "I'll definitely be there. What time should I arrive?", "app_category": "Personal", "dictionary": {}}
-{"input": "wait are you serious I haven't heard anything about that", "output": "Wait, are you serious? I haven't heard anything about that.", "app_category": "Work", "dictionary": {}}
-{"input": "er well I guess we could push the launch to next monday", "output": "Well I guess we could push the launch to next Monday", "app_category": "Work", "dictionary": {}}
-{"input": "I mean if you really want to try it we can", "output": "If you really want to try it we can", "app_category": "Personal", "dictionary": {}}
-{"input": "I personally think we should wait for more data", "output": "I personally think we should wait for more data.", "app_category": "Work", "dictionary": {}}
-{"input": "no worries take your time and let me know when you're free", "output": "No worries take your time and let me know when you're free", "app_category": "Work", "dictionary": {}}
-{"input": "ok cool let's aim for lunch around twelve", "output": "Ok cool let's aim for lunch around 12", "app_category": "Personal", "dictionary": {}}
-{"input": "the thing is the API rate limits are blocking our tests", "output": "The thing is the API rate limits are blocking our tests", "app_category": "Work", "dictionary": {}}
-{"input": "hmm I'm not really sure if that's the best option", "output": "I'm not really sure if that's the best option", "app_category": "Work", "dictionary": {}}
-{"input": "sounds perfect see you tomorrow morning", "output": "Sounds perfect, see you tomorrow morning.", "app_category": "Personal", "dictionary": {}}
-{"input": "did you send the invite to the design team yet", "output": "Did you send the invite to the design team yet?", "app_category": "Work", "dictionary": {}}
-{"input": "by the way did you hear back from the client", "output": "By the way, did you hear back from the client?", "app_category": "Work", "dictionary": {}}
-{"input": "uh yeah I can definitely join the meeting at four thirty", "output": "Yeah, I can definitely join the meeting at 4:30.", "app_category": "Work", "dictionary": {}}
-{"input": "wow this weather is crazy right", "output": "Wow, this weather is crazy right?", "app_category": "Personal", "dictionary": {}}
-{"input": "have a great weekend team wrap up early today", "output": "Have a great weekend, team. Wrap up early today.", "app_category": "Work", "dictionary": {}}
-{"input": "lol I totally forgot about that", "output": "Lol I totally forgot about that", "app_category": "Personal", "dictionary": {}}
-{"input": "let's push this to next sprint since we are overloaded", "output": "Let's push this to next sprint since we are overloaded.", "app_category": "Work", "dictionary": {}}
-{"input": "man that movie was so good I didn't expect the ending at all", "output": "Man, that movie was so good. I didn't expect the ending at all.", "app_category": "Personal", "dictionary": {}}
-{"input": "there's a massive bug in the checkout flow we need to fix it right now", "output": "There's a massive bug in the checkout flow we need to fix it right now", "app_category": "Work", "dictionary": {}}
-{"input": "can you pick up uh milk and some orange juice on your way home", "output": "Can you pick up milk and some orange juice on your way home?", "app_category": "Personal", "dictionary": {}}
-{"input": "the PR is ready for review whenever you have a second", "output": "The PR is ready for review whenever you have a second.", "app_category": "Work", "dictionary": {}}
+{"input": "so basically the the server went down due to high traffic", "output": "Basically the server went down due to high traffic", "app_category": "Work"}
+{"input": "we need to review the Q three metrics before thursday", "output": "We need to review the Q3 metrics before Thursday", "app_category": "Work"}
+{"input": "I'm running like ten minutes late save me a seat", "output": "I'm running like 10 minutes late, save me a seat", "app_category": "Personal"}
+{"input": "um I was actually thinking we could use a different color scheme", "output": "I was actually thinking we could use a different color scheme", "app_category": "Work"}
+{"input": "just wanted to say great job on the presentation today it was awesome", "output": "Just wanted to say great job on the presentation today it was awesome", "app_category": "Work"}
+{"input": "I'll definitely be there what time should I arrive", "output": "I'll definitely be there. What time should I arrive?", "app_category": "Personal"}
+{"input": "wait are you serious I haven't heard anything about that", "output": "Wait, are you serious? I haven't heard anything about that.", "app_category": "Work"}
+{"input": "er well I guess we could push the launch to next monday", "output": "Well I guess we could push the launch to next Monday", "app_category": "Work"}
+{"input": "I mean if you really want to try it we can", "output": "If you really want to try it we can", "app_category": "Personal"}
+{"input": "I personally think we should wait for more data", "output": "I personally think we should wait for more data.", "app_category": "Work"}
+{"input": "no worries take your time and let me know when you're free", "output": "No worries take your time and let me know when you're free", "app_category": "Work"}
+{"input": "ok cool let's aim for lunch around twelve", "output": "Ok cool let's aim for lunch around 12", "app_category": "Personal"}
+{"input": "the thing is the API rate limits are blocking our tests", "output": "The thing is the API rate limits are blocking our tests", "app_category": "Work"}
+{"input": "hmm I'm not really sure if that's the best option", "output": "I'm not really sure if that's the best option", "app_category": "Work"}
+{"input": "sounds perfect see you tomorrow morning", "output": "Sounds perfect, see you tomorrow morning.", "app_category": "Personal"}
+{"input": "did you send the invite to the design team yet", "output": "Did you send the invite to the design team yet?", "app_category": "Work"}
+{"input": "by the way did you hear back from the client", "output": "By the way, did you hear back from the client?", "app_category": "Work"}
+{"input": "uh yeah I can definitely join the meeting at four thirty", "output": "Yeah, I can definitely join the meeting at 4:30.", "app_category": "Work"}
+{"input": "wow this weather is crazy right", "output": "Wow, this weather is crazy right?", "app_category": "Personal"}
+{"input": "have a great weekend team wrap up early today", "output": "Have a great weekend, team. Wrap up early today.", "app_category": "Work"}
+{"input": "lol I totally forgot about that", "output": "Lol I totally forgot about that", "app_category": "Personal"}
+{"input": "let's push this to next sprint since we are overloaded", "output": "Let's push this to next sprint since we are overloaded.", "app_category": "Work"}
+{"input": "man that movie was so good I didn't expect the ending at all", "output": "Man, that movie was so good. I didn't expect the ending at all.", "app_category": "Personal"}
+{"input": "there's a massive bug in the checkout flow we need to fix it right now", "output": "There's a massive bug in the checkout flow we need to fix it right now", "app_category": "Work"}
+{"input": "can you pick up uh milk and some orange juice on your way home", "output": "Can you pick up milk and some orange juice on your way home?", "app_category": "Personal"}
+{"input": "the PR is ready for review whenever you have a second", "output": "The PR is ready for review whenever you have a second.", "app_category": "Work"}

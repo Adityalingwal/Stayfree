@@ -1,50 +1,50 @@
-{"input": "the deployment window is from midnight to three am", "output": "The deployment window is from midnight to 3 AM.", "app_category": "Work", "dictionary": {}}
-{"input": "we hit two hundred and fifty concurrent users during the load test", "output": "We hit 250 concurrent users during the load test", "app_category": "Work", "dictionary": {}}
-{"input": "the API response time is now under one hundred milliseconds", "output": "The API response time is now under 100ms.", "app_category": "Work", "dictionary": {}}
-{"input": "the server uptime last month was ninety nine point eight percent", "output": "The server uptime last month was 99.8%.", "app_category": "Work", "dictionary": {}}
-{"input": "we need at least eight reviewers for the architectural decision document", "output": "We need at least 8 reviewers for the architectural decision document.", "app_category": "Work", "dictionary": {}}
-{"input": "the new endpoint handles up to five thousand requests per second", "output": "The new endpoint handles up to 5,000 requests per second", "app_category": "Work", "dictionary": {}}
-{"input": "the sprint started on april seventh and ends april twenty first", "output": "The sprint started on April 7th and ends April 21st.", "app_category": "Work", "dictionary": {}}
-{"input": "we have thirty five open tickets and twenty two in progress", "output": "We have 35 open tickets and 22 in progress", "app_category": "Work", "dictionary": {}}
-{"input": "the error rate spiked to three point seven percent around eight pm last night", "output": "The error rate spiked to 3.7% around 8 PM last night", "app_category": "Work", "dictionary": {}}
-{"input": "the infra upgrade will take approximately four hours and two minutes", "output": "The infra upgrade will take approximately 4 hours and 2 minutes.", "app_category": "Work", "dictionary": {}}
-{"input": "approximately forty five percent of users are on android and fifty five on ios", "output": "Approximately 45% of users are on Android and 55% on iOS.", "app_category": "Work", "dictionary": {}}
-{"input": "the conference starts on the third of june and wraps on the fifth", "output": "The conference starts on the 3rd of June and wraps on the 5th.", "app_category": "Work", "dictionary": {}}
-{"input": "the new pricing starts at twenty nine dollars per month", "output": "The new pricing starts at $29 per month", "app_category": "Work", "dictionary": {}}
-{"input": "we have four hundred and twelve pending support tickets from this week", "output": "We have 412 pending support tickets from this week.", "app_category": "Work", "dictionary": {}}
-{"input": "the database is at seventy eight percent capacity need to scale soon", "output": "The database is at 78% capacity, need to scale soon", "app_category": "Work", "dictionary": {}}
-{"input": "the deal closed at one point two million dollars a great win for the team", "output": "The deal closed at $1.2M, a great win for the team", "app_category": "Work", "dictionary": {}}
-{"input": "the subscription renews on the seventeenth of next month", "output": "The subscription renews on the 17th of next month", "app_category": "Personal", "dictionary": {}}
-{"input": "the concert tickets were two thousand five hundred rupees each", "output": "The concert tickets were \u20b92,500 each", "app_category": "Personal", "dictionary": {}}
-{"input": "my phone battery is now at three percent need to charge it fast", "output": "My phone battery is now at 3%, need to charge it fast", "app_category": "Personal", "dictionary": {}}
-{"input": "the train to bangalore departs at quarter past seven in the evening", "output": "The train to Bangalore departs at 7:15 in the evening", "app_category": "Personal", "dictionary": {}}
-{"input": "the flat rent has gone up to twenty two thousand rupees this year", "output": "The flat rent has gone up to \u20b922,000 this year", "app_category": "Personal", "dictionary": {}}
-{"input": "the trip is planned for the twenty eighth to the thirty first of may", "output": "The trip is planned for the 28th to the 31st of May", "app_category": "Personal", "dictionary": {}}
-{"input": "I've been sleeping around six hours a night this week need more rest", "output": "I've been sleeping around 6 hours a night this week, need more rest", "app_category": "Personal", "dictionary": {}}
-{"input": "the bike servicing cost about three thousand five hundred bucks", "output": "The bike servicing cost about 3,500 bucks", "app_category": "Personal", "dictionary": {}}
-{"input": "we've been waiting in the queue for forty five minutes now", "output": "We've been waiting in the queue for 45 minutes now", "app_category": "Personal", "dictionary": {}}
-{"input": "the cab fare was around eight hundred rupees for the airport drop", "output": "The cab fare was around \u20b9800 for the airport drop", "app_category": "Personal", "dictionary": {}}
-{"input": "the headphones were marked down from six thousand to four thousand rupees", "output": "The headphones were marked down from \u20b96,000 to \u20b94,000", "app_category": "Personal", "dictionary": {}}
-{"input": "the recipe calls for two hundred grams of flour and three eggs", "output": "The recipe calls for 200g of flour and 3 eggs", "app_category": "Personal", "dictionary": {}}
-{"input": "I need to lose around four kilograms before the wedding in june", "output": "I need to lose around 4kg before the wedding in June", "app_category": "Personal", "dictionary": {}}
-{"input": "the gym membership costs one thousand two hundred rupees per month", "output": "The gym membership costs \u20b91,200 per month", "app_category": "Personal", "dictionary": {}}
-{"input": "the session logged one thousand two hundred and forty active users today", "output": "The session logged 1,240 active users today.", "app_category": "Work", "dictionary": {}}
-{"input": "we reached two million downloads on the app store last quarter", "output": "We reached 2 million downloads on the App Store last quarter.", "app_category": "Work", "dictionary": {}}
-{"input": "the incident lasted approximately two hours and fourteen minutes before resolution", "output": "The incident lasted approximately 2 hours and 14 minutes before resolution.", "app_category": "Work", "dictionary": {}}
-{"input": "we saw a fifty percent jump in signups on the day of the product launch", "output": "We saw a 50% jump in signups on the day of the product launch", "app_category": "Work", "dictionary": {}}
-{"input": "the new hire joins on the fifteenth of april and needs setup done by the fourteenth", "output": "The new hire joins on April 15th and needs setup done by the 14th.", "app_category": "Work", "dictionary": {}}
-{"input": "the project budget is capped at seventy five thousand dollars for Q three", "output": "The project budget is capped at $75,000 for Q3.", "app_category": "Work", "dictionary": {}}
-{"input": "we have sixteen points remaining in the sprint and four days left", "output": "We have 16 points remaining in the sprint and 4 days left", "app_category": "Work", "dictionary": {}}
-{"input": "the peak traffic was at nine thirty am with three thousand connections per second", "output": "The peak traffic was at 9:30 AM with 3,000 connections per second.", "app_category": "Work", "dictionary": {}}
-{"input": "the app currently has about one point eight million monthly active users", "output": "The app currently has about 1.8 million monthly active users.", "app_category": "Work", "dictionary": {}}
-{"input": "our NPS score went from thirty two to forty seven this quarter", "output": "Our NPS score went from 32 to 47 this quarter", "app_category": "Work", "dictionary": {}}
-{"input": "the checkout was around fifteen hundred bucks for the grocery run", "output": "The checkout was around $1,500 for the grocery run", "app_category": "Personal", "dictionary": {}}
-{"input": "the wedding is scheduled for the twelfth of december", "output": "The wedding is scheduled for December 12th", "app_category": "Personal", "dictionary": {}}
-{"input": "we need to walk around ten thousand steps today to hit the goal", "output": "We need to walk around 10,000 steps today to hit the goal", "app_category": "Personal", "dictionary": {}}
-{"input": "I ran six point five kilometers this morning before the call", "output": "I ran 6.5km this morning before the call", "app_category": "Personal", "dictionary": {}}
-{"input": "the data plan costs three ninety nine per month for fifty gigabytes", "output": "The data plan costs $3.99 per month for 50GB", "app_category": "Personal", "dictionary": {}}
-{"input": "the temperature outside is around thirty two degrees today", "output": "The temperature outside is around 32\u00b0C today", "app_category": "Personal", "dictionary": {}}
-{"input": "we've watched four seasons of that show over the long weekend", "output": "We've watched 4 seasons of that show over the long weekend", "app_category": "Personal", "dictionary": {}}
-{"input": "the laptop was on sale for forty nine thousand nine hundred rupees only", "output": "The laptop was on sale for \u20b949,900 only", "app_category": "Personal", "dictionary": {}}
-{"input": "the first class upgrade was twelve hundred extra each way", "output": "The first class upgrade was $1,200 extra each way", "app_category": "Personal", "dictionary": {}}
-{"input": "the total trip including flights was sixty thousand rupees for two people", "output": "The total trip including flights was \u20b960,000 for 2 people", "app_category": "Personal", "dictionary": {}}
+{"input": "the deployment window is from midnight to three am", "output": "The deployment window is from midnight to 3 AM.", "app_category": "Work"}
+{"input": "we hit two hundred and fifty concurrent users during the load test", "output": "We hit 250 concurrent users during the load test", "app_category": "Work"}
+{"input": "the API response time is now under one hundred milliseconds", "output": "The API response time is now under 100ms.", "app_category": "Work"}
+{"input": "the server uptime last month was ninety nine point eight percent", "output": "The server uptime last month was 99.8%.", "app_category": "Work"}
+{"input": "we need at least eight reviewers for the architectural decision document", "output": "We need at least 8 reviewers for the architectural decision document.", "app_category": "Work"}
+{"input": "the new endpoint handles up to five thousand requests per second", "output": "The new endpoint handles up to 5,000 requests per second", "app_category": "Work"}
+{"input": "the sprint started on april seventh and ends april twenty first", "output": "The sprint started on April 7th and ends April 21st.", "app_category": "Work"}
+{"input": "we have thirty five open tickets and twenty two in progress", "output": "We have 35 open tickets and 22 in progress", "app_category": "Work"}
+{"input": "the error rate spiked to three point seven percent around eight pm last night", "output": "The error rate spiked to 3.7% around 8 PM last night", "app_category": "Work"}
+{"input": "the infra upgrade will take approximately four hours and two minutes", "output": "The infra upgrade will take approximately 4 hours and 2 minutes.", "app_category": "Work"}
+{"input": "approximately forty five percent of users are on android and fifty five on ios", "output": "Approximately 45% of users are on Android and 55% on iOS.", "app_category": "Work"}
+{"input": "the conference starts on the third of june and wraps on the fifth", "output": "The conference starts on the 3rd of June and wraps on the 5th.", "app_category": "Work"}
+{"input": "the new pricing starts at twenty nine dollars per month", "output": "The new pricing starts at $29 per month", "app_category": "Work"}
+{"input": "we have four hundred and twelve pending support tickets from this week", "output": "We have 412 pending support tickets from this week.", "app_category": "Work"}
+{"input": "the database is at seventy eight percent capacity need to scale soon", "output": "The database is at 78% capacity, need to scale soon", "app_category": "Work"}
+{"input": "the deal closed at one point two million dollars a great win for the team", "output": "The deal closed at $1.2M, a great win for the team", "app_category": "Work"}
+{"input": "the subscription renews on the seventeenth of next month", "output": "The subscription renews on the 17th of next month", "app_category": "Personal"}
+{"input": "the concert tickets were two thousand five hundred rupees each", "output": "The concert tickets were ₹2,500 each", "app_category": "Personal"}
+{"input": "my phone battery is now at three percent need to charge it fast", "output": "My phone battery is now at 3%, need to charge it fast", "app_category": "Personal"}
+{"input": "the train to bangalore departs at quarter past seven in the evening", "output": "The train to Bangalore departs at 7:15 in the evening", "app_category": "Personal"}
+{"input": "the flat rent has gone up to twenty two thousand rupees this year", "output": "The flat rent has gone up to ₹22,000 this year", "app_category": "Personal"}
+{"input": "the trip is planned for the twenty eighth to the thirty first of may", "output": "The trip is planned for the 28th to the 31st of May", "app_category": "Personal"}
+{"input": "I've been sleeping around six hours a night this week need more rest", "output": "I've been sleeping around 6 hours a night this week, need more rest", "app_category": "Personal"}
+{"input": "the bike servicing cost about three thousand five hundred bucks", "output": "The bike servicing cost about 3,500 bucks", "app_category": "Personal"}
+{"input": "we've been waiting in the queue for forty five minutes now", "output": "We've been waiting in the queue for 45 minutes now", "app_category": "Personal"}
+{"input": "the cab fare was around eight hundred rupees for the airport drop", "output": "The cab fare was around ₹800 for the airport drop", "app_category": "Personal"}
+{"input": "the headphones were marked down from six thousand to four thousand rupees", "output": "The headphones were marked down from ₹6,000 to ₹4,000", "app_category": "Personal"}
+{"input": "the recipe calls for two hundred grams of flour and three eggs", "output": "The recipe calls for 200g of flour and 3 eggs", "app_category": "Personal"}
+{"input": "I need to lose around four kilograms before the wedding in june", "output": "I need to lose around 4kg before the wedding in June", "app_category": "Personal"}
+{"input": "the gym membership costs one thousand two hundred rupees per month", "output": "The gym membership costs ₹1,200 per month", "app_category": "Personal"}
+{"input": "the session logged one thousand two hundred and forty active users today", "output": "The session logged 1,240 active users today.", "app_category": "Work"}
+{"input": "we reached two million downloads on the app store last quarter", "output": "We reached 2 million downloads on the App Store last quarter.", "app_category": "Work"}
+{"input": "the incident lasted approximately two hours and fourteen minutes before resolution", "output": "The incident lasted approximately 2 hours and 14 minutes before resolution.", "app_category": "Work"}
+{"input": "we saw a fifty percent jump in signups on the day of the product launch", "output": "We saw a 50% jump in signups on the day of the product launch", "app_category": "Work"}
+{"input": "the new hire joins on the fifteenth of april and needs setup done by the fourteenth", "output": "The new hire joins on April 15th and needs setup done by the 14th.", "app_category": "Work"}
+{"input": "the project budget is capped at seventy five thousand dollars for Q three", "output": "The project budget is capped at $75,000 for Q3.", "app_category": "Work"}
+{"input": "we have sixteen points remaining in the sprint and four days left", "output": "We have 16 points remaining in the sprint and 4 days left", "app_category": "Work"}
+{"input": "the peak traffic was at nine thirty am with three thousand connections per second", "output": "The peak traffic was at 9:30 AM with 3,000 connections per second.", "app_category": "Work"}
+{"input": "the app currently has about one point eight million monthly active users", "output": "The app currently has about 1.8 million monthly active users.", "app_category": "Work"}
+{"input": "our NPS score went from thirty two to forty seven this quarter", "output": "Our NPS score went from 32 to 47 this quarter", "app_category": "Work"}
+{"input": "the checkout was around fifteen hundred bucks for the grocery run", "output": "The checkout was around $1,500 for the grocery run", "app_category": "Personal"}
+{"input": "the wedding is scheduled for the twelfth of december", "output": "The wedding is scheduled for December 12th", "app_category": "Personal"}
+{"input": "we need to walk around ten thousand steps today to hit the goal", "output": "We need to walk around 10,000 steps today to hit the goal", "app_category": "Personal"}
+{"input": "I ran six point five kilometers this morning before the call", "output": "I ran 6.5km this morning before the call", "app_category": "Personal"}
+{"input": "the data plan costs three ninety nine per month for fifty gigabytes", "output": "The data plan costs $3.99 per month for 50GB", "app_category": "Personal"}
+{"input": "the temperature outside is around thirty two degrees today", "output": "The temperature outside is around 32°C today", "app_category": "Personal"}
+{"input": "we've watched four seasons of that show over the long weekend", "output": "We've watched 4 seasons of that show over the long weekend", "app_category": "Personal"}
+{"input": "the laptop was on sale for forty nine thousand nine hundred rupees only", "output": "The laptop was on sale for ₹49,900 only", "app_category": "Personal"}
+{"input": "the first class upgrade was twelve hundred extra each way", "output": "The first class upgrade was $1,200 extra each way", "app_category": "Personal"}
+{"input": "the total trip including flights was sixty thousand rupees for two people", "output": "The total trip including flights was ₹60,000 for 2 people", "app_category": "Personal"}

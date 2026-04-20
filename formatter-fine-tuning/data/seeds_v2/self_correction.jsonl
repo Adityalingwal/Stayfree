@@ -1,25 +1,25 @@
-{"input": "deploy to staging actually no deploy straight to production", "output": "Deploy straight to production", "app_category": "Work", "dictionary": {}}
-{"input": "the bug is in the navigation bar i mean the footer", "output": "The bug is in the footer", "app_category": "Work", "dictionary": {}}
-{"input": "cancel the subscription actually just downgrade it", "output": "Just downgrade it", "app_category": "Work", "dictionary": {}}
-{"input": "ship the feature today scratch that wait for qa approval", "output": "Wait for QA approval", "app_category": "Work", "dictionary": {}}
-{"input": "i'll send you the report on tuesday actually wednesday", "output": "I'll send you the report on Wednesday.", "app_category": "Work", "dictionary": {}}
-{"input": "reply to them and say yes wait no say let me think about it", "output": "Say let me think about it", "app_category": "Work", "dictionary": {}}
-{"input": "use postgres wait no use mongodb for this service", "output": "Use MongoDB for this service.", "app_category": "Work", "dictionary": {}}
-{"input": "the total is forty dollars rather fifty dollars", "output": "The total is $50", "app_category": "Personal", "dictionary": {}}
-{"input": "i ordered two pizzas sorry i mean three pizzas", "output": "I ordered 3 pizzas", "app_category": "Personal", "dictionary": {}}
-{"input": "we have three no four tickets left", "output": "We have 4 tickets left.", "app_category": "Personal", "dictionary": {}}
-{"input": "we need fifty licenses rather hundred licenses", "output": "We need 100 licenses", "app_category": "Work", "dictionary": {}}
-{"input": "assign the ticket to me sorry assign it to ankit", "output": "Assign the ticket to Ankit", "app_category": "Work", "dictionary": {}}
-{"input": "add shruti to the channel let me rephrase just add priyanka", "output": "Just add Priyanka.", "app_category": "Work", "dictionary": {}}
-{"input": "we need to review the frontend sorry the backend code", "output": "We need to review the backend code", "app_category": "Work", "dictionary": {}}
-{"input": "i'm bringing five friends actually six friends to the party", "output": "I'm bringing 6 friends to the party", "app_category": "Personal", "dictionary": {}}
-{"input": "the presentation is tomorrow wait no it's on thursday", "output": "The presentation is on Thursday", "app_category": "Work", "dictionary": {}}
-{"input": "the meeting starts at ten no wait eleven am", "output": "The meeting starts at 11 AM.", "app_category": "Work", "dictionary": {}}
-{"input": "close the app then restart your phone let me rephrase just restart your phone", "output": "Just restart your phone", "app_category": "Personal", "dictionary": {}}
-{"input": "change the color to blue actually make it red", "output": "Make it red", "app_category": "Work", "dictionary": {}}
-{"input": "the issue is in line forty correction line forty two", "output": "The issue is in line 42.", "app_category": "Work", "dictionary": {}}
-{"input": "the error code is five oh three sorry five oh four", "output": "The error code is 504", "app_category": "Work", "dictionary": {}}
-{"input": "it'll cost two hundred dollars i mean two hundred and fifty dollars", "output": "It'll cost $250.", "app_category": "Personal", "dictionary": {}}
-{"input": "copy the text then paste it scratch that delete the text entirely", "output": "Delete the text entirely.", "app_category": "Other", "dictionary": {}}
-{"input": "let's meet at the cafe i mean the office", "output": "Let's meet at the office.", "app_category": "Personal", "dictionary": {}}
-{"input": "the flight is at six pm correction seven thirty pm", "output": "The flight is at 7:30 PM.", "app_category": "Personal", "dictionary": {}}
+{"input": "deploy to staging actually no deploy straight to production", "output": "Deploy straight to production", "app_category": "Work"}
+{"input": "the bug is in the navigation bar i mean the footer", "output": "The bug is in the footer", "app_category": "Work"}
+{"input": "cancel the subscription actually just downgrade it", "output": "Just downgrade it", "app_category": "Work"}
+{"input": "ship the feature today scratch that wait for qa approval", "output": "Wait for QA approval", "app_category": "Work"}
+{"input": "i'll send you the report on tuesday actually wednesday", "output": "I'll send you the report on Wednesday.", "app_category": "Work"}
+{"input": "reply to them and say yes wait no say let me think about it", "output": "Say let me think about it", "app_category": "Work"}
+{"input": "use postgres wait no use mongodb for this service", "output": "Use MongoDB for this service.", "app_category": "Work"}
+{"input": "the total is forty dollars rather fifty dollars", "output": "The total is $50", "app_category": "Personal"}
+{"input": "i ordered two pizzas sorry i mean three pizzas", "output": "I ordered 3 pizzas", "app_category": "Personal"}
+{"input": "we have three no four tickets left", "output": "We have 4 tickets left.", "app_category": "Personal"}
+{"input": "we need fifty licenses rather hundred licenses", "output": "We need 100 licenses", "app_category": "Work"}
+{"input": "assign the ticket to me sorry assign it to ankit", "output": "Assign the ticket to Ankit", "app_category": "Work"}
+{"input": "add shruti to the channel let me rephrase just add priyanka", "output": "Just add Priyanka.", "app_category": "Work"}
+{"input": "we need to review the frontend sorry the backend code", "output": "We need to review the backend code", "app_category": "Work"}
+{"input": "i'm bringing five friends actually six friends to the party", "output": "I'm bringing 6 friends to the party", "app_category": "Personal"}
+{"input": "the presentation is tomorrow wait no it's on thursday", "output": "The presentation is on Thursday", "app_category": "Work"}
+{"input": "the meeting starts at ten no wait eleven am", "output": "The meeting starts at 11 AM.", "app_category": "Work"}
+{"input": "close the app then restart your phone let me rephrase just restart your phone", "output": "Just restart your phone", "app_category": "Personal"}
+{"input": "change the color to blue actually make it red", "output": "Make it red", "app_category": "Work"}
+{"input": "the issue is in line forty correction line forty two", "output": "The issue is in line 42.", "app_category": "Work"}
+{"input": "the error code is five oh three sorry five oh four", "output": "The error code is 504", "app_category": "Work"}
+{"input": "it'll cost two hundred dollars i mean two hundred and fifty dollars", "output": "It'll cost $250.", "app_category": "Personal"}
+{"input": "copy the text then paste it scratch that delete the text entirely", "output": "Delete the text entirely.", "app_category": "Other"}
+{"input": "let's meet at the cafe i mean the office", "output": "Let's meet at the office.", "app_category": "Personal"}
+{"input": "the flight is at six pm correction seven thirty pm", "output": "The flight is at 7:30 PM.", "app_category": "Personal"}

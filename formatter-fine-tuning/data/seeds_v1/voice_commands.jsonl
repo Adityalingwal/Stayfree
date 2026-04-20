@@ -1,167 +1,167 @@
-{"input": "hey john period how are you doing question mark", "output": "Hey John. How are you doing?", "app_category": "Personal", "dictionary": {}}
-{"input": "the project is done period let's move on to the next one period", "output": "The project is done. Let's move on to the next one.", "app_category": "Work", "dictionary": {}}
-{"input": "dear sarah comma new line thank you for your email period", "output": "Dear Sarah,\nThank you for your email.", "app_category": "Email", "dictionary": {}}
-{"input": "hi team comma new paragraph I wanted to share an update on the project period", "output": "Hi team,\n\nI wanted to share an update on the project.", "app_category": "Email", "dictionary": {}}
-{"input": "please send the files to john at sign gmail dot com", "output": "Please send the files to john@gmail.com.", "app_category": "Work", "dictionary": {}}
-{"input": "are we still on for tomorrow question mark", "output": "Are we still on for tomorrow?", "app_category": "Personal", "dictionary": {}}
-{"input": "wow exclamation mark that's incredible exclamation mark", "output": "Wow! That's incredible!", "app_category": "Personal", "dictionary": {}}
-{"input": "I need the following items colon milk comma eggs comma bread comma and butter period", "output": "I need the following items: milk, eggs, bread, and butter.", "app_category": "Other", "dictionary": {}}
-{"input": "wait semicolon I have another idea period", "output": "Wait; I have another idea.", "app_category": "Work", "dictionary": {}}
-{"input": "the options are dash option A dash option B and dash option C", "output": "The options are \u2014 option A \u2014 option B and \u2014 option C.", "app_category": "Other", "dictionary": {}}
-{"input": "I'm not sure ellipsis maybe we should wait", "output": "I'm not sure... maybe we should wait.", "app_category": "Work", "dictionary": {}}
-{"input": "I'm not sure dot dot dot maybe we should wait", "output": "I'm not sure... maybe we should wait.", "app_category": "Work", "dictionary": {}}
-{"input": "I'm not sure three dots maybe we should wait", "output": "I'm not sure... maybe we should wait.", "app_category": "Work", "dictionary": {}}
-{"input": "it apostrophe s going to be fine", "output": "It's going to be fine.", "app_category": "Work", "dictionary": {}}
-{"input": "check the docs at w w w dot example dot com slash help", "output": "Check the docs at www.example.com/help.", "app_category": "Work", "dictionary": {}}
-{"input": "new line item one colon fix the login bug new line item two colon update the docs new line item three colon deploy to staging", "output": "1. Fix the login bug.\n2. Update the docs.\n3. Deploy to staging.", "app_category": "Other", "dictionary": {}}
-{"input": "open parenthesis see attachment close parenthesis", "output": "(See attachment.)", "app_category": "Email", "dictionary": {}}
-{"input": "the function takes open bracket x comma y close bracket as parameters", "output": "The function takes (x, y) as parameters.", "app_category": "Work", "dictionary": {}}
-{"input": "add it to the array open square bracket zero close square bracket", "output": "Add it to the array [0].", "app_category": "Work", "dictionary": {}}
-{"input": "the config is open curly bracket key colon value close curly bracket", "output": "The config is {key: value}.", "app_category": "Work", "dictionary": {}}
-{"input": "he said open quote I'll be there by five close quote", "output": "He said \"I'll be there by 5.\"", "app_category": "Personal", "dictionary": {}}
-{"input": "she said quote I don't agree end quote and walked away", "output": "She said \"I don't agree\" and walked away.", "app_category": "Personal", "dictionary": {}}
-{"input": "it single quote s a beautiful day", "output": "It's a beautiful day.", "app_category": "Personal", "dictionary": {}}
-{"input": "use hashtag urgent for priority tickets", "output": "Use #urgent for priority tickets.", "app_category": "Work", "dictionary": {}}
-{"input": "revenue went up by twenty percent sign this quarter", "output": "Revenue went up by 20% this quarter.", "app_category": "Work", "dictionary": {}}
-{"input": "the total comes to dollar sign fifty", "output": "The total comes to $50.", "app_category": "Other", "dictionary": {}}
-{"input": "two plus sign three equals sign five", "output": "2 + 3 = 5.", "app_category": "Other", "dictionary": {}}
-{"input": "file underscore name underscore final", "output": "file_name_final", "app_category": "Work", "dictionary": {}}
-{"input": "true pipe pipe false", "output": "true || false", "app_category": "Other", "dictionary": {}}
-{"input": "home tilde documents", "output": "home~documents", "app_category": "Other", "dictionary": {}}
-{"input": "the path is C colon backslash users backslash john backslash desktop", "output": "The path is C:\\users\\john\\desktop.", "app_category": "Work", "dictionary": {}}
-{"input": "star star bold text star star", "output": "**bold text**", "app_category": "Work", "dictionary": {}}
-{"input": "check out the site at https colon forward slash forward slash example dot com", "output": "Check out the site at https://example.com.", "app_category": "Work", "dictionary": {}}
-{"input": "john ampersand sons is a great company", "output": "John & Sons is a great company.", "app_category": "Work", "dictionary": {}}
-{"input": "send it to alex at company dot com", "output": "Send it to alex@company.com.", "app_category": "Work", "dictionary": {}}
-{"input": "I had a question mark on that decision", "output": "I had a question mark on that decision.", "app_category": "Work", "dictionary": {}}
-{"input": "what's the question mark for in this code", "output": "What's the question mark for in this code?", "app_category": "Work", "dictionary": {}}
-{"input": "is the report ready question mark", "output": "Is the report ready?", "app_category": "Work", "dictionary": {}}
-{"input": "he put a question mark next to my name on the whiteboard", "output": "He put a question mark next to my name on the whiteboard.", "app_category": "Work", "dictionary": {}}
-{"input": "the period of time was too short for proper testing", "output": "The period of time was too short for proper testing.", "app_category": "Work", "dictionary": {}}
-{"input": "we need to extend the trial period for at least two more weeks", "output": "We need to extend the trial period for at least 2 more weeks.", "app_category": "Work", "dictionary": {}}
-{"input": "end of the paragraph period", "output": "End of the paragraph.", "app_category": "Other", "dictionary": {}}
-{"input": "the comma operator in JavaScript is rarely used", "output": "The comma operator in JavaScript is rarely used.", "app_category": "Work", "dictionary": {}}
-{"input": "after the first clause comma add the second part", "output": "After the first clause, add the second part.", "app_category": "Other", "dictionary": {}}
-{"input": "I need to use the hash symbol in my password", "output": "I need to use the hash symbol in my password.", "app_category": "Work", "dictionary": {}}
-{"input": "add a hashtag trending to the post", "output": "Add a #trending to the post.", "app_category": "Personal", "dictionary": {}}
-{"input": "she's a star at what she does", "output": "She's a star at what she does.", "app_category": "Work", "dictionary": {}}
-{"input": "add a star rating to each item", "output": "Add a star rating to each item.", "app_category": "Work", "dictionary": {}}
-{"input": "mark it with asterisk important asterisk", "output": "Mark it with *important*.", "app_category": "Work", "dictionary": {}}
-{"input": "delete that actually let me start over", "output": "Let me start over.", "app_category": "Work", "dictionary": {}}
-{"input": "the deadline is friday scratch that it's actually thursday", "output": "The deadline is actually Thursday.", "app_category": "Work", "dictionary": {}}
-{"input": "send the report to marketing undo that send it to sales instead", "output": "Send the report to sales instead.", "app_category": "Work", "dictionary": {}}
-{"input": "select all and copy", "output": "select all and copy", "app_category": "Other", "dictionary": {}}
-{"input": "caps on important caps off", "output": "caps on important caps off", "app_category": "Other", "dictionary": {}}
-{"input": "all caps warning all caps", "output": "all caps warning all caps", "app_category": "Other", "dictionary": {}}
-{"input": "thanks for everything period new paragraph best comma new line sarah", "output": "Thanks for everything.\n\nBest,\nSarah", "app_category": "Email", "dictionary": {}}
-{"input": "hi alex comma new paragraph just wanted to follow up on our meeting period new paragraph could you send me the notes question mark new paragraph thanks comma new line mike", "output": "Hi Alex,\n\nJust wanted to follow up on our meeting.\n\nCould you send me the notes?\n\nThanks,\nMike", "app_category": "Email", "dictionary": {}}
-{"input": "the meeting is at three pm period please be on time exclamation mark", "output": "The meeting is at 3 PM. Please be on time!", "app_category": "Work", "dictionary": {}}
-{"input": "first thing colon check emails new line second thing colon review PRs new line third thing colon update docs", "output": "1. Check emails.\n2. Review PRs.\n3. Update docs.", "app_category": "Other", "dictionary": {}}
-{"input": "note to self dash buy groceries dash call mom dash fix bike", "output": "Note to self \u2014 buy groceries \u2014 call mom \u2014 fix bike.", "app_category": "Other", "dictionary": {}}
-{"input": "the results were open parenthesis mostly close parenthesis positive", "output": "The results were (mostly) positive.", "app_category": "Work", "dictionary": {}}
-{"input": "please refer to section open square bracket three close square bracket", "output": "Please refer to section [3].", "app_category": "Other", "dictionary": {}}
-{"input": "the variable is open curly bracket name colon single quote john single quote close curly bracket", "output": "The variable is {name: 'john'}.", "app_category": "Other", "dictionary": {}}
-{"input": "important exclamation point please read this before the meeting", "output": "Important! Please read this before the meeting.", "app_category": "Work", "dictionary": {}}
-{"input": "let me explain full stop the issue is with the API full stop", "output": "Let me explain. The issue is with the API.", "app_category": "Work", "dictionary": {}}
-{"input": "go to the website dot com", "output": "Go to the website.com.", "app_category": "Work", "dictionary": {}}
-{"input": "I placed a dot on the map to mark the location", "output": "I placed a dot on the map to mark the location.", "app_category": "Work", "dictionary": {}}
-{"input": "the score was five dash three", "output": "The score was 5\u20143.", "app_category": "Personal", "dictionary": {}}
-{"input": "she made a dash for the exit", "output": "She made a dash for the exit.", "app_category": "Personal", "dictionary": {}}
-{"input": "the hyphenated word is well dash known", "output": "The hyphenated word is well\u2014known.", "app_category": "Work", "dictionary": {}}
-{"input": "he used a colon in his explanation", "output": "He used a colon in his explanation.", "app_category": "Work", "dictionary": {}}
-{"input": "uh can you repeat that question mark I didn't catch it", "output": "Can you repeat that? I didn't catch it.", "app_category": "Work", "dictionary": {}}
-{"input": "um so like he said comma and I quote comma it's not going to work end quote period", "output": "He said, and I quote, \"It's not going to work.\"", "app_category": "Work", "dictionary": {}}
-{"input": "step one colon open the app period step two colon tap on settings period step three colon enable notifications period", "output": "1. Open the app.\n2. Tap on settings.\n3. Enable notifications.", "app_category": "Other", "dictionary": {}}
-{"input": "new paragraph new paragraph", "output": "\n\n\n\n", "app_category": "Other", "dictionary": {}}
-{"input": "new line", "output": "\n", "app_category": "Other", "dictionary": {}}
-{"input": "tab tab tab", "output": "\t\t\t", "app_category": "Other", "dictionary": {}}
-{"input": "next line here's the second point next line and the third one", "output": "\nHere's the second point.\n\nAnd the third one.", "app_category": "Other", "dictionary": {}}
-{"input": "next paragraph let me add more context", "output": "\n\nLet me add more context.", "app_category": "Other", "dictionary": {}}
-{"input": "we need help period or maybe not period I'm confused period", "output": "We need help. Or maybe not. I'm confused.", "app_category": "Personal", "dictionary": {}}
-{"input": "you know the exclamation point I keep using in my texts", "output": "You know the exclamation point I keep using in my texts?", "app_category": "Personal", "dictionary": {}}
-{"input": "this is unbelievable exclamation point", "output": "This is unbelievable!", "app_category": "Personal", "dictionary": {}}
-{"input": "the function returns left paren x plus y right paren", "output": "The function returns (x + y).", "app_category": "Work", "dictionary": {}}
-{"input": "the at sign was invented in the sixteenth century", "output": "The at sign was invented in the 16th century.", "app_category": "Other", "dictionary": {}}
-{"input": "my email is john at sign company dot com", "output": "My email is john@company.com.", "app_category": "Work", "dictionary": {}}
-{"input": "and sign is another name for ampersand", "output": "And sign is another name for ampersand.", "app_category": "Other", "dictionary": {}}
-{"input": "merge A ampersand B into one document", "output": "Merge A & B into one document.", "app_category": "Work", "dictionary": {}}
-{"input": "use forward slash to separate the paths", "output": "Use forward slash to separate the paths.", "app_category": "Work", "dictionary": {}}
-{"input": "home forward slash documents forward slash project", "output": "home/documents/project", "app_category": "Other", "dictionary": {}}
-{"input": "escape backslash n for newline in the string", "output": "Escape \\n for newline in the string.", "app_category": "Other", "dictionary": {}}
-{"input": "the pound sign key on my keyboard is broken", "output": "The pound sign key on my keyboard is broken.", "app_category": "Work", "dictionary": {}}
-{"input": "tag it with pound sign high priority", "output": "Tag it with #high priority.", "app_category": "Work", "dictionary": {}}
-{"input": "the meeting was really great period everyone contributed well period I think we should do this more often period", "output": "The meeting was really great. Everyone contributed well. I think we should do this more often.", "app_category": "Work", "dictionary": {}}
-{"input": "please email me at sarah dot lee at outlook dot com", "output": "Please email me at sarah.lee@outlook.com.", "app_category": "Work", "dictionary": {}}
-{"input": "the answer is yes period definitely period", "output": "The answer is yes. Definitely.", "app_category": "Work", "dictionary": {}}
-{"input": "think about it ellipsis and get back to me", "output": "Think about it... and get back to me.", "app_category": "Work", "dictionary": {}}
-{"input": "subject colon quarterly report new line new line hi team comma new paragraph attached is the report for Q3 period please review and let me know if you have questions period new paragraph regards comma new line david", "output": "Subject: Quarterly report.\n\nHi team,\n\nAttached is the report for Q3. Please review and let me know if you have questions.\n\nRegards,\nDavid", "app_category": "Email", "dictionary": {}}
-{"input": "I was at the comma separated values workshop yesterday", "output": "I was at the comma separated values workshop yesterday.", "app_category": "Work", "dictionary": {}}
-{"input": "put a tab between the name and the age columns", "output": "Put a tab between the name and the age columns.", "app_category": "Work", "dictionary": {}}
-{"input": "tab name tab age tab email", "output": "\tname\tage\temail", "app_category": "Other", "dictionary": {}}
-{"input": "don't use the dot notation for this", "output": "Don't use the dot notation for this.", "app_category": "Work", "dictionary": {}}
-{"input": "set the opacity to zero dot five", "output": "Set the opacity to 0.5.", "app_category": "Other", "dictionary": {}}
-{"input": "the file is at slash users slash john slash documents", "output": "The file is at /users/john/documents.", "app_category": "Work", "dictionary": {}}
-{"input": "I need a pipe between these two commands", "output": "I need a pipe between these two commands.", "app_category": "Work", "dictionary": {}}
-{"input": "ls pipe grep error", "output": "ls | grep error", "app_category": "Other", "dictionary": {}}
-{"input": "my username has an underscore in it", "output": "My username has an underscore in it.", "app_category": "Work", "dictionary": {}}
-{"input": "hello underscore world", "output": "hello_world", "app_category": "Other", "dictionary": {}}
-{"input": "add a percent sign after the number", "output": "Add a percent sign after the number.", "app_category": "Work", "dictionary": {}}
-{"input": "the growth rate is twelve percent", "output": "The growth rate is 12%.", "app_category": "Work", "dictionary": {}}
-{"input": "dear hiring manager comma new paragraph I am writing to express my interest in the software engineer position period new paragraph with over five years of experience comma I believe I would be a strong fit for this role period new paragraph I look forward to hearing from you period new paragraph sincerely comma new line alex chen", "output": "Dear Hiring Manager,\n\nI am writing to express my interest in the software engineer position.\n\nWith over 5 years of experience, I believe I would be a strong fit for this role.\n\nI look forward to hearing from you.\n\nSincerely,\nAlex Chen", "app_category": "Email", "dictionary": {}}
-{"input": "hi comma new line new line hope you're doing well period I wanted to follow up on the invoice from last week period could you let me know the status question mark new paragraph thanks comma new line rachel", "output": "Hi,\n\nHope you're doing well. I wanted to follow up on the invoice from last week. Could you let me know the status?\n\nThanks,\nRachel", "app_category": "Email", "dictionary": {}}
-{"input": "heading colon meeting notes new paragraph date colon march thirty first new paragraph attendees colon john comma sarah comma mike new paragraph action items colon new line dash finish design review new line dash schedule QA testing new line dash update stakeholders", "output": "Heading: Meeting notes.\n\nDate: March 31st.\n\nAttendees: John, Sarah, Mike.\n\nAction items:\n\u2014 Finish design review.\n\u2014 Schedule QA testing.\n\u2014 Update stakeholders.", "app_category": "Other", "dictionary": {}}
-{"input": "you said quote I'll handle it end quote but nothing happened", "output": "You said \"I'll handle it\" but nothing happened.", "app_category": "Work", "dictionary": {}}
-{"input": "he literally said begin quote this is fine end quote while the server was on fire", "output": "He literally said \"this is fine\" while the server was on fire.", "app_category": "Work", "dictionary": {}}
-{"input": "the error says colon open quote undefined is not a function close quote", "output": "The error says: \"undefined is not a function.\"", "app_category": "Work", "dictionary": {}}
-{"input": "I need the API key in the format colon key equals sign value ampersand key two equals sign value two", "output": "I need the API key in the format: key = value & key 2 = value 2.", "app_category": "Work", "dictionary": {}}
-{"input": "oh wait scratch that I need to rethink this", "output": "I need to rethink this.", "app_category": "Work", "dictionary": {}}
-{"input": "the budget is fifty thousand dollars delete that the budget is sixty thousand dollars", "output": "The budget is $60,000.", "app_category": "Work", "dictionary": {}}
-{"input": "we should use em dash instead of hyphens in the document", "output": "We should use em dash instead of hyphens in the document.", "app_category": "Work", "dictionary": {}}
-{"input": "he paused em dash then continued speaking", "output": "He paused \u2014 then continued speaking.", "app_category": "Other", "dictionary": {}}
-{"input": "the plan is simple colon win period", "output": "The plan is simple: win.", "app_category": "Personal", "dictionary": {}}
-{"input": "remember dash the deadline is friday exclamation mark", "output": "Remember \u2014 the deadline is Friday!", "app_category": "Work", "dictionary": {}}
-{"input": "the semi colon is used in JavaScript to end statements", "output": "The semicolon is used in JavaScript to end statements.", "app_category": "Work", "dictionary": {}}
-{"input": "list your skills semicolon separate each with a comma", "output": "List your skills; separate each with a comma.", "app_category": "Other", "dictionary": {}}
-{"input": "this is wrong period period period", "output": "This is wrong...", "app_category": "Personal", "dictionary": {}}
-{"input": "hello question mark are you there question mark hello question mark", "output": "Hello? Are you there? Hello?", "app_category": "Personal", "dictionary": {}}
-{"input": "dear mr period johnson comma new paragraph", "output": "Dear Mr. Johnson,\n\n", "app_category": "Email", "dictionary": {}}
-{"input": "re colon follow up on our meeting dash action items", "output": "Re: Follow up on our meeting \u2014 action items.", "app_category": "Email", "dictionary": {}}
-{"input": "note colon this is a work in progress open parenthesis do not share close parenthesis", "output": "Note: This is a work in progress (do not share).", "app_category": "Other", "dictionary": {}}
-{"input": "the equation is y equals sign m asterisk x plus sign b", "output": "The equation is y = m * x + b.", "app_category": "Other", "dictionary": {}}
-{"input": "uh sorry period I didn't mean to interrupt period", "output": "Sorry. I didn't mean to interrupt.", "app_category": "Work", "dictionary": {}}
-{"input": "this is urgent exclamation mark please respond ASAP exclamation mark", "output": "This is urgent! Please respond ASAP!", "app_category": "Work", "dictionary": {}}
-{"input": "I need a vertical bar in my regex pattern", "output": "I need a vertical bar in my regex pattern.", "app_category": "Work", "dictionary": {}}
-{"input": "option A vertical bar option B vertical bar option C", "output": "Option A | option B | option C.", "app_category": "Other", "dictionary": {}}
-{"input": "type tilde in the terminal to go to home", "output": "Type tilde in the terminal to go to home.", "app_category": "Work", "dictionary": {}}
-{"input": "cd tilde forward slash projects", "output": "cd ~/projects", "app_category": "Other", "dictionary": {}}
-{"input": "open brace new line tab name colon single quote john single quote comma new line tab age colon twenty five new line close brace", "output": "{\n\tname: 'john',\n\tage: 25\n}", "app_category": "Other", "dictionary": {}}
-{"input": "please note colon the office will be closed on december twenty fifth open parenthesis christmas close parenthesis and january first open parenthesis new year's day close parenthesis period", "output": "Please note: the office will be closed on December 25th (Christmas) and January 1st (New Year's Day).", "app_category": "Work", "dictionary": {}}
-{"input": "click the dot dot dot menu in the top right corner", "output": "Click the ... menu in the top right corner.", "app_category": "Work", "dictionary": {}}
-{"input": "the sentence ends with a period that's just grammar", "output": "The sentence ends with a period, that's just grammar.", "app_category": "Work", "dictionary": {}}
-{"input": "the winner is dot dot dot john exclamation mark", "output": "The winner is... John!", "app_category": "Personal", "dictionary": {}}
-{"input": "I just period can't period believe it period", "output": "I just. Can't. Believe it.", "app_category": "Personal", "dictionary": {}}
-{"input": "and then she was like open quote are you kidding me question mark close quote", "output": "And then she was like \"Are you kidding me?\"", "app_category": "Personal", "dictionary": {}}
-{"input": "step one period wake up step two period go to the gym step three period profit", "output": "1. Wake up.\n2. Go to the gym.\n3. Profit.", "app_category": "Personal", "dictionary": {}}
-{"input": "the return type is int open bracket close bracket", "output": "The return type is int[].", "app_category": "Other", "dictionary": {}}
-{"input": "the regex is open bracket a dash z close bracket plus sign", "output": "The regex is [a-z]+.", "app_category": "Other", "dictionary": {}}
-{"input": "the URL has a hash symbol in it like page hash section", "output": "The URL has a hash symbol in it like page#section.", "app_category": "Work", "dictionary": {}}
-{"input": "and I was like wait what question mark and he goes yeah period", "output": "And I was like wait what? And he goes yeah.", "app_category": "Personal", "dictionary": {}}
-{"input": "todo colon new line open square bracket close square bracket fix the bug new line open square bracket close square bracket write tests new line open square bracket close square bracket deploy", "output": "Todo:\n[] Fix the bug.\n[] Write tests.\n[] Deploy.", "app_category": "Other", "dictionary": {}}
-{"input": "print open parenthesis single quote hello world single quote close parenthesis", "output": "print('hello world')", "app_category": "Other", "dictionary": {}}
-{"input": "const x equals sign open parenthesis a comma b close parenthesis equals sign greater than a plus sign b semicolon", "output": "const x = (a, b) => a + b;", "app_category": "Other", "dictionary": {}}
-{"input": "if open parenthesis x greater than five close parenthesis open curly bracket new line tab return true semicolon new line close curly bracket", "output": "if (x > 5) {\n\treturn true;\n}", "app_category": "Other", "dictionary": {}}
-{"input": "period", "output": ".", "app_category": "Other", "dictionary": {}}
-{"input": "comma", "output": ",", "app_category": "Other", "dictionary": {}}
-{"input": "question mark", "output": "?", "app_category": "Other", "dictionary": {}}
-{"input": "new line new line new line", "output": "\n\n\n", "app_category": "Other", "dictionary": {}}
-{"input": "delete that", "output": "", "app_category": "Other", "dictionary": {}}
-{"input": "scratch that", "output": "", "app_category": "Other", "dictionary": {}}
-{"input": "the meeting is at three pm period don't be late exclamation mark see you there period", "output": "The meeting is at 3 PM. Don't be late! See you there.", "app_category": "Personal", "dictionary": {}}
-{"input": "PS colon don't forget to bring snacks exclamation mark", "output": "PS: Don't forget to bring snacks!", "app_category": "Email", "dictionary": {}}
-{"input": "tldr colon the project is behind schedule and we need more resources period", "output": "TLDR: The project is behind schedule, and we need more resources.", "app_category": "Work", "dictionary": {}}
-{"input": "fun fact colon the human brain weighs about three pounds period", "output": "Fun fact: the human brain weighs about 3 pounds.", "app_category": "Personal", "dictionary": {}}
-{"input": "p dot s dot I love you", "output": "P.S. I love you.", "app_category": "Personal", "dictionary": {}}
-{"input": "it's not a bug comma it's a feature exclamation mark", "output": "It's not a bug, it's a feature!", "app_category": "Work", "dictionary": {}}
-{"input": "the syntax is colon function open parenthesis arg one comma arg two close parenthesis colon return type", "output": "The syntax is: function(arg 1, arg 2): return type.", "app_category": "Work", "dictionary": {}}
-{"input": "roses are red comma new line violets are blue comma new line this is a test comma new line and so are you period", "output": "Roses are red,\nviolets are blue,\nthis is a test,\nand so are you.", "app_category": "Personal", "dictionary": {}}
-{"input": "pros colon new line dash fast new line dash reliable new line dash cheap new paragraph cons colon new line dash hard to learn new line dash limited support", "output": "Pros:\n\u2014 Fast.\n\u2014 Reliable.\n\u2014 Cheap.\n\nCons:\n\u2014 Hard to learn.\n\u2014 Limited support.", "app_category": "Other", "dictionary": {}}
+{"input": "hey john period how are you doing question mark", "output": "Hey John. How are you doing?", "app_category": "Personal"}
+{"input": "the project is done period let's move on to the next one period", "output": "The project is done. Let's move on to the next one.", "app_category": "Work"}
+{"input": "dear sarah comma new line thank you for your email period", "output": "Dear Sarah,\nThank you for your email.", "app_category": "Email"}
+{"input": "hi team comma new paragraph I wanted to share an update on the project period", "output": "Hi team,\n\nI wanted to share an update on the project.", "app_category": "Email"}
+{"input": "please send the files to john at sign gmail dot com", "output": "Please send the files to john@gmail.com.", "app_category": "Work"}
+{"input": "are we still on for tomorrow question mark", "output": "Are we still on for tomorrow?", "app_category": "Personal"}
+{"input": "wow exclamation mark that's incredible exclamation mark", "output": "Wow! That's incredible!", "app_category": "Personal"}
+{"input": "I need the following items colon milk comma eggs comma bread comma and butter period", "output": "I need the following items: milk, eggs, bread, and butter.", "app_category": "Other"}
+{"input": "wait semicolon I have another idea period", "output": "Wait; I have another idea.", "app_category": "Work"}
+{"input": "the options are dash option A dash option B and dash option C", "output": "The options are — option A — option B and — option C.", "app_category": "Other"}
+{"input": "I'm not sure ellipsis maybe we should wait", "output": "I'm not sure... maybe we should wait.", "app_category": "Work"}
+{"input": "I'm not sure dot dot dot maybe we should wait", "output": "I'm not sure... maybe we should wait.", "app_category": "Work"}
+{"input": "I'm not sure three dots maybe we should wait", "output": "I'm not sure... maybe we should wait.", "app_category": "Work"}
+{"input": "it apostrophe s going to be fine", "output": "It's going to be fine.", "app_category": "Work"}
+{"input": "check the docs at w w w dot example dot com slash help", "output": "Check the docs at www.example.com/help.", "app_category": "Work"}
+{"input": "new line item one colon fix the login bug new line item two colon update the docs new line item three colon deploy to staging", "output": "1. Fix the login bug.\n2. Update the docs.\n3. Deploy to staging.", "app_category": "Other"}
+{"input": "open parenthesis see attachment close parenthesis", "output": "(See attachment.)", "app_category": "Email"}
+{"input": "the function takes open bracket x comma y close bracket as parameters", "output": "The function takes (x, y) as parameters.", "app_category": "Work"}
+{"input": "add it to the array open square bracket zero close square bracket", "output": "Add it to the array [0].", "app_category": "Work"}
+{"input": "the config is open curly bracket key colon value close curly bracket", "output": "The config is {key: value}.", "app_category": "Work"}
+{"input": "he said open quote I'll be there by five close quote", "output": "He said \"I'll be there by 5.\"", "app_category": "Personal"}
+{"input": "she said quote I don't agree end quote and walked away", "output": "She said \"I don't agree\" and walked away.", "app_category": "Personal"}
+{"input": "it single quote s a beautiful day", "output": "It's a beautiful day.", "app_category": "Personal"}
+{"input": "use hashtag urgent for priority tickets", "output": "Use #urgent for priority tickets.", "app_category": "Work"}
+{"input": "revenue went up by twenty percent sign this quarter", "output": "Revenue went up by 20% this quarter.", "app_category": "Work"}
+{"input": "the total comes to dollar sign fifty", "output": "The total comes to $50.", "app_category": "Other"}
+{"input": "two plus sign three equals sign five", "output": "2 + 3 = 5.", "app_category": "Other"}
+{"input": "file underscore name underscore final", "output": "file_name_final", "app_category": "Work"}
+{"input": "true pipe pipe false", "output": "true || false", "app_category": "Other"}
+{"input": "home tilde documents", "output": "home~documents", "app_category": "Other"}
+{"input": "the path is C colon backslash users backslash john backslash desktop", "output": "The path is C:\\users\\john\\desktop.", "app_category": "Work"}
+{"input": "star star bold text star star", "output": "**bold text**", "app_category": "Work"}
+{"input": "check out the site at https colon forward slash forward slash example dot com", "output": "Check out the site at https://example.com.", "app_category": "Work"}
+{"input": "john ampersand sons is a great company", "output": "John & Sons is a great company.", "app_category": "Work"}
+{"input": "send it to alex at company dot com", "output": "Send it to alex@company.com.", "app_category": "Work"}
+{"input": "I had a question mark on that decision", "output": "I had a question mark on that decision.", "app_category": "Work"}
+{"input": "what's the question mark for in this code", "output": "What's the question mark for in this code?", "app_category": "Work"}
+{"input": "is the report ready question mark", "output": "Is the report ready?", "app_category": "Work"}
+{"input": "he put a question mark next to my name on the whiteboard", "output": "He put a question mark next to my name on the whiteboard.", "app_category": "Work"}
+{"input": "the period of time was too short for proper testing", "output": "The period of time was too short for proper testing.", "app_category": "Work"}
+{"input": "we need to extend the trial period for at least two more weeks", "output": "We need to extend the trial period for at least 2 more weeks.", "app_category": "Work"}
+{"input": "end of the paragraph period", "output": "End of the paragraph.", "app_category": "Other"}
+{"input": "the comma operator in JavaScript is rarely used", "output": "The comma operator in JavaScript is rarely used.", "app_category": "Work"}
+{"input": "after the first clause comma add the second part", "output": "After the first clause, add the second part.", "app_category": "Other"}
+{"input": "I need to use the hash symbol in my password", "output": "I need to use the hash symbol in my password.", "app_category": "Work"}
+{"input": "add a hashtag trending to the post", "output": "Add a #trending to the post.", "app_category": "Personal"}
+{"input": "she's a star at what she does", "output": "She's a star at what she does.", "app_category": "Work"}
+{"input": "add a star rating to each item", "output": "Add a star rating to each item.", "app_category": "Work"}
+{"input": "mark it with asterisk important asterisk", "output": "Mark it with *important*.", "app_category": "Work"}
+{"input": "delete that actually let me start over", "output": "Let me start over.", "app_category": "Work"}
+{"input": "the deadline is friday scratch that it's actually thursday", "output": "The deadline is actually Thursday.", "app_category": "Work"}
+{"input": "send the report to marketing undo that send it to sales instead", "output": "Send the report to sales instead.", "app_category": "Work"}
+{"input": "select all and copy", "output": "select all and copy", "app_category": "Other"}
+{"input": "caps on important caps off", "output": "caps on important caps off", "app_category": "Other"}
+{"input": "all caps warning all caps", "output": "all caps warning all caps", "app_category": "Other"}
+{"input": "thanks for everything period new paragraph best comma new line sarah", "output": "Thanks for everything.\n\nBest,\nSarah", "app_category": "Email"}
+{"input": "hi alex comma new paragraph just wanted to follow up on our meeting period new paragraph could you send me the notes question mark new paragraph thanks comma new line mike", "output": "Hi Alex,\n\nJust wanted to follow up on our meeting.\n\nCould you send me the notes?\n\nThanks,\nMike", "app_category": "Email"}
+{"input": "the meeting is at three pm period please be on time exclamation mark", "output": "The meeting is at 3 PM. Please be on time!", "app_category": "Work"}
+{"input": "first thing colon check emails new line second thing colon review PRs new line third thing colon update docs", "output": "1. Check emails.\n2. Review PRs.\n3. Update docs.", "app_category": "Other"}
+{"input": "note to self dash buy groceries dash call mom dash fix bike", "output": "Note to self — buy groceries — call mom — fix bike.", "app_category": "Other"}
+{"input": "the results were open parenthesis mostly close parenthesis positive", "output": "The results were (mostly) positive.", "app_category": "Work"}
+{"input": "please refer to section open square bracket three close square bracket", "output": "Please refer to section [3].", "app_category": "Other"}
+{"input": "the variable is open curly bracket name colon single quote john single quote close curly bracket", "output": "The variable is {name: 'john'}.", "app_category": "Other"}
+{"input": "important exclamation point please read this before the meeting", "output": "Important! Please read this before the meeting.", "app_category": "Work"}
+{"input": "let me explain full stop the issue is with the API full stop", "output": "Let me explain. The issue is with the API.", "app_category": "Work"}
+{"input": "go to the website dot com", "output": "Go to the website.com.", "app_category": "Work"}
+{"input": "I placed a dot on the map to mark the location", "output": "I placed a dot on the map to mark the location.", "app_category": "Work"}
+{"input": "the score was five dash three", "output": "The score was 5—3.", "app_category": "Personal"}
+{"input": "she made a dash for the exit", "output": "She made a dash for the exit.", "app_category": "Personal"}
+{"input": "the hyphenated word is well dash known", "output": "The hyphenated word is well—known.", "app_category": "Work"}
+{"input": "he used a colon in his explanation", "output": "He used a colon in his explanation.", "app_category": "Work"}
+{"input": "uh can you repeat that question mark I didn't catch it", "output": "Can you repeat that? I didn't catch it.", "app_category": "Work"}
+{"input": "um so like he said comma and I quote comma it's not going to work end quote period", "output": "He said, and I quote, \"It's not going to work.\"", "app_category": "Work"}
+{"input": "step one colon open the app period step two colon tap on settings period step three colon enable notifications period", "output": "1. Open the app.\n2. Tap on settings.\n3. Enable notifications.", "app_category": "Other"}
+{"input": "new paragraph new paragraph", "output": "\n\n\n\n", "app_category": "Other"}
+{"input": "new line", "output": "\n", "app_category": "Other"}
+{"input": "tab tab tab", "output": "\t\t\t", "app_category": "Other"}
+{"input": "next line here's the second point next line and the third one", "output": "\nHere's the second point.\n\nAnd the third one.", "app_category": "Other"}
+{"input": "next paragraph let me add more context", "output": "\n\nLet me add more context.", "app_category": "Other"}
+{"input": "we need help period or maybe not period I'm confused period", "output": "We need help. Or maybe not. I'm confused.", "app_category": "Personal"}
+{"input": "you know the exclamation point I keep using in my texts", "output": "You know the exclamation point I keep using in my texts?", "app_category": "Personal"}
+{"input": "this is unbelievable exclamation point", "output": "This is unbelievable!", "app_category": "Personal"}
+{"input": "the function returns left paren x plus y right paren", "output": "The function returns (x + y).", "app_category": "Work"}
+{"input": "the at sign was invented in the sixteenth century", "output": "The at sign was invented in the 16th century.", "app_category": "Other"}
+{"input": "my email is john at sign company dot com", "output": "My email is john@company.com.", "app_category": "Work"}
+{"input": "and sign is another name for ampersand", "output": "And sign is another name for ampersand.", "app_category": "Other"}
+{"input": "merge A ampersand B into one document", "output": "Merge A & B into one document.", "app_category": "Work"}
+{"input": "use forward slash to separate the paths", "output": "Use forward slash to separate the paths.", "app_category": "Work"}
+{"input": "home forward slash documents forward slash project", "output": "home/documents/project", "app_category": "Other"}
+{"input": "escape backslash n for newline in the string", "output": "Escape \\n for newline in the string.", "app_category": "Other"}
+{"input": "the pound sign key on my keyboard is broken", "output": "The pound sign key on my keyboard is broken.", "app_category": "Work"}
+{"input": "tag it with pound sign high priority", "output": "Tag it with #high priority.", "app_category": "Work"}
+{"input": "the meeting was really great period everyone contributed well period I think we should do this more often period", "output": "The meeting was really great. Everyone contributed well. I think we should do this more often.", "app_category": "Work"}
+{"input": "please email me at sarah dot lee at outlook dot com", "output": "Please email me at sarah.lee@outlook.com.", "app_category": "Work"}
+{"input": "the answer is yes period definitely period", "output": "The answer is yes. Definitely.", "app_category": "Work"}
+{"input": "think about it ellipsis and get back to me", "output": "Think about it... and get back to me.", "app_category": "Work"}
+{"input": "subject colon quarterly report new line new line hi team comma new paragraph attached is the report for Q3 period please review and let me know if you have questions period new paragraph regards comma new line david", "output": "Subject: Quarterly report.\n\nHi team,\n\nAttached is the report for Q3. Please review and let me know if you have questions.\n\nRegards,\nDavid", "app_category": "Email"}
+{"input": "I was at the comma separated values workshop yesterday", "output": "I was at the comma separated values workshop yesterday.", "app_category": "Work"}
+{"input": "put a tab between the name and the age columns", "output": "Put a tab between the name and the age columns.", "app_category": "Work"}
+{"input": "tab name tab age tab email", "output": "\tname\tage\temail", "app_category": "Other"}
+{"input": "don't use the dot notation for this", "output": "Don't use the dot notation for this.", "app_category": "Work"}
+{"input": "set the opacity to zero dot five", "output": "Set the opacity to 0.5.", "app_category": "Other"}
+{"input": "the file is at slash users slash john slash documents", "output": "The file is at /users/john/documents.", "app_category": "Work"}
+{"input": "I need a pipe between these two commands", "output": "I need a pipe between these two commands.", "app_category": "Work"}
+{"input": "ls pipe grep error", "output": "ls | grep error", "app_category": "Other"}
+{"input": "my username has an underscore in it", "output": "My username has an underscore in it.", "app_category": "Work"}
+{"input": "hello underscore world", "output": "hello_world", "app_category": "Other"}
+{"input": "add a percent sign after the number", "output": "Add a percent sign after the number.", "app_category": "Work"}
+{"input": "the growth rate is twelve percent", "output": "The growth rate is 12%.", "app_category": "Work"}
+{"input": "dear hiring manager comma new paragraph I am writing to express my interest in the software engineer position period new paragraph with over five years of experience comma I believe I would be a strong fit for this role period new paragraph I look forward to hearing from you period new paragraph sincerely comma new line alex chen", "output": "Dear Hiring Manager,\n\nI am writing to express my interest in the software engineer position.\n\nWith over 5 years of experience, I believe I would be a strong fit for this role.\n\nI look forward to hearing from you.\n\nSincerely,\nAlex Chen", "app_category": "Email"}
+{"input": "hi comma new line new line hope you're doing well period I wanted to follow up on the invoice from last week period could you let me know the status question mark new paragraph thanks comma new line rachel", "output": "Hi,\n\nHope you're doing well. I wanted to follow up on the invoice from last week. Could you let me know the status?\n\nThanks,\nRachel", "app_category": "Email"}
+{"input": "heading colon meeting notes new paragraph date colon march thirty first new paragraph attendees colon john comma sarah comma mike new paragraph action items colon new line dash finish design review new line dash schedule QA testing new line dash update stakeholders", "output": "Heading: Meeting notes.\n\nDate: March 31st.\n\nAttendees: John, Sarah, Mike.\n\nAction items:\n— Finish design review.\n— Schedule QA testing.\n— Update stakeholders.", "app_category": "Other"}
+{"input": "you said quote I'll handle it end quote but nothing happened", "output": "You said \"I'll handle it\" but nothing happened.", "app_category": "Work"}
+{"input": "he literally said begin quote this is fine end quote while the server was on fire", "output": "He literally said \"this is fine\" while the server was on fire.", "app_category": "Work"}
+{"input": "the error says colon open quote undefined is not a function close quote", "output": "The error says: \"undefined is not a function.\"", "app_category": "Work"}
+{"input": "I need the API key in the format colon key equals sign value ampersand key two equals sign value two", "output": "I need the API key in the format: key = value & key 2 = value 2.", "app_category": "Work"}
+{"input": "oh wait scratch that I need to rethink this", "output": "I need to rethink this.", "app_category": "Work"}
+{"input": "the budget is fifty thousand dollars delete that the budget is sixty thousand dollars", "output": "The budget is $60,000.", "app_category": "Work"}
+{"input": "we should use em dash instead of hyphens in the document", "output": "We should use em dash instead of hyphens in the document.", "app_category": "Work"}
+{"input": "he paused em dash then continued speaking", "output": "He paused — then continued speaking.", "app_category": "Other"}
+{"input": "the plan is simple colon win period", "output": "The plan is simple: win.", "app_category": "Personal"}
+{"input": "remember dash the deadline is friday exclamation mark", "output": "Remember — the deadline is Friday!", "app_category": "Work"}
+{"input": "the semi colon is used in JavaScript to end statements", "output": "The semicolon is used in JavaScript to end statements.", "app_category": "Work"}
+{"input": "list your skills semicolon separate each with a comma", "output": "List your skills; separate each with a comma.", "app_category": "Other"}
+{"input": "this is wrong period period period", "output": "This is wrong...", "app_category": "Personal"}
+{"input": "hello question mark are you there question mark hello question mark", "output": "Hello? Are you there? Hello?", "app_category": "Personal"}
+{"input": "dear mr period johnson comma new paragraph", "output": "Dear Mr. Johnson,\n\n", "app_category": "Email"}
+{"input": "re colon follow up on our meeting dash action items", "output": "Re: Follow up on our meeting — action items.", "app_category": "Email"}
+{"input": "note colon this is a work in progress open parenthesis do not share close parenthesis", "output": "Note: This is a work in progress (do not share).", "app_category": "Other"}
+{"input": "the equation is y equals sign m asterisk x plus sign b", "output": "The equation is y = m * x + b.", "app_category": "Other"}
+{"input": "uh sorry period I didn't mean to interrupt period", "output": "Sorry. I didn't mean to interrupt.", "app_category": "Work"}
+{"input": "this is urgent exclamation mark please respond ASAP exclamation mark", "output": "This is urgent! Please respond ASAP!", "app_category": "Work"}
+{"input": "I need a vertical bar in my regex pattern", "output": "I need a vertical bar in my regex pattern.", "app_category": "Work"}
+{"input": "option A vertical bar option B vertical bar option C", "output": "Option A | option B | option C.", "app_category": "Other"}
+{"input": "type tilde in the terminal to go to home", "output": "Type tilde in the terminal to go to home.", "app_category": "Work"}
+{"input": "cd tilde forward slash projects", "output": "cd ~/projects", "app_category": "Other"}
+{"input": "open brace new line tab name colon single quote john single quote comma new line tab age colon twenty five new line close brace", "output": "{\n\tname: 'john',\n\tage: 25\n}", "app_category": "Other"}
+{"input": "please note colon the office will be closed on december twenty fifth open parenthesis christmas close parenthesis and january first open parenthesis new year's day close parenthesis period", "output": "Please note: the office will be closed on December 25th (Christmas) and January 1st (New Year's Day).", "app_category": "Work"}
+{"input": "click the dot dot dot menu in the top right corner", "output": "Click the ... menu in the top right corner.", "app_category": "Work"}
+{"input": "the sentence ends with a period that's just grammar", "output": "The sentence ends with a period, that's just grammar.", "app_category": "Work"}
+{"input": "the winner is dot dot dot john exclamation mark", "output": "The winner is... John!", "app_category": "Personal"}
+{"input": "I just period can't period believe it period", "output": "I just. Can't. Believe it.", "app_category": "Personal"}
+{"input": "and then she was like open quote are you kidding me question mark close quote", "output": "And then she was like \"Are you kidding me?\"", "app_category": "Personal"}
+{"input": "step one period wake up step two period go to the gym step three period profit", "output": "1. Wake up.\n2. Go to the gym.\n3. Profit.", "app_category": "Personal"}
+{"input": "the return type is int open bracket close bracket", "output": "The return type is int[].", "app_category": "Other"}
+{"input": "the regex is open bracket a dash z close bracket plus sign", "output": "The regex is [a-z]+.", "app_category": "Other"}
+{"input": "the URL has a hash symbol in it like page hash section", "output": "The URL has a hash symbol in it like page#section.", "app_category": "Work"}
+{"input": "and I was like wait what question mark and he goes yeah period", "output": "And I was like wait what? And he goes yeah.", "app_category": "Personal"}
+{"input": "todo colon new line open square bracket close square bracket fix the bug new line open square bracket close square bracket write tests new line open square bracket close square bracket deploy", "output": "Todo:\n[] Fix the bug.\n[] Write tests.\n[] Deploy.", "app_category": "Other"}
+{"input": "print open parenthesis single quote hello world single quote close parenthesis", "output": "print('hello world')", "app_category": "Other"}
+{"input": "const x equals sign open parenthesis a comma b close parenthesis equals sign greater than a plus sign b semicolon", "output": "const x = (a, b) => a + b;", "app_category": "Other"}
+{"input": "if open parenthesis x greater than five close parenthesis open curly bracket new line tab return true semicolon new line close curly bracket", "output": "if (x > 5) {\n\treturn true;\n}", "app_category": "Other"}
+{"input": "period", "output": ".", "app_category": "Other"}
+{"input": "comma", "output": ",", "app_category": "Other"}
+{"input": "question mark", "output": "?", "app_category": "Other"}
+{"input": "new line new line new line", "output": "\n\n\n", "app_category": "Other"}
+{"input": "delete that", "output": "", "app_category": "Other"}
+{"input": "scratch that", "output": "", "app_category": "Other"}
+{"input": "the meeting is at three pm period don't be late exclamation mark see you there period", "output": "The meeting is at 3 PM. Don't be late! See you there.", "app_category": "Personal"}
+{"input": "PS colon don't forget to bring snacks exclamation mark", "output": "PS: Don't forget to bring snacks!", "app_category": "Email"}
+{"input": "tldr colon the project is behind schedule and we need more resources period", "output": "TLDR: The project is behind schedule, and we need more resources.", "app_category": "Work"}
+{"input": "fun fact colon the human brain weighs about three pounds period", "output": "Fun fact: the human brain weighs about 3 pounds.", "app_category": "Personal"}
+{"input": "p dot s dot I love you", "output": "P.S. I love you.", "app_category": "Personal"}
+{"input": "it's not a bug comma it's a feature exclamation mark", "output": "It's not a bug, it's a feature!", "app_category": "Work"}
+{"input": "the syntax is colon function open parenthesis arg one comma arg two close parenthesis colon return type", "output": "The syntax is: function(arg 1, arg 2): return type.", "app_category": "Work"}
+{"input": "roses are red comma new line violets are blue comma new line this is a test comma new line and so are you period", "output": "Roses are red,\nviolets are blue,\nthis is a test,\nand so are you.", "app_category": "Personal"}
+{"input": "pros colon new line dash fast new line dash reliable new line dash cheap new paragraph cons colon new line dash hard to learn new line dash limited support", "output": "Pros:\n— Fast.\n— Reliable.\n— Cheap.\n\nCons:\n— Hard to learn.\n— Limited support.", "app_category": "Other"}
