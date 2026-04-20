@@ -1,50 +1,300 @@
-{"input": "please confirm receipt period thanks period", "output": "Please confirm receipt. Thanks.", "app_category": "Work"}
-{"input": "hi david comma new line the report is attached period", "output": "Hi David,\nthe report is attached.", "app_category": "Work"}
-{"input": "he said open quote i will be there at five close quote and hung up period", "output": "He said \"I will be there at 5\" and hung up.", "app_category": "Personal"}
-{"input": "dear customer team comma new line a quick update on the outage period", "output": "Dear customer team,\na quick update on the outage.", "app_category": "Work"}
-{"input": "okay period that works for me period", "output": "Okay. That works for me.", "app_category": "Work"}
-{"input": "to do new line clean house new line buy groceries new line pay bills", "output": "To do\nclean house\nbuy groceries\npay bills", "app_category": "Other"}
-{"input": "open quote error formatting disk close quote on screen period", "output": "\"Error formatting disk\" on screen.", "app_category": "Personal"}
-{"input": "the event is on friday comma saturday comma and sunday period", "output": "The event is on Friday, Saturday, and Sunday.", "app_category": "Work"}
-{"input": "hello everyone comma new line welcome to the team period", "output": "Hello everyone,\nwelcome to the team.", "app_category": "Work"}
-{"input": "the sign read open quote out of order close quote", "output": "The sign read \"out of order\"", "app_category": "Personal"}
-{"input": "it is what it is period", "output": "It is what it is.", "app_category": "Personal"}
-{"input": "name colon bob smith new line age colon thirty", "output": "Name: Bob Smith\nAge: 30", "app_category": "Work"}
-{"input": "my response was open quote no way exclamation mark close quote", "output": "My response was \"No way!\"", "app_category": "Personal"}
-{"input": "open parenthesis see attached document close parenthesis for details period", "output": "(See attached document) for details.", "app_category": "Work"}
-{"input": "yes exclamation mark period period period wait no period", "output": "Yes!... Wait no.", "app_category": "Personal"}
-{"input": "error log new line status colon five hundred new line message colon internal server error", "output": "Error log\nStatus: 500\nMessage: Internal server error", "app_category": "Other"}
-{"input": "we need apples slash oranges slash bananas today", "output": "We need apples / oranges / bananas today", "app_category": "Other"}
-{"input": "grocery list new line dash apples new line dash bananas new line dash carrots", "output": "Grocery list\n- apples\n- bananas\n- carrots", "app_category": "Other"}
-{"input": "url is https colon slash slash google dot com", "output": "URL is https://google.com", "app_category": "Personal"}
-{"input": "what comma why would you do that question mark", "output": "What, why would you do that?", "app_category": "Personal"}
-{"input": "hey mark comma new line are we still on for lunch question mark", "output": "Hey Mark,\nare we still on for lunch?", "app_category": "Personal"}
-{"input": "open quote to be or not to be close quote is from shakespeare period", "output": "\"To be or not to be\" is from Shakespeare.", "app_category": "Other"}
-{"input": "first draft colon new line title dash the future of ai new paragraph the world is changing period", "output": "First draft:\nTitle - The future of AI\n\nThe world is changing.", "app_category": "Other"}
-{"input": "twenty four slash seven customer support available", "output": "24/7 customer support available", "app_category": "Personal"}
-{"input": "add the word open quote urgent close quote to the title of the email", "output": "Add the word \"urgent\" to the title of the email", "app_category": "Work"}
-{"input": "total price is one hundred dollars open parenthesis including tax close parenthesis period", "output": "Total price is $100 (including tax).", "app_category": "Work"}
-{"input": "wait comma actually comma never mind period", "output": "Wait, actually, never mind.", "app_category": "Personal"}
-{"input": "topic colon finance ampersand accounting period", "output": "Topic: Finance & Accounting.", "app_category": "Work"}
-{"input": "agenda colon new line one period introductions new line two period goals new line three period q and a", "output": "Agenda:\n1. Introductions\n2. Goals\n3. Q&A", "app_category": "Work"}
-{"input": "thank you period new paragraph sincerely comma new line john", "output": "Thank you.\n\nSincerely,\nJohn", "app_category": "Work"}
-{"input": "step one comma turn it on period new line step two comma press start period", "output": "Step 1, turn it on.\nStep 2, press start.", "app_category": "Work"}
-{"input": "i am period extremely period annoyed period", "output": "I am. Extremely. Annoyed.", "app_category": "Personal"}
-{"input": "pros colon new line dash fast new line dash cheap new paragraph cons colon new line dash poor quality", "output": "Pros:\n- fast\n- cheap\n\nCons:\n- poor quality", "app_category": "Other"}
-{"input": "price drop open parenthesis from fifty to thirty dollars close parenthesis starts today", "output": "Price drop (from $50 to $30) starts today", "app_category": "Personal"}
-{"input": "project alpha dash phase two is starting", "output": "Project Alpha - Phase 2 is starting", "app_category": "Work"}
-{"input": "i am period just period done period", "output": "I am. Just. Done.", "app_category": "Personal"}
-{"input": "seriously question mark exclamation mark", "output": "Seriously?!", "app_category": "Personal"}
-{"input": "folder path is users slash admin slash documents", "output": "Folder path is users/admin/documents", "app_category": "Work"}
-{"input": "client ampersand partners meeting at four pm", "output": "Client & partners meeting at 4 PM", "app_category": "Work"}
-{"input": "i can't believe it exclamation mark exclamation mark", "output": "I can't believe it!!", "app_category": "Personal"}
-{"input": "we need milk comma eggs comma bread period", "output": "We need milk, eggs, bread.", "app_category": "Other"}
-{"input": "urgent new line please call me asap period", "output": "Urgent\nPlease call me ASAP.", "app_category": "Personal"}
-{"input": "meeting notes colon new paragraph we discussed the budget period new line next steps will follow tomorrow period", "output": "Meeting notes:\n\nWe discussed the budget.\nNext steps will follow tomorrow.", "app_category": "Work"}
-{"input": "who comma what comma where comma when question mark", "output": "Who, what, where, when?", "app_category": "Personal"}
-{"input": "it works period new line let's ship it period", "output": "It works.\nLet's ship it.", "app_category": "Work"}
-{"input": "john at example dot com", "output": "john@example.com", "app_category": "Work"}
-{"input": "what question mark when did this happen question mark", "output": "What? When did this happen?", "app_category": "Personal"}
-{"input": "send it to jane smith at gmail dot com period", "output": "Send it to janesmith@gmail.com.", "app_category": "Work"}
-{"input": "status is open parenthesis pending approval close parenthesis", "output": "Status is (pending approval)", "app_category": "Work"}
-{"input": "no exclamation mark i said no exclamation mark", "output": "No! I said no!", "app_category": "Personal"}
+{
+  "input": "please confirm receipt period thanks period",
+  "output": "Please confirm receipt. Thanks.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hi david comma new line the report is attached period",
+  "output": "Hi David,\nthe report is attached.",
+  "app_category": "Work"
+}
+
+{
+  "input": "he said open quote i will be there at five close quote and hung up period",
+  "output": "He said \"I will be there at 5\" and hung up.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "dear customer team comma new line a quick update on the outage period",
+  "output": "Dear customer team,\na quick update on the outage.",
+  "app_category": "Work"
+}
+
+{
+  "input": "okay period that works for me period",
+  "output": "Okay. That works for me.",
+  "app_category": "Work"
+}
+
+{
+  "input": "to do new line clean house new line buy groceries new line pay bills",
+  "output": "To do\nclean house\nbuy groceries\npay bills",
+  "app_category": "Other"
+}
+
+{
+  "input": "open quote error formatting disk close quote on screen period",
+  "output": "\"Error formatting disk\" on screen.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the event is on friday comma saturday comma and sunday period",
+  "output": "The event is on Friday, Saturday, and Sunday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hello everyone comma new line welcome to the team period",
+  "output": "Hello everyone,\nwelcome to the team.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the sign read open quote out of order close quote",
+  "output": "The sign read \"out of order\"",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it is what it is period",
+  "output": "It is what it is.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "name colon bob smith new line age colon thirty",
+  "output": "Name: Bob Smith\nAge: 30",
+  "app_category": "Work"
+}
+
+{
+  "input": "my response was open quote no way exclamation mark close quote",
+  "output": "My response was \"No way!\"",
+  "app_category": "Personal"
+}
+
+{
+  "input": "open parenthesis see attached document close parenthesis for details period",
+  "output": "(See attached document) for details.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yes exclamation mark period period period wait no period",
+  "output": "Yes!... Wait no.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "error log new line status colon five hundred new line message colon internal server error",
+  "output": "Error log\nStatus: 500\nMessage: Internal server error",
+  "app_category": "Other"
+}
+
+{
+  "input": "we need apples slash oranges slash bananas today",
+  "output": "We need apples / oranges / bananas today",
+  "app_category": "Other"
+}
+
+{
+  "input": "grocery list new line dash apples new line dash bananas new line dash carrots",
+  "output": "Grocery list\n- apples\n- bananas\n- carrots",
+  "app_category": "Other"
+}
+
+{
+  "input": "url is https colon slash slash google dot com",
+  "output": "URL is https://google.com",
+  "app_category": "Personal"
+}
+
+{
+  "input": "what comma why would you do that question mark",
+  "output": "What, why would you do that?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "hey mark comma new line are we still on for lunch question mark",
+  "output": "Hey Mark,\nare we still on for lunch?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "open quote to be or not to be close quote is from shakespeare period",
+  "output": "\"To be or not to be\" is from Shakespeare.",
+  "app_category": "Other"
+}
+
+{
+  "input": "first draft colon new line title dash the future of ai new paragraph the world is changing period",
+  "output": "First draft:\nTitle - The future of AI\n\nThe world is changing.",
+  "app_category": "Other"
+}
+
+{
+  "input": "twenty four slash seven customer support available",
+  "output": "24/7 customer support available",
+  "app_category": "Personal"
+}
+
+{
+  "input": "add the word open quote urgent close quote to the title of the email",
+  "output": "Add the word \"urgent\" to the title of the email",
+  "app_category": "Work"
+}
+
+{
+  "input": "total price is one hundred dollars open parenthesis including tax close parenthesis period",
+  "output": "Total price is $100 (including tax).",
+  "app_category": "Work"
+}
+
+{
+  "input": "wait comma actually comma never mind period",
+  "output": "Wait, actually, never mind.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "topic colon finance ampersand accounting period",
+  "output": "Topic: Finance & Accounting.",
+  "app_category": "Work"
+}
+
+{
+  "input": "agenda colon new line one period introductions new line two period goals new line three period q and a",
+  "output": "Agenda:\n1. Introductions\n2. Goals\n3. Q&A",
+  "app_category": "Work"
+}
+
+{
+  "input": "thank you period new paragraph sincerely comma new line john",
+  "output": "Thank you.\n\nSincerely,\nJohn",
+  "app_category": "Work"
+}
+
+{
+  "input": "step one comma turn it on period new line step two comma press start period",
+  "output": "Step 1, turn it on.\nStep 2, press start.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i am period extremely period annoyed period",
+  "output": "I am. Extremely. Annoyed.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "pros colon new line dash fast new line dash cheap new paragraph cons colon new line dash poor quality",
+  "output": "Pros:\n- fast\n- cheap\n\nCons:\n- poor quality",
+  "app_category": "Other"
+}
+
+{
+  "input": "price drop open parenthesis from fifty to thirty dollars close parenthesis starts today",
+  "output": "Price drop (from $50 to $30) starts today",
+  "app_category": "Personal"
+}
+
+{
+  "input": "project alpha dash phase two is starting",
+  "output": "Project Alpha - Phase 2 is starting",
+  "app_category": "Work"
+}
+
+{
+  "input": "i am period just period done period",
+  "output": "I am. Just. Done.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "seriously question mark exclamation mark",
+  "output": "Seriously?!",
+  "app_category": "Personal"
+}
+
+{
+  "input": "folder path is users slash admin slash documents",
+  "output": "Folder path is users/admin/documents",
+  "app_category": "Work"
+}
+
+{
+  "input": "client ampersand partners meeting at four pm",
+  "output": "Client & partners meeting at 4 PM",
+  "app_category": "Work"
+}
+
+{
+  "input": "i can't believe it exclamation mark exclamation mark",
+  "output": "I can't believe it!!",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we need milk comma eggs comma bread period",
+  "output": "We need milk, eggs, bread.",
+  "app_category": "Other"
+}
+
+{
+  "input": "urgent new line please call me asap period",
+  "output": "Urgent\nPlease call me ASAP.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "meeting notes colon new paragraph we discussed the budget period new line next steps will follow tomorrow period",
+  "output": "Meeting notes:\n\nWe discussed the budget.\nNext steps will follow tomorrow.",
+  "app_category": "Work"
+}
+
+{
+  "input": "who comma what comma where comma when question mark",
+  "output": "Who, what, where, when?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it works period new line let's ship it period",
+  "output": "It works.\nLet's ship it.",
+  "app_category": "Work"
+}
+
+{
+  "input": "john at example dot com",
+  "output": "john@example.com",
+  "app_category": "Work"
+}
+
+{
+  "input": "what question mark when did this happen question mark",
+  "output": "What? When did this happen?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "send it to jane smith at gmail dot com period",
+  "output": "Send it to janesmith@gmail.com.",
+  "app_category": "Work"
+}
+
+{
+  "input": "status is open parenthesis pending approval close parenthesis",
+  "output": "Status is (pending approval)",
+  "app_category": "Work"
+}
+
+{
+  "input": "no exclamation mark i said no exclamation mark",
+  "output": "No! I said no!",
+  "app_category": "Personal"
+}
+

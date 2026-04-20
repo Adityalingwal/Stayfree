@@ -1,106 +1,606 @@
-{"input": "the meeting is at three thirty pm", "output": "The meeting is at 3:30 PM.", "app_category": "Work"}
-{"input": "let's meet at quarter past five", "output": "Let's meet at 5:15.", "app_category": "Personal"}
-{"input": "the flight lands at half past ten in the morning", "output": "The flight lands at 10:30 in the morning.", "app_category": "Personal"}
-{"input": "i wake up at six am every day", "output": "I wake up at 6 AM every day.", "app_category": "Other"}
-{"input": "dinner reservation at seven forty five pm tonight", "output": "Dinner reservation at 7:45 PM tonight.", "app_category": "Personal"}
-{"input": "the standup is at nine fifteen sharp don't be late", "output": "The standup is at 9:15 sharp, don't be late.", "app_category": "Work"}
-{"input": "we have a call at noon and another at two thirty", "output": "We have a call at noon and another at 2:30.", "app_category": "Work"}
-{"input": "the event starts at five o'clock and ends at eight", "output": "The event starts at 5 o'clock and ends at 8.", "app_category": "Personal"}
-{"input": "i stayed up till midnight working on the presentation", "output": "I stayed up till midnight working on the presentation.", "app_category": "Work"}
-{"input": "the train departs at eleven oh five am from platform three", "output": "The train departs at 11:05 AM from platform 3.", "app_category": "Other"}
-{"input": "set an alarm for quarter to seven", "output": "Set an alarm for 6:45.", "app_category": "Personal"}
-{"input": "office hours are from nine am to five thirty pm", "output": "Office hours are from 9 AM to 5:30 PM.", "app_category": "Work"}
-{"input": "it costs fifty dollars for the basic plan", "output": "It costs $50 for the basic plan.", "app_category": "Work"}
-{"input": "the total came out to twenty five dollars and ninety nine cents", "output": "The total came out to $25.99.", "app_category": "Personal"}
-{"input": "i paid five hundred bucks for the ticket", "output": "I paid $500 for the ticket.", "app_category": "Personal"}
-{"input": "that startup just raised ten grand in their seed round", "output": "That startup just raised $10,000 in their seed round.", "app_category": "Work"}
-{"input": "the price is three hundred rupees per kilo", "output": "The price is ₹300 per kilo.", "app_category": "Personal"}
-{"input": "invoice amount is twelve thousand five hundred dollars", "output": "Invoice amount is $12,500.", "app_category": "Email"}
-{"input": "rent is fifteen hundred a month", "output": "Rent is $1,500 a month.", "app_category": "Other"}
-{"input": "it'll cost you around ninety nine cents per unit", "output": "It'll cost you around $0.99 per unit.", "app_category": "Work"}
-{"input": "the deadline is march fifteenth", "output": "The deadline is March 15th.", "app_category": "Work"}
-{"input": "my birthday is on the twenty third of july", "output": "My birthday is on the 23rd of July.", "app_category": "Personal"}
-{"input": "the conference is on november second twenty twenty six", "output": "The conference is on November 2nd, 2026.", "app_category": "Email"}
-{"input": "we launched on january first twenty twenty four", "output": "We launched on January 1st, 2024.", "app_category": "Work"}
-{"input": "next tuesday is the last day to submit", "output": "Next Tuesday is the last day to submit.", "app_category": "Work"}
-{"input": "day after tomorrow is the deadline", "output": "Day after tomorrow is the deadline.", "app_category": "Work"}
-{"input": "the project started december tenth and ends february twenty eighth", "output": "The project started December 10th and ends February 28th.", "app_category": "Other"}
-{"input": "the fiscal year ends on the thirty first of march", "output": "The fiscal year ends on the 31st of March.", "app_category": "Work"}
-{"input": "i think it was around august twenty nineteen when we started", "output": "I think it was around August 2019 when we started.", "app_category": "Personal"}
-{"input": "our daily active users crossed ten thousand last week", "output": "Our daily active users crossed 10,000 last week.", "app_category": "Work"}
-{"input": "the company is valued at two point five billion dollars", "output": "The company is valued at $2.5 billion.", "app_category": "Work"}
-{"input": "we processed about a hundred requests per second during the spike", "output": "We processed about 100 requests per second during the spike.", "app_category": "Work"}
-{"input": "revenue hit three point seven million this quarter", "output": "Revenue hit $3.7 million this quarter.", "app_category": "Work"}
-{"input": "the population of the city is around one point two million", "output": "The population of the city is around 1.2 million.", "app_category": "Other"}
-{"input": "we have about two hundred and fifty employees now", "output": "We have about 250 employees now.", "app_category": "Work"}
-{"input": "a couple of thousand people showed up to the event", "output": "A couple of thousand people showed up to the event.", "app_category": "Personal"}
-{"input": "there were maybe a few hundred at the concert", "output": "There were maybe a few hundred at the concert.", "app_category": "Personal"}
-{"input": "conversion rate improved by thirty percent this month", "output": "Conversion rate improved by 30% this month.", "app_category": "Work"}
-{"input": "battery is at like eighty five percent", "output": "Battery is at like 85%.", "app_category": "Personal"}
-{"input": "cpu usage spiked to ninety seven point three percent during deployment", "output": "CPU usage spiked to 97.3% during deployment.", "app_category": "Work"}
-{"input": "we need at least a two point five percent improvement to hit target", "output": "We need at least a 2.5% improvement to hit target.", "app_category": "Work"}
-{"input": "zero percent chance i'm going to that party", "output": "0% chance I'm going to that party.", "app_category": "Personal"}
-{"input": "my number is nine one seven five five five one two three four", "output": "My number is 917-555-1234.", "app_category": "Personal"}
-{"input": "call me at plus one eight zero zero four two three six seven eight nine", "output": "Call me at +1-800-423-6789.", "app_category": "Personal"}
-{"input": "the support number is one eight hundred five five five zero one two three", "output": "The support number is 1-800-555-0123.", "app_category": "Other"}
-{"input": "extension number is four five six seven", "output": "Extension number is 4567.", "app_category": "Work"}
-{"input": "this is our twenty first release this year", "output": "This is our 21st release this year.", "app_category": "Work"}
-{"input": "she came in third place in the competition", "output": "She came in 3rd place in the competition.", "app_category": "Personal"}
-{"input": "first of all i want to thank everyone for coming", "output": "First of all, I want to thank everyone for coming.", "app_category": "Email"}
-{"input": "please move this to the second column in the kanban board", "output": "Please move this to the 2nd column in the kanban board.", "app_category": "Other"}
-{"input": "it's the forty second floor take the elevator on the right", "output": "It's the 42nd floor, take the elevator on the right.", "app_category": "Personal"}
-{"input": "i'm five feet ten inches tall", "output": "I'm 5'10\" tall.", "app_category": "Other"}
-{"input": "it's about twenty miles from here to the airport", "output": "It's about 20 miles from here to the airport.", "app_category": "Personal"}
-{"input": "temperature outside is thirty two degrees celsius", "output": "Temperature outside is 32°C.", "app_category": "Other"}
-{"input": "the package weighs about three point five kilograms", "output": "The package weighs about 3.5 kilograms.", "app_category": "Personal"}
-{"input": "the screen is six point seven inches", "output": "The screen is 6.7 inches.", "app_category": "Other"}
-{"input": "water boils at one hundred degrees celsius or two hundred and twelve fahrenheit", "output": "Water boils at 100°C or 212°F.", "app_category": "Other"}
-{"input": "send it to john at gmail dot com", "output": "Send it to john@gmail.com.", "app_category": "Work"}
-{"input": "the website is w w w dot stayfree dot app", "output": "The website is www.stayfree.app.", "app_category": "Personal"}
-{"input": "go to https colon slash slash docs dot google dot com", "output": "Go to https://docs.google.com.", "app_category": "Work"}
-{"input": "my email is sahil dot sharma at company dot io", "output": "My email is sahil.sharma@company.io.", "app_category": "Email"}
-{"input": "we're running version three point two point one", "output": "We're running version 3.2.1.", "app_category": "Work"}
-{"input": "update to node eighteen point seventeen point zero", "output": "Update to Node 18.17.0.", "app_category": "Work"}
-{"input": "python three point twelve is now available", "output": "Python 3.12 is now available.", "app_category": "Work"}
-{"input": "the score was three to one in favor of manchester city", "output": "The score was 3 to 1 in favor of Manchester City.", "app_category": "Personal"}
-{"input": "i'd rate it a solid eight out of ten", "output": "I'd rate it a solid 8 out of 10.", "app_category": "Personal"}
-{"input": "four point five stars on the app store with over two thousand reviews", "output": "4.5 stars on the App Store with over 2,000 reviews.", "app_category": "Work"}
-{"input": "meeting tomorrow three pm room four twelve", "output": "Meeting tomorrow, 3 PM, room 412.", "app_category": "Work"}
-{"input": "flight aa seven forty five departs at six twenty am from gate b twelve", "output": "Flight AA745 departs at 6:20 AM from gate B12.", "app_category": "Other"}
-{"input": "the budget is forty five thousand dollars and we have three months to deliver", "output": "The budget is $45,000 and we have 3 months to deliver.", "app_category": "Work"}
-{"input": "he ran five miles in thirty seven minutes and twelve seconds", "output": "He ran 5 miles in 37 minutes and 12 seconds.", "app_category": "Personal"}
-{"input": "the api response time is two hundred and thirty milliseconds on average", "output": "The API response time is 230 milliseconds on average.", "app_category": "Work"}
-{"input": "i need to transfer five hundred dollars to account ending four seven eight nine", "output": "I need to transfer $500 to account ending 4789.", "app_category": "Other"}
-{"input": "order number is seven eight three four five six and it was placed on december third", "output": "Order number is 783456 and it was placed on December 3rd.", "app_category": "Email"}
-{"input": "zip code is nine four one zero three", "output": "Zip code is 94103.", "app_category": "Other"}
-{"input": "ip address is one ninety two dot one sixty eight dot one dot one", "output": "IP address is 192.168.1.1.", "app_category": "Work"}
-{"input": "the server runs on port eight zero eight zero", "output": "The server runs on port 8080.", "app_category": "Work"}
-{"input": "apartment three b on the fifteenth floor", "output": "Apartment 3B on the 15th floor.", "app_category": "Personal"}
-{"input": "five times ten equals fifty", "output": "5 × 10 = 50.", "app_category": "Other"}
-{"input": "three plus four divided by two", "output": "3 + 4 / 2.", "app_category": "Other"}
-{"input": "the ratio is like three to one", "output": "The ratio is like 3 to 1.", "app_category": "Work"}
-{"input": "resolution is nineteen twenty by ten eighty", "output": "Resolution is 1920 × 1080.", "app_category": "Other"}
-{"input": "he's earning about two lakh rupees per month", "output": "He's earning about ₹2,00,000 per month.", "app_category": "Personal"}
-{"input": "the property costs one point five crore", "output": "The property costs ₹1.5 crore.", "app_category": "Personal"}
-{"input": "storage is two fifty six gb ssd", "output": "Storage is 256 GB SSD.", "app_category": "Other"}
-{"input": "ram is sixteen gb and processor is m three pro", "output": "RAM is 16 GB and processor is M3 Pro.", "app_category": "Other"}
-{"input": "sprint is two weeks long starting monday ending the following friday", "output": "Sprint is 2 weeks long, starting Monday, ending the following Friday.", "app_category": "Work"}
-{"input": "double zero seven is my favorite bond film", "output": "007 is my favorite Bond film.", "app_category": "Personal"}
-{"input": "they offered a fifteen percent discount on orders over one hundred dollars", "output": "They offered a 15% discount on orders over $100.", "app_category": "Personal"}
-{"input": "the file size is about forty seven point three megabytes", "output": "The file size is about 47.3 megabytes.", "app_category": "Work"}
-{"input": "row twenty three column d has the formula error", "output": "Row 23, column D has the formula error.", "app_category": "Work"}
-{"input": "chapter seven page one forty three has the quote i was looking for", "output": "Chapter 7, page 143 has the quote I was looking for.", "app_category": "Other"}
-{"input": "one half of the team is remote and the other half is in office", "output": "Half of the team is remote and the other half is in office.", "app_category": "Work"}
-{"input": "about three quarters of users prefer dark mode", "output": "About 3/4 of users prefer dark mode.", "app_category": "Work"}
-{"input": "we need to buy two dozen eggs and three liters of milk", "output": "We need to buy 2 dozen eggs and 3 liters of milk.", "app_category": "Other"}
-{"input": "latency is under fifty milliseconds p ninety nine", "output": "Latency is under 50 milliseconds P99.", "app_category": "Work"}
-{"input": "table for two at eight pm this saturday", "output": "Table for 2 at 8 PM this Saturday.", "app_category": "Personal"}
-{"input": "eta is about forty five minutes to one hour", "output": "ETA is about 45 minutes to 1 hour.", "app_category": "Personal"}
-{"input": "the error code is four oh four not found", "output": "The error code is 404 not found.", "app_category": "Work"}
-{"input": "top three priorities for this week are fix the auth bug ship the dashboard and update docs", "output": "Top 3 priorities for this week are: fix the auth bug, ship the dashboard, and update docs.", "app_category": "Work"}
-{"input": "it happened at twelve oh one am on january first", "output": "It happened at 12:01 AM on January 1st.", "app_category": "Other"}
-{"input": "height limit is six foot two maximum weight two hundred and twenty pounds", "output": "Height limit is 6'2\" maximum, weight 220 pounds.", "app_category": "Other"}
-{"input": "my pin is five two seven nine", "output": "My PIN is 5279.", "app_category": "Other"}
-{"input": "the building is at one twenty three main street apartment four a", "output": "The building is at 123 Main Street, apartment 4A.", "app_category": "Personal"}
-{"input": "the aspect ratio should be sixteen by nine", "output": "The aspect ratio should be 16:9.", "app_category": "Work"}
-{"input": "i scored seven hundred and twenty on the sat math section", "output": "I scored 720 on the SAT math section.", "app_category": "Personal"}
+{
+  "input": "the meeting is at three thirty pm",
+  "output": "The meeting is at 3:30 PM.",
+  "app_category": "Work"
+}
+
+{
+  "input": "let's meet at quarter past five",
+  "output": "Let's meet at 5:15.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the flight lands at half past ten in the morning",
+  "output": "The flight lands at 10:30 in the morning.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i wake up at six am every day",
+  "output": "I wake up at 6 AM every day.",
+  "app_category": "Other"
+}
+
+{
+  "input": "dinner reservation at seven forty five pm tonight",
+  "output": "Dinner reservation at 7:45 PM tonight.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the standup is at nine fifteen sharp don't be late",
+  "output": "The standup is at 9:15 sharp, don't be late.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we have a call at noon and another at two thirty",
+  "output": "We have a call at noon and another at 2:30.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the event starts at five o'clock and ends at eight",
+  "output": "The event starts at 5 o'clock and ends at 8.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i stayed up till midnight working on the presentation",
+  "output": "I stayed up till midnight working on the presentation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the train departs at eleven oh five am from platform three",
+  "output": "The train departs at 11:05 AM from platform 3.",
+  "app_category": "Other"
+}
+
+{
+  "input": "set an alarm for quarter to seven",
+  "output": "Set an alarm for 6:45.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "office hours are from nine am to five thirty pm",
+  "output": "Office hours are from 9 AM to 5:30 PM.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it costs fifty dollars for the basic plan",
+  "output": "It costs $50 for the basic plan.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the total came out to twenty five dollars and ninety nine cents",
+  "output": "The total came out to $25.99.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i paid five hundred bucks for the ticket",
+  "output": "I paid $500 for the ticket.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "that startup just raised ten grand in their seed round",
+  "output": "That startup just raised $10,000 in their seed round.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the price is three hundred rupees per kilo",
+  "output": "The price is ₹300 per kilo.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "rent is fifteen hundred a month",
+  "output": "Rent is $1,500 a month.",
+  "app_category": "Other"
+}
+
+{
+  "input": "it'll cost you around ninety nine cents per unit",
+  "output": "It'll cost you around $0.99 per unit.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the deadline is march fifteenth",
+  "output": "The deadline is March 15th.",
+  "app_category": "Work"
+}
+
+{
+  "input": "my birthday is on the twenty third of july",
+  "output": "My birthday is on the 23rd of July.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we launched on january first twenty twenty four",
+  "output": "We launched on January 1st, 2024.",
+  "app_category": "Work"
+}
+
+{
+  "input": "next tuesday is the last day to submit",
+  "output": "Next Tuesday is the last day to submit.",
+  "app_category": "Work"
+}
+
+{
+  "input": "day after tomorrow is the deadline",
+  "output": "Day after tomorrow is the deadline.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the project started december tenth and ends february twenty eighth",
+  "output": "The project started December 10th and ends February 28th.",
+  "app_category": "Other"
+}
+
+{
+  "input": "the fiscal year ends on the thirty first of march",
+  "output": "The fiscal year ends on the 31st of March.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i think it was around august twenty nineteen when we started",
+  "output": "I think it was around August 2019 when we started.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "our daily active users crossed ten thousand last week",
+  "output": "Our daily active users crossed 10,000 last week.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the company is valued at two point five billion dollars",
+  "output": "The company is valued at $2.5 billion.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we processed about a hundred requests per second during the spike",
+  "output": "We processed about 100 requests per second during the spike.",
+  "app_category": "Work"
+}
+
+{
+  "input": "revenue hit three point seven million this quarter",
+  "output": "Revenue hit $3.7 million this quarter.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the population of the city is around one point two million",
+  "output": "The population of the city is around 1.2 million.",
+  "app_category": "Other"
+}
+
+{
+  "input": "we have about two hundred and fifty employees now",
+  "output": "We have about 250 employees now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "a couple of thousand people showed up to the event",
+  "output": "A couple of thousand people showed up to the event.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "there were maybe a few hundred at the concert",
+  "output": "There were maybe a few hundred at the concert.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "conversion rate improved by thirty percent this month",
+  "output": "Conversion rate improved by 30% this month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "battery is at like eighty five percent",
+  "output": "Battery is at like 85%.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "cpu usage spiked to ninety seven point three percent during deployment",
+  "output": "CPU usage spiked to 97.3% during deployment.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need at least a two point five percent improvement to hit target",
+  "output": "We need at least a 2.5% improvement to hit target.",
+  "app_category": "Work"
+}
+
+{
+  "input": "zero percent chance i'm going to that party",
+  "output": "0% chance I'm going to that party.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "my number is nine one seven five five five one two three four",
+  "output": "My number is 917-555-1234.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "call me at plus one eight zero zero four two three six seven eight nine",
+  "output": "Call me at +1-800-423-6789.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the support number is one eight hundred five five five zero one two three",
+  "output": "The support number is 1-800-555-0123.",
+  "app_category": "Other"
+}
+
+{
+  "input": "extension number is four five six seven",
+  "output": "Extension number is 4567.",
+  "app_category": "Work"
+}
+
+{
+  "input": "this is our twenty first release this year",
+  "output": "This is our 21st release this year.",
+  "app_category": "Work"
+}
+
+{
+  "input": "she came in third place in the competition",
+  "output": "She came in 3rd place in the competition.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "please move this to the second column in the kanban board",
+  "output": "Please move this to the 2nd column in the kanban board.",
+  "app_category": "Other"
+}
+
+{
+  "input": "it's the forty second floor take the elevator on the right",
+  "output": "It's the 42nd floor, take the elevator on the right.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i'm five feet ten inches tall",
+  "output": "I'm 5'10\" tall.",
+  "app_category": "Other"
+}
+
+{
+  "input": "it's about twenty miles from here to the airport",
+  "output": "It's about 20 miles from here to the airport.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "temperature outside is thirty two degrees celsius",
+  "output": "Temperature outside is 32°C.",
+  "app_category": "Other"
+}
+
+{
+  "input": "the package weighs about three point five kilograms",
+  "output": "The package weighs about 3.5 kilograms.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the screen is six point seven inches",
+  "output": "The screen is 6.7 inches.",
+  "app_category": "Other"
+}
+
+{
+  "input": "water boils at one hundred degrees celsius or two hundred and twelve fahrenheit",
+  "output": "Water boils at 100°C or 212°F.",
+  "app_category": "Other"
+}
+
+{
+  "input": "send it to john at gmail dot com",
+  "output": "Send it to john@gmail.com.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the website is w w w dot stayfree dot app",
+  "output": "The website is www.stayfree.app.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "go to https colon slash slash docs dot google dot com",
+  "output": "Go to https://docs.google.com.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we're running version three point two point one",
+  "output": "We're running version 3.2.1.",
+  "app_category": "Work"
+}
+
+{
+  "input": "update to node eighteen point seventeen point zero",
+  "output": "Update to Node 18.17.0.",
+  "app_category": "Work"
+}
+
+{
+  "input": "python three point twelve is now available",
+  "output": "Python 3.12 is now available.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the score was three to one in favor of manchester city",
+  "output": "The score was 3 to 1 in favor of Manchester City.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i'd rate it a solid eight out of ten",
+  "output": "I'd rate it a solid 8 out of 10.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "four point five stars on the app store with over two thousand reviews",
+  "output": "4.5 stars on the App Store with over 2,000 reviews.",
+  "app_category": "Work"
+}
+
+{
+  "input": "meeting tomorrow three pm room four twelve",
+  "output": "Meeting tomorrow, 3 PM, room 412.",
+  "app_category": "Work"
+}
+
+{
+  "input": "flight aa seven forty five departs at six twenty am from gate b twelve",
+  "output": "Flight AA745 departs at 6:20 AM from gate B12.",
+  "app_category": "Other"
+}
+
+{
+  "input": "the budget is forty five thousand dollars and we have three months to deliver",
+  "output": "The budget is $45,000 and we have 3 months to deliver.",
+  "app_category": "Work"
+}
+
+{
+  "input": "he ran five miles in thirty seven minutes and twelve seconds",
+  "output": "He ran 5 miles in 37 minutes and 12 seconds.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the api response time is two hundred and thirty milliseconds on average",
+  "output": "The API response time is 230 milliseconds on average.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i need to transfer five hundred dollars to account ending four seven eight nine",
+  "output": "I need to transfer $500 to account ending 4789.",
+  "app_category": "Other"
+}
+
+{
+  "input": "zip code is nine four one zero three",
+  "output": "Zip code is 94103.",
+  "app_category": "Other"
+}
+
+{
+  "input": "ip address is one ninety two dot one sixty eight dot one dot one",
+  "output": "IP address is 192.168.1.1.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the server runs on port eight zero eight zero",
+  "output": "The server runs on port 8080.",
+  "app_category": "Work"
+}
+
+{
+  "input": "apartment three b on the fifteenth floor",
+  "output": "Apartment 3B on the 15th floor.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "five times ten equals fifty",
+  "output": "5 × 10 = 50.",
+  "app_category": "Other"
+}
+
+{
+  "input": "three plus four divided by two",
+  "output": "3 + 4 / 2.",
+  "app_category": "Other"
+}
+
+{
+  "input": "the ratio is like three to one",
+  "output": "The ratio is like 3 to 1.",
+  "app_category": "Work"
+}
+
+{
+  "input": "resolution is nineteen twenty by ten eighty",
+  "output": "Resolution is 1920 × 1080.",
+  "app_category": "Other"
+}
+
+{
+  "input": "he's earning about two lakh rupees per month",
+  "output": "He's earning about ₹2,00,000 per month.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the property costs one point five crore",
+  "output": "The property costs ₹1.5 crore.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "storage is two fifty six gb ssd",
+  "output": "Storage is 256 GB SSD.",
+  "app_category": "Other"
+}
+
+{
+  "input": "ram is sixteen gb and processor is m three pro",
+  "output": "RAM is 16 GB and processor is M3 Pro.",
+  "app_category": "Other"
+}
+
+{
+  "input": "sprint is two weeks long starting monday ending the following friday",
+  "output": "Sprint is 2 weeks long, starting Monday, ending the following Friday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "double zero seven is my favorite bond film",
+  "output": "007 is my favorite Bond film.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "they offered a fifteen percent discount on orders over one hundred dollars",
+  "output": "They offered a 15% discount on orders over $100.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the file size is about forty seven point three megabytes",
+  "output": "The file size is about 47.3 megabytes.",
+  "app_category": "Work"
+}
+
+{
+  "input": "row twenty three column d has the formula error",
+  "output": "Row 23, column D has the formula error.",
+  "app_category": "Work"
+}
+
+{
+  "input": "chapter seven page one forty three has the quote i was looking for",
+  "output": "Chapter 7, page 143 has the quote I was looking for.",
+  "app_category": "Other"
+}
+
+{
+  "input": "one half of the team is remote and the other half is in office",
+  "output": "Half of the team is remote and the other half is in office.",
+  "app_category": "Work"
+}
+
+{
+  "input": "about three quarters of users prefer dark mode",
+  "output": "About 3/4 of users prefer dark mode.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to buy two dozen eggs and three liters of milk",
+  "output": "We need to buy 2 dozen eggs and 3 liters of milk.",
+  "app_category": "Other"
+}
+
+{
+  "input": "latency is under fifty milliseconds p ninety nine",
+  "output": "Latency is under 50 milliseconds P99.",
+  "app_category": "Work"
+}
+
+{
+  "input": "table for two at eight pm this saturday",
+  "output": "Table for 2 at 8 PM this Saturday.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "eta is about forty five minutes to one hour",
+  "output": "ETA is about 45 minutes to 1 hour.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the error code is four oh four not found",
+  "output": "The error code is 404 not found.",
+  "app_category": "Work"
+}
+
+{
+  "input": "top three priorities for this week are fix the auth bug ship the dashboard and update docs",
+  "output": "Top 3 priorities for this week are: fix the auth bug, ship the dashboard, and update docs.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it happened at twelve oh one am on january first",
+  "output": "It happened at 12:01 AM on January 1st.",
+  "app_category": "Other"
+}
+
+{
+  "input": "height limit is six foot two maximum weight two hundred and twenty pounds",
+  "output": "Height limit is 6'2\" maximum, weight 220 pounds.",
+  "app_category": "Other"
+}
+
+{
+  "input": "my pin is five two seven nine",
+  "output": "My PIN is 5279.",
+  "app_category": "Other"
+}
+
+{
+  "input": "the building is at one twenty three main street apartment four a",
+  "output": "The building is at 123 Main Street, apartment 4A.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the aspect ratio should be sixteen by nine",
+  "output": "The aspect ratio should be 16:9.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i scored seven hundred and twenty on the sat math section",
+  "output": "I scored 720 on the SAT math section.",
+  "app_category": "Personal"
+}
+

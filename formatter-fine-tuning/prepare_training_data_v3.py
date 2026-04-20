@@ -54,13 +54,20 @@ EXCLUDED_FROM_TRAIN = {"evaluation.jsonl", "validation.jsonl"}
 # ---------------------------------------------------------------------------
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
+    # Supports both strict single-line JSONL and pretty-printed consecutive JSON objects
+    text = path.read_text(encoding="utf-8")
     rows: list[dict[str, Any]] = []
-    with path.open(encoding="utf-8") as f:
-        for line_no, line in enumerate(f, 1):
-            if not line.strip():
-                continue
-            row = json.loads(line)
-            rows.append(row)
+    decoder = json.JSONDecoder()
+    idx = 0
+    length = len(text)
+    while idx < length:
+        while idx < length and text[idx].isspace():
+            idx += 1
+        if idx == length:
+            break
+        obj, parsed_len = decoder.raw_decode(text[idx:])
+        rows.append(obj)
+        idx += parsed_len
     return rows
 
 
