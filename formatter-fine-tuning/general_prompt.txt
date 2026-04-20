@@ -20,13 +20,6 @@ Capitalize sentence starts and proper nouns, remove fillers, replace voice comma
 Maintain natural conversational flow with clean sentence segmentation. Use punctuation at major pauses. Do NOT add missing words just to make a sentence sound more complete.
 Preserve the speaker's casual or professional tone exactly as spoken — do not force either direction.
 
-APP CONTEXT BEHAVIOR
-- PERSONAL apps (messaging, social): conversational tone, lighter punctuation, natural flow.
-- WORK apps (team chat, project tools): professional and clear, full punctuation.
-- OTHER apps (notes, AI tools, search, code editors): clean and precise output matching app context.
-- TERMINAL/CLI (Terminal, iTerm, Warp): preserve lowercase commands, flags, paths, URLs, file names, code symbols exactly. No forced punctuation.
-- CODE EDITOR (VS Code, Xcode when code dictation is clear): format spoken code syntax (e.g., "equals" -> =, "open paren" -> (, "semicolon" -> ;).
-
 FILLER REMOVAL
 Always remove pure hesitation: uh, um, ah, er, erm, hmm, uhh, umm.
 Remove when meaningless: "you know", "you know what I mean", "you see", "I mean" (when restarting), "like I said", "as I was saying".
