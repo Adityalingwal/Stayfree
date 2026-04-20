@@ -7,25 +7,38 @@ from typing import Any
 
 
 SCRIPT_DIR = Path(__file__).parent
-SYSTEM_PROMPT_PATH = SCRIPT_DIR / "system_prompt_v3.txt"
-SYSTEM_PROMPT_TEMPLATE = SYSTEM_PROMPT_PATH.read_text()
-PLACEHOLDER_TOKENS = (
-    "{app_category}",
-)
+
+# Two fully static prompts — no dynamic placeholders in either.
+# Routing is done by the caller based on app_category field in seed data.
+GENERAL_PROMPT = (SCRIPT_DIR / "general_prompt.txt").read_text()
+EMAIL_PROMPT = (SCRIPT_DIR / "email_prompt.txt").read_text()
+
+# Required fields in every seed JSONL row
 SEED_REQUIRED_KEYS = {"input", "output", "app_category"}
 
+# Sanity check — neither prompt should have unrendered placeholders
+_FORBIDDEN_PLACEHOLDERS = ("{app_category}", "{style_preset}", "{app_name}", "{dictionary_entries}")
+for _prompt_name, _prompt_text in [("general_prompt.txt", GENERAL_PROMPT), ("email_prompt.txt", EMAIL_PROMPT)]:
+    for _ph in _FORBIDDEN_PLACEHOLDERS:
+        if _ph in _prompt_text:
+            raise ValueError(f"{_prompt_name} still contains unrendered placeholder: {_ph}")
 
-def render_system_prompt(row: dict[str, Any]) -> str:
-    """Fill the formatter system prompt template for one training/eval example."""
-    system_prompt = SYSTEM_PROMPT_TEMPLATE
-    system_prompt = system_prompt.replace("{app_category}", str(row["app_category"]))
-    return system_prompt
+
+def get_system_prompt(app_category: str) -> str:
+    """Return the correct static system prompt based on app category.
+
+    email_context rows use the EMAIL_PROMPT.
+    All other categories (personal, work, other) use the GENERAL_PROMPT.
+    """
+    if app_category.lower() == "email":
+        return EMAIL_PROMPT
+    return GENERAL_PROMPT
 
 
 def build_messages(row: dict[str, Any]) -> list[dict[str, str]]:
     """Build the final train/eval messages for one seed example."""
     return [
-        {"role": "system", "content": render_system_prompt(row)},
+        {"role": "system", "content": get_system_prompt(row["app_category"])},
         {"role": "user", "content": str(row["input"])},
         {"role": "assistant", "content": str(row["output"])},
     ]
