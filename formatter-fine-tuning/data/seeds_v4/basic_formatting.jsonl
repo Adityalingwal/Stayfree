@@ -1,0 +1,1829 @@
+{
+  "input": "uh hey can you send me the report by end of day",
+  "output": "Hey, can you send me the report by end of day.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um so I was thinking we should probably push the deadline back a bit",
+  "output": "I was thinking we should probably push the deadline back a bit.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yeah I'll be there in like five minutes",
+  "output": "Yeah I'll be there in like 5 minutes",
+  "app_category": "Personal"
+}
+
+{
+  "input": "hey uh quick question do you know when the next standup is",
+  "output": "Hey, quick question, do you know when the next standup is?",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically um I think maybe we should hold off on launching until QA signs off",
+  "output": "I think maybe we should hold off on launching until QA signs off.",
+  "app_category": "Work"
+}
+
+{
+  "input": "sounds good let me know if anything changes",
+  "output": "Sounds good, let me know if anything changes.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh well you know I was just wondering if you had a chance to look at my email",
+  "output": "I was just wondering if you had a chance to look at my email.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you grab milk eggs bread and some butter from the store",
+  "output": "Can you grab milk, eggs, bread, and some butter from the store?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "honestly I don't think this is going to work but we can try",
+  "output": "Honestly, I don't think this is going to work, but we can try.",
+  "app_category": "Work"
+}
+
+{
+  "input": "alright so um the the meeting got moved to three thirty",
+  "output": "The meeting got moved to 3:30.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hey what's up are you free tonight",
+  "output": "Hey what's up, are you free tonight?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I mean we could try the other approach if this one doesn't work out",
+  "output": "I mean, we could try the other approach if this one doesn't work out.",
+  "app_category": "Work"
+}
+
+{
+  "input": "actually I changed my mind let's go with plan B instead",
+  "output": "Actually, I changed my mind. Let's go with plan B instead.",
+  "app_category": "Work"
+}
+
+{
+  "input": "oh my god that's so funny I can't believe he said that",
+  "output": "Oh my god that's so funny, I can't believe he said that",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I'll probably be a little late but I'm on my way",
+  "output": "I'll probably be a little late, but I'm on my way.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um so like I guess we could do it tomorrow if that works for everyone",
+  "output": "I guess we could do it tomorrow if that works for everyone.",
+  "app_category": "Work"
+}
+
+{
+  "input": "wait are you serious that's amazing",
+  "output": "Wait, are you serious? That's amazing!",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the deadline is next friday and we still have a lot to do so let's prioritize",
+  "output": "The deadline is next Friday, and we still have a lot to do, so let's prioritize.",
+  "app_category": "Work"
+}
+
+{
+  "input": "okay so uh let me think about this and get back to you",
+  "output": "Let me think about this and get back to you.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the project went well and the client seemed happy with the results",
+  "output": "The project went well, and the client seemed happy with the results.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it costs like fifty dollars I think",
+  "output": "It costs like $50, I think.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we need to reschedule the two thirty meeting to four pm",
+  "output": "We need to reschedule the 2:30 meeting to 4 PM.",
+  "app_category": "Work"
+}
+
+{
+  "input": "she said she'll be here by noon but I'm not sure",
+  "output": "She said she'll be here by noon, but I'm not sure.",
+  "app_category": "Work"
+}
+
+{
+  "input": "erm so I I think the issue is with the database connection",
+  "output": "I think the issue is with the database connection.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just wanted to check in and see how things are going",
+  "output": "Just wanted to check in and see how things are going.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yes",
+  "output": "Yes.",
+  "app_category": "Work"
+}
+
+{
+  "input": "no that's fine don't worry about it",
+  "output": "No, that's fine, don't worry about it.",
+  "app_category": "Work"
+}
+
+{
+  "input": "well I think we should probably wait and see what happens",
+  "output": "Well, I think we should probably wait and see what happens.",
+  "app_category": "Work"
+}
+
+{
+  "input": "basically the system is broken and we need to fix it ASAP",
+  "output": "Basically, the system is broken, and we need to fix it ASAP.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hmm",
+  "output": "",
+  "app_category": "Personal"
+}
+
+{
+  "input": "uh um",
+  "output": "",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm so tired today I barely slept last night",
+  "output": "I'm so tired today, I barely slept last night.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "he literally said that he was going to quit can you believe it",
+  "output": "He literally said that he was going to quit. Can you believe it?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "that's right we need to finish it before the end of the month",
+  "output": "That's right, we need to finish it before the end of the month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um you know like I was just um wondering if maybe you could help me with something",
+  "output": "I was just wondering if maybe you could help me with something.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ok cool see you then",
+  "output": "Ok cool, see you then",
+  "app_category": "Personal"
+}
+
+{
+  "input": "as I was saying the numbers don't add up and we need to review the budget",
+  "output": "The numbers don't add up, and we need to review the budget.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I believe the issue is sort of related to the new update",
+  "output": "I believe the issue is sort of related to the new update.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it was like a dream honestly",
+  "output": "It was like a dream, honestly.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "uh so the client wants to move the launch date up by two weeks",
+  "output": "The client wants to move the launch date up by 2 weeks.",
+  "app_category": "Work"
+}
+
+{
+  "input": "have you ever tried that new restaurant on fifth street",
+  "output": "Have you ever tried that new restaurant on Fifth Street?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um I forgot to mention we also need to update the documentation",
+  "output": "I forgot to mention, we also need to update the documentation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yo did you see the game last night it was insane",
+  "output": "Yo did you see the game last night, it was insane",
+  "app_category": "Personal"
+}
+
+{
+  "input": "er well I suppose we could look into that but I'm not entirely sure it'll work",
+  "output": "Well, I suppose we could look into that, but I'm not entirely sure it'll work.",
+  "app_category": "Work"
+}
+
+{
+  "input": "thanks for letting me know I appreciate it",
+  "output": "Thanks for letting me know. I appreciate it.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so like what do you think should we go with option A or option B",
+  "output": "What do you think, should we go with option A or option B?",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm kind of worried about the performance issues we've been seeing lately",
+  "output": "I'm kind of worried about the performance issues we've been seeing lately.",
+  "app_category": "Work"
+}
+
+{
+  "input": "happy birthday hope you have an amazing day",
+  "output": "Happy birthday! Hope you have an amazing day!",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um hmm let me check on that and I'll get back to you by tomorrow",
+  "output": "Let me check on that, and I'll get back to you by tomorrow.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the weather is supposed to be really nice this weekend we should do something outside",
+  "output": "The weather is supposed to be really nice this weekend. We should do something outside.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "okay I'll take care of it don't worry",
+  "output": "Okay, I'll take care of it, don't worry.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh you know what I mean it's just it's complicated",
+  "output": "It's just, it's complicated.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "did you finish the code review for the authentication module",
+  "output": "Did you finish the code review for the authentication module?",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically what happened was um the server crashed at like two AM and nobody noticed until morning",
+  "output": "What happened was the server crashed at like 2 AM, and nobody noticed until morning.",
+  "app_category": "Work"
+}
+
+{
+  "input": "she's apparently going to be out of office next week so we'll need to find someone to cover",
+  "output": "She's apparently going to be out of office next week, so we'll need to find someone to cover.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I feel like we're overthinking this let's just go with the simple approach",
+  "output": "I feel like we're overthinking this. Let's just go with the simple approach.",
+  "app_category": "Work"
+}
+
+{
+  "input": "remind me to pick up the dry cleaning after work",
+  "output": "Remind me to pick up the dry cleaning after work.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um I'm not sure if this is the right approach but let's try it anyway",
+  "output": "I'm not sure if this is the right approach, but let's try it anyway.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the team did a fantastic job on this release everyone should be proud",
+  "output": "The team did a fantastic job on this release. Everyone should be proud.",
+  "app_category": "Work"
+}
+
+{
+  "input": "lol yeah that was pretty funny",
+  "output": "Lol yeah that was pretty funny",
+  "app_category": "Personal"
+}
+
+{
+  "input": "er I think john mentioned something about that yesterday",
+  "output": "I think John mentioned something about that yesterday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh hang on let me pull up the numbers real quick",
+  "output": "Hang on, let me pull up the numbers real quick.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I was going to say something but I forgot what it was",
+  "output": "I was going to say something, but I forgot what it was.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "man this traffic is terrible I'm going to be so late",
+  "output": "Man this traffic is terrible, I'm going to be so late",
+  "app_category": "Personal"
+}
+
+{
+  "input": "could you possibly send me the link to the shared drive",
+  "output": "Could you possibly send me the link to the shared drive?",
+  "app_category": "Work"
+}
+
+{
+  "input": "I guess it's fine either way doesn't really matter to me",
+  "output": "I guess it's fine either way, doesn't really matter to me.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um well uh let me think about it for a second",
+  "output": "Let me think about it for a second.",
+  "app_category": "Work"
+}
+
+{
+  "input": "apparently there's a new policy about remote work starting next month",
+  "output": "Apparently, there's a new policy about remote work starting next month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should probably circle back on this after the quarterly review",
+  "output": "We should probably circle back on this after the quarterly review.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ooh that looks delicious what did you order",
+  "output": "Ooh, that looks delicious! What did you order?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the the proposal needs to be submitted by friday at the latest",
+  "output": "The proposal needs to be submitted by Friday at the latest.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I just realized I left my laptop charger at the office",
+  "output": "I just realized I left my laptop charger at the office.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "do we have a meeting today or is it canceled",
+  "output": "Do we have a meeting today or is it canceled?",
+  "app_category": "Work"
+}
+
+{
+  "input": "wow I didn't expect that at all",
+  "output": "Wow, I didn't expect that at all.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "uh yeah no that's not going to work for us",
+  "output": "Yeah, no, that's not going to work for us.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I suppose we could try refactoring the entire module but that seems risky",
+  "output": "I suppose we could try refactoring the entire module, but that seems risky.",
+  "app_category": "Work"
+}
+
+{
+  "input": "alright sounds like a plan let's sync up tomorrow morning",
+  "output": "Sounds like a plan. Let's sync up tomorrow morning.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hey just a heads up the build is broken on the main branch",
+  "output": "Hey, just a heads up, the build is broken on the main branch.",
+  "app_category": "Work"
+}
+
+{
+  "input": "what's the ETA on the fix for the payment gateway issue",
+  "output": "What's the ETA on the fix for the payment gateway issue?",
+  "app_category": "Work"
+}
+
+{
+  "input": "should we invite mike and sarah to the planning session",
+  "output": "Should we invite Mike and Sarah to the planning session?",
+  "app_category": "Work"
+}
+
+{
+  "input": "let's grab coffee sometime this week",
+  "output": "Let's grab coffee sometime this week.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "so um basically I haven't had time to look at it yet but I will by end of day",
+  "output": "I haven't had time to look at it yet, but I will by end of day.",
+  "app_category": "Work"
+}
+
+{
+  "input": "that's a great idea we should definitely do that",
+  "output": "That's a great idea. We should definitely do that.",
+  "app_category": "Work"
+}
+
+{
+  "input": "is there anything else you need from me before I head out",
+  "output": "Is there anything else you need from me before I head out?",
+  "app_category": "Work"
+}
+
+{
+  "input": "nah I'm good thanks though",
+  "output": "Nah I'm good, thanks though",
+  "app_category": "Personal"
+}
+
+{
+  "input": "FYI the sprint review got pushed to thursday",
+  "output": "FYI, the sprint review got pushed to Thursday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um do you think this is something we should escalate to management",
+  "output": "Do you think this is something we should escalate to management?",
+  "app_category": "Work"
+}
+
+{
+  "input": "the API is returning a five hundred error whenever we try to hit the endpoint",
+  "output": "The API is returning a 500 error whenever we try to hit the endpoint.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'll handle the frontend you take care of the backend sound good",
+  "output": "I'll handle the frontend, you take care of the backend. Sound good?",
+  "app_category": "Work"
+}
+
+{
+  "input": "honestly this is the best pizza I've ever had",
+  "output": "Honestly, this is the best pizza I've ever had.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "er sorry to bother you but do you have five minutes to chat",
+  "output": "Sorry to bother you, but do you have 5 minutes to chat?",
+  "app_category": "Work"
+}
+
+{
+  "input": "this might seem like a dumb question but how do you access the VPN from home",
+  "output": "This might seem like a dumb question, but how do you access the VPN from home?",
+  "app_category": "Work"
+}
+
+{
+  "input": "haha yeah I saw that meme too",
+  "output": "Haha yeah I saw that meme too",
+  "app_category": "Personal"
+}
+
+{
+  "input": "you know what I think the problem is with the deployment pipeline",
+  "output": "I think the problem is with the deployment pipeline.",
+  "app_category": "Work"
+}
+
+{
+  "input": "right so the main takeaway from the meeting is that we need to hire two more engineers",
+  "output": "The main takeaway from the meeting is that we need to hire 2 more engineers.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can someone please review my PR it's been open for three days",
+  "output": "Can someone please review my PR? It's been open for 3 days.",
+  "app_category": "Work"
+}
+
+{
+  "input": "low key I think we should just cancel the whole thing",
+  "output": "Low key, I think we should just cancel the whole thing.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the CEO wants a full report by monday morning no exceptions",
+  "output": "The CEO wants a full report by Monday morning, no exceptions.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um like I said earlier we need to refactor the auth service before adding new features",
+  "output": "We need to refactor the auth service before adding new features.",
+  "app_category": "Work"
+}
+
+{
+  "input": "oops I sent that to the wrong channel sorry about that",
+  "output": "Oops, I sent that to the wrong channel. Sorry about that.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the thing is we don't really have enough data to make that decision yet",
+  "output": "The thing is, we don't really have enough data to make that decision yet.",
+  "app_category": "Work"
+}
+
+{
+  "input": "not gonna lie that presentation was really well done",
+  "output": "Not gonna lie, that presentation was really well done.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'll probably skip the gym today I'm feeling a little under the weather",
+  "output": "I'll probably skip the gym today. I'm feeling a little under the weather.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "look I understand your concern but we need to move forward with this",
+  "output": "Look, I understand your concern, but we need to move forward with this.",
+  "app_category": "Work"
+}
+
+{
+  "input": "are you guys free for dinner on saturday",
+  "output": "Are you guys free for dinner on Saturday?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "uh hmm well I guess the only option is to wait and see",
+  "output": "I guess the only option is to wait and see.",
+  "app_category": "Work"
+}
+
+{
+  "input": "congrats on the promotion you totally deserve it",
+  "output": "Congrats on the promotion! You totally deserve it!",
+  "app_category": "Personal"
+}
+
+{
+  "input": "my flight lands at like nine thirty tonight can you pick me up",
+  "output": "My flight lands at like 9:30 tonight. Can you pick me up?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it's not that big of a deal but I wanted to flag it just in case",
+  "output": "It's not that big of a deal, but I wanted to flag it just in case.",
+  "app_category": "Work"
+}
+
+{
+  "input": "who's leading the standup today",
+  "output": "Who's leading the standup today?",
+  "app_category": "Work"
+}
+
+{
+  "input": "oh that reminds me I need to send the invoice to the client",
+  "output": "Oh, that reminds me, I need to send the invoice to the client.",
+  "app_category": "Work"
+}
+
+{
+  "input": "she's such a hard worker I really admire her dedication",
+  "output": "She's such a hard worker. I really admire her dedication.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I somewhat agree with the proposal but there are a few concerns I'd like to raise",
+  "output": "I somewhat agree with the proposal, but there are a few concerns I'd like to raise.",
+  "app_category": "Work"
+}
+
+{
+  "input": "nice one haha",
+  "output": "Nice one haha",
+  "app_category": "Personal"
+}
+
+{
+  "input": "tbh I don't really care which one we pick as long as it gets the job done",
+  "output": "Tbh, I don't really care which one we pick, as long as it gets the job done.",
+  "app_category": "Work"
+}
+
+{
+  "input": "where did you put the car keys I can't find them anywhere",
+  "output": "Where did you put the car keys? I can't find them anywhere.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "ugh this bug has been driving me crazy all day",
+  "output": "Ugh, this bug has been driving me crazy all day.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I think the main issue is we're understaffed and the deadlines are too aggressive",
+  "output": "I think the main issue is we're understaffed, and the deadlines are too aggressive.",
+  "app_category": "Work"
+}
+
+{
+  "input": "what if we tried a different approach like using microservices instead of a monolith",
+  "output": "What if we tried a different approach, like using microservices instead of a monolith?",
+  "app_category": "Work"
+}
+
+{
+  "input": "gonna be a few minutes late don't start without me",
+  "output": "Gonna be a few minutes late. Don't start without me.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "hey so um there's this really cool new feature in the latest update you should check it out",
+  "output": "There's this really cool new feature in the latest update, you should check it out.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "any updates on the hiring front",
+  "output": "Any updates on the hiring front?",
+  "app_category": "Work"
+}
+
+{
+  "input": "I heard they're planning to open a new office in bangalore",
+  "output": "I heard they're planning to open a new office in Bangalore.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh like I was saying before we got interrupted the whole system needs an overhaul",
+  "output": "The whole system needs an overhaul.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it seems like the database migration script has some edge cases we didn't account for",
+  "output": "It seems like the database migration script has some edge cases we didn't account for.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm fairly certain the bug is in the payment module not the cart",
+  "output": "I'm fairly certain the bug is in the payment module, not the cart.",
+  "app_category": "Work"
+}
+
+{
+  "input": "dude you won't believe what just happened",
+  "output": "Dude you won't believe what just happened",
+  "app_category": "Personal"
+}
+
+{
+  "input": "that being said I think we should still move forward with caution",
+  "output": "That being said, I think we should still move forward with caution.",
+  "app_category": "Work"
+}
+
+{
+  "input": "my bad I completely forgot about the deadline",
+  "output": "My bad, I completely forgot about the deadline.",
+  "app_category": "Work"
+}
+
+{
+  "input": "heads up the CI pipeline is going to be down for maintenance tonight between ten and midnight",
+  "output": "Heads up, the CI pipeline is going to be down for maintenance tonight between 10 and midnight.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you double check the numbers in the spreadsheet something looks off",
+  "output": "Can you double check the numbers in the spreadsheet? Something looks off.",
+  "app_category": "Work"
+}
+
+{
+  "input": "by the way did anyone follow up with the vendor about the delayed shipment",
+  "output": "By the way, did anyone follow up with the vendor about the delayed shipment?",
+  "app_category": "Work"
+}
+
+{
+  "input": "literally everyone is talking about the new company policy",
+  "output": "Literally everyone is talking about the new company policy.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'll send you the details later tonight once I've finalized everything",
+  "output": "I'll send you the details later tonight once I've finalized everything.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "has anyone tried the new Thai place near the office",
+  "output": "Has anyone tried the new Thai place near the office?",
+  "app_category": "Work"
+}
+
+{
+  "input": "to be honest I'd rather not get involved in that situation",
+  "output": "To be honest, I'd rather not get involved in that situation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "is it just me or does the office feel colder today",
+  "output": "Is it just me or does the office feel colder today?",
+  "app_category": "Work"
+}
+
+{
+  "input": "for what it's worth I think you handled that really well",
+  "output": "For what it's worth, I think you handled that really well.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so um yeah that's basically it from my side",
+  "output": "That's it from my side.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please make sure to update the JIRA ticket with the latest status",
+  "output": "Please make sure to update the JIRA ticket with the latest status.",
+  "app_category": "Work"
+}
+
+{
+  "input": "good morning everyone let's get started with the agenda",
+  "output": "Good morning everyone. Let's get started with the agenda.",
+  "app_category": "Work"
+}
+
+{
+  "input": "she kind of hinted that there might be layoffs coming",
+  "output": "She kind of hinted that there might be layoffs coming.",
+  "app_category": "Work"
+}
+
+{
+  "input": "do you want me to order lunch for the team",
+  "output": "Do you want me to order lunch for the team?",
+  "app_category": "Work"
+}
+
+{
+  "input": "we're running a little behind schedule but nothing to worry about",
+  "output": "We're running a little behind schedule, but nothing to worry about.",
+  "app_category": "Work"
+}
+
+{
+  "input": "quick reminder tomorrow is the deadline for submitting expense reports",
+  "output": "Quick reminder, tomorrow is the deadline for submitting expense reports.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um do you think we'll be able to ship this by end of quarter",
+  "output": "Do you think we'll be able to ship this by end of quarter?",
+  "app_category": "Work"
+}
+
+{
+  "input": "lmk when you're free to hop on a call",
+  "output": "Lmk when you're free to hop on a call.",
+  "app_category": "Work"
+}
+
+{
+  "input": "turns out the issue was a simple typo in the config file",
+  "output": "Turns out the issue was a simple typo in the config file.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm like ninety percent sure we already discussed this last sprint",
+  "output": "I'm like 90% sure we already discussed this last sprint.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ah okay I see what you mean now",
+  "output": "Okay, I see what you mean now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the customer is supposedly very unhappy with the latest release",
+  "output": "The customer is supposedly very unhappy with the latest release.",
+  "app_category": "Work"
+}
+
+{
+  "input": "who was responsible for deploying to production last night",
+  "output": "Who was responsible for deploying to production last night?",
+  "app_category": "Work"
+}
+
+{
+  "input": "not sure if you saw but the competitor just launched a similar feature",
+  "output": "Not sure if you saw, but the competitor just launched a similar feature.",
+  "app_category": "Work"
+}
+
+{
+  "input": "somebody left the conference room lights on again",
+  "output": "Somebody left the conference room lights on again.",
+  "app_category": "Work"
+}
+
+{
+  "input": "you you see what I'm saying it just doesn't make sense",
+  "output": "You see what I'm saying? It just doesn't make sense.",
+  "app_category": "Work"
+}
+
+{
+  "input": "brb need to grab some water",
+  "output": "Brb, need to grab some water.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just between us I think the project timeline is completely unrealistic",
+  "output": "Just between us, I think the project timeline is completely unrealistic.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the only problem is the budget won't cover all of that",
+  "output": "The only problem is the budget won't cover all of that.",
+  "app_category": "Work"
+}
+
+{
+  "input": "let's try to wrap this up before the end of the hour",
+  "output": "Let's try to wrap this up before the end of the hour.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I just got off a call with the vendor they're willing to negotiate on the pricing",
+  "output": "I just got off a call with the vendor. They're willing to negotiate on the pricing.",
+  "app_category": "Work"
+}
+
+{
+  "input": "whoa that's a lot of users we hit a new record",
+  "output": "Whoa, that's a lot of users! We hit a new record!",
+  "app_category": "Work"
+}
+
+{
+  "input": "should I loop in the design team on this thread or keep it to engineering",
+  "output": "Should I loop in the design team on this thread or keep it to engineering?",
+  "app_category": "Work"
+}
+
+{
+  "input": "supposedly the fix is going out in the next hotfix release",
+  "output": "Supposedly, the fix is going out in the next hotfix release.",
+  "app_category": "Work"
+}
+
+{
+  "input": "long story short we need to redo the whole integration",
+  "output": "Long story short, we need to redo the whole integration.",
+  "app_category": "Work"
+}
+
+{
+  "input": "perhaps we should consider hiring a consultant for this particular problem",
+  "output": "Perhaps we should consider hiring a consultant for this particular problem.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm only asking because I want to make sure we're on the same page",
+  "output": "I'm only asking because I want to make sure we're on the same page.",
+  "app_category": "Work"
+}
+
+{
+  "input": "oh wait I just realized that's the same bug we fixed last month",
+  "output": "Oh wait, I just realized that's the same bug we fixed last month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "no worries take your time",
+  "output": "No worries, take your time.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the VP apparently wants us to present our quarterly numbers at the all hands",
+  "output": "The VP apparently wants us to present our quarterly numbers at the all hands.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh so like I'm I'm pretty confused about the new process can someone walk me through it",
+  "output": "I'm pretty confused about the new process. Can someone walk me through it?",
+  "app_category": "Work"
+}
+
+{
+  "input": "that was a really productive meeting we got a lot done",
+  "output": "That was a really productive meeting. We got a lot done.",
+  "app_category": "Work"
+}
+
+{
+  "input": "is this the right slack channel for deployment updates",
+  "output": "Is this the right Slack channel for deployment updates?",
+  "app_category": "Work"
+}
+
+{
+  "input": "I personally think we should wait but it's not my call",
+  "output": "I personally think we should wait, but it's not my call.",
+  "app_category": "Work"
+}
+
+{
+  "input": "great work on shipping that feature the team did an outstanding job",
+  "output": "Great work on shipping that feature. The team did an outstanding job.",
+  "app_category": "Work"
+}
+
+{
+  "input": "have a good weekend everyone see you on monday",
+  "output": "Have a good weekend everyone. See you on Monday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so uh yeah that's what I was going to say",
+  "output": "That's what I was going to say.",
+  "app_category": "Work"
+}
+
+{
+  "input": "random question but do you know anyone who's hiring for senior engineers",
+  "output": "Random question, but do you know anyone who's hiring for senior engineers?",
+  "app_category": "Work"
+}
+
+{
+  "input": "in my opinion the current architecture is too tightly coupled",
+  "output": "In my opinion, the current architecture is too tightly coupled.",
+  "app_category": "Work"
+}
+
+{
+  "input": "sorry for the late reply I was in back to back meetings all day",
+  "output": "Sorry for the late reply. I was in back to back meetings all day.",
+  "app_category": "Work"
+}
+
+{
+  "input": "this is somewhat related to what alex brought up earlier",
+  "output": "This is somewhat related to what Alex brought up earlier.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'll swing by your desk in a bit",
+  "output": "I'll swing by your desk in a bit.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ok so the plan is to finish the MVP by end of march and then do user testing in april",
+  "output": "The plan is to finish the MVP by end of March, and then do user testing in April.",
+  "app_category": "Work"
+}
+
+{
+  "input": "personally I'd go with React but I know some people prefer Vue",
+  "output": "Personally, I'd go with React, but I know some people prefer Vue.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I think there's a slight misunderstanding let me clarify",
+  "output": "I think there's a slight misunderstanding. Let me clarify.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so sick of these meetings that could have been emails",
+  "output": "So sick of these meetings that could have been emails.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um hey is this a good time to chat",
+  "output": "Hey, is this a good time to chat?",
+  "app_category": "Work"
+}
+
+{
+  "input": "one more thing before we wrap up we need to assign owners for each action item",
+  "output": "One more thing before we wrap up, we need to assign owners for each action item.",
+  "app_category": "Work"
+}
+
+{
+  "input": "if you need anything just ping me on slack",
+  "output": "If you need anything, just ping me on Slack.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hmm interesting I hadn't thought of it that way",
+  "output": "Interesting, I hadn't thought of it that way.",
+  "app_category": "Work"
+}
+
+{
+  "input": "did the QA team sign off on the release or are we still waiting",
+  "output": "Did the QA team sign off on the release, or are we still waiting?",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm honestly surprised it took this long to fix that bug",
+  "output": "I'm honestly surprised it took this long to fix that bug.",
+  "app_category": "Work"
+}
+
+{
+  "input": "watch out there's a pretty nasty merge conflict on that branch",
+  "output": "Watch out, there's a pretty nasty merge conflict on that branch.",
+  "app_category": "Work"
+}
+
+{
+  "input": "miss you guys let's plan something soon",
+  "output": "Miss you guys. Let's plan something soon.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the new intern seems like a really quick learner",
+  "output": "The new intern seems like a really quick learner.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh well you see the thing is I already committed to another project",
+  "output": "The thing is, I already committed to another project.",
+  "app_category": "Work"
+}
+
+{
+  "input": "how's it going with the new apartment have you settled in yet",
+  "output": "How's it going with the new apartment? Have you settled in yet?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "this feels a bit rushed maybe we should take another day to review",
+  "output": "This feels a bit rushed. Maybe we should take another day to review.",
+  "app_category": "Work"
+}
+
+{
+  "input": "btw the parking lot is going to be closed next week for repairs",
+  "output": "Btw, the parking lot is going to be closed next week for repairs.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I mean that's fair but we also need to think about scalability",
+  "output": "I mean, that's fair, but we also need to think about scalability.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the client is in new york so there's a three hour time difference",
+  "output": "The client is in New York, so there's a 3 hour time difference.",
+  "app_category": "Work"
+}
+
+{
+  "input": "you think we should refactor now or wait until after the release",
+  "output": "You think we should refactor now or wait until after the release?",
+  "app_category": "Work"
+}
+
+{
+  "input": "it was raining so we stayed inside and watched movies all day",
+  "output": "It was raining, so we stayed inside and watched movies all day.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "just FYI I won't be available after three PM today",
+  "output": "Just FYI, I won't be available after 3 PM today.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I may have found a workaround but I'm not a hundred percent sure it'll hold up in production",
+  "output": "I may have found a workaround, but I'm not 100% sure it'll hold up in production.",
+  "app_category": "Work"
+}
+
+{
+  "input": "correct me if I'm wrong but wasn't the deadline supposed to be next week",
+  "output": "Correct me if I'm wrong, but wasn't the deadline supposed to be next week?",
+  "app_category": "Work"
+}
+
+{
+  "input": "safe travels see you when you get back",
+  "output": "Safe travels! See you when you get back.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I genuinely don't know how he does it every single time",
+  "output": "I genuinely don't know how he does it every single time.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "hey are you home yet",
+  "output": "Hey are you home yet?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "omg I just saw the funniest video you need to see this",
+  "output": "Omg I just saw the funniest video, you need to see this",
+  "app_category": "Personal"
+}
+
+{
+  "input": "can we reschedule our call to sometime next week I'm swamped this week",
+  "output": "Can we reschedule our call to sometime next week? I'm swamped this week.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "don't forget to bring your ID tomorrow they check at the door",
+  "output": "Don't forget to bring your ID tomorrow. They check at the door.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I've been meaning to ask you about that book you recommended",
+  "output": "I've been meaning to ask you about that book you recommended.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the kids have a soccer game at ten on saturday morning",
+  "output": "The kids have a soccer game at 10 on Saturday morning.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "that concert was so good I'm glad we went",
+  "output": "That concert was so good. I'm glad we went.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um is anyone else having trouble connecting to the game server",
+  "output": "Is anyone else having trouble connecting to the game server?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "running late be there in fifteen",
+  "output": "Running late, be there in 15.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "just finished my workout feeling great",
+  "output": "Just finished my workout, feeling great.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "thinking of getting a new car any recommendations",
+  "output": "Thinking of getting a new car. Any recommendations?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "she texted me back finally after like three days",
+  "output": "She texted me back finally, after like 3 days.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we should try that new hiking trail this weekend the one near the lake",
+  "output": "We should try that new hiking trail this weekend, the one near the lake.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "uh well I'm not really sure what to get her for her birthday any ideas",
+  "output": "I'm not really sure what to get her for her birthday. Any ideas?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the food at that place was so overpriced and the portions were tiny",
+  "output": "The food at that place was so overpriced, and the portions were tiny.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "sleep well talk tomorrow",
+  "output": "Sleep well. Talk tomorrow.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "hey do you still have that recipe for the chocolate cake you made last time",
+  "output": "Hey, do you still have that recipe for the chocolate cake you made last time?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I'm going to the grocery store need anything",
+  "output": "I'm going to the grocery store. Need anything?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "gg that was a close match",
+  "output": "Gg, that was a close match.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "your mom asked if you're coming for dinner on sunday",
+  "output": "Your mom asked if you're coming for dinner on Sunday.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I accidentally left the stove on can you go check",
+  "output": "I accidentally left the stove on. Can you go check?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "love that show have you seen the latest episode",
+  "output": "Love that show! Have you seen the latest episode?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i booked us a meeting room on the third floor for the retro",
+  "output": "I booked us a meeting room on the 3rd floor for the retro.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically the the server went down due to high traffic",
+  "output": "Basically, the server went down due to high traffic.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to review the Q three metrics before thursday",
+  "output": "We need to review the Q3 metrics before Thursday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm running like ten minutes late save me a seat",
+  "output": "I'm running like 10 minutes late, save me a seat",
+  "app_category": "Personal"
+}
+
+{
+  "input": "um I was actually thinking we could use a different color scheme",
+  "output": "I was actually thinking we could use a different color scheme.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just wanted to say great job on the presentation today it was awesome",
+  "output": "Just wanted to say great job on the presentation today. It was awesome.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'll definitely be there what time should I arrive",
+  "output": "I'll definitely be there. What time should I arrive?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "wait are you serious I haven't heard anything about that",
+  "output": "Wait, are you serious? I haven't heard anything about that.",
+  "app_category": "Work"
+}
+
+{
+  "input": "er well I guess we could push the launch to next monday",
+  "output": "Well, I guess we could push the launch to next Monday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I mean if you really want to try it we can",
+  "output": "I mean, if you really want to try it, we can.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "I personally think we should wait for more data",
+  "output": "I personally think we should wait for more data.",
+  "app_category": "Work"
+}
+
+{
+  "input": "no worries take your time and let me know when you're free",
+  "output": "No worries, take your time and let me know when you're free.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ok cool let's aim for lunch around twelve",
+  "output": "Ok cool let's aim for lunch around 12",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the thing is the API rate limits are blocking our tests",
+  "output": "The thing is, the API rate limits are blocking our tests.",
+  "app_category": "Work"
+}
+
+{
+  "input": "hmm I'm not really sure if that's the best option",
+  "output": "I'm not really sure if that's the best option.",
+  "app_category": "Work"
+}
+
+{
+  "input": "sounds perfect see you tomorrow morning",
+  "output": "Sounds perfect, see you tomorrow morning.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "did you send the invite to the design team yet",
+  "output": "Did you send the invite to the design team yet?",
+  "app_category": "Work"
+}
+
+{
+  "input": "by the way did you hear back from the client",
+  "output": "By the way, did you hear back from the client?",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh yeah I can definitely join the meeting at four thirty",
+  "output": "Yeah, I can definitely join the meeting at 4:30.",
+  "app_category": "Work"
+}
+
+{
+  "input": "wow this weather is crazy right",
+  "output": "Wow, this weather is crazy right?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "have a great weekend team wrap up early today",
+  "output": "Have a great weekend, team. Wrap up early today.",
+  "app_category": "Work"
+}
+
+{
+  "input": "lol I totally forgot about that",
+  "output": "Lol I totally forgot about that",
+  "app_category": "Personal"
+}
+
+{
+  "input": "let's push this to next sprint since we are overloaded",
+  "output": "Let's push this to next sprint since we are overloaded.",
+  "app_category": "Work"
+}
+
+{
+  "input": "man that movie was so good I didn't expect the ending at all",
+  "output": "Man, that movie was so good. I didn't expect the ending at all.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "there's a massive bug in the checkout flow we need to fix it right now",
+  "output": "There's a massive bug in the checkout flow. We need to fix it right now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you pick up uh milk and some orange juice on your way home",
+  "output": "Can you pick up milk and some orange juice on your way home?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the PR is ready for review whenever you have a second",
+  "output": "The PR is ready for review whenever you have a second.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically the cache was not invalidated properly and users are seeing stale data",
+  "output": "Basically, the cache was not invalidated properly, and users are seeing stale data.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to get the sprint velocity up before the end of Q two",
+  "output": "We need to get the sprint velocity up before the end of Q2.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm running like fifteen minutes late please save a spot in the standup",
+  "output": "I'm running like 15 minutes late, please save a spot in the standup.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um I was thinking maybe we should try a completely different approach here",
+  "output": "I was thinking maybe we should try a completely different approach here.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just wanted to say the code review was great really solid work",
+  "output": "Just wanted to say the code review was great. Really solid work.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so we just need to fix the authentication bug and we should be good to release",
+  "output": "We just need to fix the authentication bug, and we should be good to release.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh the client called and they want to move the deadline up by three days",
+  "output": "The client called and they want to move the deadline up by 3 days.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its been three hours since the incident started and the on call team is still investigating",
+  "output": "It's been 3 hours since the incident started, and the on-call team is still investigating.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically um we ran out of memory on the prod server because of a memory leak",
+  "output": "We ran out of memory on the prod server because of a memory leak.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the the API rate limit was hit twice today we need to optimize our requests",
+  "output": "The API rate limit was hit twice today. We need to optimize our requests.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you review my PR its been sitting there since tuesday",
+  "output": "Can you review my PR? It's been sitting there since Tuesday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um should we push this to next sprint or keep it in scope for this one",
+  "output": "Should we push this to next sprint or keep it in scope for this one?",
+  "app_category": "Work"
+}
+
+{
+  "input": "so I think we should upgrade the node version its causing compatibility issues",
+  "output": "I think we should upgrade the Node version. It's causing compatibility issues.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just a heads up the build pipeline is flaky this morning running multiple retries",
+  "output": "Just a heads up, the build pipeline is flaky this morning. Running multiple retries.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh the design handoff is done the assets are uploaded in figma",
+  "output": "The design handoff is done, the assets are uploaded in Figma.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we we need to finalize the analytics integration before the launch on friday",
+  "output": "We need to finalize the analytics integration before the launch on Friday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically the environment variables were not set up correctly on staging",
+  "output": "Basically, the environment variables were not set up correctly on staging.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um the new hire starts next monday make sure access is ready by friday",
+  "output": "The new hire starts next Monday, make sure access is ready by Friday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm running like five minutes late to the client presentation sorry",
+  "output": "I'm running like 5 minutes late to the client presentation, sorry.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so we merged the feature but now the test suite is failing on the main branch",
+  "output": "We merged the feature, but now the test suite is failing on the main branch.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just wanted to flag that the S3 bucket permissions were misconfigured for a few hours",
+  "output": "Just wanted to flag that the S3 bucket permissions were misconfigured for a few hours.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh the release notes are ready but need one final review from the team lead",
+  "output": "The release notes are ready but need one final review from the team lead.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um so the user session data wasnt being saved due to a bug in the session handler",
+  "output": "The user session data wasn't being saved due to a bug in the session handler.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically the database backup ran but it didnt verify the restore successfully",
+  "output": "Basically, the database backup ran, but it didn't verify the restore successfully.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the the dashboard charts are broken for users on safari need a fix asap",
+  "output": "The dashboard charts are broken for users on Safari. Need a fix ASAP.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so the quarterly targets were missed by three percent this time",
+  "output": "The quarterly targets were missed by 3% this time.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um can we please move the retro to wednesday the team has a conflict on tuesday",
+  "output": "Can we please move the retro to Wednesday? The team has a conflict on Tuesday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so the new onboarding flow has reduced drop off by twenty two percent great results",
+  "output": "The new onboarding flow has reduced drop-off by 22%. Great results.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm running like twenty minutes late the metro was delayed please start without me",
+  "output": "I'm running like 20 minutes late, the metro was delayed, please start without me",
+  "app_category": "Personal"
+}
+
+{
+  "input": "so the feature is about eighty percent done needs another two days of testing",
+  "output": "The feature is about 80% done. Needs another 2 days of testing.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh wanted to let everyone know the annual performance review window is open",
+  "output": "Wanted to let everyone know the annual performance review window is open.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically the user reported a crash on checkout and we reproduced it locally",
+  "output": "Basically, the user reported a crash on checkout, and we reproduced it locally.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we we sent the proposal to the client last night waiting to hear back",
+  "output": "We sent the proposal to the client last night. Waiting to hear back.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um the beta testers have shared feedback most of it is positive a few UX issues",
+  "output": "The beta testers have shared feedback. Most of it is positive. A few UX issues.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so I think the team needs a morale boost after this tough sprint",
+  "output": "I think the team needs a morale boost after this tough sprint.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just a quick note to say the docs have been updated and are live now",
+  "output": "Just a quick note to say the docs have been updated and are live now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh the compliance report is due to the board by the end of this quarter",
+  "output": "The compliance report is due to the board by the end of this quarter.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically the deployment failed because we had a missing config in the yaml file",
+  "output": "Basically, the deployment failed because we had a missing config in the YAML file.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the the integration with the payment gateway is now live in production",
+  "output": "The integration with the payment gateway is now live in production.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um we need to run a security scan on the new endpoints before they go live",
+  "output": "We need to run a security scan on the new endpoints before they go live.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so the sprint velocity dropped this cycle we should look at blockers in the retro",
+  "output": "The sprint velocity dropped this cycle. We should look at blockers in the retro.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just a heads up that network maintenance is happening tonight from ten pm to midnight",
+  "output": "Just a heads up, network maintenance is happening tonight from 10 PM to midnight.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we we tracked down the root cause of the incident it was a race condition",
+  "output": "We tracked down the root cause of the incident. It was a race condition.",
+  "app_category": "Work"
+}
+
+{
+  "input": "uh reminder to submit your expense claims before the twenty fifth of this month",
+  "output": "Reminder to submit your expense claims before the 25th of this month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so the team has been doing really well this quarter proud of the progress",
+  "output": "The team has been doing really well this quarter. Proud of the progress.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um the user interviews revealed that sixty percent found the onboarding confusing",
+  "output": "The user interviews revealed that 60% found the onboarding confusing.",
+  "app_category": "Work"
+}
+
+{
+  "input": "so basically we resolved the three P one issues from last week all clear now",
+  "output": "Basically, we resolved the 3 P1 issues from last week. All clear now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "I'm waiting on approval from security before we can roll out the update",
+  "output": "I'm waiting on approval from security before we can roll out the update.",
+  "app_category": "Work"
+}
+
+{
+  "input": "um the infra costs have gone up by thirty percent this month we need to optimize",
+  "output": "The infra costs have gone up by 30% this month. We need to optimize.",
+  "app_category": "Work"
+}
