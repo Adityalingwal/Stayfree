@@ -1,52 +1,26 @@
-{"input": "the subscription renews on april fifth", "output": "The subscription renews on April 5th", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "we saw a fifteen point five percent growth in revenue", "output": "We saw a 15.5% growth in revenue", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the battery is already at twelve percent", "output": "The battery is already at 12%", "app_name": "iMessage", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "the train leaves at quarter to nine in the morning", "output": "The train leaves at 8:45 in the morning", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "the car repair was around five hundred bucks", "output": "The car repair was around $500", "app_name": "iMessage", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "you will get an http five oh three error", "output": "You will get an HTTP 503 error.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "they offered him a salary of one hundred and twenty thousand dollars", "output": "They offered him a salary of $120,000.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "you will get an http five oh three error", "output": "You will get an HTTP 503 error", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the rent is fifty thousand rupees per month", "output": "The rent is ₹50,000 per month", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "we got married on october twelfth twenty nineteen", "output": "We got married on October 12th, 2019", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "ten minus three equals seven", "output": "10 - 3 = 7.", "app_name": "Notes", "app_category": "Other", "style": "Formal", "dictionary": {}}
-{"input": "the battery is already at twelve percent", "output": "The battery is already at 12%.", "app_name": "iMessage", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "his phone number is four one five five five five zero one nine eight", "output": "His phone number is 415-555-0198", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "we had nearly two point eight million views on the video", "output": "We had nearly 2.8 million views on the video", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the postal code is one zero zero zero one", "output": "The postal code is 10001", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "he is six foot four inches tall", "output": "He is 6'4\" tall", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "wake me up at half past six", "output": "Wake me up at 6:30.", "app_name": "iMessage", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "we had nearly two point eight million views on the video", "output": "We had nearly 2.8 million views on the video.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "we got married on october twelfth twenty nineteen", "output": "We got married on October 12th, 2019.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "there is a ninety nine point nine percent uptime guarantee", "output": "There is a 99.9% uptime guarantee.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the video file is eighty two point four megabytes", "output": "The video file is 82.4 megabytes.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "we have a sync at four fifteen pm today", "output": "We have a sync at 4:15 PM today.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the temperature dropped to minus five degrees celsius", "output": "The temperature dropped to -5°C.", "app_name": "Notes", "app_category": "Other", "style": "Formal", "dictionary": {}}
-{"input": "the rent is fifty thousand rupees per month", "output": "The rent is ₹50,000 per month.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "he is six foot four inches tall", "output": "He is 6'4\" tall.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "the final score was four to two", "output": "The final score was 4 to 2.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "the new ip address is ten dot zero dot zero dot fifteen", "output": "The new IP address is 10.0.0.15", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the monitor resolution is thirty eight forty by twenty one sixty", "output": "The monitor resolution is 3840 × 2160.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the postal code is one zero zero zero one", "output": "The postal code is 10001.", "app_name": "Notes", "app_category": "Other", "style": "Formal", "dictionary": {}}
-{"input": "the car repair was around five hundred bucks", "output": "The car repair was around $500.", "app_name": "iMessage", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "we saw a fifteen point five percent growth in revenue", "output": "We saw a 15.5% growth in revenue.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the q one review is on the fourth of february", "output": "The Q1 review is on the 4th of February.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the final score was four to two", "output": "The final score was 4 to 2", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "his phone number is four one five five five five zero one nine eight", "output": "His phone number is 415-555-0198.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "the temperature dropped to minus five degrees celsius", "output": "The temperature dropped to -5°C", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "the q one review is on the fourth of february", "output": "The Q1 review is on the 4th of February", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "upgrade your system to mac os fourteen point two", "output": "Upgrade your system to macOS 14.2", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the monitor resolution is thirty eight forty by twenty one sixty", "output": "The monitor resolution is 3840 × 2160", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the train leaves at quarter to nine in the morning", "output": "The train leaves at 8:45 in the morning.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "there is a ninety nine point nine percent uptime guarantee", "output": "There is a 99.9% uptime guarantee", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "the video file is eighty two point four megabytes", "output": "The video file is 82.4 megabytes", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "wake me up at half past six", "output": "Wake me up at 6:30", "app_name": "iMessage", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "the new ip address is ten dot zero dot zero dot fifteen", "output": "The new IP address is 10.0.0.15.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "lunch break is from twelve thirty to one thirty pm", "output": "Lunch break is from 12:30 to 1:30 PM.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
-{"input": "the subscription renews on april fifth", "output": "The subscription renews on April 5th.", "app_name": "Notes", "app_category": "Other", "style": "Formal", "dictionary": {}}
-{"input": "the lunch cost about twenty five dollars and fifty cents", "output": "The lunch cost about $25.50.", "app_name": "WhatsApp", "app_category": "Personal", "style": "Formal", "dictionary": {}}
-{"input": "the lunch cost about twenty five dollars and fifty cents", "output": "The lunch cost about $25.50", "app_name": "WhatsApp", "app_category": "Personal", "style": "Casual", "dictionary": {}}
-{"input": "they offered him a salary of one hundred and twenty thousand dollars", "output": "They offered him a salary of $120,000", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "ten minus three equals seven", "output": "10 - 3 = 7", "app_name": "Notes", "app_category": "Other", "style": "Casual", "dictionary": {}}
-{"input": "we have a sync at four fifteen pm today", "output": "We have a sync at 4:15 PM today", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "lunch break is from twelve thirty to one thirty pm", "output": "Lunch break is from 12:30 to 1:30 PM", "app_name": "Slack", "app_category": "Work", "style": "Casual", "dictionary": {}}
-{"input": "upgrade your system to mac os fourteen point two", "output": "Upgrade your system to macOS 14.2.", "app_name": "Slack", "app_category": "Work", "style": "Formal", "dictionary": {}}
+{"input": "the subscription renews on april fifth", "output": "The subscription renews on April 5th", "app_category": "Other", "dictionary": {}}
+{"input": "we saw a fifteen point five percent growth in revenue", "output": "We saw a 15.5% growth in revenue", "app_category": "Work", "dictionary": {}}
+{"input": "the battery is already at twelve percent", "output": "The battery is already at 12%", "app_category": "Personal", "dictionary": {}}
+{"input": "the train leaves at quarter to nine in the morning", "output": "The train leaves at 8:45 in the morning", "app_category": "Personal", "dictionary": {}}
+{"input": "the car repair was around five hundred bucks", "output": "The car repair was around $500", "app_category": "Personal", "dictionary": {}}
+{"input": "you will get an http five oh three error", "output": "You will get an HTTP 503 error.", "app_category": "Work", "dictionary": {}}
+{"input": "they offered him a salary of one hundred and twenty thousand dollars", "output": "They offered him a salary of $120,000.", "app_category": "Work", "dictionary": {}}
+{"input": "the rent is fifty thousand rupees per month", "output": "The rent is \u20b950,000 per month", "app_category": "Personal", "dictionary": {}}
+{"input": "we got married on october twelfth twenty nineteen", "output": "We got married on October 12th, 2019", "app_category": "Personal", "dictionary": {}}
+{"input": "ten minus three equals seven", "output": "10 - 3 = 7.", "app_category": "Other", "dictionary": {}}
+{"input": "his phone number is four one five five five five zero one nine eight", "output": "His phone number is 415-555-0198", "app_category": "Personal", "dictionary": {}}
+{"input": "we had nearly two point eight million views on the video", "output": "We had nearly 2.8 million views on the video", "app_category": "Work", "dictionary": {}}
+{"input": "the postal code is one zero zero zero one", "output": "The postal code is 10001", "app_category": "Other", "dictionary": {}}
+{"input": "he is six foot four inches tall", "output": "He is 6'4\" tall", "app_category": "Personal", "dictionary": {}}
+{"input": "wake me up at half past six", "output": "Wake me up at 6:30.", "app_category": "Personal", "dictionary": {}}
+{"input": "there is a ninety nine point nine percent uptime guarantee", "output": "There is a 99.9% uptime guarantee.", "app_category": "Work", "dictionary": {}}
+{"input": "the video file is eighty two point four megabytes", "output": "The video file is 82.4 megabytes.", "app_category": "Work", "dictionary": {}}
+{"input": "we have a sync at four fifteen pm today", "output": "We have a sync at 4:15 PM today.", "app_category": "Work", "dictionary": {}}
+{"input": "the temperature dropped to minus five degrees celsius", "output": "The temperature dropped to -5\u00b0C.", "app_category": "Other", "dictionary": {}}
+{"input": "the final score was four to two", "output": "The final score was 4 to 2.", "app_category": "Personal", "dictionary": {}}
+{"input": "the new ip address is ten dot zero dot zero dot fifteen", "output": "The new IP address is 10.0.0.15", "app_category": "Work", "dictionary": {}}
+{"input": "the monitor resolution is thirty eight forty by twenty one sixty", "output": "The monitor resolution is 3840 \u00d7 2160.", "app_category": "Work", "dictionary": {}}
+{"input": "the q one review is on the fourth of february", "output": "The Q1 review is on the 4th of February.", "app_category": "Work", "dictionary": {}}
+{"input": "upgrade your system to mac os fourteen point two", "output": "Upgrade your system to macOS 14.2", "app_category": "Work", "dictionary": {}}
+{"input": "lunch break is from twelve thirty to one thirty pm", "output": "Lunch break is from 12:30 to 1:30 PM.", "app_category": "Work", "dictionary": {}}
+{"input": "the lunch cost about twenty five dollars and fifty cents", "output": "The lunch cost about $25.50.", "app_category": "Personal", "dictionary": {}}

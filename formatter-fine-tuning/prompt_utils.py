@@ -12,11 +12,9 @@ SYSTEM_PROMPT_PATH = SCRIPT_DIR / "system_prompt_v3.txt"
 SYSTEM_PROMPT_TEMPLATE = SYSTEM_PROMPT_PATH.read_text()
 PLACEHOLDER_TOKENS = (
     "{dictionary_entries}",
-    "{style_preset}",
     "{app_category}",
-    "{app_name}",
 )
-SEED_REQUIRED_KEYS = {"input", "output", "app_name", "app_category", "style", "dictionary"}
+SEED_REQUIRED_KEYS = {"input", "output", "app_category", "dictionary"}
 
 
 def render_dictionary_entries(dictionary: Mapping[str, str] | None) -> str:
@@ -37,9 +35,7 @@ def render_system_prompt(row: Mapping[str, Any]) -> str:
         "{dictionary_entries}",
         render_dictionary_entries(row.get("dictionary")),
     )
-    system_prompt = system_prompt.replace("{style_preset}", str(row["style"]))
     system_prompt = system_prompt.replace("{app_category}", str(row["app_category"]))
-    system_prompt = system_prompt.replace("{app_name}", str(row["app_name"]))
     return system_prompt
 
 

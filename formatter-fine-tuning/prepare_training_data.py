@@ -6,8 +6,8 @@ Split strategy (v2):
                  validation.jsonl), shuffled with SPLIT_SEED, messages format only.
   val.jsonl    — seeds_v2/validation.jsonl, messages format only.
   test.jsonl   — seeds_v2/evaluation.jsonl, messages format + metadata fields
-                 (bucket_override → source_bucket, style, app_name, app_category,
-                 dictionary).  Matches the format evaluate.py expects.
+                 (bucket_override → source_bucket, app_category, dictionary).
+                 Matches the format evaluate.py expects.
 
 Output: data/splits_v2/{train,val,test}.jsonl
 """
@@ -147,8 +147,6 @@ def build_test() -> list[dict[str, Any]]:
         serialized.append({
             "messages": build_messages(row),
             "source_bucket": source_bucket,
-            "style": row["style"],
-            "app_name": row["app_name"],
             "app_category": row["app_category"],
             "dictionary": row["dictionary"],
         })
