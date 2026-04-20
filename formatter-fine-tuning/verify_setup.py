@@ -22,7 +22,7 @@ from prompt_utils import PLACEHOLDER_TOKENS
 SCRIPT_DIR = Path(__file__).parent
 SPLITS_DIR = SCRIPT_DIR / "data" / "splits"
 TRAIN_VAL_KEYS = {"messages"}
-TEST_KEYS = {"source_bucket", "style", "app_name", "app_category", "dictionary", "messages"}
+TEST_KEYS = {"source_bucket", "app_category", "dictionary", "messages"}
 TRAIN_PRICE_PER_MTOKENS = 0.40
 PREFILL_PRICE_PER_MTOKENS = 0.13
 NUM_EPOCHS = 4
@@ -136,12 +136,8 @@ def print_distribution_summary(seed_splits: dict[str, list[dict[str, Any]]]) -> 
     print("  Distribution summary:")
     for split_name in ["train", "val", "test"]:
         rows = seed_splits[split_name]
-        style_counts = Counter(row["style"] for row in rows)
-        category_counts = Counter(row["app_category"] for row in rows)
-        print(
-            f"    {split_name}: styles={dict(style_counts)} "
-            f"categories={dict(category_counts)}"
-        )
+        bucket_counts = Counter(row["source_bucket"] for row in rows)
+        print(f"    {split_name}: buckets={dict(bucket_counts)}")
 
 
 def audit_distribution(
@@ -150,23 +146,12 @@ def audit_distribution(
 ) -> list[str]:
     warnings: list[str] = []
     total_rows = len(seed_rows)
-    corpus_style = Counter(row["style"] for row in seed_rows)
     corpus_category = Counter(row["app_category"] for row in seed_rows)
     corpus_bucket = Counter(row["source_bucket"] for row in seed_rows)
 
     for split_name, rows in seed_splits.items():
         split_total = len(rows)
-        split_style = Counter(row["style"] for row in rows)
         split_category = Counter(row["app_category"] for row in rows)
-
-        for style, corpus_count in corpus_style.items():
-            corpus_share = corpus_count / total_rows
-            split_share = split_style[style] / split_total if split_total else 0.0
-            if abs(split_share - corpus_share) > 0.10:
-                warnings.append(
-                    f"{split_name}: style {style!r} share differs from corpus by "
-                    f"{abs(split_share - corpus_share) * 100:.1f} percentage points"
-                )
 
         for category, corpus_count in corpus_category.items():
             corpus_share = corpus_count / total_rows
@@ -176,7 +161,6 @@ def audit_distribution(
                     f"{split_name}: category {category!r} share differs from corpus by "
                     f"{abs(split_share - corpus_share) * 100:.1f} percentage points"
                 )
-
     val_buckets = {row["source_bucket"] for row in seed_splits["val"]}
     test_buckets = {row["source_bucket"] for row in seed_splits["test"]}
     for bucket, count in corpus_bucket.items():

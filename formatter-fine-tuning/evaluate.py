@@ -57,7 +57,7 @@ from tinker_cookbook.tokenizer_utils import get_tokenizer
 # ── Config ───────────────────────────────────────────────────────────────
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 SCRIPT_DIR = Path(__file__).parent
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v2" / "test.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "test.jsonl")
 
 
 def safe_label(value: str) -> str:
@@ -143,7 +143,7 @@ def load_test_data(test_file: str) -> list[dict]:
     with open(test_file) as f:
         for line_no, line in enumerate(f, 1):
             row = json.loads(line)
-            missing = {"source_bucket", "style", "app_name", "app_category", "dictionary", "messages"} - set(row)
+            missing = {"source_bucket", "app_category", "dictionary", "messages"} - set(row)
             if missing:
                 raise ValueError(f"{test_file}:{line_no} missing keys: {sorted(missing)}")
             messages = row["messages"]
@@ -153,8 +153,6 @@ def load_test_data(test_file: str) -> list[dict]:
             examples.append({
                 "messages": messages,
                 "input": messages[1]["content"],
-                "style": row["style"],
-                "app_name": row["app_name"],
                 "app_category": row["app_category"],
                 "dictionary": row["dictionary"],
                 "source_bucket": row["source_bucket"],
@@ -217,8 +215,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     # ── Run evaluation ───────────────────────────────────────────────────
     results = []
     source_bucket_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
-    category_style_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
-    style_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
     overall = {"exact": 0, "fuzzy": 0, "total": 0, "errors": 0}
     parse_failures = 0
 
@@ -269,20 +265,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         if is_fuzzy:
             source_bucket_stats[ex["source_bucket"]]["fuzzy"] += 1
 
-        # Category + style tracking
-        category_style_key = f"{ex['app_category']}_{ex['style']}"
-        category_style_stats[category_style_key]["total"] += 1
-        if is_exact:
-            category_style_stats[category_style_key]["exact"] += 1
-        if is_fuzzy:
-            category_style_stats[category_style_key]["fuzzy"] += 1
-
-        # Style tracking
-        style_stats[ex["style"]]["total"] += 1
-        if is_exact:
-            style_stats[ex["style"]]["exact"] += 1
-        if is_fuzzy:
-            style_stats[ex["style"]]["fuzzy"] += 1
 
         # Store detailed result
         results.append({
@@ -293,8 +275,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             "exact_match": is_exact,
             "fuzzy_match": is_fuzzy,
             "source_bucket": ex["source_bucket"],
-            "style": ex["style"],
-            "app_name": ex["app_name"],
             "app_category": ex["app_category"],
         })
 
@@ -323,14 +303,6 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     if parse_failures > 0:
         log(f"    Parse fails:  {parse_failures}")
 
-    # Style breakdown
-    log(f"\n  By Style:")
-    for style in sorted(style_stats):
-        s = style_stats[style]
-        if s["total"] > 0:
-            exact_pct = s["exact"] / s["total"] * 100
-            fuzzy_pct = s["fuzzy"] / s["total"] * 100
-            log(f"    {style:8s}: exact={exact_pct:5.1f}%  fuzzy={fuzzy_pct:5.1f}%  (n={s['total']})")
 
     # Source bucket breakdown
     log(f"\n  By Source Bucket:")
@@ -340,20 +312,13 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             exact_pct = s["exact"] / s["total"] * 100
             log(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
 
-    # Category + style breakdown
-    log(f"\n  By Category+Style:")
-    for bucket in sorted(category_style_stats):
-        s = category_style_stats[bucket]
-        if s["total"] > 0:
-            exact_pct = s["exact"] / s["total"] * 100
-            log(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
 
     # ── Failures (show first 10 mismatches) ──────────────────────────────
     mismatches = [r for r in results if not r["exact_match"]]
     if mismatches:
         log(f"\n  Mismatches: {len(mismatches)} total (showing first 10):")
         for r in mismatches[:10]:
-            log(f"\n    [{r['index']}] {r['source_bucket']} / {r['app_name']} / {r['style']}")
+            log(f"\n    [{r['index']}] {r['source_bucket']} / {r['app_category']}")
             log(f"      Input:    {r['input'][:80]}...")
             log(f"      Expected: {r['expected'][:80]}")
             log(f"      Got:      {r['generated'][:80]}")
@@ -400,9 +365,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         "fuzzy_match_pct": round(fuzzy_pct, 2),
         "errors": overall["errors"],
         "parse_failures": parse_failures,
-        "style_breakdown": dict(style_stats),
         "source_bucket_breakdown": dict(source_bucket_stats),
-        "category_style_breakdown": dict(category_style_stats),
         "gate_pass": gate_pass,
         "detailed_results": results,
     }
@@ -429,11 +392,20 @@ def parse_args():
         action="store_true",
         help="Evaluate the base model (no fine-tuning) for comparison",
     )
+    parser.add_argument(
+        "--test-file",
+        type=str,
+        default=None,
+        help="Override default test file path (e.g., data/splits_v2/test.jsonl)",
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
+
+    if args.test_file:
+        TEST_FILE = str(Path(args.test_file).expanduser())
 
     if not args.checkpoint and not args.base:
         print("Usage:")

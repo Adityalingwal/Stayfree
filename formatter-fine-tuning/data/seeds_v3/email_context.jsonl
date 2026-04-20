@@ -1,0 +1,600 @@
+{
+  "input": "hi team just a quick update the backend migration is complete everything is running smoothly thanks engineering team",
+  "output": "Hi team,\n\nJust a quick update, the backend migration is complete. Everything is running smoothly.\n\nThanks,\nEngineering Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear mr sharma please find attached the revised proposal we look forward to your feedback best regards sarah",
+  "output": "Dear Mr. Sharma,\n\nPlease find attached the revised proposal. We look forward to your feedback.\n\nBest regards,\nSarah",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello everyone the all hands meeting is rescheduled to thursday at three pm please update your calendars regards admin",
+  "output": "Hello everyone,\n\nThe all hands meeting is rescheduled to Thursday at 3 PM. Please update your calendars.\n\nRegards,\nAdmin",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi alex hope you're doing well I wanted to confirm our meeting for tomorrow at eleven am let me know if that still works best john",
+  "output": "Hi Alex,\n\nHope you're doing well. I wanted to confirm our meeting for tomorrow at 11 AM. Let me know if that still works.\n\nBest,\nJohn",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear hiring team I am writing to apply for the product manager role please find my resume attached sincerely priya",
+  "output": "Dear Hiring Team,\n\nI am writing to apply for the product manager role. Please find my resume attached.\n\nSincerely,\nPriya",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi sarah the contract has been reviewed and approved by legal you can proceed with onboarding thanks mark",
+  "output": "Hi Sarah,\n\nThe contract has been reviewed and approved by legal. You can proceed with onboarding.\n\nThanks,\nMark",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello professor I am unable to attend the lecture tomorrow due to a medical appointment I will review the notes afterwards warm regards neha",
+  "output": "Hello Professor,\n\nI am unable to attend the lecture tomorrow due to a medical appointment. I will review the notes afterwards.\n\nWarm regards,\nNeha",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team the Q3 report is ready for review please check the shared document and send comments by friday thanks product team",
+  "output": "Hi team,\n\nThe Q3 report is ready for review. Please check the shared document and send comments by Friday.\n\nThanks,\nProduct Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear vendor we would like to renew the annual contract please send the updated pricing by end of month regards procurement",
+  "output": "Dear Vendor,\n\nWe would like to renew the annual contract. Please send the updated pricing by end of month.\n\nRegards,\nProcurement",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi ravi following up on the invoice sent last week please confirm receipt and expected payment date best accounts team",
+  "output": "Hi Ravi,\n\nFollowing up on the invoice sent last week. Please confirm receipt and expected payment date.\n\nBest,\nAccounts Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear committee I would like to nominate david for the employee of the quarter award for his exceptional work on the platform migration regards hr team",
+  "output": "Dear Committee,\n\nI would like to nominate David for the employee of the quarter award for his exceptional work on the platform migration.\n\nRegards,\nHR Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi meera wanted to let you know the server issue has been resolved all systems are back to normal thanks ops team",
+  "output": "Hi Meera,\n\nWanted to let you know the server issue has been resolved. All systems are back to normal.\n\nThanks,\nOps Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear dr patel thank you for your time today I will implement the suggested changes and follow up in two weeks warm regards ankit",
+  "output": "Dear Dr. Patel,\n\nThank you for your time today. I will implement the suggested changes and follow up in two weeks.\n\nWarm regards,\nAnkit",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi all the new payroll system goes live on monday please contact HR with any issues thanks finance team",
+  "output": "Hi all,\n\nThe new payroll system goes live on Monday. Please contact HR with any issues.\n\nThanks,\nFinance Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear james I regret to inform you that your application was not selected at this time we wish you the best in your search sincerely recruitment team",
+  "output": "Dear James,\n\nI regret to inform you that your application was not selected at this time. We wish you the best in your search.\n\nSincerely,\nRecruitment Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi client just confirming our kickoff call is scheduled for wednesday at two pm looking forward to it best project team",
+  "output": "Hi Client,\n\nJust confirming our kickoff call is scheduled for Wednesday at 2 PM. Looking forward to it.\n\nBest,\nProject Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello team please be advised the office will be closed on friday for the national holiday normal operations resume monday regards administration",
+  "output": "Hello team,\n\nPlease be advised the office will be closed on Friday for the national holiday. Normal operations resume Monday.\n\nRegards,\nAdministration",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi dev team the hotfix is merged and deployed to production please monitor for the next hour for any regressions thanks release manager",
+  "output": "Hi Dev Team,\n\nThe hotfix is merged and deployed to production. Please monitor for the next hour for any regressions.\n\nThanks,\nRelease Manager",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear ms johnson I am following up regarding the job offer extended last thursday please let me know if you have any questions sincerely talent team",
+  "output": "Dear Ms. Johnson,\n\nI am following up regarding the job offer extended last Thursday. Please let me know if you have any questions.\n\nSincerely,\nTalent Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi all please join the mandatory security training session on tuesday at ten am attendance is required regards IT team",
+  "output": "Hi all,\n\nPlease join the mandatory security training session on Tuesday at 10 AM. Attendance is required.\n\nRegards,\nIT Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear supplier please note that payment terms have changed from thirty to forty five days effective next quarter regards finance",
+  "output": "Dear Supplier,\n\nPlease note that payment terms have changed from 30 to 45 days, effective next quarter.\n\nRegards,\nFinance",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi tom great speaking with you today I am attaching the pricing deck as discussed let me know if you'd like to schedule a follow up best priya",
+  "output": "Hi Tom,\n\nGreat speaking with you today. I am attaching the pricing deck as discussed. Let me know if you'd like to schedule a follow up.\n\nBest,\nPriya",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello all just a reminder that the performance reviews are due by end of next week please submit on the portal thanks people ops",
+  "output": "Hello all,\n\nJust a reminder that the performance reviews are due by end of next week. Please submit on the portal.\n\nThanks,\nPeople Ops",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear lisa thank you for your order your tracking number is T R K dash nine four seven it will arrive in three to five business days regards shipping team",
+  "output": "Dear Lisa,\n\nThank you for your order. Your tracking number is TRK-947. It will arrive in 3 to 5 business days.\n\nRegards,\nShipping Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi ankur the design review is approved you can now move to development let me know if you need anything from my end cheers anita",
+  "output": "Hi Ankur,\n\nThe design review is approved. You can now move to development. Let me know if you need anything from my end.\n\nCheers,\nAnita",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello I am writing to report a billing discrepancy on my account the charge on november fifteenth does not match my subscription plan sincerely rahul",
+  "output": "Hello,\n\nI am writing to report a billing discrepancy on my account. The charge on November 15th does not match my subscription plan.\n\nSincerely,\nRahul",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi partners the annual summit is confirmed for march fifth to seventh in bangalore please save the date regards events team",
+  "output": "Hi Partners,\n\nThe annual summit is confirmed for March 5th to 7th in Bangalore. Please save the date.\n\nRegards,\nEvents Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear rohan apologies for the inconvenience your refund of two thousand rupees has been processed it will reflect in three to five working days best support team",
+  "output": "Dear Rohan,\n\nApologies for the inconvenience. Your refund of ₹2,000 has been processed. It will reflect in 3 to 5 working days.\n\nBest,\nSupport Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team as discussed in today's sync the roadmap for Q4 is finalized please review the shared doc and add your inputs by thursday thanks product",
+  "output": "Hi team,\n\nAs discussed in today's sync, the roadmap for Q4 is finalized. Please review the shared doc and add your inputs by Thursday.\n\nThanks,\nProduct",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear customer your annual subscription renews on december first the amount of five hundred dollars will be charged to your card kind regards billing team",
+  "output": "Dear Customer,\n\nYour annual subscription renews on December 1st. The amount of $500 will be charged to your card.\n\nKind regards,\nBilling Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi arjun the sprint demo is scheduled for friday at four pm can you prepare a slide deck summarizing what was built this week thanks engineering lead",
+  "output": "Hi Arjun,\n\nThe sprint demo is scheduled for Friday at 4 PM. Can you prepare a slide deck summarizing what was built this week?\n\nThanks,\nEngineering Lead",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello everyone welcome to the team we are thrilled to have you here your onboarding schedule is attached please reach out if you have questions warm regards HR",
+  "output": "Hello everyone,\n\nWelcome to the team! We are thrilled to have you here. Your onboarding schedule is attached. Please reach out if you have questions.\n\nWarm regards,\nHR",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear community the platform will undergo scheduled maintenance on saturday from two am to six am all services will be temporarily unavailable apologies for any inconvenience regards tech team",
+  "output": "Dear Community,\n\nThe platform will undergo scheduled maintenance on Saturday from 2 AM to 6 AM. All services will be temporarily unavailable. Apologies for any inconvenience.\n\nRegards,\nTech Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi emma please review the attached legal notice and share your feedback by wednesday we need to respond before the deadline best compliance team",
+  "output": "Hi Emma,\n\nPlease review the attached legal notice and share your feedback by Wednesday. We need to respond before the deadline.\n\nBest,\nCompliance Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello applicant congratulations on clearing round two we would like to schedule a final interview next week please share your availability regards talent acquisition",
+  "output": "Hello Applicant,\n\nCongratulations on clearing round two! We would like to schedule a final interview next week. Please share your availability.\n\nRegards,\nTalent Acquisition",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear manager I would like to request a leave of absence for two days on the seventeenth and eighteenth for personal reasons sincerely karan",
+  "output": "Dear Manager,\n\nI would like to request a leave of absence for 2 days on the 17th and 18th for personal reasons.\n\nSincerely,\nKaran",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi vikas just wanted to loop you in on the client feedback they loved the prototype and are ready to move to phase two cheers divya",
+  "output": "Hi Vikas,\n\nJust wanted to loop you in on the client feedback. They loved the prototype and are ready to move to phase two.\n\nCheers,\nDivya",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello support team I have been unable to log into my account for the past two days please assist account email is user at example dot com regards mike",
+  "output": "Hello Support Team,\n\nI have been unable to log into my account for the past 2 days. Please assist. Account email is user@example.com.\n\nRegards,\nMike",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear invitees you are cordially invited to the product launch event on november twenty first at the grand hyatt rsvp by november tenth warm regards events",
+  "output": "Dear Invitees,\n\nYou are cordially invited to the product launch event on November 21st at the Grand Hyatt. RSVP by November 10th.\n\nWarm regards,\nEvents",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi krishna the API documentation update is done please review and merge if looks good otherwise add comments in the PR best backend team",
+  "output": "Hi Krishna,\n\nThe API documentation update is done. Please review and merge if it looks good, otherwise add comments in the PR.\n\nBest,\nBackend Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello team the company retreat is planned for the last weekend of january please block your calendars details to follow regards management",
+  "output": "Hello team,\n\nThe company retreat is planned for the last weekend of January. Please block your calendars. Details to follow.\n\nRegards,\nManagement",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear priyanka I am pleased to confirm your promotion to senior engineer effective the first of next month congratulations sincerely your manager",
+  "output": "Dear Priyanka,\n\nI am pleased to confirm your promotion to Senior Engineer, effective the 1st of next month. Congratulations!\n\nSincerely,\nYour Manager",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi ritu I wanted to check in on the status of the data migration it was due yesterday let me know if there are any blockers thanks project lead",
+  "output": "Hi Ritu,\n\nI wanted to check in on the status of the data migration. It was due yesterday. Let me know if there are any blockers.\n\nThanks,\nProject Lead",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello team I will be on vacation from the twenty second to the twenty ninth please reach out to nisha for urgent matters best rohan",
+  "output": "Hello team,\n\nI will be on vacation from the 22nd to the 29th. Please reach out to Nisha for urgent matters.\n\nBest,\nRohan",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi support my order number O R D dash eight eight two one has been stuck in processing for five days please resolve this regards customer",
+  "output": "Hi Support,\n\nMy order number ORD-8821 has been stuck in processing for 5 days. Please resolve this.\n\nRegards,\nCustomer",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear professor I would appreciate an extension on the assignment due to a family emergency I can submit by saturday if that works warm regards student",
+  "output": "Dear Professor,\n\nI would appreciate an extension on the assignment due to a family emergency. I can submit by Saturday if that works.\n\nWarm regards,\nStudent",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi all Q2 bonuses will be credited on the twenty eighth please contact payroll if you have questions regards finance",
+  "output": "Hi all,\n\nQ2 bonuses will be credited on the 28th. Please contact payroll if you have questions.\n\nRegards,\nFinance",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello there I saw your post about the open position in product management I would love to connect and learn more about the role cheers vivek",
+  "output": "Hello there,\n\nI saw your post about the open position in product management. I would love to connect and learn more about the role.\n\nCheers,\nVivek",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi pooja the design assets have been uploaded to figma please review and share feedback by tuesday best UX team",
+  "output": "Hi Pooja,\n\nThe design assets have been uploaded to Figma. Please review and share feedback by Tuesday.\n\nBest,\nUX Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello support ticket number T K T dash four four two two is still unresolved after seven days please escalate this regards frustrated user",
+  "output": "Hello Support,\n\nTicket number TKT-4422 is still unresolved after 7 days. Please escalate this.\n\nRegards,\nFrustrated User",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear abhishek I am pleased to share that the board has approved the budget for the new product line we can begin planning next week sincerely ceo",
+  "output": "Dear Abhishek,\n\nI am pleased to share that the board has approved the budget for the new product line. We can begin planning next week.\n\nSincerely,\nCEO",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi vendor the payment for invoice I N V dash six seven eight has been initiated you should receive it within two business days regards finance team",
+  "output": "Hi Vendor,\n\nThe payment for invoice INV-678 has been initiated. You should receive it within 2 business days.\n\nRegards,\nFinance Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello subscribers we are excited to announce new features launching next week stay tuned for the detailed blog post warm regards product team",
+  "output": "Hello Subscribers,\n\nWe are excited to announce new features launching next week. Stay tuned for the detailed blog post.\n\nWarm regards,\nProduct Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi anil the user research report is attached key findings suggest we need to simplify the onboarding flow let me know if you want to discuss best UX researcher",
+  "output": "Hi Anil,\n\nThe user research report is attached. Key findings suggest we need to simplify the onboarding flow. Let me know if you want to discuss.\n\nBest,\nUX Researcher",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear ms kapoor we would like to schedule a demo of our product at your convenience please let us know a suitable time next week kind regards sales team",
+  "output": "Dear Ms. Kapoor,\n\nWe would like to schedule a demo of our product at your convenience. Please let us know a suitable time next week.\n\nKind regards,\nSales Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello everyone this is to inform you that our CTO is leaving the company next month we wish him all the best regards leadership team",
+  "output": "Hello everyone,\n\nThis is to inform you that our CTO is leaving the company next month. We wish him all the best.\n\nRegards,\nLeadership Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi nisha please send me the access credentials for the staging server before the release tomorrow I need to run final checks thanks nikhil",
+  "output": "Hi Nisha,\n\nPlease send me the access credentials for the staging server before the release tomorrow. I need to run final checks.\n\nThanks,\nNikhil",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello everyone just confirming that today's town hall is moved to four pm due to a scheduling conflict please update your calendars regards admin",
+  "output": "Hello everyone,\n\nJust confirming that today's town hall is moved to 4 PM due to a scheduling conflict. Please update your calendars.\n\nRegards,\nAdmin",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi david could you pull the engagement metrics from yesterday's ad campaign and share by end of day thanks marketing",
+  "output": "Hi David,\n\nCould you pull the engagement metrics from yesterday's ad campaign and share by end of day?\n\nThanks,\nMarketing",
+  "app_category": "Email"
+}
+
+{
+  "input": "hey can we push the product review meeting back by an hour I have a hard stop conflict at two pm best siddharth",
+  "output": "Hey,\n\nCan we push the product review meeting back by an hour? I have a hard stop conflict at 2 PM.\n\nBest,\nSiddharth",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello we recently launched our startup and we are looking for potential investors please find our pitch deck attached sincerely founding team",
+  "output": "Hello,\n\nWe recently launched our startup and we are looking for potential investors. Please find our pitch deck attached.\n\nSincerely,\nFounding Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team just a reminder that timesheets are due by end of day wednesday please submit on the portal regards finance",
+  "output": "Hi team,\n\nJust a reminder that timesheets are due by end of day Wednesday. Please submit on the portal.\n\nRegards,\nFinance",
+  "app_category": "Email"
+}
+
+{
+  "input": "hey the production environment is down again can someone from devops jump on a call immediately regards on call engineer",
+  "output": "Hey,\n\nThe production environment is down again. Can someone from DevOps jump on a call immediately?\n\nRegards,\nOn Call Engineer",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi my invoice number I N V dash zero zero four two is showing unpaid but payment was made on the fifteenth please verify regards rahul",
+  "output": "Hi,\n\nMy invoice number INV-0042 is showing unpaid, but payment was made on the 15th. Please verify.\n\nRegards,\nRahul",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello just a reminder that performance reviews open on monday please complete yours and your team's reviews by end of week regards HR",
+  "output": "Hello,\n\nJust a reminder that performance reviews open on Monday. Please complete yours and your team's reviews by end of week.\n\nRegards,\nHR",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear sir I recently placed an order and it has been ten days with no update my order reference is O R D dash three three nine please advise sincerely user",
+  "output": "Dear Sir,\n\nI recently placed an order and it has been 10 days with no update. My order reference is ORD-339. Please advise.\n\nSincerely,\nUser",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team the frontend staging environment is now back up sorry for the disruption regards platform team",
+  "output": "Hi team,\n\nThe frontend staging environment is now back up. Sorry for the disruption.\n\nRegards,\nPlatform Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello team as discussed the new expense policy is effective from the first of next month all reimbursement requests must be submitted within thirty days regards finance",
+  "output": "Hello team,\n\nAs discussed, the new expense policy is effective from the 1st of next month. All reimbursement requests must be submitted within 30 days.\n\nRegards,\nFinance",
+  "app_category": "Email"
+}
+
+{
+  "input": "hey the staging environment is down can someone from devops take a quick look thanks",
+  "output": "Hey,\n\nThe staging environment is down. Can someone from DevOps take a quick look?\n\nThanks,\nOps",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello please find the signed NDA attached let me know if you need anything else regards maya",
+  "output": "Hello,\n\nPlease find the signed NDA attached. Let me know if you need anything else.\n\nRegards,\nMaya",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi vendors just a quick update we are experiencing a two week delay on all shipments from chennai we apologize regards logistics",
+  "output": "Hi Vendors,\n\nJust a quick update. We are experiencing a 2-week delay on all shipments from Chennai. We apologize.\n\nRegards,\nLogistics",
+  "app_category": "Email"
+}
+
+{
+  "input": "sorry for the delayed response I was traveling yes I can join the call on friday regards shruti",
+  "output": "Sorry for the delayed response, I was traveling. Yes, I can join the call on Friday.\n\nRegards,\nShruti",
+  "app_category": "Email"
+}
+
+{
+  "input": "hey everybody you are invited to our team dinner this friday at seven pm at the rooftop restaurant please confirm by wednesday regards events",
+  "output": "Hey everybody,\n\nYou are invited to our team dinner this Friday at 7 PM at the rooftop restaurant. Please confirm by Wednesday.\n\nRegards,\nEvents",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello I recently moved to the city and I am looking for a general practitioner could you please recommend one warm regards new patient",
+  "output": "Hello,\n\nI recently moved to the city and I am looking for a general practitioner. Could you please recommend one?\n\nWarm regards,\nNew Patient",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi support checking on my case reference number C R F dash one two three four status has not changed in three days regards user",
+  "output": "Hi Support,\n\nChecking on my case. Reference number CRF-1234. Status has not changed in 3 days.\n\nRegards,\nUser",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear amit I wanted to thank you personally for your support during the product launch it made a big difference sincerely the team",
+  "output": "Dear Amit,\n\nI wanted to thank you personally for your support during the product launch. It made a big difference.\n\nSincerely,\nThe Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello team the wifi password has been updated the new one is shared in the ops channel please update your devices regards IT",
+  "output": "Hello team,\n\nThe WiFi password has been updated. The new one is shared in the ops channel. Please update your devices.\n\nRegards,\nIT",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team the deployment went smoothly this morning all checks passed we are good to go for the public launch thanks devops",
+  "output": "Hi team,\n\nThe deployment went smoothly this morning. All checks passed. We are good to go for the public launch.\n\nThanks,\nDevOps",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear ms singh we are pleased to offer you the position of senior analyst your start date would be the fifteenth of next month sincerely HR",
+  "output": "Dear Ms. Singh,\n\nWe are pleased to offer you the position of Senior Analyst. Your start date would be the 15th of next month.\n\nSincerely,\nHR",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi karan the pull request has been reviewed there are a few minor comments please address them and request another review best tech lead",
+  "output": "Hi Karan,\n\nThe pull request has been reviewed. There are a few minor comments. Please address them and request another review.\n\nBest,\nTech Lead",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello I am writing about a double charge on my account on october third the amount of three hundred dollars was charged twice please refund regards customer",
+  "output": "Hello,\n\nI am writing about a double charge on my account on October 3rd. The amount of $300 was charged twice. Please refund.\n\nRegards,\nCustomer",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi partners our annual partner summit is on february tenth in mumbai please register by january thirty first warm regards partnerships team",
+  "output": "Hi Partners,\n\nOur annual partner summit is on February 10th in Mumbai. Please register by January 31st.\n\nWarm regards,\nPartnerships Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear divya we received your resignation and we accept it effective the twenty eighth your last day will be the twenty eighth thanks management",
+  "output": "Dear Divya,\n\nWe received your resignation and we accept it, effective the 28th. Your last day will be the 28th.\n\nThanks,\nManagement",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team please note that from next monday all PRs require two approvals before merge this applies to all repositories regards engineering",
+  "output": "Hi team,\n\nPlease note that from next Monday all PRs require 2 approvals before merge. This applies to all repositories.\n\nRegards,\nEngineering",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear professor I wanted to share my updated thesis draft based on your last feedback please review when convenient warm regards student",
+  "output": "Dear Professor,\n\nI wanted to share my updated thesis draft based on your last feedback. Please review when convenient.\n\nWarm regards,\nStudent",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi ramesh the monthly analytics report is ready please find it attached let me know if you want me to present it cheers data team",
+  "output": "Hi Ramesh,\n\nThe monthly analytics report is ready. Please find it attached. Let me know if you want me to present it.\n\nCheers,\nData Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear applicant thank you for attending the interview we will be in touch within five working days regards talent team",
+  "output": "Dear Applicant,\n\nThank you for attending the interview. We will be in touch within 5 working days.\n\nRegards,\nTalent Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi everyone the holiday calendar for this year is attached please plan your leaves accordingly best HR team",
+  "output": "Hi everyone,\n\nThe holiday calendar for this year is attached. Please plan your leaves accordingly.\n\nBest,\nHR Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi suresh I am writing to confirm the project kickoff meeting is set for tuesday at eleven am please join with your full team thanks project manager",
+  "output": "Hi Suresh,\n\nI am writing to confirm the project kickoff meeting is set for Tuesday at 11 AM. Please join with your full team.\n\nThanks,\nProject Manager",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear customer your password reset link was requested if this was not you please contact support immediately kind regards security team",
+  "output": "Dear Customer,\n\nYour password reset link was requested. If this was not you, please contact support immediately.\n\nKind regards,\nSecurity Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team please note that the lunch area will be closed for renovation next week alternate arrangements will be shared by monday regards admin",
+  "output": "Hi team,\n\nPlease note that the lunch area will be closed for renovation next week. Alternate arrangements will be shared by Monday.\n\nRegards,\nAdmin",
+  "app_category": "Email"
+}
+
+{
+  "input": "hello parents the school annual day is on december fifteenth please confirm your attendance by december first warm regards principal",
+  "output": "Hello Parents,\n\nThe school annual day is on December 15th. Please confirm your attendance by December 1st.\n\nWarm regards,\nPrincipal",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi rohit the server migration is complete all your data is intact and the new environment is live best infrastructure team",
+  "output": "Hi Rohit,\n\nThe server migration is complete. All your data is intact and the new environment is live.\n\nBest,\nInfrastructure Team",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear sir or madam I wish to formally complain about the delay in delivering my package the order reference is P K G dash seven seven two sincerely unhappy customer",
+  "output": "Dear Sir or Madam,\n\nI wish to formally complain about the delay in delivering my package. The order reference is PKG-772.\n\nSincerely,\nUnhappy Customer",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi everyone please update your emergency contact information in the HR portal by end of week this is mandatory for all employees thanks HR",
+  "output": "Hi everyone,\n\nPlease update your emergency contact information in the HR portal by end of week. This is mandatory for all employees.\n\nThanks,\nHR",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear mentor I wanted to share that I received my first job offer today your guidance over the past year made this possible thank you so much warm regards mentee",
+  "output": "Dear Mentor,\n\nI wanted to share that I received my first job offer today. Your guidance over the past year made this possible. Thank you so much.\n\nWarm regards,\nMentee",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi sneha the budget approval for Q3 has come through you can now proceed with vendor onboarding cheers finance lead",
+  "output": "Hi Sneha,\n\nThe budget approval for Q3 has come through. You can now proceed with vendor onboarding.\n\nCheers,\nFinance Lead",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi team happy to announce that we hit our first million users milestone today thank you all for your hard work and dedication regards CEO",
+  "output": "Hi team,\n\nHappy to announce that we hit our first million users milestone today! Thank you all for your hard work and dedication.\n\nRegards,\nCEO",
+  "app_category": "Email"
+}
+
+{
+  "input": "dear rajat I am reaching out to follow up on our conversation from last week are you still interested in exploring a partnership sincerely business development",
+  "output": "Dear Rajat,\n\nI am reaching out to follow up on our conversation from last week. Are you still interested in exploring a partnership?\n\nSincerely,\nBusiness Development",
+  "app_category": "Email"
+}
+
+{
+  "input": "hi all the office will be open for extended hours this week from eight am to nine pm during the product launch sprint please plan accordingly best management",
+  "output": "Hi all,\n\nThe office will be open for extended hours this week, from 8 AM to 9 PM, during the product launch sprint. Please plan accordingly.\n\nBest,\nManagement",
+  "app_category": "Email"
+}
+

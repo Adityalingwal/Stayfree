@@ -1,0 +1,106 @@
+=================================================================
+  RESULTS
+=================================================================
+
+  Overall (206 examples):
+    Exact match:  150/206 (72.8%)
+    Fuzzy match:  153/206 (74.3%)
+
+  Latency:
+    p50: 1333ms
+    p95: 2445ms
+    p99: 7309ms
+
+  By Style:
+    Casual  : exact= 72.5%  fuzzy= 73.8%  (n=80)
+    Formal  : exact= 73.0%  fuzzy= 74.6%  (n=126)
+
+  By Source Bucket:
+    asr_errors               : exact= 50.0%  (n=2)
+    basic_formatting         : exact= 91.9%  (n=37)
+    dictionary               : exact= 86.7%  (n=15)
+    edge_cases               : exact= 80.0%  (n=15)
+    email_context            : exact= 75.0%  (n=24)
+    hinglish                 : exact= 44.9%  (n=49)
+    numbers_formatting       : exact= 95.7%  (n=23)
+    other_apps               : exact= 45.5%  (n=11)
+    self_correction          : exact= 92.3%  (n=13)
+    voice_commands           : exact= 64.7%  (n=17)
+
+  By Category+Style:
+    Email_Casual             : exact= 66.7%  (n=9)
+    Email_Formal             : exact= 76.5%  (n=17)
+    Other_Casual             : exact= 64.3%  (n=14)
+    Other_Formal             : exact= 60.7%  (n=28)
+    Personal_Casual          : exact= 64.3%  (n=28)
+    Personal_Formal          : exact= 56.5%  (n=23)
+    Work_Casual              : exact= 86.2%  (n=29)
+    Work_Formal              : exact= 84.5%  (n=58)
+
+  Mismatches: 56 total (showing first 10):
+
+    [2] voice_commands / WhatsApp / Formal
+      Input:    roses are red comma new line violets are blue comma new line this is a test comm...
+      Expected: Roses are red,
+violets are blue,
+this is a test,
+and so are you.
+      Got:      Roses are red,
+Violets are blue,
+This is a test,
+And so are you.
+
+    [4] hinglish / WhatsApp / Casual
+      Input:    arre haan yaad aaya kal toh tera birthday hai kya plan hai...
+      Expected: Arre haan yaad aaya! Kal toh tera birthday hai kya plan hai?
+      Got:      Arre haan yaad aaya, kal toh tera birthday hai kya plan hai?
+
+    [8] hinglish / WhatsApp / Formal
+      Input:    yaar Netflix pe naya show aaya hai bahut achha hai kya naam hai uska stranger th...
+      Expected: Yaar, Netflix pe naya show aaya hai, bahut achha hai. Kya naam hai uska? Strange
+      Got:      Yaar, Netflix pe naya show aaya hai, bahut achha hai, kya naam hai uska? Strange
+
+    [25] voice_commands / VS Code / Formal
+      Input:    const x equals sign open parenthesis a comma b close parenthesis equals sign gre...
+      Expected: const x = (a, b) => a + b;
+      Got:      const x = (a, b) = a + b;
+
+    [26] hinglish / ChatGPT / Formal
+      Input:    mujhe samjhao ki async await aur promises mein kya difference hai javascript mei...
+      Expected: Mujhe samjhao ki async/await aur promises mein kya difference hai JavaScript mei
+      Got:      Mujhe samjhao ki async/await aur promises mein kya difference hai JavaScript mei
+
+    [27] other_apps / Safari / Formal
+      Input:    how to center a div vertically and horizontally using CSS flexbox...
+      Expected: How to center a div vertically and horizontally using CSS flexbox
+      Got:      How to center a div vertically and horizontally using CSS flexbox?
+
+    [31] basic_formatting / Slack / Formal
+      Input:    I may have found a workaround but I'm not a hundred percent sure it'll hold up i...
+      Expected: I may have found a workaround, but I'm not 100% sure it'll hold up in production
+      Got:      I may have found a workaround, but I'm not a hundred percent sure it'll hold up 
+
+    [33] self_correction / WhatsApp / Casual
+      Input:    lets meet at starbucks wait no the office instead...
+      Expected: Let's meet at the office instead
+      Got:      Let's meet at The Office instead
+
+    [35] numbers_formatting / Slack / Casual
+      Input:    the api response time is two hundred and thirty milliseconds on average...
+      Expected: The API response time is 230 milliseconds on average
+      Got:      The API response time is 230ms on average
+
+    [43] hinglish / iMessage / Formal
+      Input:    bhai ek selfie bhej jo tune trip pe li thi woh waali jahan hum sab the...
+      Expected: Bhai, ek selfie bhej jo tune trip pe li thi. Woh waali jahan hum sab the.
+      Got:      Bhai, ek selfie bhej jo tune trip pe li thi, woh waali jahan hum sab the.
+
+=================================================================
+  GO/NO-GO GATE
+=================================================================
+  Accuracy (fuzzy) >= 95%: 74.3% FAIL
+  Latency p95 < 200ms:     2445ms FAIL
+  Errors == 0:             0 PASS
+  Parse failures == 0:     0 PASS
+
+  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<\n

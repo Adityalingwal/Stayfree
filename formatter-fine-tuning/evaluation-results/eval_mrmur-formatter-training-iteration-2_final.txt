@@ -1,0 +1,95 @@
+
+=================================================================
+  RESULTS
+=================================================================
+
+  Overall (467 examples):
+    Exact match:  288/467 (61.7%)
+    Fuzzy match:  310/467 (66.4%)
+
+  By Style:
+    Casual  : exact= 60.2%  fuzzy= 61.7%  (n=206)
+    Formal  : exact= 62.8%  fuzzy= 70.1%  (n=261)
+
+  By Source Bucket:
+    asr_errors               : exact= 60.0%  (n=45)
+    basic_formatting         : exact= 80.9%  (n=47)
+    dictionary               : exact=100.0%  (n=45)
+    edge_cases               : exact= 63.6%  (n=44)
+    email_context            : exact= 55.6%  (n=45)
+    hinglish                 : exact= 47.8%  (n=46)
+    numbers_formatting       : exact= 64.0%  (n=50)
+    other_apps               : exact= 26.7%  (n=45)
+    self_correction          : exact= 72.0%  (n=50)
+    voice_commands           : exact= 46.0%  (n=50)
+
+  By Category+Style:
+    Email_Casual             : exact= 52.9%  (n=17)
+    Email_Formal             : exact= 50.0%  (n=40)
+    Other_Casual             : exact= 23.5%  (n=17)
+    Other_Formal             : exact= 31.2%  (n=32)
+    Personal_Casual          : exact= 67.9%  (n=53)
+    Personal_Formal          : exact= 71.7%  (n=60)
+    Work_Casual              : exact= 63.0%  (n=119)
+    Work_Formal              : exact= 70.5%  (n=129)
+
+  Mismatches: 179 total (showing first 10):
+
+    [10] basic_formatting / Slack / Formal
+      Input:    so the the main issue here is the database connection timeout...
+      Expected: So the main issue here is the database connection timeout.
+      Got:      The main issue here is the database connection timeout.
+
+    [11] basic_formatting / Slack / Casual
+      Input:    so the the main issue here is the database connection timeout...
+      Expected: So the main issue here is the database connection timeout
+      Got:      The main issue here is the database connection timeout
+
+    [14] basic_formatting / Slack / Formal
+      Input:    i just wanted to check if um if you got my email...
+      Expected: I just wanted to check if you got my email.
+      Got:      I just wanted to check if, if you got my email.
+
+    [15] basic_formatting / Slack / Casual
+      Input:    i just wanted to check if um if you got my email...
+      Expected: I just wanted to check if you got my email
+      Got:      I just wanted to check if if you got my email
+
+    [26] basic_formatting / Signal / Formal
+      Input:    i'll call you right back i'm in the middle of something...
+      Expected: I'll call you right back. I'm in the middle of something.
+      Got:      I'll call you right back, I'm in the middle of something.
+
+    [27] basic_formatting / Signal / Casual
+      Input:    i'll call you right back i'm in the middle of something...
+      Expected: I'll call you right back, I'm in the middle of something
+      Got:      I'll call you right back I'm in the middle of something
+
+    [37] basic_formatting / Slack / Formal
+      Input:    this is getting ridiculous we need a better solution...
+      Expected: This is getting ridiculous. We need a better solution.
+      Got:      This is getting ridiculous, we need a better solution.
+
+    [38] basic_formatting / Slack / Casual
+      Input:    this is getting ridiculous we need a better solution...
+      Expected: This is getting ridiculous, we need a better solution
+      Got:      This is getting ridiculous we need a better solution
+
+    [40] basic_formatting / Teams / Casual
+      Input:    i'm exhausted let's just call it a day...
+      Expected: I'm exhausted, let's just call it a day
+      Got:      I'm exhausted, let's just call it a day.
+
+    [49] numbers_formatting / WhatsApp / Formal
+      Input:    the train arrives at exactly quarter to nine in the morning...
+      Expected: The train arrives at exactly 8:45 AM.
+      Got:      The train arrives at exactly 8:45 in the morning.
+
+=================================================================
+  GO/NO-GO GATE
+=================================================================
+  Accuracy (fuzzy) >= 95%: 66.4% FAIL
+  Errors == 0:             0 PASS
+  Parse failures == 0:     0 PASS
+
+  >>> GATE: FAIL — See mismatches above, iterate on data/training <<<

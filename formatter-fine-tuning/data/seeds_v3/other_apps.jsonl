@@ -1,0 +1,306 @@
+{
+  "input": "remind me to cancel the gym membership before the seventh to avoid another charge",
+  "output": "Remind me to cancel the gym membership before the 7th to avoid another charge",
+  "app_category": "Other"
+}
+
+{
+  "input": "best restaurants near me with good ambiance and vegan friendly options",
+  "output": "Best restaurants near me with good ambiance and vegan-friendly options",
+  "app_category": "Other"
+}
+
+{
+  "input": "convert seven fifty dollars to indian rupees today",
+  "output": "Convert $750 to Indian rupees today",
+  "app_category": "Other"
+}
+
+{
+  "input": "create a new swift file called view controller dot swift and implement the table view delegate",
+  "output": "Create a new Swift file called ViewController.swift and implement the table view delegate.",
+  "app_category": "Other"
+}
+
+{
+  "input": "write a python function that takes a list of strings and returns the longest one",
+  "output": "Write a Python function that takes a list of strings and returns the longest one.",
+  "app_category": "Other"
+}
+
+{
+  "input": "how to fix a segmentation fault error in C plus plus",
+  "output": "How to fix a segmentation fault error in C++?",
+  "app_category": "Other"
+}
+
+{
+  "input": "note to self follow up with the accountant about the Q four filings by friday",
+  "output": "Note to self: follow up with the accountant about the Q4 filings by Friday.",
+  "app_category": "Other"
+}
+
+{
+  "input": "summarize the latest research on large language model hallucinations in a paragraph",
+  "output": "Summarize the latest research on large language model hallucinations in a paragraph.",
+  "app_category": "Other"
+}
+
+{
+  "input": "what time is it in new york right now",
+  "output": "What time is it in New York right now?",
+  "app_category": "Other"
+}
+
+{
+  "input": "add a git hook that runs eslint before every commit in my react project",
+  "output": "Add a git hook that runs ESLint before every commit in my React project.",
+  "app_category": "Other"
+}
+
+{
+  "input": "cheapest direct flights from bangalore to dubai in december",
+  "output": "Cheapest direct flights from Bangalore to Dubai in December",
+  "app_category": "Other"
+}
+
+{
+  "input": "create a meeting notes template with action items due dates and owners section",
+  "output": "Create a meeting notes template with action items, due dates, and owners section.",
+  "app_category": "Other"
+}
+
+{
+  "input": "translate the following paragraph into formal Hindi",
+  "output": "Translate the following paragraph into formal Hindi.",
+  "app_category": "Other"
+}
+
+{
+  "input": "how does the react use effect hook work with cleanup functions",
+  "output": "How does the React useEffect hook work with cleanup functions?",
+  "app_category": "Other"
+}
+
+{
+  "input": "add a note that the design review for the payments flow is on thursday at two pm",
+  "output": "Add a note that the design review for the payments flow is on Thursday at 2 PM.",
+  "app_category": "Other"
+}
+
+{
+  "input": "write a regex to validate an indian mobile number starting with plus nine one",
+  "output": "Write a regex to validate an Indian mobile number starting with +91.",
+  "app_category": "Other"
+}
+
+{
+  "input": "rewrite the following paragraph to sound more professional and concise",
+  "output": "Rewrite the following paragraph to sound more professional and concise.",
+  "app_category": "Other"
+}
+
+{
+  "input": "best well known books on system design for software engineers",
+  "output": "Best well-known books on system design for software engineers",
+  "app_category": "Other"
+}
+
+{
+  "input": "set up a kanban board structure with backlog in progress review and done columns",
+  "output": "Set up a Kanban board structure with Backlog, In Progress, Review, and Done columns.",
+  "app_category": "Other"
+}
+
+{
+  "input": "debug this type script error cannot read properties of undefined reading map",
+  "output": "Debug this TypeScript error: 'Cannot read properties of undefined, reading map'.",
+  "app_category": "Other"
+}
+
+{
+  "input": "iphone versus android in twenty twenty five latest comparison",
+  "output": "iPhone vs Android in 2025 latest comparison",
+  "app_category": "Other"
+}
+
+{
+  "input": "write a linkedin post announcing my promotion to senior product manager",
+  "output": "Write a LinkedIn post announcing my promotion to Senior Product Manager.",
+  "app_category": "Other"
+}
+
+{
+  "input": "quick note the api documentation folder is on the shared drive under eng slash docs",
+  "output": "Quick note: the API documentation folder is on the shared drive under eng/docs.",
+  "app_category": "Other"
+}
+
+{
+  "input": "how do I set up environment variables in a docker compose file",
+  "output": "How do I set up environment variables in a docker-compose file?",
+  "app_category": "Other"
+}
+
+{
+  "input": "refactor the following function to use async await instead of promise chains",
+  "output": "Refactor the following function to use async/await instead of promise chains.",
+  "app_category": "Other"
+}
+
+{
+  "input": "set up a daily review page in notion showing tasks completed water intake and journal",
+  "output": "Set up a daily review page in Notion showing tasks completed, water intake, and journal.",
+  "app_category": "Other"
+}
+
+{
+  "input": "note gym at seven am tomorrow morning carry protein shake and earphones",
+  "output": "Note: gym at 7 AM tomorrow morning, carry protein shake and earphones",
+  "app_category": "Other"
+}
+
+{
+  "input": "create a bash script that auto deletes log files older than thirty days",
+  "output": "Create a bash script that auto-deletes log files older than 30 days.",
+  "app_category": "Other"
+}
+
+{
+  "input": "proof read and improve the clarity of this email before I send it to the CEO",
+  "output": "Proofread and improve the clarity of this email before I send it to the CEO.",
+  "app_category": "Other"
+}
+
+{
+  "input": "how does kubernetes handle pod scheduling across multiple nodes",
+  "output": "How does Kubernetes handle pod scheduling across multiple nodes?",
+  "app_category": "Other"
+}
+
+{
+  "input": "note follow up with the lawyer about the company registration by tuesday",
+  "output": "Note: follow up with the lawyer about the company registration by Tuesday.",
+  "app_category": "Other"
+}
+
+{
+  "input": "write a unit test in jest for the user authentication service",
+  "output": "Write a unit test in Jest for the user authentication service.",
+  "app_category": "Other"
+}
+
+{
+  "input": "long term versus short term memory in large language models explained simply",
+  "output": "Long-term vs short-term memory in large language models explained simply",
+  "app_category": "Other"
+}
+
+{
+  "input": "create a weekly OKR tracking template with goals key results and progress columns",
+  "output": "Create a weekly OKR tracking template with goals, key results, and progress columns.",
+  "app_category": "Other"
+}
+
+{
+  "input": "explain how connection pooling works in postgres and when to increase pool size",
+  "output": "Explain how connection pooling works in Postgres and when to increase the pool size.",
+  "app_category": "Other"
+}
+
+{
+  "input": "set up vs code with prettier eslint and typescript support for a next js project",
+  "output": "Set up VS Code with Prettier, ESLint, and TypeScript support for a Next.js project.",
+  "app_category": "Other"
+}
+
+{
+  "input": "note buy flowers for the anniversary dinner on the twenty second",
+  "output": "Note: buy flowers for the anniversary dinner on the 22nd",
+  "app_category": "Other"
+}
+
+{
+  "input": "best free to use email marketing tools for startups in twenty twenty five",
+  "output": "Best free-to-use email marketing tools for startups in 2025",
+  "app_category": "Other"
+}
+
+{
+  "input": "generate a complete docker file for a node dot js express app with multi stage build",
+  "output": "Generate a complete Dockerfile for a Node.js Express app with multi-stage build.",
+  "app_category": "Other"
+}
+
+{
+  "input": "update my notion reading tracker to add the book thinking fast and slow",
+  "output": "Update my Notion reading tracker to add the book 'Thinking, Fast and Slow'.",
+  "app_category": "Other"
+}
+
+{
+  "input": "how has machine learning changed the drug discovery process in pharma",
+  "output": "How has machine learning changed the drug discovery process in pharma?",
+  "app_category": "Other"
+}
+
+{
+  "input": "add xcode build phase that runs swift lint on every build",
+  "output": "Add an Xcode build phase that runs SwiftLint on every build.",
+  "app_category": "Other"
+}
+
+{
+  "input": "rewrite the following code in clean functional style without side effects",
+  "output": "Rewrite the following code in clean functional style without side effects.",
+  "app_category": "Other"
+}
+
+{
+  "input": "how to use git bisect to find a regression in a large codebase",
+  "output": "How to use git bisect to find a regression in a large codebase?",
+  "app_category": "Other"
+}
+
+{
+  "input": "note call the internet provider tomorrow to fix the connection drop issue",
+  "output": "Note: call the internet provider tomorrow to fix the connection drop issue",
+  "app_category": "Other"
+}
+
+{
+  "input": "create a template for a product requirements document with overview goals and scope sections",
+  "output": "Create a template for a Product Requirements Document with overview, goals, and scope sections.",
+  "app_category": "Other"
+}
+
+{
+  "input": "write a sql query to find duplicate emails in the users table",
+  "output": "Write a SQL query to find duplicate emails in the users table.",
+  "app_category": "Other"
+}
+
+{
+  "input": "what are the pros and cons of server side rendering versus client side rendering",
+  "output": "What are the pros and cons of server-side rendering versus client-side rendering?",
+  "app_category": "Other"
+}
+
+{
+  "input": "explain gradient descent in plain english without using math formulas",
+  "output": "Explain gradient descent in plain English without using math formulas.",
+  "app_category": "Other"
+}
+
+{
+  "input": "set up a product backlog tracker in notion with priority status and owner fields",
+  "output": "Set up a product backlog tracker in Notion with priority, status, and owner fields.",
+  "app_category": "Other"
+}
+
+{
+  "input": "note book car service for the weekend and check tire pressure too",
+  "output": "Note: book car service for the weekend and check tire pressure too",
+  "app_category": "Other"
+}
+

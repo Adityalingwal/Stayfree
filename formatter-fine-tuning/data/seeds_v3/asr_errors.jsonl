@@ -1,0 +1,1320 @@
+{
+  "input": "when you're shipment arrives please let us know",
+  "output": "When you're shipment arrives please let us know.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need two configure the load balancer before deployment",
+  "output": "We need two configure the load balancer before deployment.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the latency on this query is way to high",
+  "output": "The latency on this query is way to high.",
+  "app_category": "Work"
+}
+
+{
+  "input": "im going too send the report tomorrow morning",
+  "output": "Im going too send the report tomorrow morning.",
+  "app_category": "Work"
+}
+
+{
+  "input": "make sure your ready for the client presentation",
+  "output": "Make sure your ready for the client presentation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the company is migrating it's entire database infrastructure",
+  "output": "The company is migrating it's entire database infrastructure.",
+  "app_category": "Work"
+}
+
+{
+  "input": "they're server is down since last night",
+  "output": "They're server is down since last night",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you sea the problem in the logs",
+  "output": "Can you sea the problem in the logs?",
+  "app_category": "Work"
+}
+
+{
+  "input": "i ran to miles this morning before the standup",
+  "output": "I ran to miles this morning before the standup",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the cost is precisely to hundred dollars for the license",
+  "output": "The cost is precisely to hundred dollars for the license.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "your already added to the team channel",
+  "output": "Your already added to the team channel",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you put the documents over they're by the printer",
+  "output": "Did you put the documents over they're by the printer?",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need too finish this before end of day",
+  "output": "We need too finish this before end of day",
+  "app_category": "Work"
+}
+
+{
+  "input": "the team is ready to deploy too production tonight",
+  "output": "The team is ready to deploy too production tonight.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its not working on my local machine either",
+  "output": "Its not working on my local machine either",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you bare with me while i look into this",
+  "output": "Can you bare with me while I look into this?",
+  "app_category": "Work"
+}
+
+{
+  "input": "your going to love the new feature we shipped",
+  "output": "Your going to love the new feature we shipped",
+  "app_category": "Personal"
+}
+
+{
+  "input": "their planning to migrate next quarter",
+  "output": "Their planning to migrate next quarter.",
+  "app_category": "Work"
+}
+
+{
+  "input": "this affects the affect of the medication on patients",
+  "output": "This affects the affect of the medication on patients.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we excepted the proposal without any changes",
+  "output": "We excepted the proposal without any changes.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i think we should altar the plan slightly",
+  "output": "I think we should altar the plan slightly",
+  "app_category": "Work"
+}
+
+{
+  "input": "she complemented the team on there presentation",
+  "output": "She complemented the team on there presentation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the principle reason for the delay is funding",
+  "output": "The principle reason for the delay is funding.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "make sure too double check the data before submitting",
+  "output": "Make sure too double check the data before submitting.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the customer complemented are service last week",
+  "output": "The customer complemented are service last week.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we're going too need a bigger team for this project",
+  "output": "We're going too need a bigger team for this project",
+  "app_category": "Work"
+}
+
+{
+  "input": "is you're api key still valid",
+  "output": "Is you're API key still valid?",
+  "app_category": "Work"
+}
+
+{
+  "input": "the bug effects all users on the free tier",
+  "output": "The bug effects all users on the free tier",
+  "app_category": "Work"
+}
+
+{
+  "input": "there was a cite outage yesterday afternoon",
+  "output": "There was a cite outage yesterday afternoon.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to right a post-mortem for the incident",
+  "output": "We need to right a post-mortem for the incident.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its important that your on the call at nine am",
+  "output": "Its important that your on the call at nine am.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the whole situation effected the entire team morale",
+  "output": "The whole situation effected the entire team morale.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there going to role out the update next week",
+  "output": "There going to role out the update next week",
+  "app_category": "Work"
+}
+
+{
+  "input": "i past the code review yesterday morning",
+  "output": "I past the code review yesterday morning",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should of tested this more thoroughly before release",
+  "output": "We should of tested this more thoroughly before release.",
+  "app_category": "Work"
+}
+
+{
+  "input": "her advise on this matter was very helpful",
+  "output": "Her advise on this matter was very helpful.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the new policy will effect all remote employees",
+  "output": "The new policy will effect all remote employees.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i need to loose some weight before the conference",
+  "output": "I need to loose some weight before the conference",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the data was breached buy an external attacker",
+  "output": "The data was breached buy an external attacker.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you right a summary for the meeting notes",
+  "output": "Can you right a summary for the meeting notes?",
+  "app_category": "Work"
+}
+
+{
+  "input": "its time too think about the quarterly review",
+  "output": "Its time too think about the quarterly review",
+  "app_category": "Work"
+}
+
+{
+  "input": "the server response time is to slow for production",
+  "output": "The server response time is to slow for production.",
+  "app_category": "Work"
+}
+
+{
+  "input": "your the only one who can fix this critical issue",
+  "output": "Your the only one who can fix this critical issue",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need two review the architecture before the sprint",
+  "output": "We need two review the architecture before the sprint.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i m to busy to join the optional lunch meeting",
+  "output": "I m to busy to join the optional lunch meeting",
+  "app_category": "Work"
+}
+
+{
+  "input": "they're database is currently being backed up",
+  "output": "They're database is currently being backed up.",
+  "app_category": "Work"
+}
+
+{
+  "input": "check if it's dependencies are up to date or not",
+  "output": "Check if it's dependencies are up to date or not",
+  "app_category": "Work"
+}
+
+{
+  "input": "the report should of been submitted by friday",
+  "output": "The report should of been submitted by Friday.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please bare in mind that the deadline is tomorrow",
+  "output": "Please bare in mind that the deadline is tomorrow.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i cant weight to see the final product launch",
+  "output": "I cant weight to see the final product launch",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we need to altar the approach for the next release",
+  "output": "We need to altar the approach for the next release.",
+  "app_category": "Work"
+}
+
+{
+  "input": "your going to need to restart the service manually",
+  "output": "Your going to need to restart the service manually",
+  "app_category": "Work"
+}
+
+{
+  "input": "the brakes on this process are to strong",
+  "output": "The brakes on this process are to strong",
+  "app_category": "Work"
+}
+
+{
+  "input": "there are to many open pull requests right now",
+  "output": "There are to many open pull requests right now",
+  "app_category": "Work"
+}
+
+{
+  "input": "we excepted all the merge conflicts from last night",
+  "output": "We excepted all the merge conflicts from last night",
+  "app_category": "Work"
+}
+
+{
+  "input": "its to late to role back the deployment now",
+  "output": "Its to late to role back the deployment now",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you here about the outage on the east coast servers",
+  "output": "Did you here about the outage on the east coast servers?",
+  "app_category": "Work"
+}
+
+{
+  "input": "the feature effects both free and paid users",
+  "output": "The feature effects both free and paid users.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you sea the difference in the metrics now",
+  "output": "Can you sea the difference in the metrics now?",
+  "app_category": "Work"
+}
+
+{
+  "input": "i past the security audit last quarter with no issues",
+  "output": "I past the security audit last quarter with no issues.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please advice on how to proceed with this situation",
+  "output": "Please advice on how to proceed with this situation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the team has a strong principals about code quality",
+  "output": "The team has a strong principals about code quality.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should right unit tests for all edge cases",
+  "output": "We should right unit tests for all edge cases.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the cache is to small for the current workload",
+  "output": "The cache is to small for the current workload.",
+  "app_category": "Work"
+}
+
+{
+  "input": "your api tokens are going to expire soon",
+  "output": "Your API tokens are going to expire soon",
+  "app_category": "Work"
+}
+
+{
+  "input": "its going to take to long to resolve this manually",
+  "output": "Its going to take to long to resolve this manually",
+  "app_category": "Work"
+}
+
+{
+  "input": "the affect of the change will be measured next sprint",
+  "output": "The affect of the change will be measured next sprint.",
+  "app_category": "Work"
+}
+
+{
+  "input": "did he loose the credentials again after the reset",
+  "output": "Did he loose the credentials again after the reset?",
+  "app_category": "Work"
+}
+
+{
+  "input": "make sure you're account is linked before proceeding",
+  "output": "Make sure you're account is linked before proceeding.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the client might of changed their requirements again",
+  "output": "The client might of changed their requirements again",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are going too need approval from the manager",
+  "output": "We are going too need approval from the manager.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there planning a site wide maintenance this weekend",
+  "output": "There planning a site wide maintenance this weekend",
+  "app_category": "Work"
+}
+
+{
+  "input": "is this you're first time setting up the environment",
+  "output": "Is this you're first time setting up the environment?",
+  "app_category": "Work"
+}
+
+{
+  "input": "it was a complement to the overall system design",
+  "output": "It was a complement to the overall system design.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need too look at the error logs from last night",
+  "output": "We need too look at the error logs from last night",
+  "app_category": "Work"
+}
+
+{
+  "input": "please don't altar the production config without approval",
+  "output": "Please don't altar the production config without approval.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the queue is to long and requests are timing out",
+  "output": "The queue is to long and requests are timing out.",
+  "app_category": "Work"
+}
+
+{
+  "input": "your changes broke the build pipeline this morning",
+  "output": "Your changes broke the build pipeline this morning",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should of caught this in the code review stage",
+  "output": "We should of caught this in the code review stage",
+  "app_category": "Work"
+}
+
+{
+  "input": "it's team has been working on this since last month",
+  "output": "It's team has been working on this since last month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the delay effected our entire q3 roadmap planning",
+  "output": "The delay effected our entire q3 roadmap planning.",
+  "app_category": "Work"
+}
+
+{
+  "input": "their looking for a senior engineer with ten years experience",
+  "output": "Their looking for a senior engineer with ten years experience",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we to need to scale up before the black friday traffic",
+  "output": "We to need to scale up before the black Friday traffic.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the database is currently write too disk slowly",
+  "output": "The database is currently write too disk slowly.",
+  "app_category": "Work"
+}
+
+{
+  "input": "bare minimum we need the login flow working by friday",
+  "output": "Bare minimum we need the login flow working by Friday",
+  "app_category": "Work"
+}
+
+{
+  "input": "i haven t herd back from the vendor yet",
+  "output": "I haven t herd back from the vendor yet",
+  "app_category": "Work"
+}
+
+{
+  "input": "she complemented are new hire on his first week",
+  "output": "She complemented are new hire on his first week.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its effects on the system are still being analyzed",
+  "output": "Its effects on the system are still being analyzed.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are to far along to pivot now on this feature",
+  "output": "We are to far along to pivot now on this feature.",
+  "app_category": "Work"
+}
+
+{
+  "input": "your missing the point of what i am trying to say",
+  "output": "Your missing the point of what I am trying to say",
+  "app_category": "Personal"
+}
+
+{
+  "input": "did you here the news about the acquisition",
+  "output": "Did you here the news about the acquisition?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "they're entire infrastructure is hosted on aws",
+  "output": "They're entire infrastructure is hosted on AWS.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the meeting was to long and covered to many topics",
+  "output": "The meeting was to long and covered to many topics",
+  "app_category": "Work"
+}
+
+{
+  "input": "make sure your token doesn't expire before the demo",
+  "output": "Make sure your token doesn't expire before the demo",
+  "app_category": "Work"
+}
+
+{
+  "input": "are team exceeded are quarterly targets this time",
+  "output": "Are team exceeded are quarterly targets this time.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i cant weight for the product launch next week",
+  "output": "I cant weight for the product launch next week",
+  "app_category": "Personal"
+}
+
+{
+  "input": "your responsible for testing the payment to flow",
+  "output": "Your responsible for testing the payment to flow.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need too prioritize the mobile experience this quarter",
+  "output": "We need too prioritize the mobile experience this quarter.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the client has given it's approval on the design",
+  "output": "The client has given it's approval on the design.",
+  "app_category": "Work"
+}
+
+{
+  "input": "their not going to approve the budget this quarter",
+  "output": "Their not going to approve the budget this quarter",
+  "app_category": "Work"
+}
+
+{
+  "input": "the api is two slow for real time updates",
+  "output": "The API is two slow for real time updates.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i should of reviewed the pr before it got merged",
+  "output": "I should of reviewed the PR before it got merged",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are too deep in the project to change frameworks",
+  "output": "We are too deep in the project to change frameworks",
+  "app_category": "Work"
+}
+
+{
+  "input": "your package has been shipped and is on it's way",
+  "output": "Your package has been shipped and is on it's way",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we to have been experiencing delays in the pipeline",
+  "output": "We to have been experiencing delays in the pipeline.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its critical that you're changes don't break the tests",
+  "output": "Its critical that you're changes don't break the tests.",
+  "app_category": "Work"
+}
+
+{
+  "input": "their website has been down since this morning",
+  "output": "Their website has been down since this morning",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the codebase could use a good refactor to clean up",
+  "output": "The codebase could use a good refactor to clean up",
+  "app_category": "Work"
+}
+
+{
+  "input": "your idea will altar the course of the entire project",
+  "output": "Your idea will altar the course of the entire project.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there going too announce the new feature at the conference",
+  "output": "There going too announce the new feature at the conference",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we need to role out the hotfix before the weekend",
+  "output": "We need to role out the hotfix before the weekend.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the server is to busy to handle any more requests",
+  "output": "The server is to busy to handle any more requests.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please altar the email template before sending it out",
+  "output": "Please altar the email template before sending it out.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we're to close to the deadline to redesign anything",
+  "output": "We're to close to the deadline to redesign anything",
+  "app_category": "Work"
+}
+
+{
+  "input": "is you're laptop connected to the vpn right now",
+  "output": "Is you're laptop connected to the vpn right now?",
+  "app_category": "Work"
+}
+
+{
+  "input": "it's pipeline failed because of a missing environment variable",
+  "output": "It's pipeline failed because of a missing environment variable.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need two hold a retrospective after this sprint ends",
+  "output": "We need two hold a retrospective after this sprint ends.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the approach was to aggressive and caused performance issues",
+  "output": "The approach was to aggressive and caused performance issues.",
+  "app_category": "Work"
+}
+
+{
+  "input": "their code is well written and easy to maintain",
+  "output": "Their code is well written and easy to maintain.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we excepted the risk of launching without full test coverage",
+  "output": "We excepted the risk of launching without full test coverage.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please right down you're ideas before the brainstorm session",
+  "output": "Please right down you're ideas before the brainstorm session.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there to many layers of abstraction in this codebase",
+  "output": "There to many layers of abstraction in this codebase",
+  "app_category": "Work"
+}
+
+{
+  "input": "your profile picture needs to be updated on the dashboard",
+  "output": "Your profile picture needs to be updated on the dashboard",
+  "app_category": "Work"
+}
+
+{
+  "input": "the ticket was past to the wrong team by mistake",
+  "output": "The ticket was past to the wrong team by mistake.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i herd that the new cto is joining next month",
+  "output": "I herd that the new CTO is joining next month",
+  "app_category": "Personal"
+}
+
+{
+  "input": "their caching strategy is way to aggressive",
+  "output": "Their caching strategy is way to aggressive",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are going to altar the notification design soon",
+  "output": "We are going to altar the notification design soon.",
+  "app_category": "Work"
+}
+
+{
+  "input": "you're environment variables are not loading correctly",
+  "output": "You're environment variables are not loading correctly",
+  "app_category": "Work"
+}
+
+{
+  "input": "its effect on user retention was very positive overall",
+  "output": "Its effect on user retention was very positive overall.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there server went offline after the latest deployment",
+  "output": "There server went offline after the latest deployment",
+  "app_category": "Work"
+}
+
+{
+  "input": "we will role out the new pricing too all users",
+  "output": "We will role out the new pricing too all users.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the app is to slow on older android devices",
+  "output": "The app is to slow on older Android devices",
+  "app_category": "Work"
+}
+
+{
+  "input": "your tests are taking to long to run in ci",
+  "output": "Your tests are taking to long to run in CI",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you altar the configuration file for staging",
+  "output": "Did you altar the configuration file for staging?",
+  "app_category": "Work"
+}
+
+{
+  "input": "its not possible to role back after a successful migration",
+  "output": "Its not possible to role back after a successful migration.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the bug was effecting users on the latest ios build",
+  "output": "The bug was effecting users on the latest iOS build",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should of enabled two factor auth from the start",
+  "output": "We should of enabled two factor auth from the start",
+  "app_category": "Work"
+}
+
+{
+  "input": "your not going to believe what the test results showed",
+  "output": "Your not going to believe what the test results showed",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it's container keeps crashing due to memory limits",
+  "output": "It's container keeps crashing due to memory limits.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there api documentation is out of date and confusing",
+  "output": "There API documentation is out of date and confusing",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are too dependent on this third party library",
+  "output": "We are too dependent on this third party library.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i past the security certification exam with a high score",
+  "output": "I past the security certification exam with a high score",
+  "app_category": "Personal"
+}
+
+{
+  "input": "please altar the tone of the marketing email slightly",
+  "output": "Please altar the tone of the marketing email slightly.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the team is to well coordinated for this to fail",
+  "output": "The team is to well coordinated for this to fail",
+  "app_category": "Work"
+}
+
+{
+  "input": "you're changes have been merged into the main branch",
+  "output": "You're changes have been merged into the main branch.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there going to need too scale horizontally next month",
+  "output": "There going to need too scale horizontally next month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its not worth refactoring right now during the freeze",
+  "output": "Its not worth refactoring right now during the freeze",
+  "app_category": "Work"
+}
+
+{
+  "input": "are authentication service went down for too hours",
+  "output": "Are authentication service went down for too hours.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the new feature might effect the billing system",
+  "output": "The new feature might effect the billing system.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i know your tired but we need to push through tonight",
+  "output": "I know your tired but we need to push through tonight",
+  "app_category": "Personal"
+}
+
+{
+  "input": "can you please advise on which approach we should chose",
+  "output": "Can you please advise on which approach we should chose?",
+  "app_category": "Work"
+}
+
+{
+  "input": "we allways deploy on thursdays after the review cycle",
+  "output": "We allways deploy on thursdays after the review cycle.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the old design was to cluttered for mobile users",
+  "output": "The old design was to cluttered for mobile users",
+  "app_category": "Work"
+}
+
+{
+  "input": "its to early to tell if the fix worked in production",
+  "output": "Its to early to tell if the fix worked in production",
+  "app_category": "Work"
+}
+
+{
+  "input": "their launch was effected by unexpected infrastructure issues",
+  "output": "Their launch was effected by unexpected infrastructure issues.",
+  "app_category": "Work"
+}
+
+{
+  "input": "you're session might of expired please log in again",
+  "output": "You're session might of expired please log in again",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need two revisit this decision in the next planning",
+  "output": "We need two revisit this decision in the next planning.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the latency spike is to significant to ignore in production",
+  "output": "The latency spike is to significant to ignore in production.",
+  "app_category": "Work"
+}
+
+{
+  "input": "bare in mind that the client requested this feature explicitly",
+  "output": "Bare in mind that the client requested this feature explicitly.",
+  "app_category": "Work"
+}
+
+{
+  "input": "are codebase is getting harder to maintain every sprint",
+  "output": "Are codebase is getting harder to maintain every sprint",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you sea the error in the sentry dashboard this morning",
+  "output": "Did you sea the error in the sentry dashboard this morning?",
+  "app_category": "Work"
+}
+
+{
+  "input": "please send you're updated availability for next week",
+  "output": "Please send you're updated availability for next week.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it's load balancer is not distributing traffic evenly",
+  "output": "It's load balancer is not distributing traffic evenly.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we excepted the new team member to join us this month",
+  "output": "We excepted the new team member to join us this month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "their migration to the new database is nearly complete",
+  "output": "Their migration to the new database is nearly complete.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the performance test results are to variable to trust yet",
+  "output": "The performance test results are to variable to trust yet.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its not you're fault the staging environment is broken",
+  "output": "Its not you're fault the staging environment is broken",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should altar our deployment frequency to reduce risk",
+  "output": "We should altar our deployment frequency to reduce risk.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there website loads to slowly on high traffic days",
+  "output": "There website loads to slowly on high traffic days.",
+  "app_category": "Work"
+}
+
+{
+  "input": "you're pull request is blocking are release train",
+  "output": "You're pull request is blocking are release train",
+  "app_category": "Work"
+}
+
+{
+  "input": "the bug effects users who login with google auth only",
+  "output": "The bug effects users who login with google auth only.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we past the one hundred concurrent user milestone today",
+  "output": "We past the one hundred concurrent user milestone today.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it's codebase has been growing to fast without documentation",
+  "output": "It's codebase has been growing to fast without documentation.",
+  "app_category": "Work"
+}
+
+{
+  "input": "are new onboarding flow has been well received by users",
+  "output": "Are new onboarding flow has been well received by users.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the fix is to minimal to have any noticeable impact",
+  "output": "The fix is to minimal to have any noticeable impact",
+  "app_category": "Work"
+}
+
+{
+  "input": "your feedback helped us altar the ui significantly",
+  "output": "Your feedback helped us altar the UI significantly.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its clear that we need two restructure the entire team",
+  "output": "Its clear that we need two restructure the entire team.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the two new services are performing way to poorly",
+  "output": "The two new services are performing way to poorly",
+  "app_category": "Work"
+}
+
+{
+  "input": "there was to much pressure on the team last quarter",
+  "output": "There was to much pressure on the team last quarter.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please right a technical spec before starting the work",
+  "output": "Please right a technical spec before starting the work.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need too coordinate across teams for this release",
+  "output": "We need too coordinate across teams for this release.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its possible that you're setup is missing a package",
+  "output": "Its possible that you're setup is missing a package",
+  "app_category": "Work"
+}
+
+{
+  "input": "their approach is to narrowly focused on one use case",
+  "output": "Their approach is to narrowly focused on one use case.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are going two review are security posture this quarter",
+  "output": "We are going two review are security posture this quarter.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you right a brief summary of the incident for the team",
+  "output": "Can you right a brief summary of the incident for the team?",
+  "app_category": "Work"
+}
+
+{
+  "input": "your dashboard is to complex for new users to understand",
+  "output": "Your dashboard is to complex for new users to understand.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should of set up monitoring before launching this service",
+  "output": "We should of set up monitoring before launching this service",
+  "app_category": "Work"
+}
+
+{
+  "input": "it's logs are showing to many five hundred errors per minute",
+  "output": "It's logs are showing to many five hundred errors per minute.",
+  "app_category": "Work"
+}
+
+{
+  "input": "their product roadmap seems to ambitious for the team size",
+  "output": "Their product roadmap seems to ambitious for the team size",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we've been to dependent on manual testing for to long",
+  "output": "We've been to dependent on manual testing for to long",
+  "app_category": "Work"
+}
+
+{
+  "input": "your going to here back from us by end of week",
+  "output": "Your going to here back from us by end of week.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the performance regression was to subtle to catch in review",
+  "output": "The performance regression was to subtle to catch in review.",
+  "app_category": "Work"
+}
+
+{
+  "input": "its going to be a long too day sprint for the team",
+  "output": "Its going to be a long too day sprint for the team",
+  "app_category": "Work"
+}
+
+{
+  "input": "you're the principal engineer responsible for this module",
+  "output": "You're the principal engineer responsible for this module.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we to have exceeded are bandwidth this month",
+  "output": "We to have exceeded are bandwidth this month.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the rollback took to long and caused user impact",
+  "output": "The rollback took to long and caused user impact.",
+  "app_category": "Work"
+}
+
+{
+  "input": "you're credentials might of been compromised please check",
+  "output": "You're credentials might of been compromised please check",
+  "app_category": "Work"
+}
+
+{
+  "input": "their pipeline takes to long to complete on large commits",
+  "output": "Their pipeline takes to long to complete on large commits",
+  "app_category": "Work"
+}
+
+{
+  "input": "the staging environment is to different from production",
+  "output": "The staging environment is to different from production.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we past the load test threshold of five thousand requests",
+  "output": "We past the load test threshold of five thousand requests.",
+  "app_category": "Work"
+}
+
+{
+  "input": "for all intensive purposes the feature is complete",
+  "output": "For all intensive purposes, the feature is complete.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to find an escape goat for this failed launch",
+  "output": "We need to find an escape goat for this failed launch",
+  "app_category": "Personal"
+}
+
+{
+  "input": "that is a mute point after the recent changes",
+  "output": "That is a mute point after the recent changes",
+  "app_category": "Work"
+}
+
+{
+  "input": "the new design will peak my interest definitely",
+  "output": "The new design will peak my interest definitely",
+  "app_category": "Work"
+}
+
+{
+  "input": "take the server downtime for granite it happens sometimes",
+  "output": "Take the server downtime for granite, it happens sometimes",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to nip this performance issue in the butt",
+  "output": "We need to nip this performance issue in the butt",
+  "app_category": "Work"
+}
+
+{
+  "input": "it's a blessing in the skies that the tests caught it",
+  "output": "It's a blessing in the skies that the tests caught it",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it's a doggy dog world in the startup ecosystem",
+  "output": "It's a doggy dog world in the startup ecosystem",
+  "app_category": "Personal"
+}
+
+{
+  "input": "she was biting her time before the big announcement",
+  "output": "She was biting her time before the big announcement",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the team was given free reign over the product roadmap",
+  "output": "The team was given free reign over the product roadmap.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are at there beckon call whenever they need support",
+  "output": "We are at there beckon call whenever they need support.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the visual affect of the new animation is stunning",
+  "output": "The visual affect of the new animation is stunning",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i like all the frameworks accept this one for backend",
+  "output": "I like all the frameworks accept this one for backend",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you sea the improvement in the dashboard metrics",
+  "output": "Can you sea the improvement in the dashboard metrics?",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you read the hole document before approving the pr",
+  "output": "Did you read the hole document before approving the PR?",
+  "app_category": "Work"
+}
+
+{
+  "input": "write now is the worst time to push to production",
+  "output": "Write now is the worst time to push to production",
+  "app_category": "Work"
+}
+
+{
+  "input": "the office wifi is completely hole today please use hotspot",
+  "output": "The office wifi is completely hole today please use hotspot",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i want to eat sum good food after this long sprint week",
+  "output": "I want to eat sum good food after this long sprint week",
+  "app_category": "Personal"
+}
+
+{
+  "input": "she have been working very hard on this integration",
+  "output": "She have been working very hard on this integration.",
+  "app_category": "Work"
+}
+
+{
+  "input": "he don't want to attend the optional friday sync",
+  "output": "He don't want to attend the optional Friday sync",
+  "app_category": "Personal"
+}
+
