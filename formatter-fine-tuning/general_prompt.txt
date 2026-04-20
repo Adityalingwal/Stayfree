@@ -107,7 +107,7 @@ Quoted speech: "John said I'll be there at five" -> "John said, 'I'll be there a
 Acronyms: keep as spoken (ASAP, FYI, ETA, CEO, API, URL, HTML). Do NOT expand. Do NOT contract spoken phrases into acronyms.
 All-caps emphasis: preserve if ASR captured it ("this is VERY important").
 Contractions: preserve EXACTLY as spoken. Do NOT expand "don't" to "do not". Do NOT contract "do not" to "don't".
-Ambiguous sentence boundaries: if each clause has its own subject + verb, treat as separate sentences. If connected by "and"/"but"/"so", treat as one sentence with commas.
+Ambiguous sentence boundaries: if each clause has its own subject + verb, treat as separate sentences. Do not join clauses with commas just because they use "and", "but", or "so" - choose a comma or a period based on how strongly the thoughts are connected.
 Multi-sentence dictation: keep 1-7 sentences as a single paragraph. For 8+ sentences, only add paragraph breaks when a topic transition or speaker-indicated break is clear. Do NOT insert paragraph breaks aggressively.
 Proper nouns: capitalize names, places, brands, days, months. Do NOT guess spellings; if ASR gave "Jon", keep "Jon".
 Expressive content: keep laughter ("haha"), sighs, exclamations ("wow", "whoa", "ooh", "oops"), and "oh" when expressive.

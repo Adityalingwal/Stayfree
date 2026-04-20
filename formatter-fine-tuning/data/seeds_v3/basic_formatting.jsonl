@@ -1,36 +1,36 @@
 {
   "input": "so basically the cache was not invalidated properly and users are seeing stale data",
-  "output": "Basically the cache was not invalidated properly and users are seeing stale data",
+  "output": "Basically, the cache was not invalidated properly, and users are seeing stale data.",
   "app_category": "Work"
 }
 
 {
   "input": "we need to get the sprint velocity up before the end of Q two",
-  "output": "We need to get the sprint velocity up before the end of Q2",
+  "output": "We need to get the sprint velocity up before the end of Q2.",
   "app_category": "Work"
 }
 
 {
   "input": "I'm running like fifteen minutes late please save a spot in the standup",
-  "output": "I'm running like 15 minutes late, please save a spot in the standup",
+  "output": "I'm running like 15 minutes late, please save a spot in the standup.",
   "app_category": "Work"
 }
 
 {
   "input": "um I was thinking maybe we should try a completely different approach here",
-  "output": "I was thinking maybe we should try a completely different approach here",
+  "output": "I was thinking maybe we should try a completely different approach here.",
   "app_category": "Work"
 }
 
 {
   "input": "just wanted to say the code review was great really solid work",
-  "output": "Just wanted to say the code review was great, really solid work",
+  "output": "Just wanted to say the code review was great. Really solid work.",
   "app_category": "Work"
 }
 
 {
   "input": "so we just need to fix the authentication bug and we should be good to release",
-  "output": "We just need to fix the authentication bug and we should be good to release",
+  "output": "We just need to fix the authentication bug, and we should be good to release.",
   "app_category": "Work"
 }
 
@@ -42,25 +42,25 @@
 
 {
   "input": "its been three hours since the incident started and the on call team is still investigating",
-  "output": "It's been 3 hours since the incident started and the on call team is still investigating",
+  "output": "It's been 3 hours since the incident started, and the on-call team is still investigating.",
   "app_category": "Work"
 }
 
 {
   "input": "so basically um we ran out of memory on the prod server because of a memory leak",
-  "output": "We ran out of memory on the prod server because of a memory leak",
+  "output": "We ran out of memory on the prod server because of a memory leak.",
   "app_category": "Work"
 }
 
 {
   "input": "the the API rate limit was hit twice today we need to optimize our requests",
-  "output": "The API rate limit was hit twice today, we need to optimize our requests.",
+  "output": "The API rate limit was hit twice today. We need to optimize our requests.",
   "app_category": "Work"
 }
 
 {
   "input": "can you review my PR its been sitting there since tuesday",
-  "output": "Can you review my PR? It's been sitting there since Tuesday",
+  "output": "Can you review my PR? It's been sitting there since Tuesday.",
   "app_category": "Work"
 }
 
@@ -72,13 +72,13 @@
 
 {
   "input": "so I think we should upgrade the node version its causing compatibility issues",
-  "output": "I think we should upgrade the Node version, it's causing compatibility issues",
+  "output": "I think we should upgrade the Node version. It's causing compatibility issues.",
   "app_category": "Work"
 }
 
 {
   "input": "just a heads up the build pipeline is flaky this morning running multiple retries",
-  "output": "Just a heads up, the build pipeline is flaky this morning, running multiple retries",
+  "output": "Just a heads up, the build pipeline is flaky this morning. Running multiple retries.",
   "app_category": "Work"
 }
 
@@ -90,13 +90,13 @@
 
 {
   "input": "we we need to finalize the analytics integration before the launch on friday",
-  "output": "We need to finalize the analytics integration before the launch on Friday",
+  "output": "We need to finalize the analytics integration before the launch on Friday.",
   "app_category": "Work"
 }
 
 {
   "input": "so basically the environment variables were not set up correctly on staging",
-  "output": "Basically the environment variables were not set up correctly on staging",
+  "output": "Basically, the environment variables were not set up correctly on staging.",
   "app_category": "Work"
 }
 
@@ -114,7 +114,7 @@
 
 {
   "input": "so we merged the feature but now the test suite is failing on the main branch",
-  "output": "We merged the feature but now the test suite is failing on the main branch",
+  "output": "We merged the feature, but now the test suite is failing on the main branch.",
   "app_category": "Work"
 }
 
@@ -132,26 +132,20 @@
 
 {
   "input": "um so the user session data wasnt being saved due to a bug in the session handler",
-  "output": "The user session data wasn't being saved due to a bug in the session handler",
+  "output": "The user session data wasn't being saved due to a bug in the session handler.",
   "app_category": "Work"
 }
 
 {
   "input": "so basically the database backup ran but it didnt verify the restore successfully",
-  "output": "Basically the database backup ran but it didn't verify the restore successfully",
+  "output": "Basically, the database backup ran, but it didn't verify the restore successfully.",
   "app_category": "Work"
 }
 
 {
   "input": "the the dashboard charts are broken for users on safari need a fix asap",
-  "output": "The dashboard charts are broken for users on Safari, need a fix ASAP",
+  "output": "The dashboard charts are broken for users on Safari. Need a fix ASAP.",
   "app_category": "Work"
-}
-
-{
-  "input": "yaar kal traffic bahut tha office late pahuncha",
-  "output": "Yaar, kal traffic bahut tha, office late pahuncha",
-  "app_category": "Personal"
 }
 
 {
@@ -168,7 +162,7 @@
 
 {
   "input": "so the new onboarding flow has reduced drop off by twenty two percent great results",
-  "output": "The new onboarding flow has reduced drop off by 22% great results",
+  "output": "The new onboarding flow has reduced drop-off by 22%. Great results.",
   "app_category": "Work"
 }
 
@@ -180,7 +174,7 @@
 
 {
   "input": "so the feature is about eighty percent done needs another two days of testing",
-  "output": "The feature is about 80% done, needs another 2 days of testing",
+  "output": "The feature is about 80% done. Needs another 2 days of testing.",
   "app_category": "Work"
 }
 
@@ -192,31 +186,31 @@
 
 {
   "input": "so basically the user reported a crash on checkout and we reproduced it locally",
-  "output": "Basically the user reported a crash on checkout and we reproduced it locally",
+  "output": "Basically, the user reported a crash on checkout, and we reproduced it locally.",
   "app_category": "Work"
 }
 
 {
   "input": "we we sent the proposal to the client last night waiting to hear back",
-  "output": "We sent the proposal to the client last night, waiting to hear back.",
+  "output": "We sent the proposal to the client last night. Waiting to hear back.",
   "app_category": "Work"
 }
 
 {
   "input": "um the beta testers have shared feedback most of it is positive a few UX issues",
-  "output": "The beta testers have shared feedback, most of it is positive, a few UX issues",
+  "output": "The beta testers have shared feedback. Most of it is positive. A few UX issues.",
   "app_category": "Work"
 }
 
 {
   "input": "so I think the team needs a morale boost after this tough sprint",
-  "output": "I think the team needs a morale boost after this tough sprint",
+  "output": "I think the team needs a morale boost after this tough sprint.",
   "app_category": "Work"
 }
 
 {
   "input": "just a quick note to say the docs have been updated and are live now",
-  "output": "Just a quick note to say the docs have been updated and are live now",
+  "output": "Just a quick note to say the docs have been updated and are live now.",
   "app_category": "Work"
 }
 
@@ -228,7 +222,7 @@
 
 {
   "input": "so basically the deployment failed because we had a missing config in the yaml file",
-  "output": "Basically the deployment failed because we had a missing config in the YAML file",
+  "output": "Basically, the deployment failed because we had a missing config in the YAML file.",
   "app_category": "Work"
 }
 
@@ -246,19 +240,19 @@
 
 {
   "input": "so the sprint velocity dropped this cycle we should look at blockers in the retro",
-  "output": "The sprint velocity dropped this cycle, we should look at blockers in the retro",
+  "output": "The sprint velocity dropped this cycle. We should look at blockers in the retro.",
   "app_category": "Work"
 }
 
 {
   "input": "just a heads up that network maintenance is happening tonight from ten pm to midnight",
-  "output": "Just a heads up that network maintenance is happening tonight from 10 PM to midnight.",
+  "output": "Just a heads up, network maintenance is happening tonight from 10 PM to midnight.",
   "app_category": "Work"
 }
 
 {
   "input": "we we tracked down the root cause of the incident it was a race condition",
-  "output": "We tracked down the root cause of the incident, it was a race condition",
+  "output": "We tracked down the root cause of the incident. It was a race condition.",
   "app_category": "Work"
 }
 
@@ -270,7 +264,7 @@
 
 {
   "input": "so the team has been doing really well this quarter proud of the progress",
-  "output": "The team has been doing really well this quarter, proud of the progress",
+  "output": "The team has been doing really well this quarter. Proud of the progress.",
   "app_category": "Work"
 }
 
@@ -282,7 +276,7 @@
 
 {
   "input": "so basically we resolved the three P one issues from last week all clear now",
-  "output": "Basically we resolved the 3 P1 issues from last week, all clear now",
+  "output": "Basically, we resolved the 3 P1 issues from last week. All clear now.",
   "app_category": "Work"
 }
 
@@ -294,7 +288,6 @@
 
 {
   "input": "um the infra costs have gone up by thirty percent this month we need to optimize",
-  "output": "The infra costs have gone up by 30% this month, we need to optimize.",
+  "output": "The infra costs have gone up by 30% this month. We need to optimize.",
   "app_category": "Work"
 }
-

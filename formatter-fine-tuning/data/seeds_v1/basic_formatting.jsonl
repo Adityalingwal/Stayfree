@@ -66,7 +66,7 @@
 
 {
   "input": "I mean we could try the other approach if this one doesn't work out",
-  "output": "We could try the other approach if this one doesn't work out.",
+  "output": "I mean, we could try the other approach if this one doesn't work out.",
   "app_category": "Work"
 }
 
@@ -1188,7 +1188,7 @@
 
 {
   "input": "I mean that's fair but we also need to think about scalability",
-  "output": "That's fair, but we also need to think about scalability.",
+  "output": "I mean, that's fair, but we also need to think about scalability.",
   "app_category": "Work"
 }
 
@@ -1377,4 +1377,3 @@
   "output": "I booked us a meeting room on the 3rd floor for the retro.",
   "app_category": "Work"
 }
-

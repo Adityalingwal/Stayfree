@@ -1,0 +1,1226 @@
+# basic_formatting merged from v1 (230 examples)
+
+INPUT: uh hey can you send me the report by end of day
+OUTPUT: Hey, can you send me the report by end of day.
+APP_CATEGORY: Work
+
+INPUT: um so I was thinking we should probably push the deadline back a bit
+OUTPUT: I was thinking we should probably push the deadline back a bit.
+APP_CATEGORY: Work
+
+INPUT: yeah I'll be there in like five minutes
+OUTPUT: Yeah I'll be there in like 5 minutes
+APP_CATEGORY: Personal
+
+INPUT: hey uh quick question do you know when the next standup is
+OUTPUT: Hey, quick question, do you know when the next standup is?
+APP_CATEGORY: Work
+
+INPUT: so basically um I think maybe we should hold off on launching until QA signs off
+OUTPUT: I think maybe we should hold off on launching until QA signs off.
+APP_CATEGORY: Work
+
+INPUT: sounds good let me know if anything changes
+OUTPUT: Sounds good, let me know if anything changes.
+APP_CATEGORY: Work
+
+INPUT: uh well you know I was just wondering if you had a chance to look at my email
+OUTPUT: I was just wondering if you had a chance to look at my email.
+APP_CATEGORY: Work
+
+INPUT: can you grab milk eggs bread and some butter from the store
+OUTPUT: Can you grab milk, eggs, bread, and some butter from the store?
+APP_CATEGORY: Personal
+
+INPUT: honestly I don't think this is going to work but we can try
+OUTPUT: Honestly, I don't think this is going to work, but we can try.
+APP_CATEGORY: Work
+
+INPUT: alright so um the the meeting got moved to three thirty
+OUTPUT: The meeting got moved to 3:30.
+APP_CATEGORY: Work
+
+INPUT: hey what's up are you free tonight
+OUTPUT: Hey what's up, are you free tonight?
+APP_CATEGORY: Personal
+
+INPUT: I mean we could try the other approach if this one doesn't work out
+OUTPUT: I mean, we could try the other approach if this one doesn't work out.
+APP_CATEGORY: Work
+
+INPUT: actually I changed my mind let's go with plan B instead
+OUTPUT: Actually, I changed my mind. Let's go with plan B instead.
+APP_CATEGORY: Work
+
+INPUT: oh my god that's so funny I can't believe he said that
+OUTPUT: Oh my god that's so funny, I can't believe he said that
+APP_CATEGORY: Personal
+
+INPUT: I'll probably be a little late but I'm on my way
+OUTPUT: I'll probably be a little late, but I'm on my way.
+APP_CATEGORY: Personal
+
+INPUT: um so like I guess we could do it tomorrow if that works for everyone
+OUTPUT: I guess we could do it tomorrow if that works for everyone.
+APP_CATEGORY: Work
+
+INPUT: wait are you serious that's amazing
+OUTPUT: Wait, are you serious? That's amazing!
+APP_CATEGORY: Personal
+
+INPUT: the deadline is next friday and we still have a lot to do so let's prioritize
+OUTPUT: The deadline is next Friday, and we still have a lot to do, so let's prioritize.
+APP_CATEGORY: Work
+
+INPUT: okay so uh let me think about this and get back to you
+OUTPUT: Let me think about this and get back to you.
+APP_CATEGORY: Work
+
+INPUT: the project went well and the client seemed happy with the results
+OUTPUT: The project went well, and the client seemed happy with the results.
+APP_CATEGORY: Work
+
+INPUT: it costs like fifty dollars I think
+OUTPUT: It costs like $50, I think.
+APP_CATEGORY: Personal
+
+INPUT: we need to reschedule the two thirty meeting to four pm
+OUTPUT: We need to reschedule the 2:30 meeting to 4 PM.
+APP_CATEGORY: Work
+
+INPUT: she said she'll be here by noon but I'm not sure
+OUTPUT: She said she'll be here by noon, but I'm not sure.
+APP_CATEGORY: Work
+
+INPUT: erm so I I think the issue is with the database connection
+OUTPUT: I think the issue is with the database connection.
+APP_CATEGORY: Work
+
+INPUT: just wanted to check in and see how things are going
+OUTPUT: Just wanted to check in and see how things are going.
+APP_CATEGORY: Work
+
+INPUT: yes
+OUTPUT: Yes.
+APP_CATEGORY: Work
+
+INPUT: no that's fine don't worry about it
+OUTPUT: No, that's fine, don't worry about it.
+APP_CATEGORY: Work
+
+INPUT: well I think we should probably wait and see what happens
+OUTPUT: Well, I think we should probably wait and see what happens.
+APP_CATEGORY: Work
+
+INPUT: basically the system is broken and we need to fix it ASAP
+OUTPUT: Basically, the system is broken, and we need to fix it ASAP.
+APP_CATEGORY: Work
+
+INPUT: hmm
+OUTPUT: 
+APP_CATEGORY: Personal
+
+INPUT: uh um
+OUTPUT: 
+APP_CATEGORY: Work
+
+INPUT: I'm so tired today I barely slept last night
+OUTPUT: I'm so tired today, I barely slept last night.
+APP_CATEGORY: Personal
+
+INPUT: he literally said that he was going to quit can you believe it
+OUTPUT: He literally said that he was going to quit. Can you believe it?
+APP_CATEGORY: Personal
+
+INPUT: that's right we need to finish it before the end of the month
+OUTPUT: That's right, we need to finish it before the end of the month.
+APP_CATEGORY: Work
+
+INPUT: um you know like I was just um wondering if maybe you could help me with something
+OUTPUT: I was just wondering if maybe you could help me with something.
+APP_CATEGORY: Work
+
+INPUT: ok cool see you then
+OUTPUT: Ok cool, see you then
+APP_CATEGORY: Personal
+
+INPUT: as I was saying the numbers don't add up and we need to review the budget
+OUTPUT: The numbers don't add up, and we need to review the budget.
+APP_CATEGORY: Work
+
+INPUT: I believe the issue is sort of related to the new update
+OUTPUT: I believe the issue is sort of related to the new update.
+APP_CATEGORY: Work
+
+INPUT: it was like a dream honestly
+OUTPUT: It was like a dream, honestly.
+APP_CATEGORY: Personal
+
+INPUT: uh so the client wants to move the launch date up by two weeks
+OUTPUT: The client wants to move the launch date up by 2 weeks.
+APP_CATEGORY: Work
+
+INPUT: have you ever tried that new restaurant on fifth street
+OUTPUT: Have you ever tried that new restaurant on Fifth Street?
+APP_CATEGORY: Personal
+
+INPUT: um I forgot to mention we also need to update the documentation
+OUTPUT: I forgot to mention, we also need to update the documentation.
+APP_CATEGORY: Work
+
+INPUT: yo did you see the game last night it was insane
+OUTPUT: Yo did you see the game last night, it was insane
+APP_CATEGORY: Personal
+
+INPUT: er well I suppose we could look into that but I'm not entirely sure it'll work
+OUTPUT: Well, I suppose we could look into that, but I'm not entirely sure it'll work.
+APP_CATEGORY: Work
+
+INPUT: thanks for letting me know I appreciate it
+OUTPUT: Thanks for letting me know. I appreciate it.
+APP_CATEGORY: Work
+
+INPUT: so like what do you think should we go with option A or option B
+OUTPUT: What do you think, should we go with option A or option B?
+APP_CATEGORY: Work
+
+INPUT: I'm kind of worried about the performance issues we've been seeing lately
+OUTPUT: I'm kind of worried about the performance issues we've been seeing lately.
+APP_CATEGORY: Work
+
+INPUT: happy birthday hope you have an amazing day
+OUTPUT: Happy birthday! Hope you have an amazing day!
+APP_CATEGORY: Personal
+
+INPUT: um hmm let me check on that and I'll get back to you by tomorrow
+OUTPUT: Let me check on that, and I'll get back to you by tomorrow.
+APP_CATEGORY: Work
+
+INPUT: the weather is supposed to be really nice this weekend we should do something outside
+OUTPUT: The weather is supposed to be really nice this weekend. We should do something outside.
+APP_CATEGORY: Personal
+
+INPUT: okay I'll take care of it don't worry
+OUTPUT: Okay, I'll take care of it, don't worry.
+APP_CATEGORY: Work
+
+INPUT: uh you know what I mean it's just it's complicated
+OUTPUT: It's just, it's complicated.
+APP_CATEGORY: Personal
+
+INPUT: did you finish the code review for the authentication module
+OUTPUT: Did you finish the code review for the authentication module?
+APP_CATEGORY: Work
+
+INPUT: so basically what happened was um the server crashed at like two AM and nobody noticed until morning
+OUTPUT: What happened was the server crashed at like 2 AM, and nobody noticed until morning.
+APP_CATEGORY: Work
+
+INPUT: she's apparently going to be out of office next week so we'll need to find someone to cover
+OUTPUT: She's apparently going to be out of office next week, so we'll need to find someone to cover.
+APP_CATEGORY: Work
+
+INPUT: I feel like we're overthinking this let's just go with the simple approach
+OUTPUT: I feel like we're overthinking this. Let's just go with the simple approach.
+APP_CATEGORY: Work
+
+INPUT: remind me to pick up the dry cleaning after work
+OUTPUT: Remind me to pick up the dry cleaning after work.
+APP_CATEGORY: Personal
+
+INPUT: um I'm not sure if this is the right approach but let's try it anyway
+OUTPUT: I'm not sure if this is the right approach, but let's try it anyway.
+APP_CATEGORY: Work
+
+INPUT: the team did a fantastic job on this release everyone should be proud
+OUTPUT: The team did a fantastic job on this release. Everyone should be proud.
+APP_CATEGORY: Work
+
+INPUT: lol yeah that was pretty funny
+OUTPUT: Lol yeah that was pretty funny
+APP_CATEGORY: Personal
+
+INPUT: er I think john mentioned something about that yesterday
+OUTPUT: I think John mentioned something about that yesterday.
+APP_CATEGORY: Work
+
+INPUT: uh hang on let me pull up the numbers real quick
+OUTPUT: Hang on, let me pull up the numbers real quick.
+APP_CATEGORY: Work
+
+INPUT: I was going to say something but I forgot what it was
+OUTPUT: I was going to say something, but I forgot what it was.
+APP_CATEGORY: Personal
+
+INPUT: man this traffic is terrible I'm going to be so late
+OUTPUT: Man this traffic is terrible, I'm going to be so late
+APP_CATEGORY: Personal
+
+INPUT: could you possibly send me the link to the shared drive
+OUTPUT: Could you possibly send me the link to the shared drive?
+APP_CATEGORY: Work
+
+INPUT: I guess it's fine either way doesn't really matter to me
+OUTPUT: I guess it's fine either way, doesn't really matter to me.
+APP_CATEGORY: Work
+
+INPUT: um well uh let me think about it for a second
+OUTPUT: Let me think about it for a second.
+APP_CATEGORY: Work
+
+INPUT: apparently there's a new policy about remote work starting next month
+OUTPUT: Apparently, there's a new policy about remote work starting next month.
+APP_CATEGORY: Work
+
+INPUT: we should probably circle back on this after the quarterly review
+OUTPUT: We should probably circle back on this after the quarterly review.
+APP_CATEGORY: Work
+
+INPUT: ooh that looks delicious what did you order
+OUTPUT: Ooh, that looks delicious! What did you order?
+APP_CATEGORY: Personal
+
+INPUT: the the proposal needs to be submitted by friday at the latest
+OUTPUT: The proposal needs to be submitted by Friday at the latest.
+APP_CATEGORY: Work
+
+INPUT: I just realized I left my laptop charger at the office
+OUTPUT: I just realized I left my laptop charger at the office.
+APP_CATEGORY: Personal
+
+INPUT: do we have a meeting today or is it canceled
+OUTPUT: Do we have a meeting today or is it canceled?
+APP_CATEGORY: Work
+
+INPUT: wow I didn't expect that at all
+OUTPUT: Wow, I didn't expect that at all.
+APP_CATEGORY: Personal
+
+INPUT: uh yeah no that's not going to work for us
+OUTPUT: Yeah, no, that's not going to work for us.
+APP_CATEGORY: Work
+
+INPUT: I suppose we could try refactoring the entire module but that seems risky
+OUTPUT: I suppose we could try refactoring the entire module, but that seems risky.
+APP_CATEGORY: Work
+
+INPUT: alright sounds like a plan let's sync up tomorrow morning
+OUTPUT: Sounds like a plan. Let's sync up tomorrow morning.
+APP_CATEGORY: Work
+
+INPUT: hey just a heads up the build is broken on the main branch
+OUTPUT: Hey, just a heads up, the build is broken on the main branch.
+APP_CATEGORY: Work
+
+INPUT: what's the ETA on the fix for the payment gateway issue
+OUTPUT: What's the ETA on the fix for the payment gateway issue?
+APP_CATEGORY: Work
+
+INPUT: should we invite mike and sarah to the planning session
+OUTPUT: Should we invite Mike and Sarah to the planning session?
+APP_CATEGORY: Work
+
+INPUT: let's grab coffee sometime this week
+OUTPUT: Let's grab coffee sometime this week.
+APP_CATEGORY: Personal
+
+INPUT: so um basically I haven't had time to look at it yet but I will by end of day
+OUTPUT: I haven't had time to look at it yet, but I will by end of day.
+APP_CATEGORY: Work
+
+INPUT: that's a great idea we should definitely do that
+OUTPUT: That's a great idea. We should definitely do that.
+APP_CATEGORY: Work
+
+INPUT: is there anything else you need from me before I head out
+OUTPUT: Is there anything else you need from me before I head out?
+APP_CATEGORY: Work
+
+INPUT: nah I'm good thanks though
+OUTPUT: Nah I'm good, thanks though
+APP_CATEGORY: Personal
+
+INPUT: FYI the sprint review got pushed to thursday
+OUTPUT: FYI, the sprint review got pushed to Thursday.
+APP_CATEGORY: Work
+
+INPUT: um do you think this is something we should escalate to management
+OUTPUT: Do you think this is something we should escalate to management?
+APP_CATEGORY: Work
+
+INPUT: the API is returning a five hundred error whenever we try to hit the endpoint
+OUTPUT: The API is returning a 500 error whenever we try to hit the endpoint.
+APP_CATEGORY: Work
+
+INPUT: I'll handle the frontend you take care of the backend sound good
+OUTPUT: I'll handle the frontend, you take care of the backend. Sound good?
+APP_CATEGORY: Work
+
+INPUT: honestly this is the best pizza I've ever had
+OUTPUT: Honestly, this is the best pizza I've ever had.
+APP_CATEGORY: Personal
+
+INPUT: er sorry to bother you but do you have five minutes to chat
+OUTPUT: Sorry to bother you, but do you have 5 minutes to chat?
+APP_CATEGORY: Work
+
+INPUT: this might seem like a dumb question but how do you access the VPN from home
+OUTPUT: This might seem like a dumb question, but how do you access the VPN from home?
+APP_CATEGORY: Work
+
+INPUT: haha yeah I saw that meme too
+OUTPUT: Haha yeah I saw that meme too
+APP_CATEGORY: Personal
+
+INPUT: you know what I think the problem is with the deployment pipeline
+OUTPUT: I think the problem is with the deployment pipeline.
+APP_CATEGORY: Work
+
+INPUT: right so the main takeaway from the meeting is that we need to hire two more engineers
+OUTPUT: The main takeaway from the meeting is that we need to hire 2 more engineers.
+APP_CATEGORY: Work
+
+INPUT: can someone please review my PR it's been open for three days
+OUTPUT: Can someone please review my PR? It's been open for 3 days.
+APP_CATEGORY: Work
+
+INPUT: low key I think we should just cancel the whole thing
+OUTPUT: Low key, I think we should just cancel the whole thing.
+APP_CATEGORY: Personal
+
+INPUT: the CEO wants a full report by monday morning no exceptions
+OUTPUT: The CEO wants a full report by Monday morning, no exceptions.
+APP_CATEGORY: Work
+
+INPUT: um like I said earlier we need to refactor the auth service before adding new features
+OUTPUT: We need to refactor the auth service before adding new features.
+APP_CATEGORY: Work
+
+INPUT: oops I sent that to the wrong channel sorry about that
+OUTPUT: Oops, I sent that to the wrong channel. Sorry about that.
+APP_CATEGORY: Work
+
+INPUT: the thing is we don't really have enough data to make that decision yet
+OUTPUT: The thing is, we don't really have enough data to make that decision yet.
+APP_CATEGORY: Work
+
+INPUT: not gonna lie that presentation was really well done
+OUTPUT: Not gonna lie, that presentation was really well done.
+APP_CATEGORY: Work
+
+INPUT: I'll probably skip the gym today I'm feeling a little under the weather
+OUTPUT: I'll probably skip the gym today. I'm feeling a little under the weather.
+APP_CATEGORY: Personal
+
+INPUT: look I understand your concern but we need to move forward with this
+OUTPUT: Look, I understand your concern, but we need to move forward with this.
+APP_CATEGORY: Work
+
+INPUT: are you guys free for dinner on saturday
+OUTPUT: Are you guys free for dinner on Saturday?
+APP_CATEGORY: Personal
+
+INPUT: uh hmm well I guess the only option is to wait and see
+OUTPUT: I guess the only option is to wait and see.
+APP_CATEGORY: Work
+
+INPUT: congrats on the promotion you totally deserve it
+OUTPUT: Congrats on the promotion! You totally deserve it!
+APP_CATEGORY: Personal
+
+INPUT: my flight lands at like nine thirty tonight can you pick me up
+OUTPUT: My flight lands at like 9:30 tonight. Can you pick me up?
+APP_CATEGORY: Personal
+
+INPUT: it's not that big of a deal but I wanted to flag it just in case
+OUTPUT: It's not that big of a deal, but I wanted to flag it just in case.
+APP_CATEGORY: Work
+
+INPUT: who's leading the standup today
+OUTPUT: Who's leading the standup today?
+APP_CATEGORY: Work
+
+INPUT: oh that reminds me I need to send the invoice to the client
+OUTPUT: Oh, that reminds me, I need to send the invoice to the client.
+APP_CATEGORY: Work
+
+INPUT: she's such a hard worker I really admire her dedication
+OUTPUT: She's such a hard worker. I really admire her dedication.
+APP_CATEGORY: Work
+
+INPUT: I somewhat agree with the proposal but there are a few concerns I'd like to raise
+OUTPUT: I somewhat agree with the proposal, but there are a few concerns I'd like to raise.
+APP_CATEGORY: Work
+
+INPUT: nice one haha
+OUTPUT: Nice one haha
+APP_CATEGORY: Personal
+
+INPUT: tbh I don't really care which one we pick as long as it gets the job done
+OUTPUT: Tbh, I don't really care which one we pick, as long as it gets the job done.
+APP_CATEGORY: Work
+
+INPUT: where did you put the car keys I can't find them anywhere
+OUTPUT: Where did you put the car keys? I can't find them anywhere.
+APP_CATEGORY: Personal
+
+INPUT: ugh this bug has been driving me crazy all day
+OUTPUT: Ugh, this bug has been driving me crazy all day.
+APP_CATEGORY: Work
+
+INPUT: I think the main issue is we're understaffed and the deadlines are too aggressive
+OUTPUT: I think the main issue is we're understaffed, and the deadlines are too aggressive.
+APP_CATEGORY: Work
+
+INPUT: what if we tried a different approach like using microservices instead of a monolith
+OUTPUT: What if we tried a different approach, like using microservices instead of a monolith?
+APP_CATEGORY: Work
+
+INPUT: gonna be a few minutes late don't start without me
+OUTPUT: Gonna be a few minutes late. Don't start without me.
+APP_CATEGORY: Personal
+
+INPUT: hey so um there's this really cool new feature in the latest update you should check it out
+OUTPUT: There's this really cool new feature in the latest update, you should check it out.
+APP_CATEGORY: Personal
+
+INPUT: any updates on the hiring front
+OUTPUT: Any updates on the hiring front?
+APP_CATEGORY: Work
+
+INPUT: I heard they're planning to open a new office in bangalore
+OUTPUT: I heard they're planning to open a new office in Bangalore.
+APP_CATEGORY: Work
+
+INPUT: uh like I was saying before we got interrupted the whole system needs an overhaul
+OUTPUT: The whole system needs an overhaul.
+APP_CATEGORY: Work
+
+INPUT: it seems like the database migration script has some edge cases we didn't account for
+OUTPUT: It seems like the database migration script has some edge cases we didn't account for.
+APP_CATEGORY: Work
+
+INPUT: I'm fairly certain the bug is in the payment module not the cart
+OUTPUT: I'm fairly certain the bug is in the payment module, not the cart.
+APP_CATEGORY: Work
+
+INPUT: dude you won't believe what just happened
+OUTPUT: Dude you won't believe what just happened
+APP_CATEGORY: Personal
+
+INPUT: that being said I think we should still move forward with caution
+OUTPUT: That being said, I think we should still move forward with caution.
+APP_CATEGORY: Work
+
+INPUT: my bad I completely forgot about the deadline
+OUTPUT: My bad, I completely forgot about the deadline.
+APP_CATEGORY: Work
+
+INPUT: heads up the CI pipeline is going to be down for maintenance tonight between ten and midnight
+OUTPUT: Heads up, the CI pipeline is going to be down for maintenance tonight between 10 and midnight.
+APP_CATEGORY: Work
+
+INPUT: can you double check the numbers in the spreadsheet something looks off
+OUTPUT: Can you double check the numbers in the spreadsheet? Something looks off.
+APP_CATEGORY: Work
+
+INPUT: by the way did anyone follow up with the vendor about the delayed shipment
+OUTPUT: By the way, did anyone follow up with the vendor about the delayed shipment?
+APP_CATEGORY: Work
+
+INPUT: literally everyone is talking about the new company policy
+OUTPUT: Literally everyone is talking about the new company policy.
+APP_CATEGORY: Work
+
+INPUT: I'll send you the details later tonight once I've finalized everything
+OUTPUT: I'll send you the details later tonight once I've finalized everything.
+APP_CATEGORY: Personal
+
+INPUT: has anyone tried the new Thai place near the office
+OUTPUT: Has anyone tried the new Thai place near the office?
+APP_CATEGORY: Work
+
+INPUT: to be honest I'd rather not get involved in that situation
+OUTPUT: To be honest, I'd rather not get involved in that situation.
+APP_CATEGORY: Work
+
+INPUT: is it just me or does the office feel colder today
+OUTPUT: Is it just me or does the office feel colder today?
+APP_CATEGORY: Work
+
+INPUT: for what it's worth I think you handled that really well
+OUTPUT: For what it's worth, I think you handled that really well.
+APP_CATEGORY: Work
+
+INPUT: so um yeah that's basically it from my side
+OUTPUT: That's it from my side.
+APP_CATEGORY: Work
+
+INPUT: please make sure to update the JIRA ticket with the latest status
+OUTPUT: Please make sure to update the JIRA ticket with the latest status.
+APP_CATEGORY: Work
+
+INPUT: good morning everyone let's get started with the agenda
+OUTPUT: Good morning everyone. Let's get started with the agenda.
+APP_CATEGORY: Work
+
+INPUT: she kind of hinted that there might be layoffs coming
+OUTPUT: She kind of hinted that there might be layoffs coming.
+APP_CATEGORY: Work
+
+INPUT: do you want me to order lunch for the team
+OUTPUT: Do you want me to order lunch for the team?
+APP_CATEGORY: Work
+
+INPUT: we're running a little behind schedule but nothing to worry about
+OUTPUT: We're running a little behind schedule, but nothing to worry about.
+APP_CATEGORY: Work
+
+INPUT: quick reminder tomorrow is the deadline for submitting expense reports
+OUTPUT: Quick reminder, tomorrow is the deadline for submitting expense reports.
+APP_CATEGORY: Work
+
+INPUT: um do you think we'll be able to ship this by end of quarter
+OUTPUT: Do you think we'll be able to ship this by end of quarter?
+APP_CATEGORY: Work
+
+INPUT: lmk when you're free to hop on a call
+OUTPUT: Lmk when you're free to hop on a call.
+APP_CATEGORY: Work
+
+INPUT: turns out the issue was a simple typo in the config file
+OUTPUT: Turns out the issue was a simple typo in the config file.
+APP_CATEGORY: Work
+
+INPUT: I'm like ninety percent sure we already discussed this last sprint
+OUTPUT: I'm like 90% sure we already discussed this last sprint.
+APP_CATEGORY: Work
+
+INPUT: ah okay I see what you mean now
+OUTPUT: Okay, I see what you mean now.
+APP_CATEGORY: Work
+
+INPUT: the customer is supposedly very unhappy with the latest release
+OUTPUT: The customer is supposedly very unhappy with the latest release.
+APP_CATEGORY: Work
+
+INPUT: who was responsible for deploying to production last night
+OUTPUT: Who was responsible for deploying to production last night?
+APP_CATEGORY: Work
+
+INPUT: not sure if you saw but the competitor just launched a similar feature
+OUTPUT: Not sure if you saw, but the competitor just launched a similar feature.
+APP_CATEGORY: Work
+
+INPUT: somebody left the conference room lights on again
+OUTPUT: Somebody left the conference room lights on again.
+APP_CATEGORY: Work
+
+INPUT: you you see what I'm saying it just doesn't make sense
+OUTPUT: You see what I'm saying? It just doesn't make sense.
+APP_CATEGORY: Work
+
+INPUT: brb need to grab some water
+OUTPUT: Brb, need to grab some water.
+APP_CATEGORY: Work
+
+INPUT: just between us I think the project timeline is completely unrealistic
+OUTPUT: Just between us, I think the project timeline is completely unrealistic.
+APP_CATEGORY: Personal
+
+INPUT: the only problem is the budget won't cover all of that
+OUTPUT: The only problem is the budget won't cover all of that.
+APP_CATEGORY: Work
+
+INPUT: let's try to wrap this up before the end of the hour
+OUTPUT: Let's try to wrap this up before the end of the hour.
+APP_CATEGORY: Work
+
+INPUT: I just got off a call with the vendor they're willing to negotiate on the pricing
+OUTPUT: I just got off a call with the vendor. They're willing to negotiate on the pricing.
+APP_CATEGORY: Work
+
+INPUT: whoa that's a lot of users we hit a new record
+OUTPUT: Whoa, that's a lot of users! We hit a new record!
+APP_CATEGORY: Work
+
+INPUT: should I loop in the design team on this thread or keep it to engineering
+OUTPUT: Should I loop in the design team on this thread or keep it to engineering?
+APP_CATEGORY: Work
+
+INPUT: supposedly the fix is going out in the next hotfix release
+OUTPUT: Supposedly, the fix is going out in the next hotfix release.
+APP_CATEGORY: Work
+
+INPUT: long story short we need to redo the whole integration
+OUTPUT: Long story short, we need to redo the whole integration.
+APP_CATEGORY: Work
+
+INPUT: perhaps we should consider hiring a consultant for this particular problem
+OUTPUT: Perhaps we should consider hiring a consultant for this particular problem.
+APP_CATEGORY: Work
+
+INPUT: I'm only asking because I want to make sure we're on the same page
+OUTPUT: I'm only asking because I want to make sure we're on the same page.
+APP_CATEGORY: Work
+
+INPUT: oh wait I just realized that's the same bug we fixed last month
+OUTPUT: Oh wait, I just realized that's the same bug we fixed last month.
+APP_CATEGORY: Work
+
+INPUT: no worries take your time
+OUTPUT: No worries, take your time.
+APP_CATEGORY: Work
+
+INPUT: the VP apparently wants us to present our quarterly numbers at the all hands
+OUTPUT: The VP apparently wants us to present our quarterly numbers at the all hands.
+APP_CATEGORY: Work
+
+INPUT: uh so like I'm I'm pretty confused about the new process can someone walk me through it
+OUTPUT: I'm pretty confused about the new process. Can someone walk me through it?
+APP_CATEGORY: Work
+
+INPUT: that was a really productive meeting we got a lot done
+OUTPUT: That was a really productive meeting. We got a lot done.
+APP_CATEGORY: Work
+
+INPUT: is this the right slack channel for deployment updates
+OUTPUT: Is this the right Slack channel for deployment updates?
+APP_CATEGORY: Work
+
+INPUT: I personally think we should wait but it's not my call
+OUTPUT: I personally think we should wait, but it's not my call.
+APP_CATEGORY: Work
+
+INPUT: great work on shipping that feature the team did an outstanding job
+OUTPUT: Great work on shipping that feature. The team did an outstanding job.
+APP_CATEGORY: Work
+
+INPUT: have a good weekend everyone see you on monday
+OUTPUT: Have a good weekend everyone. See you on Monday.
+APP_CATEGORY: Work
+
+INPUT: so uh yeah that's what I was going to say
+OUTPUT: That's what I was going to say.
+APP_CATEGORY: Work
+
+INPUT: random question but do you know anyone who's hiring for senior engineers
+OUTPUT: Random question, but do you know anyone who's hiring for senior engineers?
+APP_CATEGORY: Work
+
+INPUT: in my opinion the current architecture is too tightly coupled
+OUTPUT: In my opinion, the current architecture is too tightly coupled.
+APP_CATEGORY: Work
+
+INPUT: sorry for the late reply I was in back to back meetings all day
+OUTPUT: Sorry for the late reply. I was in back to back meetings all day.
+APP_CATEGORY: Work
+
+INPUT: this is somewhat related to what alex brought up earlier
+OUTPUT: This is somewhat related to what Alex brought up earlier.
+APP_CATEGORY: Work
+
+INPUT: I'll swing by your desk in a bit
+OUTPUT: I'll swing by your desk in a bit.
+APP_CATEGORY: Work
+
+INPUT: ok so the plan is to finish the MVP by end of march and then do user testing in april
+OUTPUT: The plan is to finish the MVP by end of March, and then do user testing in April.
+APP_CATEGORY: Work
+
+INPUT: personally I'd go with React but I know some people prefer Vue
+OUTPUT: Personally, I'd go with React, but I know some people prefer Vue.
+APP_CATEGORY: Work
+
+INPUT: I think there's a slight misunderstanding let me clarify
+OUTPUT: I think there's a slight misunderstanding. Let me clarify.
+APP_CATEGORY: Work
+
+INPUT: so sick of these meetings that could have been emails
+OUTPUT: So sick of these meetings that could have been emails.
+APP_CATEGORY: Personal
+
+INPUT: um hey is this a good time to chat
+OUTPUT: Hey, is this a good time to chat?
+APP_CATEGORY: Work
+
+INPUT: one more thing before we wrap up we need to assign owners for each action item
+OUTPUT: One more thing before we wrap up, we need to assign owners for each action item.
+APP_CATEGORY: Work
+
+INPUT: if you need anything just ping me on slack
+OUTPUT: If you need anything, just ping me on Slack.
+APP_CATEGORY: Work
+
+INPUT: hmm interesting I hadn't thought of it that way
+OUTPUT: Interesting, I hadn't thought of it that way.
+APP_CATEGORY: Work
+
+INPUT: did the QA team sign off on the release or are we still waiting
+OUTPUT: Did the QA team sign off on the release, or are we still waiting?
+APP_CATEGORY: Work
+
+INPUT: I'm honestly surprised it took this long to fix that bug
+OUTPUT: I'm honestly surprised it took this long to fix that bug.
+APP_CATEGORY: Work
+
+INPUT: watch out there's a pretty nasty merge conflict on that branch
+OUTPUT: Watch out, there's a pretty nasty merge conflict on that branch.
+APP_CATEGORY: Work
+
+INPUT: miss you guys let's plan something soon
+OUTPUT: Miss you guys. Let's plan something soon.
+APP_CATEGORY: Personal
+
+INPUT: the new intern seems like a really quick learner
+OUTPUT: The new intern seems like a really quick learner.
+APP_CATEGORY: Work
+
+INPUT: uh well you see the thing is I already committed to another project
+OUTPUT: The thing is, I already committed to another project.
+APP_CATEGORY: Work
+
+INPUT: how's it going with the new apartment have you settled in yet
+OUTPUT: How's it going with the new apartment? Have you settled in yet?
+APP_CATEGORY: Personal
+
+INPUT: this feels a bit rushed maybe we should take another day to review
+OUTPUT: This feels a bit rushed. Maybe we should take another day to review.
+APP_CATEGORY: Work
+
+INPUT: btw the parking lot is going to be closed next week for repairs
+OUTPUT: Btw, the parking lot is going to be closed next week for repairs.
+APP_CATEGORY: Work
+
+INPUT: I mean that's fair but we also need to think about scalability
+OUTPUT: I mean, that's fair, but we also need to think about scalability.
+APP_CATEGORY: Work
+
+INPUT: the client is in new york so there's a three hour time difference
+OUTPUT: The client is in New York, so there's a 3 hour time difference.
+APP_CATEGORY: Work
+
+INPUT: you think we should refactor now or wait until after the release
+OUTPUT: You think we should refactor now or wait until after the release?
+APP_CATEGORY: Work
+
+INPUT: it was raining so we stayed inside and watched movies all day
+OUTPUT: It was raining, so we stayed inside and watched movies all day.
+APP_CATEGORY: Personal
+
+INPUT: just FYI I won't be available after three PM today
+OUTPUT: Just FYI, I won't be available after 3 PM today.
+APP_CATEGORY: Work
+
+INPUT: I may have found a workaround but I'm not a hundred percent sure it'll hold up in production
+OUTPUT: I may have found a workaround, but I'm not 100% sure it'll hold up in production.
+APP_CATEGORY: Work
+
+INPUT: correct me if I'm wrong but wasn't the deadline supposed to be next week
+OUTPUT: Correct me if I'm wrong, but wasn't the deadline supposed to be next week?
+APP_CATEGORY: Work
+
+INPUT: safe travels see you when you get back
+OUTPUT: Safe travels! See you when you get back.
+APP_CATEGORY: Personal
+
+INPUT: I genuinely don't know how he does it every single time
+OUTPUT: I genuinely don't know how he does it every single time.
+APP_CATEGORY: Personal
+
+INPUT: hey are you home yet
+OUTPUT: Hey are you home yet?
+APP_CATEGORY: Personal
+
+INPUT: omg I just saw the funniest video you need to see this
+OUTPUT: Omg I just saw the funniest video, you need to see this
+APP_CATEGORY: Personal
+
+INPUT: can we reschedule our call to sometime next week I'm swamped this week
+OUTPUT: Can we reschedule our call to sometime next week? I'm swamped this week.
+APP_CATEGORY: Personal
+
+INPUT: don't forget to bring your ID tomorrow they check at the door
+OUTPUT: Don't forget to bring your ID tomorrow. They check at the door.
+APP_CATEGORY: Personal
+
+INPUT: I've been meaning to ask you about that book you recommended
+OUTPUT: I've been meaning to ask you about that book you recommended.
+APP_CATEGORY: Personal
+
+INPUT: the kids have a soccer game at ten on saturday morning
+OUTPUT: The kids have a soccer game at 10 on Saturday morning.
+APP_CATEGORY: Personal
+
+INPUT: that concert was so good I'm glad we went
+OUTPUT: That concert was so good. I'm glad we went.
+APP_CATEGORY: Personal
+
+INPUT: um is anyone else having trouble connecting to the game server
+OUTPUT: Is anyone else having trouble connecting to the game server?
+APP_CATEGORY: Personal
+
+INPUT: running late be there in fifteen
+OUTPUT: Running late, be there in 15.
+APP_CATEGORY: Personal
+
+INPUT: just finished my workout feeling great
+OUTPUT: Just finished my workout, feeling great.
+APP_CATEGORY: Personal
+
+INPUT: thinking of getting a new car any recommendations
+OUTPUT: Thinking of getting a new car. Any recommendations?
+APP_CATEGORY: Personal
+
+INPUT: she texted me back finally after like three days
+OUTPUT: She texted me back finally, after like 3 days.
+APP_CATEGORY: Personal
+
+INPUT: we should try that new hiking trail this weekend the one near the lake
+OUTPUT: We should try that new hiking trail this weekend, the one near the lake.
+APP_CATEGORY: Personal
+
+INPUT: uh well I'm not really sure what to get her for her birthday any ideas
+OUTPUT: I'm not really sure what to get her for her birthday. Any ideas?
+APP_CATEGORY: Personal
+
+INPUT: the food at that place was so overpriced and the portions were tiny
+OUTPUT: The food at that place was so overpriced, and the portions were tiny.
+APP_CATEGORY: Personal
+
+INPUT: sleep well talk tomorrow
+OUTPUT: Sleep well. Talk tomorrow.
+APP_CATEGORY: Personal
+
+INPUT: hey do you still have that recipe for the chocolate cake you made last time
+OUTPUT: Hey, do you still have that recipe for the chocolate cake you made last time?
+APP_CATEGORY: Personal
+
+INPUT: I'm going to the grocery store need anything
+OUTPUT: I'm going to the grocery store. Need anything?
+APP_CATEGORY: Personal
+
+INPUT: gg that was a close match
+OUTPUT: Gg, that was a close match.
+APP_CATEGORY: Personal
+
+INPUT: your mom asked if you're coming for dinner on sunday
+OUTPUT: Your mom asked if you're coming for dinner on Sunday.
+APP_CATEGORY: Personal
+
+INPUT: I accidentally left the stove on can you go check
+OUTPUT: I accidentally left the stove on. Can you go check?
+APP_CATEGORY: Personal
+
+INPUT: love that show have you seen the latest episode
+OUTPUT: Love that show! Have you seen the latest episode?
+APP_CATEGORY: Personal
+
+INPUT: i booked us a meeting room on the third floor for the retro
+OUTPUT: I booked us a meeting room on the 3rd floor for the retro.
+APP_CATEGORY: Work
+
+# basic_formatting merged from v2 (26 examples)
+
+INPUT: so basically the the server went down due to high traffic
+OUTPUT: Basically, the server went down due to high traffic.
+APP_CATEGORY: Work
+
+INPUT: we need to review the Q three metrics before thursday
+OUTPUT: We need to review the Q3 metrics before Thursday.
+APP_CATEGORY: Work
+
+INPUT: I'm running like ten minutes late save me a seat
+OUTPUT: I'm running like 10 minutes late, save me a seat
+APP_CATEGORY: Personal
+
+INPUT: um I was actually thinking we could use a different color scheme
+OUTPUT: I was actually thinking we could use a different color scheme.
+APP_CATEGORY: Work
+
+INPUT: just wanted to say great job on the presentation today it was awesome
+OUTPUT: Just wanted to say great job on the presentation today. It was awesome.
+APP_CATEGORY: Work
+
+INPUT: I'll definitely be there what time should I arrive
+OUTPUT: I'll definitely be there. What time should I arrive?
+APP_CATEGORY: Personal
+
+INPUT: wait are you serious I haven't heard anything about that
+OUTPUT: Wait, are you serious? I haven't heard anything about that.
+APP_CATEGORY: Work
+
+INPUT: er well I guess we could push the launch to next monday
+OUTPUT: Well, I guess we could push the launch to next Monday.
+APP_CATEGORY: Work
+
+INPUT: I mean if you really want to try it we can
+OUTPUT: I mean, if you really want to try it, we can.
+APP_CATEGORY: Personal
+
+INPUT: I personally think we should wait for more data
+OUTPUT: I personally think we should wait for more data.
+APP_CATEGORY: Work
+
+INPUT: no worries take your time and let me know when you're free
+OUTPUT: No worries, take your time and let me know when you're free.
+APP_CATEGORY: Work
+
+INPUT: ok cool let's aim for lunch around twelve
+OUTPUT: Ok cool let's aim for lunch around 12
+APP_CATEGORY: Personal
+
+INPUT: the thing is the API rate limits are blocking our tests
+OUTPUT: The thing is, the API rate limits are blocking our tests.
+APP_CATEGORY: Work
+
+INPUT: hmm I'm not really sure if that's the best option
+OUTPUT: I'm not really sure if that's the best option.
+APP_CATEGORY: Work
+
+INPUT: sounds perfect see you tomorrow morning
+OUTPUT: Sounds perfect, see you tomorrow morning.
+APP_CATEGORY: Personal
+
+INPUT: did you send the invite to the design team yet
+OUTPUT: Did you send the invite to the design team yet?
+APP_CATEGORY: Work
+
+INPUT: by the way did you hear back from the client
+OUTPUT: By the way, did you hear back from the client?
+APP_CATEGORY: Work
+
+INPUT: uh yeah I can definitely join the meeting at four thirty
+OUTPUT: Yeah, I can definitely join the meeting at 4:30.
+APP_CATEGORY: Work
+
+INPUT: wow this weather is crazy right
+OUTPUT: Wow, this weather is crazy right?
+APP_CATEGORY: Personal
+
+INPUT: have a great weekend team wrap up early today
+OUTPUT: Have a great weekend, team. Wrap up early today.
+APP_CATEGORY: Work
+
+INPUT: lol I totally forgot about that
+OUTPUT: Lol I totally forgot about that
+APP_CATEGORY: Personal
+
+INPUT: let's push this to next sprint since we are overloaded
+OUTPUT: Let's push this to next sprint since we are overloaded.
+APP_CATEGORY: Work
+
+INPUT: man that movie was so good I didn't expect the ending at all
+OUTPUT: Man, that movie was so good. I didn't expect the ending at all.
+APP_CATEGORY: Personal
+
+INPUT: there's a massive bug in the checkout flow we need to fix it right now
+OUTPUT: There's a massive bug in the checkout flow. We need to fix it right now.
+APP_CATEGORY: Work
+
+INPUT: can you pick up uh milk and some orange juice on your way home
+OUTPUT: Can you pick up milk and some orange juice on your way home?
+APP_CATEGORY: Personal
+
+INPUT: the PR is ready for review whenever you have a second
+OUTPUT: The PR is ready for review whenever you have a second.
+APP_CATEGORY: Work
+
+# basic_formatting merged from v3 (49 examples)
+
+INPUT: so basically the cache was not invalidated properly and users are seeing stale data
+OUTPUT: Basically, the cache was not invalidated properly, and users are seeing stale data.
+APP_CATEGORY: Work
+
+INPUT: we need to get the sprint velocity up before the end of Q two
+OUTPUT: We need to get the sprint velocity up before the end of Q2.
+APP_CATEGORY: Work
+
+INPUT: I'm running like fifteen minutes late please save a spot in the standup
+OUTPUT: I'm running like 15 minutes late, please save a spot in the standup.
+APP_CATEGORY: Work
+
+INPUT: um I was thinking maybe we should try a completely different approach here
+OUTPUT: I was thinking maybe we should try a completely different approach here.
+APP_CATEGORY: Work
+
+INPUT: just wanted to say the code review was great really solid work
+OUTPUT: Just wanted to say the code review was great. Really solid work.
+APP_CATEGORY: Work
+
+INPUT: so we just need to fix the authentication bug and we should be good to release
+OUTPUT: We just need to fix the authentication bug, and we should be good to release.
+APP_CATEGORY: Work
+
+INPUT: uh the client called and they want to move the deadline up by three days
+OUTPUT: The client called and they want to move the deadline up by 3 days.
+APP_CATEGORY: Work
+
+INPUT: its been three hours since the incident started and the on call team is still investigating
+OUTPUT: It's been 3 hours since the incident started, and the on-call team is still investigating.
+APP_CATEGORY: Work
+
+INPUT: so basically um we ran out of memory on the prod server because of a memory leak
+OUTPUT: We ran out of memory on the prod server because of a memory leak.
+APP_CATEGORY: Work
+
+INPUT: the the API rate limit was hit twice today we need to optimize our requests
+OUTPUT: The API rate limit was hit twice today. We need to optimize our requests.
+APP_CATEGORY: Work
+
+INPUT: can you review my PR its been sitting there since tuesday
+OUTPUT: Can you review my PR? It's been sitting there since Tuesday.
+APP_CATEGORY: Work
+
+INPUT: um should we push this to next sprint or keep it in scope for this one
+OUTPUT: Should we push this to next sprint or keep it in scope for this one?
+APP_CATEGORY: Work
+
+INPUT: so I think we should upgrade the node version its causing compatibility issues
+OUTPUT: I think we should upgrade the Node version. It's causing compatibility issues.
+APP_CATEGORY: Work
+
+INPUT: just a heads up the build pipeline is flaky this morning running multiple retries
+OUTPUT: Just a heads up, the build pipeline is flaky this morning. Running multiple retries.
+APP_CATEGORY: Work
+
+INPUT: uh the design handoff is done the assets are uploaded in figma
+OUTPUT: The design handoff is done, the assets are uploaded in Figma.
+APP_CATEGORY: Work
+
+INPUT: we we need to finalize the analytics integration before the launch on friday
+OUTPUT: We need to finalize the analytics integration before the launch on Friday.
+APP_CATEGORY: Work
+
+INPUT: so basically the environment variables were not set up correctly on staging
+OUTPUT: Basically, the environment variables were not set up correctly on staging.
+APP_CATEGORY: Work
+
+INPUT: um the new hire starts next monday make sure access is ready by friday
+OUTPUT: The new hire starts next Monday, make sure access is ready by Friday.
+APP_CATEGORY: Work
+
+INPUT: I'm running like five minutes late to the client presentation sorry
+OUTPUT: I'm running like 5 minutes late to the client presentation, sorry.
+APP_CATEGORY: Work
+
+INPUT: so we merged the feature but now the test suite is failing on the main branch
+OUTPUT: We merged the feature, but now the test suite is failing on the main branch.
+APP_CATEGORY: Work
+
+INPUT: just wanted to flag that the S3 bucket permissions were misconfigured for a few hours
+OUTPUT: Just wanted to flag that the S3 bucket permissions were misconfigured for a few hours.
+APP_CATEGORY: Work
+
+INPUT: uh the release notes are ready but need one final review from the team lead
+OUTPUT: The release notes are ready but need one final review from the team lead.
+APP_CATEGORY: Work
+
+INPUT: um so the user session data wasnt being saved due to a bug in the session handler
+OUTPUT: The user session data wasn't being saved due to a bug in the session handler.
+APP_CATEGORY: Work
+
+INPUT: so basically the database backup ran but it didnt verify the restore successfully
+OUTPUT: Basically, the database backup ran, but it didn't verify the restore successfully.
+APP_CATEGORY: Work
+
+INPUT: the the dashboard charts are broken for users on safari need a fix asap
+OUTPUT: The dashboard charts are broken for users on Safari. Need a fix ASAP.
+APP_CATEGORY: Work
+
+INPUT: so the quarterly targets were missed by three percent this time
+OUTPUT: The quarterly targets were missed by 3% this time.
+APP_CATEGORY: Work
+
+INPUT: um can we please move the retro to wednesday the team has a conflict on tuesday
+OUTPUT: Can we please move the retro to Wednesday? The team has a conflict on Tuesday.
+APP_CATEGORY: Work
+
+INPUT: so the new onboarding flow has reduced drop off by twenty two percent great results
+OUTPUT: The new onboarding flow has reduced drop-off by 22%. Great results.
+APP_CATEGORY: Work
+
+INPUT: I'm running like twenty minutes late the metro was delayed please start without me
+OUTPUT: I'm running like 20 minutes late, the metro was delayed, please start without me
+APP_CATEGORY: Personal
+
+INPUT: so the feature is about eighty percent done needs another two days of testing
+OUTPUT: The feature is about 80% done. Needs another 2 days of testing.
+APP_CATEGORY: Work
+
+INPUT: uh wanted to let everyone know the annual performance review window is open
+OUTPUT: Wanted to let everyone know the annual performance review window is open.
+APP_CATEGORY: Work
+
+INPUT: so basically the user reported a crash on checkout and we reproduced it locally
+OUTPUT: Basically, the user reported a crash on checkout, and we reproduced it locally.
+APP_CATEGORY: Work
+
+INPUT: we we sent the proposal to the client last night waiting to hear back
+OUTPUT: We sent the proposal to the client last night. Waiting to hear back.
+APP_CATEGORY: Work
+
+INPUT: um the beta testers have shared feedback most of it is positive a few UX issues
+OUTPUT: The beta testers have shared feedback. Most of it is positive. A few UX issues.
+APP_CATEGORY: Work
+
+INPUT: so I think the team needs a morale boost after this tough sprint
+OUTPUT: I think the team needs a morale boost after this tough sprint.
+APP_CATEGORY: Work
+
+INPUT: just a quick note to say the docs have been updated and are live now
+OUTPUT: Just a quick note to say the docs have been updated and are live now.
+APP_CATEGORY: Work
+
+INPUT: uh the compliance report is due to the board by the end of this quarter
+OUTPUT: The compliance report is due to the board by the end of this quarter.
+APP_CATEGORY: Work
+
+INPUT: so basically the deployment failed because we had a missing config in the yaml file
+OUTPUT: Basically, the deployment failed because we had a missing config in the YAML file.
+APP_CATEGORY: Work
+
+INPUT: the the integration with the payment gateway is now live in production
+OUTPUT: The integration with the payment gateway is now live in production.
+APP_CATEGORY: Work
+
+INPUT: um we need to run a security scan on the new endpoints before they go live
+OUTPUT: We need to run a security scan on the new endpoints before they go live.
+APP_CATEGORY: Work
+
+INPUT: so the sprint velocity dropped this cycle we should look at blockers in the retro
+OUTPUT: The sprint velocity dropped this cycle. We should look at blockers in the retro.
+APP_CATEGORY: Work
+
+INPUT: just a heads up that network maintenance is happening tonight from ten pm to midnight
+OUTPUT: Just a heads up, network maintenance is happening tonight from 10 PM to midnight.
+APP_CATEGORY: Work
+
+INPUT: we we tracked down the root cause of the incident it was a race condition
+OUTPUT: We tracked down the root cause of the incident. It was a race condition.
+APP_CATEGORY: Work
+
+INPUT: uh reminder to submit your expense claims before the twenty fifth of this month
+OUTPUT: Reminder to submit your expense claims before the 25th of this month.
+APP_CATEGORY: Work
+
+INPUT: so the team has been doing really well this quarter proud of the progress
+OUTPUT: The team has been doing really well this quarter. Proud of the progress.
+APP_CATEGORY: Work
+
+INPUT: um the user interviews revealed that sixty percent found the onboarding confusing
+OUTPUT: The user interviews revealed that 60% found the onboarding confusing.
+APP_CATEGORY: Work
+
+INPUT: so basically we resolved the three P one issues from last week all clear now
+OUTPUT: Basically, we resolved the 3 P1 issues from last week. All clear now.
+APP_CATEGORY: Work
+
+INPUT: I'm waiting on approval from security before we can roll out the update
+OUTPUT: I'm waiting on approval from security before we can roll out the update.
+APP_CATEGORY: Work
+
+INPUT: um the infra costs have gone up by thirty percent this month we need to optimize
+OUTPUT: The infra costs have gone up by 30% this month. We need to optimize.
+APP_CATEGORY: Work
+
