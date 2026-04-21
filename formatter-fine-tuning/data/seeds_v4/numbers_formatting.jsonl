@@ -84,13 +84,13 @@
 
 {
   "input": "i paid five hundred bucks for the ticket",
-  "output": "I paid $500 for the ticket.",
+  "output": "I paid 500 bucks for the ticket.",
   "app_category": "Personal"
 }
 
 {
   "input": "that startup just raised ten grand in their seed round",
-  "output": "That startup just raised $10,000 in their seed round.",
+  "output": "That startup just raised 10 grand in their seed round.",
   "app_category": "Work"
 }
 
@@ -102,7 +102,7 @@
 
 {
   "input": "rent is fifteen hundred a month",
-  "output": "Rent is $1,500 a month.",
+  "output": "Rent is 1,500 a month.",
   "app_category": "Other"
 }
 
@@ -180,7 +180,7 @@
 
 {
   "input": "revenue hit three point seven million this quarter",
-  "output": "Revenue hit $3.7 million this quarter.",
+  "output": "Revenue hit 3.7 million this quarter.",
   "app_category": "Work"
 }
 
@@ -322,23 +322,7 @@
   "app_category": "Other"
 }
 
-{
-  "input": "send it to john at gmail dot com",
-  "output": "Send it to john@gmail.com.",
-  "app_category": "Work"
-}
 
-{
-  "input": "the website is w w w dot stayfree dot app",
-  "output": "The website is www.stayfree.app.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "go to https colon slash slash docs dot google dot com",
-  "output": "Go to https://docs.google.com.",
-  "app_category": "Work"
-}
 
 {
   "input": "we're running version three point two point one",
@@ -382,11 +366,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "flight aa seven forty five departs at six twenty am from gate b twelve",
-  "output": "Flight AA745 departs at 6:20 AM from gate B12.",
-  "app_category": "Other"
-}
 
 {
   "input": "the budget is forty five thousand dollars and we have three months to deliver",
@@ -442,11 +421,6 @@
   "app_category": "Other"
 }
 
-{
-  "input": "three plus four divided by two",
-  "output": "3 + 4 / 2.",
-  "app_category": "Other"
-}
 
 {
   "input": "the ratio is like three to one",
@@ -468,7 +442,7 @@
 
 {
   "input": "the property costs one point five crore",
-  "output": "The property costs ₹1.5 crore.",
+  "output": "The property costs 1.5 crore.",
   "app_category": "Personal"
 }
 
@@ -520,11 +494,6 @@
   "app_category": "Other"
 }
 
-{
-  "input": "one half of the team is remote and the other half is in office",
-  "output": "Half of the team is remote and the other half is in office.",
-  "app_category": "Work"
-}
 
 {
   "input": "about three quarters of users prefer dark mode",
@@ -562,11 +531,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "top three priorities for this week are fix the auth bug ship the dashboard and update docs",
-  "output": "Top 3 priorities for this week are: fix the auth bug, ship the dashboard, and update docs.",
-  "app_category": "Work"
-}
 
 {
   "input": "it happened at twelve oh one am on january first",
@@ -576,7 +540,7 @@
 
 {
   "input": "height limit is six foot two maximum weight two hundred and twenty pounds",
-  "output": "Height limit is 6'2\" maximum, weight 220 pounds.",
+  "output": "Height limit is 6'2\", maximum weight 220 pounds.",
   "app_category": "Other"
 }
 
@@ -606,31 +570,31 @@
 
 {
   "input": "the subscription renews on april fifth",
-  "output": "The subscription renews on April 5th",
+  "output": "The subscription renews on April 5th.",
   "app_category": "Other"
 }
 
 {
   "input": "we saw a fifteen point five percent growth in revenue",
-  "output": "We saw a 15.5% growth in revenue",
+  "output": "We saw a 15.5% growth in revenue.",
   "app_category": "Work"
 }
 
 {
   "input": "the battery is already at twelve percent",
-  "output": "The battery is already at 12%",
+  "output": "The battery is already at 12%.",
   "app_category": "Personal"
 }
 
 {
   "input": "the train leaves at quarter to nine in the morning",
-  "output": "The train leaves at 8:45 in the morning",
+  "output": "The train leaves at 8:45 in the morning.",
   "app_category": "Personal"
 }
 
 {
   "input": "the car repair was around five hundred bucks",
-  "output": "The car repair was around $500",
+  "output": "The car repair was around 500 bucks.",
   "app_category": "Personal"
 }
 
@@ -648,43 +612,38 @@
 
 {
   "input": "the rent is fifty thousand rupees per month",
-  "output": "The rent is ₹50,000 per month",
+  "output": "The rent is ₹50,000 per month.",
   "app_category": "Personal"
 }
 
 {
   "input": "we got married on october twelfth twenty nineteen",
-  "output": "We got married on October 12th, 2019",
+  "output": "We got married on October 12th, 2019.",
   "app_category": "Personal"
 }
 
-{
-  "input": "ten minus three equals seven",
-  "output": "10 - 3 = 7.",
-  "app_category": "Other"
-}
 
 {
   "input": "his phone number is four one five five five five zero one nine eight",
-  "output": "His phone number is 415-555-0198",
+  "output": "His phone number is 415-555-0198.",
   "app_category": "Personal"
 }
 
 {
   "input": "we had nearly two point eight million views on the video",
-  "output": "We had nearly 2.8 million views on the video",
+  "output": "We had nearly 2.8 million views on the video.",
   "app_category": "Work"
 }
 
 {
   "input": "the postal code is one zero zero zero one",
-  "output": "The postal code is 10001",
+  "output": "The postal code is 10001.",
   "app_category": "Other"
 }
 
 {
   "input": "he is six foot four inches tall",
-  "output": "He is 6'4\" tall",
+  "output": "He is 6'4\" tall.",
   "app_category": "Personal"
 }
 
@@ -726,7 +685,7 @@
 
 {
   "input": "the new ip address is ten dot zero dot zero dot fifteen",
-  "output": "The new IP address is 10.0.0.15",
+  "output": "The new IP address is 10.0.0.15.",
   "app_category": "Work"
 }
 
@@ -744,7 +703,7 @@
 
 {
   "input": "upgrade your system to mac os fourteen point two",
-  "output": "Upgrade your system to macOS 14.2",
+  "output": "Upgrade your system to macOS 14.2.",
   "app_category": "Work"
 }
 
@@ -768,7 +727,7 @@
 
 {
   "input": "we hit two hundred and fifty concurrent users during the load test",
-  "output": "We hit 250 concurrent users during the load test",
+  "output": "We hit 250 concurrent users during the load test.",
   "app_category": "Work"
 }
 
@@ -792,7 +751,7 @@
 
 {
   "input": "the new endpoint handles up to five thousand requests per second",
-  "output": "The new endpoint handles up to 5,000 requests per second",
+  "output": "The new endpoint handles up to 5,000 requests per second.",
   "app_category": "Work"
 }
 
@@ -804,13 +763,13 @@
 
 {
   "input": "we have thirty five open tickets and twenty two in progress",
-  "output": "We have 35 open tickets and 22 in progress",
+  "output": "We have 35 open tickets and 22 in progress.",
   "app_category": "Work"
 }
 
 {
   "input": "the error rate spiked to three point seven percent around eight pm last night",
-  "output": "The error rate spiked to 3.7% around 8 PM last night",
+  "output": "The error rate spiked to 3.7% around 8 PM last night.",
   "app_category": "Work"
 }
 
@@ -834,7 +793,7 @@
 
 {
   "input": "the new pricing starts at twenty nine dollars per month",
-  "output": "The new pricing starts at $29 per month",
+  "output": "The new pricing starts at $29 per month.",
   "app_category": "Work"
 }
 
@@ -846,97 +805,97 @@
 
 {
   "input": "the database is at seventy eight percent capacity need to scale soon",
-  "output": "The database is at 78% capacity, need to scale soon",
+  "output": "The database is at 78% capacity, need to scale soon.",
   "app_category": "Work"
 }
 
 {
   "input": "the deal closed at one point two million dollars a great win for the team",
-  "output": "The deal closed at $1.2M, a great win for the team",
+  "output": "The deal closed at $1.2M, a great win for the team.",
   "app_category": "Work"
 }
 
 {
   "input": "the subscription renews on the seventeenth of next month",
-  "output": "The subscription renews on the 17th of next month",
+  "output": "The subscription renews on the 17th of next month.",
   "app_category": "Personal"
 }
 
 {
   "input": "the concert tickets were two thousand five hundred rupees each",
-  "output": "The concert tickets were ₹2,500 each",
+  "output": "The concert tickets were ₹2,500 each.",
   "app_category": "Personal"
 }
 
 {
   "input": "my phone battery is now at three percent need to charge it fast",
-  "output": "My phone battery is now at 3%, need to charge it fast",
+  "output": "My phone battery is now at 3%, need to charge it fast.",
   "app_category": "Personal"
 }
 
 {
   "input": "the train to bangalore departs at quarter past seven in the evening",
-  "output": "The train to Bangalore departs at 7:15 in the evening",
+  "output": "The train to Bangalore departs at 7:15 in the evening.",
   "app_category": "Personal"
 }
 
 {
   "input": "the flat rent has gone up to twenty two thousand rupees this year",
-  "output": "The flat rent has gone up to ₹22,000 this year",
+  "output": "The flat rent has gone up to ₹22,000 this year.",
   "app_category": "Personal"
 }
 
 {
   "input": "the trip is planned for the twenty eighth to the thirty first of may",
-  "output": "The trip is planned for the 28th to the 31st of May",
+  "output": "The trip is planned for the 28th to the 31st of May.",
   "app_category": "Personal"
 }
 
 {
   "input": "I've been sleeping around six hours a night this week need more rest",
-  "output": "I've been sleeping around 6 hours a night this week, need more rest",
+  "output": "I've been sleeping around 6 hours a night this week, need more rest.",
   "app_category": "Personal"
 }
 
 {
   "input": "the bike servicing cost about three thousand five hundred bucks",
-  "output": "The bike servicing cost about 3,500 bucks",
+  "output": "The bike servicing cost about 3,500 bucks.",
   "app_category": "Personal"
 }
 
 {
   "input": "we've been waiting in the queue for forty five minutes now",
-  "output": "We've been waiting in the queue for 45 minutes now",
+  "output": "We've been waiting in the queue for 45 minutes now.",
   "app_category": "Personal"
 }
 
 {
   "input": "the cab fare was around eight hundred rupees for the airport drop",
-  "output": "The cab fare was around ₹800 for the airport drop",
+  "output": "The cab fare was around ₹800 for the airport drop.",
   "app_category": "Personal"
 }
 
 {
   "input": "the headphones were marked down from six thousand to four thousand rupees",
-  "output": "The headphones were marked down from ₹6,000 to ₹4,000",
+  "output": "The headphones were marked down from ₹6,000 to ₹4,000.",
   "app_category": "Personal"
 }
 
 {
   "input": "the recipe calls for two hundred grams of flour and three eggs",
-  "output": "The recipe calls for 200g of flour and 3 eggs",
+  "output": "The recipe calls for 200g of flour and 3 eggs.",
   "app_category": "Personal"
 }
 
 {
   "input": "I need to lose around four kilograms before the wedding in june",
-  "output": "I need to lose around 4kg before the wedding in June",
+  "output": "I need to lose around 4kg before the wedding in June.",
   "app_category": "Personal"
 }
 
 {
   "input": "the gym membership costs one thousand two hundred rupees per month",
-  "output": "The gym membership costs ₹1,200 per month",
+  "output": "The gym membership costs ₹1,200 per month.",
   "app_category": "Personal"
 }
 
@@ -960,7 +919,7 @@
 
 {
   "input": "we saw a fifty percent jump in signups on the day of the product launch",
-  "output": "We saw a 50% jump in signups on the day of the product launch",
+  "output": "We saw a 50% jump in signups on the day of the product launch.",
   "app_category": "Work"
 }
 
@@ -978,7 +937,7 @@
 
 {
   "input": "we have sixteen points remaining in the sprint and four days left",
-  "output": "We have 16 points remaining in the sprint and 4 days left",
+  "output": "We have 16 points remaining in the sprint and 4 days left.",
   "app_category": "Work"
 }
 
@@ -996,69 +955,116 @@
 
 {
   "input": "our NPS score went from thirty two to forty seven this quarter",
-  "output": "Our NPS score went from 32 to 47 this quarter",
+  "output": "Our NPS score went from 32 to 47 this quarter.",
   "app_category": "Work"
 }
 
 {
   "input": "the checkout was around fifteen hundred bucks for the grocery run",
-  "output": "The checkout was around $1,500 for the grocery run",
+  "output": "The checkout was around 1,500 bucks for the grocery run.",
   "app_category": "Personal"
 }
 
 {
   "input": "the wedding is scheduled for the twelfth of december",
-  "output": "The wedding is scheduled for December 12th",
+  "output": "The wedding is scheduled for December 12th.",
   "app_category": "Personal"
 }
 
 {
   "input": "we need to walk around ten thousand steps today to hit the goal",
-  "output": "We need to walk around 10,000 steps today to hit the goal",
+  "output": "We need to walk around 10,000 steps today to hit the goal.",
   "app_category": "Personal"
 }
 
 {
   "input": "I ran six point five kilometers this morning before the call",
-  "output": "I ran 6.5km this morning before the call",
+  "output": "I ran 6.5km this morning before the call.",
   "app_category": "Personal"
 }
 
-{
-  "input": "the data plan costs three ninety nine per month for fifty gigabytes",
-  "output": "The data plan costs $3.99 per month for 50GB",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the temperature outside is around thirty two degrees today",
-  "output": "The temperature outside is around 32°C today",
-  "app_category": "Personal"
-}
 
 {
   "input": "we've watched four seasons of that show over the long weekend",
-  "output": "We've watched 4 seasons of that show over the long weekend",
+  "output": "We've watched 4 seasons of that show over the long weekend.",
   "app_category": "Personal"
 }
 
 {
   "input": "the laptop was on sale for forty nine thousand nine hundred rupees only",
-  "output": "The laptop was on sale for ₹49,900 only",
+  "output": "The laptop was on sale for ₹49,900 only.",
   "app_category": "Personal"
 }
 
 {
   "input": "the first class upgrade was twelve hundred extra each way",
-  "output": "The first class upgrade was $1,200 extra each way",
+  "output": "The first class upgrade was 1,200 extra each way.",
   "app_category": "Personal"
 }
 
 {
   "input": "the total trip including flights was sixty thousand rupees for two people",
-  "output": "The total trip including flights was ₹60,000 for 2 people",
+  "output": "The total trip including flights was ₹60,000 for 2 people.",
   "app_category": "Personal"
 }
 
+{
+  "input": "my budget is around two hundred max",
+  "output": "My budget is around 200 max.",
+  "app_category": "Personal"
+}
 
+{
+  "input": "the total bill is one seventy five before tip",
+  "output": "The total bill is 175 before tip.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "parking was twenty bucks for the night",
+  "output": "Parking was 20 bucks for the night.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the fundraiser brought in twenty grand over the weekend",
+  "output": "The fundraiser brought in 20 grand over the weekend.",
+  "app_category": "Other"
+}
+
+{
+  "input": "hotel was around twelve hundred a night during the festival",
+  "output": "Hotel was around 1,200 a night during the festival.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the invoice total is four fifty before shipping",
+  "output": "The invoice total is 450 before shipping.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the grocery run was about three hundred bucks this week",
+  "output": "The grocery run was about 300 bucks this week.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the property listing starts at one point two crore in that area",
+  "output": "The property listing starts at 1.2 crore in that area.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "he spent fifteen grand on the renovation",
+  "output": "He spent 15 grand on the renovation.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the monthly spend is around eight hundred without taxes",
+  "output": "The monthly spend is around 800 without taxes.",
+  "app_category": "Work"
+}
 

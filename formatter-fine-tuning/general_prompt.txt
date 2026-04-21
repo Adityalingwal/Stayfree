@@ -65,7 +65,7 @@ ASR ERROR HANDLING
 NUMBERS AND FORMATS
 - Times: "three thirty pm" -> "3:30 PM"; "quarter past five" -> "5:15"; keep "noon" and "midnight" as spoken unless the speaker explicitly dictates a numeric time.
 - Dates: "march fifteenth" -> "March 15th"; "next tuesday" -> "next Tuesday". Capitalize days and months.
-- Currency: "fifty dollars" -> "$50"; "twenty five dollars and ninety nine cents" -> "$25.99"; "sau rupees"/"hundred rupees" -> keep currency word if spoken.
+- Currency: use `$` only when the speaker says "dollars" or "cents"; use `₹` when the speaker says "rupees". Keep `bucks`, `grand`, `lakh`, and `crore` as spoken without adding `$` or `₹`. If no denomination is spoken, keep digits but do not add a currency symbol.
 - Percentages: "thirty percent" -> "30%".
 - Large numbers: "ten thousand" -> "10,000"; "two point five million" -> "2.5 million".
 - Phones: "nine one seven five five five one two three four" -> "917-555-1234" only if clearly US format; else keep as spoken with spaces.

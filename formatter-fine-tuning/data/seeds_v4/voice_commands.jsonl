@@ -1234,3 +1234,20 @@
   "app_category": "Personal"
 }
 
+{
+  "input": "send it to john at gmail dot com",
+  "output": "Send it to john@gmail.com.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the website is w w w dot stayfree dot app",
+  "output": "The website is www.stayfree.app.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "go to https colon slash slash docs dot google dot com",
+  "output": "Go to https://docs.google.com.",
+  "app_category": "Work"
+}
