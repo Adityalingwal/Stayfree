@@ -421,11 +421,6 @@
   "app_category": "Other"
 }
 
-{
-  "input": "three plus four divided by two",
-  "output": "3 + 4 / 2.",
-  "app_category": "Other"
-}
 
 {
   "input": "the ratio is like three to one",
@@ -536,11 +531,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "top three priorities for this week are fix the auth bug ship the dashboard and update docs",
-  "output": "Top 3 priorities for this week are: fix the auth bug, ship the dashboard, and update docs.",
-  "app_category": "Work"
-}
 
 {
   "input": "it happened at twelve oh one am on january first",
@@ -550,7 +540,7 @@
 
 {
   "input": "height limit is six foot two maximum weight two hundred and twenty pounds",
-  "output": "Height limit is 6'2\" maximum, weight 220 pounds.",
+  "output": "Height limit is 6'2\", maximum weight 220 pounds.",
   "app_category": "Other"
 }
 
@@ -993,11 +983,6 @@
   "app_category": "Personal"
 }
 
-{
-  "input": "the temperature outside is around thirty two degrees today",
-  "output": "The temperature outside is around 32° today.",
-  "app_category": "Personal"
-}
 
 {
   "input": "we've watched four seasons of that show over the long weekend",
