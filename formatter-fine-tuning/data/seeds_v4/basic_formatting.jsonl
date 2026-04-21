@@ -1,11 +1,11 @@
 {
   "input": "uh hey can you send me the report by end of day",
-  "output": "Hey, can you send me the report by end of day.",
+  "output": "Hey, can you send me the report by end of day?",
   "app_category": "Work"
 }
 
 {
-  "input": "um so I was thinking we should probably push the deadline back a bit",
+  "input": "um I was thinking we should probably push the deadline back a bit",
   "output": "I was thinking we should probably push the deadline back a bit.",
   "app_category": "Work"
 }
@@ -24,7 +24,7 @@
 
 {
   "input": "so basically um I think maybe we should hold off on launching until QA signs off",
-  "output": "I think maybe we should hold off on launching until QA signs off.",
+  "output": "So basically I think maybe we should hold off on launching until QA signs off.",
   "app_category": "Work"
 }
 
@@ -36,7 +36,7 @@
 
 {
   "input": "uh well you know I was just wondering if you had a chance to look at my email",
-  "output": "I was just wondering if you had a chance to look at my email.",
+  "output": "Well, you know, I was just wondering if you had a chance to look at my email.",
   "app_category": "Work"
 }
 
@@ -89,7 +89,7 @@
 }
 
 {
-  "input": "um so like I guess we could do it tomorrow if that works for everyone",
+  "input": "um like I guess we could do it tomorrow if that works for everyone",
   "output": "I guess we could do it tomorrow if that works for everyone.",
   "app_category": "Work"
 }
@@ -107,8 +107,8 @@
 }
 
 {
-  "input": "okay so uh let me think about this and get back to you",
-  "output": "Let me think about this and get back to you.",
+  "input": "okay uh let me think about this and get back to you",
+  "output": "Okay let me think about this and get back to you.",
   "app_category": "Work"
 }
 
@@ -137,7 +137,7 @@
 }
 
 {
-  "input": "erm so I I think the issue is with the database connection",
+  "input": "erm I I think the issue is with the database connection",
   "output": "I think the issue is with the database connection.",
   "app_category": "Work"
 }
@@ -204,7 +204,7 @@
 
 {
   "input": "um you know like I was just um wondering if maybe you could help me with something",
-  "output": "I was just wondering if maybe you could help me with something.",
+  "output": "You know, like I was just wondering if maybe you could help me with something.",
   "app_category": "Work"
 }
 
@@ -216,7 +216,7 @@
 
 {
   "input": "as I was saying the numbers don't add up and we need to review the budget",
-  "output": "The numbers don't add up, and we need to review the budget.",
+  "output": "As I was saying, the numbers don't add up, and we need to review the budget.",
   "app_category": "Work"
 }
 
@@ -233,7 +233,7 @@
 }
 
 {
-  "input": "uh so the client wants to move the launch date up by two weeks",
+  "input": "uh the client wants to move the launch date up by two weeks",
   "output": "The client wants to move the launch date up by 2 weeks.",
   "app_category": "Work"
 }
@@ -252,7 +252,7 @@
 
 {
   "input": "yo did you see the game last night it was insane",
-  "output": "Yo, did you see the game last night? It was insane.",
+  "output": "Did you see the game last night? It was insane.",
   "app_category": "Personal"
 }
 
@@ -270,12 +270,12 @@
 
 {
   "input": "so like what do you think should we go with option A or option B",
-  "output": "What do you think, should we go with option A or option B?",
+  "output": "So like, what do you think, should we go with option A or option B?",
   "app_category": "Work"
 }
 
 {
-  "input": "I'm kind of worried about the performance issues we've been seeing lately",
+  "input": "I'm kind of uhhh worried about the performance issues hmmm we've been seeing lately",
   "output": "I'm kind of worried about the performance issues we've been seeing lately.",
   "app_category": "Work"
 }
@@ -305,12 +305,6 @@
 }
 
 {
-  "input": "uh you know what I mean it's just it's complicated",
-  "output": "It's just, it's complicated.",
-  "app_category": "Personal"
-}
-
-{
   "input": "did you finish the code review for the authentication module",
   "output": "Did you finish the code review for the authentication module?",
   "app_category": "Work"
@@ -318,12 +312,12 @@
 
 {
   "input": "so basically what happened was um the server crashed at like two AM and nobody noticed until morning",
-  "output": "What happened was the server crashed at like 2 AM, and nobody noticed until morning.",
+  "output": "So basically, what happened was the server crashed at like 2 AM, and nobody noticed until morning.",
   "app_category": "Work"
 }
 
 {
-  "input": "she's apparently going to be out of office next week so we'll need to find someone to cover",
+  "input": "she's apparently going to be out uhh of office next week so we'll need to find someone to cover",
   "output": "She's apparently going to be out of office next week, so we'll need to find someone to cover.",
   "app_category": "Work"
 }
@@ -359,7 +353,7 @@
 }
 
 {
-  "input": "er I think john mentioned something about that yesterday",
+  "input": "er I think john mentioned uhhh something about that yesterday",
   "output": "I think John mentioned something about that yesterday.",
   "app_category": "Work"
 }
@@ -396,7 +390,7 @@
 
 {
   "input": "um well uh let me think about it for a second",
-  "output": "Let me think about it for a second.",
+  "output": "Well let me think about it for a second.",
   "app_category": "Work"
 }
 
@@ -407,14 +401,14 @@
 }
 
 {
-  "input": "we should probably circle back on this after the quarterly review",
+  "input": "we should probably circle uhhh back on this after the quarterly review",
   "output": "We should probably circle back on this after the quarterly review.",
   "app_category": "Work"
 }
 
 {
   "input": "ooh that looks delicious what did you order",
-  "output": "Ooh, that looks delicious! What did you order?",
+  "output": "That looks delicious! What did you order?",
   "app_category": "Personal"
 }
 
@@ -456,7 +450,7 @@
 
 {
   "input": "alright sounds like a plan let's sync up tomorrow morning",
-  "output": "Sounds like a plan. Let's sync up tomorrow morning.",
+  "output": "Alright sounds like a plan. Let's sync up tomorrow morning.",
   "app_category": "Work"
 }
 
@@ -486,7 +480,7 @@
 
 {
   "input": "so um basically I haven't had time to look at it yet but I will by end of day",
-  "output": "I haven't had time to look at it yet, but I will by end of day.",
+  "output": "So basically, I haven't had time to look at it yet, but I will by end of day.",
   "app_category": "Work"
 }
 
@@ -558,13 +552,13 @@
 
 {
   "input": "you know what I think the problem is with the deployment pipeline",
-  "output": "I think the problem is with the deployment pipeline.",
+  "output": "You know what, I think the problem is with the deployment pipeline.",
   "app_category": "Work"
 }
 
 {
   "input": "right so the main takeaway from the meeting is that we need to hire two more engineers",
-  "output": "The main takeaway from the meeting is that we need to hire 2 more engineers.",
+  "output": "Right, so the main takeaway from the meeting is that we need to hire 2 more engineers.",
   "app_category": "Work"
 }
 
@@ -588,7 +582,7 @@
 
 {
   "input": "um like I said earlier we need to refactor the auth service before adding new features",
-  "output": "We need to refactor the auth service before adding new features.",
+  "output": "Like I said earlier, we need to refactor the auth service before adding new features.",
   "app_category": "Work"
 }
 
@@ -629,7 +623,7 @@
 }
 
 {
-  "input": "uh hmm well I guess the only option is to wait and see",
+  "input": "uh hmm I guess the only option is to wait and see",
   "output": "I guess the only option is to wait and see.",
   "app_category": "Work"
 }
@@ -696,7 +690,7 @@
 
 {
   "input": "ugh this bug has been driving me crazy all day",
-  "output": "Ugh, this bug has been driving me crazy all day.",
+  "output": "This bug has been driving me crazy all day.",
   "app_category": "Work"
 }
 
@@ -719,7 +713,7 @@
 }
 
 {
-  "input": "hey so um there's this really cool new feature in the latest update you should check it out",
+  "input": "um there's this really cool new feature in the latest update you should check it out",
   "output": "There's this really cool new feature in the latest update, you should check it out.",
   "app_category": "Personal"
 }
@@ -731,14 +725,14 @@
 }
 
 {
-  "input": "I heard they're planning to open a new office in bangalore",
+  "input": "I heard uhh they're planning to open a new office in bangalore",
   "output": "I heard they're planning to open a new office in Bangalore.",
   "app_category": "Work"
 }
 
 {
   "input": "uh like I was saying before we got interrupted the whole system needs an overhaul",
-  "output": "The whole system needs an overhaul.",
+  "output": "Like I was saying before we got interrupted, the whole system needs an overhaul.",
   "app_category": "Work"
 }
 
@@ -828,7 +822,7 @@
 
 {
   "input": "so um yeah that's basically it from my side",
-  "output": "That's it from my side.",
+  "output": "So, yeah, basically that's it from my side.",
   "app_category": "Work"
 }
 
@@ -959,12 +953,6 @@
 }
 
 {
-  "input": "whoa that's a lot of users we hit a new record",
-  "output": "Whoa, that's a lot of users! We hit a new record!",
-  "app_category": "Work"
-}
-
-{
   "input": "should I loop in the design team on this thread or keep it to engineering",
   "output": "Should I loop in the design team on this thread or keep it to engineering?",
   "app_category": "Work"
@@ -989,7 +977,7 @@
 }
 
 {
-  "input": "I'm only asking because I want to make sure we're on the same page",
+  "input": "I'm only asking umm because I want to make sure we're on the same page",
   "output": "I'm only asking because I want to make sure we're on the same page.",
   "app_category": "Work"
 }
@@ -1013,7 +1001,7 @@
 }
 
 {
-  "input": "uh so like I'm I'm pretty confused about the new process can someone walk me through it",
+  "input": "uh like I'm I'm pretty confused about the new process can someone walk me through it",
   "output": "I'm pretty confused about the new process. Can someone walk me through it?",
   "app_category": "Work"
 }
@@ -1049,8 +1037,8 @@
 }
 
 {
-  "input": "so uh yeah that's what I was going to say",
-  "output": "That's what I was going to say.",
+  "input": "uh yeah that's what I was going to say",
+  "output": "Yeah that's what I was going to say.",
   "app_category": "Work"
 }
 
@@ -1079,13 +1067,13 @@
 }
 
 {
-  "input": "I'll swing by your desk in a bit",
+  "input": "I'll swing by your umm desk in a bit",
   "output": "I'll swing by your desk in a bit.",
   "app_category": "Work"
 }
 
 {
-  "input": "ok so the plan is to finish the MVP by end of march and then do user testing in april",
+  "input": "the plan is to finish the MVP by end of march and then do user testing in april",
   "output": "The plan is to finish the MVP by end of March, and then do user testing in April.",
   "app_category": "Work"
 }
@@ -1164,7 +1152,7 @@
 
 {
   "input": "uh well you see the thing is I already committed to another project",
-  "output": "The thing is, I already committed to another project.",
+  "output": "Well, you see, the thing is I already committed to another project.",
   "app_category": "Work"
 }
 
@@ -1235,7 +1223,7 @@
 }
 
 {
-  "input": "I genuinely don't know how he does it every single time",
+  "input": "I genuinely don't know hmmm how he does it every single time",
   "output": "I genuinely don't know how he does it every single time.",
   "app_category": "Personal"
 }
@@ -1319,7 +1307,7 @@
 }
 
 {
-  "input": "uh well I'm not really sure what to get her for her birthday any ideas",
+  "input": "uh I'm not really sure what to get her for her birthday any ideas",
   "output": "I'm not really sure what to get her for her birthday. Any ideas?",
   "app_category": "Personal"
 }
@@ -1375,12 +1363,6 @@
 {
   "input": "i booked us a meeting room on the third floor for the retro",
   "output": "I booked us a meeting room on the 3rd floor for the retro.",
-  "app_category": "Work"
-}
-
-{
-  "input": "so basically the the server went down due to high traffic",
-  "output": "Basically, the server went down due to high traffic.",
   "app_category": "Work"
 }
 
@@ -1494,7 +1476,7 @@
 
 {
   "input": "have a great weekend team wrap up early today",
-  "output": "Have a great weekend, team. Wrap up early today.",
+  "output": "Have a great weekend team. Wrap up early today.",
   "app_category": "Work"
 }
 
@@ -1536,7 +1518,7 @@
 
 {
   "input": "so basically the cache was not invalidated properly and users are seeing stale data",
-  "output": "Basically, the cache was not invalidated properly, and users are seeing stale data.",
+  "output": "So basically, the cache was not invalidated properly, and users are seeing stale data.",
   "app_category": "Work"
 }
 
@@ -1565,7 +1547,7 @@
 }
 
 {
-  "input": "so we just need to fix the authentication bug and we should be good to release",
+  "input": "we just need to fix the authentication bug and we should be good to release",
   "output": "We just need to fix the authentication bug, and we should be good to release.",
   "app_category": "Work"
 }
@@ -1584,7 +1566,7 @@
 
 {
   "input": "so basically um we ran out of memory on the prod server because of a memory leak",
-  "output": "We ran out of memory on the prod server because of a memory leak.",
+  "output": "So basically we ran out of memory on the prod server because of a memory leak.",
   "app_category": "Work"
 }
 
@@ -1607,7 +1589,7 @@
 }
 
 {
-  "input": "so I think we should upgrade the node version its causing compatibility issues",
+  "input": "I think we should upgrade the node version its causing compatibility issues",
   "output": "I think we should upgrade the Node version. It's causing compatibility issues.",
   "app_category": "Work"
 }
@@ -1632,7 +1614,7 @@
 
 {
   "input": "so basically the environment variables were not set up correctly on staging",
-  "output": "Basically, the environment variables were not set up correctly on staging.",
+  "output": "So basically, the environment variables were not set up correctly on staging.",
   "app_category": "Work"
 }
 
@@ -1650,7 +1632,7 @@
 
 {
   "input": "so we merged the feature but now the test suite is failing on the main branch",
-  "output": "We merged the feature, but now the test suite is failing on the main branch.",
+  "output": "So we merged the feature, but now the test suite is failing on the main branch.",
   "app_category": "Work"
 }
 
@@ -1668,13 +1650,13 @@
 
 {
   "input": "um so the user session data wasnt being saved due to a bug in the session handler",
-  "output": "The user session data wasn't being saved due to a bug in the session handler.",
+  "output": "So the user session data wasn't being saved due to a bug in the session handler.",
   "app_category": "Work"
 }
 
 {
   "input": "so basically the database backup ran but it didnt verify the restore successfully",
-  "output": "Basically, the database backup ran, but it didn't verify the restore successfully.",
+  "output": "So basically, the database backup ran, but it didn't verify the restore successfully.",
   "app_category": "Work"
 }
 
@@ -1686,7 +1668,7 @@
 
 {
   "input": "so the quarterly targets were missed by three percent this time",
-  "output": "The quarterly targets were missed by 3% this time.",
+  "output": "So the quarterly targets were missed by 3% this time.",
   "app_category": "Work"
 }
 
@@ -1698,7 +1680,7 @@
 
 {
   "input": "so the new onboarding flow has reduced drop off by twenty two percent great results",
-  "output": "The new onboarding flow has reduced drop-off by 22%. Great results.",
+  "output": "So the new onboarding flow has reduced drop-off by 22%. Great results.",
   "app_category": "Work"
 }
 
@@ -1710,7 +1692,7 @@
 
 {
   "input": "so the feature is about eighty percent done needs another two days of testing",
-  "output": "The feature is about 80% done. Needs another 2 days of testing.",
+  "output": "So the feature is about 80% done. Needs another 2 days of testing.",
   "app_category": "Work"
 }
 
@@ -1722,7 +1704,7 @@
 
 {
   "input": "so basically the user reported a crash on checkout and we reproduced it locally",
-  "output": "Basically, the user reported a crash on checkout, and we reproduced it locally.",
+  "output": "So basically, the user reported a crash on checkout, and we reproduced it locally.",
   "app_category": "Work"
 }
 
@@ -1739,8 +1721,8 @@
 }
 
 {
-  "input": "so I think the team needs a morale boost after this tough sprint",
-  "output": "I think the team needs a morale boost after this tough sprint.",
+  "input": "so umm I think the team needs a morale boost after this tough sprint",
+  "output": "So I think the team needs a morale boost after this tough sprint.",
   "app_category": "Work"
 }
 
@@ -1758,7 +1740,7 @@
 
 {
   "input": "so basically the deployment failed because we had a missing config in the yaml file",
-  "output": "Basically, the deployment failed because we had a missing config in the YAML file.",
+  "output": "So basically, the deployment failed because we had a missing config in the YAML file.",
   "app_category": "Work"
 }
 
@@ -1776,7 +1758,7 @@
 
 {
   "input": "so the sprint velocity dropped this cycle we should look at blockers in the retro",
-  "output": "The sprint velocity dropped this cycle. We should look at blockers in the retro.",
+  "output": "So the sprint velocity dropped this cycle. We should look at blockers in the retro.",
   "app_category": "Work"
 }
 
@@ -1800,7 +1782,7 @@
 
 {
   "input": "so the team has been doing really well this quarter proud of the progress",
-  "output": "The team has been doing really well this quarter. Proud of the progress.",
+  "output": "So the team has been doing really well this quarter. Proud of the progress.",
   "app_category": "Work"
 }
 
@@ -1812,7 +1794,7 @@
 
 {
   "input": "so basically we resolved the three P one issues from last week all clear now",
-  "output": "Basically, we resolved the 3 P1 issues from last week. All clear now.",
+  "output": "So basically, we resolved the 3 P1 issues from last week. All clear now.",
   "app_category": "Work"
 }
 
