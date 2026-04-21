@@ -442,3 +442,153 @@
   "app_category": "Work"
 }
 
+{
+  "input": "the typescript compiler is throwing an error in that file",
+  "output": "The TypeScript compiler is throwing an error in that file",
+  "app_category": "Work"
+}
+
+{
+  "input": "i just pushed the docker container to the ecr repository",
+  "output": "I just pushed the Docker container to the ECR repository",
+  "app_category": "Work"
+}
+
+{
+  "input": "book a ride on uber early in the morning",
+  "output": "Book a ride on Uber early in the morning",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we are migrating to supabase instead of firebase",
+  "output": "We are migrating to Supabase instead of Firebase.",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you update the confluence documentation",
+  "output": "Did you update the Confluence documentation?",
+  "app_category": "Work"
+}
+
+{
+  "input": "we need to integrate stripe for the new subscription model",
+  "output": "We need to integrate Stripe for the new subscription model.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the datadog alerts are going crazy right now",
+  "output": "The Datadog alerts are going crazy right now",
+  "app_category": "Work"
+}
+
+{
+  "input": "the mongodb cluster is running out of memory",
+  "output": "The MongoDB cluster is running out of memory",
+  "app_category": "Work"
+}
+
+{
+  "input": "the myntra sale starts tomorrow night",
+  "output": "The Myntra sale starts tomorrow night.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "try using chatgpt for parsing the json logs",
+  "output": "Try using ChatGPT for parsing the JSON logs",
+  "app_category": "Work"
+}
+
+{
+  "input": "he sent the money via google pay",
+  "output": "He sent the money via Google Pay",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i think shruti will lead the frontend team",
+  "output": "I think Shruti will lead the frontend team.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can you check if the elastic beanstalk environment is up",
+  "output": "Can you check if the Elastic Beanstalk environment is up?",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should use tailwindcss for styling the new components",
+  "output": "We should use TailwindCSS for styling the new components",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you tell anjali about the code freeze",
+  "output": "Did you tell Anjali about the code freeze?",
+  "app_category": "Work"
+}
+
+{
+  "input": "priyanka approved the pull request this morning",
+  "output": "Priyanka approved the pull request this morning",
+  "app_category": "Work"
+}
+
+{
+  "input": "the react native build failed on the pipeline",
+  "output": "The React Native build failed on the pipeline.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i think the issue is with the github actions workflow",
+  "output": "I think the issue is with the GitHub Actions workflow",
+  "app_category": "Work"
+}
+
+{
+  "input": "ask karthik if he has access to the aws console",
+  "output": "Ask Karthik if he has access to the AWS console",
+  "app_category": "Work"
+}
+
+{
+  "input": "look at the sentry dashboard for the crash reports",
+  "output": "Look at the Sentry dashboard for the crash reports.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the nextjs deployment on vercel was successful",
+  "output": "The Next.js deployment on Vercel was successful",
+  "app_category": "Work"
+}
+
+{
+  "input": "create a jira ticket for the bug you found",
+  "output": "Create a Jira ticket for the bug you found.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the jenkins build is broken again check the logs",
+  "output": "The Jenkins build is broken again, check the logs.",
+  "app_category": "Work"
+}
+
+{
+  "input": "let's discuss the figma mockups for the new landing page",
+  "output": "Let's discuss the Figma mockups for the new landing page.",
+  "app_category": "Work"
+}
+
+{
+  "input": "did you order the food from swiggy or zomato",
+  "output": "Did you order the food from Swiggy or Zomato?",
+  "app_category": "Personal"
+}
+
