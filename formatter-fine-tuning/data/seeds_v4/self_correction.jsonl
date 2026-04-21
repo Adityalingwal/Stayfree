@@ -5,7 +5,7 @@
 }
 
 {
-  "input": "send it to john actually sarah",
+  "input": "send it to john no wait sarah",
   "output": "Send it to Sarah.",
   "app_category": "Work"
 }
@@ -38,12 +38,6 @@
   "input": "lets meet at starbucks wait no the office",
   "output": "Let's meet at the office.",
   "app_category": "Personal"
-}
-
-{
-  "input": "ship it today actually no lets wait till tomorrow",
-  "output": "Let's wait till tomorrow.",
-  "app_category": "Work"
 }
 
 {
@@ -971,8 +965,8 @@
 }
 
 {
-  "input": "reserve two desks for the visitors no wait three they're bringing an extra person",
-  "output": "Reserve 3 desks, they're bringing an extra person.",
+  "input": "reserve two desks sorry three for the visitors they're bringing an extra person",
+  "output": "Reserve 3 desks for the visitors, they're bringing an extra person.",
   "app_category": "Work"
 }
 
@@ -983,7 +977,7 @@
 }
 
 {
-  "input": "let's go to that new cafe no wait the usual place is better",
+  "input": "let's go to that new cafe no wait the usual place",
   "output": "Let's go to the usual place.",
   "app_category": "Personal"
 }
@@ -995,31 +989,31 @@
 }
 
 {
-  "input": "ask him to come at eight I mean nine gives us more time to set up",
+  "input": "ask him to come at eight sorry no at nine it gives us more time to set up",
   "output": "Ask him to come at 9, it gives us more time to set up.",
   "app_category": "Personal"
 }
 
 {
-  "input": "leave in ten minutes no wait twenty traffic should clear by then",
+  "input": "leave in ten minutes no wait twenty minutes traffic should clear by then",
   "output": "Leave in 20 minutes, traffic should clear by then.",
   "app_category": "Personal"
 }
 
 {
-  "input": "stay at the marriott no wait the airbnb is more central and cheaper",
+  "input": "stay at the marriott no wait the airbnb it is more central and cheaper",
   "output": "Stay at the Airbnb, it is more central and cheaper.",
   "app_category": "Personal"
 }
 
 {
-  "input": "invite five people no actually eight more the merrier",
+  "input": "invite five no actually eight people the more the merrier",
   "output": "Invite 8 people, the more the merrier.",
   "app_category": "Personal"
 }
 
 {
-  "input": "get the vanilla flavor I mean chocolate would be better actually",
+  "input": "get the vanilla flavor sorry chocolate flavour",
   "output": "Get the chocolate flavor.",
   "app_category": "Personal"
 }
@@ -1031,7 +1025,7 @@
 }
 
 {
-  "input": "turn left at the signal no wait right the restaurant is on the right side",
+  "input": "turn left no wait right the restaurant is on the right side",
   "output": "Turn right, the restaurant is on the right side.",
   "app_category": "Personal"
 }
@@ -1043,7 +1037,7 @@
 }
 
 {
-  "input": "grab the small bag no wait the big one we might need extra space",
+  "input": "grab the small bag no wait the big bag we might need extra space",
   "output": "Grab the big bag, we might need extra space.",
   "app_category": "Personal"
 }
@@ -1085,7 +1079,7 @@
 }
 
 {
-  "input": "use the old endpoint no actually the new one is ready now",
+  "input": "use the old endpoint no actually the new endpoint it is ready now",
   "output": "Use the new endpoint, it is ready now.",
   "app_category": "Work"
 }
@@ -1096,11 +1090,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "put it in the next sprint actually this one it's a blocker",
-  "output": "Put it in this sprint, it is a blocker.",
-  "app_category": "Work"
-}
 
 {
   "input": "the daily standup is at nine no wait ten this week due to client calls",
@@ -1108,38 +1097,33 @@
   "app_category": "Work"
 }
 
-{
-  "input": "skip the code freeze I mean observe it we had issues last time we skipped",
-  "output": "Observe the code freeze, we had issues last time we skipped.",
-  "app_category": "Work"
-}
 
 {
   "input": "assign this to priya no wait to the platform team it's an infra issue",
-  "output": "Assign this to the platform team, it is an infra issue.",
+  "output": "Assign this to the platform team, it's an infra issue.",
   "app_category": "Work"
 }
 
 {
-  "input": "push the version to three dot zero no wait two dot nine keeps it backward compatible",
+  "input": "push the version to three dot zero no wait two dot nine it keeps it backward compatible",
   "output": "Push the version to 2.9, it keeps it backward compatible.",
   "app_category": "Work"
 }
 
 {
-  "input": "respond on tuesday no wait monday is actually better it's more urgent",
+  "input": "respond on tuesday no wait monday it's more urgent",
   "output": "Respond on Monday, it's more urgent.",
   "app_category": "Work"
 }
 
 {
-  "input": "add the fix in master no wait in the hotfix branch safer that way",
-  "output": "Add the fix in the hotfix branch, it is safer that way.",
+  "input": "add the fix in master no wait in the hotfix branch",
+  "output": "Add the fix in the hotfix branch.",
   "app_category": "Work"
 }
 
 {
-  "input": "let's skip the review today no let's do it it won't take long",
+  "input": "let's skip the review today no waitlet's do it it won't take long",
   "output": "Let's do the review, it won't take long.",
   "app_category": "Work"
 }
@@ -1168,14 +1152,9 @@
   "app_category": "Work"
 }
 
-{
-  "input": "block an hour for oncall handoff I mean thirty minutes it's quick",
-  "output": "Block 30 minutes for on-call handoff, it is quick.",
-  "app_category": "Work"
-}
 
 {
-  "input": "set it as high priority actually medium we have bigger fires to put out",
+  "input": "set it as high priority no wait actually medium we have bigger fires to put out",
   "output": "Set it as medium priority, we have bigger fires to put out.",
   "app_category": "Work"
 }
@@ -1186,11 +1165,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "grab coffee first no let's get started now we can do coffee after",
-  "output": "Let's get started now, we can do coffee after.",
-  "app_category": "Personal"
-}
 
 {
   "input": "move it to the arch review queue no I mean the security review queue first",
@@ -1204,11 +1178,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "sit at the window table no wait there might not be enough seats let's take the group table",
-  "output": "Let's take the group table.",
-  "app_category": "Personal"
-}
 
 {
   "input": "share the deck with the design team no wait with the entire product org",
