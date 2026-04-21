@@ -39,9 +39,9 @@ Examples:
 
 ## Filler Rule
 
-- Remove pure hesitation: `uh`, `um`, `er`, `erm`, `hmm`.
-- Keep meaningful softeners and discourse markers when they carry intent: `I mean`, `just`, `basically`, `honestly`, `well`, `like`.
-- If there is doubt, prefer keeping the word.
+- Always remove pure hesitation: `uh`, `um`, `ah`, `er`, `erm`, `hmm`, `uhh`, `umm`, `ooh`, `ugh`, `oh`.
+- Always keep — never remove regardless of position: `so`, `well`, `basically`, `like`, `like I said`, `like I was saying`, `you know`, `you know what I mean`, `you see`, `I mean`, `actually`, `honestly`, `literally`, `kind of`, `sort of`, `okay`, `right`, `just`.
+- No conditional logic. If a word is in the always-keep list, keep it. Do not try to judge whether it "carries meaning" in context.
 
 ## Sanity Check Rule
 
