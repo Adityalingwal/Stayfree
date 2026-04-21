@@ -30,6 +30,7 @@ This guide defines the core rules for the `basic_formatting` bucket and should s
 - If the utterance is clearly complete, add terminal punctuation.
 - If the utterance is clearly unfinished or trails off, do not force a period.
 - Do not confuse short casual sentences with incomplete fragments.
+- This bucket mostly teaches complete-utterance formatting and sentence splitting; unfinished fragments are edge cases, not the main signal.
 
 Examples:
 
@@ -39,9 +40,9 @@ Examples:
 
 ## Filler Rule
 
-- Always remove pure hesitation: `uh`, `um`, `ah`, `er`, `erm`, `hmm`, `uhh`, `umm`, `ooh`, `ugh`, `oh`.
-- Always keep — never remove regardless of position: `so`, `well`, `basically`, `like`, `like I said`, `like I was saying`, `you know`, `you know what I mean`, `you see`, `I mean`, `actually`, `honestly`, `literally`, `kind of`, `sort of`, `okay`, `right`, `just`.
-- No conditional logic. If a word is in the always-keep list, keep it. Do not try to judge whether it "carries meaning" in context.
+- Remove pure hesitation: `uh`, `um`, `ah`, `er`, `erm`, `hmm`, `uhh`, `umm`.
+- Keep meaningful discourse markers and softeners when they carry intent: `so`, `well`, `basically`, `like`, `you know`, `you know what I mean`, `you see`, `I mean`, `actually`, `honestly`, `literally`, `kind of`, `sort of`, `okay`, `right`, `just`.
+
 
 ## Sanity Check Rule
 
