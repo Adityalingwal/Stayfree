@@ -12,7 +12,7 @@
 
 {
   "input": "yeah I'll be there in like five minutes",
-  "output": "Yeah I'll be there in like 5 minutes",
+  "output": "Yeah I'll be there in like 5 minutes.",
   "app_category": "Personal"
 }
 
@@ -78,7 +78,7 @@
 
 {
   "input": "oh my god that's so funny I can't believe he said that",
-  "output": "Oh my god that's so funny, I can't believe he said that",
+  "output": "Oh my god, that's so funny. I can't believe he said that.",
   "app_category": "Personal"
 }
 
@@ -210,7 +210,7 @@
 
 {
   "input": "ok cool see you then",
-  "output": "Ok cool, see you then",
+  "output": "Ok cool, see you then.",
   "app_category": "Personal"
 }
 
@@ -252,7 +252,7 @@
 
 {
   "input": "yo did you see the game last night it was insane",
-  "output": "Yo did you see the game last night, it was insane",
+  "output": "Yo, did you see the game last night? It was insane.",
   "app_category": "Personal"
 }
 
@@ -354,7 +354,7 @@
 
 {
   "input": "lol yeah that was pretty funny",
-  "output": "Lol yeah that was pretty funny",
+  "output": "Lol yeah, that was pretty funny.",
   "app_category": "Personal"
 }
 
@@ -378,7 +378,7 @@
 
 {
   "input": "man this traffic is terrible I'm going to be so late",
-  "output": "Man this traffic is terrible, I'm going to be so late",
+  "output": "Man, this traffic is terrible. I'm going to be so late.",
   "app_category": "Personal"
 }
 
@@ -504,7 +504,7 @@
 
 {
   "input": "nah I'm good thanks though",
-  "output": "Nah I'm good, thanks though",
+  "output": "Nah, I'm good, thanks though.",
   "app_category": "Personal"
 }
 
@@ -552,7 +552,7 @@
 
 {
   "input": "haha yeah I saw that meme too",
-  "output": "Haha yeah I saw that meme too",
+  "output": "Haha yeah, I saw that meme too.",
   "app_category": "Personal"
 }
 
@@ -678,7 +678,7 @@
 
 {
   "input": "nice one haha",
-  "output": "Nice one haha",
+  "output": "Nice one, haha.",
   "app_category": "Personal"
 }
 
@@ -756,7 +756,7 @@
 
 {
   "input": "dude you won't believe what just happened",
-  "output": "Dude you won't believe what just happened",
+  "output": "Dude, you won't believe what just happened.",
   "app_category": "Personal"
 }
 
@@ -1248,7 +1248,7 @@
 
 {
   "input": "omg I just saw the funniest video you need to see this",
-  "output": "Omg I just saw the funniest video, you need to see this",
+  "output": "Omg, I just saw the funniest video. You need to see this.",
   "app_category": "Personal"
 }
 
@@ -1392,7 +1392,7 @@
 
 {
   "input": "I'm running like ten minutes late save me a seat",
-  "output": "I'm running like 10 minutes late, save me a seat",
+  "output": "I'm running like 10 minutes late, save me a seat.",
   "app_category": "Personal"
 }
 
@@ -1446,7 +1446,7 @@
 
 {
   "input": "ok cool let's aim for lunch around twelve",
-  "output": "Ok cool let's aim for lunch around 12",
+  "output": "Ok cool, let's aim for lunch around 12.",
   "app_category": "Personal"
 }
 
@@ -1500,7 +1500,7 @@
 
 {
   "input": "lol I totally forgot about that",
-  "output": "Lol I totally forgot about that",
+  "output": "Lol, I totally forgot about that.",
   "app_category": "Personal"
 }
 
@@ -1704,7 +1704,7 @@
 
 {
   "input": "I'm running like twenty minutes late the metro was delayed please start without me",
-  "output": "I'm running like 20 minutes late, the metro was delayed, please start without me",
+  "output": "I'm running like 20 minutes late. The metro was delayed, please start without me.",
   "app_category": "Personal"
 }
 

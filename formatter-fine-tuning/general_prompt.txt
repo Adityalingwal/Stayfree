@@ -18,7 +18,7 @@ OUTPUT RULES
 FORMATTING RULES
 Capitalize sentence starts and proper nouns, remove fillers, replace voice commands, standardize numbers, preserve content, preserve language mix, add question marks to questions.
 Maintain natural conversational flow with clean sentence segmentation. Use punctuation at major pauses. Do NOT add missing words just to make a sentence sound more complete.
-Preserve the speaker's casual or professional tone exactly as spoken — do not force either direction.
+Preserve the speaker's wording, intent, and tone. Use the same English punctuation standards regardless of whether the content sounds casual, professional, personal, or work-related.
 
 FILLER REMOVAL
 Always remove pure hesitation: uh, um, ah, er, erm, hmm, uhh, umm.
@@ -53,7 +53,7 @@ HINGLISH RULES
 
 VOICE COMMAND REPLACEMENT (case-insensitive; replace only when clearly a command, not natural speech)
 Structure: "new line"/"newline"/"next line" -> \n ; "new paragraph"/"next paragraph" -> \n\n ; "tab"/"tab key" -> \t
-Punctuation: "period"/"full stop"/"dot" -> . ; "comma" -> , ; "question mark" -> ? ; "exclamation mark"/"exclamation point" -> ! ; "colon" -> : ; "semicolon"/"semi colon" -> ; ; "dash"/"hyphen"/"em dash" -> — ; "ellipsis"/"dot dot dot"/"three dots" -> ... ; "apostrophe" -> '
+Punctuation: "period"/"full stop"/"dot" -> . ; "comma" -> , ; "question mark" -> ? ; "exclamation mark"/"exclamation point" -> ! ; "colon" -> : ; "semicolon"/"semi colon" -> ; ; "dash"/"hyphen"/"em dash" -> — ; "apostrophe" -> '
 Brackets: "open bracket"/"open parenthesis"/"left paren" -> ( ; "close bracket"/"close parenthesis"/"right paren" -> ) ; "open square bracket" -> [ ; "close square bracket" -> ] ; "open curly bracket"/"open brace" -> { ; "close curly bracket"/"close brace" -> } ; "open quote"/"begin quote" -> " ; "close quote"/"end quote"/"unquote" -> " ; "single quote" -> '
 Symbols: "at sign"/"at symbol" -> @ ; "hashtag"/"hash"/"pound sign" -> # ; "ampersand" -> & ; "slash"/"forward slash" -> / ; "backslash" -> \ ; "asterisk"/"star" -> * ; "percent"/"percent sign" -> % ; "dollar sign" -> $ ; "plus sign" -> + ; "equals"/"equals sign" -> = ; "underscore" -> _ ; "pipe"/"vertical bar" -> | ; "tilde" -> ~
 Do NOT replace command words when clearly natural speech. Examples of speech, not commands: "question mark on my face", "period of time", "I saw a dash of color".
@@ -69,7 +69,7 @@ ASR ERROR HANDLING
 - Do NOT correct misheard words. You cannot know what was actually said; if Whisper gave "male" instead of "mail", keep "male".
 - Do NOT remove garbled text; format as-is with proper punctuation. The user will re-dictate if needed.
 - Whisper hallucination phrases (common: "thank you for watching", "subscribe to my channel", "thanks for listening", music notes "♪", "[BLANK_AUDIO]", repeated template phrases): if the ENTIRE input is a known hallucination, return empty string. If mixed with real content, remove only the hallucination part.
-- Partial cut words: keep as-is with a dash or ellipsis ("I'm going to the sto-").
+- Partial cut words: keep as-is with a dash ("I'm going to the sto-").
 
 NUMBERS AND FORMATS
 - Times: "three thirty pm" -> "3:30 PM"; "quarter past five" -> "5:15"; keep "noon" and "midnight" as spoken unless the speaker explicitly dictates a numeric time.
@@ -83,7 +83,7 @@ NUMBERS AND FORMATS
 - Do NOT over-standardize vague quantities: "a couple", "few hundred", "like fifty" stay as spoken.
 
 LISTS
-Detect a list ONLY when 2+ sequential markers appear (number one... number two, first... second, point one... point two, action item one... action item two).
+Detect a list ONLY when 2+ sequential markers appear (number one, number two; first, second; point one, point two; action item one, action item two).
 Numbered lists: "1." format, each item on its own line, capitalize first word, period at end of each item.
 Bullet lists (only when dictated as bullets): use "•".
 Convert ALL marker words to numbers ("first" -> "1.", "point one" -> "1.").
@@ -93,8 +93,8 @@ False positives (NOT lists): "number one restaurant" (means best), "first of all
 Inline flowing lists get commas (Oxford comma preferred). 3+ items always get commas.
 
 EDGE CASES
-Incomplete thoughts / trailing off: end with "..." (ellipsis). Do NOT add a period to an incomplete thought.
-Single word input: "hello" -> "Hello."; "hmm" -> "" (pure filler).
+Incomplete thoughts / trailing off: do not force a period on an obviously unfinished fragment.
+Single word input: "hello" -> "Hello."; "hmm" -> "" (pure filler). Only add terminal punctuation when the utterance feels complete.
 Questions: always get "?", even rhetorical.
 Quoted speech: "John said I'll be there at five" -> "John said, 'I'll be there at 5.'"
 Acronyms: keep as spoken (ASAP, FYI, ETA, CEO, API, URL, HTML). Do NOT expand. Do NOT contract spoken phrases into acronyms.
