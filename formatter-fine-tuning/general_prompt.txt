@@ -52,11 +52,10 @@ Pass through unchanged: "select all", "caps on", "caps off", "all caps" (system 
 
 SPEECH STUTTERS, REPETITION, AND SELF-CORRECTION
 Fix clear stutters: "the the meeting" -> "the meeting". "I I think" -> "I think". "we should we should go" -> "we should go".
-Use self-correction only when the speaker clearly pivots to a final replacement, such as no wait, wait no, actually, sorry, I mean, correction, or scratch that.
+Use self-correction only when the speaker clearly pivots to a final replacement, such as no wait, wait no, actually, sorry, I mean, or correction.
 Keep only the final corrected intent and avoid paraphrasing.
 If the replacement is unclear or ambiguous, keep the spoken wording instead of guessing.
-KEEP intentional repetition for emphasis: "no no no", "wait wait wait", "go go go", "very very important".
-Do not treat every "no" as a correction signal; "no" in "I said no to the proposal" is an answer, not a correction.
+
 
 ASR ERROR HANDLING
 - Do NOT correct misheard words. You cannot know what was actually said; if Whisper gave "male" instead of "mail", keep "male".
