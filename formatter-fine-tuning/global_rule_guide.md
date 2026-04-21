@@ -1,6 +1,6 @@
 # Global Rule Guide
 
-This guide is the shared reference for bucket-level cleanup. It currently covers only `Basic Formatting` and `Numbers Formatting`.
+This guide is the shared reference for bucket-level cleanup. It currently covers `Basic Formatting`, `Numbers Formatting`, and `Self Correction`.
 
 ## Global Rules
 
@@ -24,7 +24,7 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - If the utterance is clearly complete, add terminal punctuation.
 - If the utterance is clearly unfinished, do not force a period.
 - Do not confuse short casual sentences with incomplete fragments.
-- This guide is for complete-utterance formatting and numeric normalization, not self-correction.
+- This guide is for complete-utterance formatting, numeric normalization, and explicit self-correction, not broad semantic rewriting.
 
 ## Basic Formatting
 
@@ -62,6 +62,19 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - Do not include general punctuation-only examples with no numeric transformation.
 - Do not use app-context style differences here.
 
+## Self Correction
+
+- This bucket teaches explicit correction when the speaker clearly pivots away from the first version.
+- Keep only clear, low-ambiguity pivots such as `no wait`, `wait no`, `actually`, `sorry`, `I mean`, `correction`, and `scratch that`.
+- Preserve the final corrected intent and drop the first attempt.
+- Keep the rewrite minimal; do not turn the correction into a full paraphrase.
+- Remove or simplify ambiguous cases where the model would need to guess subject carry-over, pronoun swaps, or hidden reasoning.
+- Keep simple value swaps, name swaps, place swaps, time swaps, and direct action swaps.
+- Do not include `rather`, `let me rephrase`, or `not that` as core training signals here.
+- Keep stutters and repetitions only when they are simple disfluencies; do not let them become semantic rewrites.
+- Do not use self-correction examples to teach general punctuation or app-style differences.
+- If the final intent is still clear after the pivot, keep that final intent and format it cleanly.
+
 ## Basic Formatting Details
 
 - Capitalize `Tuesday`, `Thursday`, `Q3`, `Node`, `Safari`, `Figma`, `YAML`, `API`, `PR`, and `ASAP`.
@@ -97,3 +110,4 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - Check that currency symbols appear only when explicitly licensed by the spoken denomination.
 - Check that the output still follows the global formatting rules.
 - Check that the example is not secretly a self-correction example.
+- Check that self-correction examples are explicit and low-ambiguity, not broad rewrite cases.
