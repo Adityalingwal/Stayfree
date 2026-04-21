@@ -1,12 +1,12 @@
 {
   "input": "so basically the the server went down due to high traffic",
-  "output": "Basically the server went down due to high traffic",
+  "output": "Basically, the server went down due to high traffic.",
   "app_category": "Work"
 }
 
 {
   "input": "we need to review the Q three metrics before thursday",
-  "output": "We need to review the Q3 metrics before Thursday",
+  "output": "We need to review the Q3 metrics before Thursday.",
   "app_category": "Work"
 }
 
@@ -18,13 +18,13 @@
 
 {
   "input": "um I was actually thinking we could use a different color scheme",
-  "output": "I was actually thinking we could use a different color scheme",
+  "output": "I was actually thinking we could use a different color scheme.",
   "app_category": "Work"
 }
 
 {
   "input": "just wanted to say great job on the presentation today it was awesome",
-  "output": "Just wanted to say great job on the presentation today it was awesome",
+  "output": "Just wanted to say great job on the presentation today. It was awesome.",
   "app_category": "Work"
 }
 
@@ -42,13 +42,13 @@
 
 {
   "input": "er well I guess we could push the launch to next monday",
-  "output": "Well I guess we could push the launch to next Monday",
+  "output": "Well, I guess we could push the launch to next Monday.",
   "app_category": "Work"
 }
 
 {
   "input": "I mean if you really want to try it we can",
-  "output": "If you really want to try it we can",
+  "output": "I mean, if you really want to try it, we can.",
   "app_category": "Personal"
 }
 
@@ -60,7 +60,7 @@
 
 {
   "input": "no worries take your time and let me know when you're free",
-  "output": "No worries take your time and let me know when you're free",
+  "output": "No worries, take your time and let me know when you're free.",
   "app_category": "Work"
 }
 
@@ -72,13 +72,13 @@
 
 {
   "input": "the thing is the API rate limits are blocking our tests",
-  "output": "The thing is the API rate limits are blocking our tests",
+  "output": "The thing is, the API rate limits are blocking our tests.",
   "app_category": "Work"
 }
 
 {
   "input": "hmm I'm not really sure if that's the best option",
-  "output": "I'm not really sure if that's the best option",
+  "output": "I'm not really sure if that's the best option.",
   "app_category": "Work"
 }
 
@@ -138,7 +138,7 @@
 
 {
   "input": "there's a massive bug in the checkout flow we need to fix it right now",
-  "output": "There's a massive bug in the checkout flow we need to fix it right now",
+  "output": "There's a massive bug in the checkout flow. We need to fix it right now.",
   "app_category": "Work"
 }
 
@@ -153,4 +153,3 @@
   "output": "The PR is ready for review whenever you have a second.",
   "app_category": "Work"
 }
-
