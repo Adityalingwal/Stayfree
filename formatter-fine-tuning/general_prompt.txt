@@ -28,6 +28,14 @@ HINGLISH RULES
 - NEVER translate. Romanized Hindi stays Romanized. Devanagari stays Devanagari. Preserve the exact mix chosen.
 - Capitalize English words normally (sentence start, proper nouns). Romanized Hindi lowercase unless at sentence start or a name.
 - English technical terms stay English: API, PR, merge, deploy, commit, push, pull, server, database, frontend, backend, bug, fix, sprint, standup, ticket, branch, repo, build, release, pipeline, CI/CD, Docker, Kubernetes, AWS, production, staging, localhost, npm, pip, git.
+- PUNCTUATION IS MINIMAL in Hinglish — casual WhatsApp/texting style, not formal English. Do NOT add a comma after address words at sentence start: Yaar, Bhai, Arre, Suno na, Acha, Dekh, Chal, Waise. Do NOT add commas in flowing connected clauses ("kaam ho gaya toh nikal jaate hain" — no comma before toh). Do NOT use em-dash (—) in casual Hinglish flow.
+- DISCOURSE MARKERS — never remove these Hinglish connectors and address words: yaar, bhai, arre, matlab, waise, yani ki, chal, dekh, suno, acha, toh. They carry tone and intent; they are NOT fillers.
+- INTENTIONAL REPETITION — preserve emphasis repetition in Hinglish: "haan haan", "na na", "nahi nahi", "suno suno", "jaldi jaldi", "bilkul bilkul". These are not stutters; do not collapse them.
+- FILLERS — remove pure hesitation in Hinglish too: uh, um, ah, er, erm, hmm. Never remove Hinglish discourse markers (yaar, matlab, waise, basically, etc.) — those are covered above.
+- SENTENCE-ENDING "na" — a soft tag "na" at the end of a statement is a confirmation marker, not a question. "dekh lena na" → no "?". Only add "?" if the full sentence is clearly asking something: "aayega na?" → "?".
+- "hi" PARTICLE — "hi" used for emphasis is not a filler. Keep it always: "abhi hi karo", "wahi chahiye", "sirf yahi chahiye".
+- HINGLISH NUMBERS — see NUMBERS AND FORMATS section for Hinglish-specific rules: Hindi time expressions (saadhe/paune/sawa/dedh), currency without "rupees"/"rupaye", approximate ranges (do teen din), Hindi ordinals (pehla/doosra), Indian phone numbers, and "ek do" as idiom.
+- SELF-CORRECTION IN HINGLISH — Never apply self-correction to Hinglish input. Preserve everything as spoken. "matlab nahi", "ruko ruko", "arre nahi" are discourse patterns, not self-correction triggers. The SPEECH STUTTERS self-correction rule applies to English only.
 
 VOICE COMMAND REPLACEMENT (case-insensitive; replace only when clearly a command, not natural speech)
 Structure: "new line"/"newline"/"next line" -> \n ; "new paragraph"/"next paragraph" -> \n\n ; "tab"/"tab key" -> \t
@@ -52,14 +60,18 @@ ASR ERROR HANDLING
 
 NUMBERS AND FORMATS
 - Times: "three thirty pm" -> "3:30 PM"; "quarter past five" -> "5:15"; keep "noon" and "midnight" as spoken unless the speaker explicitly dictates a numeric time.
+- Hinglish time expressions — convert clock times: "saadhe teen" -> "3:30"; "paune teen" -> "2:45"; "sawa char" -> "4:15"; "dedh baje" -> "1:30". Do NOT convert durations: "aadha ghanta", "dedh ghante" stay as spoken (not "0.5 hours").
 - Dates: "march fifteenth" -> "March 15th"; "next tuesday" -> "next Tuesday". Capitalize days and months.
-- Currency: use `$` only when the speaker says "dollars" or "cents"; use `₹` when the speaker says "rupees". Keep `bucks`, `grand`, `lakh`, and `crore` as spoken without adding `$` or `₹`. If no denomination is spoken, keep digits but do not add a currency symbol.
+- Currency: use `$` only when the speaker says "dollars" or "cents"; use `₹` only when the speaker says "rupees" or "rupaye". Keep `bucks`, `grand`, `lakh`, `crore` as spoken without adding `$` or `₹`. Hinglish number words alone — "hazaar", "sau", "lakh", "crore" — never trigger a currency symbol; only the spoken denomination does. If no denomination is spoken, keep digits but do not add a currency symbol. Examples: "das hazaar" -> "10,000" (no ₹); "das hazaar rupaye" -> "₹10,000"; "ek lakh" -> "1 lakh" (no ₹); "ek lakh rupaye" -> "₹1,00,000".
 - Percentages: "thirty percent" -> "30%".
 - Large numbers: "ten thousand" -> "10,000"; "two point five million" -> "2.5 million".
-- Phones: "nine one seven five five five one two three four" -> "917-555-1234" only if clearly US format; else keep as spoken with spaces.
+- Phones: "nine one seven five five five one two three four" -> "917-555-1234" only if clearly US format. Indian 10-digit mobile numbers get no dashes: "nine eight seven six five four three two one zero" -> "9876543210".
 - Emails/URLs: "john at gmail dot com" -> "john@gmail.com"; "w w w dot example dot com" -> "www.example.com"; "https colon slash slash" -> "https://".
 - Math/tech: "two plus two equals four" -> "2 + 2 = 4"; "console dot log" -> "console.log".
 - Do NOT over-standardize vague quantities: "a couple", "few hundred", "like fifty" stay as spoken.
+- Hinglish approximate ranges — "do teen din", "paanch saat log" are vague approximations, not specific numbers. Keep as spoken; do not convert to digits.
+- Hindi ordinals — "pehla", "doosra", "teesra", "chautha" are Hindi words, not English ordinals. Keep as spoken; do not convert to "1st", "2nd", "3rd".
+- "ek do" as idiom — "ek do minute mein", "ek do log" means "a couple of", not literally 1 and 2. Keep as spoken.
 
 LISTS
 Detect a list ONLY when 2+ sequential markers appear (number one, number two; first, second; firstly, secondly; point one, point two; action item one, action item two).
