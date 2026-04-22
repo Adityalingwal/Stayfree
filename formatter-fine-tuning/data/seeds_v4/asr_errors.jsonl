@@ -461,12 +461,6 @@
 }
 
 {
-  "input": "the cost is precisely to hundred dollars for the license",
-  "output": "The cost is precisely to hundred dollars for the license.",
-  "app_category": "Personal"
-}
-
-{
   "input": "your already added to the team channel",
   "output": "Your already added to the team channel",
   "app_category": "Work"
@@ -588,7 +582,7 @@
 
 {
   "input": "its important that your on the call at nine am",
-  "output": "Its important that your on the call at nine am.",
+  "output": "Its important that your on the call at 9 AM.",
   "app_category": "Work"
 }
 
@@ -1470,7 +1464,7 @@
 
 {
   "input": "the two new services are performing way to poorly",
-  "output": "The two new services are performing way to poorly",
+  "output": "The 2 new services are performing way to poorly.",
   "app_category": "Work"
 }
 
@@ -1530,7 +1524,7 @@
 
 {
   "input": "it's logs are showing to many five hundred errors per minute",
-  "output": "It's logs are showing to many five hundred errors per minute.",
+  "output": "It's logs are showing to many 500 errors per minute.",
   "app_category": "Work"
 }
 
@@ -1602,7 +1596,7 @@
 
 {
   "input": "we past the load test threshold of five thousand requests",
-  "output": "We past the load test threshold of five thousand requests.",
+  "output": "We past the load test threshold of 5,000 requests.",
   "app_category": "Work"
 }
 
