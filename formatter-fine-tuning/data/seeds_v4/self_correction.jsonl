@@ -29,7 +29,7 @@
 }
 
 {
-  "input": "assign it to mike i mean david",
+  "input": "assign it to mike no sorry to david",
   "output": "Assign it to David.",
   "app_category": "Other"
 }
@@ -83,19 +83,13 @@
 }
 
 {
-  "input": "so basically what what happened was the deploy failed at the last step",
-  "output": "Basically, what happened was the deploy failed at the last step.",
-  "app_category": "Work"
-}
-
-{
   "input": "merge it into main actually no the develop branch",
   "output": "Merge it into the develop branch.",
   "app_category": "Work"
 }
 
 {
-  "input": "set priority to high wait make it critical",
+  "input": "set priority to high no wait make it critical",
   "output": "Set priority to critical.",
   "app_category": "Other"
 }
@@ -107,15 +101,9 @@
 }
 
 {
-  "input": "the function returns a string i mean an integer",
+  "input": "the function returns a string no sorry an integer",
   "output": "The function returns an integer.",
   "app_category": "Other"
-}
-
-{
-  "input": "deploy to staging actually go straight to production",
-  "output": "Deploy to production.",
-  "app_category": "Work"
 }
 
 {
@@ -131,7 +119,7 @@
 }
 
 {
-  "input": "tag it as a bug i mean a feature request",
+  "input": "tag it as a bug no wait a feature request",
   "output": "Tag it as a feature request.",
   "app_category": "Other"
 }
@@ -145,12 +133,6 @@
 {
   "input": "the issue is in the frontend no wait the backend api",
   "output": "The issue is in the backend API.",
-  "app_category": "Work"
-}
-
-{
-  "input": "please wait for the build to finish before merging",
-  "output": "Please wait for the build to finish before merging.",
   "app_category": "Work"
 }
 
@@ -173,7 +155,7 @@
 }
 
 {
-  "input": "schedule it for next week i mean the week after",
+  "input": "schedule it for next week wait actually the week after",
   "output": "Schedule it for the week after.",
   "app_category": "Work"
 }
@@ -185,50 +167,32 @@
 }
 
 {
-  "input": "move it to the done column i mean in progress",
-  "output": "Move it to the in progress column.",
-  "app_category": "Other"
-}
-
-{
   "input": "i'll take the large no wait the medium coffee please",
   "output": "I'll take the medium coffee please.",
   "app_category": "Personal"
 }
 
 {
-  "input": "it costs twenty dollars sorry i mean twenty five dollars with tax",
+  "input": "it costs twenty dollars no sorry twenty five dollars with tax",
   "output": "It costs $25 with tax.",
   "app_category": "Personal"
 }
 
 {
-  "input": "deploy to staging actually no deploy straight to production",
-  "output": "Deploy straight to production.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the bug is in the navigation bar i mean the footer",
+  "input": "the bug is in the navigation bar no sorry the footer",
   "output": "The bug is in the footer.",
   "app_category": "Work"
 }
 
 {
-  "input": "cancel the subscription actually just downgrade it",
+  "input": "cancel the subscription wait no actually just downgrade it",
   "output": "Just downgrade it.",
   "app_category": "Work"
 }
 
 {
-  "input": "i'll send you the report on tuesday actually wednesday",
+  "input": "i'll send you the report on tuesday no actually wednesday",
   "output": "I'll send you the report on Wednesday.",
-  "app_category": "Work"
-}
-
-{
-  "input": "reply to them and say yes wait no say let me think about it",
-  "output": "Say, 'Let me think about it.'",
   "app_category": "Work"
 }
 
@@ -239,7 +203,7 @@
 }
 
 {
-  "input": "i ordered two pizzas sorry i mean three pizzas",
+  "input": "i ordered two pizzas no sorry three pizzas",
   "output": "I ordered 3 pizzas.",
   "app_category": "Personal"
 }
@@ -251,7 +215,7 @@
 }
 
 {
-  "input": "assign the ticket to me sorry assign it to ankit",
+  "input": "assign the ticket to me sorry no to ankit",
   "output": "Assign the ticket to Ankit.",
   "app_category": "Work"
 }
@@ -263,13 +227,13 @@
 }
 
 {
-  "input": "i'm bringing five friends actually six friends to the party",
+  "input": "i'm bringing five friends no actually six friends to the party",
   "output": "I'm bringing 6 friends to the party.",
   "app_category": "Personal"
 }
 
 {
-  "input": "the presentation is tomorrow wait no it's on thursday",
+  "input": "the presentation is tomorrow wait no on thursday",
   "output": "The presentation is on Thursday.",
   "app_category": "Work"
 }
@@ -281,13 +245,13 @@
 }
 
 {
-  "input": "change the color to blue actually make it red",
+  "input": "change the color to blue no actually make it red",
   "output": "Make it red.",
   "app_category": "Work"
 }
 
 {
-  "input": "the issue is in line forty correction line forty two",
+  "input": "the issue is in line forty no sorry line forty two",
   "output": "The issue is in line 42.",
   "app_category": "Work"
 }
@@ -299,19 +263,19 @@
 }
 
 {
-  "input": "it'll cost two hundred dollars i mean two hundred and fifty dollars",
+  "input": "it'll cost two hundred dollars no wait two hundred and fifty dollars",
   "output": "It'll cost $250.",
   "app_category": "Personal"
 }
 
 {
-  "input": "let's meet at the cafe i mean the office",
+  "input": "let's meet at the cafe no sorry the office",
   "output": "Let's meet at the office.",
   "app_category": "Personal"
 }
 
 {
-  "input": "the flight is at six pm correction seven thirty pm",
+  "input": "the flight is at six pm no sorry seven thirty pm",
   "output": "The flight is at 7:30 PM.",
   "app_category": "Personal"
 }
@@ -323,7 +287,7 @@
 }
 
 {
-  "input": "close the ticket actually just move it back to in progress",
+  "input": "close the ticket no actually just move it back to in progress",
   "output": "Just move it back to in progress.",
   "app_category": "Work"
 }
@@ -335,13 +299,13 @@
 }
 
 {
-  "input": "let's meet at three pm sorry I mean four pm",
+  "input": "let's meet at three pm sorry four pm",
   "output": "Let's meet at 4 PM.",
   "app_category": "Work"
 }
 
 {
-  "input": "send it to raj actually to the whole design team",
+  "input": "send it to raj no wait actually to the whole design team",
   "output": "Send it to the whole design team.",
   "app_category": "Work"
 }
@@ -353,19 +317,13 @@
 }
 
 {
-  "input": "add ten items no wait make it fifteen items to the backlog",
-  "output": "Add 15 items to the backlog.",
-  "app_category": "Work"
-}
-
-{
   "input": "deploy to staging no actually deploy to production directly",
   "output": "Deploy to production directly.",
   "app_category": "Work"
 }
 
 {
-  "input": "the issue is in the header component actually no it's in the footer",
+  "input": "the issue is in the header actually no in the footer",
   "output": "The issue is in the footer.",
   "app_category": "Work"
 }
@@ -395,7 +353,7 @@
 }
 
 {
-  "input": "invite nikhil to the call actually just share the recording with him",
+  "input": "invite nikhil to the call no actually just share the recording with him",
   "output": "Just share the recording with him.",
   "app_category": "Work"
 }
@@ -407,31 +365,31 @@
 }
 
 {
-  "input": "i'll join the five pm standup no sorry the five thirty",
+  "input": "i'll join the five pm standup no sorry the five thirty standup",
   "output": "I'll join the 5:30 standup.",
   "app_category": "Work"
 }
 
 {
-  "input": "assign it to the backend team actually to the full stack team",
+  "input": "assign it to the backend team no actually to the full stack team",
   "output": "Assign it to the full stack team.",
   "app_category": "Work"
 }
 
 {
-  "input": "we launch on the twentieth no wait let me check actually the twenty second",
+  "input": "we launch on the twentieth no wait actually the twenty second",
   "output": "We launch on the 22nd.",
   "app_category": "Work"
 }
 
 {
-  "input": "send the weekly report to the cto no I mean the entire leadership team",
+  "input": "send the weekly report to the cto no sorry the entire leadership team",
   "output": "Send the weekly report to the entire leadership team.",
   "app_category": "Work"
 }
 
 {
-  "input": "schedule it for two pm I mean let's do three pm instead",
+  "input": "schedule it for two pm wait sorry let's do three pm instead",
   "output": "Let's do 3 PM instead.",
   "app_category": "Work"
 }
@@ -449,25 +407,19 @@
 }
 
 {
-  "input": "block two hours for review I mean let's just do one hour",
+  "input": "block two hours for review sorry wait let's just do one hour for review",
   "output": "Let's just do 1 hour for review.",
   "app_category": "Work"
 }
 
 {
-  "input": "merge the branch now wait we need one more review first",
+  "input": "merge the branch now no wait we need one more review first",
   "output": "We need one more review first.",
   "app_category": "Work"
 }
 
 {
-  "input": "reduce the sprint to eight points no wait keep it at thirteen",
-  "output": "Keep the sprint at 13 points.",
-  "app_category": "Work"
-}
-
-{
-  "input": "book the flight for thursday I mean friday morning flight",
+  "input": "book the flight for thursday wait sorry friday morning",
   "output": "Book the flight for Friday morning.",
   "app_category": "Personal"
 }
@@ -497,19 +449,19 @@
 }
 
 {
-  "input": "take the highway no actually the side route is faster today",
+  "input": "take the highway no actually the side route it is faster today",
   "output": "Take the side route, it is faster today.",
   "app_category": "Personal"
 }
 
 {
-  "input": "buy two tickets no wait we need three one more person is joining",
+  "input": "buy two tickets no wait three one more person is joining",
   "output": "Buy 3 tickets, one more person is joining.",
   "app_category": "Personal"
 }
 
 {
-  "input": "add them to the group no I mean just tell them directly",
+  "input": "add them to the group no sorry just tell them directly",
   "output": "Just tell them directly.",
   "app_category": "Personal"
 }
@@ -521,7 +473,7 @@
 }
 
 {
-  "input": "meet at the station I mean at the mall entrance",
+  "input": "meet at the station wait sorry at the mall entrance",
   "output": "Meet at the mall entrance.",
   "app_category": "Personal"
 }
@@ -533,13 +485,13 @@
 }
 
 {
-  "input": "gift the blue scarf I mean the green one she mentioned she liked green",
+  "input": "gift the blue scarf sorry wait the green scarf she said she liked green",
   "output": "Gift the green scarf, she said she liked green.",
   "app_category": "Personal"
 }
 
 {
-  "input": "we leave at seven no wait eight makes more sense",
+  "input": "we leave at seven no wait eight",
   "output": "We leave at 8.",
   "app_category": "Personal"
 }
@@ -551,7 +503,7 @@
 }
 
 {
-  "input": "order the medium pizza no I mean large we are five people",
+  "input": "order the medium no sorry large pizza we are five people",
   "output": "Order the large pizza, we are 5 people.",
   "app_category": "Personal"
 }
@@ -563,13 +515,13 @@
 }
 
 {
-  "input": "split the bill evenly I mean let me just pay it's easier",
+  "input": "split the bill evenly sorry wait let me just pay it's easier",
   "output": "Let me just pay, it's easier.",
   "app_category": "Personal"
 }
 
 {
-  "input": "add sugar I mean actually skip it I'm cutting down",
+  "input": "add sugar sorry actually skip it I'm cutting down",
   "output": "Skip it, I'm cutting down.",
   "app_category": "Personal"
 }
@@ -587,31 +539,25 @@
 }
 
 {
-  "input": "cancel that plan no wait it was actually fun last time let's do it",
-  "output": "Let's do it, it was actually fun last time.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "go left I mean right the map is saying right",
+  "input": "go left no sorry right the map is saying right",
   "output": "Go right, the map is saying right.",
   "app_category": "Personal"
 }
 
 {
-  "input": "follow up with the vendor tomorrow no actually call them today it's urgent",
+  "input": "follow up with the vendor tomorrow no actually call the vendor today it's urgent",
   "output": "Call the vendor today, it's urgent.",
   "app_category": "Work"
 }
 
 {
-  "input": "ship the feature in version three no wait two dot five is better",
+  "input": "ship the feature in version three no wait two dot five",
   "output": "Ship the feature in version 2.5.",
   "app_category": "Work"
 }
 
 {
-  "input": "the meeting is wednesday at two no wait I see thursday at two on the invite",
+  "input": "the meeting is wednesday at two no wait thursday at two",
   "output": "The meeting is Thursday at 2.",
   "app_category": "Work"
 }
@@ -623,13 +569,13 @@
 }
 
 {
-  "input": "send it for external review no wait internal first",
+  "input": "send it for external no wait internal review first",
   "output": "Send it for internal review first.",
   "app_category": "Work"
 }
 
 {
-  "input": "highlight it in red I mean yellow for the presentation",
+  "input": "highlight it in red no sorry yellow for the presentation",
   "output": "Highlight it in yellow for the presentation.",
   "app_category": "Work"
 }
@@ -647,32 +593,26 @@
 }
 
 {
-  "input": "lock the config no actually let the team review it first",
+  "input": "lock the config no actually let the team review the config first",
   "output": "Let the team review the config first.",
   "app_category": "Work"
 }
 
 {
-  "input": "remind the team at noon actually five pm is better they'll actually read it",
+  "input": "remind the team at noon actually five pm they'll actually read it",
   "output": "Remind the team at 5 PM, they'll actually read it.",
   "app_category": "Work"
 }
 
 {
-  "input": "update the SDK to version four no wait three dot eight is stable",
+  "input": "update the SDK to version four no wait three dot eight it is stable",
   "output": "Update the SDK to version 3.8, it is stable.",
   "app_category": "Work"
 }
 
 {
-  "input": "book the conference room for an hour actually two hours we'll run long",
+  "input": "book the conference room for an hour no actually two hours we'll run long",
   "output": "Book the conference room for 2 hours, we'll run long.",
-  "app_category": "Work"
-}
-
-{
-  "input": "start the A/B test on monday I mean wait for the designer sign off first",
-  "output": "Wait for the designer sign off before starting the A/B test.",
   "app_category": "Work"
 }
 
@@ -683,19 +623,19 @@
 }
 
 {
-  "input": "kick off the war room now no let's try the hotfix first",
+  "input": "kick off the war room now no wait let's try the hotfix first",
   "output": "Let's try the hotfix first.",
   "app_category": "Work"
 }
 
 {
-  "input": "i'll send you the proposal on friday actually thursday to give you more time",
+  "input": "i'll send you the proposal on friday sorry thursday to give you more time",
   "output": "I'll send you the proposal on Thursday to give you more time.",
   "app_category": "Work"
 }
 
 {
-  "input": "the bug is in the login service I mean the auth middleware",
+  "input": "the bug is in the login service wait sorry the auth middleware",
   "output": "The bug is in the auth middleware.",
   "app_category": "Work"
 }
@@ -707,14 +647,8 @@
 }
 
 {
-  "input": "cancel the subscription actually just pause it for a month",
+  "input": "cancel the subscription no wait actually just pause it for a month",
   "output": "Just pause it for a month.",
-  "app_category": "Work"
-}
-
-{
-  "input": "move the standup to nine am no wait ten is better for the team",
-  "output": "10 AM is better for the team.",
   "app_category": "Work"
 }
 
@@ -725,25 +659,19 @@
 }
 
 {
-  "input": "close the sprint actually let's carry over the last two tickets",
+  "input": "close the sprint no actually let's carry over the last two tickets",
   "output": "Let's carry over the last 2 tickets.",
   "app_category": "Work"
 }
 
 {
-  "input": "alert the customer I mean first confirm internally that it's a real issue",
-  "output": "First confirm internally that it's a real issue.",
+  "input": "increase timeout to thirty seconds no wait sixty seconds it gives more headroom",
+  "output": "Increase timeout to 60 seconds, it gives more headroom.",
   "app_category": "Work"
 }
 
 {
-  "input": "increase timeout to thirty seconds no wait sixty seconds gives more headroom",
-  "output": "Increase the timeout to 60 seconds, it gives more headroom.",
-  "app_category": "Work"
-}
-
-{
-  "input": "i'll join the three pm call no actually the four pm one",
+  "input": "i'll join the three pm no actually the four pm call",
   "output": "I'll join the 4 PM call.",
   "app_category": "Work"
 }
@@ -755,7 +683,7 @@
 }
 
 {
-  "input": "roll back to version one dot four no wait one dot five was stable",
+  "input": "roll back to version one dot four no wait one dot five it was stable",
   "output": "Roll back to version 1.5, it was stable.",
   "app_category": "Work"
 }
@@ -779,19 +707,13 @@
 }
 
 {
-  "input": "launch to ten percent of users no actually five to be safe",
-  "output": "Launch to 5% of users to be safe.",
-  "app_category": "Work"
-}
-
-{
   "input": "turn off push notifications no wait just reduce the frequency",
   "output": "Just reduce the frequency.",
   "app_category": "Work"
 }
 
 {
-  "input": "close the support ticket no actually reopen it the issue came back",
+  "input": "close the support ticket no actually reopen the ticket the issue came back",
   "output": "Reopen the ticket, the issue came back.",
   "app_category": "Work"
 }
@@ -804,7 +726,7 @@
 
 {
   "input": "update the staging DB no wait production directly it's a config fix",
-  "output": "Update production directly, it's a config fix.",
+  "output": "Update the production directly, it's a config fix.",
   "app_category": "Work"
 }
 
@@ -815,20 +737,20 @@
 }
 
 {
-  "input": "add caching now actually let's profile first to see if it's needed",
+  "input": "add caching now actually let's profile first to see if catching is needed",
   "output": "Let's profile first to see if caching is needed.",
   "app_category": "Work"
 }
 
 {
   "input": "turn off the feature for all users no wait just for new signups",
-  "output": "Turn off the feature for new signups only.",
+  "output": "Turn off the feature for new signups.",
   "app_category": "Work"
 }
 
 {
   "input": "book a one hour slot I mean forty five minutes is enough",
-  "output": "40 minutes is enough, book a 45-minute slot.",
+  "output": "45 minutes is enough.",
   "app_category": "Work"
 }
 
@@ -841,24 +763,6 @@
 {
   "input": "raise the alert threshold to five hundred no wait make it three hundred",
   "output": "Raise the alert threshold to 300.",
-  "app_category": "Work"
-}
-
-{
-  "input": "tell them we'll deliver by end of month no wait end of next month is realistic",
-  "output": "End of next month is more realistic.",
-  "app_category": "Work"
-}
-
-{
-  "input": "disable the old API endpoints no actually keep them for another sprint",
-  "output": "Keep the old API endpoints for another sprint.",
-  "app_category": "Work"
-}
-
-{
-  "input": "put it in the next release no wait this one it's a critical fix",
-  "output": "Put it in this release, it's a critical fix.",
   "app_category": "Work"
 }
 
@@ -876,42 +780,42 @@
 
 {
   "input": "schedule the post mortem for monday actually let's do it today while it's fresh",
-  "output": "Let's do the post mortem today while it's fresh.",
+  "output": "Let's do it today while it's fresh.",
   "app_category": "Work"
 }
 
 {
-  "input": "export it as CSV no wait JSON is easier for the other team to process",
+  "input": "export it as CSV no wait JSON it is easier for the other team to process",
   "output": "Export it as JSON, it is easier for the other team to process.",
   "app_category": "Work"
 }
 
 {
-  "input": "the daily sync is at nine am no wait it was moved to nine thirty",
-  "output": "The daily sync was moved to 9:30 AM.",
+  "input": "the daily sync is at nine am no wait nine thirty am",
+  "output": "The daily sync is at 9:30 AM.",
   "app_category": "Work"
 }
 
 {
-  "input": "mute the notifications for staging no actually mute everything except prod",
-  "output": "Mute everything except production notifications.",
+  "input": "mute the notifications no actually mute everything except prod",
+  "output": "Mute everything except prod.",
   "app_category": "Work"
 }
 
 {
-  "input": "invite the QA lead to the call no wait the test engineer she's handling this",
+  "input": "invite the QA lead no wait the test engineer she's handling this",
   "output": "Invite the test engineer, she's handling this.",
   "app_category": "Work"
 }
 
 {
   "input": "split into two stories no wait three it's complex enough",
-  "output": "Split it into 3 stories, it's complex enough.",
+  "output": "Split into 3 stories, it's complex enough.",
   "app_category": "Work"
 }
 
 {
-  "input": "set up alerts for errors above five percent no wait two percent is safer",
+  "input": "set up alerts for errors above five percent no wait two percent it's safer",
   "output": "Set up alerts for errors above 2%, it's safer.",
   "app_category": "Work"
 }
@@ -929,13 +833,13 @@
 }
 
 {
-  "input": "let's do a soft launch on thursday no wait friday gives us more buffer",
+  "input": "let's do a soft launch on thursday no wait friday it gives us more buffer",
   "output": "Let's do the soft launch on Friday, it gives us more buffer.",
   "app_category": "Work"
 }
 
 {
-  "input": "skip the handoff doc no actually write a short one so qa isn't lost",
+  "input": "skip the handoff doc no actually write a short handoff doc so qa isn't lost",
   "output": "Write a short handoff doc so QA isn't lost.",
   "app_category": "Work"
 }
@@ -947,19 +851,19 @@
 }
 
 {
-  "input": "the call is at two pm no sorry i mean two thirty",
+  "input": "the call is at two pm no sorry i mean two thirty pm",
   "output": "The call is at 2:30 PM.",
   "app_category": "Work"
 }
 
 {
   "input": "add the test to the regression suite no wait the smoke suite it's simpler",
-  "output": "Add the test to the smoke suite, it is simpler.",
+  "output": "Add the test to the smoke suite, it's simpler.",
   "app_category": "Work"
 }
 
 {
-  "input": "start with the mobile app no wait the web dashboard has more users",
+  "input": "start with the mobile app no wait the web dashboard it has more users",
   "output": "Start with the web dashboard, it has more users.",
   "app_category": "Work"
 }
