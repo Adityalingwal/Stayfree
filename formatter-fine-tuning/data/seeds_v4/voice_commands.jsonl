@@ -432,7 +432,7 @@
 
 {
   "input": "next line here's the second point next line and the third one",
-  "output": "\nHere's the second point.\n\nAnd the third one.",
+  "output": "\nHere's the second point.\nAnd the third one.",
   "app_category": "Other"
 }
 
@@ -1038,7 +1038,7 @@
 
 {
   "input": "grocery list new line dash apples new line dash bananas new line dash carrots",
-  "output": "Grocery list\n- apples\n- bananas\n- carrots",
+  "output": "Grocery list:\n— Apples.\n— Bananas.\n— Carrots.",
   "app_category": "Other"
 }
 
@@ -1068,7 +1068,7 @@
 
 {
   "input": "first draft colon new line title dash the future of ai new paragraph the world is changing period",
-  "output": "First draft:\nTitle - The future of AI\n\nThe world is changing.",
+  "output": "First draft:\nTitle — The future of AI\n\nThe world is changing.",
   "app_category": "Other"
 }
 
@@ -1128,7 +1128,7 @@
 
 {
   "input": "pros colon new line dash fast new line dash cheap new paragraph cons colon new line dash poor quality",
-  "output": "Pros:\n- fast\n- cheap\n\nCons:\n- poor quality",
+  "output": "Pros:\n— Fast.\n— Cheap.\n\nCons:\n— Poor quality.",
   "app_category": "Other"
 }
 
@@ -1140,7 +1140,7 @@
 
 {
   "input": "project alpha dash phase two is starting",
-  "output": "Project Alpha - Phase 2 is starting",
+  "output": "Project Alpha — Phase 2 is starting.",
   "app_category": "Work"
 }
 
@@ -1158,13 +1158,13 @@
 
 {
   "input": "folder path is users slash admin slash documents",
-  "output": "Folder path is users/admin/documents",
+  "output": "Folder path is users/admin/documents.",
   "app_category": "Work"
 }
 
 {
   "input": "client ampersand partners meeting at four pm",
-  "output": "Client & partners meeting at 4 PM",
+  "output": "Client & partners meeting at 4 PM.",
   "app_category": "Work"
 }
 
