@@ -5,7 +5,7 @@
 }
 
 {
-  "input": "the project is done period let's move on to the next one period",
+  "input": "the project is done period let's move on to the next one",
   "output": "The project is done. Let's move on to the next one.",
   "app_category": "Work"
 }
@@ -29,13 +29,13 @@
 }
 
 {
-  "input": "I need the following items colon milk comma eggs comma bread comma and butter period",
+  "input": "I need the following items colon milk comma eggs comma bread comma and butter",
   "output": "I need the following items: milk, eggs, bread, and butter.",
   "app_category": "Other"
 }
 
 {
-  "input": "wait semicolon I have another idea period",
+  "input": "wait semicolon I have another idea",
   "output": "Wait; I have another idea.",
   "app_category": "Work"
 }
@@ -191,38 +191,8 @@
 }
 
 {
-  "input": "I had a question mark on that decision",
-  "output": "I had a question mark on that decision.",
-  "app_category": "Work"
-}
-
-{
-  "input": "what's the question mark for in this code",
-  "output": "What's the question mark for in this code?",
-  "app_category": "Work"
-}
-
-{
   "input": "is the report ready question mark",
   "output": "Is the report ready?",
-  "app_category": "Work"
-}
-
-{
-  "input": "he put a question mark next to my name on the whiteboard",
-  "output": "He put a question mark next to my name on the whiteboard.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the period of time was too short for proper testing",
-  "output": "The period of time was too short for proper testing.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need to extend the trial period for at least two more weeks",
-  "output": "We need to extend the trial period for at least 2 more weeks.",
   "app_category": "Work"
 }
 
@@ -233,39 +203,15 @@
 }
 
 {
-  "input": "the comma operator in JavaScript is rarely used",
-  "output": "The comma operator in JavaScript is rarely used.",
-  "app_category": "Work"
-}
-
-{
   "input": "after the first clause comma add the second part",
   "output": "After the first clause, add the second part.",
   "app_category": "Other"
 }
 
 {
-  "input": "I need to use the hash symbol in my password",
-  "output": "I need to use the hash symbol in my password.",
-  "app_category": "Work"
-}
-
-{
   "input": "add a hashtag trending to the post",
   "output": "Add a #trending to the post.",
   "app_category": "Personal"
-}
-
-{
-  "input": "she's a star at what she does",
-  "output": "She's a star at what she does.",
-  "app_category": "Work"
-}
-
-{
-  "input": "add a star rating to each item",
-  "output": "Add a star rating to each item.",
-  "app_category": "Work"
 }
 
 {
@@ -377,20 +323,8 @@
 }
 
 {
-  "input": "she made a dash for the exit",
-  "output": "She made a dash for the exit.",
-  "app_category": "Personal"
-}
-
-{
   "input": "the hyphenated word is well dash known",
   "output": "The hyphenated word is well—known.",
-  "app_category": "Work"
-}
-
-{
-  "input": "he used a colon in his explanation",
-  "output": "He used a colon in his explanation.",
   "app_category": "Work"
 }
 
@@ -467,32 +401,14 @@
 }
 
 {
-  "input": "the at sign was invented in the sixteenth century",
-  "output": "The at sign was invented in the 16th century.",
-  "app_category": "Other"
-}
-
-{
   "input": "my email is john at sign company dot com",
   "output": "My email is john@company.com.",
   "app_category": "Work"
 }
 
 {
-  "input": "and sign is another name for ampersand",
-  "output": "And sign is another name for ampersand.",
-  "app_category": "Other"
-}
-
-{
   "input": "merge A ampersand B into one document",
   "output": "Merge A & B into one document.",
-  "app_category": "Work"
-}
-
-{
-  "input": "use forward slash to separate the paths",
-  "output": "Use forward slash to separate the paths.",
   "app_category": "Work"
 }
 
@@ -506,12 +422,6 @@
   "input": "escape backslash n for newline in the string",
   "output": "Escape \\n for newline in the string.",
   "app_category": "Other"
-}
-
-{
-  "input": "the pound sign key on my keyboard is broken",
-  "output": "The pound sign key on my keyboard is broken.",
-  "app_category": "Work"
 }
 
 {
@@ -541,12 +451,6 @@
 {
   "input": "think about it ellipsis and get back to me",
   "output": "Think about it... and get back to me.",
-  "app_category": "Work"
-}
-
-{
-  "input": "I was at the comma separated values workshop yesterday",
-  "output": "I was at the comma separated values workshop yesterday.",
   "app_category": "Work"
 }
 
@@ -659,12 +563,6 @@
 }
 
 {
-  "input": "we should use em dash instead of hyphens in the document",
-  "output": "We should use em dash instead of hyphens in the document.",
-  "app_category": "Work"
-}
-
-{
   "input": "he paused em dash then continued speaking",
   "output": "He paused — then continued speaking.",
   "app_category": "Other"
@@ -686,12 +584,6 @@
   "input": "the semi colon is used in JavaScript to end statements",
   "output": "The semicolon is used in JavaScript to end statements.",
   "app_category": "Work"
-}
-
-{
-  "input": "list your skills semicolon separate each with a comma",
-  "output": "List your skills; separate each with a comma.",
-  "app_category": "Other"
 }
 
 {
@@ -773,12 +665,6 @@
 }
 
 {
-  "input": "the sentence ends with a period that's just grammar",
-  "output": "The sentence ends with a period, that's just grammar.",
-  "app_category": "Work"
-}
-
-{
   "input": "the winner is dot dot dot john exclamation mark",
   "output": "The winner is... John!",
   "app_category": "Personal"
@@ -812,12 +698,6 @@
   "input": "the regex is open bracket a dash z close bracket plus sign",
   "output": "The regex is [a-z]+.",
   "app_category": "Other"
-}
-
-{
-  "input": "the URL has a hash symbol in it like page hash section",
-  "output": "The URL has a hash symbol in it like page#section.",
-  "app_category": "Work"
 }
 
 {
@@ -1251,3 +1131,16 @@
   "output": "Go to https://docs.google.com.",
   "app_category": "Work"
 }
+
+{
+  "input": "my email is john at the rate gmail dot com",
+  "output": "My email is john@gmail.com.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please tag me at the rate marketing team",
+  "output": "Please tag me @marketing team.",
+  "app_category": "Work"
+}
+
