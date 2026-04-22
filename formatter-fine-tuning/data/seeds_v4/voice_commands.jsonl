@@ -5,7 +5,7 @@
 }
 
 {
-  "input": "the project is done period let's move on to the next one period",
+  "input": "the project is done period let's move on to the next one",
   "output": "The project is done. Let's move on to the next one.",
   "app_category": "Work"
 }
@@ -29,13 +29,13 @@
 }
 
 {
-  "input": "I need the following items colon milk comma eggs comma bread comma and butter period",
+  "input": "I need the following items colon milk comma eggs comma bread comma and butter",
   "output": "I need the following items: milk, eggs, bread, and butter.",
   "app_category": "Other"
 }
 
 {
-  "input": "wait semicolon I have another idea period",
+  "input": "wait semicolon I have another idea",
   "output": "Wait; I have another idea.",
   "app_category": "Work"
 }
@@ -77,7 +77,7 @@
 }
 
 {
-  "input": "new line item one colon fix the login bug new line item two colon update the docs new line item three colon deploy to staging",
+  "input": "new line item one fix the login bug new line item two update the docs new line item three deploy to staging",
   "output": "1. Fix the login bug.\n2. Update the docs.\n3. Deploy to staging.",
   "app_category": "Other"
 }
@@ -113,12 +113,6 @@
 }
 
 {
-  "input": "it single quote s a beautiful day",
-  "output": "It's a beautiful day.",
-  "app_category": "Personal"
-}
-
-{
   "input": "use hashtag urgent for priority tickets",
   "output": "Use #urgent for priority tickets.",
   "app_category": "Work"
@@ -133,12 +127,6 @@
 {
   "input": "the total comes to dollar sign fifty",
   "output": "The total comes to $50.",
-  "app_category": "Other"
-}
-
-{
-  "input": "two plus sign three equals sign five",
-  "output": "2 + 3 = 5.",
   "app_category": "Other"
 }
 
@@ -158,12 +146,6 @@
   "input": "home tilde documents",
   "output": "home~documents",
   "app_category": "Other"
-}
-
-{
-  "input": "the path is C colon backslash users backslash john backslash desktop",
-  "output": "The path is C:\\users\\john\\desktop.",
-  "app_category": "Work"
 }
 
 {
@@ -191,50 +173,8 @@
 }
 
 {
-  "input": "I had a question mark on that decision",
-  "output": "I had a question mark on that decision.",
-  "app_category": "Work"
-}
-
-{
-  "input": "what's the question mark for in this code",
-  "output": "What's the question mark for in this code?",
-  "app_category": "Work"
-}
-
-{
   "input": "is the report ready question mark",
   "output": "Is the report ready?",
-  "app_category": "Work"
-}
-
-{
-  "input": "he put a question mark next to my name on the whiteboard",
-  "output": "He put a question mark next to my name on the whiteboard.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the period of time was too short for proper testing",
-  "output": "The period of time was too short for proper testing.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need to extend the trial period for at least two more weeks",
-  "output": "We need to extend the trial period for at least 2 more weeks.",
-  "app_category": "Work"
-}
-
-{
-  "input": "end of the paragraph period",
-  "output": "End of the paragraph.",
-  "app_category": "Other"
-}
-
-{
-  "input": "the comma operator in JavaScript is rarely used",
-  "output": "The comma operator in JavaScript is rarely used.",
   "app_category": "Work"
 }
 
@@ -245,27 +185,9 @@
 }
 
 {
-  "input": "I need to use the hash symbol in my password",
-  "output": "I need to use the hash symbol in my password.",
-  "app_category": "Work"
-}
-
-{
   "input": "add a hashtag trending to the post",
   "output": "Add a #trending to the post.",
   "app_category": "Personal"
-}
-
-{
-  "input": "she's a star at what she does",
-  "output": "She's a star at what she does.",
-  "app_category": "Work"
-}
-
-{
-  "input": "add a star rating to each item",
-  "output": "Add a star rating to each item.",
-  "app_category": "Work"
 }
 
 {
@@ -275,49 +197,13 @@
 }
 
 {
-  "input": "delete that actually let me start over",
-  "output": "Let me start over.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the deadline is friday scratch that it's actually thursday",
-  "output": "The deadline is actually Thursday.",
-  "app_category": "Work"
-}
-
-{
-  "input": "send the report to marketing undo that send it to sales instead",
-  "output": "Send the report to sales instead.",
-  "app_category": "Work"
-}
-
-{
-  "input": "select all and copy",
-  "output": "select all and copy",
-  "app_category": "Other"
-}
-
-{
-  "input": "caps on important caps off",
-  "output": "caps on important caps off",
-  "app_category": "Other"
-}
-
-{
-  "input": "all caps warning all caps",
-  "output": "all caps warning all caps",
-  "app_category": "Other"
-}
-
-{
   "input": "the meeting is at three pm period please be on time exclamation mark",
   "output": "The meeting is at 3 PM. Please be on time!",
   "app_category": "Work"
 }
 
 {
-  "input": "first thing colon check emails new line second thing colon review PRs new line third thing colon update docs",
+  "input": "first thing check emails new line second thing review PRs new line third thing update docs",
   "output": "1. Check emails.\n2. Review PRs.\n3. Update docs.",
   "app_category": "Other"
 }
@@ -347,13 +233,7 @@
 }
 
 {
-  "input": "important exclamation point please read this before the meeting",
-  "output": "Important! Please read this before the meeting.",
-  "app_category": "Work"
-}
-
-{
-  "input": "let me explain full stop the issue is with the API full stop",
+  "input": "let me explain full stop the issue is with the API",
   "output": "Let me explain. The issue is with the API.",
   "app_category": "Work"
 }
@@ -365,20 +245,8 @@
 }
 
 {
-  "input": "I placed a dot on the map to mark the location",
-  "output": "I placed a dot on the map to mark the location.",
-  "app_category": "Work"
-}
-
-{
   "input": "the score was five dash three",
   "output": "The score was 5—3.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "she made a dash for the exit",
-  "output": "She made a dash for the exit.",
   "app_category": "Personal"
 }
 
@@ -389,25 +257,13 @@
 }
 
 {
-  "input": "he used a colon in his explanation",
-  "output": "He used a colon in his explanation.",
-  "app_category": "Work"
-}
-
-{
   "input": "uh can you repeat that question mark I didn't catch it",
   "output": "Can you repeat that? I didn't catch it.",
   "app_category": "Work"
 }
 
 {
-  "input": "um so like he said comma and I quote comma it's not going to work end quote period",
-  "output": "He said, and I quote, \"It's not going to work.\"",
-  "app_category": "Work"
-}
-
-{
-  "input": "step one colon open the app period step two colon tap on settings period step three colon enable notifications period",
+  "input": "step one open the app step two tap on settings step three enable notifications",
   "output": "1. Open the app.\n2. Tap on settings.\n3. Enable notifications.",
   "app_category": "Other"
 }
@@ -432,7 +288,7 @@
 
 {
   "input": "next line here's the second point next line and the third one",
-  "output": "\nHere's the second point.\n\nAnd the third one.",
+  "output": "\nHere's the second point.\nAnd the third one.",
   "app_category": "Other"
 }
 
@@ -443,20 +299,8 @@
 }
 
 {
-  "input": "we need help period or maybe not period I'm confused period",
+  "input": "we need help period or maybe not period I'm confused",
   "output": "We need help. Or maybe not. I'm confused.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "you know the exclamation point I keep using in my texts",
-  "output": "You know the exclamation point I keep using in my texts?",
-  "app_category": "Personal"
-}
-
-{
-  "input": "this is unbelievable exclamation point",
-  "output": "This is unbelievable!",
   "app_category": "Personal"
 }
 
@@ -467,32 +311,14 @@
 }
 
 {
-  "input": "the at sign was invented in the sixteenth century",
-  "output": "The at sign was invented in the 16th century.",
-  "app_category": "Other"
-}
-
-{
   "input": "my email is john at sign company dot com",
   "output": "My email is john@company.com.",
   "app_category": "Work"
 }
 
 {
-  "input": "and sign is another name for ampersand",
-  "output": "And sign is another name for ampersand.",
-  "app_category": "Other"
-}
-
-{
   "input": "merge A ampersand B into one document",
   "output": "Merge A & B into one document.",
-  "app_category": "Work"
-}
-
-{
-  "input": "use forward slash to separate the paths",
-  "output": "Use forward slash to separate the paths.",
   "app_category": "Work"
 }
 
@@ -503,25 +329,7 @@
 }
 
 {
-  "input": "escape backslash n for newline in the string",
-  "output": "Escape \\n for newline in the string.",
-  "app_category": "Other"
-}
-
-{
-  "input": "the pound sign key on my keyboard is broken",
-  "output": "The pound sign key on my keyboard is broken.",
-  "app_category": "Work"
-}
-
-{
-  "input": "tag it with pound sign high priority",
-  "output": "Tag it with #high priority.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the meeting was really great period everyone contributed well period I think we should do this more often period",
+  "input": "the meeting was really great period everyone contributed well period I think we should do this more often",
   "output": "The meeting was really great. Everyone contributed well. I think we should do this more often.",
   "app_category": "Work"
 }
@@ -533,7 +341,7 @@
 }
 
 {
-  "input": "the answer is yes period definitely period",
+  "input": "the answer is yes period definitely",
   "output": "The answer is yes. Definitely.",
   "app_category": "Work"
 }
@@ -545,27 +353,9 @@
 }
 
 {
-  "input": "I was at the comma separated values workshop yesterday",
-  "output": "I was at the comma separated values workshop yesterday.",
-  "app_category": "Work"
-}
-
-{
-  "input": "put a tab between the name and the age columns",
-  "output": "Put a tab between the name and the age columns.",
-  "app_category": "Work"
-}
-
-{
   "input": "tab name tab age tab email",
   "output": "\tname\tage\temail",
   "app_category": "Other"
-}
-
-{
-  "input": "don't use the dot notation for this",
-  "output": "Don't use the dot notation for this.",
-  "app_category": "Work"
 }
 
 {
@@ -581,33 +371,15 @@
 }
 
 {
-  "input": "I need a pipe between these two commands",
-  "output": "I need a pipe between these two commands.",
-  "app_category": "Work"
-}
-
-{
   "input": "ls pipe grep error",
   "output": "ls | grep error",
   "app_category": "Other"
 }
 
 {
-  "input": "my username has an underscore in it",
-  "output": "My username has an underscore in it.",
-  "app_category": "Work"
-}
-
-{
   "input": "hello underscore world",
   "output": "hello_world",
   "app_category": "Other"
-}
-
-{
-  "input": "add a percent sign after the number",
-  "output": "Add a percent sign after the number.",
-  "app_category": "Work"
 }
 
 {
@@ -641,26 +413,8 @@
 }
 
 {
-  "input": "I need the API key in the format colon key equals sign value ampersand key two equals sign value two",
+  "input": "I need the API key in the format colon key equals value ampersand key two equals value two",
   "output": "I need the API key in the format: key = value & key 2 = value 2.",
-  "app_category": "Work"
-}
-
-{
-  "input": "oh wait scratch that I need to rethink this",
-  "output": "I need to rethink this.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the budget is fifty thousand dollars delete that the budget is sixty thousand dollars",
-  "output": "The budget is $60,000.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we should use em dash instead of hyphens in the document",
-  "output": "We should use em dash instead of hyphens in the document.",
   "app_category": "Work"
 }
 
@@ -683,18 +437,6 @@
 }
 
 {
-  "input": "the semi colon is used in JavaScript to end statements",
-  "output": "The semicolon is used in JavaScript to end statements.",
-  "app_category": "Work"
-}
-
-{
-  "input": "list your skills semicolon separate each with a comma",
-  "output": "List your skills; separate each with a comma.",
-  "app_category": "Other"
-}
-
-{
   "input": "this is wrong period period period",
   "output": "This is wrong...",
   "app_category": "Personal"
@@ -713,13 +455,13 @@
 }
 
 {
-  "input": "the equation is y equals sign m asterisk x plus sign b",
+  "input": "the equation is y equals m asterisk x plus b",
   "output": "The equation is y = m * x + b.",
   "app_category": "Other"
 }
 
 {
-  "input": "uh sorry period I didn't mean to interrupt period",
+  "input": "uh sorry period I didn't mean to interrupt",
   "output": "Sorry. I didn't mean to interrupt.",
   "app_category": "Work"
 }
@@ -731,21 +473,9 @@
 }
 
 {
-  "input": "I need a vertical bar in my regex pattern",
-  "output": "I need a vertical bar in my regex pattern.",
-  "app_category": "Work"
-}
-
-{
   "input": "option A vertical bar option B vertical bar option C",
   "output": "Option A | option B | option C.",
   "app_category": "Other"
-}
-
-{
-  "input": "type tilde in the terminal to go to home",
-  "output": "Type tilde in the terminal to go to home.",
-  "app_category": "Work"
 }
 
 {
@@ -761,7 +491,7 @@
 }
 
 {
-  "input": "please note colon the office will be closed on december twenty fifth open parenthesis christmas close parenthesis and january first open parenthesis new year's day close parenthesis period",
+  "input": "please note colon the office will be closed on december twenty fifth open parenthesis christmas close parenthesis and january first open parenthesis new year's day close parenthesis",
   "output": "Please note: the office will be closed on December 25th (Christmas) and January 1st (New Year's Day).",
   "app_category": "Work"
 }
@@ -773,20 +503,8 @@
 }
 
 {
-  "input": "the sentence ends with a period that's just grammar",
-  "output": "The sentence ends with a period, that's just grammar.",
-  "app_category": "Work"
-}
-
-{
   "input": "the winner is dot dot dot john exclamation mark",
   "output": "The winner is... John!",
-  "app_category": "Personal"
-}
-
-{
-  "input": "I just period can't period believe it period",
-  "output": "I just. Can't. Believe it.",
   "app_category": "Personal"
 }
 
@@ -809,19 +527,13 @@
 }
 
 {
-  "input": "the regex is open bracket a dash z close bracket plus sign",
+  "input": "the regex is open bracket a dash z close bracket plus",
   "output": "The regex is [a-z]+.",
   "app_category": "Other"
 }
 
 {
-  "input": "the URL has a hash symbol in it like page hash section",
-  "output": "The URL has a hash symbol in it like page#section.",
-  "app_category": "Work"
-}
-
-{
-  "input": "and I was like wait what question mark and he goes yeah period",
+  "input": "and I was like wait what question mark and he goes yeah",
   "output": "And I was like wait what? And he goes yeah.",
   "app_category": "Personal"
 }
@@ -839,7 +551,7 @@
 }
 
 {
-  "input": "const x equals sign open parenthesis a comma b close parenthesis equals sign greater than a plus sign b semicolon",
+  "input": "const x equals open parenthesis a comma b close parenthesis equals greater than a plus b semicolon",
   "output": "const x = (a, b) => a + b;",
   "app_category": "Other"
 }
@@ -875,31 +587,19 @@
 }
 
 {
-  "input": "delete that",
-  "output": "",
-  "app_category": "Other"
-}
-
-{
-  "input": "scratch that",
-  "output": "",
-  "app_category": "Other"
-}
-
-{
-  "input": "the meeting is at three pm period don't be late exclamation mark see you there period",
+  "input": "the meeting is at three pm period don't be late exclamation mark see you there",
   "output": "The meeting is at 3 PM. Don't be late! See you there.",
   "app_category": "Personal"
 }
 
 {
-  "input": "tldr colon the project is behind schedule and we need more resources period",
+  "input": "tldr colon the project is behind schedule and we need more resources",
   "output": "TLDR: The project is behind schedule, and we need more resources.",
   "app_category": "Work"
 }
 
 {
-  "input": "fun fact colon the human brain weighs about three pounds period",
+  "input": "fun fact colon the human brain weighs about three pounds",
   "output": "Fun fact: the human brain weighs about 3 pounds.",
   "app_category": "Personal"
 }
@@ -923,7 +623,7 @@
 }
 
 {
-  "input": "roses are red comma new line violets are blue comma new line this is a test comma new line and so are you period",
+  "input": "roses are red comma new line violets are blue comma new line this is a test comma new line and so are you",
   "output": "Roses are red,\nviolets are blue,\nthis is a test,\nand so are you.",
   "app_category": "Personal"
 }
@@ -935,55 +635,43 @@
 }
 
 {
-  "input": "please confirm receipt period thanks period",
+  "input": "please confirm receipt period thanks",
   "output": "Please confirm receipt. Thanks.",
   "app_category": "Work"
 }
 
 {
-  "input": "hi david comma new line the report is attached period",
+  "input": "hi david comma new line the report is attached",
   "output": "Hi David,\nthe report is attached.",
   "app_category": "Work"
 }
 
 {
-  "input": "he said open quote i will be there at five close quote and hung up period",
+  "input": "he said open quote i will be there at five close quote and hung up",
   "output": "He said \"I will be there at 5\" and hung up.",
   "app_category": "Personal"
 }
 
 {
-  "input": "dear customer team comma new line a quick update on the outage period",
-  "output": "Dear customer team,\na quick update on the outage.",
-  "app_category": "Work"
-}
-
-{
-  "input": "okay period that works for me period",
+  "input": "okay period that works for me",
   "output": "Okay. That works for me.",
   "app_category": "Work"
 }
 
 {
-  "input": "to do new line clean house new line buy groceries new line pay bills",
-  "output": "To do\nclean house\nbuy groceries\npay bills",
-  "app_category": "Other"
-}
-
-{
-  "input": "open quote error formatting disk close quote on screen period",
+  "input": "open quote error formatting disk close quote on screen",
   "output": "\"Error formatting disk\" on screen.",
   "app_category": "Personal"
 }
 
 {
-  "input": "the event is on friday comma saturday comma and sunday period",
+  "input": "the event is on friday comma saturday comma and sunday",
   "output": "The event is on Friday, Saturday, and Sunday.",
   "app_category": "Work"
 }
 
 {
-  "input": "hello everyone comma new line welcome to the team period",
+  "input": "hello everyone comma new line welcome to the team",
   "output": "Hello everyone,\nwelcome to the team.",
   "app_category": "Work"
 }
@@ -995,7 +683,7 @@
 }
 
 {
-  "input": "it is what it is period",
+  "input": "it is what it is",
   "output": "It is what it is.",
   "app_category": "Personal"
 }
@@ -1013,7 +701,7 @@
 }
 
 {
-  "input": "open parenthesis see attached document close parenthesis for details period",
+  "input": "open parenthesis see attached document close parenthesis for details",
   "output": "(See attached document) for details.",
   "app_category": "Work"
 }
@@ -1022,24 +710,6 @@
   "input": "yes exclamation mark period period period wait no period",
   "output": "Yes!... Wait no.",
   "app_category": "Personal"
-}
-
-{
-  "input": "error log new line status colon five hundred new line message colon internal server error",
-  "output": "Error log\nStatus: 500\nMessage: Internal server error",
-  "app_category": "Other"
-}
-
-{
-  "input": "we need apples slash oranges slash bananas today",
-  "output": "We need apples / oranges / bananas today",
-  "app_category": "Other"
-}
-
-{
-  "input": "grocery list new line dash apples new line dash bananas new line dash carrots",
-  "output": "Grocery list\n- apples\n- bananas\n- carrots",
-  "app_category": "Other"
 }
 
 {
@@ -1061,37 +731,37 @@
 }
 
 {
-  "input": "open quote to be or not to be close quote is from shakespeare period",
+  "input": "open quote to be or not to be close quote is from shakespeare",
   "output": "\"To be or not to be\" is from Shakespeare.",
   "app_category": "Other"
 }
 
 {
-  "input": "first draft colon new line title dash the future of ai new paragraph the world is changing period",
-  "output": "First draft:\nTitle - The future of AI\n\nThe world is changing.",
+  "input": "first draft colon new line title dash the future of ai new paragraph the world is changing",
+  "output": "First draft:\nTitle — The future of AI\n\nThe world is changing.",
   "app_category": "Other"
 }
 
 {
   "input": "twenty four slash seven customer support available",
-  "output": "24/7 customer support available",
+  "output": "24/7 customer support available.",
   "app_category": "Personal"
 }
 
 {
   "input": "add the word open quote urgent close quote to the title of the email",
-  "output": "Add the word \"urgent\" to the title of the email",
+  "output": "Add the word \"urgent\" to the title of the email.",
   "app_category": "Work"
 }
 
 {
-  "input": "total price is one hundred dollars open parenthesis including tax close parenthesis period",
+  "input": "total price is one hundred dollars open parenthesis including tax close parenthesis",
   "output": "Total price is $100 (including tax).",
   "app_category": "Work"
 }
 
 {
-  "input": "wait comma actually comma never mind period",
+  "input": "wait comma actually comma never mind",
   "output": "Wait, actually, never mind.",
   "app_category": "Personal"
 }
@@ -1103,68 +773,38 @@
 }
 
 {
-  "input": "agenda colon new line one period introductions new line two period goals new line three period q and a",
-  "output": "Agenda:\n1. Introductions\n2. Goals\n3. Q&A",
-  "app_category": "Work"
-}
-
-{
-  "input": "thank you period new paragraph sincerely comma new line john",
-  "output": "Thank you.\n\nSincerely,\nJohn",
-  "app_category": "Work"
-}
-
-{
-  "input": "step one comma turn it on period new line step two comma press start period",
-  "output": "Step 1, turn it on.\nStep 2, press start.",
-  "app_category": "Work"
-}
-
-{
-  "input": "i am period extremely period annoyed period",
+  "input": "i am period extremely period annoyed",
   "output": "I am. Extremely. Annoyed.",
   "app_category": "Personal"
 }
 
 {
-  "input": "pros colon new line dash fast new line dash cheap new paragraph cons colon new line dash poor quality",
-  "output": "Pros:\n- fast\n- cheap\n\nCons:\n- poor quality",
-  "app_category": "Other"
-}
-
-{
   "input": "price drop open parenthesis from fifty to thirty dollars close parenthesis starts today",
-  "output": "Price drop (from $50 to $30) starts today",
+  "output": "Price drop (from $50 to $30) starts today.",
   "app_category": "Personal"
 }
 
 {
   "input": "project alpha dash phase two is starting",
-  "output": "Project Alpha - Phase 2 is starting",
+  "output": "Project Alpha — Phase 2 is starting.",
   "app_category": "Work"
 }
 
 {
-  "input": "i am period just period done period",
+  "input": "i am period just period done",
   "output": "I am. Just. Done.",
   "app_category": "Personal"
 }
 
 {
-  "input": "seriously question mark exclamation mark",
-  "output": "Seriously?!",
-  "app_category": "Personal"
-}
-
-{
   "input": "folder path is users slash admin slash documents",
-  "output": "Folder path is users/admin/documents",
+  "output": "Folder path is users/admin/documents.",
   "app_category": "Work"
 }
 
 {
   "input": "client ampersand partners meeting at four pm",
-  "output": "Client & partners meeting at 4 PM",
+  "output": "Client & partners meeting at 4 PM.",
   "app_category": "Work"
 }
 
@@ -1175,21 +815,15 @@
 }
 
 {
-  "input": "we need milk comma eggs comma bread period",
+  "input": "we need milk comma eggs comma bread",
   "output": "We need milk, eggs, bread.",
   "app_category": "Other"
 }
 
 {
-  "input": "urgent new line please call me asap period",
+  "input": "urgent new line please call me asap",
   "output": "Urgent\nPlease call me ASAP.",
   "app_category": "Personal"
-}
-
-{
-  "input": "meeting notes colon new paragraph we discussed the budget period new line next steps will follow tomorrow period",
-  "output": "Meeting notes:\n\nWe discussed the budget.\nNext steps will follow tomorrow.",
-  "app_category": "Work"
 }
 
 {
@@ -1199,7 +833,7 @@
 }
 
 {
-  "input": "it works period new line let's ship it period",
+  "input": "it works period new line let's ship it",
   "output": "It works.\nLet's ship it.",
   "app_category": "Work"
 }
@@ -1217,14 +851,14 @@
 }
 
 {
-  "input": "send it to jane smith at gmail dot com period",
+  "input": "send it to jane smith at gmail dot com",
   "output": "Send it to janesmith@gmail.com.",
   "app_category": "Work"
 }
 
 {
   "input": "status is open parenthesis pending approval close parenthesis",
-  "output": "Status is (pending approval)",
+  "output": "Status is (pending approval).",
   "app_category": "Work"
 }
 
@@ -1251,3 +885,16 @@
   "output": "Go to https://docs.google.com.",
   "app_category": "Work"
 }
+
+{
+  "input": "my email is john at the rate gmail dot com",
+  "output": "My email is john@gmail.com.",
+  "app_category": "Work"
+}
+
+{
+  "input": "please tag me at the rate marketing team",
+  "output": "Please tag me @marketing team.",
+  "app_category": "Work"
+}
+

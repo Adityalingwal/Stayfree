@@ -1,6 +1,6 @@
 # Global Rule Guide
 
-This guide is the shared reference for bucket-level cleanup. It currently covers `Basic Formatting`, `Numbers Formatting`, `Self Correction`, and `ASR Errors`.
+This guide is the shared reference for bucket-level cleanup. It currently covers `Basic Formatting`, `Numbers Formatting`, `Self Correction`, `ASR Errors`, `Voice Commands`, and `Edge Cases`.
 
 ## Global Rules
 
@@ -86,6 +86,25 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - Keep partial cut words exactly as they are. Do NOT add a trailing dash or try to guess the complete word.
 - Do not let the model ignore number formatting rules just because the sentence contains an ASR error. Numbers should still be formatted properly.
 
+## Voice Commands
+
+- This bucket teaches the model to translate spoken dictation commands into layout, punctuation, brackets, and symbols.
+- Spoken commands should be replaced with their literal characters (e.g., `period` -> `.`, `new line` -> `\n`, `at sign` -> `@`).
+- Do NOT replace command words when they are clearly natural speech (e.g., `period of time`, `what's the question mark for`).
+- Pass through system-level commands unchanged: `select all`, `caps on`, `caps off`, `all caps`. Do NOT execute or modify them.
+- Standard Basic Formatting rules (capitalization, grammar) apply across layout commands like `\n`. If a `new line` creates a sentence boundary, the next word is capitalized; if it splits a sentence after a comma, it remains lowercase.
+
+## Edge Cases
+
+- This bucket handles complex boundary issues, intentional repetition, expressive content, and ambiguous formatting logic.
+- Remove pure fillers like `ugh`, `umm`, `hmm` without altering the surrounding sentence.
+- Keep expressive content and meaningful discourse markers like `wow`, `haha`, `so`, `well`, `like`.
+- Preserve intentional repetition used for emphasis, separating the words with commas (e.g., `no no no` -> `No, no, no`). Do NOT confuse this with accidental stuttering (which should be removed).
+- Do not expand acronyms (e.g., ASAP, FYI) and do not contract spoken phrases into acronyms.
+- Preserve all-caps emphasis exactly if the ASR captured it.
+- Preserve contractions exactly as spoken. Do NOT expand `don't` to `do not` or vice-versa.
+- When handling ambiguous sentence boundaries joined by conjunctions (and, but, so), treat them as separate sentences if each clause has its own subject and verb.
+
 ## Basic Formatting Details
 
 - Capitalize `Tuesday`, `Thursday`, `Q3`, `Node`, `Safari`, `Figma`, `YAML`, `API`, `PR`, and `ASAP`.
@@ -136,6 +155,26 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - `the ♪ meeting is starting` -> `The meeting is starting.` (Mixed hallucination removed)
 - `its important that your on the call at nine am` -> `Its important that your on the call at 9 AM.` (Misheard word kept, but time rule applies)
 
+
+## Voice Commands Details
+
+- `new line` -> `\n`
+- `period` / `full stop` / `dot` -> `.`
+- `dash` / `hyphen` / `em dash` -> `—`
+- `ellipsis` / `dot dot dot` -> `...`
+- `open parenthesis` -> `(`
+- `the score is five dash three` -> `The score is 5—3.`
+- `select all and copy` -> `select all and copy` (Pass through unchanged)
+- `what's the question mark for` -> `What's the question mark for?` (Context awareness)
+- `roses are red comma new line violets are blue` -> `Roses are red,\nviolets are blue` (Newline after comma does NOT capitalize next word)
+
+## Edge Cases Details
+
+- `no no no we can't` -> `No, no, no, we can't.` (Intentional emphasis)
+- `the the meeting` -> `The meeting.` (Accidental stutter, handled by Self Correction logic)
+- `ugh this is terrible` -> `This is terrible.` (Pure filler removed)
+- `wow that is amazing` -> `Wow, that is amazing.` (Expressive kept)
+- `ASAP` -> `ASAP` (Kept as acronym)
 
 ## Sanity Check
 
