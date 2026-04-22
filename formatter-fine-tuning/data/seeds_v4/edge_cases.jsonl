@@ -1,6 +1,6 @@
 {
   "input": "so I was thinking about the whole situation and then",
-  "output": "I was thinking about the whole situation and then",
+  "output": "So, I was thinking about the whole situation and then",
   "app_category": "Personal"
 }
 
@@ -24,7 +24,7 @@
 
 {
   "input": "well the problem with that approach is that",
-  "output": "The problem with that approach is that",
+  "output": "Well, the problem with that approach is that",
   "app_category": "Work"
 }
 
@@ -222,13 +222,13 @@
 
 {
   "input": "so um we had the initial meeting with the client and they were really excited about the product they want us to build a mobile app first and then a web version later the timeline is aggressive though they want the first version by end of next month and I told them we'd need at least two months to do it properly but they're pushing back on that saying their investors want to see something sooner",
-  "output": "We had the initial meeting with the client and they were really excited about the product. They want us to build a mobile app first and then a web version later.\n\nThe timeline is aggressive though. They want the first version by end of next month, and I told them we'd need at least 2 months to do it properly, but they're pushing back on that, saying their investors want to see something sooner.",
+  "output": "So, we had the initial meeting with the client and they were really excited about the product. They want us to build a mobile app first and then a web version later.\n\nThe timeline is aggressive though. They want the first version by end of next month, and I told them we'd need at least 2 months to do it properly, but they're pushing back on that, saying their investors want to see something sooner.",
   "app_category": "Work"
 }
 
 {
   "input": "just wanted to give a quick update so the frontend is almost done we're at about ninety percent the backend apis are ready and tested the only thing left is the payment integration which mike is working on and we should be ready for staging deployment by end of this week fingers crossed",
-  "output": "Just wanted to give a quick update. The frontend is almost done, we're at about 90%. The backend APIs are ready and tested. The only thing left is the payment integration, which Mike is working on, and we should be ready for staging deployment by end of this week, fingers crossed.",
+  "output": "Just wanted to give a quick update. So, the frontend is almost done, we're at about 90%. The backend APIs are ready and tested. The only thing left is the payment integration, which Mike is working on, and we should be ready for staging deployment by end of this week, fingers crossed.",
   "app_category": "Work"
 }
 
@@ -264,13 +264,13 @@
 
 {
   "input": "hey so like is there any update on the hiring situation or are we still waiting",
-  "output": "Hey, is there any update on the hiring situation, or are we still waiting?",
+  "output": "Hey, so like, is there any update on the hiring situation, or are we still waiting?",
   "app_category": "Work"
 }
 
 {
   "input": "yeah so basically um the thing is uh we kind of need to uh rethink the entire architecture",
-  "output": "The thing is, we kind of need to rethink the entire architecture.",
+  "output": "Yeah, so basically, the thing is, we kind of need to rethink the entire architecture.",
   "app_category": "Work"
 }
 
@@ -288,13 +288,13 @@
 
 {
   "input": "can we can we maybe push the meeting to like after lunch",
-  "output": "Can we maybe push the meeting to after lunch?",
+  "output": "Can we maybe push the meeting to like after lunch?",
   "app_category": "Work"
 }
 
 {
   "input": "hey so uh funny story um i accidentally deleted the staging database",
-  "output": "Hey, funny story, I accidentally deleted the staging database.",
+  "output": "Hey, so, funny story, I accidentally deleted the staging database.",
   "app_category": "Work"
 }
 
@@ -348,7 +348,7 @@
 
 {
   "input": "so it's like a catch twenty two situation because if we fix the bug we break the feature and if we keep the feature the bug stays",
-  "output": "It's like a catch-22 situation, because if we fix the bug, we break the feature, and if we keep the feature, the bug stays.",
+  "output": "So it's like a catch-22 situation, because if we fix the bug, we break the feature, and if we keep the feature, the bug stays.",
   "app_category": "Work"
 }
 
@@ -468,7 +468,7 @@
 
 {
   "input": "um so like the steps are first clone the repo second install dependencies third run the dev server and fourth open localhost three thousand",
-  "output": "The steps are:\n1. Clone the repo.\n2. Install dependencies.\n3. Run the dev server.\n4. Open localhost:3000.",
+  "output": "So like, the steps are:\n1. Clone the repo.\n2. Install dependencies.\n3. Run the dev server.\n4. Open localhost:3000.",
   "app_category": "Work"
 }
 
@@ -492,7 +492,7 @@
 
 {
   "input": "so the agenda for tomorrow is number one standup at nine am number two design review at eleven number three lunch with the client at one pm and number four sprint retro at four",
-  "output": "The agenda for tomorrow is:\n1. Standup at 9 AM.\n2. Design review at 11.\n3. Lunch with the client at 1 PM.\n4. Sprint retro at 4.",
+  "output": "So, the agenda for tomorrow is:\n1. Standup at 9 AM.\n2. Design review at 11.\n3. Lunch with the client at 1 PM.\n4. Sprint retro at 4.",
   "app_category": "Work"
 }
 
@@ -528,7 +528,7 @@
 
 {
   "input": "the error message says connection refused",
-  "output": "The error message says 'Connection refused'",
+  "output": "The error message says 'Connection refused'.",
   "app_category": "Work"
 }
 
@@ -546,19 +546,19 @@
 
 {
   "input": "my agenda is number one review prs number two attend sync number three write documentation",
-  "output": "My agenda is:\n1. Review PRs\n2. Attend sync\n3. Write documentation",
+  "output": "My agenda is:\n1. Review PRs.\n2. Attend sync.\n3. Write documentation.",
   "app_category": "Work"
 }
 
 {
   "input": "perfect",
-  "output": "Perfect",
+  "output": "Perfect.",
   "app_category": "Work"
 }
 
 {
   "input": "no no no we can't do that",
-  "output": "No no no we can't do that",
+  "output": "No, no, no, we can't do that.",
   "app_category": "Work"
 }
 
@@ -588,7 +588,7 @@
 
 {
   "input": "we had a long discussion with the design team and they showed us the new mockups for the dashboard they want to change the color scheme entirely and make the font bigger which i think is a mistake because the data density will drop massively and our power users are going to complain about it",
-  "output": "We had a long discussion with the design team and they showed us the new mockups for the dashboard they want to change the color scheme entirely and make the font bigger which I think is a mistake because the data density will drop massively and our power users are going to complain about it",
+  "output": "We had a long discussion with the design team and they showed us the new mockups for the dashboard they want to change the color scheme entirely and make the font bigger which I think is a mistake because the data density will drop massively and our power users are going to complain about it.",
   "app_category": "Work"
 }
 
@@ -606,7 +606,7 @@
 
 {
   "input": "wait wait let me check something",
-  "output": "Wait wait let me check something",
+  "output": "Wait, wait, let me check something.",
   "app_category": "Work"
 }
 
@@ -654,7 +654,7 @@
 
 {
   "input": "the console says error reading from undefined",
-  "output": "The console says 'Error reading from undefined'",
+  "output": "The console says 'Error reading from undefined'.",
   "app_category": "Work"
 }
 
@@ -672,7 +672,7 @@
 
 {
   "input": "the sprint tasks are number one write unit tests number two fix the auth bug number three deploy to staging",
-  "output": "The sprint tasks are:\n1. Write unit tests\n2. Fix the auth bug\n3. Deploy to staging",
+  "output": "The sprint tasks are:\n1. Write unit tests.\n2. Fix the auth bug.\n3. Deploy to staging.",
   "app_category": "Work"
 }
 
@@ -690,13 +690,13 @@
 
 {
   "input": "my daily schedule is first check emails then standup then deep work then meetings",
-  "output": "My daily schedule is:\n1. Check emails\n2. Standup\n3. Deep work\n4. Meetings.",
+  "output": "My daily schedule is:\n1. Check emails.\n2. Standup.\n3. Deep work.\n4. Meetings.",
   "app_category": "Work"
 }
 
 {
   "input": "the exception reads cannot read property length of null",
-  "output": "The exception reads 'Cannot read property length of null'",
+  "output": "The exception reads 'Cannot read property length of null'.",
   "app_category": "Work"
 }
 
@@ -714,19 +714,19 @@
 
 {
   "input": "first I review my notifications second check tasks third join standups fourth focus sessions",
-  "output": "First I review my notifications, second check tasks, third join standups, fourth focus sessions",
+  "output": "1. I review my notifications.\n2. Check tasks.\n3. Join standups.\n4. Focus sessions.",
   "app_category": "Work"
 }
 
 {
   "input": "the terminal showed npm error code E four zero four package not found",
-  "output": "The terminal showed 'npm error code E404, package not found'",
+  "output": "The terminal showed 'npm error code E404, package not found'.",
   "app_category": "Work"
 }
 
 {
   "input": "we need an immediate root cause analysis this is NOT acceptable to our clients",
-  "output": "We need an immediate root cause analysis, this is NOT acceptable to our clients.",
+  "output": "We need an immediate root cause analysis, this is not acceptable to our clients.",
   "app_category": "Work"
 }
 
@@ -744,7 +744,7 @@
 
 {
   "input": "the release checklist is one smoke test two staging validation three prod deploy four monitor",
-  "output": "The release checklist is:\n1. Smoke test\n2. Staging validation\n3. Prod deploy\n4. Monitor.",
+  "output": "The release checklist is:\n1. Smoke test.\n2. Staging validation.\n3. Prod deploy.\n4. Monitor.",
   "app_category": "Work"
 }
 
@@ -762,19 +762,19 @@
 
 {
   "input": "the grocery list is apples bananas yogurt eggs and whole wheat bread",
-  "output": "The grocery list is apples, bananas, yogurt, eggs, and whole wheat bread",
+  "output": "The grocery list is apples, bananas, yogurt, eggs, and whole wheat bread.",
   "app_category": "Personal"
 }
 
 {
   "input": "things to do today number one gym number two groceries number three call doctor",
-  "output": "Things to do today:\n1. Gym\n2. Groceries\n3. Call doctor",
+  "output": "Things to do today:\n1. Gym.\n2. Groceries.\n3. Call doctor.",
   "app_category": "Personal"
 }
 
 {
   "input": "the app keeps showing request timed out when I try to open my profile",
-  "output": "The app keeps showing 'Request timed out' when I try to open my profile",
+  "output": "The app keeps showing 'Request timed out' when I try to open my profile.",
   "app_category": "Personal"
 }
 
@@ -792,7 +792,7 @@
 
 {
   "input": "weekend tasks are first get haircut second pay electricity bill third plan trip",
-  "output": "Weekend tasks are:\n1. Get haircut\n2. Pay electricity bill\n3. Plan trip",
+  "output": "Weekend tasks are:\n1. Get haircut.\n2. Pay electricity bill.\n3. Plan trip.",
   "app_category": "Personal"
 }
 
@@ -810,7 +810,7 @@
 
 {
   "input": "the launch checklist is first announce second share doc third monitor slack fourth send follow up",
-  "output": "The launch checklist is:\n1. Announce\n2. Share doc\n3. Monitor Slack\n4. Send follow up.",
+  "output": "The launch checklist is:\n1. Announce.\n2. Share doc.\n3. Monitor Slack.\n4. Send follow up.",
   "app_category": "Work"
 }
 
@@ -828,7 +828,7 @@
 
 {
   "input": "the phone shows no SIM detected please restart your device",
-  "output": "The phone shows 'No SIM detected, please restart your device'",
+  "output": "The phone shows 'No SIM detected, please restart your device'.",
   "app_category": "Personal"
 }
 
@@ -840,19 +840,19 @@
 
 {
   "input": "day trip requirements are snacks water sunscreen hat and comfortable shoes",
-  "output": "Day trip requirements are snacks, water, sunscreen, hat, and comfortable shoes",
+  "output": "Day trip requirements are snacks, water, sunscreen, hat, and comfortable shoes.",
   "app_category": "Personal"
 }
 
 {
   "input": "my reading list this month is one mindset two atomic habits three sapiens",
-  "output": "My reading list this month is:\n1. Mindset\n2. Atomic Habits\n3. Sapiens",
+  "output": "My reading list this month is:\n1. Mindset.\n2. Atomic Habits.\n3. Sapiens.",
   "app_category": "Personal"
 }
 
 {
   "input": "the warning reads unable to verify server certificate connection may not be secure",
-  "output": "The warning reads 'Unable to verify server certificate, connection may not be secure'",
+  "output": "The warning reads 'Unable to verify server certificate, connection may not be secure'.",
   "app_category": "Personal"
 }
 
@@ -864,13 +864,13 @@
 
 {
   "input": "the sprint items are one user profile page two notification settings three logout flow",
-  "output": "The sprint items are:\n1. User profile page\n2. Notification settings\n3. Logout flow.",
+  "output": "The sprint items are:\n1. User profile page.\n2. Notification settings.\n3. Logout flow.",
   "app_category": "Work"
 }
 
 {
   "input": "the stack trace says module not found cannot resolve path to components",
-  "output": "The stack trace says 'Module not found: cannot resolve path to components'",
+  "output": "The stack trace says 'Module not found: cannot resolve path to components'.",
   "app_category": "Work"
 }
 
@@ -882,6 +882,6 @@
 
 {
   "input": "the task list is one finish designs two get approval three implement four test",
-  "output": "The task list is:\n1. Finish designs\n2. Get approval\n3. Implement\n4. Test.",
+  "output": "The task list is:\n1. Finish designs.\n2. Get approval.\n3. Implement.\n4. Test.",
   "app_category": "Work"
 }
