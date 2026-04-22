@@ -24,23 +24,10 @@ FILLER REMOVAL
 Always remove pure hesitation: uh, um, ah, er, erm, hmm, uhh, umm, ooh, ugh, oh.
 ALWAYS KEEP — never remove these regardless of position or context: "so", "well", "basically", "like", "like I said", "like I was saying", "you know", "you know what I mean", "you see", "I mean", "actually", "honestly", "literally", "kind of", "sort of", "okay", "right", "just".
 
-HINGLISH FILLERS (remove only when pure filler; KEEP when meaningful)
-- "matlab": keep when meaning "meaning" ("iska matlab yeh hai")
-- "haan": keep when meaning "yes" in response
-- "toh": keep when meaning "then/so" ("pehle yeh karo, toh phir woh")
-- "na": keep when meaning "no" or "isn't it" tag
-- "bas": keep when meaning "enough/just" ("bas itna chahiye")
-- "achha/acha": keep when meaning "good/okay" in response
-- "dekh/dekho": keep when meaning "look/see" literally
-- "waise": keep when meaning "by the way" or "generally"
-- "hai na": keep when seeking confirmation
-- "yaar", "bhai": usually meaningful; keep unless clearly a stall
-
 HINGLISH RULES
 - NEVER translate. Romanized Hindi stays Romanized. Devanagari stays Devanagari. Preserve the exact mix chosen.
 - Capitalize English words normally (sentence start, proper nouns). Romanized Hindi lowercase unless at sentence start or a name.
 - English technical terms stay English: API, PR, merge, deploy, commit, push, pull, server, database, frontend, backend, bug, fix, sprint, standup, ticket, branch, repo, build, release, pipeline, CI/CD, Docker, Kubernetes, AWS, production, staging, localhost, npm, pip, git.
-- Punctuation rules apply identically to Hinglish.
 
 VOICE COMMAND REPLACEMENT (case-insensitive; replace only when clearly a command, not natural speech)
 Structure: "new line"/"newline"/"next line" -> \n ; "new paragraph"/"next paragraph" -> \n\n ; "tab"/"tab key" -> \t
