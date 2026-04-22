@@ -149,12 +149,6 @@
 }
 
 {
-  "input": "the path is C colon backslash users backslash john backslash desktop",
-  "output": "The path is C:\\users\\john\\desktop.",
-  "app_category": "Work"
-}
-
-{
   "input": "star star bold text star star",
   "output": "**bold text**",
   "app_category": "Work"
@@ -251,12 +245,6 @@
 }
 
 {
-  "input": "I placed a dot on the map to mark the location",
-  "output": "I placed a dot on the map to mark the location.",
-  "app_category": "Work"
-}
-
-{
   "input": "the score was five dash three",
   "output": "The score was 5—3.",
   "app_category": "Personal"
@@ -317,12 +305,6 @@
 }
 
 {
-  "input": "you know the exclamation point I keep using in my texts",
-  "output": "You know the exclamation point I keep using in my texts?",
-  "app_category": "Personal"
-}
-
-{
   "input": "the function returns left paren x plus y right paren",
   "output": "The function returns (x + y).",
   "app_category": "Work"
@@ -344,12 +326,6 @@
   "input": "home forward slash documents forward slash project",
   "output": "home/documents/project",
   "app_category": "Other"
-}
-
-{
-  "input": "tag it with pound sign high priority",
-  "output": "Tag it with #high priority.",
-  "app_category": "Work"
 }
 
 {
@@ -383,12 +359,6 @@
 }
 
 {
-  "input": "don't use the dot notation for this",
-  "output": "Don't use the dot notation for this.",
-  "app_category": "Work"
-}
-
-{
   "input": "set the opacity to zero dot five",
   "output": "Set the opacity to 0.5.",
   "app_category": "Other"
@@ -407,21 +377,9 @@
 }
 
 {
-  "input": "my username has an underscore in it",
-  "output": "My username has an underscore in it.",
-  "app_category": "Work"
-}
-
-{
   "input": "hello underscore world",
   "output": "hello_world",
   "app_category": "Other"
-}
-
-{
-  "input": "add a percent sign after the number",
-  "output": "Add a percent sign after the number.",
-  "app_category": "Work"
 }
 
 {
@@ -459,7 +417,6 @@
   "output": "I need the API key in the format: key = value & key 2 = value 2.",
   "app_category": "Work"
 }
-
 
 {
   "input": "he paused em dash then continued speaking",
@@ -515,7 +472,6 @@
   "app_category": "Work"
 }
 
-
 {
   "input": "option A vertical bar option B vertical bar option C",
   "output": "Option A | option B | option C.",
@@ -551,8 +507,6 @@
   "output": "The winner is... John!",
   "app_category": "Personal"
 }
-
-
 
 {
   "input": "and then she was like open quote are you kidding me question mark close quote",
@@ -704,7 +658,6 @@
   "app_category": "Work"
 }
 
-
 {
   "input": "open quote error formatting disk close quote on screen",
   "output": "\"Error formatting disk\" on screen.",
@@ -758,7 +711,6 @@
   "output": "Yes!... Wait no.",
   "app_category": "Personal"
 }
-
 
 {
   "input": "url is https colon slash slash google dot com",
@@ -826,7 +778,6 @@
   "app_category": "Personal"
 }
 
-
 {
   "input": "price drop open parenthesis from fifty to thirty dollars close parenthesis starts today",
   "output": "Price drop (from $50 to $30) starts today.",
@@ -844,7 +795,6 @@
   "output": "I am. Just. Done.",
   "app_category": "Personal"
 }
-
 
 {
   "input": "folder path is users slash admin slash documents",
@@ -875,7 +825,6 @@
   "output": "Urgent\nPlease call me ASAP.",
   "app_category": "Personal"
 }
-
 
 {
   "input": "who comma what comma where comma when question mark",
