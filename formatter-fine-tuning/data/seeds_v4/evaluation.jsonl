@@ -847,7 +847,7 @@
 
 {
   "input": "bhai kahan hai tu jaldi bata",
-  "output": "Bhai kahan hai tu, jaldi bata.",
+  "output": "Bhai kahan hai tu jaldi bata.",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
@@ -861,14 +861,14 @@
 
 {
   "input": "aaj raat ko bahar khana khayenge theek hai",
-  "output": "Aaj raat ko bahar khana khayenge, theek hai?",
+  "output": "Aaj raat ko bahar khana khayenge theek hai?",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "yaar traffic bahot zyada hai mujhe aane mein time lagega",
-  "output": "Yaar traffic bahot zyada hai, mujhe aane mein time lagega.",
+  "output": "Yaar traffic bahot zyada hai mujhe aane mein time lagega.",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
@@ -882,42 +882,42 @@
 
 {
   "input": "mujhe lagta hai toh basically humein strategy badalni hogi",
-  "output": "Mujhe lagta hai basically humein strategy badalni hogi.",
+  "output": "Mujhe lagta hai toh basically humein strategy badalni hogi.",
   "app_category": "Work",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "matlab yeh system bilkul hi band pad gaya hai",
-  "output": "Yeh system bilkul hi band pad gaya hai.",
+  "output": "Matlab yeh system bilkul hi band pad gaya hai.",
   "app_category": "Work",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "agar woh nahi aayega toh matlab main akele jaunga",
-  "output": "Agar woh nahi aayega toh main akele jaunga.",
+  "output": "Agar woh nahi aayega toh matlab main akele jaunga.",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "yani ki project deadline aaj raat ki thi",
-  "output": "Project deadline aaj raat ki thi.",
+  "output": "Yani ki project deadline aaj raat ki thi.",
   "app_category": "Work",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "bas actually main yahi keh raha tha subah se",
-  "output": "Main yahi keh raha tha subah se.",
+  "output": "Bas actually main yahi keh raha tha subah se.",
   "app_category": "Work",
   "bucket_override": "hinglish"
 }
 
 {
-  "input": "mera pay tm account chal nahi raha hai support ko call kar",
-  "output": "Mera Paytm account chal nahi raha hai, support ko call kar.",
+  "input": "mera paytm account chal nahi raha hai support ko call kar",
+  "output": "Mera Paytm account chal nahi raha hai support ko call kar.",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
@@ -931,7 +931,7 @@
 
 {
   "input": "swiggy se kuch mangwa le mujhe bahot bhukh lagi hai",
-  "output": "Swiggy se kuch mangwa le, mujhe bahot bhukh lagi hai.",
+  "output": "Swiggy se kuch mangwa le mujhe bahot bhukh lagi hai.",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
@@ -952,14 +952,14 @@
 
 {
   "input": "kya baat kar raha hai sach mein aisa hua",
-  "output": "Kya baat kar raha hai, sach mein aisa hua?",
+  "output": "Kya baat kar raha hai sach mein aisa hua?",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "arey isko aise mat karna yahan error aa jayega",
-  "output": "Arey isko aise mat karna, yahan error aa jayega.",
+  "output": "Arey isko aise mat karna yahan error aa jayega.",
   "app_category": "Work",
   "bucket_override": "hinglish"
 }
@@ -973,14 +973,14 @@
 
 {
   "input": "wow yeh toh bilkul alag hi level ki cheez hai",
-  "output": "Wow, yeh toh bilkul alag hi level ki cheez hai.",
+  "output": "Wow yeh toh bilkul alag hi level ki cheez hai.",
   "app_category": "Personal",
   "bucket_override": "hinglish"
 }
 
 {
   "input": "pagal ho gaya hai kya production server pe test mat kar",
-  "output": "Pagal ho gaya hai kya, production server pe test mat kar.",
+  "output": "Pagal ho gaya hai kya production server pe test mat kar.",
   "app_category": "Work",
   "bucket_override": "hinglish"
 }
@@ -1610,7 +1610,7 @@
 
 {
   "input": "matlab toh basically toh ab hum Q2 mein naya vendor onboard karne wale hain",
-  "output": "Ab hum Q2 mein naya vendor onboard karne wale hain.",
+  "output": "Matlab toh basically toh ab hum Q2 mein naya vendor onboard karne wale hain",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -1687,7 +1687,7 @@
 
 {
   "input": "yaar toh matlab teri baat sahi thi main galat tha sorry yaar",
-  "output": "Yaar, teri baat sahi thi, main galat tha, sorry yaar",
+  "output": "Yaar toh matlab teri baat sahi thi main galat tha sorry yaar.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -1722,7 +1722,7 @@
 
 {
   "input": "yani ki basically naya version push ho gaya hai sab ko update lena hoga",
-  "output": "Naya version push ho gaya hai, sab ko update lena hoga.",
+  "output": "Yani ki basically naya version push ho gaya hai sab ko update lena hoga.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -1869,7 +1869,7 @@
 
 {
   "input": "matlab toh yaar tension mat lo ek baar agar nahi hua toh dekhenge",
-  "output": "Yaar, tension mat lo, ek baar agar nahi hua toh dekhenge",
+  "output": "Matlab toh yaar tension mat lo ek baar agar nahi hua toh dekhenge.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -1939,7 +1939,7 @@
 
 {
   "input": "toh basically ab client ka demo postpone ho gaya hai agle hafte ke liye",
-  "output": "Ab client ka demo postpone ho gaya hai agle hafte ke liye",
+  "output": "Toh basically ab client ka demo postpone ho gaya hai agle hafte ke liye.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -1953,7 +1953,7 @@
 
 {
   "input": "matlab toh basically documentation update ho gayi hai wiki pe check karo",
-  "output": "Documentation update ho gayi hai, wiki pe check karo.",
+  "output": "Matlab toh basically documentation update ho gayi hai wiki pe check karo.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -1967,7 +1967,7 @@
 
 {
   "input": "toh yaar apna dhyan rakhna aur khaane ka time se kha lena bhai",
-  "output": "Yaar, apna dhyan rakhna aur khaane ka time se kha lena bhai",
+  "output": "Toh yaar apna dhyan rakhna aur khaane ka time se kha lena bhai.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -1995,21 +1995,21 @@
 
 {
   "input": "yani ki basically next sprint ka planning meeting monday morning hai please block karo",
-  "output": "Next sprint ka planning meeting Monday morning hai, please block karo.",
+  "output": "Yani ki basically next sprint ka planning meeting monday morning hai please block karo.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
 
 {
   "input": "toh yaar sham ke liye koi plan hai ya phir ghar pe hi rehna hai aaj",
-  "output": "Yaar, sham ke liye koi plan hai ya phir ghar pe hi rehna hai aaj?",
+  "output": "Toh yaar shaam ke liye koi plan hai ya phir ghar pe hi rehna hai aaj.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
 
 {
   "input": "toh yaar raat ko thanda tha bilkul maza aaya bahar ghoomne mein",
-  "output": "Yaar, raat ko thanda tha bilkul, maza aaya bahar ghoomne mein",
+  "output": "Toh yaar raat ko thanda tha bilkul maza aaya bahar ghoomne mein.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -2079,7 +2079,7 @@
 
 {
   "input": "toh matlab yaar abhi toh sab busy hain but evening mein baat karte hain",
-  "output": "Yaar, abhi toh sab busy hain, but evening mein baat karte hain",
+  "output": "Toh matlab yaar abhi toh sab busy hain but evening mein baat karte hain.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -2093,7 +2093,7 @@
 
 {
   "input": "yani ki basically toh database replication lag fix ho gayi hai ab sab smooth hai",
-  "output": "Database replication lag fix ho gayi hai, ab sab smooth hai.",
+  "output": "Yani ki basically toh database replication lag fix ho gayi hai ab sab smooth hai.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -2121,14 +2121,14 @@
 
 {
   "input": "yani ki toh yaar itna zyada stress mat lo sab theek ho jaayega",
-  "output": "Yaar, itna zyada stress mat lo, sab theek ho jaayega",
+  "output": "Yani ki toh yaar itna zyada stress mat lo sab theek ho jaayega.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
 
 {
   "input": "yani ki basically ab code freeze officially start ho gayi hai no new commits",
-  "output": "Ab code freeze officially start ho gayi hai, no new commits.",
+  "output": "Yani ki basically ab code freeze officially start ho gayi hai no new commits.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -2183,15 +2183,8 @@
 }
 
 {
-  "input": "yaar toh matlab aaj toh ghar pe hi reh jaao bahar ka kya mood hai",
-  "output": "Yaar, aaj toh ghar pe hi reh jaao, bahar ka kya mood hai",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "toh yaar kya scene hai trip ka kab schedule kar rahe ho log",
-  "output": "Yaar, kya scene hai trip ka? Kab schedule kar rahe ho log?",
+  "output": "Toh yaar kya scene hai trip ka? Kab schedule kar rahe ho log?",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -2219,7 +2212,7 @@
 
 {
   "input": "yani ki toh basically feature flag enable karo aur phir monitor karo closely",
-  "output": "Feature flag enable karo aur phir monitor karo closely.",
+  "output": "Yani ki toh basically feature flag enable karo aur phir monitor karo closely.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -2260,9 +2253,429 @@
 }
 
 {
-  "input": "toh yaar matlab tune sahi kaha tha main pehle se hi sochna chahiye tha",
-  "output": "Yaar, tune sahi kaha tha, main pehle se hi sochna chahiye tha",
+  "input": "matlab yaar office saadhe chhe baje se pehle chhod dena aaj",
+  "output": "Matlab yaar office 6:30 baje se pehle chhod dena aaj.",
   "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "lunch paune barah baje rakh lo conference ke pehle",
+  "output": "Lunch 11:45 baje rakh lo conference ke pehle.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "sawa saat baje ki bus pakadni hai station se",
+  "output": "7:15 baje ki bus pakadni hai station se.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "bhai dedh baje ki call hai kal raat mujhe yaad dila dena",
+  "output": "Bhai 1:30 baje ki call hai kal raat mujhe yaad dila dena.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh yaar client call saadhe gyarah baje hai prepare kar lo",
+  "output": "Toh yaar client call 11:30 baje hai prepare kar lo.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "paune paanch baje tak office se nikal jaana meeting hai bahar",
+  "output": "4:45 baje tak office se nikal jaana meeting hai bahar.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "subah sawa nau baje gym jaana hai kal pakka",
+  "output": "Subah 9:15 baje gym jaana hai kal pakka.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar workshop saadhe do baje se paune paanch baje tak hai",
+  "output": "Yaar workshop 2:30 baje se 4:45 baje tak hai.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar thodi der ruko aadha ghanta aur lagega server restart hone mein",
+  "output": "Yaar thodi der ruko aadha ghanta aur lagega server restart hone mein.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "dedh ghante ka safar hai station se aane mein traffic mein",
+  "output": "Dedh ghante ka safar hai station se aane mein traffic mein.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar do hazaar ki EMI hai is phone ki",
+  "output": "Yaar 2,000 ki EMI hai is phone ki.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh basically event ka budget teen lakh ke andar rakhna hai",
+  "output": "Toh basically event ka budget 3 lakh ke andar rakhna hai.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "matlab paanch sau ka kharcha hua tha petrol mein kal",
+  "output": "Matlab 500 ka kharcha hua tha petrol mein kal.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "security deposit ek lakh pachaas hazaar hai is flat ka",
+  "output": "Security deposit 1,50,000 hai is flat ka.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "doctor ne chaar hazaar rupaye ki dawaai likhi hai",
+  "output": "Doctor ne ₹4,000 ki dawaai likhi hai.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar teen so rupaye de do khaane mein split karein",
+  "output": "Yaar ₹300 de do khaane mein split karein.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh basically team ka total bonus paanch lakh rupaye hai is quarter",
+  "output": "Toh basically team ka total bonus ₹5,00,000 hai is quarter.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "teen chaar ghante aur lagenge test suite complete hone mein",
+  "output": "Teen chaar ghante aur lagenge test suite complete hone mein.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar paanch chhe log aur aane wale hain dinner pe tonight",
+  "output": "Yaar paanch chhe log aur aane wale hain dinner pe tonight.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "do paanch kaam baaki hain release ke pehle clear karo",
+  "output": "Do paanch kaam baaki hain release ke pehle clear karo.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "matlab do teen baar explain kar chuka hoon usse phir bhi samjha nahi",
+  "output": "Matlab do teen baar explain kar chuka hoon usse phir bhi samjha nahi.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "pehle staging pe test karo phir prod pe push karo zaroor",
+  "output": "Pehle staging pe test karo phir prod pe push karo zaroor.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "teesra attempt hai yaar is bar ho jana chahiye",
+  "output": "Teesra attempt hai yaar is bar ho jana chahiye.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh basically doosre iteration mein humne design bilkul badal diya",
+  "output": "Toh basically doosre iteration mein humne design bilkul badal diya.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "ek do din aur wait kar lo patch release hone wala hai",
+  "output": "Ek do din aur wait kar lo patch release hone wala hai.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar ek do suggestions de tujhe kuch aaya kya mind mein",
+  "output": "Yaar ek do suggestions de tujhe kuch aaya kya mind mein?",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "ek do bugs aur hain phir ship kar sakte hain",
+  "output": "Ek do bugs aur hain phir ship kar sakte hain.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "HR ka contact number hai eight eight two three four five six seven eight nine",
+  "output": "HR ka contact number hai 8823456789.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar apna naya number bhej mujhe nine six seven eight nine zero one two three four",
+  "output": "Yaar apna naya number bhej mujhe 9678901234.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar subah uthke ek baar deploy status check karo hua kya nahi",
+  "output": "Yaar subah uthke ek baar deploy status check karo hua kya nahi.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "bhai kuch nahi samajh raha mujhe yeh logs dekh ke explain karo",
+  "output": "Bhai kuch nahi samajh raha mujhe yeh logs dekh ke explain karo.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "arre yeh dashboard ekdum slow ho gaya hai kuch to karo",
+  "output": "Arre yeh dashboard ekdum slow ho gaya hai kuch to karo.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "acha toh phir aaj raat tak feature ready ho jaani chahiye na",
+  "output": "Acha toh phir aaj raat tak feature ready ho jaani chahiye na.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "waise yaar tune socha hai ki next year switch karna hai ya nahi",
+  "output": "Waise yaar tune socha hai ki next year switch karna hai ya nahi?",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "haan haan dekh liya maine PR ready hai review kar do",
+  "output": "Haan haan dekh liya maine PR ready hai review kar do.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "nahi nahi usse directly production access mat do abhi",
+  "output": "Nahi nahi usse directly production access mat do abhi.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "bilkul bilkul yahi soch raha tha main itna hi karna chahiye",
+  "output": "Bilkul bilkul yahi soch raha tha main itna hi karna chahiye.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "jaldi jaldi karo yaar deployment window close hone wala hai",
+  "output": "Jaldi jaldi karo yaar deployment window close hone wala hai.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh matlab kal sham ko sab log office mein honge na",
+  "output": "Toh matlab kal sham ko sab log office mein honge na.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar feature freeze se pehle yeh wala kaam nipta lena hai na",
+  "output": "Yaar feature freeze se pehle yeh wala kaam nipta lena hai na.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "basically hum next week tak production mein push kar denge na",
+  "output": "Basically hum next week tak production mein push kar denge na.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yahi toh bol raha tha main kal se ki testing zaroor karo",
+  "output": "Yahi toh bol raha tha main kal se ki testing zaroor karo.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "abhi hi escalate karo nahi toh kal tak aur bada ho jaayega",
+  "output": "Abhi hi escalate karo nahi toh kal tak aur bada ho jaayega.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "sirf yahi ek cheez clear nahi thi baaki sab samajh aa gaya",
+  "output": "Sirf yahi ek cheez clear nahi thi baaki sab samajh aa gaya.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "matlab basically yeh issue tab se chal raha hai jab se deploy kiya tha",
+  "output": "Matlab basically yeh issue tab se chal raha hai jab se deploy kiya tha.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "waise yaar kabhi kabhi sochta hoon ki remote hi rehna chahiye tha",
+  "output": "Waise yaar kabhi kabhi sochta hoon ki remote hi rehna chahiye tha.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yani ki basically ab sprint extend nahi karenge as is release karenge",
+  "output": "Yani ki basically ab sprint extend nahi karenge as is release karenge.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh uh basically migration complete ho gayi hai production pe",
+  "output": "Toh basically migration complete ho gayi hai production pe.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "uhh yaar staging pe deploy karo pehle phir prod pe jayenge",
+  "output": "Yaar staging pe deploy karo pehle phir prod pe jayenge.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "matlab um basically yeh route change karni padegi kuch nahi ho raha",
+  "output": "Matlab basically yeh route change karni padegi kuch nahi ho raha.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "we have roughly three hundred and fifty engineers across all offices globally",
+  "output": "We have roughly 350 engineers across all offices globally.",
+  "app_category": "Work",
+  "source_bucket": "numbers_formatting"
+}
+
+{
+  "input": "the response time improved from six fifty milliseconds to two hundred and ten",
+  "output": "The response time improved from 650ms to 210ms.",
+  "app_category": "Work",
+  "source_bucket": "numbers_formatting"
+}
+
+{
+  "input": "the event is planned for july twenty second next year",
+  "output": "The event is planned for July 22nd next year.",
+  "app_category": "Work",
+  "source_bucket": "numbers_formatting"
+}
+
+{
+  "input": "the file takes forty seven point eight seconds to process on average",
+  "output": "The file takes 47.8 seconds to process on average.",
+  "app_category": "Work",
+  "source_bucket": "numbers_formatting"
+}
+
+{
+  "input": "yaar kaam khatam karo phir call karo main wait kar raha hoon",
+  "output": "Yaar kaam khatam karo phir call karo main wait kar raha hoon.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh basically issue dekho log check karo fix deploy karo",
+  "output": "Toh basically issue dekho log check karo fix deploy karo.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "bhai chai pee lo thoda rest karo phir kaam shuru karo",
+  "output": "Bhai chai pee lo thoda rest karo phir kaam shuru karo.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "toh matlab yaar mujhe bata kya hua kaise solve karein",
+  "output": "Toh matlab yaar mujhe bata kya hua kaise solve karein?",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "yaar sham ko milte hain matlab nahi raat ko schedule better rahega",
+  "output": "Yaar sham ko milte hain matlab nahi raat ko schedule better rahega.",
+  "app_category": "Personal",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "pehle client ko bhejo matlab ruko legal se approve karwao pehle",
+  "output": "Pehle client ko bhejo matlab ruko legal se approve karwao pehle.",
+  "app_category": "Work",
+  "source_bucket": "hinglish"
+}
+
+{
+  "input": "meeting mein main bolunga matlab actually tu hi bol tu better explain karta hai",
+  "output": "Meeting mein main bolunga matlab actually tu hi bol tu better explain karta hai.",
+  "app_category": "Work",
   "source_bucket": "hinglish"
 }
 
@@ -2303,15 +2716,8 @@
 
 {
   "input": "toh yaar kafi dino baad tumse baat ho rahi hai sab badhiya chal raha hai na",
-  "output": "Yaar, kafi dino baad tumse baat ho rahi hai, sab badhiya chal raha hai na?",
+  "output": "Toh yaar kafi dino baad tumse baat ho rahi hai sab badhiya chal raha hai na.",
   "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "yani ki basically toh hum log agle quarter mein hiring freeze mein jaane wale hain",
-  "output": "Hum log agle quarter mein hiring freeze mein jaane wale hain.",
-  "app_category": "Work",
   "source_bucket": "hinglish"
 }
 
@@ -2366,7 +2772,7 @@
 
 {
   "input": "toh yaar itni mehnat ke baad bhi acknowledgement nahi mila thoda frustrating hai",
-  "output": "Yaar, itni mehnat ke baad bhi acknowledgement nahi mila, thoda frustrating hai",
+  "output": "Toh yaar itni mehnat ke baad bhi acknowledgement nahi mila thoda frustrating hai.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -2387,7 +2793,7 @@
 
 {
   "input": "toh matlab yaar ghar pe cooking try ki aaj pehli baar aur kaafi sahi bana",
-  "output": "Yaar, ghar pe cooking try ki aaj pehli baar aur kaafi sahi bana",
+  "output": "Toh matlab yaar ghar pe cooking try ki aaj pehli baar aur kaafi sahi bana.",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -2404,13 +2810,6 @@
   "output": "Make the CTA green, it's a confirmation action not a warning",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "yani ki toh basically product analytics dashboards ab real time update ho rahe hain",
-  "output": "Product analytics dashboards ab real time update ho rahe hain.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -2470,13 +2869,6 @@
 }
 
 {
-  "input": "toh yaar kal tak decide kar lena hum donohin ka schedule set kar lein",
-  "output": "Yaar, kal tak decide kar lena, hum donohin ka schedule set kar lein",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "there expecting a major spike in traffic during the sale period",
   "output": "There expecting a major spike in traffic during the sale period.",
   "app_category": "Work",
@@ -2491,13 +2883,6 @@
 }
 
 {
-  "input": "toh yaar aaj ka din toh wastage tha kuch useful kaam hi nahi hua",
-  "output": "Yaar, aaj ka din toh wastage tha, kuch useful kaam hi nahi hua",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "set the ticket to in progress actually close it we finished that yesterday",
   "output": "Close the ticket, we finished that yesterday.",
   "app_category": "Work",
@@ -2506,7 +2891,7 @@
 
 {
   "input": "yani ki toh ab naye joinees ka onboarding process shuru ho gaya hai officially",
-  "output": "Ab naye joinees ka onboarding process shuru ho gaya hai officially.",
+  "output": "Yani ki toh ab naye joinees ka onboarding process shuru ho gaya hai officially.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -2541,7 +2926,7 @@
 
 {
   "input": "matlab toh basically vo codebase itna legacy hai ki koi touch hi nahi karna chahta",
-  "output": "Vo codebase itna legacy hai ki koi touch hi nahi karna chahta",
+  "output": "Matlab toh basically vo codebase itna legacy hai ki koi touch hi nahi karna chahta.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -2610,13 +2995,6 @@
 }
 
 {
-  "input": "toh yaar dekh agar nahi aana weekend pe toh bata dena advance mein please",
-  "output": "Yaar, dekh agar nahi aana weekend pe toh bata dena advance mein please",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "hi rahul your visa application P R dash five five five has been received and is under review we will update you within five working days regards consulate",
   "output": "Hi Rahul, your visa application PR-555 has been received and is under review. We will update you within 5 working days. Regards, Consulate",
   "app_category": "Email",
@@ -2625,7 +3003,7 @@
 
 {
   "input": "yani ki basically sprint review kal do baje hai sab tayaar raho",
-  "output": "Sprint review kal 2 baje hai, sab tayaar raho.",
+  "output": "Yani ki basically sprint review kal 2 baje hai sab tayaar raho.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -2701,13 +3079,6 @@
 }
 
 {
-  "input": "yani ki toh basically engineering team ne sab test cases pass kar liye hain",
-  "output": "Engineering team ne sab test cases pass kar liye hain.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "the server was under load for about eleven minutes during the outage window",
   "output": "The server was under load for about 11 minutes during the outage window.",
   "app_category": "Work",
@@ -2736,20 +3107,6 @@
 }
 
 {
-  "input": "toh yaar plan toh accha tha but execution mein gadbad ho gayi lagti hai",
-  "output": "Yaar, plan toh accha tha, but execution mein gadbad ho gayi lagti hai",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "yani ki basically toh final report ready hai sharing kar raha hoon ab ko",
-  "output": "Final report ready hai, sharing kar raha hoon ab ko.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "please buy eggs milk bread and green tea from the store today",
   "output": "Please buy eggs, milk, bread, and green tea from the store today",
   "app_category": "Personal",
@@ -2768,13 +3125,6 @@
   "output": "The campaign got 1.8M impressions with a 3.4% click-through rate",
   "app_category": "Work",
   "source_bucket": "numbers_formatting"
-}
-
-{
-  "input": "yani ki basically product ka beta feedback kaafi positive aaya hai overall",
-  "output": "Product ka beta feedback kaafi positive aaya hai overall.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -2869,13 +3219,6 @@
 }
 
 {
-  "input": "toh yaar sach mein bata kya hua usne finally reply kiya ya nahi",
-  "output": "Yaar, sach mein bata, kya hua? Usne finally reply kiya ya nahi?",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "report this as a UI bug no I mean a backend issue the data is wrong",
   "output": "Report this as a backend issue, the data is wrong.",
   "app_category": "Work",
@@ -2922,13 +3265,6 @@
   "output": "Increase the retries to 3, five might mask real issues.",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "yani ki basically naya employee handbook updated ho gaya hai please ek baar padh lena",
-  "output": "Naya employee handbook updated ho gaya hai, please ek baar padh lena.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3002,13 +3338,6 @@
 }
 
 {
-  "input": "toh basically security patch apply ho gayi hai sab systems pe restart karo",
-  "output": "Security patch apply ho gayi hai sab systems pe, restart karo.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "we saved over two hundred thousand dollars in cloud costs by optimizing our storage tier",
   "output": "We saved over $200,000 in cloud costs by optimizing our storage tier.",
   "app_category": "Work",
@@ -3031,7 +3360,7 @@
 
 {
   "input": "matlab toh basically backend team ne API fix ki hai ab test karo please",
-  "output": "Backend team ne API fix ki hai, ab test karo please",
+  "output": "Matlab toh basically backend team ne API fix ki hai ab test karo please.",
   "app_category": "Work",
   "source_bucket": "hinglish"
 }
@@ -3079,13 +3408,6 @@
 }
 
 {
-  "input": "toh matlab yaar meri na gadi service mein hai isliye drop nahi kar sakta",
-  "output": "Yaar, meri gadi service mein hai, isliye drop nahi kar sakta",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "your code changes will effect all downstream services please coordinate",
   "output": "Your code changes will effect all downstream services please coordinate.",
   "app_category": "Work",
@@ -3111,13 +3433,6 @@
   "output": "Book business seats, the trip is 14 hours long",
   "app_category": "Personal",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "matlab toh yaar bata tu kab free hai milte hain chai pe",
-  "output": "Yaar, bata tu kab free hai, milte hain chai pe",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3149,20 +3464,6 @@
 }
 
 {
-  "input": "toh matlab yaar chhota tha issue but agar time pe na pakda toh problem ban jaata",
-  "output": "Yaar, chhota tha issue, but agar time pe na pakda toh problem ban jaata",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "matlab toh yaar khud hi ek baar try kar sab kuch samajh jaayega tujhe",
-  "output": "Yaar, khud hi ek baar try kar, sab kuch samajh jaayega tujhe",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "go with figma for the prototype no actually miro both teams already use it",
   "output": "Go with Miro for the prototype, both teams already use it",
   "app_category": "Work",
@@ -3188,13 +3489,6 @@
   "output": "My monthly subscriptions now cost nearly \u20b93,200 total",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
-}
-
-{
-  "input": "toh yaar film toh sahi thi but ending ne thoda disappointment diya",
-  "output": "Yaar, film toh sahi thi but ending ne thoda disappointment diya",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3240,13 +3534,6 @@
 }
 
 {
-  "input": "yani ki basically toh sab rollout phase successfully complete ho gayi hain",
-  "output": "Sab rollout phase successfully complete ho gayi hain.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "archive the old repo no I mean we should keep it as read only for reference",
   "output": "Keep the old repo as read-only for reference, don't archive it.",
   "app_category": "Work",
@@ -3279,13 +3566,6 @@
   "output": "The system is NOT RESPONDING to any of the admin commands, it was working fine yesterday.",
   "app_category": "Work",
   "source_bucket": "edge_cases"
-}
-
-{
-  "input": "toh yaar mujhe lagta hai hument soch ke hi step lena chahiye abhi",
-  "output": "Yaar, mujhe lagta hai hument soch ke hi step lena chahiye abhi",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3325,7 +3605,7 @@
 
 {
   "input": "toh matlab yaar kya kar rahe ho aaj ka koi plan hai kya",
-  "output": "Yaar, kya kar rahe ho? Aaj ka koi plan hai kya?",
+  "output": "Toh matlab yaar kya kar rahe ho aaj ka koi plan hai kya?",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -3352,13 +3632,6 @@
 }
 
 {
-  "input": "matlab toh basically toh yahan pe ek naya framework adopt karna pad sakta hai",
-  "output": "Yahan pe ek naya framework adopt karna pad sakta hai.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "uh basically I am going to be out of office next week please plan accordingly",
   "output": "I am going to be out of office next week, please plan accordingly.",
   "app_category": "Work",
@@ -3366,24 +3639,10 @@
 }
 
 {
-  "input": "matlab toh basically final deployment script ready hai just needs one last review",
-  "output": "Final deployment script ready hai, just needs one last review",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "the error log shows connection refused could not connect to remote host",
   "output": "The error log shows 'Connection refused: Could not connect to remote host'",
   "app_category": "Work",
   "source_bucket": "edge_cases"
-}
-
-{
-  "input": "matlab toh basically infra team ne confirm kar diya ki migration complete hai",
-  "output": "Infra team ne confirm kar diya ki migration complete hai.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3429,13 +3688,6 @@
 }
 
 {
-  "input": "yani ki toh basically backend API ka response time improve hua hai by forty percent",
-  "output": "Backend API ka response time improve hua hai by 40%.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "there approach to code reviews is two lenient and causing technical debt",
   "output": "There approach to code reviews is two lenient and causing technical debt.",
   "app_category": "Work",
@@ -3443,24 +3695,10 @@
 }
 
 {
-  "input": "toh matlab yaar basically i think humein naya server hire karna chahiye",
-  "output": "Yaar, I think humein naya server hire karna chahiye",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "add this as a P3 I mean P2 users are reporting it fairly often",
   "output": "Add this as a P2, users are reporting it fairly often.",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "toh yaar teri baat sunke dil khush ho gaya sach mein bilkul sahi kaha tune",
-  "output": "Yaar, teri baat sunke dil khush ho gaya, sach mein bilkul sahi kaha tune",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3485,13 +3723,6 @@
 }
 
 {
-  "input": "yani ki toh basically client ne final budget approve kar diya hai",
-  "output": "Client ne final budget approve kar diya hai.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "resolve the conflict on main branch no actually let the reviewer handle it",
   "output": "Let the reviewer handle the conflict on the main branch",
   "app_category": "Work",
@@ -3513,13 +3744,6 @@
 }
 
 {
-  "input": "toh yaar mujhe nahi lagta humein yeh deal accept karni chahiye terms theek nahi hain",
-  "output": "Yaar, mujhe nahi lagta humein yeh deal accept karni chahiye, terms theek nahi hain",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "the beta program had ninety two participants and a seventy percent completion rate",
   "output": "The beta program had 92 participants and a 70% completion rate.",
   "app_category": "Work",
@@ -3531,27 +3755,6 @@
   "output": "Its a lose lose situation either we delay the launch or ship with known bugs",
   "app_category": "Work",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "yani ki basically toh product launch officially announce ho gayi hai aaj",
-  "output": "Product launch officially announce ho gayi hai aaj.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "toh matlab yaar kya story hai interview mein kya poochha unhone",
-  "output": "Yaar, kya story hai interview mein? Kya poochha unhone?",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "toh yaar tumse ek kaam tha kya kal milna ho sakta hai briefly",
-  "output": "Yaar, tumse ek kaam tha, kya kal milna ho sakta hai briefly?",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3583,13 +3786,6 @@
 }
 
 {
-  "input": "matlab toh basically infra costs quarter mein fifteen percent reduce ho gayi hain",
-  "output": "Infra costs quarter mein 15% reduce ho gayi hain.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "the API is depreciated and every team needs to migrate by end of month",
   "output": "The API is depreciated and every team needs to migrate by end of month.",
   "app_category": "Work",
@@ -3602,14 +3798,6 @@
   "app_category": "Work",
   "source_bucket": "asr_errors"
 }
-
-{
-  "input": "toh basically load testing ke results aaye hain lag raha hai server fine hai",
-  "output": "Load testing ke results aaye hain, lag raha hai server fine hai.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
 {
   "input": "um I think we have about three weeks buffer before the situation becomes critical",
   "output": "I think we have about 3 weeks of buffer before the situation becomes critical",
@@ -3629,13 +3817,6 @@
   "output": "I woke up at 4:45 AM for the 6 AM flight and barely made it",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
-}
-
-{
-  "input": "so like I forgot to pay the electricity bill please do it today before the due date",
-  "output": "I forgot to pay the electricity bill, please do it today before the due date",
-  "app_category": "Personal",
-  "source_bucket": "basic_formatting"
 }
 
 {
@@ -3674,13 +3855,6 @@
 }
 
 {
-  "input": "toh yaar bahut kuch seekha is project se even though it was stressful",
-  "output": "Yaar, bahut kuch seekha is project se, even though it was stressful",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "the hardware upgrade brings our disk throughput from two gigabytes to six gigabytes per second",
   "output": "The hardware upgrade brings our disk throughput from 2GB/s to 6GB/s.",
   "app_category": "Work",
@@ -3692,20 +3866,6 @@
   "output": "Your going to love the restaurant I booked it has amazing seafood",
   "app_category": "Personal",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "matlab toh basically naya monitoring dashboard ready hai ab alerts sahi chalein",
-  "output": "Naya monitoring dashboard ready hai, ab alerts sahi chalein.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "matlab toh basically product team ne saari requirements finalize kar di hain",
-  "output": "Product team ne saari requirements finalize kar di hain.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3724,7 +3884,7 @@
 
 {
   "input": "yani ki toh hum aaj shaam ko seven baje ke baad hi plan kar sakte hain",
-  "output": "Hum aaj shaam ko 7 baje ke baad hi plan kar sakte hain",
+  "output": "Yani ki toh hum aaj shaam ko 7 baje ke baad hi plan kar sakte hain",
   "app_category": "Personal",
   "source_bucket": "hinglish"
 }
@@ -3748,13 +3908,6 @@
   "output": "Keep it internal for now, it's premature to open up this API.",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "yani ki basically on call rotation ka schedule update ho gaya hai slack pe dekho",
-  "output": "On call rotation ka schedule update ho gaya hai, Slack pe dekho",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3786,13 +3939,6 @@
 }
 
 {
-  "input": "toh matlab yaar kya lagta hai usse offer milega ya nahi",
-  "output": "Yaar, kya lagta hai usse offer milega ya nahi?",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
   "input": "um the the flight got delayed by about three hours due to weather at the origin",
   "output": "The flight got delayed by about 3 hours due to weather at the origin",
   "app_category": "Personal",
@@ -3818,20 +3964,6 @@
   "output": "Set the cache to 1 hour, the data barely changes.",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "toh matlab yaar ab toh yahi lag raha hai ki job switch ka time aa gaya hai",
-  "output": "Yaar, ab toh yahi lag raha hai ki job switch ka time aa gaya hai",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "toh yaar bhai mujhe laga tha busy hoga tu bas quick check in karna tha",
-  "output": "Yaar, mujhe laga tha busy hoga tu, bas quick check in karna tha",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {
@@ -3895,27 +4027,6 @@
   "output": "Its a grate opportunity don't let your nerves get the better of you",
   "app_category": "Personal",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "yani ki basically ab product roadmap mein ye feature Q3 mein aayegi",
-  "output": "Ab product roadmap mein ye feature Q3 mein aayegi.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "yani ki basically toh ab acceptance testing ka phase shuru ho raha hai yeh week",
-  "output": "Ab acceptance testing ka phase shuru ho raha hai yeh week.",
-  "app_category": "Work",
-  "source_bucket": "hinglish"
-}
-
-{
-  "input": "toh yaar dikhta nahi tune kaafi growth ki hai last ek saal mein really proud of you",
-  "output": "Yaar, dikhta nahi, tune kaafi growth ki hai last ek saal mein, really proud of you",
-  "app_category": "Personal",
-  "source_bucket": "hinglish"
 }
 
 {

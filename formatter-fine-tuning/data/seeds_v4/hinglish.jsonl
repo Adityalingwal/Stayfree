@@ -3869,3 +3869,261 @@
   "output": "Toh yani ki conference mein uhh present karenge naya product demo hoga.",
   "app_category": "Work"
 }
+
+{
+  "input": "matlab toh yaar meeting saadhe teen baje rakhte hain",
+  "output": "Matlab toh yaar meeting 3:30 baje rakhte hain.",
+  "app_category": "Work"
+}
+
+{
+  "input": "call saadhe nau baje hai kal subah mat bhoolna",
+  "output": "Call 9:30 baje hai kal subah mat bhoolna.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh basically standup saadhe das baje shift ho gaya hai",
+  "output": "Toh basically standup 10:30 baje shift ho gaya hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yaar paune char baje nikal jaana traffic bahut hoga",
+  "output": "Yaar 3:45 baje nikal jaana traffic bahut hoga.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "paune aath baje ki train hai kal",
+  "output": "7:45 baje ki train hai kal.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "meeting paune do baje hai prepare rehna",
+  "output": "Meeting 1:45 baje hai prepare rehna.",
+  "app_category": "Work"
+}
+
+{
+  "input": "sawa das baje tak office aa jaana presentation hai",
+  "output": "10:15 baje tak office aa jaana presentation hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yaar sawa paanch baje pickup karo station se",
+  "output": "Yaar 5:15 baje pickup karo station se.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "dedh baje ki flight hai kal raat ko",
+  "output": "1:30 baje ki flight hai kal raat ko.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "aadha ghanta aur baaki hai deployment mein wait karo",
+  "output": "Aadha ghanta aur baaki hai deployment mein wait karo.",
+  "app_category": "Work"
+}
+
+{
+  "input": "matlab toh basically aadha ghanta pehle server down tha ab theek hai",
+  "output": "Matlab toh basically aadha ghanta pehle server down tha ab theek hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh yaar subah saadhe saat baje gym jaana hai yaad hai na",
+  "output": "Toh yaar subah 7:30 baje gym jaana hai yaad hai na.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "paune teen se saadhe char baje tak meeting rahegi",
+  "output": "2:45 se 4:30 baje tak meeting rahegi.",
+  "app_category": "Work"
+}
+
+{
+  "input": "laptop upgrade ke liye teen hazaar budget hai mere paas",
+  "output": "Laptop upgrade ke liye 3,000 budget hai mere paas.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh basically paanch lakh ka renovation estimate aaya hai",
+  "output": "Toh basically 5 lakh ka renovation estimate aaya hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ek lakh pachaas hazaar mein flat mila hai yaar kaafi acha deal hai",
+  "output": "1,50,000 mein flat mila hai yaar kaafi acha deal hai.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "bhai dus hazaar rupaye advance do aaj",
+  "output": "Bhai ₹10,000 advance do aaj.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "toh yani ki project ka total budget teen lakh rupaye hai",
+  "output": "Toh yani ki project ka total budget ₹3,00,000 hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ek sau rupaye bhi nahi bache the mere paas tab",
+  "output": "₹100 bhi nahi bache the mere paas tab.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "do teen ghante ka kaam hai bas nipta lo jaldi",
+  "output": "Do teen ghante ka kaam hai bas nipta lo jaldi.",
+  "app_category": "Work"
+}
+
+{
+  "input": "paanch saat din aur lagenge feature complete hone mein",
+  "output": "Paanch saat din aur lagenge feature complete hone mein.",
+  "app_category": "Work"
+}
+
+{
+  "input": "matlab toh yaar teen paanch log aur chahiye the team mein",
+  "output": "Matlab toh yaar teen paanch log aur chahiye the team mein.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yaar do chaar cheezein discuss karni hain kal meeting mein",
+  "output": "Yaar do chaar cheezein discuss karni hain kal meeting mein.",
+  "app_category": "Work"
+}
+
+{
+  "input": "pehle MVP banao phir polish karo later",
+  "output": "Pehle MVP banao phir polish karo later.",
+  "app_category": "Work"
+}
+
+{
+  "input": "teesre sprint mein yeh feature release karne ka plan hai",
+  "output": "Teesre sprint mein yeh feature release karne ka plan hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh basically doosre phase mein hum authentication add karenge",
+  "output": "Toh basically doosre phase mein hum authentication add karenge.",
+  "app_category": "Work"
+}
+
+{
+  "input": "chauthe quarter mein numbers achhe aane chahiye",
+  "output": "Chauthe quarter mein numbers achhe aane chahiye.",
+  "app_category": "Work"
+}
+
+{
+  "input": "ek do aur review baaki hain phir merge kar sakte hain",
+  "output": "Ek do aur review baaki hain phir merge kar sakte hain.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yaar ek do cheezein poochni thi tujhse",
+  "output": "Yaar ek do cheezein poochni thi tujhse.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "ek do ghante mein clear ho jaayega backlog",
+  "output": "Ek do ghante mein clear ho jaayega backlog.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh client ka number hai eight zero zero nine one two three four five six",
+  "output": "Toh client ka number hai 8009123456.",
+  "app_category": "Work"
+}
+
+{
+  "input": "mera naya number hai nine nine one zero four five six seven eight nine",
+  "output": "Mera naya number hai 9910456789.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "arre bhai yeh kya kiya tune production pe seedha push kar diya",
+  "output": "Arre bhai yeh kya kiya tune production pe seedha push kar diya.",
+  "app_category": "Work"
+}
+
+{
+  "input": "waise yaar tune suna naya office space mila hai company ko",
+  "output": "Waise yaar tune suna naya office space mila hai company ko?",
+  "app_category": "Personal"
+}
+
+{
+  "input": "nahi nahi woh approach mat lena bahut risky hai",
+  "output": "Nahi nahi woh approach mat lena bahut risky hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "jaldi jaldi karo yaar client call hai paanch minute mein",
+  "output": "Jaldi jaldi karo yaar client call hai 5 minute mein.",
+  "app_category": "Work"
+}
+
+{
+  "input": "haan haan yaad hai mujhe aaj deploy nahi karna",
+  "output": "Haan haan yaad hai mujhe aaj deploy nahi karna.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh yaar kal se naya sprint shuru hoga na",
+  "output": "Toh yaar kal se naya sprint shuru hoga na.",
+  "app_category": "Work"
+}
+
+{
+  "input": "matlab basically design freeze ho gayi hai na ab",
+  "output": "Matlab basically design freeze ho gayi hai na ab.",
+  "app_category": "Work"
+}
+
+{
+  "input": "sirf yahi ek problem hai baaki sab theek hai",
+  "output": "Sirf yahi ek problem hai baaki sab theek hai.",
+  "app_category": "Work"
+}
+
+{
+  "input": "abhi hi fix karo warna kal tak aur bade ho jaayenge issues",
+  "output": "Abhi hi fix karo warna kal tak aur bade ho jaayenge issues.",
+  "app_category": "Work"
+}
+
+{
+  "input": "toh basically PR raise karo review lo phir merge karo main mein",
+  "output": "Toh basically PR raise karo review lo phir merge karo main mein.",
+  "app_category": "Work"
+}
+
+{
+  "input": "bhai kaam ho gaya toh nikal jaate hain kuch khaate hain bahar",
+  "output": "Bhai kaam ho gaya toh nikal jaate hain kuch khaate hain bahar.",
+  "app_category": "Personal"
+}
