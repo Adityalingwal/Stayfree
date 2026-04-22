@@ -221,24 +221,6 @@
 }
 
 {
-  "input": "delete that actually let me start over",
-  "output": "Let me start over.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the deadline is friday scratch that it's actually thursday",
-  "output": "The deadline is actually Thursday.",
-  "app_category": "Work"
-}
-
-{
-  "input": "send the report to marketing undo that send it to sales instead",
-  "output": "Send the report to sales instead.",
-  "app_category": "Work"
-}
-
-{
   "input": "select all and copy",
   "output": "select all and copy",
   "app_category": "Other"
@@ -455,12 +437,6 @@
 }
 
 {
-  "input": "put a tab between the name and the age columns",
-  "output": "Put a tab between the name and the age columns.",
-  "app_category": "Work"
-}
-
-{
   "input": "tab name tab age tab email",
   "output": "\tname\tage\temail",
   "app_category": "Other"
@@ -481,12 +457,6 @@
 {
   "input": "the file is at slash users slash john slash documents",
   "output": "The file is at /users/john/documents.",
-  "app_category": "Work"
-}
-
-{
-  "input": "I need a pipe between these two commands",
-  "output": "I need a pipe between these two commands.",
   "app_category": "Work"
 }
 
@@ -577,12 +547,6 @@
 {
   "input": "remember dash the deadline is friday exclamation mark",
   "output": "Remember — the deadline is Friday!",
-  "app_category": "Work"
-}
-
-{
-  "input": "the semi colon is used in JavaScript to end statements",
-  "output": "The semicolon is used in JavaScript to end statements.",
   "app_category": "Work"
 }
 
