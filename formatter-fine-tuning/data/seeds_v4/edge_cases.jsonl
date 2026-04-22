@@ -946,3 +946,123 @@
   "output": "Just follow the dot to find the location.",
   "app_category": "Personal"
 }
+{
+  "input": "no no no this is completely unacceptable",
+  "output": "No, no, no, this is completely unacceptable.",
+  "app_category": "Work"
+}
+
+{
+  "input": "wait wait wait i forgot my keys",
+  "output": "Wait, wait, wait, I forgot my keys.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it was a very very very long meeting",
+  "output": "It was a very, very, very long meeting.",
+  "app_category": "Work"
+}
+
+{
+  "input": "go go go we are going to be late",
+  "output": "Go, go, go, we are going to be late.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "please please please let me know by today",
+  "output": "Please, please, please let me know by today.",
+  "app_category": "Work"
+}
+
+{
+  "input": "that is so so so cool",
+  "output": "That is so, so, so cool.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "i really really really need that report tomorrow",
+  "output": "I really, really, really need that report tomorrow.",
+  "app_category": "Work"
+}
+
+{
+  "input": "yes yes yes that is exactly what i meant",
+  "output": "Yes, yes, yes, that is exactly what I meant.",
+  "app_category": "Work"
+}
+
+{
+  "input": "stop stop stop the deployment is broken",
+  "output": "Stop, stop, stop, the deployment is broken.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we have to move fast fast fast to beat the deadline",
+  "output": "We have to move fast, fast, fast to beat the deadline.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it took a long long long time to compile",
+  "output": "It took a long, long, long time to compile.",
+  "app_category": "Work"
+}
+
+{
+  "input": "okay okay okay i will do it right now",
+  "output": "Okay, okay, okay, I will do it right now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "he was very very very angry about the downtime",
+  "output": "He was very, very, very angry about the downtime.",
+  "app_category": "Work"
+}
+
+{
+  "input": "never never never push to production without a review",
+  "output": "Never, never, never push to production without a review.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i am just so so so tired of fixing the same bug",
+  "output": "I am just so, so, so tired of fixing the same bug.",
+  "app_category": "Work"
+}
+
+{
+  "input": "fine fine fine we can use the new api",
+  "output": "Fine, fine, fine, we can use the new API.",
+  "app_category": "Work"
+}
+
+{
+  "input": "boy oh boy that was a close close close call",
+  "output": "Boy oh boy, that was a close, close, close call.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "quick quick quick grab the charger before the laptop dies",
+  "output": "Quick, quick, quick, grab the charger before the laptop dies.",
+  "app_category": "Work"
+}
+
+{
+  "input": "that is a big big big mistake",
+  "output": "That is a big, big, big mistake.",
+  "app_category": "Work"
+}
+
+{
+  "input": "sure sure sure i can help you with the database migration",
+  "output": "Sure, sure, sure, I can help you with the database migration.",
+  "app_category": "Work"
+}
+
