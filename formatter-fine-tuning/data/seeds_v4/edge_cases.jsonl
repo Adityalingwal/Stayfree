@@ -209,12 +209,6 @@
 }
 
 {
-  "input": "the apple event is in september and microsoft build is in may",
-  "output": "The Apple event is in September and Microsoft Build is in May.",
-  "app_category": "Personal"
-}
-
-{
   "input": "sarah told me she's moving to london next month for the amazon job",
   "output": "Sarah told me she's moving to London next month for the Amazon job.",
   "app_category": "Personal"
@@ -233,12 +227,6 @@
 }
 
 {
-  "input": "the value must be greater than zero and less than or equal to one hundred",
-  "output": "The value must be greater than 0 and less than or equal to 100.",
-  "app_category": "Work"
-}
-
-{
   "input": "i had a question mark on my face when he said that",
   "output": "I had a question mark on my face when he said that.",
   "app_category": "Personal"
@@ -247,12 +235,6 @@
 {
   "input": "the period of time we're looking at is about six months",
   "output": "The period of time we're looking at is about 6 months.",
-  "app_category": "Work"
-}
-
-{
-  "input": "ugh this bug has been haunting me all week",
-  "output": "Ugh, this bug has been haunting me all week.",
   "app_category": "Work"
 }
 
@@ -283,24 +265,6 @@
 {
   "input": "look i know this isn't ideal but we have to ship something by friday even if it's not perfect",
   "output": "Look, I know this isn't ideal, but we have to ship something by Friday, even if it's not perfect.",
-  "app_category": "Work"
-}
-
-{
-  "input": "can we can we maybe push the meeting to like after lunch",
-  "output": "Can we maybe push the meeting to like after lunch?",
-  "app_category": "Work"
-}
-
-{
-  "input": "hey so uh funny story um i accidentally deleted the staging database",
-  "output": "Hey, so, funny story, I accidentally deleted the staging database.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the the api the the api is rate limiting us at like fifty requests per second",
-  "output": "The API is rate limiting us at like 50 requests per second.",
   "app_category": "Work"
 }
 
@@ -352,11 +316,6 @@
   "app_category": "Work"
 }
 
-{
-  "input": "note to self never deploy on a friday afternoon",
-  "output": "Note to self: never deploy on a Friday afternoon.",
-  "app_category": "Other"
-}
 
 {
   "input": "yep",
@@ -467,8 +426,8 @@
 }
 
 {
-  "input": "um so like the steps are first clone the repo second install dependencies third run the dev server and fourth open localhost three thousand",
-  "output": "So like, the steps are:\n1. Clone the repo.\n2. Install dependencies.\n3. Run the dev server.\n4. Open localhost:3000.",
+  "input": "um so like the steps are first clone the repo second install dependencies third run the dev server and fourth open dashboard",
+  "output": "So like, the steps are:\n1. Clone the repo.\n2. Install dependencies.\n3. Run the dev server.\n4. Open dashboard.",
   "app_category": "Work"
 }
 
@@ -584,12 +543,6 @@
   "input": "yeah",
   "output": "Yeah.",
   "app_category": "Personal"
-}
-
-{
-  "input": "we had a long discussion with the design team and they showed us the new mockups for the dashboard they want to change the color scheme entirely and make the font bigger which i think is a mistake because the data density will drop massively and our power users are going to complain about it",
-  "output": "We had a long discussion with the design team and they showed us the new mockups for the dashboard they want to change the color scheme entirely and make the font bigger which I think is a mistake because the data density will drop massively and our power users are going to complain about it.",
-  "app_category": "Work"
 }
 
 {
@@ -755,12 +708,6 @@
 }
 
 {
-  "input": "mom said dont forget to lock the door and take the keys",
-  "output": "Mom said, 'Don't forget to lock the door and take the keys.'",
-  "app_category": "Personal"
-}
-
-{
   "input": "the grocery list is apples bananas yogurt eggs and whole wheat bread",
   "output": "The grocery list is apples, bananas, yogurt, eggs, and whole wheat bread.",
   "app_category": "Personal"
@@ -884,4 +831,118 @@
   "input": "the task list is one finish designs two get approval three implement four test",
   "output": "The task list is:\n1. Finish designs.\n2. Get approval.\n3. Implement.\n4. Test.",
   "app_category": "Work"
+}
+
+{
+  "input": "he put a comma between every word he spoke",
+  "output": "He put a comma between every word he spoke.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "is it a dash or a hyphen",
+  "output": "Is it a dash or a hyphen?",
+  "app_category": "Work"
+}
+
+{
+  "input": "there is an exclamation mark next to his name",
+  "output": "There is an exclamation mark next to his name.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are looking at a period of three weeks",
+  "output": "We are looking at a period of 3 weeks.",
+  "app_category": "Work"
+}
+
+{
+  "input": "my new email has a dot between first and last name",
+  "output": "My new email has a dot between first and last name.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "she has a question mark over her head right now",
+  "output": "She has a question mark over her head right now.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the stock market showed a dash of green today",
+  "output": "The stock market showed a dash of green today.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just read the text up to the colon",
+  "output": "Just read the text up to the colon.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i don't understand what this semicolon is doing in the code",
+  "output": "I don't understand what this semicolon is doing in the code.",
+  "app_category": "Work"
+}
+
+{
+  "input": "he is going through a rough period",
+  "output": "He is going through a rough period.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "can you draw an asterisk next to the important parts",
+  "output": "Can you draw an asterisk next to the important parts?",
+  "app_category": "Work"
+}
+
+{
+  "input": "i saw a single quote mark on the wall",
+  "output": "I saw a single quote mark on the wall.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "she used an exclamation point to emphasize her anger",
+  "output": "She used an exclamation point to emphasize her anger.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "do not forget to close the parenthesis",
+  "output": "Do not forget to close the parenthesis.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the pound sign on my phone is broken",
+  "output": "The pound sign on my phone is broken.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we are currently in the grace period",
+  "output": "We are currently in the grace period.",
+  "app_category": "Work"
+}
+
+{
+  "input": "this raises a huge question mark for our budget",
+  "output": "This raises a huge question mark for our budget.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i added a forward slash to the url path",
+  "output": "I added a forward slash to the URL path.",
+  "app_category": "Work"
+}
+
+{
+  "input": "just follow the dot to find the location",
+  "output": "Just follow the dot to find the location.",
+  "app_category": "Personal"
 }
