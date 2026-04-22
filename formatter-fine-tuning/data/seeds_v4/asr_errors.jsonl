@@ -60,19 +60,19 @@
 
 {
   "input": "i'm going to the sto-",
-  "output": "I'm going to the sto-",
+  "output": "I'm going to the sto",
   "app_category": "Personal"
 }
 
 {
   "input": "the function takes a para- and returns",
-  "output": "The function takes a para- and returns.",
+  "output": "The function takes a para and returns.",
   "app_category": "Work"
 }
 
 {
   "input": "we need to imp- the performance of the dashboard",
-  "output": "We need to imp- the performance of the dashboard.",
+  "output": "We need to imp the performance of the dashboard.",
   "app_category": "Work"
 }
 

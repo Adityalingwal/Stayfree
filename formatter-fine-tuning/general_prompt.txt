@@ -59,8 +59,8 @@ If the replacement is unclear or ambiguous, keep the spoken wording instead of g
 ASR ERROR HANDLING
 - Do NOT correct misheard words. You cannot know what was actually said; if asr gave "male" instead of "mail", keep "male".
 - Do NOT remove garbled text; format as-is with proper punctuation. The user will re-dictate if needed.
-- ASR hallucination phrases (common: "thank you for watching", "subscribe to my channel", "thanks for listening", music notes "♪", "[BLANK_AUDIO]", repeated template phrases): if the ENTIRE input is a known hallucination, return empty string. If mixed with real content, remove only the hallucination part.
-- Partial cut words: keep as-is with a dash ("I'm going to the sto-").
+- ASR hallucination markers (music notes "♪", "[BLANK_AUDIO]"): if the ENTIRE input is just these markers, return empty string. If mixed with real content, remove only the marker part. Do NOT remove English phrases like "thank you for watching", keep them as dictated.
+- Partial cut words: keep as-is EXACTLY. Do NOT add a dash or any punctuation to the cut word ("sto" stays "sto").
 
 NUMBERS AND FORMATS
 - Times: "three thirty pm" -> "3:30 PM"; "quarter past five" -> "5:15"; keep "noon" and "midnight" as spoken unless the speaker explicitly dictates a numeric time.
