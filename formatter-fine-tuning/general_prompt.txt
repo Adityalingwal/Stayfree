@@ -51,17 +51,17 @@ Do NOT replace command words when clearly natural speech. Examples of speech, no
 Pass through unchanged: "select all", "caps on", "caps off", "all caps" (system commands handled by app layer).
 
 SPEECH STUTTERS, REPETITION, AND SELF-CORRECTION
-Fix clear stutters: "the the meeting" -> "the meeting". "I I think" -> "I think". "we should we should go" -> "we should go".
+Fix clear stutters: "the the meeting" -> "the meeting". "I I think" -> "I think".
+Preserve intentional repetition for emphasis: "no no no we can't" -> "No, no, no, we can't".
 Use self-correction only when the speaker clearly pivots to a final replacement, such as no wait, wait no, actually, sorry, or correction.
 Keep only the final corrected intent and avoid paraphrasing.
 If the replacement is unclear or ambiguous, keep the spoken wording instead of guessing.
 
-
 ASR ERROR HANDLING
-- Do NOT correct misheard words. You cannot know what was actually said; if Whisper gave "male" instead of "mail", keep "male".
+- Do NOT correct misheard words. You cannot know what was actually said; if asr gave "male" instead of "mail", keep "male".
 - Do NOT remove garbled text; format as-is with proper punctuation. The user will re-dictate if needed.
-- Whisper hallucination phrases (common: "thank you for watching", "subscribe to my channel", "thanks for listening", music notes "♪", "[BLANK_AUDIO]", repeated template phrases): if the ENTIRE input is a known hallucination, return empty string. If mixed with real content, remove only the hallucination part.
-- Partial cut words: keep as-is with a dash ("I'm going to the sto-").
+- ASR hallucination markers (music notes "♪", "[BLANK_AUDIO]"): if the ENTIRE input is just these markers, return empty string. If mixed with real content, remove only the marker part. Do NOT remove English phrases like "thank you for watching", keep them as dictated.
+- Partial cut words: keep as-is EXACTLY. Do NOT add a dash or any punctuation to the cut word ("sto" stays "sto").
 
 NUMBERS AND FORMATS
 - Times: "three thirty pm" -> "3:30 PM"; "quarter past five" -> "5:15"; keep "noon" and "midnight" as spoken unless the speaker explicitly dictates a numeric time.
@@ -75,22 +75,20 @@ NUMBERS AND FORMATS
 - Do NOT over-standardize vague quantities: "a couple", "few hundred", "like fifty" stay as spoken.
 
 LISTS
-Detect a list ONLY when 2+ sequential markers appear (number one, number two; first, second; point one, point two; action item one, action item two).
+Detect a list ONLY when 2+ sequential markers appear (number one, number two; first, second; firstly, secondly; point one, point two; action item one, action item two).
 Numbered lists: "1." format, each item on its own line, capitalize first word, period at end of each item.
 Bullet lists (only when dictated as bullets): use "•".
 Convert ALL marker words to numbers ("first" -> "1.", "point one" -> "1.").
 Intro sentence (if any) goes on its own line before the list.
-Search bar exception: keep numbered lists inline on one line.
 False positives (NOT lists): "number one restaurant" (means best), "first of all" with no second, "one thing I noticed".
 Inline flowing lists get commas (Oxford comma preferred). 3+ items always get commas.
 
 EDGE CASES
 Incomplete thoughts / trailing off: do not force a period on an obviously unfinished fragment.
-Single word input: "hello" -> "Hello."; "hmm" -> "" (pure filler). Only add terminal punctuation when the utterance feels complete.
+Single word input: "hello" -> "Hello."; "hmm", "ugh" -> "" (pure filler). Only add terminal punctuation when the utterance feels complete.
 Questions: always get "?", even rhetorical.
 Quoted speech: "John said I'll be there at five" -> "John said, 'I'll be there at 5.'"
 Acronyms: keep as spoken (ASAP, FYI, ETA, CEO, API, URL, HTML). Do NOT expand. Do NOT contract spoken phrases into acronyms.
-All-caps emphasis: preserve if ASR captured it ("this is VERY important").
 Contractions: preserve EXACTLY as spoken. Do NOT expand "don't" to "do not". Do NOT contract "do not" to "don't".
 Ambiguous sentence boundaries: if each clause has its own subject + verb, treat as separate sentences. Do not join clauses with commas just because they use "and", "but", or "so" - choose a comma or a period based on how strongly the thoughts are connected.
 Multi-sentence dictation: keep 1-7 sentences as a single paragraph. For 8+ sentences, only add paragraph breaks when a topic transition or speaker-indicated break is clear. Do NOT insert paragraph breaks aggressively.

@@ -59,20 +59,20 @@
 }
 
 {
-  "input": "i'm going to the sto-",
-  "output": "I'm going to the sto-",
+  "input": "i'm going to the sto",
+  "output": "I'm going to the sto",
   "app_category": "Personal"
 }
 
 {
   "input": "the function takes a para- and returns",
-  "output": "The function takes a para- and returns.",
+  "output": "The function takes a para and returns.",
   "app_category": "Work"
 }
 
 {
-  "input": "we need to imp- the performance of the dashboard",
-  "output": "We need to imp- the performance of the dashboard.",
+  "input": "we need to imp the performance of the dashboard",
+  "output": "We need to imp the performance of the dashboard.",
   "app_category": "Work"
 }
 
@@ -101,7 +101,7 @@
 }
 
 {
-  "input": "er um so the deploy finished successfully",
+  "input": "er um the deploy finished successfully",
   "output": "The deploy finished successfully.",
   "app_category": "Work"
 }
@@ -317,12 +317,6 @@
 }
 
 {
-  "input": "I am two tired to go out tonight",
-  "output": "I am two tired to go out tonight.",
-  "app_category": "Personal"
-}
-
-{
   "input": "I would like a piece treaty",
   "output": "I would like a piece treaty.",
   "app_category": "Personal"
@@ -413,20 +407,8 @@
 }
 
 {
-  "input": "we need two configure the load balancer before deployment",
-  "output": "We need two configure the load balancer before deployment.",
-  "app_category": "Work"
-}
-
-{
   "input": "the latency on this query is way to high",
   "output": "The latency on this query is way to high.",
-  "app_category": "Work"
-}
-
-{
-  "input": "im going too send the report tomorrow morning",
-  "output": "Im going too send the report tomorrow morning.",
   "app_category": "Work"
 }
 
@@ -444,7 +426,7 @@
 
 {
   "input": "they're server is down since last night",
-  "output": "They're server is down since last night",
+  "output": "They're server is down since last night.",
   "app_category": "Work"
 }
 
@@ -456,19 +438,13 @@
 
 {
   "input": "i ran to miles this morning before the standup",
-  "output": "I ran to miles this morning before the standup",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the cost is precisely to hundred dollars for the license",
-  "output": "The cost is precisely to hundred dollars for the license.",
+  "output": "I ran to miles this morning before the standup.",
   "app_category": "Personal"
 }
 
 {
   "input": "your already added to the team channel",
-  "output": "Your already added to the team channel",
+  "output": "Your already added to the team channel.",
   "app_category": "Work"
 }
 
@@ -480,7 +456,7 @@
 
 {
   "input": "we need too finish this before end of day",
-  "output": "We need too finish this before end of day",
+  "output": "We need too finish this before end of day.",
   "app_category": "Work"
 }
 
@@ -491,8 +467,8 @@
 }
 
 {
-  "input": "its not working on my local machine either",
-  "output": "Its not working on my local machine either",
+  "input": "its not working on my local machine",
+  "output": "Its not working on my local machine.",
   "app_category": "Work"
 }
 
@@ -504,19 +480,13 @@
 
 {
   "input": "your going to love the new feature we shipped",
-  "output": "Your going to love the new feature we shipped",
+  "output": "Your going to love the new feature we shipped.",
   "app_category": "Personal"
 }
 
 {
   "input": "their planning to migrate next quarter",
   "output": "Their planning to migrate next quarter.",
-  "app_category": "Work"
-}
-
-{
-  "input": "this affects the affect of the medication on patients",
-  "output": "This affects the affect of the medication on patients.",
   "app_category": "Work"
 }
 
@@ -528,7 +498,7 @@
 
 {
   "input": "i think we should altar the plan slightly",
-  "output": "I think we should altar the plan slightly",
+  "output": "I think we should altar the plan slightly.",
   "app_category": "Work"
 }
 
@@ -558,7 +528,7 @@
 
 {
   "input": "we're going too need a bigger team for this project",
-  "output": "We're going too need a bigger team for this project",
+  "output": "We're going too need a bigger team for this project.",
   "app_category": "Work"
 }
 
@@ -570,7 +540,7 @@
 
 {
   "input": "the bug effects all users on the free tier",
-  "output": "The bug effects all users on the free tier",
+  "output": "The bug effects all users on the free tier.",
   "app_category": "Work"
 }
 
@@ -588,7 +558,7 @@
 
 {
   "input": "its important that your on the call at nine am",
-  "output": "Its important that your on the call at nine am.",
+  "output": "Its important that your on the call at 9 AM.",
   "app_category": "Work"
 }
 
@@ -600,13 +570,13 @@
 
 {
   "input": "there going to role out the update next week",
-  "output": "There going to role out the update next week",
+  "output": "There going to role out the update next week.",
   "app_category": "Work"
 }
 
 {
   "input": "i past the code review yesterday morning",
-  "output": "I past the code review yesterday morning",
+  "output": "I past the code review yesterday morning.",
   "app_category": "Work"
 }
 
@@ -630,7 +600,7 @@
 
 {
   "input": "i need to loose some weight before the conference",
-  "output": "I need to loose some weight before the conference",
+  "output": "I need to loose some weight before the conference.",
   "app_category": "Personal"
 }
 
@@ -648,7 +618,7 @@
 
 {
   "input": "its time too think about the quarterly review",
-  "output": "Its time too think about the quarterly review",
+  "output": "Its time too think about the quarterly review.",
   "app_category": "Work"
 }
 
@@ -659,20 +629,8 @@
 }
 
 {
-  "input": "your the only one who can fix this critical issue",
-  "output": "Your the only one who can fix this critical issue",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need two review the architecture before the sprint",
-  "output": "We need two review the architecture before the sprint.",
-  "app_category": "Work"
-}
-
-{
   "input": "i m to busy to join the optional lunch meeting",
-  "output": "I m to busy to join the optional lunch meeting",
+  "output": "I m to busy to join the optional lunch meeting.",
   "app_category": "Work"
 }
 
@@ -684,7 +642,7 @@
 
 {
   "input": "check if it's dependencies are up to date or not",
-  "output": "Check if it's dependencies are up to date or not",
+  "output": "Check if it's dependencies are up to date or not.",
   "app_category": "Work"
 }
 
@@ -702,7 +660,7 @@
 
 {
   "input": "i cant weight to see the final product launch",
-  "output": "I cant weight to see the final product launch",
+  "output": "I cant weight to see the final product launch.",
   "app_category": "Personal"
 }
 
@@ -714,31 +672,31 @@
 
 {
   "input": "your going to need to restart the service manually",
-  "output": "Your going to need to restart the service manually",
+  "output": "Your going to need to restart the service manually.",
   "app_category": "Work"
 }
 
 {
   "input": "the brakes on this process are to strong",
-  "output": "The brakes on this process are to strong",
+  "output": "The brakes on this process are to strong.",
   "app_category": "Work"
 }
 
 {
   "input": "there are to many open pull requests right now",
-  "output": "There are to many open pull requests right now",
+  "output": "There are to many open pull requests right now.",
   "app_category": "Work"
 }
 
 {
   "input": "we excepted all the merge conflicts from last night",
-  "output": "We excepted all the merge conflicts from last night",
+  "output": "We excepted all the merge conflicts from last night.",
   "app_category": "Work"
 }
 
 {
   "input": "its to late to role back the deployment now",
-  "output": "Its to late to role back the deployment now",
+  "output": "Its to late to role back the deployment now.",
   "app_category": "Work"
 }
 
@@ -792,13 +750,13 @@
 
 {
   "input": "your api tokens are going to expire soon",
-  "output": "Your API tokens are going to expire soon",
+  "output": "Your API tokens are going to expire soon.",
   "app_category": "Work"
 }
 
 {
   "input": "its going to take to long to resolve this manually",
-  "output": "Its going to take to long to resolve this manually",
+  "output": "Its going to take to long to resolve this manually.",
   "app_category": "Work"
 }
 
@@ -822,7 +780,7 @@
 
 {
   "input": "the client might of changed their requirements again",
-  "output": "The client might of changed their requirements again",
+  "output": "The client might of changed their requirements again.",
   "app_category": "Work"
 }
 
@@ -834,7 +792,7 @@
 
 {
   "input": "there planning a site wide maintenance this weekend",
-  "output": "There planning a site wide maintenance this weekend",
+  "output": "There planning a site wide maintenance this weekend.",
   "app_category": "Work"
 }
 
@@ -852,7 +810,7 @@
 
 {
   "input": "we need too look at the error logs from last night",
-  "output": "We need too look at the error logs from last night",
+  "output": "We need too look at the error logs from last night.",
   "app_category": "Work"
 }
 
@@ -870,13 +828,13 @@
 
 {
   "input": "your changes broke the build pipeline this morning",
-  "output": "Your changes broke the build pipeline this morning",
+  "output": "Your changes broke the build pipeline this morning.",
   "app_category": "Work"
 }
 
 {
   "input": "we should of caught this in the code review stage",
-  "output": "We should of caught this in the code review stage",
+  "output": "We should of caught this in the code review stage.",
   "app_category": "Work"
 }
 
@@ -894,7 +852,7 @@
 
 {
   "input": "their looking for a senior engineer with ten years experience",
-  "output": "Their looking for a senior engineer with ten years experience",
+  "output": "Their looking for a senior engineer with 10 years experience.",
   "app_category": "Personal"
 }
 
@@ -912,13 +870,7 @@
 
 {
   "input": "bare minimum we need the login flow working by friday",
-  "output": "Bare minimum we need the login flow working by Friday",
-  "app_category": "Work"
-}
-
-{
-  "input": "i haven t herd back from the vendor yet",
-  "output": "I haven t herd back from the vendor yet",
+  "output": "Bare minimum we need the login flow working by Friday.",
   "app_category": "Work"
 }
 
@@ -942,7 +894,7 @@
 
 {
   "input": "your missing the point of what i am trying to say",
-  "output": "Your missing the point of what I am trying to say",
+  "output": "Your missing the point of what I am trying to say.",
   "app_category": "Personal"
 }
 
@@ -960,13 +912,13 @@
 
 {
   "input": "the meeting was to long and covered to many topics",
-  "output": "The meeting was to long and covered to many topics",
+  "output": "The meeting was to long and covered to many topics.",
   "app_category": "Work"
 }
 
 {
   "input": "make sure your token doesn't expire before the demo",
-  "output": "Make sure your token doesn't expire before the demo",
+  "output": "Make sure your token doesn't expire before the demo.",
   "app_category": "Work"
 }
 
@@ -978,7 +930,7 @@
 
 {
   "input": "i cant weight for the product launch next week",
-  "output": "I cant weight for the product launch next week",
+  "output": "I cant weight for the product launch next week.",
   "app_category": "Personal"
 }
 
@@ -1002,25 +954,19 @@
 
 {
   "input": "their not going to approve the budget this quarter",
-  "output": "Their not going to approve the budget this quarter",
-  "app_category": "Work"
-}
-
-{
-  "input": "the api is two slow for real time updates",
-  "output": "The API is two slow for real time updates.",
+  "output": "Their not going to approve the budget this quarter.",
   "app_category": "Work"
 }
 
 {
   "input": "i should of reviewed the pr before it got merged",
-  "output": "I should of reviewed the PR before it got merged",
+  "output": "I should of reviewed the PR before it got merged.",
   "app_category": "Work"
 }
 
 {
   "input": "we are too deep in the project to change frameworks",
-  "output": "We are too deep in the project to change frameworks",
+  "output": "We are too deep in the project to change frameworks.",
   "app_category": "Work"
 }
 
@@ -1044,13 +990,13 @@
 
 {
   "input": "their website has been down since this morning",
-  "output": "Their website has been down since this morning",
+  "output": "Their website has been down since this morning.",
   "app_category": "Personal"
 }
 
 {
   "input": "the codebase could use a good refactor to clean up",
-  "output": "The codebase could use a good refactor to clean up",
+  "output": "The codebase could use a good refactor to clean up.",
   "app_category": "Work"
 }
 
@@ -1086,7 +1032,7 @@
 
 {
   "input": "we're to close to the deadline to redesign anything",
-  "output": "We're to close to the deadline to redesign anything",
+  "output": "We're to close to the deadline to redesign anything.",
   "app_category": "Work"
 }
 
@@ -1099,12 +1045,6 @@
 {
   "input": "it's pipeline failed because of a missing environment variable",
   "output": "It's pipeline failed because of a missing environment variable.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need two hold a retrospective after this sprint ends",
-  "output": "We need two hold a retrospective after this sprint ends.",
   "app_category": "Work"
 }
 
@@ -1134,13 +1074,13 @@
 
 {
   "input": "there to many layers of abstraction in this codebase",
-  "output": "There to many layers of abstraction in this codebase",
+  "output": "There to many layers of abstraction in this codebase.",
   "app_category": "Work"
 }
 
 {
   "input": "your profile picture needs to be updated on the dashboard",
-  "output": "Your profile picture needs to be updated on the dashboard",
+  "output": "Your profile picture needs to be updated on the dashboard.",
   "app_category": "Work"
 }
 
@@ -1152,13 +1092,13 @@
 
 {
   "input": "i herd that the new cto is joining next month",
-  "output": "I herd that the new CTO is joining next month",
+  "output": "I herd that the new CTO is joining next month.",
   "app_category": "Personal"
 }
 
 {
   "input": "their caching strategy is way to aggressive",
-  "output": "Their caching strategy is way to aggressive",
+  "output": "Their caching strategy is way to aggressive.",
   "app_category": "Work"
 }
 
@@ -1170,7 +1110,7 @@
 
 {
   "input": "you're environment variables are not loading correctly",
-  "output": "You're environment variables are not loading correctly",
+  "output": "You're environment variables are not loading correctly.",
   "app_category": "Work"
 }
 
@@ -1182,7 +1122,7 @@
 
 {
   "input": "there server went offline after the latest deployment",
-  "output": "There server went offline after the latest deployment",
+  "output": "There server went offline after the latest deployment.",
   "app_category": "Work"
 }
 
@@ -1194,13 +1134,13 @@
 
 {
   "input": "the app is to slow on older android devices",
-  "output": "The app is to slow on older Android devices",
+  "output": "The app is to slow on older Android devices.",
   "app_category": "Work"
 }
 
 {
   "input": "your tests are taking to long to run in ci",
-  "output": "Your tests are taking to long to run in CI",
+  "output": "Your tests are taking to long to run in CI.",
   "app_category": "Work"
 }
 
@@ -1218,19 +1158,13 @@
 
 {
   "input": "the bug was effecting users on the latest ios build",
-  "output": "The bug was effecting users on the latest iOS build",
-  "app_category": "Work"
-}
-
-{
-  "input": "we should of enabled two factor auth from the start",
-  "output": "We should of enabled two factor auth from the start",
+  "output": "The bug was effecting users on the latest iOS build.",
   "app_category": "Work"
 }
 
 {
   "input": "your not going to believe what the test results showed",
-  "output": "Your not going to believe what the test results showed",
+  "output": "Your not going to believe what the test results showed.",
   "app_category": "Personal"
 }
 
@@ -1242,19 +1176,13 @@
 
 {
   "input": "there api documentation is out of date and confusing",
-  "output": "There API documentation is out of date and confusing",
-  "app_category": "Work"
-}
-
-{
-  "input": "we are too dependent on this third party library",
-  "output": "We are too dependent on this third party library.",
+  "output": "There API documentation is out of date and confusing.",
   "app_category": "Work"
 }
 
 {
   "input": "i past the security certification exam with a high score",
-  "output": "I past the security certification exam with a high score",
+  "output": "I past the security certification exam with a high score.",
   "app_category": "Personal"
 }
 
@@ -1266,7 +1194,7 @@
 
 {
   "input": "the team is to well coordinated for this to fail",
-  "output": "The team is to well coordinated for this to fail",
+  "output": "The team is to well coordinated for this to fail.",
   "app_category": "Work"
 }
 
@@ -1284,7 +1212,7 @@
 
 {
   "input": "its not worth refactoring right now during the freeze",
-  "output": "Its not worth refactoring right now during the freeze",
+  "output": "Its not worth refactoring right now during the freeze.",
   "app_category": "Work"
 }
 
@@ -1302,7 +1230,7 @@
 
 {
   "input": "i know your tired but we need to push through tonight",
-  "output": "I know your tired but we need to push through tonight",
+  "output": "I know your tired but we need to push through tonight.",
   "app_category": "Personal"
 }
 
@@ -1320,13 +1248,13 @@
 
 {
   "input": "the old design was to cluttered for mobile users",
-  "output": "The old design was to cluttered for mobile users",
+  "output": "The old design was to cluttered for mobile users.",
   "app_category": "Work"
 }
 
 {
   "input": "its to early to tell if the fix worked in production",
-  "output": "Its to early to tell if the fix worked in production",
+  "output": "Its to early to tell if the fix worked in production.",
   "app_category": "Work"
 }
 
@@ -1338,13 +1266,7 @@
 
 {
   "input": "you're session might of expired please log in again",
-  "output": "You're session might of expired please log in again",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need two revisit this decision in the next planning",
-  "output": "We need two revisit this decision in the next planning.",
+  "output": "You're session might of expired please log in again.",
   "app_category": "Work"
 }
 
@@ -1362,7 +1284,7 @@
 
 {
   "input": "are codebase is getting harder to maintain every sprint",
-  "output": "Are codebase is getting harder to maintain every sprint",
+  "output": "Are codebase is getting harder to maintain every sprint.",
   "app_category": "Work"
 }
 
@@ -1404,7 +1326,7 @@
 
 {
   "input": "its not you're fault the staging environment is broken",
-  "output": "Its not you're fault the staging environment is broken",
+  "output": "Its not you're fault the staging environment is broken.",
   "app_category": "Work"
 }
 
@@ -1422,19 +1344,13 @@
 
 {
   "input": "you're pull request is blocking are release train",
-  "output": "You're pull request is blocking are release train",
+  "output": "You're pull request is blocking are release train.",
   "app_category": "Work"
 }
 
 {
   "input": "the bug effects users who login with google auth only",
   "output": "The bug effects users who login with google auth only.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we past the one hundred concurrent user milestone today",
-  "output": "We past the one hundred concurrent user milestone today.",
   "app_category": "Work"
 }
 
@@ -1452,31 +1368,13 @@
 
 {
   "input": "the fix is to minimal to have any noticeable impact",
-  "output": "The fix is to minimal to have any noticeable impact",
+  "output": "The fix is to minimal to have any noticeable impact.",
   "app_category": "Work"
 }
 
 {
   "input": "your feedback helped us altar the ui significantly",
   "output": "Your feedback helped us altar the UI significantly.",
-  "app_category": "Work"
-}
-
-{
-  "input": "its clear that we need two restructure the entire team",
-  "output": "Its clear that we need two restructure the entire team.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the two new services are performing way to poorly",
-  "output": "The two new services are performing way to poorly",
-  "app_category": "Work"
-}
-
-{
-  "input": "there was to much pressure on the team last quarter",
-  "output": "There was to much pressure on the team last quarter.",
   "app_category": "Work"
 }
 
@@ -1494,21 +1392,16 @@
 
 {
   "input": "its possible that you're setup is missing a package",
-  "output": "Its possible that you're setup is missing a package",
+  "output": "Its possible that you're setup is missing a package.",
   "app_category": "Work"
 }
 
 {
-  "input": "their approach is to narrowly focused on one use case",
-  "output": "Their approach is to narrowly focused on one use case.",
+  "input": "their approach is to narrowly focused on use case",
+  "output": "Their approach is to narrowly focused on use case.",
   "app_category": "Work"
 }
 
-{
-  "input": "we are going two review are security posture this quarter",
-  "output": "We are going two review are security posture this quarter.",
-  "app_category": "Work"
-}
 
 {
   "input": "can you right a brief summary of the incident for the team",
@@ -1524,25 +1417,19 @@
 
 {
   "input": "we should of set up monitoring before launching this service",
-  "output": "We should of set up monitoring before launching this service",
-  "app_category": "Work"
-}
-
-{
-  "input": "it's logs are showing to many five hundred errors per minute",
-  "output": "It's logs are showing to many five hundred errors per minute.",
+  "output": "We should of set up monitoring before launching this service.",
   "app_category": "Work"
 }
 
 {
   "input": "their product roadmap seems to ambitious for the team size",
-  "output": "Their product roadmap seems to ambitious for the team size",
+  "output": "Their product roadmap seems to ambitious for the team size.",
   "app_category": "Personal"
 }
 
 {
   "input": "we've been to dependent on manual testing for to long",
-  "output": "We've been to dependent on manual testing for to long",
+  "output": "We've been to dependent on manual testing for to long.",
   "app_category": "Work"
 }
 
@@ -1560,7 +1447,7 @@
 
 {
   "input": "its going to be a long too day sprint for the team",
-  "output": "Its going to be a long too day sprint for the team",
+  "output": "Its going to be a long too day sprint for the team.",
   "app_category": "Work"
 }
 
@@ -1584,25 +1471,19 @@
 
 {
   "input": "you're credentials might of been compromised please check",
-  "output": "You're credentials might of been compromised please check",
+  "output": "You're credentials might of been compromised please check.",
   "app_category": "Work"
 }
 
 {
   "input": "their pipeline takes to long to complete on large commits",
-  "output": "Their pipeline takes to long to complete on large commits",
+  "output": "Their pipeline takes to long to complete on large commits.",
   "app_category": "Work"
 }
 
 {
   "input": "the staging environment is to different from production",
   "output": "The staging environment is to different from production.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we past the load test threshold of five thousand requests",
-  "output": "We past the load test threshold of five thousand requests.",
   "app_category": "Work"
 }
 
@@ -1614,49 +1495,49 @@
 
 {
   "input": "we need to find an escape goat for this failed launch",
-  "output": "We need to find an escape goat for this failed launch",
+  "output": "We need to find an escape goat for this failed launch.",
   "app_category": "Personal"
 }
 
 {
   "input": "that is a mute point after the recent changes",
-  "output": "That is a mute point after the recent changes",
+  "output": "That is a mute point after the recent changes.",
   "app_category": "Work"
 }
 
 {
   "input": "the new design will peak my interest definitely",
-  "output": "The new design will peak my interest definitely",
+  "output": "The new design will peak my interest definitely.",
   "app_category": "Work"
 }
 
 {
   "input": "take the server downtime for granite it happens sometimes",
-  "output": "Take the server downtime for granite, it happens sometimes",
+  "output": "Take the server downtime for granite, it happens sometimes.",
   "app_category": "Work"
 }
 
 {
   "input": "we need to nip this performance issue in the butt",
-  "output": "We need to nip this performance issue in the butt",
+  "output": "We need to nip this performance issue in the butt.",
   "app_category": "Work"
 }
 
 {
   "input": "it's a blessing in the skies that the tests caught it",
-  "output": "It's a blessing in the skies that the tests caught it",
+  "output": "It's a blessing in the skies that the tests caught it.",
   "app_category": "Personal"
 }
 
 {
   "input": "it's a doggy dog world in the startup ecosystem",
-  "output": "It's a doggy dog world in the startup ecosystem",
+  "output": "It's a doggy dog world in the startup ecosystem.",
   "app_category": "Personal"
 }
 
 {
   "input": "she was biting her time before the big announcement",
-  "output": "She was biting her time before the big announcement",
+  "output": "She was biting her time before the big announcement.",
   "app_category": "Personal"
 }
 
@@ -1674,13 +1555,13 @@
 
 {
   "input": "the visual affect of the new animation is stunning",
-  "output": "The visual affect of the new animation is stunning",
+  "output": "The visual affect of the new animation is stunning.",
   "app_category": "Personal"
 }
 
 {
   "input": "i like all the frameworks accept this one for backend",
-  "output": "I like all the frameworks accept this one for backend",
+  "output": "I like all the frameworks accept this one for backend.",
   "app_category": "Work"
 }
 
@@ -1698,19 +1579,13 @@
 
 {
   "input": "write now is the worst time to push to production",
-  "output": "Write now is the worst time to push to production",
+  "output": "Write now is the worst time to push to production.",
   "app_category": "Work"
 }
 
 {
-  "input": "the office wifi is completely hole today please use hotspot",
-  "output": "The office wifi is completely hole today please use hotspot",
-  "app_category": "Personal"
-}
-
-{
   "input": "i want to eat sum good food after this long sprint week",
-  "output": "I want to eat sum good food after this long sprint week",
+  "output": "I want to eat sum good food after this long sprint week.",
   "app_category": "Personal"
 }
 
@@ -1722,7 +1597,7 @@
 
 {
   "input": "he don't want to attend the optional friday sync",
-  "output": "He don't want to attend the optional Friday sync",
+  "output": "He don't want to attend the optional Friday sync.",
   "app_category": "Personal"
 }
 
