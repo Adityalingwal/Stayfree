@@ -1100,3 +1100,184 @@
   "output": "Scale down to 3 nodes minimum for fault tolerance.",
   "app_category": "Work"
 }
+
+
+{
+  "input": "we need need five copies of the report",
+  "output": "We need 5 copies of the report.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the the meeting is at three pm",
+  "output": "The meeting is at 3 PM.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i i don't think that's a good idea",
+  "output": "I don't think that's a good idea.",
+  "app_category": "Work"
+}
+
+{
+  "input": "let's let's go to the office now",
+  "output": "Let's go to the office now.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "can you can you send me the file",
+  "output": "Can you send me the file?",
+  "app_category": "Work"
+}
+
+{
+  "input": "they they already deployed to production",
+  "output": "They already deployed to production.",
+  "app_category": "Work"
+}
+
+{
+  "input": "it will cost about about fifty bucks",
+  "output": "It will cost about 50 bucks.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "please check the the server logs",
+  "output": "Please check the server logs.",
+  "app_category": "Work"
+}
+
+{
+  "input": "she said she she will be late",
+  "output": "She said she will be late.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we have to to fix this bug today",
+  "output": "We have to fix this bug today.",
+  "app_category": "Work"
+}
+
+{
+  "input": "his name is is jonathan",
+  "output": "His name is Jonathan.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "are we are we still meeting tomorrow",
+  "output": "Are we still meeting tomorrow?",
+  "app_category": "Work"
+}
+
+{
+  "input": "i want to to book a flight for monday",
+  "output": "I want to book a flight for Monday.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "just just give me five minutes",
+  "output": "Just give me 5 minutes.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "the database database is down right now",
+  "output": "The database is down right now.",
+  "app_category": "Work"
+}
+
+{
+  "input": "we should we should probably start testing earlier",
+  "output": "We should probably start testing earlier.",
+  "app_category": "Work"
+}
+
+{
+  "input": "the new the new api endpoint is live",
+  "output": "The new API endpoint is live.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i was thinking i was thinking we could meet at five",
+  "output": "I was thinking we could meet at 5.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "it is going it is going to be a long day",
+  "output": "It is going to be a long day.",
+  "app_category": "Work"
+}
+
+{
+  "input": "can we can we just push the release to tomorrow",
+  "output": "Can we just push the release to tomorrow?",
+  "app_category": "Work"
+}
+
+{
+  "input": "the client the client wants an update by noon",
+  "output": "The client wants an update by noon.",
+  "app_category": "Work"
+}
+
+{
+  "input": "let me know let me know if you need help",
+  "output": "Let me know if you need help.",
+  "app_category": "Personal"
+}
+
+{
+  "input": "we need to we need to focus on performance",
+  "output": "We need to focus on performance.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i'll check i'll check the calendar and let you know",
+  "output": "I'll check the calendar and let you know.",
+  "app_category": "Work"
+}
+
+{
+  "input": "there is a there is a bug in the payment gateway",
+  "output": "There is a bug in the payment gateway.",
+  "app_category": "Work"
+}
+
+{
+  "input": "he said that he said that the server is down",
+  "output": "He said that the server is down.",
+  "app_category": "Work"
+}
+
+{
+  "input": "i don't think i don't think this is the right approach",
+  "output": "I don't think this is the right approach.",
+  "app_category": "Work"
+}
+
+{
+  "input": "give me give me a second to pull up the doc",
+  "output": "Give me a second to pull up the doc.",
+  "app_category": "Work"
+}
+
+{
+  "input": "what time what time is the standup today",
+  "output": "What time is the standup today?",
+  "app_category": "Work"
+}
+
+{
+  "input": "we are going we are going to need more time",
+  "output": "We are going to need more time.",
+  "app_category": "Work"
+}
