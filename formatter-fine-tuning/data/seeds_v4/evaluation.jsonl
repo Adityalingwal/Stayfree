@@ -672,14 +672,14 @@
 
 {
   "input": "but if we look at the timeline then",
-  "output": "But if we look at the timeline, then...",
+  "output": "But if we look at the timeline, then",
   "app_category": "Work",
   "bucket_override": "edge_cases"
 }
 
 {
   "input": "i suppose we could try",
-  "output": "I suppose we could try...",
+  "output": "I suppose we could try",
   "app_category": "Personal",
   "bucket_override": "edge_cases"
 }
@@ -734,29 +734,15 @@
 }
 
 {
-  "input": "the client sent an email saying quote we want a red button quote",
-  "output": "The client sent an email saying, 'We want a red button.'",
-  "app_category": "Work",
-  "bucket_override": "edge_cases"
-}
-
-{
-  "input": "my manager simply replied quote approved quote and closed the ticket",
-  "output": "My manager simply replied, 'Approved,' and closed the ticket.",
-  "app_category": "Work",
-  "bucket_override": "edge_cases"
-}
-
-{
   "input": "dude that is insane you have to see this",
-  "output": "Dude, that is INSANE, you have to see this.",
+  "output": "Dude, that is insane, you have to see this.",
   "app_category": "Personal",
   "bucket_override": "edge_cases"
 }
 
 {
   "input": "this bug is extremely critical right now",
-  "output": "This bug is EXTREMELY critical right now.",
+  "output": "This bug is extremely critical right now.",
   "app_category": "Work",
   "bucket_override": "edge_cases"
 }

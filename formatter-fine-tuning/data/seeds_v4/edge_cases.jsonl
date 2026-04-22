@@ -1,30 +1,30 @@
 {
   "input": "so I was thinking about the whole situation and then",
-  "output": "I was thinking about the whole situation and then...",
+  "output": "I was thinking about the whole situation and then",
   "app_category": "Personal"
 }
 
 {
   "input": "if we could maybe",
-  "output": "If we could maybe...",
+  "output": "If we could maybe",
   "app_category": "Work"
 }
 
 {
   "input": "i was going to say that we should probably",
-  "output": "I was going to say that we should probably...",
+  "output": "I was going to say that we should probably",
   "app_category": "Work"
 }
 
 {
   "input": "the thing is um if the api rate limit is",
-  "output": "The thing is, if the API rate limit is...",
+  "output": "The thing is, if the API rate limit is",
   "app_category": "Work"
 }
 
 {
   "input": "well the problem with that approach is that",
-  "output": "The problem with that approach is that...",
+  "output": "The problem with that approach is that",
   "app_category": "Work"
 }
 
@@ -143,12 +143,6 @@
 }
 
 {
-  "input": "please send it asap we need this done by eod",
-  "output": "Please send it ASAP, we need this done by EOD.",
-  "app_category": "Work"
-}
-
-{
   "input": "fyi the ceo wants an update on the eta for the mvp",
   "output": "FYI, the CEO wants an update on the ETA for the MVP.",
   "app_category": "Work"
@@ -257,24 +251,6 @@
 }
 
 {
-  "input": "he literally said quote I don't care about the deadline quote and walked out",
-  "output": "He literally said, 'I don't care about the deadline,' and walked out.",
-  "app_category": "Work"
-}
-
-{
-  "input": "this is VERY important please don't forget",
-  "output": "This is VERY important, please don't forget.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the answer is DEFINITELY not what they expected",
-  "output": "The answer is DEFINITELY not what they expected.",
-  "app_category": "Personal"
-}
-
-{
   "input": "ugh this bug has been haunting me all week",
   "output": "Ugh, this bug has been haunting me all week.",
   "app_category": "Work"
@@ -371,12 +347,6 @@
 }
 
 {
-  "input": "should we use graphql or rest for this what do you guys think",
-  "output": "Should we use GraphQL or REST for this? What do you guys think?",
-  "app_category": "Work"
-}
-
-{
   "input": "so it's like a catch twenty two situation because if we fix the bug we break the feature and if we keep the feature the bug stays",
   "output": "It's like a catch-22 situation, because if we fix the bug, we break the feature, and if we keep the feature, the bug stays.",
   "app_category": "Work"
@@ -434,12 +404,6 @@
   "input": "firstly the budget needs to be approved secondly we need to hire two more engineers thirdly the timeline should be revised and lastly we need a project manager",
   "output": "1. The budget needs to be approved.\n2. We need to hire 2 more engineers.\n3. The timeline should be revised.\n4. We need a project manager.",
   "app_category": "Work"
-}
-
-{
-  "input": "bullet point add unit tests bullet point refactor the auth module bullet point update the readme",
-  "output": "• Add unit tests.\n• Refactor the auth module.\n• Update the README.",
-  "app_category": "Other"
 }
 
 {
@@ -522,7 +486,7 @@
 
 {
   "input": "bullet point buy groceries bullet point pick up laundry bullet point call the electrician bullet point pay the wifi bill",
-  "output": "• Buy groceries.\n• Pick up laundry.\n• Call the electrician.\n• Pay the wifi bill.",
+  "output": "\u2022 Buy groceries.\n\u2022 Pick up laundry.\n\u2022 Call the electrician.\n\u2022 Pay the wifi bill.",
   "app_category": "Other"
 }
 
@@ -563,12 +527,6 @@
 }
 
 {
-  "input": "this is COMPLETELY unacceptable we have to fix it",
-  "output": "This is COMPLETELY unacceptable we have to fix it",
-  "app_category": "Work"
-}
-
-{
   "input": "the error message says connection refused",
   "output": "The error message says 'Connection refused'",
   "app_category": "Work"
@@ -599,12 +557,6 @@
 }
 
 {
-  "input": "i am NEVER doing that again",
-  "output": "I am NEVER doing that again.",
-  "app_category": "Personal"
-}
-
-{
   "input": "no no no we can't do that",
   "output": "No no no we can't do that",
   "app_category": "Work"
@@ -618,7 +570,7 @@
 
 {
   "input": "maybe we could just",
-  "output": "Maybe we could just...",
+  "output": "Maybe we could just",
   "app_category": "Work"
 }
 
@@ -660,7 +612,7 @@
 
 {
   "input": "bullet point call the vendor bullet point approve the invoice bullet point send the receipt",
-  "output": "• Call the vendor.\n• Approve the invoice.\n• Send the receipt.",
+  "output": "\u2022 Call the vendor.\n\u2022 Approve the invoice.\n\u2022 Send the receipt.",
   "app_category": "Other"
 }
 
@@ -678,7 +630,7 @@
 
 {
   "input": "so i was looking at the metrics and",
-  "output": "So, I was looking at the metrics and...",
+  "output": "So, I was looking at the metrics and",
   "app_category": "Work"
 }
 
@@ -697,12 +649,6 @@
 {
   "input": "number one create the database number two write the endpoints number three test the api",
   "output": "1. Create the database.\n2. Write the endpoints.\n3. Test the API.",
-  "app_category": "Work"
-}
-
-{
-  "input": "this is ABSOLUTELY broken we need an immediate fix tonight",
-  "output": "This is ABSOLUTELY broken, we need an immediate fix tonight",
   "app_category": "Work"
 }
 
@@ -731,12 +677,6 @@
 }
 
 {
-  "input": "this latency is INSANE three seconds for a simple GET request",
-  "output": "This latency is INSANE, 3 seconds for a simple GET request",
-  "app_category": "Work"
-}
-
-{
   "input": "the log shows failed to connect to database",
   "output": "The log shows 'Failed to connect to database'.",
   "app_category": "Work"
@@ -751,12 +691,6 @@
 {
   "input": "my daily schedule is first check emails then standup then deep work then meetings",
   "output": "My daily schedule is:\n1. Check emails\n2. Standup\n3. Deep work\n4. Meetings.",
-  "app_category": "Work"
-}
-
-{
-  "input": "this is SO UNPROFESSIONAL I cannot believe this happened to a client",
-  "output": "This is SO UNPROFESSIONAL, I cannot believe this happened to a client",
   "app_category": "Work"
 }
 
@@ -815,12 +749,6 @@
 }
 
 {
-  "input": "I am BEYOND frustrated this has been breaking for three sprints in a row",
-  "output": "I am BEYOND frustrated, this has been breaking for 3 sprints in a row",
-  "app_category": "Work"
-}
-
-{
   "input": "the server log shows disk quota exceeded for user root",
   "output": "The server log shows 'Disk quota exceeded for user root'.",
   "app_category": "Work"
@@ -841,12 +769,6 @@
 {
   "input": "things to do today number one gym number two groceries number three call doctor",
   "output": "Things to do today:\n1. Gym\n2. Groceries\n3. Call doctor",
-  "app_category": "Personal"
-}
-
-{
-  "input": "I am COMPLETELY exhausted this week four late nights in a row is too much",
-  "output": "I am COMPLETELY exhausted this week, 4 late nights in a row is too much",
   "app_category": "Personal"
 }
 
@@ -875,12 +797,6 @@
 }
 
 {
-  "input": "this is RIDICULOUS I've been on hold with support for over forty minutes",
-  "output": "This is RIDICULOUS, I've been on hold with support for over 40 minutes",
-  "app_category": "Personal"
-}
-
-{
   "input": "the alert error message reads session token has expired please log in again",
   "output": "The alert error message reads 'Session token has expired, please log in again'.",
   "app_category": "Work"
@@ -899,18 +815,6 @@
 }
 
 {
-  "input": "the system is completely DOWN this is a P zero incident",
-  "output": "The system is completely DOWN, this is a P0 incident",
-  "app_category": "Work"
-}
-
-{
-  "input": "the yaml config shows expected string got integer",
-  "output": "The YAML config shows 'Expected string, got integer'",
-  "app_category": "Work"
-}
-
-{
   "input": "he asked me why is the test environment different from production the configs should match",
   "output": "He asked me, 'Why is the test environment different from production? The configs should match.'",
   "app_category": "Work"
@@ -919,12 +823,6 @@
 {
   "input": "check in items are passport boarding pass phone charger and travel pillow",
   "output": "Check in items are passport, boarding pass, phone, charger, and travel pillow.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "this traffic is INSANE it has been two hours and I have barely moved",
-  "output": "This traffic is INSANE, it has been 2 hours and I have barely moved",
   "app_category": "Personal"
 }
 
@@ -953,12 +851,6 @@
 }
 
 {
-  "input": "this signal is TERRIBLE I keep dropping from calls three times in one hour",
-  "output": "This signal is TERRIBLE, I keep dropping from calls 3 times in one hour",
-  "app_category": "Personal"
-}
-
-{
   "input": "the warning reads unable to verify server certificate connection may not be secure",
   "output": "The warning reads 'Unable to verify server certificate, connection may not be secure'",
   "app_category": "Personal"
@@ -973,12 +865,6 @@
 {
   "input": "the sprint items are one user profile page two notification settings three logout flow",
   "output": "The sprint items are:\n1. User profile page\n2. Notification settings\n3. Logout flow.",
-  "app_category": "Work"
-}
-
-{
-  "input": "this is absolutely NOT DONE the feature does not meet any of the acceptance criteria",
-  "output": "This is absolutely NOT DONE, the feature does not meet any of the acceptance criteria.",
   "app_category": "Work"
 }
 
@@ -999,10 +885,3 @@
   "output": "The task list is:\n1. Finish designs\n2. Get approval\n3. Implement\n4. Test.",
   "app_category": "Work"
 }
-
-{
-  "input": "this is COMPLETELY out of scope we never agreed to this feature",
-  "output": "This is COMPLETELY out of scope, we never agreed to this feature.",
-  "app_category": "Work"
-}
-

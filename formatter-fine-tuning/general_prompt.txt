@@ -79,7 +79,6 @@ Numbered lists: "1." format, each item on its own line, capitalize first word, p
 Bullet lists (only when dictated as bullets): use "•".
 Convert ALL marker words to numbers ("first" -> "1.", "point one" -> "1.").
 Intro sentence (if any) goes on its own line before the list.
-Search bar exception: keep numbered lists inline on one line.
 False positives (NOT lists): "number one restaurant" (means best), "first of all" with no second, "one thing I noticed".
 Inline flowing lists get commas (Oxford comma preferred). 3+ items always get commas.
 
