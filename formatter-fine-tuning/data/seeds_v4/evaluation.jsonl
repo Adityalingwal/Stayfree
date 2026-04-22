@@ -217,28 +217,28 @@
 
 {
   "input": "we raised twelve point five million euros in the seed round",
-  "output": "We raised €12.5M in the seed round.",
+  "output": "We raised \u20ac12.5M in the seed round.",
   "app_category": "Work",
   "bucket_override": "numbers_formatting"
 }
 
 {
   "input": "the loan amount approved is forty five lakh rupees",
-  "output": "The loan amount approved is ₹45 Lakh.",
+  "output": "The loan amount approved is \u20b945 Lakh.",
   "app_category": "Personal",
   "bucket_override": "numbers_formatting"
 }
 
 {
   "input": "the total revenue for this quarter hit two point three crores",
-  "output": "The total revenue for this quarter hit ₹2.3 Cr.",
+  "output": "The total revenue for this quarter hit \u20b92.3 Cr.",
   "app_category": "Work",
   "bucket_override": "numbers_formatting"
 }
 
 {
   "input": "i just transferred eighty pounds to your account",
-  "output": "I just transferred £80 to your account.",
+  "output": "I just transferred \u00a380 to your account.",
   "app_category": "Personal",
   "bucket_override": "numbers_formatting"
 }
@@ -524,7 +524,7 @@
 }
 
 {
-  "input": "the presentation will be ready by monday actually make that tuesday",
+  "input": "the presentation will be ready by monday actually tuesday",
   "output": "The presentation will be ready by Tuesday.",
   "app_category": "Work",
   "bucket_override": "self_correction"
@@ -538,29 +538,29 @@
 }
 
 {
-  "input": "we need seventy machines actually just buy eighty machines",
-  "output": "Just buy 80 machines.",
+  "input": "we need seventy machines actually eighty machines",
+  "output": "We need 80 machines.",
   "app_category": "Work",
   "bucket_override": "self_correction"
 }
 
 {
-  "input": "ask the dev team to wait actually tell them to start right now",
-  "output": "Tell them to start right now.",
+  "input": "tell the dev team to wait actually to start right now",
+  "output": "Tell the dev team to start right now.",
   "app_category": "Work",
   "bucket_override": "self_correction"
 }
 
 {
-  "input": "deploy the patch tonight actually delay it until the morning",
-  "output": "Delay it until the morning.",
+  "input": "deploy the patch tonight actually in the morning",
+  "output": "Deploy the patch in the morning.",
   "app_category": "Work",
   "bucket_override": "self_correction"
 }
 
 {
-  "input": "i left my wallet in the car wait no it's in my bag",
-  "output": "It's in my bag.",
+  "input": "i left my wallet in the car wait no in my bag",
+  "output": "I left my wallet in my bag.",
   "app_category": "Personal",
   "bucket_override": "self_correction"
 }
@@ -587,8 +587,8 @@
 }
 
 {
-  "input": "let's cancel the subscription wait no just pause it for a month",
-  "output": "Just pause it for a month.",
+  "input": "cancel the subscription wait no pause the subscription for a month",
+  "output": "Pause the subscription for a month.",
   "app_category": "Work",
   "bucket_override": "self_correction"
 }
@@ -615,8 +615,8 @@
 }
 
 {
-  "input": "the event is hosted in london sorry it is happening in berlin",
-  "output": "It is happening in Berlin.",
+  "input": "the event is hosted in london sorry berlin",
+  "output": "The event is hosted in Berlin.",
   "app_category": "Personal",
   "bucket_override": "self_correction"
 }
@@ -636,13 +636,6 @@
 }
 
 {
-  "input": "the api relies on python rather node js",
-  "output": "The API relies on Node.js.",
-  "app_category": "Work",
-  "bucket_override": "self_correction"
-}
-
-{
   "input": "we should take the highway i mean the scenic route",
   "output": "We should take the scenic route.",
   "app_category": "Personal",
@@ -650,22 +643,8 @@
 }
 
 {
-  "input": "this will take about four weeks rather six weeks to build",
-  "output": "This will take about 6 weeks to build.",
-  "app_category": "Work",
-  "bucket_override": "self_correction"
-}
-
-{
-  "input": "tell them we accept credit cards i mean we only accept debit cards",
-  "output": "Tell them we only accept debit cards.",
-  "app_category": "Work",
-  "bucket_override": "self_correction"
-}
-
-{
-  "input": "approve the invoice right now scratch that block the payment immediately",
-  "output": "Block the payment immediately.",
+  "input": "we accept credit cards i mean debit cards",
+  "output": "We accept debit cards.",
   "app_category": "Work",
   "bucket_override": "self_correction"
 }
@@ -678,15 +657,8 @@
 }
 
 {
-  "input": "i need you to work this weekend let me rephrase take the weekend off",
-  "output": "Take the weekend off.",
-  "app_category": "Work",
-  "bucket_override": "self_correction"
-}
-
-{
-  "input": "send the document to legal scratch that just send it to hr",
-  "output": "Just send it to HR.",
+  "input": "send the document to legal no wait to hr",
+  "output": "Send the document to HR.",
   "app_category": "Work",
   "bucket_override": "self_correction"
 }
@@ -756,7 +728,7 @@
 
 {
   "input": "bullet point update headers bullet point flush redis bullet point restart app",
-  "output": "• Update headers.\n• Flush Redis.\n• Restart app.",
+  "output": "\u2022 Update headers.\n\u2022 Flush Redis.\n\u2022 Restart app.",
   "app_category": "Other",
   "bucket_override": "edge_cases"
 }
@@ -2030,7 +2002,7 @@
 
 {
   "input": "add a note grocery run this weekend vegetables fruits and cooking oil",
-  "output": "Add a note: grocery run this weekend — vegetables, fruits, and cooking oil",
+  "output": "Add a note: grocery run this weekend \u2014 vegetables, fruits, and cooking oil",
   "app_category": "Other",
   "source_bucket": "other_apps"
 }
@@ -2142,7 +2114,7 @@
 
 {
   "input": "the gym membership went up from one thousand to fourteen hundred per month",
-  "output": "The gym membership went up from ₹1,000 to ₹1,400 per month",
+  "output": "The gym membership went up from \u20b91,000 to \u20b91,400 per month",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -2163,7 +2135,7 @@
 
 {
   "input": "the phone I want dropped from thirty five thousand to twenty eight thousand in the sale",
-  "output": "The phone I want dropped from ₹35,000 to ₹28,000 in the sale",
+  "output": "The phone I want dropped from \u20b935,000 to \u20b928,000 in the sale",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -2289,7 +2261,7 @@
 
 {
   "input": "the apartment maintenance is fifteen hundred rupees per month starting next quarter",
-  "output": "The apartment maintenance is ₹1,500 per month starting next quarter",
+  "output": "The apartment maintenance is \u20b91,500 per month starting next quarter",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -2401,7 +2373,7 @@
 
 {
   "input": "total event cost came to three lakh twenty thousand rupees split among twelve people",
-  "output": "Total event cost came to ₹3,20,000 split among 12 people",
+  "output": "Total event cost came to \u20b93,20,000 split among 12 people",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -2639,7 +2611,7 @@
 
 {
   "input": "the resort costs around eight thousand rupees per night for a deluxe room",
-  "output": "The resort costs around ₹8,000 per night for a deluxe room",
+  "output": "The resort costs around \u20b98,000 per night for a deluxe room",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -2814,7 +2786,7 @@
 
 {
   "input": "resolve this xcode warning use of deprecated function UI web view use WK web view instead",
-  "output": "Resolve this Xcode warning: 'Use of deprecated function UIWebView — use WKWebView instead'.",
+  "output": "Resolve this Xcode warning: 'Use of deprecated function UIWebView \u2014 use WKWebView instead'.",
   "app_category": "Other",
   "source_bucket": "other_apps"
 }
@@ -2905,7 +2877,7 @@
 
 {
   "input": "the new hire's monthly salary is sixty five thousand rupees excluding allowances",
-  "output": "The new hire's monthly salary is ₹65,000 excluding allowances.",
+  "output": "The new hire's monthly salary is \u20b965,000 excluding allowances.",
   "app_category": "Work",
   "source_bucket": "numbers_formatting"
 }
@@ -2975,7 +2947,7 @@
 
 {
   "input": "the system log shows error four oh three forbidden access denied for this endpoint",
-  "output": "The system log shows 'Error 403: Forbidden — Access denied for this endpoint'",
+  "output": "The system log shows 'Error 403: Forbidden \u2014 Access denied for this endpoint'",
   "app_category": "Work",
   "source_bucket": "numbers_formatting"
 }
@@ -3143,7 +3115,7 @@
 
 {
   "input": "I spent about twenty five hundred rupees on groceries this week which is way too much",
-  "output": "I spent about ₹2,500 on groceries this week, which is way too much",
+  "output": "I spent about \u20b92,500 on groceries this week, which is way too much",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -3549,7 +3521,7 @@
 
 {
   "input": "my monthly subscriptions now cost nearly three thousand two hundred rupees total",
-  "output": "My monthly subscriptions now cost nearly ₹3,200 total",
+  "output": "My monthly subscriptions now cost nearly \u20b93,200 total",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
 }
@@ -3577,7 +3549,7 @@
 
 {
   "input": "note prepare questions for the mentor call on thursday career goals tech skills and next steps",
-  "output": "Note: prepare questions for the mentor call on Thursday — career goals, tech skills, and next steps",
+  "output": "Note: prepare questions for the mentor call on Thursday \u2014 career goals, tech skills, and next steps",
   "app_category": "Other",
   "source_bucket": "other_apps"
 }
@@ -3626,7 +3598,7 @@
 
 {
   "input": "dear concerned I would like to escalate a billing discrepancy of rupees three thousand on my account A C C dash four zero one please investigate regards user",
-  "output": "Dear Concerned, I would like to escalate a billing discrepancy of ₹3,000 on my account ACC-401. Please investigate. Regards, User",
+  "output": "Dear Concerned, I would like to escalate a billing discrepancy of \u20b93,000 on my account ACC-401. Please investigate. Regards, User",
   "app_category": "Email",
   "source_bucket": "email_context"
 }
@@ -4123,7 +4095,7 @@
 
 {
   "input": "best noise cancelling headphones under five thousand rupees in twenty twenty five",
-  "output": "Best noise-cancelling headphones under ₹5,000 in 2025",
+  "output": "Best noise-cancelling headphones under \u20b95,000 in 2025",
   "app_category": "Other",
   "source_bucket": "other_apps"
 }
@@ -4214,7 +4186,7 @@
 
 {
   "input": "add a note team outing ideas bowling arcade rooftop dinner or day trip to lonavala",
-  "output": "Add a note: team outing ideas — bowling, arcade, rooftop dinner, or day trip to Lonavala",
+  "output": "Add a note: team outing ideas \u2014 bowling, arcade, rooftop dinner, or day trip to Lonavala",
   "app_category": "Other",
   "source_bucket": "other_apps"
 }
@@ -4414,4 +4386,3 @@
   "app_category": "Personal",
   "source_bucket": "basic_formatting"
 }
-
