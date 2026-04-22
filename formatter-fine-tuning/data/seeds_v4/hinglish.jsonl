@@ -1,42 +1,36 @@
 {
-  "input": "yaar kal meeting hai kya three baje",
-  "output": "Yaar, kal meeting hai kya 3 baje?",
+  "input": "yaar kal meeting hai kya teen baje",
+  "output": "Yaar kal meeting hai kya 3 baje?",
   "app_category": "Personal"
 }
 
 {
   "input": "uh maine PR merge kar diya hai toh ab deploy kar sakte hain",
-  "output": "Maine PR merge kar diya hai, toh ab deploy kar sakte hain.",
+  "output": "Maine PR merge kar diya hai toh ab deploy kar sakte hain.",
   "app_category": "Work"
 }
 
 {
   "input": "bhai party kab hai saturday ko ya sunday ko",
-  "output": "Bhai, party kab hai, Saturday ko ya Sunday ko?",
+  "output": "Bhai party kab hai Saturday ko ya Sunday ko?",
   "app_category": "Personal"
 }
 
 {
-  "input": "matlab toh basically server down hai aur hum kuch nahi kar sakte jab tak DevOps team nahi aati",
-  "output": "Server down hai aur hum kuch nahi kar sakte jab tak DevOps team nahi aati.",
-  "app_category": "Work"
-}
-
-{
   "input": "aaj raat dinner pe chalein kya saat baje woh naya italian restaurant try karte hain",
-  "output": "Aaj raat dinner pe chalein kya, 7 baje? Woh naya Italian restaurant try karte hain.",
+  "output": "Aaj raat dinner pe chalein kya 7 baje? Woh naya Italian restaurant try karte hain.",
   "app_category": "Personal"
 }
 
 {
   "input": "haan haan dekho mujhe ek bug mila hai production mein users ka data save nahi ho raha hai database connection timeout de raha hai",
-  "output": "Mujhe ek bug mila hai production mein. Users ka data save nahi ho raha hai, database connection timeout de raha hai.",
+  "output": "Haan haan mujhe ek bug mila hai production mein. Users ka data save nahi ho raha hai database connection timeout de raha hai.",
   "app_category": "Work"
 }
 
 {
   "input": "mummy ne bola hai ki chawal leke aana aur haan doodh bhi le aana raste mein se",
-  "output": "Mummy ne bola hai ki chawal leke aana. Aur haan, doodh bhi le aana raste mein se.",
+  "output": "Mummy ne bola hai ki chawal leke aana. Aur haan doodh bhi le aana raste mein se.",
   "app_category": "Personal"
 }
 
@@ -54,20 +48,14 @@
 
 {
   "input": "achha sun API key rotate karna mat bhoolna nahi toh security team pagal ho jayegi",
-  "output": "Sun, API key rotate karna mat bhoolna, nahi toh security team pagal ho jayegi.",
+  "output": "Achha sun API key rotate karna mat bhoolna nahi toh security team pagal ho jayegi.",
   "app_category": "Work"
 }
 
 {
   "input": "kya haal hai bhai bahut din ho gaye mila nahi",
-  "output": "Kya haal hai bhai? Bahut din ho gaye, mila nahi.",
+  "output": "Kya haal hai bhai? Bahut din ho gaye mila nahi.",
   "app_category": "Personal"
-}
-
-{
-  "input": "acha toh waise mujhe lagta hai ki sprint review mein hum yeh feature demo kar sakte hain client ko pasand aayega",
-  "output": "Mujhe lagta hai ki sprint review mein hum yeh feature demo kar sakte hain. Client ko pasand aayega.",
-  "app_category": "Work"
 }
 
 {
@@ -84,67 +72,67 @@
 
 {
   "input": "yaar woh movie dekhi kya oppenheimer waali bahut acchi hai must watch hai",
-  "output": "Yaar, woh movie dekhi kya, Oppenheimer waali? Bahut acchi hai, must watch hai.",
+  "output": "Yaar woh movie dekhi kya Oppenheimer waali? Bahut acchi hai must watch hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "na na mujhe nahi chahiye woh plan cancel karo",
-  "output": "Na, mujhe nahi chahiye. Woh plan cancel karo.",
+  "output": "Na na mujhe nahi chahiye. Woh plan cancel karo.",
   "app_category": "Personal"
 }
 
 {
   "input": "aaj bahut thak gaya hoon office mein das ghante kaam kiya seedha ghar jaake sona hai",
-  "output": "Aaj bahut thak gaya hoon, office mein 10 ghante kaam kiya. Seedha ghar jaake sona hai.",
+  "output": "Aaj bahut thak gaya hoon office mein 10 ghante kaam kiya. Seedha ghar jaake sona hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically kya hua ki staging environment mein ek aur bug aa gaya hai na database migration fail ho rahi hai",
-  "output": "Staging environment mein ek aur bug aa gaya hai. Database migration fail ho rahi hai.",
+  "output": "Toh basically kya hua ki staging environment mein ek aur bug aa gaya hai na database migration fail ho rahi hai.",
   "app_category": "Work"
 }
 
 {
   "input": "bas itna chahiye ki ek simple landing page ban jaaye hero section contact form aur about us",
-  "output": "Bas itna chahiye ki ek simple landing page ban jaaye — hero section, contact form, aur about us.",
+  "output": "Bas itna chahiye ki ek simple landing page ban jaaye: hero section, contact form aur about us.",
   "app_category": "Work"
 }
 
 {
   "input": "kal subah six baje flight hai toh aaj raat jaldi so jaana early morning uber book kar lena airport ke liye",
-  "output": "Kal subah 6 baje flight hai, toh aaj raat jaldi so jaana. Early morning Uber book kar lena airport ke liye.",
+  "output": "Kal subah 6 baje flight hai toh aaj raat jaldi so jaana. Early morning Uber book kar lena airport ke liye.",
   "app_category": "Personal"
 }
 
 {
   "input": "ui mein ek problem hai na ki button click karne pe kuch nahi hota pata nahi kya issue hai shayad event listener properly attach nahi hua hai",
-  "output": "UI mein ek problem hai ki button click karne pe kuch nahi hota. Pata nahi kya issue hai, shayad event listener properly attach nahi hua hai.",
+  "output": "UI mein ek problem hai ki button click karne pe kuch nahi hota. Pata nahi kya issue hai shayad event listener properly attach nahi hua hai.",
   "app_category": "Work"
 }
 
 {
-  "input": "bhai shaadi mein aana hai na fifteen march ko venue bhej raha hoon abhi",
-  "output": "Bhai, shaadi mein aana hai na 15 March ko. Venue bhej raha hoon abhi.",
+  "input": "bhai shaadi mein aana hai na pandrah march ko venue bhej raha hoon abhi",
+  "output": "Bhai shaadi mein aana hai na 15 March ko. Venue bhej raha hoon abhi.",
   "app_category": "Personal"
 }
 
 {
   "input": "haan theek hai",
-  "output": "Haan, theek hai.",
+  "output": "Haan theek hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "acha mujhe ek doubt hai kubernetes mein pod restart ho raha hai baar baar kya yeh memory limit ki wajah se hai",
-  "output": "Mujhe ek doubt hai, Kubernetes mein pod restart ho raha hai baar baar. Kya yeh memory limit ki wajah se hai?",
+  "output": "Acha mujhe ek doubt hai kubernetes mein pod restart ho raha hai baar baar. Kya yeh memory limit ki wajah se hai?",
   "app_category": "Work"
 }
 
 {
   "input": "maa ka birthday hai next week kuch achha sa gift suggest karo na budget do hazaar ke andar rakho",
-  "output": "Maa ka birthday hai next week, kuch achha sa gift suggest karo na. Budget ₹2,000 ke andar rakho.",
+  "output": "Maa ka birthday hai next week kuch achha sa gift suggest karo na. Budget 2,000 ke andar rakho.",
   "app_category": "Personal"
 }
 
@@ -156,103 +144,103 @@
 
 {
   "input": "subah se headache ho raha hai shayad aaj WFH karunga",
-  "output": "Subah se headache ho raha hai, shayad aaj WFH karunga.",
+  "output": "Subah se headache ho raha hai shayad aaj WFH karunga.",
   "app_category": "Work"
 }
 
 {
   "input": "arre yaar tu samajh nahi raha hai yeh wala code bilkul galat hai poori logic change karni padegi",
-  "output": "Arre yaar, tu samajh nahi raha hai, yeh wala code bilkul galat hai. Poori logic change karni padegi.",
+  "output": "Arre yaar tu samajh nahi raha hai yeh wala code bilkul galat hai. Poori logic change karni padegi.",
   "app_category": "Personal"
 }
 
 {
   "input": "team mein ek naya developer join kar raha hai next monday se uska naam Vikram hai backend experience hai usko",
-  "output": "Team mein ek naya developer join kar raha hai next Monday se. Uska naam Vikram hai, backend experience hai usko.",
+  "output": "Team mein ek naya developer join kar raha hai next Monday se. Uska naam Vikram hai backend experience hai usko.",
   "app_category": "Work"
 }
 
 {
   "input": "waise bhi usko batao ki hum log friday ko outing pe ja rahe hain bowling alley mein teen baje se",
-  "output": "Waise bhi, usko batao ki hum log Friday ko outing pe ja rahe hain, bowling alley mein 3 baje se.",
+  "output": "Waise bhi usko batao ki hum log Friday ko outing pe ja rahe hain bowling alley mein 3 baje se.",
   "app_category": "Personal"
 }
 
 {
   "input": "pehle yeh karo toh phir woh karte hain build run karo aur phir test suite chalao",
-  "output": "Pehle yeh karo, toh phir woh karte hain. Build run karo aur phir test suite chalao.",
+  "output": "Pehle yeh karo toh phir woh karte hain. Build run karo aur phir test suite chalao.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar khaana khaya kya aaj maine toh skip kar diya lunch bahut kaam tha",
-  "output": "Yaar, khaana khaya kya aaj? Maine toh skip kar diya lunch, bahut kaam tha.",
+  "output": "Yaar khaana khaya kya aaj? Maine toh skip kar diya lunch bahut kaam tha.",
   "app_category": "Personal"
 }
 
 {
   "input": "um bhai mujhe paanch hundred rupees chahiye UPI se bhej de na abhi",
-  "output": "Bhai, mujhe ₹500 chahiye. UPI se bhej de na abhi.",
+  "output": "Bhai mujhe ₹500 chahiye. UPI se bhej de na abhi.",
   "app_category": "Personal"
 }
 
 {
   "input": "docker container start nahi ho raha hai logs check karo kya error aa raha hai",
-  "output": "Docker container start nahi ho raha hai. Logs check karo, kya error aa raha hai.",
+  "output": "Docker container start nahi ho raha hai. Logs check karo kya error aa raha hai.",
   "app_category": "Work"
 }
 
 {
   "input": "arre mujhe bhool gaya tha batana kal client call thi aur unhone design approve kar diya",
-  "output": "Mujhe bhool gaya tha batana, kal client call thi aur unhone design approve kar diya.",
+  "output": "Arre mujhe bhool gaya tha batana kal client call thi aur unhone design approve kar diya.",
   "app_category": "Work"
 }
 
 {
   "input": "aaj gym nahi ja paunga yaar baarish ho rahi hai bahut zyada kal subah chalte hain pakka",
-  "output": "Aaj gym nahi ja paunga yaar, baarish ho rahi hai bahut zyada. Kal subah chalte hain pakka.",
+  "output": "Aaj gym nahi ja paunga yaar baarish ho rahi hai bahut zyada. Kal subah chalte hain pakka.",
   "app_category": "Personal"
 }
 
 {
-  "input": "yeh wala approach theek nahi lagta mujhe pehle API call optimize karo phir caching implement karo latency bahut zyada hai",
-  "output": "Yeh wala approach theek nahi lagta mujhe. Pehle API call optimize karo, phir caching implement karo. Latency bahut zyada hai.",
+  "input": "yeh wala approach theek nahi lagta mujhe pehle api call optimize karo phir caching implement karo latency bahut zyada hai",
+  "output": "Yeh wala approach theek nahi lagta mujhe. Pehle API call optimize karo phir caching implement karo latency bahut zyada hai.",
   "app_category": "Work"
 }
 
 {
   "input": "chai pine chalein kya break le lete hain das minute ka",
-  "output": "Chai pine chalein kya? Break le lete hain, 10 minute ka.",
+  "output": "Chai pine chalein kya? Break le lete hain 10 minute ka.",
   "app_category": "Work"
 }
 
 {
   "input": "hi bhai maine tere liye ek playlist banayi hai spotify pe check kar le bohot achhe gaane hain usme",
-  "output": "Hi bhai, maine tere liye ek playlist banayi hai Spotify pe. Check kar le, bohot achhe gaane hain usme.",
+  "output": "Hi bhai maine tere liye ek playlist banayi hai Spotify pe check kar le bohot achhe gaane hain usme.",
   "app_category": "Personal"
 }
 
 {
   "input": "mujhe do din ki chutti chahiye thursday aur friday ko family function hai",
-  "output": "Mujhe 2 din ki chutti chahiye, Thursday aur Friday ko. Family function hai.",
+  "output": "Mujhe 2 din ki chutti chahiye Thursday aur Friday ko. Family function hai.",
   "app_category": "Work"
 }
 
 {
   "input": "database mein teen tables hain users orders aur products orders table mein foreign key hai users table ki",
-  "output": "Database mein 3 tables hain — users, orders, aur products. Orders table mein foreign key hai users table ki.",
+  "output": "Database mein 3 tables hain: users, orders aur products. Orders table mein foreign key hai users table ki.",
   "app_category": "Work"
 }
 
 {
   "input": "nahi nahi woh waala mat karo puraana code hai deprecate ho chuka hai naya version use karo",
-  "output": "Nahi, woh waala mat karo. Puraana code hai, deprecate ho chuka hai. Naya version use karo.",
+  "output": "Nahi nahi woh waala mat karo. Puraana code hai deprecate ho chuka hai. Naya version use karo.",
   "app_category": "Work"
 }
 
 {
   "input": "kal raat bahut late soye isliye aaj neend aa rahi hai bahut",
-  "output": "Kal raat bahut late soye, isliye aaj neend aa rahi hai bahut.",
+  "output": "Kal raat bahut late soye isliye aaj neend aa rahi hai bahut.",
   "app_category": "Personal"
 }
 
@@ -264,37 +252,37 @@
 
 {
   "input": "ghar pe internet bahut slow chal raha hai bees mbps bhi nahi aa rahe recharge karwana padega naya plan lena padega",
-  "output": "Ghar pe internet bahut slow chal raha hai, 20 Mbps bhi nahi aa rahe. Recharge karwana padega, naya plan lena padega.",
+  "output": "Ghar pe internet bahut slow chal raha hai 20 Mbps bhi nahi aa rahe. Recharge karwana padega naya plan lena padega.",
   "app_category": "Personal"
 }
 
 {
-  "input": "dekho yeh bahut important hai client presentation hai wednesday ko twelve thirty pe sab ready rakhna",
-  "output": "Yeh bahut important hai, client presentation hai Wednesday ko 12:30 pe. Sab ready rakhna.",
+  "input": "dekho yeh bahut important hai client presentation hai wednesday ko barah tees pe sab ready rakhna",
+  "output": "Dekho yeh bahut important hai client presentation hai Wednesday ko 12:30 pe. Sab ready rakhna.",
   "app_category": "Work"
 }
 
 {
   "input": "accha yeh batao react native use karein ya flutter dono mein se kaun sa better hai humare use case ke liye",
-  "output": "Yeh batao, React Native use karein ya Flutter? Dono mein se kaun sa better hai humare use case ke liye?",
+  "output": "Accha yeh batao React Native use karein ya Flutter? Dono mein se kaun sa better hai humare use case ke liye?",
   "app_category": "Work"
 }
 
 {
   "input": "bhai teri bike theek ho gayi kya mechanic ne kya bola kitna kharcha aaya",
-  "output": "Bhai, teri bike theek ho gayi kya? Mechanic ne kya bola? Kitna kharcha aaya?",
+  "output": "Bhai teri bike theek ho gayi kya? Mechanic ne kya bola? Kitna kharcha aaya?",
   "app_category": "Personal"
 }
 
 {
   "input": "testing environment mein sab kuch theek se kaam kar raha hai lekin production mein issue aa raha hai lagta hai config mismatch hai",
-  "output": "Testing environment mein sab kuch theek se kaam kar raha hai, lekin production mein issue aa raha hai. Lagta hai config mismatch hai.",
+  "output": "Testing environment mein sab kuch theek se kaam kar raha hai lekin production mein issue aa raha hai. Lagta hai config mismatch hai.",
   "app_category": "Work"
 }
 
 {
   "input": "mummy papa anniversary hai next month unke liye kuch plan karna hai surprise party ya dinner bahar",
-  "output": "Mummy papa anniversary hai next month. Unke liye kuch plan karna hai — surprise party ya dinner bahar.",
+  "output": "Mummy papa anniversary hai next month. Unke liye kuch plan karna hai surprise party ya dinner bahar.",
   "app_category": "Personal"
 }
 
@@ -306,7 +294,7 @@
 
 {
   "input": "yaar exam ke liye padhai nahi ho rahi distraction bahut hai phone band karke baithna padega",
-  "output": "Yaar, exam ke liye padhai nahi ho rahi, distraction bahut hai. Phone band karke baithna padega.",
+  "output": "Yaar exam ke liye padhai nahi ho rahi distraction bahut hai. Phone band karke baithna padega.",
   "app_category": "Personal"
 }
 
@@ -318,31 +306,31 @@
 
 {
   "input": "bhai cricket match dekh raha hai kya india ka score kya hai",
-  "output": "Bhai, cricket match dekh raha hai kya? India ka score kya hai?",
+  "output": "Bhai cricket match dekh raha hai kya? India ka score kya hai?",
   "app_category": "Personal"
 }
 
 {
-  "input": "PR review kar lo jaldi usme sirf do files change ki hain main dot ts aur config dot json",
-  "output": "PR review kar lo jaldi, usme sirf 2 files change ki hain — main.ts aur config.json.",
+  "input": "pr review kar lo jaldi usme sirf paanch files change ki hain main dot ts aur config dot json",
+  "output": "PR review kar lo jaldi usme sirf 5 files change ki hain main.ts aur config.json.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar kal se dieting start kar raha hoon no sugar no junk food bas ghar ka khana khaunga",
-  "output": "Yaar, kal se dieting start kar raha hoon. No sugar, no junk food. Bas ghar ka khana khaunga.",
+  "output": "Yaar kal se dieting start kar raha hoon. No sugar no junk food bas ghar ka khana khaunga.",
   "app_category": "Personal"
 }
 
 {
   "input": "haan haan samajh gaya hai na toh main ye feature branch bana leta hoon aur kaam start karta hoon",
-  "output": "Samajh gaya. Main yeh feature branch bana leta hoon aur kaam start karta hoon.",
+  "output": "Haan haan samajh gaya main ye feature branch bana leta hoon aur kaam start karta hoon.",
   "app_category": "Work"
 }
 
 {
   "input": "arre suno suno ek kamaal ki jagah mili hai weekend trip ke liye uttarakhand mein per person paanch hazaar padega",
-  "output": "Arre suno, ek kamaal ki jagah mili hai weekend trip ke liye, Uttarakhand mein. Per person ₹5,000 padega.",
+  "output": "Arre suno suno ek kamaal ki jagah mili hai weekend trip ke liye Uttarakhand mein. Per person 5,000 padega.",
   "app_category": "Personal"
 }
 
@@ -354,25 +342,25 @@
 
 {
   "input": "kal ka match dekha kya bhai virat ne century maari zabardast",
-  "output": "Kal ka match dekha kya bhai? Virat ne century maari, zabardast!",
+  "output": "Kal ka match dekha kya bhai? Virat ne century maari zabardast",
   "app_category": "Personal"
 }
 
 {
   "input": "photo bhej de na kal waali trip ki instagram pe daalungi",
-  "output": "Photo bhej de na kal waali trip ki. Instagram pe daalungi.",
+  "output": "Photo bhej de na kal waali trip ki instagram pe daalungi.",
   "app_category": "Personal"
 }
 
 {
   "input": "sab log apna apna code push kar do aaj branch name feature slash dashboard honi chahiye",
-  "output": "Sab log apna apna code push kar do aaj. Branch name feature/dashboard honi chahiye.",
+  "output": "Sab log apna apna code push kar do aaj branch name feature/dashboard honi chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar wo gaana kya tha jo tune kal car mein bajaya tha bahut achha tha name bata de",
-  "output": "Yaar, wo gaana kya tha jo tune kal car mein bajaya tha? Bahut achha tha, name bata de.",
+  "output": "Yaar wo gaana kya tha jo tune kal car mein bajaya tha? Bahut achha tha name bata de.",
   "app_category": "Personal"
 }
 
@@ -383,20 +371,14 @@
 }
 
 {
-  "input": "notes likh raha hoon meeting ke pehla point budget increase chahiye do crore se teen crore karna hai doosra point naye logo hire karne hain three positions teesra point office shift karna hai next quarter mein",
-  "output": "Notes likh raha hoon meeting ke. Pehla point: budget increase chahiye, ₹2 crore se ₹3 crore karna hai. Doosra point: naye logo hire karne hain, 3 positions. Teesra point: office shift karna hai next quarter mein.",
-  "app_category": "Other"
-}
-
-{
-  "input": "boss ne bola hai ki presentation mein zyada slides mat rakhna maximum das slides honi chahiye aur font size bada rakhna",
-  "output": "Boss ne bola hai ki presentation mein zyada slides mat rakhna. Maximum 10 slides honi chahiye aur font size bada rakhna.",
+  "input": "boss ne bola hai ki presentation mein zyada slides mat rakhna maximum nau slides honi chahiye aur font size bada rakhna",
+  "output": "Boss ne bola hai ki presentation mein zyada slides mat rakhna maximum 9 slides honi chahiye aur font size bada rakhna",
   "app_category": "Work"
 }
 
 {
   "input": "koi nahi chalta hai next time pakka milenge",
-  "output": "Koi nahi, chalta hai. Next time pakka milenge.",
+  "output": "Koi nahi chalta hai next time pakka milenge.",
   "app_category": "Personal"
 }
 
@@ -408,145 +390,145 @@
 
 {
   "input": "bhai tu abhi free hai kya ek important baat karni thi call kar sakta hoon kya",
-  "output": "Bhai, tu abhi free hai kya? Ek important baat karni thi, call kar sakta hoon kya?",
+  "output": "Bhai tu abhi free hai kya? Ek important baat karni thi call kar sakta hoon kya?",
   "app_category": "Personal"
 }
 
 {
   "input": "har baar same issue aa raha hai na cache clear karo na restart karo kuch kaam nahi kar raha",
-  "output": "Har baar same issue aa raha hai. Cache clear karo, restart karo — kuch kaam nahi kar raha.",
+  "output": "Har baar same issue aa raha hai na cache clear karo na restart karo kuch kaam nahi kar raha.",
   "app_category": "Work"
 }
 
 {
   "input": "padhai ho gayi kya exam ki kal hai na paper zyada tension mat le tu achha karega",
-  "output": "Padhai ho gayi kya exam ki? Kal hai na paper. Zyada tension mat le, tu achha karega.",
+  "output": "Padhai ho gayi kya exam ki? Kal hai na paper. Zyada tension mat le tu achha karega.",
   "app_category": "Personal"
 }
 
 {
-  "input": "main aaj se intermittent fasting start kar raha hoon sixteen hours fast aur eight hours eating window rakhna hai",
+  "input": "main aaj se intermittent fasting start kar raha hoon solah hours fast aur aath hours eating window rakhna hai",
   "output": "Main aaj se intermittent fasting start kar raha hoon. 16 hours fast aur 8 hours eating window rakhna hai.",
   "app_category": "Personal"
 }
 
 {
-  "input": "server pe SSH kar aur nginx config check kar port eighty pe redirect nahi ho raha",
+  "input": "server pe ssh kar aur nginx config check kar port eighty pe redirect nahi ho raha",
   "output": "Server pe SSH kar aur Nginx config check kar. Port 80 pe redirect nahi ho raha.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar mujhe python seekhna hai kahan se shuru karun koi achha course recommend kar do",
-  "output": "Yaar, mujhe Python seekhna hai. Kahan se shuru karun? Koi achha course recommend kar do.",
+  "output": "Yaar mujhe Python seekhna hai. Kahan se shuru karun? Koi achha course recommend kar do.",
   "app_category": "Personal"
 }
 
 {
-  "input": "hi Ananya yeh raha aaj ka agenda pehle design review phir sprint planning aur last mein retrospective meeting two baje start hogi",
-  "output": "Hi Ananya, yeh raha aaj ka agenda. Pehle design review, phir sprint planning, aur last mein retrospective. Meeting 2 baje start hogi.",
+  "input": "hi Ananya yeh raha aaj ka agenda pehle design review phir sprint planning aur last mein retrospective meeting do baje start hogi",
+  "output": "Hi Ananya yeh raha aaj ka agenda. Pehle design review phir sprint planning aur last mein retrospective. Meeting 2 baje start hogi.",
   "app_category": "Work"
 }
 
 {
   "input": "ek kaam karo env file mein AWS access key aur secret key daal do phir deployment script run kar lena",
-  "output": "Ek kaam karo, env file mein AWS access key aur secret key daal do. Phir deployment script run kar lena.",
+  "output": "Ek kaam karo env file mein AWS access key aur secret key daal do. Phir deployment script run kar lena.",
   "app_category": "Work"
 }
 
 {
   "input": "happy birthday bhai bahut saari shubhkamnayein party kab de raha hai",
-  "output": "Happy birthday bhai! Bahut saari shubhkamnayein. Party kab de raha hai?",
+  "output": "Happy birthday bhai Bahut saari shubhkamnayein. Party kab de raha hai?",
   "app_category": "Personal"
 }
 
 {
   "input": "git stash kar le apna kaam abhi hotfix branch pe switch karna padega urgent production issue hai",
-  "output": "Git stash kar le apna kaam. Abhi hotfix branch pe switch karna padega, urgent production issue hai.",
+  "output": "Git stash kar le apna kaam. Abhi hotfix branch pe switch karna padega urgent production issue hai.",
   "app_category": "Work"
 }
 
 {
   "input": "aaj bahut garmi hai yaar forty two degree ho gaye AC bhi kaam nahi kar raha",
-  "output": "Aaj bahut garmi hai yaar, 42 degree ho gaye. AC bhi kaam nahi kar raha.",
+  "output": "Aaj bahut garmi hai yaar 42 degree ho gaye. AC bhi kaam nahi kar raha.",
   "app_category": "Personal"
 }
 
 {
   "input": "usne bola ki uska macbook kharab ho gaya hai apple store le jaana padega warranty mein hai abhi",
-  "output": "Usne bola ki uska MacBook kharab ho gaya hai. Apple Store le jaana padega, warranty mein hai abhi.",
+  "output": "Usne bola ki uska MacBook kharab ho gaya hai apple Store le jaana padega warranty mein hai abhi.",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar Netflix pe naya show aaya hai bahut achha hai kya naam hai uska stranger things jaisa hai",
-  "output": "Yaar, Netflix pe naya show aaya hai, bahut achha hai. Kya naam hai uska? Stranger Things jaisa hai.",
+  "output": "Yaar Netflix pe naya show aaya hai bahut achha hai. Kya naam hai uska? Stranger Things jaisa hai.",
   "app_category": "Personal"
 }
 
 {
-  "input": "main woh endpoint hit kar raha hoon lekin four oh four aa raha hai check karo route properly define hai ya nahi",
-  "output": "Main woh endpoint hit kar raha hoon, lekin 404 aa raha hai. Check karo route properly define hai ya nahi.",
+  "input": "main woh endpoint hit kar raha hoon lekin chaar sau char aa raha hai check karo route properly define hai ya nahi",
+  "output": "Main woh endpoint hit kar raha hoon lekin 404 aa raha hai. Check karo route properly define hai ya nahi.",
   "app_category": "Work"
 }
 
 {
   "input": "arre wah congratulations bhai promotion mili hai kya treat toh banta hai",
-  "output": "Arre wah, congratulations bhai! Promotion mili hai kya? Treat toh banta hai.",
+  "output": "Arre wah congratulations bhai Promotion mili hai kya? Treat toh banta hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "mujhe lagta hai humein GraphQL se REST pe wapas jaana chahiye kyunki team ko GraphQL mein zyada experience nahi hai",
-  "output": "Mujhe lagta hai humein GraphQL se REST pe wapas jaana chahiye, kyunki team ko GraphQL mein zyada experience nahi hai.",
+  "output": "Mujhe lagta hai humein GraphQL se REST pe wapas jaana chahiye kyunki team ko GraphQL mein zyada experience nahi hai.",
   "app_category": "Work"
 }
 
 {
   "input": "chal theek hai kal baat karte hain abhi bahut neend aa rahi hai good night",
-  "output": "Chal theek hai, kal baat karte hain. Abhi bahut neend aa rahi hai. Good night.",
+  "output": "Chal theek hai kal baat karte hain abhi bahut neend aa rahi hai. Good night.",
   "app_category": "Personal"
 }
 
 {
   "input": "apna resume update kar le bhai naye skills add kar aur woh purani company ka description thoda better likh",
-  "output": "Apna resume update kar le bhai. Naye skills add kar aur woh purani company ka description thoda better likh.",
+  "output": "Apna resume update kar le bhai naye skills add kar aur woh purani company ka description thoda better likh.",
   "app_category": "Personal"
 }
 
 {
   "input": "mobile app mein ek crash aa raha hai jab user profile picture change karta hai android pe hota hai iOS pe nahi",
-  "output": "Mobile app mein ek crash aa raha hai jab user profile picture change karta hai. Android pe hota hai, iOS pe nahi.",
+  "output": "Mobile app mein ek crash aa raha hai jab user profile picture change karta hai. Android pe hota hai iOS pe nahi.",
   "app_category": "Work"
 }
 
 {
   "input": "aaj maine naya phone liya hai samsung galaxy S twenty four ultra bahut achha hai camera zabardast hai",
-  "output": "Aaj maine naya phone liya hai, Samsung Galaxy S24 Ultra. Bahut achha hai, camera zabardast hai.",
+  "output": "Aaj maine naya phone liya hai Samsung Galaxy S24 Ultra. Bahut achha hai camera zabardast hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "um toh basically typescript mein ek type error aa rahi hai string type ko number type mein assign nahi kar sakte",
-  "output": "TypeScript mein ek type error aa rahi hai. String type ko number type mein assign nahi kar sakte.",
+  "output": "Toh basically typeScript mein ek type error aa rahi hai. String type ko number type mein assign nahi kar sakte.",
   "app_category": "Work"
 }
 
 {
-  "input": "dinner order karna hai zomato se kya khana hai batao pizza ya biryani",
-  "output": "Dinner order karna hai Zomato se. Kya khana hai batao — pizza ya biryani?",
+  "input": "dinner order karna hai zomato uhmm se kya khana hai batao pizza ya biryani",
+  "output": "Dinner order karna hai Zomato se. Kya khana hai batao pizza ya biryani?",
   "app_category": "Personal"
 }
 
 {
   "input": "sab se pehle migration run karo phir seed data dalo aur phir local server start karo ye teen steps hain setup ke",
-  "output": "Sab se pehle migration run karo, phir seed data dalo, aur phir local server start karo. Ye 3 steps hain setup ke.",
+  "output": "Sab se pehle migration run karo phir seed data dalo aur phir local server start karo. Ye 3 steps hain setup ke.",
   "app_category": "Work"
 }
 
 {
-  "input": "kal dentist ka appointment hai four thirty pe yaad rakhna bhoolna mat",
-  "output": "Kal dentist ka appointment hai 4:30 pe. Yaad rakhna, bhoolna mat.",
+  "input": "kal dentist ka appointment hai uhh four thirty pe yaad rakhna bhoolna mat",
+  "output": "Kal dentist ka appointment hai 4:30 pe. Yaad rakhna bhoolna mat.",
   "app_category": "Personal"
 }
 
@@ -558,7 +540,7 @@
 
 {
   "input": "aaj bohot productive day tha teen tasks complete kiye code review bhi kar liya aur documentation bhi update ki",
-  "output": "Aaj bohot productive day tha. 3 tasks complete kiye, code review bhi kar liya, aur documentation bhi update ki.",
+  "output": "Aaj bohot productive day tha. 3 tasks complete kiye code review bhi kar liya aur documentation bhi update ki.",
   "app_category": "Work"
 }
 
@@ -570,24 +552,24 @@
 
 {
   "input": "woh package outdated hai npm audit run karo aur vulnerabilities fix karo high severity waali pehle",
-  "output": "Woh package outdated hai. npm audit run karo aur vulnerabilities fix karo, high severity waali pehle.",
+  "output": "Woh package outdated hai. npm audit run karo aur vulnerabilities fix karo high severity waali pehle.",
   "app_category": "Work"
 }
 
 {
   "input": "suno na ek baat batao tum log agile follow karte ho ya waterfall",
-  "output": "Suno, ek baat batao, tum log Agile follow karte ho ya Waterfall?",
+  "output": "Suno ek baat batao tum log Agile follow karte ho ya Waterfall?",
   "app_category": "Personal"
 }
 
 {
   "input": "bhai mere ghar aaja weekend pe FIFA khelenge order kar lenge khaana",
-  "output": "Bhai, mere ghar aaja weekend pe. FIFA khelenge, order kar lenge khaana.",
+  "output": "Bhai mere ghar aaja weekend pe FIFA khelenge order kar lenge khaana.",
   "app_category": "Personal"
 }
 
 {
-  "input": "agar payment gateway integrate karna hai toh razorpay use karo stripe india mein utna achha support nahi deta",
+  "input": "agar payment gateway integrate karna hai toh uhh razorpay use karo stripe india mein utna achha support nahi deta",
   "output": "Agar payment gateway integrate karna hai toh Razorpay use karo. Stripe India mein utna achha support nahi deta.",
   "app_category": "Work"
 }
@@ -599,14 +581,14 @@
 }
 
 {
-  "input": "unit tests likh do is function ke liye edge cases bhi cover karo null input empty string aur special characters ke liye",
-  "output": "Unit tests likh do is function ke liye. Edge cases bhi cover karo — null input, empty string, aur special characters ke liye.",
+  "input": "unit tests likh do is function ke liye edge cases bhi cover karo null input empty string aur special characters ke liye uhhhh",
+  "output": "Unit tests likh do is function ke liye. Edge cases bhi cover karo: null input, empty string aur special characters ke liye.",
   "app_category": "Work"
 }
 
 {
-  "input": "mere paas do options hain ek hai ki hum SaaS model pe jaayein monthly subscription ke saath aur doosra hai ki one time purchase rakhein lifetime license ke saath tumhara kya khayal hai",
-  "output": "Mere paas 2 options hain. Ek hai ki hum SaaS model pe jaayein, monthly subscription ke saath. Aur doosra hai ki one-time purchase rakhein, lifetime license ke saath. Tumhara kya khayal hai?",
+  "input": "mere paas do options hain ek hai ki hum SaaS model pe jaayein monthly subscription ke saath aur doosra hai ki uhhh one time purchase rakhein lifetime license ke saath tumhara kya khayal hai",
+  "output": "Mere paas 2 options hain. Ek hai ki hum SaaS model pe jaayein monthly subscription ke saath. Aur doosra hai ki one-time purchase rakhein lifetime license ke saath. Tumhara kya khayal hai?",
   "app_category": "Work"
 }
 
@@ -618,145 +600,145 @@
 
 {
   "input": "haan bhai aa raha hoon bas paanch minute",
-  "output": "Haan bhai, aa raha hoon. Bas 5 minute.",
+  "output": "Haan bhai aa raha hoon bas 5 minute.",
   "app_category": "Personal"
 }
 
 {
-  "input": "code freeze kal se hai toh aaj hi sab merge karna padega koi bhi pending PR nahi rehna chahiye",
-  "output": "Code freeze kal se hai, toh aaj hi sab merge karna padega. Koi bhi pending PR nahi rehna chahiye.",
+  "input": "code freeze kal se hai toh aaj hi sab merge karna padega koi bhi pending pr nahi rehna chahiye",
+  "output": "Code freeze kal se hai toh aaj hi sab merge karna padega koi bhi pending PR nahi rehna chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar mere paas ek idea hai startup ka AI based content generator banana hai hindi market ke liye bahut potential hai",
-  "output": "Yaar, mere paas ek idea hai startup ka. AI-based content generator banana hai Hindi market ke liye. Bahut potential hai.",
+  "output": "Yaar mere paas ek idea hai startup ka AI-based content generator banana hai Hindi market ke liye bahut potential hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "venue finalize ho gaya hai shaadi ka mumbai mein JW marriott le liya hai december twenty fifth ko",
-  "output": "Venue finalize ho gaya hai shaadi ka. Mumbai mein JW Marriott le liya hai, December 25th ko.",
+  "output": "Venue finalize ho gaya hai shaadi ka Mumbai mein JW Marriott le liya hai December 25th ko.",
   "app_category": "Personal"
 }
 
 {
   "input": "kya aapko pata hai ki sass aur nuxt mein kya difference hai dono frontend frameworks hain lekin approach alag hai",
-  "output": "Kya aapko pata hai ki sass aur Nuxt mein kya difference hai? Dono frontend frameworks hain, lekin approach alag hai.",
+  "output": "Kya aapko pata hai ki Sass aur Nuxt mein kya difference hai? Dono frontend frameworks hain lekin approach alag hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "Suresh bhai aapka order ready hai pick up kar lo counter se",
-  "output": "Suresh bhai, aapka order ready hai. Pick up kar lo counter se.",
+  "output": "Suresh bhai aapka order ready hai. Pick up kar lo counter se.",
   "app_category": "Personal"
 }
 
 {
-  "input": "ek video call schedule karo kal ke liye eleven AM pe zoom pe sab ko invite bhejo",
-  "output": "Ek video call schedule karo kal ke liye, 11 AM pe Zoom pe. Sab ko invite bhejo.",
+  "input": "ek video call schedule karo kal ke liye gyaarah AM pe zoom pe sab ko invite bhejo",
+  "output": "Ek video call schedule karo kal ke liye 11 AM pe Zoom pe. Sab ko invite bhejo.",
   "app_category": "Work"
 }
 
 {
   "input": "uske code mein bahut saare console dot log hain production build se hata do sab",
-  "output": "Uske code mein bahut saare console.log hain. Production build se hata do sab.",
+  "output": "Uske code mein bahut saare console.log hain production build se hata do sab.",
   "app_category": "Work"
 }
 
 {
   "input": "parking mein jagah nahi mil rahi yaar bahut bheed hai aaj mall mein",
-  "output": "Parking mein jagah nahi mil rahi yaar, bahut bheed hai aaj mall mein.",
+  "output": "Parking mein jagah nahi mil rahi yaar bahut bheed hai aaj mall mein.",
   "app_category": "Personal"
 }
 
 {
   "input": "monitoring dashboard set up karo grafana use karo CPU memory aur disk usage track karna hai",
-  "output": "Monitoring dashboard set up karo. Grafana use karo. CPU, memory, aur disk usage track karna hai.",
+  "output": "Monitoring dashboard set up karo. Grafana use karo. CPU, memory aur disk usage track karna hai.",
   "app_category": "Work"
 }
 
 {
-  "input": "yeh wala filter lagao query mein where status equals active aur created at greater than last thirty days",
-  "output": "Yeh wala filter lagao query mein — where status equals active aur created_at greater than last 30 days.",
+  "input": "yeh wala filter lagao query mein where status equals active aur created underscore at greater than last thirty days",
+  "output": "Yeh wala filter lagao query mein where status equals active aur created_at greater than last 30 days.",
   "app_category": "Work"
 }
 
 {
   "input": "diwali pe ghar aa raha hoon is baar chaar din ki chutti mili hai friday se monday tak",
-  "output": "Diwali pe ghar aa raha hoon is baar. 4 din ki chutti mili hai, Friday se Monday tak.",
+  "output": "Diwali pe ghar aa raha hoon is baar 4 din ki chutti mili hai Friday se Monday tak.",
   "app_category": "Personal"
 }
 
 {
   "input": "readme file mein installation steps likho clearly jaise koi naya banda aaye toh turant samajh jaaye",
-  "output": "README file mein installation steps likho clearly, jaise koi naya banda aaye toh turant samajh jaaye.",
+  "output": "README file mein installation steps likho clearly jaise koi naya banda aaye toh turant samajh jaaye.",
   "app_category": "Work"
 }
 
 {
   "input": "tum log khana order karo mera bhi daal dena paneer butter masala aur naan do",
-  "output": "Tum log khana order karo, mera bhi daal dena. Paneer butter masala aur naan, 2.",
+  "output": "Tum log khana order karo mera bhi daal dena. Paneer butter masala aur naan 2.",
   "app_category": "Personal"
 }
 
 {
   "input": "accessibility audit karo app ka screen reader support check karo aur alt text add karo saari images mein",
-  "output": "Accessibility audit karo app ka. Screen reader support check karo aur alt text add karo saari images mein.",
+  "output": "Accessibility audit karo app ka screen reader support check karo aur alt text add karo saari images mein.",
   "app_category": "Work"
 }
 
 {
   "input": "aaj bahut achha din tha promotion mil gayi salary bhi badh gayi plus new team lead ban gaya",
-  "output": "Aaj bahut achha din tha! Promotion mil gayi, salary bhi badh gayi, plus new team lead ban gaya.",
+  "output": "Aaj bahut achha din tha promotion mil gayi salary bhi badh gayi plus new team lead ban gaya.",
   "app_category": "Personal"
 }
 
 {
   "input": "API response time bahut slow hai average teen seconds aa raha hai optimization chahiye urgently",
-  "output": "API response time bahut slow hai. Average 3 seconds aa raha hai. Optimization chahiye urgently.",
+  "output": "API response time bahut slow hai average 3 seconds aa raha hai. Optimization chahiye urgently.",
   "app_category": "Work"
 }
 
 {
-  "input": "kal se yoga class join kar rahi hoon subah saat baje health pe dhyan dena hai ab",
-  "output": "Kal se yoga class join kar rahi hoon, subah 7 baje. Health pe dhyan dena hai ab.",
+  "input": "kal se yoga class join kar rahi hoon subah uhh saat baje health pe dhyan dena hai ab",
+  "output": "Kal se yoga class join kar rahi hoon subah 7 baje. Health pe dhyan dena hai ab.",
   "app_category": "Personal"
 }
 
 {
-  "input": "cache invalidation strategy decide karo TTL based rakhein ya event driven hum dono approach test kar sakte hain",
+  "input": "uhmm cache invalidation strategy decide karo TTL based rakhein ya event driven hum dono approach test kar sakte hain",
   "output": "Cache invalidation strategy decide karo. TTL-based rakhein ya event-driven? Hum dono approach test kar sakte hain.",
   "app_category": "Work"
 }
 
 {
   "input": "ghar shift ho raha hoon next month movers ko book karna hai packers and movers ka number hai kya tere paas",
-  "output": "Ghar shift ho raha hoon next month. Movers ko book karna hai, packers and movers ka number hai kya tere paas?",
+  "output": "Ghar shift ho raha hoon next month. Movers ko book karna hai packers and movers ka number hai kya tere paas?",
   "app_category": "Personal"
 }
 
 {
-  "input": "load balancer configure karo do instances ke beech round robin algorithm use karo",
-  "output": "Load balancer configure karo 2 instances ke beech. Round robin algorithm use karo.",
+  "input": "load balancer configure karo saat instances ke beech round robin algorithm use karo",
+  "output": "Load balancer configure karo 7 instances ke beech. Round robin algorithm use karo.",
   "app_category": "Work"
 }
 
 {
   "input": "bhai teri car mein petrol daalna hai kya main gas station jaa raha hoon",
-  "output": "Bhai, teri car mein petrol daalna hai kya? Main gas station jaa raha hoon.",
+  "output": "Bhai teri car mein petrol daalna hai kya? Main gas station jaa raha hoon.",
   "app_category": "Personal"
 }
 
 {
   "input": "error handling improve karo try catch lagao har async function mein aur proper error messages return karo",
-  "output": "Error handling improve karo. Try-catch lagao har async function mein aur proper error messages return karo.",
+  "output": "Error handling improve karo try-catch lagao har async function mein aur proper error messages return karo.",
   "app_category": "Work"
 }
 
 {
   "input": "abhi mood nahi hai kisi se baat karne ka baad mein reply karunga",
-  "output": "Abhi mood nahi hai kisi se baat karne ka. Baad mein reply karunga.",
+  "output": "Abhi mood nahi hai kisi se baat karne ka baad mein reply karunga.",
   "app_category": "Personal"
 }
 
@@ -774,13 +756,13 @@
 
 {
   "input": "bhai ek selfie bhej jo tune trip pe li thi woh waali jahan hum sab the",
-  "output": "Bhai, ek selfie bhej jo tune trip pe li thi. Woh waali jahan hum sab the.",
+  "output": "Bhai ek selfie bhej jo tune trip pe li thi. Woh waali jahan hum sab the.",
   "app_category": "Personal"
 }
 
 {
   "input": "dark mode implement karo settings page mein toggle button add karo user ko choice do light ya dark",
-  "output": "Dark mode implement karo. Settings page mein toggle button add karo. User ko choice do — light ya dark.",
+  "output": "Dark mode implement karo. Settings page mein toggle button add karo. User ko choice do light ya dark.",
   "app_category": "Work"
 }
 
@@ -792,19 +774,19 @@
 
 {
   "input": "bhai wo restaurant band ho gaya hai jahan hum jaate the koi naya suggest karo",
-  "output": "Bhai, wo restaurant band ho gaya hai jahan hum jaate the. Koi naya suggest karo.",
+  "output": "Bhai wo restaurant band ho gaya hai jahan hum jaate the. Koi naya suggest karo.",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar mujhe ek achha laptop suggest karo budget ek lakh ke andar hai coding ke liye chahiye macbook loon ya windows",
-  "output": "Yaar, mujhe ek achha laptop suggest karo. Budget ₹1 lakh ke andar hai, coding ke liye chahiye. MacBook loon ya Windows?",
+  "output": "Yaar mujhe ek achha laptop suggest karo. Budget 1 lakh ke andar hai coding ke liye chahiye. MacBook loon ya Windows?",
   "app_category": "Personal"
 }
 
 {
   "input": "kal se gym join kar raha hoon bhai saat baje subah daily jaaunga no excuses this time",
-  "output": "Kal se gym join kar raha hoon bhai, 7 baje subah. Daily jaaunga, no excuses this time.",
+  "output": "Kal se gym join kar raha hoon bhai 7 baje subah. Daily jaaunga no excuses this time.",
   "app_category": "Personal"
 }
 
@@ -816,19 +798,19 @@
 
 {
   "input": "location share kar de na mujhe tera ghar mil nahi raha google maps pe",
-  "output": "Location share kar de na, mujhe tera ghar mil nahi raha Google Maps pe.",
+  "output": "Location share kar de na mujhe tera ghar mil nahi raha Google Maps pe.",
   "app_category": "Personal"
 }
 
 {
   "input": "schema design karo user table mein id name email password created at aur updated at columns chahiye",
-  "output": "Schema design karo. User table mein id, name, email, password, created_at, aur updated_at columns chahiye.",
+  "output": "Schema design karo. User table mein id, name, email, password, created_at aur updated_at columns chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "tumne naya iPhone liya kya sixteen pro waala kaisa hai camera",
-  "output": "Tumne naya iPhone liya kya, 16 Pro waala? Kaisa hai camera?",
+  "output": "Tumne naya iPhone liya kya 16 Pro waala? Kaisa hai camera?",
   "app_category": "Personal"
 }
 
@@ -840,13 +822,13 @@
 
 {
   "input": "mere notes mein likh de kal doctor ka appointment hai aath baje dawai bhi leni hai pharmacy se",
-  "output": "Mere notes mein likh de, kal doctor ka appointment hai 8 baje. Dawai bhi leni hai pharmacy se.",
+  "output": "Mere notes mein likh de kal doctor ka appointment hai 8 baje. Dawai bhi leni hai pharmacy se.",
   "app_category": "Other"
 }
 
 {
   "input": "bhai reel dekhi kya maine jo bheji thi bahut funny thi yaar",
-  "output": "Bhai, reel dekhi kya maine jo bheji thi? Bahut funny thi yaar.",
+  "output": "Bhai reel dekhi kya maine jo bheji thi? Bahut funny thi yaar.",
   "app_category": "Personal"
 }
 
@@ -864,13 +846,13 @@
 
 {
   "input": "swagger documentation update karo nayi endpoints add ki hain toh docs mein bhi reflect hona chahiye",
-  "output": "Swagger documentation update karo. Nayi endpoints add ki hain, toh docs mein bhi reflect hona chahiye.",
+  "output": "Swagger documentation update karo. Nayi endpoints add ki hain toh docs mein bhi reflect hona chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "OTP nahi aa raha yaar bank waala do baar try kiya phir bhi nahi aaya",
-  "output": "OTP nahi aa raha yaar, bank waala. 2 baar try kiya, phir bhi nahi aaya.",
+  "output": "OTP nahi aa raha yaar bank waala. 2 baar try kiya phir bhi nahi aaya.",
   "app_category": "Personal"
 }
 
@@ -882,13 +864,13 @@
 
 {
   "input": "yaar tera netflix ka password kya hai share kar na mujhe bhi dekhna hai woh show",
-  "output": "Yaar, tera Netflix ka password kya hai? Share kar na, mujhe bhi dekhna hai woh show.",
+  "output": "Yaar tera Netflix ka password kya hai? Share kar na mujhe bhi dekhna hai woh show.",
   "app_category": "Personal"
 }
 
 {
   "input": "sprint retro mein discuss karo ki is baar kya achha raha kya improve karna hai aur next sprint mein kya focus karna hai",
-  "output": "Sprint retro mein discuss karo ki is baar kya achha raha, kya improve karna hai, aur next sprint mein kya focus karna hai.",
+  "output": "Sprint retro mein discuss karo ki is baar kya achha raha kya improve karna hai aur next sprint mein kya focus karna hai.",
   "app_category": "Work"
 }
 
@@ -900,7 +882,7 @@
 
 {
   "input": "uh toh mujhe samajh nahi aa raha ki yeh async await kaise kaam karta hai promise chain se kya fark hai",
-  "output": "Mujhe samajh nahi aa raha ki yeh async/await kaise kaam karta hai. Promise chain se kya fark hai?",
+  "output": "Toh mujhe samajh nahi aa raha ki yeh async/await kaise kaam karta hai. Promise chain se kya fark hai?",
   "app_category": "Personal"
 }
 
@@ -912,7 +894,7 @@
 
 {
   "input": "yaar badminton khelne chalein kya shaam ko paanch baje court book karwa le",
-  "output": "Yaar, badminton khelne chalein kya shaam ko 5 baje? Court book karwa le.",
+  "output": "Yaar badminton khelne chalein kya shaam ko 5 baje? Court book karwa le.",
   "app_category": "Personal"
 }
 
@@ -924,43 +906,43 @@
 
 {
   "input": "koi story idea hai kya instagram ke liye travel waali koi achhi jagah ki photo daalni hai",
-  "output": "Koi story idea hai kya Instagram ke liye? Travel waali, koi achhi jagah ki photo daalni hai.",
+  "output": "Koi story idea hai kya Instagram ke liye? Travel waali koi achhi jagah ki photo daalni hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "rollback karo last deployment undo karo production mein errors aa rahe hain bahut",
-  "output": "Rollback karo. Last deployment undo karo, production mein errors aa rahe hain bahut.",
+  "output": "Rollback karo. Last deployment undo karo production mein errors aa rahe hain bahut.",
   "app_category": "Work"
 }
 
 {
   "input": "dopahar ka khaana bana liya kya maine toh order kar liya swiggy se biryani aur raita",
-  "output": "Dopahar ka khaana bana liya kya? Maine toh order kar liya Swiggy se — biryani aur raita.",
+  "output": "Dopahar ka khaana bana liya kya? Maine toh order kar liya Swiggy se biryani aur raita.",
   "app_category": "Personal"
 }
 
 {
   "input": "CORS headers set karo backend pe frontend ki origin allow karo localhost three thousand aur production domain dono",
-  "output": "CORS headers set karo backend pe. Frontend ki origin allow karo — localhost:3000 aur production domain dono.",
+  "output": "CORS headers set karo backend pe. Frontend ki origin allow karo localhost:3000 aur production domain dono.",
   "app_category": "Work"
 }
 
 {
   "input": "bhai ek favor chahiye airport drop kar dega kya kal subah flight hai six AM ki",
-  "output": "Bhai, ek favor chahiye. Airport drop kar dega kya? Kal subah flight hai, 6 AM ki.",
+  "output": "Bhai ek favor chahiye. Airport drop kar dega kya? Kal subah flight hai 6 AM ki.",
   "app_category": "Personal"
 }
 
 {
   "input": "notification mein likh de project alpha ka deadline next friday hai team ko remind karo monday ko",
-  "output": "Notification mein likh de, Project Alpha ka deadline next Friday hai. Team ko remind karo Monday ko.",
+  "output": "Notification mein likh de Project Alpha ka deadline next Friday hai. Team ko remind karo Monday ko.",
   "app_category": "Other"
 }
 
 {
   "input": "mujhe docker compose file likho jismein postgres redis aur node app ke teen services hon port five four three two postgres ke liye aur six three seven nine redis ke liye",
-  "output": "Mujhe Docker Compose file likho jismein Postgres, Redis, aur Node app ke 3 services hon. Port 5432 Postgres ke liye aur 6379 Redis ke liye.",
+  "output": "Mujhe Docker Compose file likho jismein Postgres, Redis aur Node app ke 3 services hon. Port 5432 Postgres ke liye aur 6379 Redis ke liye.",
   "app_category": "Work"
 }
 
@@ -972,13 +954,13 @@
 
 {
   "input": "hi team aaj ka standup cancel hai manager out of office hai kal same time pe hoga",
-  "output": "Hi team, aaj ka standup cancel hai. Manager out of office hai. Kal same time pe hoga.",
+  "output": "Hi team aaj ka standup cancel hai. Manager out of office hai. Kal same time pe hoga.",
   "app_category": "Work"
 }
 
 {
   "input": "mere ko samajh nahi aa raha yeh error kya hai undefined is not a function likh raha hai console mein",
-  "output": "Mere ko samajh nahi aa raha yeh error kya hai — \"undefined is not a function\" likh raha hai console mein.",
+  "output": "Mere ko samajh nahi aa raha yeh error kya hai \"undefined is not a function\" likh raha hai console mein.",
   "app_category": "Personal"
 }
 
@@ -996,7 +978,7 @@
 
 {
   "input": "tujhe pata hai aaj meri salary credit ho gayi finally teen mahine baad increment mila hai",
-  "output": "Tujhe pata hai, aaj meri salary credit ho gayi! Finally, 3 mahine baad increment mila hai.",
+  "output": "Tujhe pata hai aaj meri salary credit ho gayi! Finally 3 mahine baad increment mila hai.",
   "app_category": "Personal"
 }
 
@@ -1008,19 +990,19 @@
 
 {
   "input": "bhai tu sahi keh raha tha woh banda reliable nahi hai kaam nahi kiya usne",
-  "output": "Bhai, tu sahi keh raha tha. Woh banda reliable nahi hai, kaam nahi kiya usne.",
+  "output": "Bhai tu sahi keh raha tha. Woh banda reliable nahi hai kaam nahi kiya usne.",
   "app_category": "Personal"
 }
 
 {
   "input": "image optimization karo saari images ko webp format mein convert karo size kam hoga performance badhega",
-  "output": "Image optimization karo. Saari images ko WebP format mein convert karo. Size kam hoga, performance badhega.",
+  "output": "Image optimization karo. Saari images ko WebP format mein convert karo. Size kam hoga performance badhega.",
   "app_category": "Work"
 }
 
 {
   "input": "bohot din ho gaye milke yaar ek plan banate hain is weekend kahin chalte hain",
-  "output": "Bohot din ho gaye milke yaar. Ek plan banate hain, is weekend kahin chalte hain.",
+  "output": "Bohot din ho gaye milke yaar. Ek plan banate hain is weekend kahin chalte hain.",
   "app_category": "Personal"
 }
 
@@ -1032,97 +1014,97 @@
 
 {
   "input": "mujhe notes mein save karna hai grocery list daal chawal atta sabzi doodh aur ande",
-  "output": "Mujhe notes mein save karna hai grocery list: daal, chawal, atta, sabzi, doodh, aur ande.",
+  "output": "Mujhe notes mein save karna hai grocery list: daal, chawal, atta, sabzi, doodh aur ande.",
   "app_category": "Other"
 }
 
 {
   "input": "acha chal theek hai milte hain kal",
-  "output": "Acha, chal theek hai. Milte hain kal.",
+  "output": "Acha chal theek hai. Milte hain kal.",
   "app_category": "Personal"
 }
 
 {
   "input": "acha toh mujhe yeh feature todya tak karna hai",
-  "output": "Mujhe yeh feature today tak karna hai.",
+  "output": "Acha toh mujhe yeh feature today tak karna hai.",
   "app_category": "Work"
 }
 
 {
   "input": "arre bhai tu kahan hai sab tujhe dhoond rahe hain",
-  "output": "Arre bhai, tu kahan hai? Sab tujhe dhoond rahe hain.",
+  "output": "Arre bhai tu kahan hai? Sab tujhe dhoond rahe hain.",
   "app_category": "Personal"
 }
 
 {
   "input": "arre yeh deployment fail ho gayi rollback karo jaldi",
-  "output": "Yeh deployment fail ho gayi. Rollback karo jaldi.",
+  "output": "Arre yeh deployment fail ho gayi. Rollback karo jaldi.",
   "app_category": "Work"
 }
 
 {
   "input": "suno yaar ek baat hai mujhe lagta hai humein break up kar lena chahiye",
-  "output": "Suno yaar, ek baat hai. Mujhe lagta hai humein break up kar lena chahiye.",
+  "output": "Suno yaar ek baat hai. Mujhe lagta hai humein break up kar lena chahiye.",
   "app_category": "Personal"
 }
 
 {
   "input": "haan haan pata hai mujhe tu tension mat le",
-  "output": "Haan, pata hai mujhe. Tu tension mat le.",
+  "output": "Haan haan pata hai mujhe. Tu tension mat le.",
   "app_category": "Personal"
 }
 
 {
   "input": "na bhai mujhe nahi aana hai kal",
-  "output": "Na bhai, mujhe nahi aana hai kal.",
+  "output": "Na bhai mujhe nahi aana hai kal.",
   "app_category": "Personal"
 }
 
 {
   "input": "waise tujhe pata hai naya cafe khula hai hamare area mein",
-  "output": "Waise tujhe pata hai, naya cafe khula hai hamare area mein.",
+  "output": "Waise tujhe pata hai naya cafe khula hai hamare area mein.",
   "app_category": "Personal"
 }
 
 {
   "input": "waise production mein koi issue nahi aaya deployment ke baad",
-  "output": "Production mein koi issue nahi aaya deployment ke baad.",
+  "output": "Waise production mein koi issue nahi aaya deployment ke baad.",
   "app_category": "Work"
 }
 
 {
   "input": "dekh yeh photo kitni achhi aayi hai",
-  "output": "Dekh, yeh photo kitni achhi aayi hai!",
+  "output": "Dekh yeh photo kitni achhi aayi hai!",
   "app_category": "Personal"
 }
 
 {
   "input": "dekho yeh code review karke batao kya changes chahiye",
-  "output": "Yeh code review karke batao, kya changes chahiye.",
+  "output": "Yeh code review karke batao kya changes chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab ki isko seedha production mein daal sakte hain kya bina testing ke",
-  "output": "Matlab ki isko seedha production mein daal sakte hain kya, bina testing ke?",
+  "output": "Matlab ki isko seedha production mein daal sakte hain kya bina testing ke?",
   "app_category": "Personal"
 }
 
 {
   "input": "haan bilkul sahi keh raha hai tu main bhi yahi soch raha tha",
-  "output": "Haan, bilkul sahi keh raha hai tu. Main bhi yahi soch raha tha.",
+  "output": "Haan bilkul sahi keh raha hai tu. Main bhi yahi soch raha tha.",
   "app_category": "Personal"
 }
 
 {
   "input": "acha bata tera interview kaisa gaya select hua kya",
-  "output": "Acha bata, tera interview kaisa gaya? Select hua kya?",
+  "output": "Acha bata tera interview kaisa gaya? Select hua kya?",
   "app_category": "Personal"
 }
 
 {
   "input": "arre haan yaad aaya kal toh tera birthday hai kya plan hai",
-  "output": "Arre haan, yaad aaya! Kal toh tera birthday hai, kya plan hai?",
+  "output": "Arre haan yaad aaya! Kal toh tera birthday hai kya plan hai?",
   "app_category": "Personal"
 }
 
@@ -1134,19 +1116,19 @@
 
 {
   "input": "toh basically next sprint mein humein payment module complete karna hai",
-  "output": "Next sprint mein humein payment module complete karna hai.",
+  "output": "Toh basically next sprint mein humein payment module complete karna hai.",
   "app_category": "Work"
 }
 
 {
   "input": "acha mujhe ek note banani hai about meeting summary kal ki",
-  "output": "Acha, mujhe ek note banani hai about meeting summary kal ki.",
+  "output": "Acha mujhe ek note banani hai about meeting summary kal ki.",
   "app_category": "Other"
 }
 
 {
   "input": "yaar mera react component render nahi ho raha kya issue ho sakta hai",
-  "output": "Yaar, mera React component render nahi ho raha. Kya issue ho sakta hai?",
+  "output": "Yaar mera React component render nahi ho raha. Kya issue ho sakta hai?",
   "app_category": "Other"
 }
 
@@ -1158,37 +1140,37 @@
 
 {
   "input": "arre yeh error aa raha hai undefined is not a function samajh nahi aa raha",
-  "output": "Arre, yeh error aa raha hai: undefined is not a function. Samajh nahi aa raha.",
+  "output": "Arre yeh error aa raha hai: undefined is not a function. Samajh nahi aa raha.",
   "app_category": "Other"
 }
 
 {
   "input": "dekh mujhe ek quick note likhni hai kal ke liye grocery list",
-  "output": "Dekh, mujhe ek quick note likhni hai kal ke liye. Grocery list.",
+  "output": "Dekh mujhe ek quick note likhni hai kal ke liye. Grocery list.",
   "app_category": "Other"
 }
 
 {
   "input": "waise mujhe lagta hai ki yeh approach sahi nahi hai let me think of something else",
-  "output": "Waise, mujhe lagta hai ki yeh approach sahi nahi hai. Let me think of something else.",
+  "output": "Waise mujhe lagta hai ki yeh approach sahi nahi hai. Let me think of something else.",
   "app_category": "Other"
 }
 
 {
   "input": "haan toh mujhe ek function likhna hai jo array ko sort kare descending order mein",
-  "output": "Mujhe ek function likhna hai jo array ko sort kare descending order mein.",
+  "output": "Haan toh mujhe ek function likhna hai jo array ko sort kare descending order mein.",
   "app_category": "Other"
 }
 
 {
   "input": "suno na mujhe yeh recipe save karni hai chicken biryani wali",
-  "output": "Suno na, mujhe yeh recipe save karni hai. Chicken biryani wali.",
+  "output": "Suno na mujhe yeh recipe save karni hai. Chicken biryani wali.",
   "app_category": "Other"
 }
 
 {
   "input": "acha toh iska matlab yeh hai ki kubernetes pod crash ho raha hai resource limit ki wajah se",
-  "output": "Iska matlab yeh hai ki Kubernetes pod crash ho raha hai resource limit ki wajah se.",
+  "output": "Acha toh iska matlab yeh hai ki Kubernetes pod crash ho raha hai resource limit ki wajah se.",
   "app_category": "Other"
 }
 
@@ -1200,7 +1182,7 @@
 
 {
   "input": "arre yaar mujhe samajh nahi aa raha ki useeffect mein cleanup function kaise likhein",
-  "output": "Arre yaar, mujhe samajh nahi aa raha ki useEffect mein cleanup function kaise likhein.",
+  "output": "Arre yaar mujhe samajh nahi aa raha ki useEffect mein cleanup function kaise likhein.",
   "app_category": "Other"
 }
 
@@ -1224,7 +1206,7 @@
 
 {
   "input": "waise meine soch raha tha ki bear mein ek journal entry likhun daily reflections ke liye",
-  "output": "Waise, meine soch raha tha ki Bear mein ek journal entry likhun daily reflections ke liye.",
+  "output": "Waise meine soch raha tha ki Bear mein ek journal entry likhun daily reflections ke liye.",
   "app_category": "Other"
 }
 
@@ -1236,25 +1218,25 @@
 
 {
   "input": "acha sun mujhe ek regex likhna hai jo email validate kare python mein",
-  "output": "Acha sun, mujhe ek regex likhna hai jo email validate kare Python mein.",
+  "output": "Acha sun mujhe ek regex likhna hai jo email validate kare Python mein.",
   "app_category": "Other"
 }
 
 {
   "input": "toh basically haan maine decide kiya hai ki main typescript use karunga iss project mein",
-  "output": "Maine decide kiya hai ki main TypeScript use karunga iss project mein.",
+  "output": "Toh basically haan maine decide kiya hai ki main TypeScript use karunga iss project mein.",
   "app_category": "Other"
 }
 
 {
   "input": "arre haan safari mein search karo best noise cancelling headphones under twenty thousand",
-  "output": "Safari mein search karo best noise cancelling headphones under 20,000.",
+  "output": "Arre haan safari mein search karo best noise cancelling headphones under 20,000.",
   "app_category": "Other"
 }
 
 {
   "input": "na na yeh galat hai isko fix karo variable name camel case mein hona chahiye",
-  "output": "Yeh galat hai, isko fix karo. Variable name camelCase mein hona chahiye.",
+  "output": "Na na yeh galat hai isko fix karo. Variable name camelCase mein hona chahiye.",
   "app_category": "Other"
 }
 
@@ -1266,7 +1248,7 @@
 
 {
   "input": "linear mein ek ticket banao bug fix ke liye login page crash ho raha hai iOS pe",
-  "output": "Linear mein ek ticket banao: bug fix ke liye, login page crash ho raha hai iOS pe.",
+  "output": "Linear mein ek ticket banao: bug fix ke liye login page crash ho raha hai iOS pe.",
   "app_category": "Other"
 }
 
@@ -1284,7 +1266,7 @@
 
 {
   "input": "toh aaj ka plan hai ki pehle frontend complete karo phir backend APIs",
-  "output": "Aaj ka plan hai ki pehle frontend complete karo phir backend APIs.",
+  "output": "Toh aaj ka plan hai ki pehle frontend complete karo phir backend APIs.",
   "app_category": "Other"
 }
 
@@ -1296,13 +1278,13 @@
 
 {
   "input": "yaar kya lagta hai tensorflow ya pytorch kaun sa better hai deep learning ke liye",
-  "output": "Yaar, kya lagta hai TensorFlow ya PyTorch kaun sa better hai deep learning ke liye?",
+  "output": "Yaar kya lagta hai TensorFlow ya PyTorch kaun sa better hai deep learning ke liye?",
   "app_category": "Other"
 }
 
 {
   "input": "acha waise ek baat batao ki nextjs mein server components kaise kaam karte hain",
-  "output": "Ek baat batao ki Next.js mein server components kaise kaam karte hain?",
+  "output": "Acha waise ek baat batao ki Next.js mein server components kaise kaam karte hain?",
   "app_category": "Other"
 }
 
@@ -1320,15 +1302,10 @@
 
 {
   "input": "haan na yeh toh obviously hai ki REST API better hai iss use case ke liye",
-  "output": "Yeh obviously hai ki REST API better hai iss use case ke liye.",
+  "output": "Haan na yeh toh obviously hai ki REST API better hai iss use case ke liye.",
   "app_category": "Other"
 }
 
-{
-  "input": "arre suno na mujhe obsidian mein ek daily template chahiye with sections morning evening aur learnings",
-  "output": "Suno, mujhe Obsidian mein ek daily template chahiye with sections: morning, evening, aur learnings.",
-  "app_category": "Other"
-}
 
 {
   "input": "xcode mein build error aa raha hai signing certificate expire ho gaya lagta hai",
@@ -1356,7 +1333,7 @@
 
 {
   "input": "acha toh dekho main soch raha hoon ki craft mein apna resume update karun",
-  "output": "Main soch raha hoon ki Craft mein apna resume update karun.",
+  "output": "Acha toh dekho main soch raha hoon ki Craft mein apna resume update karun.",
   "app_category": "Other"
 }
 
@@ -1374,7 +1351,7 @@
 
 {
   "input": "haan waise ek important baat notes mein likh do passport expire ho raha hai august mein renew karna hai",
-  "output": "Ek important baat Notes mein likh do, passport expire ho raha hai August mein, renew karna hai.",
+  "output": "Haan waise ek important baat Notes mein likh do passport expire ho raha hai August mein renew karna hai.",
   "app_category": "Other"
 }
 
@@ -1386,13 +1363,13 @@
 
 {
   "input": "toh haan acha linear mein iss bug ko priority high kar do aur assign karo rahul ko",
-  "output": "Linear mein iss bug ko priority high kar do aur assign karo Rahul ko.",
+  "output": "Toh haan acha linear mein iss bug ko priority high kar do aur assign karo Rahul ko.",
   "app_category": "Other"
 }
 
 {
   "input": "arre bhai mujhe ChatGPT se puchna hai ki kaise banate hain ek chrome extension from scratch",
-  "output": "Arre bhai, mujhe ChatGPT se puchna hai ki kaise banate hain ek Chrome extension from scratch?",
+  "output": "Arre bhai mujhe ChatGPT se puchna hai ki kaise banate hain ek Chrome extension from scratch?",
   "app_category": "Other"
 }
 
@@ -1404,13 +1381,13 @@
 
 {
   "input": "obsidian mein ek fleeting note banao abhi dimag mein aaya idea hai mobile app for tracking water intake",
-  "output": "Obsidian mein ek fleeting note banao, abhi dimag mein aaya idea hai: mobile app for tracking water intake.",
+  "output": "Obsidian mein ek fleeting note banao abhi dimag mein aaya idea hai: mobile app for tracking water intake.",
   "app_category": "Other"
 }
 
 {
   "input": "pages mein ek letter likh do dear sir I would like to request a leave of absence for two weeks",
-  "output": "Pages mein ek letter likh do. Dear Sir, I would like to request a leave of absence for 2 weeks.",
+  "output": "Pages mein ek letter likh do. Dear Sir I would like to request a leave of absence for 2 weeks.",
   "app_category": "Other"
 }
 
@@ -1422,13 +1399,13 @@
 
 {
   "input": "suno na server pe naya role add kiya hai sabko manually assign karna padega",
-  "output": "Suno na, server pe naya role add kiya hai. Sabko manually assign karna padega.",
+  "output": "Suno na server pe naya role add kiya hai. Sabko manually assign karna padega.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically prime video ka subscription expire ho raha hai kal tu renew kar le iss baar payment main g pay kar dunga",
-  "output": "Prime Video ka subscription expire ho raha hai kal. Tu renew kar le iss baar, payment main GPay kar dunga.",
+  "output": "Toh basically prime Video ka subscription expire ho raha hai kal. Tu renew kar le iss baar payment main GPay kar dunga.",
   "app_category": "Personal"
 }
 
@@ -1446,19 +1423,14 @@
 
 {
   "input": "toh basically sd card corrupt ho gaya saari photos travel ki wahi thi recovery software try kiya par kuch fayda nahi hua",
-  "output": "SD card corrupt ho gaya saari photos travel ki wahi thi recovery software try kiya par kuch fayda nahi hua",
+  "output": "Toh basically sD card corrupt ho gaya saari photos travel ki wahi thi recovery software try kiya par kuch fayda nahi hua",
   "app_category": "Personal"
 }
 
-{
-  "input": "isko monday ke liye schedule karo i mean friday",
-  "output": "Isko Friday ke liye schedule karo.",
-  "app_category": "Work"
-}
 
 {
   "input": "toh basically yaar dekh kitni achhi reel banayi hai usne transitions ekdam smooth hain",
-  "output": "Yaar, dekh kitni achhi reel banayi hai usne! Transitions ekdam smooth hain.",
+  "output": "Toh basically yaar dekh kitni achhi reel banayi hai usne! Transitions ekdam smooth hain.",
   "app_category": "Personal"
 }
 
@@ -1470,7 +1442,7 @@
 
 {
   "input": "uh mera refund abhi tak process nahi hua hai customer care pe call kiya tha unhone bola 2 din lagenge",
-  "output": "Mera refund abhi tak process nahi hua hai. Customer care pe call kiya tha, unhone bola 2 din lagenge.",
+  "output": "Mera refund abhi tak process nahi hua hai. Customer care pe call kiya tha unhone bola 2 din lagenge.",
   "app_category": "Personal"
 }
 
@@ -1481,13 +1453,7 @@
 }
 
 {
-  "input": "yeh version use karo no wait naya wala version two",
-  "output": "Yeh version 2 use karo",
-  "app_category": "Work"
-}
-
-{
-  "input": "uh followers 10 hazaar cross ho gaye yaar itni jaldi expect nahi ki thi",
+  "input": "uh followers das hazaar cross ho gaye yaar itni jaldi expect nahi ki thi",
   "output": "Followers 10,000 cross ho gaye yaar itni jaldi expect nahi ki thi",
   "app_category": "Personal"
 }
@@ -1500,24 +1466,24 @@
 
 {
   "input": "uh suno na server pe naya role add kiya hai sabko manually assign karna padega",
-  "output": "Suno na, server pe naya role add kiya hai. Sabko manually assign karna padega.",
+  "output": "Suno na server pe naya role add kiya hai. Sabko manually assign karna padega.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically vet appointment hai shaam ko 5 baje rabies ki vaccination ka due date kal hi tha yaad karke nikal lena waqt pe",
-  "output": "Vet appointment hai shaam ko 5 baje rabies ki vaccination ka due date kal hi tha yaad karke nikal lena waqt pe",
+  "output": "Toh basically vet appointment hai shaam ko 5 baje rabies ki vaccination ka due date kal hi tha yaad karke nikal lena waqt pe",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically car ki battery ekdam down hai start nahi ho rahi jump start karna padega mechanic ko phone laga na pados waale",
-  "output": "Car ki battery ekdam down hai, start nahi ho rahi. Jump start karna padega. Mechanic ko phone laga na pados waale.",
+  "output": "Toh basically car ki battery ekdam down hai start nahi ho rahi. Jump start karna padega. Mechanic ko phone laga na pados waale.",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh game crash ho gaya achanak se error 30 code dikha raha hai kisi aur ko bhi issue aa raha hai kya",
+  "input": "uh game crash ho gaya achanak se error tees code dikha raha hai kisi aur ko bhi issue aa raha hai kya",
   "output": "Game crash ho gaya achanak se error 30 code dikha raha hai kisi aur ko bhi issue aa raha hai kya?",
   "app_category": "Personal"
 }
@@ -1530,7 +1496,7 @@
 
 {
   "input": "waise tune dekha kya naya season aaya hai netflix pe",
-  "output": "Waise, tune dekha kya naya season aaya hai Netflix pe?",
+  "output": "Waise tune dekha kya naya season aaya hai Netflix pe?",
   "app_category": "Personal"
 }
 
@@ -1542,7 +1508,7 @@
 
 {
   "input": "toh basically group mein admin rights chahiye toh bata dena seedha",
-  "output": "Group mein admin rights chahiye toh bata dena seedha",
+  "output": "Toh basically group mein admin rights chahiye toh bata dena seedha",
   "app_category": "Personal"
 }
 
@@ -1554,19 +1520,19 @@
 
 {
   "input": "toh basically schengen visa ka slot nahi mil raha pichle 2 mahine se lagataar check kar raha hoon agent ko bolke dekhta hoon",
-  "output": "Schengen visa ka slot nahi mil raha pichle 2 mahine se lagataar check kar raha hoon. Agent ko bolke dekhta hoon.",
+  "output": "Toh basically schengen visa ka slot nahi mil raha pichle 2 mahine se lagataar check kar raha hoon. Agent ko bolke dekhta hoon.",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh bhai order de diya hai zomato pe 30 minutes mein aayega",
-  "output": "Bhai, order de diya hai Zomato pe, 30 minutes mein aayega.",
+  "input": "uh bhai order de diya hai zomato pe tees minute mein aayega",
+  "output": "Bhai order de diya hai Zomato pe 30 minute mein aayega.",
   "app_category": "Personal"
 }
 
 {
   "input": "prime video ka subscription expire ho raha hai kal tu renew kar le iss baar payment main g pay kar dunga",
-  "output": "Prime Video ka subscription expire ho raha hai kal. Tu renew kar le iss baar, payment main GPay kar dunga.",
+  "output": "Prime Video ka subscription expire ho raha hai kal. Tu renew kar le iss baar payment main GPay kar dunga.",
   "app_category": "Personal"
 }
 
@@ -1577,14 +1543,8 @@
 }
 
 {
-  "input": "i i think we should wait for the review",
-  "output": "I think we should wait for the review",
-  "app_category": "Work"
-}
-
-{
   "input": "toh basically interview clear ho gaya mera finally hr ne kal offer letter bhejne ka bola hai salary negotiate karni baaki hai lekin",
-  "output": "Interview clear ho gaya mera finally HR ne kal offer letter bhejne ka bola hai salary negotiate karni baaki hai lekin",
+  "output": "Toh basically interview clear ho gaya mera finally HR ne kal offer letter bhejne ka bola hai salary negotiate karni baaki hai lekin",
   "app_category": "Personal"
 }
 
@@ -1608,43 +1568,37 @@
 
 {
   "input": "metro line red waali poori blocked hai aaj subah se koi fault aaya hai blue line leni padegi office ko",
-  "output": "Metro line red waali poori blocked hai aaj subah se. Koi fault aaya hai, blue line leni padegi office ko.",
+  "output": "Metro line red waali poori blocked hai aaj subah se. Koi fault aaya hai blue line leni padegi office ko.",
   "app_category": "Personal"
 }
 
 {
-  "input": "we we need to discuss this before the deadline",
-  "output": "We need to discuss this before the deadline.",
-  "app_category": "Work"
-}
-
-{
   "input": "toh basically bhai webcam ka resolution bahut kharab hai logitech brio soch raha hoon lene ka video meeting ke liye",
-  "output": "Bhai webcam ka resolution bahut kharab hai Logitech Brio soch raha hoon lene ka video meeting ke liye",
+  "output": "Toh basically bhai webcam ka resolution bahut kharab hai Logitech Brio soch raha hoon lene ka video meeting ke liye",
   "app_category": "Work"
 }
 
 {
   "input": "uh yaar kahan hai tu kitni der se wait kar raha hoon",
-  "output": "Yaar, kahan hai tu? Kitni der se wait kar raha hoon.",
+  "output": "Yaar kahan hai tu? Kitni der se wait kar raha hoon.",
   "app_category": "Personal"
 }
 
 {
   "input": "bahut bahut shukriya yaar itni help ke liye",
-  "output": "Bahut bahut shukriya yaar, itni help ke liye.",
+  "output": "Bahut bahut shukriya yaar itni help ke liye.",
   "app_category": "Personal"
 }
 
 {
   "input": "notes mein recipe likh do paneer butter masala ki ingredients ke saath",
-  "output": "Notes mein recipe likh do, paneer butter masala ki ingredients ke saath.",
+  "output": "Notes mein recipe likh do paneer butter masala ki ingredients ke saath.",
   "app_category": "Other"
 }
 
 {
   "input": "so basically yeh feature next sprint mein aayega abhi backlog mein hai",
-  "output": "Yeh feature next sprint mein aayega abhi backlog mein hai",
+  "output": "So basically yeh feature next sprint mein aayega abhi backlog mein hai",
   "app_category": "Work"
 }
 
@@ -1656,13 +1610,13 @@
 
 {
   "input": "uh car ki battery ekdam down hai start nahi ho rahi jump start karna padega mechanic ko phone laga na pados waale",
-  "output": "Car ki battery ekdam down hai, start nahi ho rahi. Jump start karna padega. Mechanic ko phone laga na pados waale.",
+  "output": "Car ki battery ekdam down hai start nahi ho rahi. Jump start karna padega. Mechanic ko phone laga na pados waale.",
   "app_category": "Personal"
 }
 
 {
   "input": "so basically bhai plan change ho gaya ab ghar pe hi ruk rahe hain",
-  "output": "Bhai plan change ho gaya ab ghar pe hi ruk rahe hain",
+  "output": "So basically bhai plan change ho gaya ab ghar pe hi ruk rahe hain",
   "app_category": "Personal"
 }
 
@@ -1674,7 +1628,7 @@
 
 {
   "input": "matlab bhai usne pura project delete kar diya accidental tha ya intentional",
-  "output": "Matlab bhai, usne pura project delete kar diya! Accidental tha ya intentional?",
+  "output": "Matlab bhai usne pura project delete kar diya accidental tha ya intentional?",
   "app_category": "Personal"
 }
 
@@ -1685,14 +1639,8 @@
 }
 
 {
-  "input": "dus baje pe aana arey nahi gyarah baje",
-  "output": "11 baje pe aana",
-  "app_category": "Personal"
-}
-
-{
   "input": "matlab toh yeh update aaya hi nahi mere phone pe abhi bhi purana version hai",
-  "output": "Matlab, toh yeh update aaya hi nahi mere phone pe, abhi bhi purana version hai.",
+  "output": "Matlab toh yeh update aaya hi nahi mere phone pe abhi bhi purana version hai.",
   "app_category": "Personal"
 }
 
@@ -1704,13 +1652,13 @@
 
 {
   "input": "gemini se puchha tha iska answer thoda alag aaya chatgpt se compare karo",
-  "output": "Gemini se puchha tha, iska answer thoda alag aaya. ChatGPT se compare karo.",
+  "output": "Gemini se puchha tha iska answer thoda alag aaya. ChatGPT se compare karo.",
   "app_category": "Other"
 }
 
 {
   "input": "no no no yeh kaam bilkul mat karo galat hoga",
-  "output": "No no no, yeh kaam bilkul mat karo, galat hoga.",
+  "output": "No no no yeh kaam bilkul mat karo galat hoga.",
   "app_category": "Personal"
 }
 
@@ -1721,32 +1669,26 @@
 }
 
 {
-  "input": "main main actually kal free hoon milte hain",
-  "output": "Main actually kal free hoon milte hain",
-  "app_category": "Personal"
-}
-
-{
   "input": "toh basically tax regime konsi select ki tumne new ya old samajh nahi aa raha kaunsi better hai ctc ke hisaab se",
-  "output": "Tax regime konsi select ki tumne, new ya old? Samajh nahi aa raha kaunsi better hai CTC ke hisaab se.",
+  "output": "Toh basically tax regime konsi select ki tumne new ya old? Samajh nahi aa raha kaunsi better hai CTC ke hisaab se.",
   "app_category": "Personal"
 }
 
 {
   "input": "electricity bill online payment kar diya pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha",
-  "output": "Electricity bill online payment kar diya. Pichli baar ki tarah last day ka wait nahi karna, uss chakkar me fine gaya tha.",
+  "output": "Electricity bill online payment kar diya. Pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically valorant update aaya hai 5 gb ka download hone mein time lagega tu log match start kar de pehle",
-  "output": "Valorant update aaya hai 5 GB ka download hone mein time lagega tu log match start kar de pehle",
+  "output": "Toh basically valorant update aaya hai 5 GB ka download hone mein time lagega tu log match start kar de pehle",
   "app_category": "Personal"
 }
 
 {
   "input": "do mahine mein aayega visa decision uss tak ruk sakte hain",
-  "output": "2 mahine mein aayega visa decision, uss tak ruk sakte hain.",
+  "output": "2 mahine mein aayega visa decision uss tak ruk sakte hain.",
   "app_category": "Personal"
 }
 
@@ -1764,19 +1706,14 @@
 
 {
   "input": "kal subah saat baje utarna hai gym ka class hai",
-  "output": "Kal subah 7 baje utarna hai, gym ka class hai.",
+  "output": "Kal subah 7 baje utarna hai gym ka class hai.",
   "app_category": "Personal"
 }
 
-{
-  "input": "isko send karo john ko actually sarah ko",
-  "output": "Isko send karo Sarah ko",
-  "app_category": "Work"
-}
 
 {
   "input": "toh basically sip ki emi kal cut hogi bank mein balance maintain karke rakhna varna bounce charge lag jayega",
-  "output": "SIP ki EMI kal cut hogi. Bank mein balance maintain karke rakhna, varna bounce charge lag jayega.",
+  "output": "Toh basically sIP ki EMI kal cut hogi. Bank mein balance maintain karke rakhna varna bounce charge lag jayega.",
   "app_category": "Personal"
 }
 
@@ -1786,15 +1723,10 @@
   "app_category": "Personal"
 }
 
-{
-  "input": "teen logo ko bhejo email no wait char log hain team mein",
-  "output": "Char logo ko bhejo email.",
-  "app_category": "Work"
-}
 
 {
   "input": "yaar claude ko prompt karo aur output ko refine karwa lete hain",
-  "output": "Yaar, Claude ko prompt karo aur output ko refine karwa lete hain.",
+  "output": "Yaar Claude ko prompt karo aur output ko refine karwa lete hain.",
   "app_category": "Other"
 }
 
@@ -1818,19 +1750,19 @@
 
 {
   "input": "hmm uh dekh lete hain kal tak kya hota hai",
-  "output": "Dekh lete hain, kal tak kya hota hai.",
+  "output": "Dekh lete hain kal tak kya hota hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically aaj leg day tha bahut haalat kharab hai kal shayad office mein stairs chadh bhi nahi pauunga",
-  "output": "Aaj leg day tha bahut haalat kharab hai kal shayad office mein stairs chadh bhi nahi pauunga",
+  "output": "Toh basically aaj leg day tha bahut haalat kharab hai kal shayad office mein stairs chadh bhi nahi pauunga",
   "app_category": "Personal"
 }
 
 {
   "input": "chal phir kal milte hain coffee pe",
-  "output": "Chal, phir kal milte hain coffee pe.",
+  "output": "Chal phir kal milte hain coffee pe.",
   "app_category": "Personal"
 }
 
@@ -1854,7 +1786,7 @@
 
 {
   "input": "haan yaar bata dena kab free hai tu",
-  "output": "Haan yaar, bata dena kab free hai tu.",
+  "output": "Haan yaar bata dena kab free hai tu.",
   "app_category": "Personal"
 }
 
@@ -1866,25 +1798,25 @@
 
 {
   "input": "dus hazaar ka budget hai renovation ke liye",
-  "output": "₹10,000 ka budget hai renovation ke liye",
+  "output": "10,000 ka budget hai renovation ke liye",
   "app_category": "Personal"
 }
 
 {
   "input": "is is this the right file jo bheja tha tune",
-  "output": "Is this the right file jo bheja tha tune?",
+  "output": "Is is this the right file jo bheja tha tune?",
   "app_category": "Work"
 }
 
 {
   "input": "er main actually nahi aaunga kal plans change ho gaye",
-  "output": "Main actually nahi aaunga kal, plans change ho gaye.",
+  "output": "Main actually nahi aaunga kal plans change ho gaye.",
   "app_category": "Personal"
 }
 
 {
   "input": "bhai bhai ek urgent kaam tha baat sun",
-  "output": "Bhai ek urgent kaam tha baat sun",
+  "output": "Bhai bhai ek urgent kaam tha baat sun",
   "app_category": "Personal"
 }
 
@@ -1902,15 +1834,10 @@
 
 {
   "input": "uh valorant update aaya hai 5 gb ka download hone mein time lagega tu log match start kar de pehle",
-  "output": "Valorant update aaya hai 5 GB ka, download hone mein time lagega. Tu log match start kar de pehle.",
+  "output": "Valorant update aaya hai 5 GB ka download hone mein time lagega. Tu log match start kar de pehle.",
   "app_category": "Personal"
 }
 
-{
-  "input": "call karo usse nahi yaar message karo",
-  "output": "Message karo usse",
-  "app_category": "Personal"
-}
 
 {
   "input": "uh perplexity pe search karo latest news kya hai is topic pe",
@@ -1926,7 +1853,7 @@
 
 {
   "input": "uh ping bahut high aa raha hai mera game lag kar raha hai router restart karke aata hoon",
-  "output": "Ping bahut high aa raha hai, mera game lag kar raha hai. Router restart karke aata hoon.",
+  "output": "Ping bahut high aa raha hai mera game lag kar raha hai. Router restart karke aata hoon.",
   "app_category": "Personal"
 }
 
@@ -1944,7 +1871,7 @@
 
 {
   "input": "toh basically pharmacy se cough syrup aur strepsils le aana aate waqt gala ekdam baith gaya hai aawaz nahi aa rahi",
-  "output": "Pharmacy se cough syrup aur Strepsils le aana aate waqt. Gala ekdam baith gaya hai, aawaz nahi aa rahi.",
+  "output": "Toh basically pharmacy se cough syrup aur Strepsils le aana aate waqt gala ekdam baith gaya hai aawaz nahi aa rahi.",
   "app_category": "Personal"
 }
 
@@ -1961,20 +1888,20 @@
 }
 
 {
-  "input": "arre channel pe subscribe karo 5 hazaar members complete karne hain is hafte",
-  "output": "Arre, channel pe subscribe karo! 5,000 members complete karne hain is hafte.",
+  "input": "arre channel pe subscribe karo paanch hazaar members complete karne hain is hafte",
+  "output": "Arre channel pe subscribe karo 5,000 members complete karne hain is hafte.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically waise bhai is channel ka topic change karo outdated hai purana wala",
-  "output": "Waise bhai, is channel ka topic change karo, outdated hai purana wala.",
+  "output": "Toh basically waise bhai is channel ka topic change karo outdated hai purana wala.",
   "app_category": "Personal"
 }
 
 {
   "input": "jaldi jaldi aao late ho raha hai",
-  "output": "Jaldi jaldi aao, late ho raha hai.",
+  "output": "Jaldi jaldi aao late ho raha hai.",
   "app_category": "Personal"
 }
 
@@ -1986,37 +1913,37 @@
 
 {
   "input": "toh basically one piece ki pacing thodi slow lag rahi hai skip karun kya filler episodes list check karo internet pe",
-  "output": "One Piece ki pacing thodi slow lag rahi hai. Skip karun kya? Filler episodes list check karo internet pe.",
+  "output": "Toh basically one Piece ki pacing thodi slow lag rahi hai. Skip karun kya? Filler episodes list check karo internet pe.",
   "app_category": "Personal"
 }
 
 {
   "input": "bilkul bilkul sahi keh raha hai tu",
-  "output": "Bilkul bilkul, sahi keh raha hai tu.",
+  "output": "Bilkul bilkul sahi keh raha hai tu.",
   "app_category": "Personal"
 }
 
 {
   "input": "karo karo deploy aaj hi staging pe",
-  "output": "Karo deploy aaj hi staging pe",
+  "output": "Karo karo deploy aaj hi staging pe",
   "app_category": "Work"
 }
 
 {
   "input": "waise yaar yeh kaam bohot pehle ho jaana chahiye tha",
-  "output": "Waise yaar, yeh kaam bohot pehle ho jaana chahiye tha.",
+  "output": "Waise yaar yeh kaam bohot pehle ho jaana chahiye tha.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically metro line red waali poori blocked hai aaj subah se koi fault aaya hai blue line leni padegi office ko",
-  "output": "Metro line red waali poori blocked hai aaj subah se koi fault aaya hai blue line leni padegi office ko",
+  "output": "Toh basically metro line red waali poori blocked hai aaj subah se koi fault aaya hai blue line leni padegi office ko",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically pr ready hai review kar do jab time ho",
-  "output": "PR ready hai, review kar do jab time ho.",
+  "output": "Toh basically pR ready hai review kar do jab time ho.",
   "app_category": "Work"
 }
 
@@ -2028,25 +1955,20 @@
 
 {
   "input": "um theek hai kal se kaam shuru karte hain",
-  "output": "Theek hai, kal se kaam shuru karte hain.",
+  "output": "Theek hai kal se kaam shuru karte hain.",
   "app_category": "Work"
 }
 
-{
-  "input": "khaana ghar pe banate hain nahi yaar bahar chalte hain",
-  "output": "Bahar chalte hain.",
-  "app_category": "Personal"
-}
 
 {
-  "input": "valorant update aaya hai 5 gb ka download hone mein time lagega tu log match start kar de pehle",
-  "output": "Valorant update aaya hai 5 GB ka, download hone mein time lagega. Tu log match start kar de pehle.",
+  "input": "valorant update aaya hai paanch gb ka download hone mein time lagega tu log match start kar de pehle",
+  "output": "Valorant update aaya hai 5 GB ka download hone mein time lagega. Tu log match start kar de pehle.",
   "app_category": "Personal"
 }
 
 {
   "input": "arre haan yaad aaya aaj toh party me jana hai kya plan hai",
-  "output": "Arre haan, yaad aaya! Aaj toh party me jana hai, kya plan hai?",
+  "output": "Arre haan yaad aaya aaj toh party me jana hai kya plan hai?",
   "app_category": "Personal"
 }
 
@@ -2057,32 +1979,32 @@
 }
 
 {
-  "input": "uh kal meeting hai 3 baje prepare rehna",
+  "input": "uh kal meeting hai teen baje prepare rehna",
   "output": "Kal meeting hai 3 baje prepare rehna",
   "app_category": "Work"
 }
 
 {
   "input": "uh tax regime konsi select ki tumne new ya old samajh nahi aa raha kaunsi better hai ctc ke hisaab se",
-  "output": "Tax regime konsi select ki tumne, new ya old? Samajh nahi aa raha kaunsi better hai CTC ke hisaab se.",
+  "output": "Tax regime konsi select ki tumne new ya old? Samajh nahi aa raha kaunsi better hai CTC ke hisaab se.",
   "app_category": "Personal"
 }
 
 {
   "input": "acha bata kab aa raha hai tu intezaar kar raha hoon main",
-  "output": "Acha bata, kab aa raha hai tu? Intezaar kar raha hoon main.",
+  "output": "Acha bata kab aa raha hai tu? Intezaar kar raha hoon main.",
   "app_category": "Personal"
 }
 
 {
   "input": "arre yaar amazon ka delivery aaj aana tha lekin abhi tak out for delivery nahi dikha raha",
-  "output": "Arre yaar, Amazon ka delivery aaj aana tha, lekin abhi tak out for delivery nahi dikha raha.",
+  "output": "Arre yaar Amazon ka delivery aaj aana tha lekin abhi tak out for delivery nahi dikha raha.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically matlab bhai itna bada announcement telegram pe kiya aur humein pata bhi nahi tha",
-  "output": "Matlab bhai, itna bada announcement Telegram pe kiya aur humein pata bhi nahi tha.",
+  "output": "Toh basically matlab bhai itna bada announcement Telegram pe kiya aur humein pata bhi nahi tha.",
   "app_category": "Personal"
 }
 
@@ -2094,19 +2016,19 @@
 
 {
   "input": "toh basically electricity bill online payment kar diya pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha",
-  "output": "Electricity bill online payment kar diya pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha",
+  "output": "Toh basically electricity bill online payment kar diya pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha",
   "app_category": "Personal"
 }
 
 {
   "input": "bas yaar ab aur nahi sehna itna pressure",
-  "output": "Bas yaar, ab aur nahi sehna itna pressure.",
+  "output": "Bas yaar ab aur nahi sehna itna pressure.",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar yaar sun ek second",
-  "output": "Yaar sun ek second",
+  "output": "Yaar yaar sun ek second",
   "app_category": "Personal"
 }
 
@@ -2117,26 +2039,8 @@
 }
 
 {
-  "input": "bhai ticket book karo train ka actually flight better rahegi",
-  "output": "Bhai flight ticket book karo",
-  "app_category": "Personal"
-}
-
-{
   "input": "teen dino mein delivery aayegi amazon se confirm ho gaya",
   "output": "3 dino mein delivery aayegi Amazon se confirm ho gaya",
-  "app_category": "Personal"
-}
-
-{
-  "input": "whatsapp pe bhejo matlab gmail pe bhejo",
-  "output": "Gmail pe bhejo",
-  "app_category": "Personal"
-}
-
-{
-  "input": "shaam ko milte hain no wait subah better hoga",
-  "output": "Subah milte hain.",
   "app_category": "Personal"
 }
 
@@ -2148,7 +2052,7 @@
 
 {
   "input": "uh um yeh kya ho gaya bhai achanak se",
-  "output": "Yeh kya ho gaya bhai, achanak se?",
+  "output": "Yeh kya ho gaya bhai achanak se?",
   "app_category": "Personal"
 }
 
@@ -2166,13 +2070,7 @@
 
 {
   "input": "toh basically caption thodi funny rakhna is post ke liye serious mat banana",
-  "output": "Caption thodi funny rakhna is post ke liye, serious mat banana.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "paanch sau transfer karo no wait ek hazaar",
-  "output": "₹1,000 transfer karo.",
+  "output": "Toh basically caption thodi funny rakhna is post ke liye serious mat banana.",
   "app_category": "Personal"
 }
 
@@ -2182,17 +2080,6 @@
   "app_category": "Personal"
 }
 
-{
-  "input": "deploy monday ko karte hain actually tuesday better rahega",
-  "output": "Deploy Tuesday ko karte hain.",
-  "app_category": "Work"
-}
-
-{
-  "input": "staging pe deploy karo actually production pe directly",
-  "output": "Production pe directly deploy karo.",
-  "app_category": "Work"
-}
 
 {
   "input": "uh one piece ki pacing thodi slow lag rahi hai skip karun kya filler episodes list check karo internet pe",
@@ -2202,7 +2089,7 @@
 
 {
   "input": "baarish hone waali hai toh chhatri le lena saath mein",
-  "output": "Baarish hone waali hai, toh chhatri le lena saath mein.",
+  "output": "Baarish hone waali hai toh chhatri le lena saath mein.",
   "app_category": "Personal"
 }
 
@@ -2220,7 +2107,7 @@
 
 {
   "input": "toh basically flight delay ho gayi 2 ghante airport lounge mein hoon main jab boarding shuru hogi toh call karta hoon tujhe",
-  "output": "Flight delay ho gayi 2 ghante airport lounge mein hoon main jab boarding shuru hogi toh call karta hoon tujhe",
+  "output": "Toh basically flight delay ho gayi 2 ghante airport lounge mein hoon main jab boarding shuru hogi toh call karta hoon tujhe",
   "app_category": "Personal"
 }
 
@@ -2232,7 +2119,7 @@
 
 {
   "input": "toh basically flipkart big billion days mein phone pe discount mil raha hai exchange offer bhi lag raha hai",
-  "output": "Flipkart Big Billion Days mein phone pe discount mil raha hai. Exchange offer bhi lag raha hai.",
+  "output": "Toh basically flipkart Big Billion Days mein phone pe discount mil raha hai. Exchange offer bhi lag raha hai.",
   "app_category": "Personal"
 }
 
@@ -2244,25 +2131,25 @@
 
 {
   "input": "arre portfolio analysis report nikal de next quarter ki investment strategy change karenge diversification pe focus chahiye",
-  "output": "Portfolio analysis report nikal de. Next quarter ki investment strategy change karenge, diversification pe focus chahiye.",
+  "output": "Arre portfolio analysis report nikal de. Next quarter ki investment strategy change karenge diversification pe focus chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "uh yaar dekh kitni achhi reel banayi hai usne transitions ekdam smooth hain",
-  "output": "Yaar, dekh kitni achhi reel banayi hai usne! Transitions ekdam smooth hain.",
+  "output": "Yaar dekh kitni achhi reel banayi hai usne! Transitions ekdam smooth hain.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically channel analytics check kiya short form content better perform kar raha hai hum long form thoda reduce karte hain",
-  "output": "Channel analytics check kiya. Short form content better perform kar raha hai, hum long form thoda reduce karte hain.",
+  "output": "Toh basically channel analytics check kiya. Short form content better perform kar raha hai hum long form thoda reduce karte hain.",
   "app_category": "Work"
 }
 
 {
   "input": "toh basically yeh shoes size 8 mein available nahi hain 9 mangwa loon kya thoda loose chalega",
-  "output": "Yeh shoes size 8 mein available nahi hain, 9 mangwa loon kya? Thoda loose chalega.",
+  "output": "Toh basically yeh shoes size 8 mein available nahi hain 9 mangwa loon kya? Thoda loose chalega.",
   "app_category": "Personal"
 }
 
@@ -2274,25 +2161,25 @@
 
 {
   "input": "swiggy pe order karo jab teen sau se upar ho toh free delivery milegi",
-  "output": "Swiggy pe order karo, jab ₹300 se upar ho toh free delivery milegi.",
+  "output": "Swiggy pe order karo jab 300 se upar ho toh free delivery milegi.",
   "app_category": "Personal"
 }
 
 {
   "input": "arre bhai itni badi news thi batani toh chahiye thi na",
-  "output": "Arre bhai, itni badi news thi, batani toh chahiye thi na?",
+  "output": "Arre bhai itni badi news thi batani toh chahiye thi na?",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically dengue spread ho raha hai society mein balcony ke plants mein paani thehra hua mat chhodna aur macchardani laga dena",
-  "output": "Dengue spread ho raha hai society mein balcony ke plants mein paani thehra hua mat chhodna aur macchardani laga dena",
+  "output": "Toh basically dengue spread ho raha hai society mein balcony ke plants mein paani thehra hua mat chhodna aur macchardani laga dena",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically notes mein recipe likh do paneer butter masala ki ingredients ke saath",
-  "output": "Notes mein recipe likh do paneer butter masala ki ingredients ke saath",
+  "output": "Toh basically notes mein recipe likh do paneer butter masala ki ingredients ke saath",
   "app_category": "Other"
 }
 
@@ -2304,13 +2191,13 @@
 
 {
   "input": "paanch sau ka recharge karo airtel mein aaj expire ho raha hai",
-  "output": "₹500 ka recharge karo Airtel mein aaj expire ho raha hai",
+  "output": "500 ka recharge karo Airtel mein aaj expire ho raha hai",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically gemini se puchha tha iska answer thoda alag aaya chatgpt se compare karo",
-  "output": "Gemini se puchha tha iska answer thoda alag aaya ChatGPT se compare karo",
+  "output": "Toh basically gemini se puchha tha iska answer thoda alag aaya ChatGPT se compare karo",
   "app_category": "Other"
 }
 
@@ -2334,7 +2221,7 @@
 
 {
   "input": "toh basically yaar new season aaya hai aaj raat dekhte hain",
-  "output": "Yaar, new season aaya hai, aaj raat dekhte hain.",
+  "output": "Toh basically yaar new season aaya hai aaj raat dekhte hain.",
   "app_category": "Personal"
 }
 
@@ -2370,7 +2257,7 @@
 
 {
   "input": "uh electricity bill online payment kar diya pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha",
-  "output": "Electricity bill online payment kar diya. Pichli baar ki tarah last day ka wait nahi karna, uss chakkar me fine gaya tha.",
+  "output": "Electricity bill online payment kar diya. Pichli baar ki tarah last day ka wait nahi karna uss chakkar me fine gaya tha.",
   "app_category": "Personal"
 }
 
@@ -2382,7 +2269,7 @@
 
 {
   "input": "sponsorship aayi hai ek vpn company se rate kitna quote karun last time 15000 bola tha toh man gaye the",
-  "output": "Sponsorship aayi hai ek VPN company se rate kitna quote karun? Last time ₹15,000 bola tha toh man gaye the",
+  "output": "Sponsorship aayi hai ek VPN company se rate kitna quote karun? Last time 15,000 bola tha toh man gaye the",
   "app_category": "Personal"
 }
 
@@ -2392,21 +2279,16 @@
   "app_category": "Personal"
 }
 
-{
-  "input": "meeting 3 baje hai no wait 4 baje hai",
-  "output": "Meeting 4 baje hai",
-  "app_category": "Work"
-}
 
 {
   "input": "uh metro line red waali poori blocked hai aaj subah se koi fault aaya hai blue line leni padegi office ko",
-  "output": "Metro line red waali poori blocked hai aaj subah se. Koi fault aaya hai, blue line leni padegi office ko.",
+  "output": "Metro line red waali poori blocked hai aaj subah se. Koi fault aaya hai blue line leni padegi office ko.",
   "app_category": "Personal"
 }
 
 {
   "input": "uh flight delay ho gayi 2 ghante airport lounge mein hoon main jab boarding shuru hogi toh call karta hoon tujhe",
-  "output": "Flight delay ho gayi 2 ghante, airport lounge mein hoon main. Jab boarding shuru hogi toh call karta hoon tujhe.",
+  "output": "Flight delay ho gayi 2 ghante airport lounge mein hoon main. Jab boarding shuru hogi toh call karta hoon tujhe.",
   "app_category": "Personal"
 }
 
@@ -2418,19 +2300,19 @@
 
 {
   "input": "uh netflix pe koi achhi horror movie dhoondho aaj raat dekhte hain",
-  "output": "Netflix pe koi achhi horror movie dhoondho, aaj raat dekhte hain.",
+  "output": "Netflix pe koi achhi horror movie dhoondho aaj raat dekhte hain.",
   "app_category": "Personal"
 }
 
 {
   "input": "uh pharmacy se cough syrup aur strepsils le aana aate waqt gala ekdam baith gaya hai aawaz nahi aa rahi",
-  "output": "Pharmacy se cough syrup aur Strepsils le aana aate waqt. Gala ekdam baith gaya hai, aawaz nahi aa rahi.",
+  "output": "Pharmacy se cough syrup aur Strepsils le aana aate waqt gala ekdam baith gaya hai aawaz nahi aa rahi.",
   "app_category": "Personal"
 }
 
 {
   "input": "acha acha theek hai kal milte hain phir",
-  "output": "Acha acha, theek hai, kal milte hain phir.",
+  "output": "Acha acha theek hai kal milte hain phir.",
   "app_category": "Personal"
 }
 
@@ -2442,13 +2324,13 @@
 
 {
   "input": "dekh bhai itna simple tha phir bhi tune ignore kiya kyun",
-  "output": "Dekh bhai, itna simple tha, phir bhi tune ignore kiya kyun?",
+  "output": "Dekh bhai itna simple tha phir bhi tune ignore kiya kyun?",
   "app_category": "Personal"
 }
 
 {
   "input": "hum hum kal jayenge wahan pakka",
-  "output": "Hum kal jayenge wahan pakka",
+  "output": "Hum hum kal jayenge wahan pakka",
   "app_category": "Personal"
 }
 
@@ -2466,7 +2348,7 @@
 
 {
   "input": "toh basically payment fail ho gayi upi se try karo dobara",
-  "output": "Payment fail ho gayi, UPI se try karo dobara.",
+  "output": "Toh basically payment fail ho gayi UPI se try karo dobara.",
   "app_category": "Personal"
 }
 
@@ -2478,13 +2360,13 @@
 
 {
   "input": "dekho main seedha bol raha hoon yeh kaam nahi chalega",
-  "output": "Dekho, main seedha bol raha hoon, yeh kaam nahi chalega.",
+  "output": "Dekho main seedha bol raha hoon yeh kaam nahi chalega.",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab iska price itna zyada kyun hai last week toh fifteen hundred tha",
-  "output": "Matlab, iska price itna zyada kyun hai? Last week toh ₹1,500 tha.",
+  "output": "Matlab iska price itna zyada kyun hai? Last week toh 1,500 tha.",
   "app_category": "Personal"
 }
 
@@ -2496,49 +2378,49 @@
 
 {
   "input": "car ki battery ekdam down hai start nahi ho rahi jump start karna padega mechanic ko phone laga na pados waale",
-  "output": "Car ki battery ekdam down hai, start nahi ho rahi. Jump start karna padega. Mechanic ko phone laga na pados waale.",
+  "output": "Car ki battery ekdam down hai start nahi ho rahi. Jump start karna padega. Mechanic ko phone laga na pados waale.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically suno na server pe naya role add kiya hai sabko manually assign karna padega",
-  "output": "Suno na, server pe naya role add kiya hai. Sabko manually assign karna padega.",
+  "output": "Toh basically suno na server pe naya role add kiya hai. Sabko manually assign karna padega.",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh sponsorship aayi hai ek vpn company se rate kitna quote karun last time 15000 bola tha toh man gaye the",
-  "output": "Sponsorship aayi hai ek VPN company se. Rate kitna quote karun? Last time ₹15,000 bola tha toh man gaye the.",
+  "input": "uh sponsorship aayi hai ek vpn company se rate kitna quote karun last time Pandrah hazaar bola tha toh man gaye the",
+  "output": "Sponsorship aayi hai ek VPN company se. Rate kitna quote karun? Last time 15,000 bola tha toh man gaye the.",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically flatmate leave kar raha hai january mein uski jagah naya banda dhundhna start karna padega",
-  "output": "Flatmate leave kar raha hai January mein, uski jagah naya banda dhundhna start karna padega.",
+  "output": "Toh basically flatmate leave kar raha hai January mein uski jagah naya banda dhundhna start karna padega.",
   "app_category": "Personal"
 }
 
 {
   "input": "waise bhai is channel ka topic change karo outdated hai purana wala",
-  "output": "Waise bhai, is channel ka topic change karo, outdated hai purana wala.",
+  "output": "Waise bhai is channel ka topic change karo outdated hai purana wala.",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh vet appointment hai shaam ko 5 baje rabies ki vaccination ka due date kal hi tha yaad karke nikal lena waqt pe",
+  "input": "uh vet appointment hai shaam ko paanch baje rabies ki vaccination ka due date kal hi tha yaad karke nikal lena waqt pe",
   "output": "Vet appointment hai shaam ko 5 baje rabies ki vaccination ka due date kal hi tha yaad karke nikal lena waqt pe",
   "app_category": "Personal"
 }
 
 {
   "input": "mujhe mujhe nahi pata yaar kya decision loon",
-  "output": "Mujhe nahi pata yaar kya decision loon",
+  "output": "Mujhe mujhe nahi pata yaar kya decision loon.",
   "app_category": "Personal"
 }
 
 {
   "input": "arre bhai story pe swipe up link daal do link in bio se koi nahi jaata",
-  "output": "Arre bhai, story pe swipe-up link daal do. Link in bio se koi nahi jaata.",
+  "output": "Arre bhai story pe swipe-up link daal do. Link in bio se koi nahi jaata.",
   "app_category": "Personal"
 }
 
@@ -2555,8 +2437,8 @@
 }
 
 {
-  "input": "matlab bhai itna bada announcement telegram pe kiya aur humein pata bhi nahi tha",
-  "output": "Matlab bhai, itna bada announcement Telegram pe kiya aur humein pata bhi nahi tha.",
+  "input": "matlab bhai itna bada announcement telegram pe kiya uhhh aur humein pata bhi nahi tha",
+  "output": "Matlab bhai itna bada announcement Telegram pe kiya aur humein pata bhi nahi tha.",
   "app_category": "Personal"
 }
 
@@ -2568,25 +2450,25 @@
 
 {
   "input": "toh basically suno na wo myntra ka parcel society ke gate pe chhodne bol do main waapis aate waqt le lunga",
-  "output": "Suno na wo Myntra ka parcel society ke gate pe chhodne bol do main waapis aate waqt le lunga",
+  "output": "Toh basically suno na wo Myntra ka parcel society ke gate pe chhodne bol do main waapis aate waqt le lunga",
   "app_category": "Personal"
 }
 
 {
   "input": "uh prime video ka subscription expire ho raha hai kal tu renew kar le iss baar payment main g pay kar dunga",
-  "output": "Prime Video ka subscription expire ho raha hai kal tu renew kar le iss baar payment main GPay kar dunga",
+  "output": "Prime Video ka subscription expire ho raha hai uhh kal tu renew kar le iss baar payment main GPay kar dunga",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh market crash kar gayi kal raat ko bitcoin almost 10 percent down hai panic mat karna abhi hold karo",
-  "output": "Market crash kar gayi kal raat ko, Bitcoin almost 10% down hai. Panic mat karna abhi, hold karo.",
+  "input": "uh market crash kar gayi kal raat ko bitcoin almost das percent down hai panic mat karna abhi hold karo",
+  "output": "Market crash kar gayi kal raat ko Bitcoin almost 10% down hai. Panic mat karna abhi hold karo.",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh bhai voice channel mein aa ja planning session start karte hain",
-  "output": "Bhai, voice channel mein aa ja, planning session start karte hain.",
+  "input": "uh bhai voice channel mein aa ja planning session start karte hain Saade gyarah baje se.",
+  "output": "Bhai voice channel mein aa ja planning session start karte hain 11:30 baje se.",
   "app_category": "Personal"
 }
 
@@ -2597,20 +2479,20 @@
 }
 
 {
-  "input": "flight delay ho gayi 2 ghante airport lounge mein hoon main jab boarding shuru hogi toh call karta hoon tujhe",
-  "output": "Flight delay ho gayi 2 ghante, airport lounge mein hoon main. Jab boarding shuru hogi toh call karta hoon tujhe.",
+  "input": "flight delay ho gayi nau ghante airport lounge mein hoon main jab boarding shuru hogi toh call karta hoon tujhe",
+  "output": "Flight delay ho gayi 9 ghante airport lounge mein hoon main. Jab boarding shuru hogi toh call karta hoon tujhe.",
   "app_category": "Personal"
 }
 
 {
-  "input": "toh basically itinerary theek kar bhai 3 din mein 4 city cover karna impossible hai rome mein 2 din extra chahiye",
-  "output": "Itinerary theek kar bhai 3 din mein 4 city cover karna impossible hai Rome mein 2 din extra chahiye",
+  "input": "toh basically itinerary theek kar bhai teen din mein chaar city cover karna impossible hai rome mein do din extra chahiye",
+  "output": "Toh basically itinerary theek kar bhai 3 din mein 4 city cover karna impossible hai Rome mein 2 din extra chahiye",
   "app_category": "Personal"
 }
 
 {
-  "input": "toh basically kal ki flight cancel ho gayi refund aayega 5 din mein",
-  "output": "Kal ki flight cancel ho gayi refund aayega 5 din mein",
+  "input": "toh basically kal ki flight cancel ho gayi refund aayega paanch din mein",
+  "output": "Toh basically kal ki flight cancel ho gayi refund aayega 5 din mein",
   "app_category": "Personal"
 }
 
@@ -2622,25 +2504,25 @@
 
 {
   "input": "matlab yaar yeh pr kyun fail ho gaya samajh nahi aa raha",
-  "output": "Matlab yaar, yeh PR kyun fail ho gaya? Samajh nahi aa raha.",
+  "output": "Matlab yaar yeh PR kyun fail ho gaya? Samajh nahi aa raha.",
   "app_category": "Work"
 }
 
 {
-  "input": "schengen visa ka slot nahi mil raha pichle 2 mahine se lagataar check kar raha hoon agent ko bolke dekhta hoon",
-  "output": "Schengen visa ka slot nahi mil raha pichle 2 mahine se lagataar check kar raha hoon agent ko bolke dekhta hoon",
+  "input": "schengen visa ka slot nahi mil raha pichle solah mahine se lagataar check kar raha hoon agent ko bolke dekhta hoon",
+  "output": "Schengen visa ka slot nahi mil raha pichle 16 mahine se lagataar check kar raha hoon agent ko bolke dekhta hoon",
   "app_category": "Personal"
 }
 
 {
   "input": "sun kal ke plan mein change aaya hai",
-  "output": "Sun, kal ke plan mein change aaya hai.",
+  "output": "Sun kal ke plan mein change aaya hai.",
   "app_category": "Personal"
 }
 
 {
-  "input": "toh basically yeh filter kaun sa use kiya hai tune color grading ekdam alag lag rahi hai",
-  "output": "Yeh filter kaun sa use kiya hai tune? Color grading ekdam alag lag rahi hai.",
+  "input": "toh basically yeh filter kaun sa use kiya hai tune color grading ekdam alag lag rahi hai uhh",
+  "output": "Toh basically yeh filter kaun sa use kiya hai tune? Color grading ekdam alag lag rahi hai.",
   "app_category": "Personal"
 }
 
@@ -2652,19 +2534,19 @@
 
 {
   "input": "sun na ek cheez poochni thi quickly",
-  "output": "Sun na, ek cheez poochni thi quickly.",
+  "output": "Sun na ek cheez poochni thi quickly.",
   "app_category": "Personal"
 }
 
 {
-  "input": "toh basically bike ki service due hai 2000 kilometer cross ho chuke hain mobil oil bhi change karwana padega",
-  "output": "Bike ki service due hai 2,000 kilometer cross ho chuke hain mobil oil bhi change karwana padega",
+  "input": "hmmm toh basically bike ki service due hai 2000 kilometer cross ho chuke hain mobil oil bhi change karwana padega",
+  "output": "Toh basically bike ki service due hai 2,000 kilometer cross ho chuke hain mobil oil bhi change karwana padega",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically yaar claude ko prompt karo aur output ko refine karwa lete hain",
-  "output": "Yaar, Claude ko prompt karo aur output ko refine karwa lete hain.",
+  "output": "Toh basically yaar Claude ko prompt karo aur output ko refine karwa lete hain.",
   "app_category": "Other"
 }
 
@@ -2675,26 +2557,20 @@
 }
 
 {
-  "input": "toh basically sponsorship aayi hai ek vpn company se rate kitna quote karun last time 15000 bola tha toh man gaye the",
-  "output": "Sponsorship aayi hai ek VPN company se. Rate kitna quote karun? Last time ₹15,000 bola tha toh man gaye the.",
+  "input": "toh basically sponsorship aayi hai ek vpn company se rate kitna quote karun last time pandrah hazaar bola tha toh man gaye the",
+  "output": "Toh basically sponsorship aayi hai ek VPN company se. Rate kitna quote karun? Last time 15,000 bola tha toh man gaye the.",
   "app_category": "Personal"
 }
 
 {
-  "input": "bike ki service due hai 2000 kilometer cross ho chuke hain mobil oil bhi change karwana padega",
+  "input": "bike ki service due hai do hazaar kilometer cross ho chuke hain mobil oil bhi change karwana padega",
   "output": "Bike ki service due hai 2,000 kilometer cross ho chuke hain mobil oil bhi change karwana padega",
   "app_category": "Personal"
 }
 
 {
-  "input": "yeh file share karo drive link se actually zip karke bhejo",
-  "output": "Yeh file zip karke bhejo",
-  "app_category": "Work"
-}
-
-{
   "input": "haan kal aaunga confirm hai mere paas koi plan nahi",
-  "output": "Haan, kal aaunga, confirm hai, mere paas koi plan nahi.",
+  "output": "Haan kal aaunga confirm hai mere paas koi plan nahi.",
   "app_category": "Personal"
 }
 
@@ -2706,31 +2582,31 @@
 
 {
   "input": "chal theek hai kal tak wait karte hain response ka",
-  "output": "Chal, theek hai, kal tak wait karte hain response ka.",
+  "output": "Chal theek hai kal tak wait karte hain response ka.",
   "app_category": "Personal"
 }
 
 {
   "input": "suno meeting reschedule ho gayi ab 4 baje hogi",
-  "output": "Suno, meeting reschedule ho gayi, ab 4 baje hogi.",
+  "output": "Suno meeting reschedule ho gayi ab 4 baje hogi.",
   "app_category": "Work"
 }
 
 {
   "input": "acha sun pehle yeh kaam karte hain phir baaki sochenge",
-  "output": "Acha sun, pehle yeh kaam karte hain, phir baaki sochenge.",
+  "output": "Acha sun pehle yeh kaam karte hain phir baaki sochenge.",
   "app_category": "Personal"
 }
 
 {
   "input": "waise bhai tune gym join kiya kya finally",
-  "output": "Waise bhai, tune gym join kiya kya finally?",
+  "output": "Waise bhai tune gym join kiya kya finally?",
   "app_category": "Personal"
 }
 
 {
   "input": "spotify premium ka subscription renew karna hai aaj expire ho raha hai",
-  "output": "Spotify Premium ka subscription renew karna hai, aaj expire ho raha hai.",
+  "output": "Spotify Premium ka subscription renew karna hai aaj expire ho raha hai.",
   "app_category": "Personal"
 }
 
@@ -2742,7 +2618,7 @@
 
 {
   "input": "er uh theek hai mujhe bhi lena tha wahi",
-  "output": "Theek hai, mujhe bhi lena tha wahi.",
+  "output": "Theek hai mujhe bhi lena tha wahi.",
   "app_category": "Personal"
 }
 
@@ -2760,25 +2636,25 @@
 
 {
   "input": "ios update ke baad battery drain kaafi fast ho raha hai kya tumhara phone bhi same issue kar raha hai",
-  "output": "iOS update ke baad battery drain kaafi fast ho raha hai kya tumhara phone bhi same issue kar raha hai?",
+  "output": "IOS update ke baad battery drain kaafi fast ho raha hai. Kya tumhara phone bhi same issue kar raha hai?",
   "app_category": "Personal"
 }
 
 {
-  "input": "toh basically market crash kar gayi kal raat ko bitcoin almost 10 percent down hai panic mat karna abhi hold karo",
-  "output": "Market crash kar gayi kal raat ko Bitcoin almost 10% down hai panic mat karna abhi hold karo",
+  "input": "toh basically market crash kar gayi kal raat ko bitcoin almost das percent down hai panic mat karna abhi hold karo",
+  "output": "Toh basically market crash kar gayi kal raat ko Bitcoin almost 10% down hai panic mat karna abhi hold karo",
   "app_category": "Personal"
 }
 
 {
-  "input": "the the meeting is at 3 baje confirm kar do",
+  "input": "the the meeting is at teen baje confirm kar do",
   "output": "The meeting is at 3 baje confirm kar do",
   "app_category": "Work"
 }
 
 {
   "input": "toh basically server down ho gaya aur hum kuch nahi kar sakte",
-  "output": "Server down ho gaya aur hum kuch nahi kar sakte",
+  "output": "Toh basically server down ho gaya aur hum kuch nahi kar sakte",
   "app_category": "Work"
 }
 
@@ -2796,7 +2672,7 @@
 
 {
   "input": "hmm theek lagta hai yeh approach try karte hain",
-  "output": "Theek lagta hai, yeh approach try karte hain.",
+  "output": "Theek lagta hai yeh approach try karte hain.",
   "app_category": "Work"
 }
 
@@ -2808,943 +2684,931 @@
 
 {
   "input": "matlab yaar server down hai production pe kuch karna padega jaldi",
-  "output": "Yaar, server down hai production pe kuch karna padega jaldi",
+  "output": "Matlab yaar server down hai production pe kuch karna padega jaldi",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically humein iska solution dhundhna hi padega aaj",
-  "output": "Humein iska solution dhundhna hi padega aaj",
+  "output": "Matlab toh basically humein iska solution dhundhna hi padega aaj",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki meeting cancel ho gayi ab ghar se kaam karenge",
-  "output": "Meeting cancel ho gayi, ab ghar se kaam karenge",
+  "output": "Yani ki meeting cancel ho gayi ab ghar se kaam karenge",
   "app_category": "Personal"
 }
 
 {
   "input": "toh matlab bhai kya karna chahiye ab iske baad",
-  "output": "Bhai kya karna chahiye ab iske baad?",
+  "output": "Toh matlab bhai kya karna chahiye ab iske baad?",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yeh system bilkul hi band pad gaya hai kuch karo",
-  "output": "Yeh system bilkul hi band pad gaya hai kuch karo",
+  "output": "Matlab yeh system bilkul hi band pad gaya hai kuch karo",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki launch postpone ho gaya phir se koi surprise nahi",
-  "output": "Launch postpone ho gaya phir se koi surprise nahi",
+  "output": "Yani ki launch postpone ho gaya phir se koi surprise nahi",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically humein naya vendor dhundhna padega",
-  "output": "Humein naya vendor dhundhna padega.",
+  "output": "Matlab toh basically humein naya vendor dhundhna padega.",
   "app_category": "Work"
 }
 
 {
   "input": "toh yaar meeting rescheduled hai ab friday ko hogi",
-  "output": "Yaar, meeting rescheduled hai, ab Friday ko hogi.",
+  "output": "Toh yaar meeting rescheduled hai ab Friday ko hogi.",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yeh bug sirf android pe aa raha hai ios pe nahi",
-  "output": "Yeh bug sirf Android pe aa raha hai iOS pe nahi",
+  "output": "Matlab yeh bug sirf Android pe aa raha hai IOS pe nahi",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki deal final ho gayi contract sign ho gaya aaj",
-  "output": "Deal final ho gayi, contract sign ho gaya aaj",
+  "output": "Yani ki deal final ho gayi contract sign ho gaya aaj",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically ab sab kuch redo karna padega scratch se",
-  "output": "Ab sab kuch redo karna padega scratch se",
+  "output": "Toh basically ab sab kuch redo karna padega scratch se",
   "app_category": "Work"
 }
 
 {
   "input": "matlab koi bata raha tha ki codebase mein issue hai frontend pe",
-  "output": "Koi bata raha tha ki codebase mein issue hai frontend pe",
+  "output": "Matlab koi bata raha tha ki codebase mein issue hai frontend pe",
   "app_category": "Work"
 }
 
 {
   "input": "toh yani ki sprint extend hoga ek din aur lagega",
-  "output": "Sprint extend hoga, ek din aur lagega",
+  "output": "Toh yani ki sprint extend hoga ek din aur lagega",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yeh feature users ke liye confusing hai redesign karo",
-  "output": "Yeh feature users ke liye confusing hai redesign karo",
+  "output": "Matlab yeh feature users ke liye confusing hai redesign karo",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki sab theek ho jayega bas deployment ho jaaye",
-  "output": "Sab theek ho jayega bas deployment ho jaaye",
+  "output": "Yani ki sab theek ho jayega bas deployment ho jaaye",
   "app_category": "Work"
 }
 
 {
   "input": "matlab bhai interview ka result nahi aaya abhi tak",
-  "output": "Bhai, interview ka result nahi aaya abhi tak",
+  "output": "Matlab bhai interview ka result nahi aaya abhi tak",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically mujhe lagta hai ki approach change karni chahiye",
-  "output": "Mujhe lagta hai ki approach change karni chahiye.",
+  "output": "Toh basically mujhe lagta hai ki approach change karni chahiye.",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki naya update push ho gaya aaj subah users ko notify karo",
-  "output": "Naya update push ho gaya aaj subah users ko notify karo",
+  "output": "Yani ki naya update push ho gaya aaj subah users ko notify karo",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yaar traffic bahot zyada hai mujhe late hoga aane mein",
-  "output": "Yaar traffic bahot zyada hai mujhe late hoga aane mein",
+  "output": "Matlab yaar traffic bahot zyada hai mujhe late hoga aane mein",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically ticket assign karo mujhe is sprint ke liye",
-  "output": "Ticket assign karo mujhe is sprint ke liye",
+  "output": "Toh basically ticket assign karo mujhe is sprint ke liye",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yeh PR review pending hai do din se please dekho",
-  "output": "Yeh PR review pending hai do din se please dekho",
+  "output": "Matlab yeh PR review pending hai do din se please dekho",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki presentation ready nahi hai kal present karna pad sakta hai",
-  "output": "Presentation ready nahi hai, kal present karna pad sakta hai",
+  "output": "Yani ki presentation ready nahi hai kal present karna pad sakta hai",
   "app_category": "Work"
 }
 
 {
   "input": "toh matlab boss ne bola ki deadline aage badh sakti hai",
-  "output": "Boss ne bola ki deadline aage badh sakti hai",
+  "output": "Toh matlab boss ne bola ki deadline aage badh sakti hai",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yaar plan cancel kar diya usne koi reason nahi bataya",
-  "output": "Yaar, plan cancel kar diya usne, koi reason nahi bataya",
+  "output": "Matlab yaar plan cancel kar diya usne koi reason nahi bataya",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki data migrate ho gaya successfully koi issue nahi aaya",
-  "output": "Data migrate ho gaya successfully koi issue nahi aaya",
+  "output": "Yani ki data migrate ho gaya successfully koi issue nahi aaya",
   "app_category": "Work"
 }
 
 {
   "input": "toh basically ab test likhna padega yeh important hai production ke liye",
-  "output": "Ab test likhna padega, yeh important hai production ke liye.",
+  "output": "Toh basically ab test likhna padega yeh important hai production ke liye.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab pipeline fail ho gayi phir se same error hai",
-  "output": "Pipeline fail ho gayi phir se same error hai",
+  "output": "Matlab pipeline fail ho gayi phir se same error hai",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh cab book karo warna airport miss ho jayega",
-  "output": "Yaar, cab book karo warna airport miss ho jayega",
+  "output": "Yaar toh cab book karo warna airport miss ho jayega",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki release next week pe shift ho gayi QA testing bachi hai",
-  "output": "Release next week pe shift ho gayi, QA testing bachi hai",
+  "output": "Yani ki release next week pe shift ho gayi QA testing bachi hai",
   "app_category": "Work"
 }
 
 {
   "input": "matlab mujhe lagta hai toh basically yeh wala approach better hai",
-  "output": "Mujhe lagta hai yeh wala approach better hai",
+  "output": "Matlab mujhe lagta hai toh basically yeh wala approach better hai",
   "app_category": "Work"
 }
 
 {
   "input": "toh yaar sab plan ho gaya hai sirf confirmation baki hai",
-  "output": "Yaar, sab plan ho gaya hai sirf confirmation baki hai",
+  "output": "Toh yaar sab plan ho gaya hai sirf confirmation baki hai",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yeh new feature request out of scope hai current sprint mein",
-  "output": "Yeh new feature request out of scope hai current sprint mein",
+  "output": "Matlab yeh new feature request out of scope hai current sprint mein",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki rollout complete ho gaya sab users pe aa gaya hai",
-  "output": "Rollout complete ho gaya, sab users pe aa gaya hai",
+  "output": "Yani ki rollout complete ho gaya sab users pe aa gaya hai",
   "app_category": "Work"
 }
 
 {
   "input": "bhai toh matlab seedha bolo kya problem hai",
-  "output": "Bhai, seedha bolo kya problem hai?",
+  "output": "Bhai toh matlab seedha bolo kya problem hai?",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab hum toh basically puri raat kaam karte rahe kal",
-  "output": "Hum puri raat kaam karte rahe kal",
+  "output": "Matlab hum toh basically puri raat kaam karte rahe kal",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh kab aayega tu office mein aaj",
-  "output": "Yaar, kab aayega tu office mein aaj?",
+  "output": "Yaar toh kab aayega tu office mein aaj?",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yeh issue sirf specific users pe aa raha hai admin role wale pe",
-  "output": "Yeh issue sirf specific users pe aa raha hai admin role wale pe",
+  "output": "Matlab yeh issue sirf specific users pe aa raha hai admin role wale pe",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki stand up cancel ho gaya hai update async dedo",
-  "output": "Stand up cancel ho gaya hai, update async dedo",
+  "output": "Yani ki stand up cancel ho gaya hai update async dedo",
   "app_category": "Work"
 }
 
 {
-  "input": "matlab yaar bahut ghuma raha hai main thak gaya hoon",
-  "output": "Yaar bahut ghuma raha hai, main thak gaya hoon",
+  "input": "matlab uhh yaar bahut ghuma raha hai main thak gaya hoon",
+  "output": "Matlab yaar bahut ghuma raha hai main thak gaya hoon",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically beta version release karte hain pehle feedback lenge",
-  "output": "Beta version release karte hain pehle, feedback lenge",
+  "output": "Toh basically beta version release karte hain pehle feedback lenge",
   "app_category": "Work"
 }
 
 {
-  "input": "matlab yeh staging environment se prod environment mein different behaviour aa raha hai",
-  "output": "Yeh staging environment se prod environment mein different behaviour aa raha hai",
+  "input": "matlab yeh staging environment se uhh prod environment mein different behaviour aa raha hai",
+  "output": "Matlab yeh staging environment se prod environment mein different behaviour aa raha hai",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh khaana order karo bhai bahut bhookh lagi hai yaar",
-  "output": "Yaar, khaana order karo bhai bahut bhookh lagi hai",
+  "output": "Yaar toh khaana order karo bhai bahut bhookh lagi hai",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki approval mil gayi ab kaam shuru kar sakte hain",
-  "output": "Approval mil gayi, ab kaam shuru kar sakte hain.",
+  "output": "Yani ki approval mil gayi ab kaam shuru kar sakte hain.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yaar mujhe samajh nahi aa raha yeh code kyun fail ho raha hai",
-  "output": "Yaar, mujhe samajh nahi aa raha yeh code kyun fail ho raha hai",
+  "output": "Matlab yaar mujhe samajh nahi aa raha yeh code kyun fail ho raha hai",
   "app_category": "Work"
 }
 
 {
   "input": "toh basically ab hum deadline miss karenge confirm ho gaya",
-  "output": "Ab hum deadline miss karenge, confirm ho gaya",
+  "output": "Toh basically ab hum deadline miss karenge confirm ho gaya",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yaar aaj bahut kaam tha ab ja raha hoon ghar",
-  "output": "Yaar, aaj bahut kaam tha, ab ja raha hoon ghar",
+  "output": "Matlab yaar aaj bahut kaam tha ab ja raha hoon ghar",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki client ne feedback diya UI ke baare mein changes maange hain",
-  "output": "Client ne feedback diya UI ke baare mein, changes maange hain",
+  "output": "Yani ki client ne feedback diya UI ke baare mein changes maange hain",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically deploy kiya aur sab kuch crash ho gaya",
-  "output": "Deploy kiya aur sab kuch crash ho gaya",
+  "output": "Matlab toh basically deploy kiya aur sab kuch crash ho gaya",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh check karta hoon abhi ek minute",
-  "output": "Yaar, check karta hoon abhi ek minute",
+  "output": "Yaar toh check karta hoon abhi ek minute",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yeh dependent service down hai isliye hamara API bhi fail ho raha hai",
-  "output": "Yeh dependent service down hai isliye hamara API bhi fail ho raha hai",
+  "output": "Matlab yeh dependent service down hai isliye hamara API bhi fail ho raha hai",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki testing phase shuru ho gaya hai QA team busy ho gayi",
-  "output": "Testing phase shuru ho gaya hai, QA team busy ho gayi",
+  "output": "Yani ki testing phase shuru ho gaya hai QA team busy ho gayi",
   "app_category": "Work"
 }
 
 {
   "input": "matlab mujhe lagta hai toh basically design mein ek aur iteration chahiye",
-  "output": "Mujhe lagta hai design mein ek aur iteration chahiye",
+  "output": "Matlab mujhe lagta hai toh basically design mein ek aur iteration chahiye",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh basically ghar pe koi kaam nahi hua din bhar",
-  "output": "Yaar, ghar pe koi kaam nahi hua din bhar",
+  "output": "Yaar matlab toh basically ghar pe koi kaam nahi hua din bhar",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki yeh wala implementation better performance de raha hai",
-  "output": "Yeh wala implementation better performance de raha hai",
+  "output": "Toh yani ki yeh wala implementation better performance de raha hai",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh ab document karo sab kuch wiki pe dalo",
-  "output": "Ab document karo, sab kuch wiki pe dalo",
+  "output": "Matlab toh ab document karo sab kuch wiki pe dalo",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab ghabrao mat ek kaam ek kaam pe focus karo",
-  "output": "Yaar, ghabrao mat, ek kaam ek kaam pe focus karo",
+  "output": "Yaar toh matlab ghabrao mat ek kaam ek kaam pe focus karo",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki backend changes ho gayi hain frontend ko bhi update karo ab",
-  "output": "Backend changes ho gayi hain, frontend ko bhi update karo ab",
+  "output": "Yani ki backend changes ho gayi hain frontend ko bhi update karo ab",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically mujhe nahi pata kya karna chahiye ab",
-  "output": "Mujhe nahi pata kya karna chahiye ab",
+  "output": "Matlab toh basically mujhe nahi pata kya karna chahiye ab",
   "app_category": "Personal"
 }
 
 {
   "input": "bhai toh matlab kab milenge hum planning meeting ke liye",
-  "output": "Bhai, kab milenge hum planning meeting ke liye?",
+  "output": "Bhai toh matlab kab milenge hum planning meeting ke liye?",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab chalo jaldi office chalna hai aaj",
-  "output": "Yaar, chalo jaldi, office chalna hai aaj",
+  "output": "Yaar toh matlab chalo jaldi office chalna hai aaj",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab yeh cache invalidation sahi se nahi ho rahi restart karna padega",
-  "output": "Yeh cache invalidation sahi se nahi ho rahi, restart karna padega",
+  "output": "Matlab yeh cache invalidation sahi se nahi ho rahi restart karna padega",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki hotfix deploy ho gayi hai sab log verify kar lo",
-  "output": "Hotfix deploy ho gayi hai, sab log verify kar lo",
+  "output": "Yani ki hotfix deploy ho gayi hai sab log verify kar lo",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically load balancer configure karna padega pehle",
-  "output": "Load balancer configure karna padega pehle.",
+  "output": "Matlab toh basically load balancer configure karna padega pehle.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab koi toh bata do kya hua aaj office mein",
-  "output": "Yaar, koi toh bata do kya hua aaj office mein?",
+  "output": "Yaar toh matlab koi toh bata do kya hua aaj office mein?",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki tokens expire ho gaye login phir se kar",
-  "output": "Tokens expire ho gaye, login phir se kar",
+  "output": "Toh yani ki tokens expire ho gaye login phir se kar",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically abhi main bahut busy hoon baad mein baat karte hain",
-  "output": "Abhi main bahut busy hoon, baad mein baat karte hain",
+  "output": "Matlab toh basically abhi main bahut busy hoon baad mein baat karte hain",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar matlab toh bolo kya update hai sprint ka",
-  "output": "Yaar, bolo kya update hai sprint ka?",
+  "output": "Yaar matlab toh bolo kya update hai sprint ka?",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki ab naya feature scope mein aaya hai backlog mein add karo",
-  "output": "Ab naya feature scope mein aaya hai, backlog mein add karo.",
+  "output": "Yani ki ab naya feature scope mein aaya hai backlog mein add karo.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically koi sun nahi raha baad mein dekhenge",
-  "output": "Koi sun nahi raha, baad mein dekhenge",
+  "output": "Matlab toh basically koi sun nahi raha baad mein dekhenge",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh kya lag raha hai kal release possible hai",
-  "output": "Yaar, kya lag raha hai, kal release possible hai?",
+  "output": "Yaar toh kya lag raha hai kal release possible hai?",
   "app_category": "Work"
 }
 
 {
   "input": "toh matlab basically ab infrastructure cost double ho gayi hai",
-  "output": "Ab infrastructure cost double ho gayi hai.",
+  "output": "Toh matlab basically ab infrastructure cost double ho gayi hai.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab kuch toh karo is issue ke baare mein",
-  "output": "Yaar, kuch toh karo is issue ke baare mein",
+  "output": "Yaar toh matlab kuch toh karo is issue ke baare mein",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab ab hum practically kuch bhi nahi kar sakte freeze chal raha hai",
-  "output": "Ab hum practically kuch bhi nahi kar sakte, freeze chal raha hai",
+  "output": "Matlab ab hum practically kuch bhi nahi kar sakte freeze chal raha hai",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki vendor ne bola ki delivery delay hogi ek aur hafte ki",
-  "output": "Vendor ne bola ki delivery delay hogi, ek aur hafte ki.",
+  "output": "Yani ki vendor ne bola ki delivery delay hogi ek aur hafte ki.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yaar chhuti wala din tha par phir bhi kaam karna pada",
-  "output": "Yaar, chhuti wala din tha par phir bhi kaam karna pada",
+  "output": "Matlab yaar chhuti wala din tha par phir bhi kaam karna pada",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically ab naya developer aaya hai usse onboard karna hai",
-  "output": "Ab naya developer aaya hai, usse onboard karna hai.",
+  "output": "Toh basically ab naya developer aaya hai usse onboard karna hai.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab yeh refactor kiya jab se performance ekdum behtar ho gayi hai",
-  "output": "Yeh refactor kiya jab se, performance ekdum behtar ho gayi hai",
+  "output": "Matlab yeh refactor kiya jab se performance ekdum behtar ho gayi hai",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab kya hua kuch toh bolo",
-  "output": "Yaar, kya hua? Kuch toh bolo",
+  "output": "Yaar matlab kya hua? Kuch toh bolo",
   "app_category": "Personal"
 }
 
 {
-  "input": "yani ki A/B test positive result aaya naya version better perform kar raha hai",
-  "output": "A/B test positive result aaya, naya version better perform kar raha hai.",
+  "input": "yani ki a slash b test positive result aaya naya version better perform kar raha hai",
+  "output": "Yani ki a/b test positive result aaya naya version better perform kar raha hai.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically meeting time waste thi koi conclusion nahi nikla",
-  "output": "Meeting time waste thi, koi conclusion nahi nikla",
+  "output": "Matlab toh basically meeting time waste thi koi conclusion nahi nikla",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab kab aa raha hai tu",
-  "output": "Yaar, kab aa raha hai tu?",
+  "output": "Yaar toh matlab kab aa raha hai tu?",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically service health check fail ho rahi hai alerts aa rahe hain",
-  "output": "Service health check fail ho rahi hai, alerts aa rahe hain.",
+  "output": "Toh basically service health check fail ho rahi hai alerts aa rahe hain.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically ab mujhe naya laptop chahiye yeh slow hai bahut",
-  "output": "Ab mujhe naya laptop chahiye, yeh slow hai bahut",
+  "output": "Matlab toh basically ab mujhe naya laptop chahiye yeh slow hai bahut",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar matlab yeh wali approach aur scalable hai long term ke liye",
-  "output": "Yaar, yeh wali approach aur scalable hai long term ke liye",
+  "output": "Yaar matlab yeh wali approach aur scalable hai long term ke liye",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki integration test pass ho gayi merge block hatao",
-  "output": "Integration test pass ho gayi, merge block hatao",
+  "output": "Yani ki integration test pass ho gayi merge block hatao",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically kuch naya implement kiya aur kuch break ho gaya phir se",
-  "output": "Kuch naya implement kiya aur kuch break ho gaya phir se",
+  "output": "Matlab toh basically kuch naya implement kiya aur kuch break ho gaya phir se",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh main match dekhne ja raha hoon baad mein milte hain",
-  "output": "Yaar, main match dekhne ja raha hoon, baad mein milte hain",
+  "output": "Yaar toh main match dekhne ja raha hoon baad mein milte hain",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki rate limit exceed ho gayi API slow ho rahi thi isliye",
-  "output": "Rate limit exceed ho gayi, API slow ho rahi thi isliye",
+  "output": "Toh yani ki rate limit exceed ho gayi API slow ho rahi thi isliye",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar phir se same problem aa gayi",
-  "output": "Yaar, phir se same problem aa gayi",
+  "output": "Matlab toh basically yaar phir se same problem aa gayi",
   "app_category": "Personal"
 }
 
 {
-  "input": "yaar matlab PR mein conflict hai rebase karo aur push karo",
-  "output": "Yaar, PR mein conflict hai, rebase karo aur push karo",
+  "input": "yaar matlab pr mein conflict hai rebase karo aur push karo",
+  "output": "Yaar matlab PR mein conflict hai rebase karo aur push karo",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki demo successful raha client khush hai",
-  "output": "Demo successful raha, client khush hai",
+  "output": "Yani ki demo successful raha client khush hai",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar bahut kaam hai aaj kahi jaana nahi ho sakta",
-  "output": "Yaar, bahut kaam hai aaj, kahi jaana nahi ho sakta",
+  "output": "Matlab toh basically yaar bahut kaam hai aaj kahi jaana nahi ho sakta",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically monitoring dashboard setup karo taaki aage dikhe kya ho raha hai",
-  "output": "Monitoring dashboard setup karo, taaki aage dikhe kya ho raha hai.",
+  "output": "Toh basically monitoring dashboard setup karo taaki aage dikhe kya ho raha hai.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh yaar thak gaya hoon kab khatam hoga yeh sab",
-  "output": "Yaar, thak gaya hoon, kab khatam hoga yeh sab?",
+  "output": "Matlab toh yaar thak gaya hoon kab khatam hoga yeh sab?",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki new hire ne pehle din hi ek bug fix kar diya",
-  "output": "New hire ne pehle din hi ek bug fix kar diya",
+  "output": "Yani ki new hire ne pehle din hi ek bug fix kar diya",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically ab hum agile se waterfall jaisa feel kar rahe hain",
-  "output": "Ab hum agile se waterfall jaisa feel kar rahe hain",
+  "output": "Matlab toh basically ab hum agile se waterfall jaisa feel kar rahe hain",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab chal nikalte hain bhai late ho raha hai",
-  "output": "Yaar, chal nikalte hain, bhai late ho raha hai",
+  "output": "Yaar toh matlab chal nikalte hain bhai late ho raha hai",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki sab kuch sorted hai release ke liye ready hain hum",
-  "output": "Sab kuch sorted hai, release ke liye ready hain hum.",
+  "output": "Toh yani ki sab kuch sorted hai release ke liye ready hain hum.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically bahut boring meeting thi aaj kuch kaam nahi hua",
-  "output": "Bahut boring meeting thi aaj, kuch kaam nahi hua",
+  "output": "Matlab toh basically bahut boring meeting thi aaj kuch kaam nahi hua",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar matlab toh ek aur round of review karo pehle merge mat karo",
-  "output": "Yaar, ek aur round of review karo, pehle merge mat karo",
+  "output": "Yaar matlab toh ek aur round of review karo pehle merge mat karo",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki ticket close ho gayi kaam complete hai",
-  "output": "Ticket close ho gayi, kaam complete hai",
+  "output": "Yani ki ticket close ho gayi kaam complete hai",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar naya project start hua exciting hai bahut",
-  "output": "Yaar, naya project start hua, exciting hai bahut",
+  "output": "Matlab toh basically yaar naya project start hua exciting hai bahut",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically core feature ready hai, edge cases baaki hain",
-  "output": "Core feature ready hai, edge cases baaki hain",
+  "output": "Toh basically core feature ready hai edge cases baaki hain",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh yaar kuch samajh nahi aa raha explain karo theek se",
-  "output": "Yaar, kuch samajh nahi aa raha, explain karo theek se",
+  "output": "Matlab toh yaar kuch samajh nahi aa raha explain karo theek se",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab plan final karo pehle phir shuru karte hain kaam",
-  "output": "Yaar, plan final karo pehle, phir shuru karte hain kaam.",
+  "output": "Yaar toh matlab plan final karo pehle phir shuru karte hain kaam.",
   "app_category": "Work"
 }
 
 {
-  "input": "yani ki ab naya tech stack use karenge yeh decision final hai",
-  "output": "Ab naya tech stack use karenge, yeh decision final hai.",
-  "app_category": "Work"
-}
-
-{
-  "input": "matlab toh basically aaj ka din waste ho gaya blockage thi",
-  "output": "Aaj ka din waste ho gaya, blockage thi",
+  "input": "yani ki ab naya tech stack use karenge uhhh yeh decision final hai",
+  "output": "Yani ki ab naya tech stack use karenge yeh decision final hai.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab ab sona chahta hoon raat bahut ho gayi",
-  "output": "Yaar, ab sona chahta hoon, raat bahut ho gayi",
+  "output": "Yaar toh matlab ab sona chahta hoon raat bahut ho gayi",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki finally kaam khatam hua aaj bahut productive din raha",
-  "output": "Finally kaam khatam hua aaj, bahut productive din raha",
+  "output": "Toh yani ki finally kaam khatam hua aaj bahut productive din raha",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar idea bahut achha hai lekin implementation mushkil hai",
-  "output": "Yaar, idea bahut achha hai lekin implementation mushkil hai",
+  "output": "Matlab toh basically yaar idea bahut achha hai lekin implementation mushkil hai",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab ab client presentation ke liye practice karo",
-  "output": "Yaar, ab client presentation ke liye practice karo.",
+  "output": "Yaar toh matlab ab client presentation ke liye practice karo.",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki environment variables missing thi isliye kaam nahi kar raha tha",
-  "output": "Environment variables missing thi isliye kaam nahi kar raha tha",
+  "output": "Yani ki environment variables missing thi isliye kaam nahi kar raha tha",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar abhi time nahi hai baad mein baat karte hain",
-  "output": "Yaar, abhi time nahi hai, baad mein baat karte hain",
+  "output": "Matlab toh basically yaar abhi time nahi hai baad mein baat karte hain",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically architecture review complete hua ab implementation shuru ho sakti hai",
-  "output": "Architecture review complete hua, ab implementation shuru ho sakti hai.",
+  "output": "Toh basically architecture review complete hua ab implementation shuru ho sakti hai.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh yaar kya hua tu theek hai",
-  "output": "Yaar, kya hua? Tu theek hai?",
+  "output": "Matlab toh yaar kya hua? Tu theek hai?",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab team ne overtime kiya tabhi kaam complete hua",
-  "output": "Yaar, team ne overtime kiya, tabhi kaam complete hua",
+  "output": "Yaar toh matlab team ne overtime kiya tabhi kaam complete hua",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki ab scope freeze ho gaya hai koi naye features nahi aayenge",
-  "output": "Ab scope freeze ho gaya hai, koi naye features nahi aayenge.",
+  "output": "Yani ki ab scope freeze ho gaya hai koi naye features nahi aayenge.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically is meeting ka koi matlab nahi tha",
-  "output": "Is meeting ka koi matlab nahi tha",
+  "output": "Matlab toh basically is meeting ka koi matlab nahi tha",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab next week tak sab sorted ho jayega",
-  "output": "Yaar, next week tak sab sorted ho jayega",
+  "output": "Yaar toh matlab next week tak sab sorted ho jayega",
   "app_category": "Work"
 }
 
 {
   "input": "toh yani ki kaam complete bhai ghar chalte hain",
-  "output": "Kaam complete, bhai ghar chalte hain",
+  "output": "Toh yani ki kaam complete bhai ghar chalte hain",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab mujhe lagta hai toh basically yeh wali approach production ready nahi hai",
-  "output": "Mujhe lagta hai yeh wali approach production ready nahi hai.",
+  "output": "Matlab mujhe lagta hai toh basically yeh wali approach production ready nahi hai.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar toh matlab ruko ek minute check karta hoon",
-  "output": "Yaar, ruko ek minute, check karta hoon",
+  "output": "Yaar toh matlab ruko ek minute check karta hoon",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki sab log sync hain koi confusion nahi hai",
-  "output": "Sab log sync hain, koi confusion nahi hai",
+  "output": "Yani ki sab log sync hain koi confusion nahi hai",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar bahut acha kiya tune, proud hoon",
-  "output": "Yaar, bahut achha kiya tune, proud hoon",
+  "output": "Matlab toh basically yaar bahut achha kiya tune proud hoon",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yaar ek kaam karo abhi build trigger karo CI pe",
-  "output": "Yaar, ek kaam karo, abhi build trigger karo CI pe",
+  "output": "Toh yaar ek kaam karo abhi build trigger karo CI pe",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki sare stakeholders ne green signal diya hai ab move karo",
-  "output": "Sare stakeholders ne green signal diya hai, ab move karo.",
+  "output": "Yani ki sare stakeholders ne green signal diya hai ab move karo.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar kuch toh theek nahi lag raha is plan mein",
-  "output": "Yaar, kuch toh theek nahi lag raha is plan mein",
+  "output": "Matlab toh basically yaar kuch toh theek nahi lag raha is plan mein",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar matlab sab ticket assign ho gaye hain sprint ka setup complete hai",
-  "output": "Yaar, sab ticket assign ho gaye hain, sprint ka setup complete hai",
+  "output": "Yaar matlab sab ticket assign ho gaye hain sprint ka setup complete hai",
   "app_category": "Work"
 }
 
 {
   "input": "toh basically ab regression testing shuru karo kal release hai",
-  "output": "Ab regression testing shuru karo, kal release hai",
+  "output": "Toh basically ab regression testing shuru karo kal release hai",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh yaar dinner pe milte hain aaj kisi restaurant pe",
-  "output": "Yaar, dinner pe milte hain aaj, kisi restaurant pe",
+  "output": "Matlab toh yaar dinner pe milte hain aaj kisi restaurant pe",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki ab trial period khatam ho gaya subscription lena padega",
-  "output": "Ab trial period khatam ho gaya, subscription lena padega",
+  "output": "Yani ki ab trial period khatam ho gaya subscription lena padega",
   "app_category": "Personal"
 }
 
 {
   "input": "matlab toh basically yaar phir se discussion shuru ho gayi koi decision nahi",
-  "output": "Yaar, phir se discussion shuru ho gayi, koi decision nahi",
+  "output": "Matlab toh basically yaar phir se discussion shuru ho gayi koi decision nahi",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh ab dekhte hain aage kya hota hai",
-  "output": "Yaar, ab dekhte hain aage kya hota hai",
+  "output": "Yaar matlab toh ab dekhte hain aage kya hota hai",
   "app_category": "Personal"
 }
 
 {
   "input": "arre yaar tune yeh pehle kyun nahi bataya main toh soch raha tha sab theek hai",
-  "output": "Arre yaar, tune yeh pehle kyun nahi bataya? Main toh soch raha tha sab theek hai",
+  "output": "Arre yaar tune yeh pehle kyun nahi bataya? Main toh soch raha tha sab theek hai",
   "app_category": "Personal"
 }
 
 {
-  "input": "suno na backend pe naya rate limit add kiya hai sab APIs pe lagega",
-  "output": "Suno na, backend pe naya rate limit add kiya hai, sab APIs pe lagega.",
-  "app_category": "Work"
-}
-
-{
   "input": "toh basically ab testing complete hai staging se prod le jaayenge",
-  "output": "Ab testing complete hai, staging se prod le jaayenge.",
+  "output": "Toh basically ab testing complete hai staging se prod le jaayenge.",
   "app_category": "Work"
 }
 
 {
   "input": "uh deploy karna hai aaj production pe approvals pending hain",
-  "output": "Deploy karna hai aaj production pe, approvals pending hain",
+  "output": "Deploy karna hai aaj production pe approvals pending hain",
   "app_category": "Work"
 }
 
 {
-  "input": "uh mera bonus abhi tak credit nahi hua accounts se check karna hai",
-  "output": "Mera bonus abhi tak credit nahi hua, accounts se check karna hai.",
+  "input": "uh mera bonus abhi tak credit nahi hua uhh accounts se check karna hai",
+  "output": "Mera bonus abhi tak credit nahi hua accounts se check karna hai.",
   "app_category": "Personal"
 }
 
 {
   "input": "bhai party kab hai kal ya parso",
-  "output": "Bhai, party kab hai, kal ya parso?",
+  "output": "Bhai party kab hai kal ya parso?",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh maine PR review kar diya hai changes minor hain merge kar sakte ho",
-  "output": "Maine PR review kar diya hai, changes minor hain, merge kar sakte ho.",
+  "input": "uh maine pr review kar diya hai changes minor hain merge kar sakte ho",
+  "output": "Maine PR review kar diya hai changes minor hain merge kar sakte ho.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar kal office time important meeting hai mat bhoolna",
-  "output": "Yaar, kal office time important meeting hai, mat bhoolna.",
+  "output": "Yaar kal office time important meeting hai mat bhoolna.",
   "app_category": "Personal"
 }
 
 {
   "input": "suno na ek naya client aaya hai onboarding karna hai",
-  "output": "Suno na, ek naya client aaya hai, onboarding karna hai.",
+  "output": "Suno na ek naya client aaya hai onboarding karna hai.",
   "app_category": "Work"
 }
 
 {
   "input": "arre yaar kya hua kyun hua batao mujhe kya problem aai",
-  "output": "Arre yaar, kya hua? Kyun hua? Batao mujhe, kya problem aayi?",
+  "output": "Arre yaar kya hua? Kyun hua? Batao mujhe kya problem aayi?",
   "app_category": "Personal"
 }
 
 {
   "input": "uh apna pull request update karo please conflicts hain",
-  "output": "Apna pull request update karo please, conflicts hain",
+  "output": "Apna pull request update karo please conflicts hain",
   "app_category": "Work"
 }
 
 {
-  "input": "bhai kharido shayad discount mi raha hai kal sale khatam ho jaayegi",
-  "output": "Bhai, kharido, shayad discount mil raha hai, kal sale khatam ho jaayegi",
+  "input": "bhai kharido shayad discount mil raha hai kal sale khatam ho jaayegi",
+  "output": "Bhai kharido shayad discount mil raha hai kal sale khatam ho jaayegi",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar matlab kab aayega result online hai kya abhi tak",
-  "output": "Yaar, kab aayega result? Online hai kya abhi tak?",
+  "output": "Yaar matlab kab aayega result? Online hai kya abhi tak?",
   "app_category": "Personal"
 }
 
 {
   "input": "uh mera local environment setup nahi ho raha hai help karo",
-  "output": "Mera local environment setup nahi ho raha hai, help karo",
+  "output": "Mera local environment setup nahi ho raha hai help karo",
   "app_category": "Work"
 }
 
 {
   "input": "arre yaar photoshoot ka plan bana lo weekend mein ghumenge bhi",
-  "output": "Arre yaar, photoshoot ka plan bana lo, weekend mein ghumenge bhi",
+  "output": "Arre yaar photoshoot ka plan bana lo weekend mein ghumenge bhi",
   "app_category": "Personal"
 }
 
 {
   "input": "suno na accounts ne bola hai invoice pending hai jaldi bhejo",
-  "output": "Suno na, accounts ne bola hai invoice pending hai, jaldi bhejo.",
+  "output": "Suno na accounts ne bola hai invoice pending hai jaldi bhejo.",
   "app_category": "Work"
 }
 
 {
   "input": "bhai kal wali movie dekhni hai ticket book karo jaldi karo",
-  "output": "Bhai, kal wali movie dekhni hai, ticket book karo, jaldi karo",
+  "output": "Bhai kal wali movie dekhni hai ticket book karo jaldi karo",
   "app_category": "Personal"
 }
 
 {
-  "input": "uh code review kar do merge karna hai aaj release ke liye",
-  "output": "Code review kar do, merge karna hai aaj release ke liye.",
+  "input": "uh code review kar do merge karna hai uhh aaj release ke liye",
+  "output": "Code review kar do merge karna hai aaj release ke liye.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar khaana khaya kya ya phir skip kar diya phir se",
-  "output": "Yaar, khaana khaya kya ya phir skip kar diya phir se?",
+  "output": "Yaar khaana khaya kya ya phir skip kar diya phir se?",
   "app_category": "Personal"
 }
 
 {
   "input": "suno na naya team member aaya hai usse tasks dena hai kya plan hai",
-  "output": "Suno na, naya team member aaya hai, usse tasks dena hai, kya plan hai?",
+  "output": "Suno na naya team member aaya hai usse tasks dena hai kya plan hai?",
   "app_category": "Work"
 }
 
 {
   "input": "arre yaar flight ticket compare karo abhi prices kam hain",
-  "output": "Arre yaar, flight ticket compare karo, abhi prices kam hain",
+  "output": "Arre yaar flight ticket compare karo abhi prices kam hain",
   "app_category": "Personal"
 }
 
 {
   "input": "uh server alerts aa rahe hain koi dekh raha hai kya",
-  "output": "Server alerts aa rahe hain, koi dekh raha hai kya?",
+  "output": "Server alerts aa rahe hain koi dekh raha hai kya?",
   "app_category": "Work"
 }
 
 {
   "input": "bhai gym jaana hai aaj sham ko milte hain wahan",
-  "output": "Bhai, gym jaana hai aaj sham ko, milte hain wahan",
+  "output": "Bhai gym jaana hai aaj sham ko milte hain wahan",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar sprint review meeting hai kal material ready karo",
-  "output": "Yaar, sprint review meeting hai kal, material ready karo.",
+  "output": "Yaar sprint review meeting hai kal material ready karo.",
   "app_category": "Work"
 }
 
@@ -3756,253 +3620,252 @@
 
 {
   "input": "suno na client ka call hai ek ghante mein sab ready raho",
-  "output": "Suno na, client ka call hai ek ghante mein, sab ready raho.",
+  "output": "Suno na client ka call hai ek ghante mein sab ready raho.",
   "app_category": "Work"
 }
 
 {
-  "input": "arre yaar roz uthna problem hai mujhe alarm lagaana padega",
-  "output": "Arre yaar, roz uthna problem hai mujhe, alarm lagaana padega",
+  "input": "arre yaar roz uthna problem hai mujhe alarm lagaana padega uhh",
+  "output": "Arre yaar roz uthna problem hai mujhe alarm lagaana padega",
   "app_category": "Personal"
 }
 
 {
-  "input": "bhai meri request approve karo pls urgent hai",
-  "output": "Bhai, meri request approve karo pls, urgent hai",
+  "input": "bhai meri request approve karo please urgent hai",
+  "output": "Bhai meri request approve karo please urgent hai",
   "app_category": "Work"
 }
 
 {
   "input": "uh documentation update karo nahi toh new developers confuse ho jaayenge",
-  "output": "Documentation update karo, nahi toh new developers confuse ho jaayenge.",
+  "output": "Documentation update karo nahi toh new developers confuse ho jaayenge.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar kab aaega payment tera freelance wala abhi tak nahi aaya",
-  "output": "Yaar, kab aaega payment tera freelance wala? Abhi tak nahi aaya?",
+  "output": "Yaar kab aaega payment tera freelance wala? Abhi tak nahi aaya?",
   "app_category": "Personal"
 }
 
 {
   "input": "suno na team ke liye pizza order karte hain aaj raat celebration hai",
-  "output": "Suno na, team ke liye pizza order karte hain, aaj raat celebration hai",
+  "output": "Suno na team ke liye pizza order karte hain aaj raat celebration hai",
   "app_category": "Personal"
 }
 
 {
   "input": "arre yaar interview ke liye prepare karo DSA aur system design important hai",
-  "output": "Arre yaar, interview ke liye prepare karo, DSA aur system design important hai",
+  "output": "Arre yaar interview ke liye prepare karo DSA aur system design important hai",
   "app_category": "Personal"
 }
 
 {
   "input": "uh yeh error stack trace share karo taki dekh sakein kya ho raha hai",
-  "output": "Yeh error stack trace share karo, taki dekh sakein kya ho raha hai",
+  "output": "Yeh error stack trace share karo taki dekh sakein kya ho raha hai",
   "app_category": "Work"
 }
 
 {
   "input": "bhai kab milenge yaar bahut din ho gaye ek baar milna chahiye hain",
-  "output": "Bhai, kab milenge? Yaar, bahut din ho gaye, ek baar milna chahiye hain",
+  "output": "Bhai kab milenge? Yaar bahut din ho gaye ek baar milna chahiye hain",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically ab feature freeze ho gayi hai sirf bug fixes acceptable hain",
-  "output": "Ab feature freeze ho gayi hai, sirf bug fixes acceptable hain.",
+  "output": "Toh basically ab feature freeze ho gayi hai sirf bug fixes acceptable hain.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar tu bilkul sahi tha main galat tha",
-  "output": "Yaar, tu bilkul sahi tha, main galat tha",
+  "output": "Matlab toh basically yaar tu bilkul sahi tha main galat tha",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab meeting mein kya decide hua kuch important tha kya",
-  "output": "Yaar, meeting mein kya decide hua? Kuch important tha kya?",
+  "output": "Yaar toh matlab meeting mein kya decide hua? Kuch important tha kya?",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki ab naya sprint plan ready hai sab ko share karo",
-  "output": "Ab naya sprint plan ready hai, sab ko share karo.",
+  "output": "Toh yani ki ab naya sprint plan ready hai sab ko share karo.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar itna sochne ki kya zaroorat hai simple hai yeh",
-  "output": "Yaar, itna sochne ki kya zaroorat hai, simple hai yeh",
+  "output": "Matlab toh basically yaar itna sochne ki kya zaroorat hai simple hai yeh",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab ek kaam kar abhi log out kar aur phir login kar",
-  "output": "Yaar, ek kaam kar, abhi log out kar aur phir login kar",
+  "output": "Yaar toh matlab ek kaam kar abhi log out kar aur phir login kar",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki performance metrics improve hue hain is release ke baad",
-  "output": "Performance metrics improve hue hain, is release ke baad.",
+  "output": "Yani ki performance metrics improve hue hain is release ke baad.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar mujhe dar lag raha hai presentation se kal",
-  "output": "Yaar, mujhe dar lag raha hai presentation se kal",
+  "output": "Matlab toh basically yaar mujhe dar lag raha hai presentation se kal",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically endpoint response time 200ms se kam aa rahi hai",
-  "output": "Endpoint response time 200ms se kam aa rahi hai.",
+  "output": "Toh basically endpoint response time 200ms se kam aa rahi hai.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh itni mitti kaat rahe ho bhai theek se kaam karo",
-  "output": "Yaar, itni mitti kaat rahe ho bhai, theek se kaam karo",
+  "output": "Yaar matlab toh itni mitti kaat rahe ho bhai theek se kaam karo",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki security audit complete ho gayi hai no major findings",
-  "output": "Security audit complete ho gayi hai, no major findings.",
+  "output": "Yani ki security audit complete ho gayi hai no major findings.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar roz subah utho exercise karo health important hai",
-  "output": "Yaar, roz subah utho, exercise karo, health important hai",
+  "output": "Matlab toh basically yaar roz subah utho uhh exercise karo health important hai",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yaar matlab staging pe test karo pehle phir prod pe daalte hain",
-  "output": "Yaar, staging pe test karo pehle, phir prod pe daalte hain",
+  "output": "Toh yaar matlab staging pe test karo pehle phir prod pe daalte hain",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki ab roadmap review hoga next week sabko prepare rehna hai",
-  "output": "Ab roadmap review hoga next week, sabko prepare rehna hai.",
+  "output": "Yani ki ab roadmap review hoga next week sabko prepare rehna hai.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar mujhe samajh aa gaya shukriya explain karne ke liye",
-  "output": "Yaar, mujhe samajh aa gaya, shukriya explain karne ke liye",
+  "output": "Matlab toh basically yaar mujhe samajh aa gaya shukriya explain karne ke liye",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically dev environment down hai koi fix karo jaldi",
-  "output": "Dev environment down hai, koi fix karo jaldi",
+  "output": "Toh basically dev environment down hai koi fix karo jaldi",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh kyun hua yeh bata kya kiya tune",
-  "output": "Yaar, kyun hua yeh? Bata, kya kiya tune?",
+  "output": "Yaar matlab toh kyun hua yeh? Bata kya kiya tune?",
   "app_category": "Personal"
 }
 
 {
   "input": "yani ki ab frontend aur backend dono ready hain integration shuru kar sakte hain",
-  "output": "Ab frontend aur backend dono ready hain, integration shuru kar sakte hain.",
+  "output": "Yani ki ab frontend aur backend dono ready hain integration shuru kar sakte hain.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar please dikha kya likh raha hai woh",
-  "output": "Yaar, please dikha, kya likh raha hai woh?",
+  "output": "Matlab toh basically yaar please dikha kya likh raha hai woh?",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically QA ne bug log kiya hai priority high hai jaldi dekho",
-  "output": "QA ne bug log kiya hai, priority high hai, jaldi dekho",
+  "output": "Toh basically QA ne bug log kiya hai priority high hai jaldi dekho",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh kitna time lagega abhi batao estimate do",
-  "output": "Yaar, kitna time lagega? Abhi batao, estimate do",
+  "output": "Yaar matlab toh kitna time lagega? Abhi batao estimate do",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki ab naya office shift ho gaya hai address update karo everywhere",
-  "output": "Ab naya office shift ho gaya hai, address update karo everywhere.",
+  "output": "Yani ki ab naya office shift ho gaya hai address update karo everywhere.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh yaar aaj kitna kaam kiya you deserve rest",
-  "output": "Yaar, aaj kitna kaam kiya, you deserve rest",
+  "output": "Matlab toh yaar aaj kitna kaam kiya you deserve rest",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically deployment successful rahi koi issues nahi aaye",
-  "output": "Deployment successful rahi, koi issues nahi aaye",
+  "output": "Toh basically deployment successful rahi koi issues nahi aaye",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh yeh feature sirf premium users ke liye available hoga",
-  "output": "Yaar, yeh feature sirf premium users ke liye available hoga",
+  "output": "Yaar matlab toh yeh feature sirf premium users ke liye available hoga",
   "app_category": "Work"
 }
 
 {
   "input": "yani ki sab approvals aa gayi hain project start kar sakte hain",
-  "output": "Sab approvals aa gayi hain, project start kar sakte hain.",
+  "output": "Yani ki sab approvals aa gayi hain project start kar sakte hain.",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar kya kar raha hai bata kuch update de",
-  "output": "Yaar, kya kar raha hai? Bata, kuch update de",
+  "output": "Matlab toh basically yaar kya kar raha hai? Bata kuch update de",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki final testing ho gayi hai sab clear release karo",
-  "output": "Final testing ho gayi hai, sab clear, release karo.",
+  "output": "Toh yani ki final testing ho gayi hai sab clear release karo.",
   "app_category": "Work"
 }
 
 {
   "input": "yaar matlab toh aaj bahut productive din raha sab tasks complete",
-  "output": "Yaar, aaj bahut productive din raha, sab tasks complete",
+  "output": "Yaar matlab toh aaj toh bahut productive din raha sab tasks complete",
   "app_category": "Personal"
 }
 
 {
   "input": "toh basically on call engineer ko alert karo abhi wait mat karo",
-  "output": "On call engineer ko alert karo, abhi wait mat karo",
+  "output": "Toh basically on call engineer ko alert karo abhi wait mat karo",
   "app_category": "Work"
 }
 
 {
   "input": "matlab toh basically yaar yeh decision long term mein galat sabit hoga",
-  "output": "Yaar, yeh decision long term mein galat sabit hoga",
+  "output": "Matlab toh basically yaar yeh decision long term mein galat sabit hoga",
   "app_category": "Personal"
 }
 
 {
   "input": "yaar toh matlab shukriya bhai bahut help ki tune aaj",
-  "output": "Yaar, shukriya bhai, bahut help ki tune aaj",
+  "output": "Yaar toh matlab shukriya bhai bahut help ki tune aaj",
   "app_category": "Personal"
 }
 
 {
   "input": "toh yani ki conference mein present karenge naya product demo hoga",
-  "output": "Conference mein present karenge, naya product demo hoga.",
+  "output": "Toh yani ki conference mein uhh present karenge naya product demo hoga.",
   "app_category": "Work"
 }
-
