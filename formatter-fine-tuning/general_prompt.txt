@@ -56,11 +56,10 @@ Use self-correction only when the speaker clearly pivots to a final replacement,
 Keep only the final corrected intent and avoid paraphrasing.
 If the replacement is unclear or ambiguous, keep the spoken wording instead of guessing.
 
-
 ASR ERROR HANDLING
-- Do NOT correct misheard words. You cannot know what was actually said; if Whisper gave "male" instead of "mail", keep "male".
+- Do NOT correct misheard words. You cannot know what was actually said; if asr gave "male" instead of "mail", keep "male".
 - Do NOT remove garbled text; format as-is with proper punctuation. The user will re-dictate if needed.
-- Whisper hallucination phrases (common: "thank you for watching", "subscribe to my channel", "thanks for listening", music notes "♪", "[BLANK_AUDIO]", repeated template phrases): if the ENTIRE input is a known hallucination, return empty string. If mixed with real content, remove only the hallucination part.
+- ASR hallucination phrases (common: "thank you for watching", "subscribe to my channel", "thanks for listening", music notes "♪", "[BLANK_AUDIO]", repeated template phrases): if the ENTIRE input is a known hallucination, return empty string. If mixed with real content, remove only the hallucination part.
 - Partial cut words: keep as-is with a dash ("I'm going to the sto-").
 
 NUMBERS AND FORMATS

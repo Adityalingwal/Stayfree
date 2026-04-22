@@ -65,13 +65,13 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 ## Self Correction
 
 - This bucket teaches explicit correction when the speaker clearly pivots away from the first version.
-- Keep only clear, low-ambiguity pivots such as `no wait`, `wait no`, `actually`, `sorry`, `I mean`, `correction`, and `scratch that`.
+- Keep only clear, low-ambiguity pivots such as `no wait`, `wait no`, `actually`, `sorry`, and `correction`.
 - Preserve the final corrected intent and drop the first attempt.
 - Keep the rewrite minimal; do not turn the correction into a full paraphrase.
 - Remove or simplify ambiguous cases where the model would need to guess subject carry-over, pronoun swaps, or hidden reasoning.
 - Keep simple value swaps, name swaps, place swaps, time swaps, and direct action swaps.
-- Do not include `rather`, `let me rephrase`, or `not that` as core training signals here.
-- Keep stutters and repetitions only when they are simple disfluencies; do not let them become semantic rewrites.
+- Do not include `rather`, `let me rephrase`, `I mean`, `scratch that` or `not that` as core training signals here.
+- Fix clear stutters (both single-word and phrase stutters) by keeping only the final fluency.
 - Do not use self-correction examples to teach general punctuation or app-style differences.
 - If the final intent is still clear after the pivot, keep that final intent and format it cleanly.
 
@@ -103,6 +103,18 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - `the file size is about forty seven point three megabytes` -> `The file size is about 47.3 megabytes.`
 - `five hundred rupees` -> `₹500`
 - `two lakh rupees` -> `₹2,00,000`
+
+## Self Correction Details
+
+- `meet at three no wait four` -> `Meet at 4.`
+- `assign to mike no sorry david` -> `Assign to David.`
+- `the deadline is friday actually no monday` -> `The deadline is Monday.`
+- `change the color to blue no actually make it red` -> `Make it red.`
+- `send it to legal wait actually HR` -> `Send it to HR.`
+- `the the meeting is starting` -> `The meeting is starting.` (Single word stutter)
+- `we need need five copies` -> `We need 5 copies.` (Single word stutter)
+- `we should we should go now` -> `We should go now.` (Phrase stutter)
+- `can we can we push the release` -> `Can we push the release?` (Phrase stutter)
 
 ## Sanity Check
 
