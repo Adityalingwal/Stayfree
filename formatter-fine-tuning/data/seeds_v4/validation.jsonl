@@ -95,12 +95,6 @@
 }
 
 {
-  "input": "how to set up a reverse proxy with nginx for a node app on ubuntu",
-  "output": "How to set up a reverse proxy with Nginx for a Node app on Ubuntu?",
-  "app_category": "Other"
-}
-
-{
   "input": "toh yaar sach mein bohot thak gaya hun aaj ghar jaldi ja raha hoon",
   "output": "Yaar, sach mein bohot thak gaya hun aaj, ghar jaldi ja raha hoon",
   "app_category": "Personal"
@@ -155,12 +149,6 @@
 }
 
 {
-  "input": "write a shell script to monitor disk usage and send alert if it exceeds eighty percent",
-  "output": "Write a shell script to monitor disk usage and send an alert if it exceeds 80%.",
-  "app_category": "Other"
-}
-
-{
   "input": "the console throws type error cannot read property data of undefined",
   "output": "The console throws 'TypeError: Cannot read property data of undefined'",
   "app_category": "Work"
@@ -188,12 +176,6 @@
   "input": "we need two more days to thoroughly test the integration",
   "output": "We need two more days to thoroughly test the integration.",
   "app_category": "Work"
-}
-
-{
-  "input": "top five productivity apps for mac in twenty twenty five",
-  "output": "Top 5 productivity apps for Mac in 2025",
-  "app_category": "Other"
 }
 
 {
@@ -263,12 +245,6 @@
 }
 
 {
-  "input": "rewrite this function to be more readable and add JSDoc comments",
-  "output": "Rewrite this function to be more readable and add JSDoc comments.",
-  "app_category": "Other"
-}
-
-{
   "input": "this Wi-Fi is ABSOLUTELY TERRIBLE I cannot load a single page right now",
   "output": "This Wi-Fi is ABSOLUTELY TERRIBLE, I cannot load a single page right now",
   "app_category": "Personal"
@@ -302,12 +278,6 @@
   "input": "meet at six I mean seven I always mess up time zones",
   "output": "Meet at seven, I always mess up time zones",
   "app_category": "Personal"
-}
-
-{
-  "input": "why is my react component re-rendering too many times how do I fix it",
-  "output": "Why is my React component re-rendering too many times? How do I fix it?",
-  "app_category": "Other"
 }
 
 {
@@ -365,12 +335,6 @@
 }
 
 {
-  "input": "note book haircut appointment for saturday and pick up dry cleaning after",
-  "output": "Note: book haircut appointment for Saturday and pick up dry cleaning after",
-  "app_category": "Other"
-}
-
-{
   "input": "yaar toh yeh project mein itna scope creep ho raha hai banda pagal ho jaayega",
   "output": "Yaar, yeh project mein itna scope creep ho raha hai, banda pagal ho jaayega",
   "app_category": "Personal"
@@ -410,12 +374,6 @@
   "input": "the pre-launch tasks are one finalize copy two get legal sign off three brief the team four publish",
   "output": "The pre-launch tasks are:\n1. Finalize copy\n2. Get legal sign off\n3. Brief the team\n4. Publish.",
   "app_category": "Work"
-}
-
-{
-  "input": "create a notion template for weekly planning with focus areas habits and reflections",
-  "output": "Create a Notion template for weekly planning with focus areas, habits, and reflections.",
-  "app_category": "Other"
 }
 
 {
@@ -479,18 +437,6 @@
 }
 
 {
-  "input": "what is the difference between supervised and unsupervised learning in simple terms",
-  "output": "What is the difference between supervised and unsupervised learning in simple terms?",
-  "app_category": "Other"
-}
-
-{
-  "input": "note to self call accountant on tuesday about Q one tax filing",
-  "output": "Note to self: call accountant on Tuesday about Q1 tax filing.",
-  "app_category": "Other"
-}
-
-{
   "input": "give the new feature to priya no wait to the platform squad it's infrastructure work",
   "output": "Give the new feature to the platform squad, it's infrastructure work",
   "app_category": "Work"
@@ -512,12 +458,6 @@
   "input": "the monthly targets are one grow DAU by ten percent two reduce churn to five percent",
   "output": "The monthly targets are:\n1. Grow DAU by 10%\n2. Reduce churn to 5%.",
   "app_category": "Work"
-}
-
-{
-  "input": "open the app delegate file and add push notification registration on app launch",
-  "output": "Open the AppDelegate file and add push notification registration on app launch.",
-  "app_category": "Other"
 }
 
 {
@@ -575,18 +515,6 @@
 }
 
 {
-  "input": "note call the plumber this week about the bathroom leak before it gets worse",
-  "output": "Note: call the plumber this week about the bathroom leak before it gets worse",
-  "app_category": "Other"
-}
-
-{
-  "input": "write a SQL query to get the top ten customers by total purchase amount this quarter",
-  "output": "Write a SQL query to get the top 10 customers by total purchase amount this quarter.",
-  "app_category": "Other"
-}
-
-{
   "input": "update the version to three point oh no two point nine for backward compat",
   "output": "Update the version to 2.9 for backward compatibility",
   "app_category": "Work"
@@ -608,12 +536,6 @@
   "input": "close the ticket no I mean escalate it the issue is still open",
   "output": "Escalate the ticket, the issue is still open.",
   "app_category": "Work"
-}
-
-{
-  "input": "write a python decorator that logs the execution time of any function",
-  "output": "Write a Python decorator that logs the execution time of any function.",
-  "app_category": "Other"
 }
 
 {
@@ -683,12 +605,6 @@
 }
 
 {
-  "input": "set up a daily log page in notion with mood tracker sleep hours and top three tasks",
-  "output": "Set up a daily log page in Notion with mood tracker, sleep hours, and top 3 tasks.",
-  "app_category": "Other"
-}
-
-{
   "input": "the load balancer is configured to timeout after thirty seconds not sixty",
   "output": "The load balancer is configured to timeout after 30 seconds, not 60.",
   "app_category": "Work"
@@ -743,12 +659,6 @@
 }
 
 {
-  "input": "add a note dinner with parents on the twenty second at seven thirty pm",
-  "output": "Add a note: dinner with parents on the 22nd at 7:30 PM",
-  "app_category": "Other"
-}
-
-{
   "input": "the contract value is three hundred thousand dollars for a twelve month engagement",
   "output": "The contract value is $300,000 for a 12-month engagement.",
   "app_category": "Work"
@@ -794,12 +704,6 @@
   "input": "so basically we moved the dinner reservation from seven to eight pm",
   "output": "We moved the dinner reservation from 7 to 8 PM",
   "app_category": "Personal"
-}
-
-{
-  "input": "note renew car insurance before the tenth of next month it expires then",
-  "output": "Note: renew car insurance before the 10th of next month, it expires then",
-  "app_category": "Other"
 }
 
 {
@@ -872,12 +776,6 @@
   "input": "the principle behind this design pattern is separation of concerns",
   "output": "The principle behind this design pattern is separation of concerns.",
   "app_category": "Work"
-}
-
-{
-  "input": "how does the event loop work in node dot js explain with an example",
-  "output": "How does the event loop work in Node.js? Explain with an example",
-  "app_category": "Other"
 }
 
 {
@@ -983,39 +881,15 @@
 }
 
 {
-  "input": "how to center a div in CSS in twenty twenty five",
-  "output": "How to center a div in CSS in 2025?",
-  "app_category": "Other"
-}
-
-{
   "input": "they're approach to scaling is two reactive not proactive",
   "output": "They're approach to scaling is two reactive not proactive.",
   "app_category": "Work"
 }
 
 {
-  "input": "summarize this research paper on transformer attention mechanisms in three bullet points",
-  "output": "Summarize this research paper on transformer attention mechanisms in 3 bullet points.",
-  "app_category": "Other"
-}
-
-{
-  "input": "machine learning versus deep learning what is the actual difference",
-  "output": "Machine learning vs deep learning — what is the actual difference?",
-  "app_category": "Other"
-}
-
-{
   "input": "my weight has gone down by two point five kilograms in six weeks great progress",
   "output": "My weight has gone down by 2.5kg in 6 weeks, great progress",
   "app_category": "Personal"
-}
-
-{
-  "input": "add a github action to auto-deploy my next dot js app to vercel on merge to main",
-  "output": "Add a GitHub Action to auto-deploy my Next.js app to Vercel on merge to main.",
-  "app_category": "Other"
 }
 
 {
@@ -1028,12 +902,6 @@
   "input": "the log reads uncaught reference error foo is not defined at script dot js line forty two",
   "output": "The log reads 'Uncaught ReferenceError: foo is not defined at script.js line 42'",
   "app_category": "Work"
-}
-
-{
-  "input": "implement a debounce function in java script with configurable delay",
-  "output": "Implement a debounce function in JavaScript with configurable delay.",
-  "app_category": "Other"
 }
 
 {
@@ -1097,12 +965,6 @@
 }
 
 {
-  "input": "fix this xcode build error no such module firebase analytics",
-  "output": "Fix this Xcode build error: 'No such module FirebaseAnalytics'.",
-  "app_category": "Other"
-}
-
-{
   "input": "the team velocity increased by thirty five percent in the last two sprints",
   "output": "The team velocity increased by 35% in the last 2 sprints.",
   "app_category": "Work"
@@ -1130,12 +992,6 @@
   "input": "call dad no wait text him he might be in a meeting",
   "output": "Text dad, he might be in a meeting",
   "app_category": "Personal"
-}
-
-{
-  "input": "best open source alternatives to notion for self-hosting",
-  "output": "Best open-source alternatives to Notion for self-hosting",
-  "app_category": "Other"
 }
 
 {
@@ -1205,18 +1061,6 @@
 }
 
 {
-  "input": "best standing desks under thirty thousand rupees in india",
-  "output": "Best standing desks under ₹30,000 in India",
-  "app_category": "Other"
-}
-
-{
-  "input": "generate a cover letter for a senior backend engineer role at a fintech startup",
-  "output": "Generate a cover letter for a Senior Backend Engineer role at a fintech startup.",
-  "app_category": "Other"
-}
-
-{
   "input": "the feature rolled out to twenty percent of users since last tuesday",
   "output": "The feature rolled out to 20% of users since last Tuesday.",
   "app_category": "Work"
@@ -1281,4 +1125,3 @@
   "output": "I'm running 15 minutes late, the metro was delayed",
   "app_category": "Personal"
 }
-

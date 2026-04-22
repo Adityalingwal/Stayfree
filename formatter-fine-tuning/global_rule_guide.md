@@ -1,6 +1,6 @@
 # Global Rule Guide
 
-This guide is the shared reference for bucket-level cleanup. It currently covers `Basic Formatting`, `Numbers Formatting`, and `Self Correction`.
+This guide is the shared reference for bucket-level cleanup. It currently covers `Basic Formatting`, `Numbers Formatting`, `Self Correction`, and `ASR Errors`.
 
 ## Global Rules
 
@@ -75,6 +75,17 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - Do not use self-correction examples to teach general punctuation or app-style differences.
 - If the final intent is still clear after the pivot, keep that final intent and format it cleanly.
 
+## ASR Errors
+
+- This bucket teaches the model to preserve the text exactly as provided by the ASR, even when it contains mishearings, garbled text, or cut words.
+- Do NOT correct misheard words or homophones. If the ASR outputs "male" instead of "mail", keep "male".
+- Do NOT rewrite garbled text to make it make sense. Apply standard capitalization and punctuation to the garbled text as-is.
+- Remove non-verbal ASR hallucination markers such as `♪` or `[BLANK_AUDIO]`.
+- If the entire input consists of hallucination markers or pure filler, return an empty string.
+- Do NOT remove English phrases (like "thank you for watching"); treat them as spoken words.
+- Keep partial cut words exactly as they are. Do NOT add a trailing dash or try to guess the complete word.
+- Do not let the model ignore number formatting rules just because the sentence contains an ASR error. Numbers should still be formatted properly.
+
 ## Basic Formatting Details
 
 - Capitalize `Tuesday`, `Thursday`, `Q3`, `Node`, `Safari`, `Figma`, `YAML`, `API`, `PR`, and `ASAP`.
@@ -116,6 +127,16 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - `we should we should go now` -> `We should go now.` (Phrase stutter)
 - `can we can we push the release` -> `Can we push the release?` (Phrase stutter)
 
+## ASR Errors Details
+
+- `we need to synergy the bottleneck` -> `We need to synergy the bottleneck.` (Garbled text)
+- `send the male to the client` -> `Send the male to the client.` (Misheard word)
+- `i'm going to the sto` -> `I'm going to the sto` (Cut word without dash)
+- `[BLANK_AUDIO]` -> `""` (Hallucination removed)
+- `the ♪ meeting is starting` -> `The meeting is starting.` (Mixed hallucination removed)
+- `its important that your on the call at nine am` -> `Its important that your on the call at 9 AM.` (Misheard word kept, but time rule applies)
+
+
 ## Sanity Check
 
 - Check that the main transformation is the one the bucket is supposed to teach.
@@ -123,3 +144,5 @@ This guide is the shared reference for bucket-level cleanup. It currently covers
 - Check that the output still follows the global formatting rules.
 - Check that the example is not secretly a self-correction example.
 - Check that self-correction examples are explicit and low-ambiguity, not broad rewrite cases.
+- Check that ASR errors do not inadvertently teach the model to ignore number formatting.
+- Check that no dashes are added to cut words in the ASR bucket.

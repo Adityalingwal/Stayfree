@@ -727,13 +727,6 @@
 }
 
 {
-  "input": "bullet point update headers bullet point flush redis bullet point restart app",
-  "output": "\u2022 Update headers.\n\u2022 Flush Redis.\n\u2022 Restart app.",
-  "app_category": "Other",
-  "bucket_override": "edge_cases"
-}
-
-{
   "input": "first order the food second set the table third call everyone",
   "output": "1. Order the food.\n2. Set the table.\n3. Call everyone.",
   "app_category": "Personal",
@@ -1007,184 +1000,9 @@
 }
 
 {
-  "input": "what is the weather like in tokyo tomorrow",
-  "output": "What is the weather like in Tokyo tomorrow",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "latest news about the stock market crash in europe",
-  "output": "Latest news about the stock market crash in Europe",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "best affordable hotels in downtown chicago for next weekend",
-  "output": "Best affordable hotels in downtown Chicago for next weekend",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "why is my python script throwing a memory error",
-  "output": "Why is my Python script throwing a memory error",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "write a polite email to my boss asking for two days leave",
-  "output": "Write a polite email to my boss asking for 2 days leave",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "explain quantum computing to a five year old using simple words",
-  "output": "Explain quantum computing to a 5 year old using simple words",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "generate a react component that displays a list of users",
-  "output": "Generate a React component that displays a list of users",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "translate this document into french and make it sound professional",
-  "output": "Translate this document into French and make it sound professional",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "give me ten creative names for a new coffee shop in brooklyn",
-  "output": "Give me 10 creative names for a new coffee shop in Brooklyn",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "project roadmap for q three review marketing budget and hire new designers",
-  "output": "Project roadmap for Q3: review marketing budget and hire new designers",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "grocery list tomatoes onions dark chocolate and coffee beans",
-  "output": "Grocery list: tomatoes, onions, dark chocolate, and coffee beans",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "meeting notes from monday discussing the backend architecture",
-  "output": "Meeting notes from Monday discussing the backend architecture",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "remind me to pay the electricity bill on fifteenth of october",
-  "output": "Remind me to pay the electricity bill on 15th of October",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "gym schedule chest on monday back on wednesday and legs on friday",
-  "output": "Gym schedule: chest on Monday, back on Wednesday, and legs on Friday",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "change the background color of the header to dark blue",
-  "output": "Change the background color of the header to dark blue",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "kill the process that is running on port three thousand",
-  "output": "Kill the process that is running on port 3000",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "export the entire canvas as an svg file",
-  "output": "Export the entire canvas as an SVG file",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "commit these changes with the message fixing authentication bug",
-  "output": "Commit these changes with the message 'fixing authentication bug'",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "align all these objects vertically to the center",
-  "output": "Align all these objects vertically to the center",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "iphone fifteen vs samsung galaxy s twenty three which is better",
-  "output": "iPhone 15 vs Samsung Galaxy S23, which is better?",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "if i travel to japan do i need a visa",
-  "output": "If I travel to Japan, do I need a visa?",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "error reading property of undefined what does this mean",
-  "output": "'Error reading property of undefined', what does this mean?",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "movie times for avatar the way of water near me",
-  "output": "Movie times for Avatar: The Way of Water near me",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "define serendipity and use it in a sentence",
-  "output": "Define 'serendipity' and use it in a sentence",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
   "input": "hi team comma new line just wanted to say excellent work on the launch period",
   "output": "Hi team,\nJust wanted to say excellent work on the launch.",
   "app_category": "Work",
-  "bucket_override": "voice_commands"
-}
-
-{
-  "input": "note to self colon new line buy milk comma eggs comma and bread full stop",
-  "output": "Note to self:\nBuy milk, eggs, and bread.",
-  "app_category": "Other",
   "bucket_override": "voice_commands"
 }
 
@@ -1756,48 +1574,6 @@
 }
 
 {
-  "input": "give me five ways to make a cold sales email more engaging and less generic",
-  "output": "Give me 5 ways to make a cold sales email more engaging and less generic.",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "weekly goals finish the investor deck review the product roadmap catch up on reading",
-  "output": "Weekly goals. Finish the investor deck. Review the product roadmap. Catch up on reading.",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "this typescript function should return a typed promise not an untyped any response",
-  "output": "This TypeScript function should return a typed Promise, not an untyped any response.",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "how many calories are in a standard cup of black coffee",
-  "output": "How many calories are in a standard cup of black coffee?",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "travel plans for next month visit bangalore for three days then fly to hyderabad for two days",
-  "output": "Travel plans for next month. Visit Bangalore for 3 days, then fly to Hyderabad for 2 days.",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
-  "input": "add a loading spinner to the profile view controller while the user data is being fetched",
-  "output": "Add a loading spinner to the ProfileViewController while the user data is being fetched.",
-  "app_category": "Other",
-  "bucket_override": "other_apps"
-}
-
-{
   "input": "let's wrap up by six PM no actually five today we have dinner plans",
   "output": "Let's wrap up by 5 PM today, we have dinner plans",
   "app_category": "Personal",
@@ -2001,13 +1777,6 @@
 }
 
 {
-  "input": "add a note grocery run this weekend vegetables fruits and cooking oil",
-  "output": "Add a note: grocery run this weekend \u2014 vegetables, fruits, and cooking oil",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "raise a ticket no actually dm the dev directly it's faster for urgent things",
   "output": "DM the dev directly, it's faster for urgent things",
   "app_category": "Work",
@@ -2078,13 +1847,6 @@
 }
 
 {
-  "input": "create a notion dashboard for a startup with sections for OKRs tasks decisions and risks",
-  "output": "Create a Notion dashboard for a startup with sections for OKRs, tasks, decisions, and risks.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "uh I think the concert is at eight PM and doors open an hour before that",
   "output": "I think the concert is at 8 PM and doors open an hour before that",
   "app_category": "Personal",
@@ -2096,13 +1858,6 @@
   "output": "Put the meeting on Thursday, Wednesday already has 3 other calls",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "rewrite this class to follow the single responsibility principle and add docstrings",
-  "output": "Rewrite this class to follow the Single Responsibility Principle and add docstrings.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -2204,13 +1959,6 @@
 }
 
 {
-  "input": "how to reverse a string in python without using the slice method",
-  "output": "How to reverse a string in Python without using the slice method?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "the rate of active users grew by forty percent month on month for the last six months",
   "output": "The rate of active users grew by 40% month on month for the last 6 months.",
   "app_category": "Work",
@@ -2222,13 +1970,6 @@
   "output": "Documentation update ho gayi hai, wiki pe check karo.",
   "app_category": "Work",
   "source_bucket": "hinglish"
-}
-
-{
-  "input": "what is the time complexity of merge sort and why is it better than bubble sort",
-  "output": "What is the time complexity of merge sort and why is it better than bubble sort?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -2498,13 +2239,6 @@
 }
 
 {
-  "input": "write unit tests for this react component using jest and react testing library",
-  "output": "Write unit tests for this React component using Jest and React Testing Library.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "uh the project went over budget by about twelve percent we need to revisit estimates",
   "output": "The project went over budget by about 12%, we need to revisit estimates.",
   "app_category": "Work",
@@ -2638,13 +2372,6 @@
 }
 
 {
-  "input": "summarize this contract clause about intellectual property ownership in plain language",
-  "output": "Summarize this contract clause about intellectual property ownership in plain language.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "uh basically the movie is rated at eight point one on imdb so should be good",
   "output": "The movie is rated 8.1 on IMDb, so should be good",
   "app_category": "Personal",
@@ -2729,13 +2456,6 @@
 }
 
 {
-  "input": "what is the difference between docker and kubernetes in simple terms for a beginner",
-  "output": "What is the difference between Docker and Kubernetes in simple terms for a beginner?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "hi all just a reminder that the monthly town hall is on the twenty first at four pm all employees are requested to attend best leadership",
   "output": "Hi all,\n\nJust a reminder that the monthly town hall is on the 21st at 4 PM. All employees are requested to attend.\n\nBest,\nLeadership",
   "app_category": "Email",
@@ -2757,13 +2477,6 @@
 }
 
 {
-  "input": "explain the difference between a queue and a stack with a simple real world example",
-  "output": "Explain the difference between a queue and a stack with a simple real-world example.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "currently running at seventy three percent CPU with spikes to ninety eight percent during batch jobs",
   "output": "Currently running at 73% CPU with spikes to 98% during batch jobs.",
   "app_category": "Work",
@@ -2782,13 +2495,6 @@
   "output": "There expecting a major spike in traffic during the sale period.",
   "app_category": "Work",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "resolve this xcode warning use of deprecated function UI web view use WK web view instead",
-  "output": "Resolve this Xcode warning: 'Use of deprecated function UIWebView \u2014 use WKWebView instead'.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -2960,13 +2666,6 @@
 }
 
 {
-  "input": "note renew annual domain subscription before the twenty sixth it expires that day",
-  "output": "Note: renew annual domain subscription before the 26th, it expires that day",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "uh the package weighed around five kilos so it cost more to ship than expected",
   "output": "The package weighed around 5 kilos, so it cost more to ship than expected",
   "app_category": "Personal",
@@ -2978,13 +2677,6 @@
   "output": "The client excepted our terms without requesting any modifications.",
   "app_category": "Work",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "note follow up with landlord about the broken AC unit before end of week",
-  "output": "Note: follow up with landlord about the broken AC unit before end of week",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -3191,13 +2883,6 @@
 }
 
 {
-  "input": "write a cron expression that runs at nine am every weekday and at six pm on fridays",
-  "output": "Write a cron expression that runs at 9 AM every weekday and at 6 PM on Fridays.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "toh yaar sach mein bata kya hua usne finally reply kiya ya nahi",
   "output": "Yaar, sach mein bata, kya hua? Usne finally reply kiya ya nahi?",
   "app_category": "Personal",
@@ -3373,13 +3058,6 @@
 }
 
 {
-  "input": "how to make the terminal show git branch name in the prompt on mac",
-  "output": "How to make the terminal show git branch name in the prompt on macOS?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "um like the new campus has four cafeterias a gym and a rooftop chill zone",
   "output": "The new campus has 4 cafeterias, a gym, and a rooftop chill zone",
   "app_category": "Work",
@@ -3548,13 +3226,6 @@
 }
 
 {
-  "input": "note prepare questions for the mentor call on thursday career goals tech skills and next steps",
-  "output": "Note: prepare questions for the mentor call on Thursday \u2014 career goals, tech skills, and next steps",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "the doctor asked on a scale of one to ten how would you rate the pain",
   "output": "The doctor asked, 'On a scale of 1 to 10, how would you rate the pain?'",
   "app_category": "Personal",
@@ -3674,13 +3345,6 @@
 }
 
 {
-  "input": "note buy a birthday card and gift for priya before saturday she likes plants and books",
-  "output": "Note: buy a birthday card and gift for Priya before Saturday, she likes plants and books",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "the response time SLA is under two seconds for ninety nine percent of requests",
   "output": "The response time SLA is under 2 seconds for 99% of requests.",
   "app_category": "Work",
@@ -3716,24 +3380,10 @@
 }
 
 {
-  "input": "create a notion page for tracking weekly fitness goals including runs workouts and rest days",
-  "output": "Create a Notion page for tracking weekly fitness goals including runs, workouts, and rest days.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "matlab toh basically final deployment script ready hai just needs one last review",
   "output": "Final deployment script ready hai, just needs one last review",
   "app_category": "Work",
   "source_bucket": "hinglish"
-}
-
-{
-  "input": "generate a mock REST API in python flask with endpoints for users products and orders",
-  "output": "Generate a mock REST API in Python Flask with endpoints for users, products, and orders.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -3821,13 +3471,6 @@
 }
 
 {
-  "input": "set up continuous integration for this swift package using github actions and xcode cloud",
-  "output": "Set up continuous integration for this Swift package using GitHub Actions and Xcode Cloud.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "toh yaar teri baat sunke dil khush ho gaya sach mein bilkul sahi kaha tune",
   "output": "Yaar, teri baat sunke dil khush ho gaya, sach mein bilkul sahi kaha tune",
   "app_category": "Personal",
@@ -3863,13 +3506,6 @@
 }
 
 {
-  "input": "how to configure a custom domain with https on vercel for a next dot js app",
-  "output": "How to configure a custom domain with HTTPS on Vercel for a Next.js app?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "resolve the conflict on main branch no actually let the reviewer handle it",
   "output": "Let the reviewer handle the conflict on the main branch",
   "app_category": "Work",
@@ -3881,13 +3517,6 @@
   "output": "The wedding has about 400 guests and starts at 6:30 in the evening",
   "app_category": "Personal",
   "source_bucket": "numbers_formatting"
-}
-
-{
-  "input": "refactor this swift view controller to use a view model pattern and protocol based design",
-  "output": "Refactor this Swift view controller to use a view model pattern and protocol-based design.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -3947,13 +3576,6 @@
 }
 
 {
-  "input": "best restaurants near bandra west mumbai for dinner on a friday night",
-  "output": "Best restaurants near Bandra West Mumbai for dinner on a Friday night",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "this WiFi is COMPLETELY USELESS I cannot even load the meeting link",
   "output": "This WiFi is COMPLETELY USELESS, I cannot even load the meeting link",
   "app_category": "Work",
@@ -3965,13 +3587,6 @@
   "output": "There throwing a surprise party for amma on Sunday please don't tell her",
   "app_category": "Personal",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "fix this swift compile error value of type UIViewController has no member show alert",
-  "output": "Fix this Swift compile error: 'Value of type UIViewController has no member showAlert'.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -4094,20 +3709,6 @@
 }
 
 {
-  "input": "best noise cancelling headphones under five thousand rupees in twenty twenty five",
-  "output": "Best noise-cancelling headphones under \u20b95,000 in 2025",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
-  "input": "explain SOLID principles in five short bullet points easy enough for a junior engineer",
-  "output": "Explain SOLID principles in 5 short bullet points, easy enough for a junior engineer.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "matlab toh basically naya monitoring dashboard ready hai ab alerts sahi chalein",
   "output": "Naya monitoring dashboard ready hai, ab alerts sahi chalein.",
   "app_category": "Work",
@@ -4126,13 +3727,6 @@
   "output": "Before the presentation: prepare the demo, set up the environment, and test the backup slides.",
   "app_category": "Work",
   "source_bucket": "basic_formatting"
-}
-
-{
-  "input": "write a detailed comparison of REST versus GraphQL for a blog post audience",
-  "output": "Write a detailed comparison of REST vs. GraphQL for a blog post audience.",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -4182,13 +3776,6 @@
   "output": "Request one more review before merging the PR",
   "app_category": "Work",
   "source_bucket": "self_correction"
-}
-
-{
-  "input": "add a note team outing ideas bowling arcade rooftop dinner or day trip to lonavala",
-  "output": "Add a note: team outing ideas \u2014 bowling, arcade, rooftop dinner, or day trip to Lonavala",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -4311,13 +3898,6 @@
 }
 
 {
-  "input": "best free tools for monitoring a personal linux server in twenty twenty five",
-  "output": "Best free tools for monitoring a personal Linux server in 2025",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "this is ABSOLUTELY UNACCEPTABLE the service has been down for six hours now",
   "output": "This is ABSOLUTELY UNACCEPTABLE, the service has been down for 6 hours now.",
   "app_category": "Work",
@@ -4329,13 +3909,6 @@
   "output": "Its a grate opportunity don't let your nerves get the better of you",
   "app_category": "Personal",
   "source_bucket": "asr_errors"
-}
-
-{
-  "input": "what are the key principles of clean architecture in software engineering",
-  "output": "What are the key principles of clean architecture in software engineering?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
 }
 
 {
@@ -4360,13 +3933,6 @@
 }
 
 {
-  "input": "how do I implement rate limiting in a node dot js express API",
-  "output": "How do I implement rate limiting in a Node.js Express API?",
-  "app_category": "Other",
-  "source_bucket": "other_apps"
-}
-
-{
   "input": "I wonder weather the stakeholders have read the PRD thoroughly",
   "output": "I wonder weather the stakeholders have read the PRD thoroughly?",
   "app_category": "Work",
@@ -4386,3 +3952,4 @@
   "app_category": "Personal",
   "source_bucket": "basic_formatting"
 }
+
