@@ -1091,12 +1091,6 @@
 }
 
 {
-  "input": "the score was five dash three at half time",
-  "output": "The score was 5—3 at half time.",
-  "bucket": "voice_commands"
-}
-
-{
   "input": "remember dash the deadline is friday exclamation mark",
   "output": "Remember — the deadline is Friday!",
   "bucket": "voice_commands"
