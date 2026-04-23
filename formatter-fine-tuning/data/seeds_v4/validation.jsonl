@@ -1354,7 +1354,6 @@
   "bucket": "edge_cases"
 }
 
-
 {
   "input": "the alert said session expired please log in again",
   "output": "The alert said, 'Session expired, please log in again.'",
@@ -1437,6 +1436,306 @@
   "input": "I'm so so tired of this on call rotation",
   "output": "I'm so, so tired of this on call rotation.",
   "bucket": "edge_cases"
+}
+
+{
+  "input": "their working on a new feature this sprint",
+  "output": "Their working on a new feature this sprint.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "there going to deploy on friday night",
+  "output": "There going to deploy on Friday night.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "is that there laptop on the desk",
+  "output": "Is that there laptop on the desk?",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "they're entire backend is built on node",
+  "output": "They're entire backend is built on Node.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "look over they're by the coffee machine",
+  "output": "Look over they're by the coffee machine.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "there to many open PRs at the moment",
+  "output": "There to many open PRs at the moment.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "their pipeline takes to long on big commits",
+  "output": "Their pipeline takes to long on big commits.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need there sign off before we proceed",
+  "output": "We need there sign off before we proceed.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "there server went down after the patch",
+  "output": "There server went down after the patch.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "is this you're account or a shared one",
+  "output": "Is this you're account or a shared one?",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the build is to slow for daily development",
+  "output": "The build is to slow for daily development.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we have to many unresolved tickets right now",
+  "output": "We have to many unresolved tickets right now.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "it took to long to get approval for this release",
+  "output": "It took to long to get approval for this release.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need too review the spec before coding starts",
+  "output": "We need too review the spec before coding starts.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the rollback took to long and users were affected",
+  "output": "The rollback took to long and users were affected.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the deadline is to tight for quality testing",
+  "output": "The deadline is to tight for quality testing.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "please send the docs too me by noon",
+  "output": "Please send the docs too me by noon.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "this is to critical to ship without a review",
+  "output": "This is to critical to ship without a review.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we've been to dependent on manual QA for to long",
+  "output": "We've been to dependent on manual QA for to long.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the API response is to slow to be acceptable",
+  "output": "The API response is to slow to be acceptable.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "this change will effect all downstream services",
+  "output": "This change will effect all downstream services.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we excepted the risk before launching the feature",
+  "output": "We excepted the risk before launching the feature.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "her advise on the architecture was very useful",
+  "output": "Her advise on the architecture was very useful.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "please bare in mind the deadline is tomorrow",
+  "output": "Please bare in mind the deadline is tomorrow.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the new update will altar the user experience",
+  "output": "The new update will altar the user experience.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the outage had a major affect on our SLA",
+  "output": "The outage had a major affect on our SLA.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to role out the hotfix immediately",
+  "output": "We need to role out the hotfix immediately.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the server failure took us buy surprise",
+  "output": "The server failure took us buy surprise.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "did you peak at the new design mockups yet",
+  "output": "Did you peak at the new design mockups yet?",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "i think we should altar the deployment schedule",
+  "output": "I think we should altar the deployment schedule.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the serv went down during the peak hour",
+  "output": "The serv went down during the peak hour.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "can you che the PR before we merge it",
+  "output": "Can you che the PR before we merge it?",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "I will upda the docs after the meeting",
+  "output": "I will upda the docs after the meeting.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the dep failed because of a config issue",
+  "output": "The dep failed because of a config issue.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "please rev the ticket before closing it",
+  "output": "Please rev the ticket before closing it.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the authenti module needs a refactor",
+  "output": "The authenti module needs a refactor.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to allo more memory for this service",
+  "output": "We need to allo more memory for this service.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the migr script ran successfully last night",
+  "output": "The migr script ran successfully last night.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "please revi the latest build before releasing",
+  "output": "Please revi the latest build before releasing.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the notifi are broken on android devices",
+  "output": "The notifi are broken on Android devices.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪",
+  "output": "",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "[BLANK_AUDIO]",
+  "output": "",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ ♪ ♪",
+  "output": "",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "[BLANK_AUDIO] [BLANK_AUDIO]",
+  "output": "",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ the meeting is at three pm tomorrow",
+  "output": "The meeting is at 3 PM tomorrow.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the deployment is complete [BLANK_AUDIO]",
+  "output": "The deployment is complete.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ please review the PR when you get a chance ♪",
+  "output": "Please review the PR when you get a chance.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "[BLANK_AUDIO] can you check the logs for errors",
+  "output": "Can you check the logs for errors?",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ the server is back online",
+  "output": "The server is back online.",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to reschedule the sync [BLANK_AUDIO]",
+  "output": "We need to reschedule the sync.",
+  "bucket": "asr_errors"
 }
 
 {
