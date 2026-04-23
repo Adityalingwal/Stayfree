@@ -1000,6 +1000,342 @@
 }
 
 {
+  "input": "hi arjun comma are you available for a quick sync",
+  "output": "Hi Arjun, are you available for a quick sync?",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the server is down period we need to investigate immediately",
+  "output": "The server is down. We need to investigate immediately.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "wait comma I think there is a bug in this function",
+  "output": "Wait, I think there is a bug in this function.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "that is absolutely amazing",
+  "output": "That is absolutely amazing!",
+  "app_category": "Personal",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "what time is the flight tomorrow",
+  "output": "What time is the flight tomorrow?",
+  "app_category": "Personal",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "we finished the deployment full stop everything looks stable",
+  "output": "We finished the deployment. Everything looks stable.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "hello anjali comma please review the attached document",
+  "output": "Hello Anjali, please review the attached document.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "do you have the latest design files",
+  "output": "Do you have the latest design files?",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "wow exclamation mark the new UI looks fantastic",
+  "output": "Wow! The new UI looks fantastic.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the test passed period you can merge the pull request",
+  "output": "The test passed. You can merge the pull request.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "send the invoice to billing at sign acme dot com",
+  "output": "Send the invoice to billing@acme.com.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "you can check the logs at w w w dot server logs dot com slash prod",
+  "output": "You can check the logs at www.serverlogs.com/prod.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the variable is called user underscore name underscore config",
+  "output": "The variable is called user_name_config.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "contact support at sign help dot org",
+  "output": "Contact support@help.org.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "go to example dot com slash api slash v one",
+  "output": "Go to example.com/api/v1.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the css class is card dash container dash active",
+  "output": "The css class is card-container-active.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "email me at rahul dot sharma at sign company dot co dot in",
+  "output": "Email me at rahul.sharma@company.co.in.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "rename the file to backup underscore twenty twenty four dot zip",
+  "output": "Rename the file to backup_2024.zip.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "navigate to app dot internal dot net slash dashboard",
+  "output": "Navigate to app.internal.net/dashboard.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the slack channel is hashtag dev dash ops",
+  "output": "The slack channel is #dev-ops.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "I have two options colon approve or reject",
+  "output": "I have two options: approve or reject.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the system crashed semicolon however comma data was saved",
+  "output": "The system crashed; however, data was saved.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "he replied open quote I will fix it today close quote",
+  "output": "He replied \"I will fix it today\"",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "I am not entirely sure dot dot dot let me check",
+  "output": "I am not entirely sure... let me check.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the manager said quote push it to prod end quote",
+  "output": "The manager said \"push it to prod\"",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "we need three things colon time comma resources comma and scope",
+  "output": "We need three things: time, resources, and scope.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the API returns a timeout ellipsis we should retry",
+  "output": "The API returns a timeout... we should retry.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "it works fine semicolon otherwise we would have alerts",
+  "output": "It works fine; otherwise we would have alerts.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "she typed open quote LGTM close quote and approved it",
+  "output": "She typed \"LGTM\" and approved it.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the response was three dots unexpected",
+  "output": "The response was ... unexpected.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the total revenue is dollar forty five thousand",
+  "output": "The total revenue is $45,000.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "cpu usage spiked to ninety nine percent",
+  "output": "CPU usage spiked to 99%.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "use the hashtag launch day in the tweet",
+  "output": "Use the #launchday in the tweet.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the logic is user is admin pipe pipe user is owner",
+  "output": "The logic is user is admin || user is owner.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "we need peanut butter ampersand jelly",
+  "output": "We need peanut butter & jelly.",
+  "app_category": "Personal",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "add the prefix dollar to the input field",
+  "output": "Add the prefix $ to the input field.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the discount is twenty percent for all users",
+  "output": "The discount is 20% for all users.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "search for hashtag frontend bugs",
+  "output": "Search for #frontendbugs.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "it requires read ampersand write permissions",
+  "output": "It requires read & write permissions.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "if status equals error pipe pipe status equals pending",
+  "output": "If status equals error || status equals pending.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the array is open square bracket one comma two comma three close square bracket",
+  "output": "The array is [1, 2, 3]",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "it apostrophe s going to be a long night",
+  "output": "It's going to be a long night.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "call the function calculate open bracket x close bracket",
+  "output": "Call the function calculate(x)",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the json object starts with open curly bracket",
+  "output": "The json object starts with {.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "that apostrophe s exactly what I meant",
+  "output": "That's exactly what I meant.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the index is open square bracket i close square bracket",
+  "output": "The index is [i]",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the payload is open curly bracket id colon five close curly bracket",
+  "output": "The payload is {id: 5}.",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the method parameters are open bracket name comma age close bracket",
+  "output": "The method parameters are (name, age)",
+  "app_category": "Work",
+  "bucket": "voice_commands"
+}
+
+{
   "input": "but if we look at the timeline then",
   "output": "But if we look at the timeline, then",
   "app_category": "Work",
@@ -1312,174 +1648,6 @@
   "output": "Pagal ho gaya hai kya production server pe test mat kar.",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "hi team comma new line just wanted to say excellent work on the launch period",
-  "output": "Hi team,\nJust wanted to say excellent work on the launch.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "hello sarah comma new line can you verify the metrics for q two question mark",
-  "output": "Hello Sarah,\nCan you verify the metrics for Q2?",
-  "app_category": "Email",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "agenda for tomorrow colon new line design review comma sprint planning comma and lunch period",
-  "output": "Agenda for tomorrow:\nDesign review, sprint planning, and lunch.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "hey guys comma new line i will be running fifteen minutes late today full stop",
-  "output": "Hey guys,\nI will be running 15 minutes late today.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "the servers are currently down period we are looking into the issue now period",
-  "output": "The servers are currently down. We are looking into the issue now.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "the event was spectacular full stop everyone enjoyed the keynote period",
-  "output": "The event was spectacular. Everyone enjoyed the keynote.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "please confirm receipt of the invoice full stop let me know if there are issues period",
-  "output": "Please confirm receipt of the invoice. Let me know if there are issues.",
-  "app_category": "Email",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "i already sent the package period it should arrive tomorrow by noon full stop",
-  "output": "I already sent the package. It should arrive tomorrow by noon.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "are you absolutely sure about this question mark we can't revert the change period",
-  "output": "Are you absolutely sure about this? We can't revert the change.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "congratulations on the promotion exclamation mark we need to celebrate period",
-  "output": "Congratulations on the promotion! We need to celebrate.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "did memory usage spike again question mark check the dashboard immediately exclamation mark",
-  "output": "Did memory usage spike again? Check the dashboard immediately!",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "wow exclamation mark that design looks absolutely stunning period",
-  "output": "Wow! That design looks absolutely stunning.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "the root cause was a memory leak comma which we finally identified full stop new line new line the fix is deployed to production period",
-  "output": "The root cause was a memory leak, which we finally identified.\n\nThe fix is deployed to production.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "hello comma new line thanks for reaching out period i have attached the documents you requested full stop new line best regards comma new line david",
-  "output": "Hello,\nThanks for reaching out. I have attached the documents you requested.\nBest regards,\nDavid",
-  "app_category": "Email",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "step one colon restart the router period new line step two colon clear the browser cache full stop",
-  "output": "Step 1: Restart the router.\nStep 2: Clear the browser cache.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "why did the build fail on circle ci question mark check the error logs comma identify the issue comma and push a fix immediately exclamation mark",
-  "output": "Why did the build fail on CircleCI? Check the error logs, identify the issue, and push a fix immediately!",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "to reiterate comma we are launching on friday period new line please have all the marketing assets ready by thursday evening full stop",
-  "output": "To reiterate, we are launching on Friday.\nPlease have all the marketing assets ready by Thursday evening.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "you need to approve the pull request comma merge it comma and trigger the deployment period",
-  "output": "You need to approve the pull request, merge it, and trigger the deployment.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "is the database locked question mark we keep getting timeout errors exclamation mark",
-  "output": "Is the database locked? We keep getting timeout errors!",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "we ordered three pizzas comma two burgers comma and soda for everyone full stop",
-  "output": "We ordered 3 pizzas, 2 burgers, and soda for everyone.",
-  "app_category": "Personal",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "do not run the script on production exclamation mark it will delete all user data period",
-  "output": "Do not run the script on production! It will delete all user data.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "update the status to in progress comma copy the ticket link comma and send it to me full stop",
-  "output": "Update the status to in progress, copy the ticket link, and send it to me.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "hi comma new line new line i will be on vacation from monday to wednesday next week period new line cheers comma new line michael",
-  "output": "Hi,\n\nI will be on vacation from Monday to Wednesday next week.\nCheers,\nMichael",
-  "app_category": "Email",
-  "bucket": "voice_commands"
-}
-
-{
-  "input": "i think the issue is fixed comma but we should monitor it closely for the next hour period",
-  "output": "I think the issue is fixed, but we should monitor it closely for the next hour.",
-  "app_category": "Work",
-  "bucket": "voice_commands"
 }
 
 {
