@@ -893,6 +893,258 @@
 }
 
 {
+  "input": "it works period new line let's ship it",
+  "output": "It works.\nLet's ship it.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the server is down period new paragraph please check the logs and restart it",
+  "output": "The server is down.\n\nPlease check the logs and restart it.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the meeting is at three pm period please be on time exclamation mark",
+  "output": "The meeting is at 3 PM. Please be on time!",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "what time does the flight leave question mark",
+  "output": "What time does the flight leave?",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "we need milk comma eggs comma and bread",
+  "output": "We need milk, eggs, and bread.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the deadline is friday period no exceptions exclamation mark",
+  "output": "The deadline is Friday. No exceptions!",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "can you send me the report question mark I need it by noon period",
+  "output": "Can you send me the report? I need it by noon.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "this is wrong period period period",
+  "output": "This is wrong...",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "yes exclamation mark the build passed exclamation mark",
+  "output": "Yes! The build passed!",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "we need to discuss the budget comma the timeline comma and the resources",
+  "output": "We need to discuss the budget, the timeline, and the resources.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "are you available tomorrow question mark we need to sync",
+  "output": "Are you available tomorrow? We need to sync.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "update the version to four point two point one period rebuild and redeploy",
+  "output": "Update the version to 4.2.1. Rebuild and redeploy.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "note colon this is a work in progress open parenthesis do not share close parenthesis",
+  "output": "Note: This is a work in progress (do not share).",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the function returns open square bracket one comma two comma three close square bracket",
+  "output": "The function returns [1, 2, 3].",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "she said open quote I will be there at five close quote and left",
+  "output": "She said \"I will be there at five\" and left.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the config key is open curly bracket enabled colon true close curly bracket",
+  "output": "The config key is {enabled: true}.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "and then he said open quote are you kidding me question mark close quote",
+  "output": "And then he said \"Are you kidding me?\"",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "call the helper function open parenthesis user id comma token close parenthesis",
+  "output": "Call the helper function (user id, token).",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "check the array at open square bracket zero close square bracket for null values",
+  "output": "Check the array at [0] for null values.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "he replied open quote I need more time period close quote",
+  "output": "He replied \"I need more time.\"",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "add the label open square bracket urgent close square bracket to the ticket",
+  "output": "Add the label [urgent] to the ticket.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "it is defined as open curly bracket name colon string comma age colon number close curly bracket",
+  "output": "It is defined as {name: string, age: number}.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "please send the files to john at sign gmail dot com",
+  "output": "Please send the files to john@gmail.com.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the discount is thirty percent off",
+  "output": "The discount is 30% off.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the contract value is fifty thousand",
+  "output": "The contract value is 50,000.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "follow us on hashtag stayfree and hashtag productivity",
+  "output": "Follow us on #stayfree and #productivity.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "merge finance ampersand accounting into one team",
+  "output": "Merge Finance & Accounting into one team.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "visit us at w w w dot myapp dot com slash pricing",
+  "output": "Visit us at www.myapp.com/pricing.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the regex pattern is open bracket a dash z close bracket asterisk",
+  "output": "The regex pattern is [a-z]*.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "email support at support at sign helpdesk dot io",
+  "output": "Email support at support@helpdesk.io.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the server uptime is ninety nine point nine percent",
+  "output": "The server uptime is 99.9%.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the API endpoint is slash api slash v two slash users",
+  "output": "The API endpoint is /api/v2/users.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "uh sorry period I didn't mean to interrupt",
+  "output": "Sorry. I didn't mean to interrupt.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the score was five dash three at half time",
+  "output": "The score was 5—3 at half time.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "remember dash the deadline is friday exclamation mark",
+  "output": "Remember — the deadline is Friday!",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "topic colon performance ampersand reliability",
+  "output": "Topic: Performance & Reliability.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "it apostrophe s going to take longer than expected",
+  "output": "It's going to take longer than expected.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "tldr colon the project is delayed and we need more resources",
+  "output": "TLDR: The project is delayed and we need more resources.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "please cc sarah at sign company dot com on the email",
+  "output": "Please cc sarah@company.com on the email.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "what question mark when did this happen question mark",
+  "output": "What? When did this happen?",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "the equation is y equals m asterisk x plus b",
+  "output": "The equation is y = m * x + b.",
+  "bucket": "voice_commands"
+}
+
+{
+  "input": "tag this as hashtag bug and hashtag high priority",
+  "output": "Tag this as #bug and #high-priority.",
+  "bucket": "voice_commands"
+}
+
+{
   "input": "yani ki basically ab naya sprint hai toh priorities set karo sab",
   "output": "Yani ki basically ab naya sprint hai toh priorities set karo sab.",
   "bucket": "hinglish"
@@ -908,12 +1160,6 @@
   "input": "yaar toh kya hua meeting mein kuch important decide hua kya",
   "output": "Yaar toh kya hua meeting mein? Kuch important decide hua kya?",
   "bucket": "hinglish"
-}
-
-{
-  "input": "the CTO asked me when will the dashboard be ready for beta testers",
-  "output": "The CTO asked me, 'When will the dashboard be ready for beta testers?'",
-  "bucket": "voice_commands"
 }
 
 {
@@ -1052,12 +1298,6 @@
   "input": "yani ki yaar hamara release next friday ko hai sab ready hai na",
   "output": "Yani ki yaar hamara release next Friday ko hai sab ready hai na?",
   "bucket": "hinglish"
-}
-
-{
-  "input": "uh the monitoring dashboard shows a spike in four hundred errors around noon",
-  "output": "The monitoring dashboard shows a spike in 400 errors around noon.",
-  "bucket": "voice_commands"
 }
 
 {
