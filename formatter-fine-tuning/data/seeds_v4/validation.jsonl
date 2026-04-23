@@ -360,13 +360,13 @@
 
 {
   "input": "the total cost is five hundred dollars",
-  "output": "The total cost is .",
+  "output": "The total cost is $500.",
   "bucket": "numbers_formatting"
 }
 
 {
   "input": "the price tag is forty five dollars and fifty cents",
-  "output": "The price tag is .50.",
+  "output": "The price tag is $45.50.",
   "bucket": "numbers_formatting"
 }
 
@@ -390,13 +390,13 @@
 
 {
   "input": "the revenue increased by one point two million dollars",
-  "output": "The revenue increased by .2 million.",
+  "output": "The revenue increased by $1.2 million.",
   "bucket": "numbers_formatting"
 }
 
 {
   "input": "the fine was precisely two hundred and fifty rupees",
-  "output": "The fine was precisely \u20b9250.",
+  "output": "The fine was precisely ₹250.",
   "bucket": "numbers_formatting"
 }
 
@@ -414,7 +414,7 @@
 
 {
   "input": "the investment was five lakh rupees",
-  "output": "The investment was \u20b95,00,000.",
+  "output": "The investment was ₹5,00,000.",
   "bucket": "numbers_formatting"
 }
 
@@ -498,7 +498,7 @@
 
 {
   "input": "the monitor resolution is nineteen twenty by ten eighty",
-  "output": "The monitor resolution is 1920 \u00d7 1080.",
+  "output": "The monitor resolution is 1920 × 1080.",
   "bucket": "numbers_formatting"
 }
 
@@ -576,7 +576,7 @@
 
 {
   "input": "the score was five dash three at half time",
-  "output": "The score was 5\u20143 at half time.",
+  "output": "The score was 5—3 at half time.",
   "bucket": "numbers_formatting"
 }
 
@@ -599,21 +599,309 @@
 }
 
 {
+  "input": "the the server is down again",
+  "output": "The server is down again.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we need need more time to finish this",
+  "output": "We need more time to finish this.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "he he is going to the office",
+  "output": "He is going to the office.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "it was was a great presentation",
+  "output": "It was a great presentation.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "can you send send me the report",
+  "output": "Can you send me the report?",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "they they already approved the budget",
+  "output": "They already approved the budget.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "I have have no idea what happened",
+  "output": "I have no idea what happened.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "she wants to to join the call",
+  "output": "She wants to join the call.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "that is is completely unacceptable",
+  "output": "That is completely unacceptable.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "let me me check the logs",
+  "output": "Let me check the logs.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "can we can we push the release to tomorrow",
+  "output": "Can we push the release to tomorrow?",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "I think I think this is the best approach",
+  "output": "I think this is the best approach.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "do you know do you know when he will arrive",
+  "output": "Do you know when he will arrive?",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we should we should test it first",
+  "output": "We should test it first.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "let me know let me know if you need help",
+  "output": "Let me know if you need help.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the problem is the problem is with the database",
+  "output": "The problem is with the database.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "are you sure are you sure about the numbers",
+  "output": "Are you sure about the numbers?",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "I want to I want to discuss the new feature",
+  "output": "I want to discuss the new feature.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "it seems like it seems like a network issue",
+  "output": "It seems like a network issue.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we are going to we are going to fail the audit",
+  "output": "We are going to fail the audit.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "book the flight for monday no wait tuesday",
+  "output": "Book the flight for Tuesday.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "assign the ticket to sarah wait no mike",
+  "output": "Assign the ticket to Mike.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the meeting is at two no wait three pm",
+  "output": "The meeting is at 3 PM.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "let us meet at the cafe wait no the office it's better",
+  "output": "Let us meet at the office, it's better.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "deploy to staging no wait production",
+  "output": "Deploy to production.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "send an email to the client wait no call the client instead",
+  "output": "Call the client instead.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the color should be blue no wait make it green",
+  "output": "Make it green.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we need five copies wait no ten copies",
+  "output": "We need 10 copies.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "turn off the server no wait keep it running",
+  "output": "Keep it running.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the budget is five thousand dollars wait no ten thousand dollars",
+  "output": "The budget is $10,000.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we will launch in Q3 actually Q4",
+  "output": "We will launch in Q4.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "cancel the order no actually put it on hold",
+  "output": "Put the order on hold.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the deadline is friday actually no monday",
+  "output": "The deadline is Monday.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "use the old API actually the new one is faster",
+  "output": "Use the new API, it's faster.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "he is the manager no actually the director",
+  "output": "He is the director.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "approve the request actually no reject it",
+  "output": "Reject the request.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "it takes two hours no actually three hours",
+  "output": "It takes 3 hours.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "let us order pizza actually burgers sound better",
+  "output": "Burgers sound better.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the file is in the shared drive actually no it is on my desktop",
+  "output": "The file is on my desktop.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "I will be there at six actually make it seven",
+  "output": "Make it 7.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the code is written in python sorry java",
+  "output": "The code is written in Java.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "add john to the thread correction add jane",
+  "output": "Add Jane to the thread.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the project is delayed by a week sorry two weeks",
+  "output": "The project is delayed by 2 weeks.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the status is in progress correction it is blocked",
+  "output": "The status is blocked.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "my email is admin at example dot com sorry support at example dot com",
+  "output": "My email is support@example.com.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we have fifty users correction five hundred users",
+  "output": "We have 500 users.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the error is on line ten sorry line twenty",
+  "output": "The error is on line 20.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "schedule the interview for tomorrow correction next week",
+  "output": "Schedule the interview for next week.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the temperature is thirty degrees sorry forty degrees",
+  "output": "The temperature is 40 degrees.",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "he lives in new york correction boston",
+  "output": "He lives in Boston.",
+  "bucket": "self_correction"
+}
+
+{
   "input": "yani ki basically ab naya sprint hai toh priorities set karo sab",
   "output": "Yani ki basically ab naya sprint hai toh priorities set karo sab.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "freeze the release this week no actually keep it open one more bug came in",
-  "output": "Keep the release open, one more bug came in",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "the launch date is Q3 actually no it got pushed to Q4",
-  "output": "The launch date is Q4, it got pushed from Q3",
-  "bucket": "self_correction"
 }
 
 {
@@ -626,12 +914,6 @@
   "input": "yaar toh kya hua meeting mein kuch important decide hua kya",
   "output": "Yaar toh kya hua meeting mein? Kuch important decide hua kya?",
   "bucket": "hinglish"
-}
-
-{
-  "input": "let's meet at coffee shop no actually office conference room is better",
-  "output": "Let's meet at the office conference room, it's better",
-  "bucket": "self_correction"
 }
 
 {
@@ -653,12 +935,6 @@
 }
 
 {
-  "input": "disable the feature flag no wait enable it for beta users first",
-  "output": "Enable the feature flag for beta users first.",
-  "bucket": "self_correction"
-}
-
-{
   "input": "toh yaar kya plan hai weekend ka kuch sochaa hai kya tune",
   "output": "Toh yaar kya plan hai weekend ka? Kuch sochaa hai kya tune?",
   "bucket": "hinglish"
@@ -677,33 +953,9 @@
 }
 
 {
-  "input": "reply to the client tonight no wait in the morning it's late there",
-  "output": "Reply to the client in the morning, it's late there.",
-  "bucket": "self_correction"
-}
-
-{
   "input": "toh yani ki client ne approve kar diya final design ko",
   "output": "Toh yani ki client ne approve kar diya final design ko.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "write the test first no wait let the feature be done first then test",
-  "output": "Let the feature be done first, then test",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "deploy to eu region first actually no start with the us cluster it's larger",
-  "output": "Start with the US cluster, it's larger.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "push the candidate to the next round no scratch that let's do one more technical round",
-  "output": "Let's do one more technical round before moving the candidate forward.",
-  "bucket": "self_correction"
 }
 
 {
@@ -716,24 +968,6 @@
   "input": "matlab toh yaar kal ka standup eleven baje pe shift ho gaya hai",
   "output": "Matlab toh yaar kal ka standup eleven baje pe shift ho gaya hai.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "the meeting link is wrong I mean the time is wrong twelve not two",
-  "output": "The meeting time is wrong, it's 12 PM not 2 PM.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "let's order two large pizzas no wait three we have more people tonight",
-  "output": "Let's order three large pizzas, we have more people tonight",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "meet at six I mean seven I always mess up time zones",
-  "output": "Meet at seven, I always mess up time zones",
-  "bucket": "self_correction"
 }
 
 {
@@ -779,63 +1013,15 @@
 }
 
 {
-  "input": "give the new feature to priya no wait to the platform squad it's infrastructure work",
-  "output": "Give the new feature to the platform squad, it's infrastructure work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "assign this to the QA team no actually the developer must fix it first",
-  "output": "The developer must fix it first before it goes to QA.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "the meeting is optional for engineers no wait it's mandatory all hands",
-  "output": "The meeting is mandatory, it's an all hands",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "present this to the client no actually wait for the legal sign off first",
-  "output": "Wait for the legal sign off first before presenting to the client.",
-  "bucket": "self_correction"
-}
-
-{
   "input": "toh basically ab sab documentation complete ho gayi hai",
   "output": "Toh basically ab sab documentation complete ho gayi hai.",
   "bucket": "hinglish"
 }
 
 {
-  "input": "close the ticket no I mean escalate it the issue is still open",
-  "output": "Escalate the ticket, the issue is still open.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "let's choose react no actually vue our existing team knows it better",
-  "output": "Let's choose Vue, our existing team knows it better",
-  "bucket": "self_correction"
-}
-
-{
   "input": "yaar toh matlab tune sahi kaha tha main pehle se hi sochna chahiye tha",
   "output": "Yaar toh matlab tune sahi kaha tha main pehle se hi sochna chahiye tha",
   "bucket": "hinglish"
-}
-
-{
-  "input": "ping the devops team no actually email them it's a non urgent issue",
-  "output": "Email the devops team, it's a non-urgent issue.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "halt the deployment I mean pause it for thirty minutes let's verify logs",
-  "output": "Pause the deployment for 30 minutes, let's verify logs",
-  "bucket": "self_correction"
 }
 
 {
@@ -851,33 +1037,9 @@
 }
 
 {
-  "input": "book the flights for friday no actually saturday the event starts on sunday",
-  "output": "Book the flights for Saturday, the event starts on Sunday",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "the cron runs daily I mean weekly we changed it last sprint",
-  "output": "The cron runs weekly, we changed it last sprint.",
-  "bucket": "self_correction"
-}
-
-{
   "input": "matlab toh basically yaar main thoda busy hoon baad mein baat karte hain shayad Chhe baje",
   "output": "Matlab toh basically yaar main thoda busy hoon baad mein baat karte hain shayad 6 baje.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "schedule the review for tuesday no I mean thursday tuesday has too many conflicts",
-  "output": "Schedule the review for Thursday, Tuesday has too many conflicts.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "add me to the email thread no scratch that just forward the summary",
-  "output": "Just forward the summary, no need to add me to the thread",
-  "bucket": "self_correction"
 }
 
 {
@@ -893,12 +1055,6 @@
 }
 
 {
-  "input": "I want pasta for dinner no wait let's just order biryani tonight",
-  "output": "Let's order biryani tonight",
-  "bucket": "self_correction"
-}
-
-{
   "input": "yani ki yaar hamara release next friday ko hai sab ready hai na",
   "output": "Yani ki yaar hamara release next Friday ko hai sab ready hai na?",
   "bucket": "hinglish"
@@ -911,39 +1067,15 @@
 }
 
 {
-  "input": "the fix goes in the config file no wait in the environment variable it's more secure",
-  "output": "The fix goes in the environment variable, it's more secure.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "use typescript no scratch that the rest of the project is in javascript",
-  "output": "Use JavaScript, the rest of the project is already in it",
-  "bucket": "self_correction"
-}
-
-{
   "input": "the log reads uncaught reference error foo is not defined at script dot js line forty two",
   "output": "The log reads 'Uncaught ReferenceError: foo is not defined at script.js line 42'",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "tag this as low priority I mean medium this could affect users",
-  "output": "Tag this as medium priority, this could affect users.",
-  "bucket": "self_correction"
-}
-
-{
   "input": "matlab toh toh yaar mujhe lagta hai hum yeh deadline miss karenge",
   "output": "Matlab toh toh yaar mujhe lagta hai hum yeh deadline miss karenge.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "call dad no wait text him he might be in a meeting",
-  "output": "Text dad, he might be in a meeting",
-  "bucket": "self_correction"
 }
 
 {
@@ -968,18 +1100,6 @@
   "input": "the new engineers complemented are architecture design thoroughly",
   "output": "The new engineers complemented are architecture design thoroughly.",
   "bucket": "edge_cases"
-}
-
-{
-  "input": "let's use the mobile first approach wait no desktop is still the primary platform",
-  "output": "Let's use the desktop-first approach, it's still the primary platform",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "reduce the cache TTL to five minutes no I mean increase it to thirty minutes",
-  "output": "Increase the cache TTL to 30 minutes.",
-  "bucket": "self_correction"
 }
 
 {
@@ -1086,7 +1206,7 @@
 
 {
   "input": "gift ke liye do hazaar rupaye ka budget hai",
-  "output": "Gift ke liye \u20b92,000 ka budget hai.",
+  "output": "Gift ke liye ₹2,000 ka budget hai.",
   "bucket": "hinglish"
 }
 
