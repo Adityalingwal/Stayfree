@@ -342,177 +342,352 @@
 }
 
 {
-  "input": "let's push the deployment to seven forty five pm tomorrow",
-  "output": "Let's push the deployment to 7:45 PM tomorrow.",
+  "input": "the ops team runs a sync every day at eight forty five am",
+  "output": "The ops team runs a sync every day at 8:45 AM.",
   "app_category": "Work",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "the train arrives at exactly quarter to nine in the morning",
-  "output": "The train arrives at exactly 8:45 AM.",
+  "input": "the pharmacy closes at nine pm on weekdays",
+  "output": "The pharmacy closes at 9 PM on weekdays.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "set an alarm for five thirty am everyday next week",
-  "output": "Set an alarm for 5:30 AM everyday next week.",
+  "input": "the deployment window opens at eleven pm and closes at two am",
+  "output": "The deployment window opens at 11 PM and closes at 2 AM.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "standup is at ten fifteen sharp every weekday",
+  "output": "Standup is at 10:15 sharp every weekday.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the client meeting is at three forty five pm on thursday",
+  "output": "The client meeting is at 3:45 PM on Thursday.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "flight check in opens at four thirty am tomorrow",
+  "output": "Flight check in opens at 4:30 AM tomorrow.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "our daily sync is moved to twelve fifteen pm from now on",
-  "output": "Our daily sync is moved to 12:15 PM from now on.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "i'll be offline from two pm to four thirty pm",
-  "output": "I'll be offline from 2 PM to 4:30 PM.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the vendor quoted us roughly four thousand five hundred dollars",
-  "output": "The vendor quoted us roughly $4,500.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "we raised twelve point five million euros in the seed round",
-  "output": "We raised €12.5M in the seed round.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the loan amount approved is forty five lakh rupees",
-  "output": "The loan amount approved is ₹45 Lakh.",
+  "input": "dinner reservation is at eight thirty at the rooftop place",
+  "output": "Dinner reservation is at 8:30 at the rooftop place.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "the total revenue for this quarter hit two point three crores",
-  "output": "The total revenue for this quarter hit ₹2.3 Cr.",
+  "input": "the interview is scheduled for eleven am on monday",
+  "output": "The interview is scheduled for 11 AM on Monday.",
   "app_category": "Work",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "i just transferred eighty pounds to your account",
-  "output": "I just transferred £80 to your account.",
+  "input": "the gym I go to opens at five am and closes at eleven pm",
+  "output": "The gym I go to opens at 5 AM and closes at 11 PM.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "the success rate jumped by thirty three point three percent",
-  "output": "The success rate jumped by 33.3%.",
+  "input": "the server maintenance starts at midnight and should be done by two am",
+  "output": "The server maintenance starts at midnight and should be done by 2 AM.",
   "app_category": "Work",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "a discount of twenty five percent will be applied at checkout",
-  "output": "A discount of 25% will be applied at checkout.",
+  "input": "the annual software license comes to twelve thousand dollars",
+  "output": "The annual software license comes to $12,000.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "they quoted us around eight hundred dollars for the design work",
+  "output": "They quoted us around $800 for the design work.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "my flight upgrade cost an extra three hundred and fifty dollars",
+  "output": "My flight upgrade cost an extra $350.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "calculate forty divided by eight and add six",
-  "output": "Calculate 40 / 8 + 6.",
+  "input": "the team budget for Q3 is one point five million dollars",
+  "output": "The team budget for Q3 is $1.5 million.",
   "app_category": "Work",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "the conversion rate is holding steady at zero point eight percent",
-  "output": "The conversion rate is holding steady at 0.8%.",
+  "input": "the catering for the event cost us forty two thousand rupees",
+  "output": "The catering for the event cost us ₹42,000.",
   "app_category": "Work",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "we need at least ninety nine point nine percent uptime",
-  "output": "We need at least 99.9% uptime.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the backup file size is approximately sixteen point eight gigabytes",
-  "output": "The backup file size is approximately 16.8 GB.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "memory usage is hovering around four hundred megabytes",
-  "output": "Memory usage is hovering around 400 MB.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "make sure you upgrade node to version eighteen point one six",
-  "output": "Make sure you upgrade Node to v18.16.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the server ip is ten point zero point five point one two",
-  "output": "The server IP is 10.0.5.12.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "latency dropped to twenty three milliseconds after the fix",
-  "output": "Latency dropped to 23 ms after the fix.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the contract expires on december thirty first twenty twenty five",
-  "output": "The contract expires on December 31st, 2025.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "my flight is booked for january fourteenth",
-  "output": "My flight is booked for January 14th.",
+  "input": "my monthly house rent is twenty two thousand rupees",
+  "output": "My monthly house rent is ₹22,000.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "they are launching the new product in early march twenty twenty four",
-  "output": "They are launching the new product in early March 2024.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the minimum age requirement is twenty one years old",
-  "output": "The minimum age requirement is 21 years old.",
+  "input": "the laptop I want costs eighty five thousand rupees with warranty",
+  "output": "The laptop I want costs ₹85,000 with warranty.",
   "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
 {
-  "input": "we are projecting the delivery by the fourth of july",
-  "output": "We are projecting the delivery by the 4th of July.",
+  "input": "we allocated five lakh rupees for the rebrand this quarter",
+  "output": "We allocated ₹5,00,000 for the rebrand this quarter.",
   "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the freelancer quoted seventy five dollars per hour for development",
+  "output": "The freelancer quoted $75 per hour for development.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "we raised two point three million dollars in the seed round",
+  "output": "We raised $2.3 million in the seed round.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the sprint demo is scheduled for the twenty first of this month",
+  "output": "The sprint demo is scheduled for the 21st of this month.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the warranty expires on the fifteenth of november",
+  "output": "The warranty expires on the 15th of November.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "they are targeting a launch in early february twenty twenty six",
+  "output": "They are targeting a launch in early February 2026.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "this is the third time this month the build has failed on main",
+  "output": "This is the 3rd time this month the build has failed on main.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the contract renewal is due on the first of july",
+  "output": "The contract renewal is due on the 1st of July.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "my parents anniversary is on the twenty eighth of march",
+  "output": "My parents anniversary is on the 28th of March.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the annual report is due by the thirty first of december",
+  "output": "The annual report is due by the 31st of December.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "version three dot four launches on the ninth of this month",
+  "output": "Version 3.4 launches on the 9th of this month.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "she got the job offer on the second of april twenty twenty five",
+  "output": "She got the job offer on the 2nd of April 2025.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "Q four starts october first and ends december thirty first",
+  "output": "Q4 starts October 1st and ends December 31st.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "error rate dropped from four point two percent to zero point eight percent",
+  "output": "Error rate dropped from 4.2% to 0.8%.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the test coverage for the auth module is ninety one percent",
+  "output": "The test coverage for the auth module is 91%.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "cpu usage jumped from thirty percent to ninety two percent during the load test",
+  "output": "CPU usage jumped from 30% to 92% during the load test.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "retention improved by fourteen percent after the onboarding revamp",
+  "output": "Retention improved by 14% after the onboarding revamp.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the image takes up three point seven megabytes after compression",
+  "output": "The image takes up 3.7 MB after compression.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "latency on the new endpoint is consistently under forty milliseconds",
+  "output": "Latency on the new endpoint is consistently under 40ms.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the server ip address is one ninety two dot one sixty eight dot one dot one",
+  "output": "The server IP address is 192.168.1.1.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "we need to upgrade python from three point nine to three point twelve",
+  "output": "We need to upgrade Python from 3.9 to 3.12.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the throughput went from four hundred megabytes per second to one point two gigabytes per second",
+  "output": "The throughput went from 400 MB/s to 1.2 GB/s.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the new screen has a resolution of twenty five sixty by sixteen forty four",
+  "output": "The new screen has a resolution of 2560×1644.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "she said it would cost a few hundred bucks",
+  "output": "She said it would cost a few hundred bucks.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "we probably have a couple more weeks of runway at this burn rate",
+  "output": "We probably have a couple more weeks of runway at this burn rate.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "he earns somewhere in the range of sixty to eighty thousand a year",
+  "output": "He earns somewhere in the range of 60 to 80 thousand a year.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "there were maybe fifty odd people at the event",
+  "output": "There were maybe 50 odd people at the event.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the download takes like a minute or two on average",
+  "output": "The download takes like a minute or two on average.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "um the budget for this is around a lakh give or take",
+  "output": "The budget for this is around a lakh, give or take.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "a few thousand signups came in after the product hunt launch",
+  "output": "A few thousand signups came in after the Product Hunt launch.",
+  "app_category": "Work",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "it takes roughly half an hour from the station to the office",
+  "output": "It takes roughly half an hour from the station to the office.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "the package is somewhere around two to three kilos",
+  "output": "The package is somewhere around 2 to 3 kilos.",
+  "app_category": "Personal",
+  "bucket": "numbers_formatting"
+}
+
+{
+  "input": "she called like ten or fifteen times before anyone picked up",
+  "output": "She called like 10 or 15 times before anyone picked up.",
+  "app_category": "Personal",
   "bucket": "numbers_formatting"
 }
 
@@ -1616,13 +1791,6 @@
 }
 
 {
-  "input": "so like basically the conference hall fits around two fifty people and has a green room",
-  "output": "The conference hall fits around 250 people and has a green room.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "hi aditya congratulations on completing a year with us wishing you continued success warm regards people team",
   "output": "Hi Aditya,\n\nCongratulations on completing a year with us. Wishing you continued success.\n\nWarm regards,\nPeople Team",
   "app_category": "Email",
@@ -1630,24 +1798,10 @@
 }
 
 {
-  "input": "this module adds roughly fifty milliseconds of latency on the critical path",
-  "output": "This module adds roughly 50ms of latency on the critical path",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "I cant weight any longer we need to make a decision on the architecture today",
   "output": "I cant weight any longer we need to make a decision on the architecture today",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the CTO's runway estimate is eighteen months at current burn rate of four hundred thousand per month",
-  "output": "The CTO's runway estimate is 18 months at a current burn rate of $400K/month.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -1812,13 +1966,6 @@
 }
 
 {
-  "input": "uh I think the concert is at eight PM and doors open an hour before that",
-  "output": "I think the concert is at 8 PM and doors open an hour before that",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "put the meeting on wednesday I mean thursday wednesday has three other calls",
   "output": "Put the meeting on Thursday, Wednesday already has 3 other calls",
   "app_category": "Work",
@@ -1833,13 +1980,6 @@
 }
 
 {
-  "input": "the gym membership went up from one thousand to fourteen hundred per month",
-  "output": "The gym membership went up from ₹1,000 to ₹1,400 per month",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "the budget for this is fifty thousand no wait sixty we got the extra approval",
   "output": "The budget for this is 60k, we got the extra approval",
   "app_category": "Work",
@@ -1851,13 +1991,6 @@
   "output": "Matlab toh yaar tension mat lo ek baar agar nahi hua toh dekhenge.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "the phone I want dropped from thirty five thousand to twenty eight thousand in the sale",
-  "output": "The phone I want dropped from ₹35,000 to ₹28,000 in the sale",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -1959,13 +2092,6 @@
 }
 
 {
-  "input": "the apartment maintenance is fifteen hundred rupees per month starting next quarter",
-  "output": "The apartment maintenance is ₹1,500 per month starting next quarter",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "yani ki basically next sprint ka planning meeting monday morning hai please block karo",
   "output": "Yani ki basically next sprint ka planning meeting monday morning hai please block karo.",
   "app_category": "Work",
@@ -2022,13 +2148,6 @@
 }
 
 {
-  "input": "so the gym opens at five thirty in the morning I am going to try it this week",
-  "output": "The gym opens at 5:30 in the morning, I am going to try it this week",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "I past the coffee shop on my way and it was packed at seven in the morning",
   "output": "I past the coffee shop on my way and it was packed at 7 in the morning",
   "app_category": "Personal",
@@ -2061,13 +2180,6 @@
   "output": "Yani ki basically toh database replication lag fix ho gayi hai ab sab smooth hai.",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "total event cost came to three lakh twenty thousand rupees split among twelve people",
-  "output": "Total event cost came to ₹3,20,000 split among 12 people",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -2159,13 +2271,6 @@
   "output": "The things I need before the hike are water bottle, protein bar, sunscreen, and a power bank",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "we processed forty three thousand transactions last week with a point zero one percent failure rate",
-  "output": "We processed 43,000 transactions last week with a 0.01% failure rate.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -2561,34 +2666,6 @@
 }
 
 {
-  "input": "we have roughly three hundred and fifty engineers across all offices globally",
-  "output": "We have roughly 350 engineers across all offices globally.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the response time improved from six fifty milliseconds to two hundred and ten",
-  "output": "The response time improved from 650ms to 210ms.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the event is planned for july twenty second next year",
-  "output": "The event is planned for July 22nd next year.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "the file takes forty seven point eight seconds to process on average",
-  "output": "The file takes 47.8 seconds to process on average.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "yaar kaam khatam karo phir call karo main wait kar raha hoon",
   "output": "Yaar kaam khatam karo phir call karo main wait kar raha hoon.",
   "app_category": "Personal",
@@ -2659,13 +2736,6 @@
 }
 
 {
-  "input": "um basically the new apartment is six hundred square feet and has two balconies",
-  "output": "The new apartment is 600 square feet and has 2 balconies",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "toh yaar kafi dino baad tumse baat ho rahi hai sab badhiya chal raha hai na",
   "output": "Toh yaar kafi dino baad tumse baat ho rahi hai sab badhiya chal raha hai na.",
   "app_category": "Personal",
@@ -2680,13 +2750,6 @@
 }
 
 {
-  "input": "the resort costs around eight thousand rupees per night for a deluxe room",
-  "output": "The resort costs around ₹8,000 per night for a deluxe room",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "they where late two the meeting because there car broke down",
   "output": "They where late two the meeting because there car broke down",
   "app_category": "Work",
@@ -2694,24 +2757,10 @@
 }
 
 {
-  "input": "the API handles about twelve thousand requests per minute at peak load",
-  "output": "The API handles about 12,000 requests per minute at peak load",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "its clear that the UX team did not take the feedback in to account",
   "output": "Its clear that the UX team did not take the feedback in to account",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "uh basically the movie is rated at eight point one on imdb so should be good",
-  "output": "The movie is rated 8.1 on IMDb, so should be good",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -2771,13 +2820,6 @@
 }
 
 {
-  "input": "the exam has one hundred questions in three hours so a minute eighty seconds per question",
-  "output": "The exam has 100 questions in 3 hours, so 1 minute 48 seconds per question",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "hi all just a reminder that the monthly town hall is on the twenty first at four pm all employees are requested to attend best leadership",
   "output": "Hi all,\n\nJust a reminder that the monthly town hall is on the 21st at 4 PM. All employees are requested to attend.\n\nBest,\nLeadership",
   "app_category": "Email",
@@ -2803,13 +2845,6 @@
   "output": "There expecting a major spike in traffic during the sale period.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the train leaves at seven fifty pm and the journey takes roughly two and a half hours",
-  "output": "The train leaves at 7:50 PM and the journey takes roughly 2.5 hours",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -2876,13 +2911,6 @@
 }
 
 {
-  "input": "the new hire's monthly salary is sixty five thousand rupees excluding allowances",
-  "output": "The new hire's monthly salary is ₹65,000 excluding allowances.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "let's gift him a watch no actually a gift card he can choose what he wants",
   "output": "Let's gift him a gift card, he can choose what he wants",
   "app_category": "Personal",
@@ -2894,13 +2922,6 @@
   "output": "Push the change to prod, it's already stable",
   "app_category": "Work",
   "bucket": "self_correction"
-}
-
-{
-  "input": "so basically the codebase has over three hundred thousand lines and very little documentation",
-  "output": "The codebase has over 300,000 lines and very little documentation.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -2929,13 +2950,6 @@
   "output": "The team lead complemented the engineers on there refactoring work.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the system log shows error four oh three forbidden access denied for this endpoint",
-  "output": "The system log shows 'Error 403: Forbidden — Access denied for this endpoint'",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -2995,13 +3009,6 @@
 }
 
 {
-  "input": "the campaign got one point eight million impressions with a three point four percent click through rate",
-  "output": "The campaign got 1.8M impressions with a 3.4% click-through rate",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "the release checklist is one freeze code two tag the version three update changelog four notify stakeholders",
   "output": "The release checklist is:\n1. Freeze code\n2. Tag the version\n3. Update changelog\n4. Notify stakeholders.",
   "app_category": "Work",
@@ -3016,13 +3023,6 @@
 }
 
 {
-  "input": "I spent about twenty five hundred rupees on groceries this week which is way too much",
-  "output": "I spent about ₹2,500 on groceries this week, which is way too much",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "the tech stack is react for frontend node for backend and mongo for storage",
   "output": "The tech stack is React for frontend, Node for backend, and Mongo for storage.",
   "app_category": "Work",
@@ -3034,13 +3034,6 @@
   "output": "The PM told us that the scope is NOT NEGOTIABLE and the deadline is final.",
   "app_category": "Work",
   "bucket": "edge_cases"
-}
-
-{
-  "input": "so like basically dinner is at half past seven and the drive is about forty five minutes",
-  "output": "Dinner is at 7:30 and the drive is about 45 minutes",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -3083,13 +3076,6 @@
   "output": "Hi all,\n\nThe year end party is confirmed for the 23rd at 7 PM at the Grand Hall. Dress code is semi-formal.\n\nBest,\nAdmin Team",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "our next board meeting is on the twenty sixth at two in the afternoon at the HQ",
-  "output": "Our next board meeting is on the 26th at 2 PM at the HQ.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -3170,24 +3156,10 @@
 }
 
 {
-  "input": "we saved over two hundred thousand dollars in cloud costs by optimizing our storage tier",
-  "output": "We saved over $200,000 in cloud costs by optimizing our storage tier.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "their building a new feature but there timeline is unclear",
   "output": "Their building a new feature but there timeline is unclear.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the sprint runs from the third to the sixteenth and has forty eight story points total",
-  "output": "The sprint runs from the 3rd to the 16th and has 48 story points total.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -3202,20 +3174,6 @@
   "output": "Are you sure there not going to push back on this proposal?",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "we onboarded seven new clients in Q one each paying between twenty and fifty thousand per year",
-  "output": "We onboarded 7 new clients in Q1, each paying between $20K-$50K per year.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
-  "input": "our MRR grew from forty thousand to sixty five thousand in just three months",
-  "output": "Our MRR grew from $40,000 to $65,000 in just 3 months.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -3293,13 +3251,6 @@
   "output": "We peaked to early and now the competitors have caught up.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "my monthly subscriptions now cost nearly three thousand two hundred rupees total",
-  "output": "My monthly subscriptions now cost nearly ₹3,200 total",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -3499,13 +3450,6 @@
 }
 
 {
-  "input": "the wedding has about four hundred guests and starts at half past six in the evening",
-  "output": "The wedding has about 400 guests and starts at 6:30 in the evening",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "its a lose lose situation either we delay the launch or ship with known bugs",
   "output": "Its a lose lose situation either we delay the launch or ship with known bugs",
   "app_category": "Work",
@@ -3562,13 +3506,6 @@
 }
 
 {
-  "input": "I woke up at four forty five am for the six am flight and barely made it",
-  "output": "I woke up at 4:45 AM for the 6 AM flight and barely made it",
-  "app_category": "Personal",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "she past all three rounds and gets an offer for the senior backend role",
   "output": "She past all three rounds and gets an offer for the senior backend role",
   "app_category": "Personal",
@@ -3601,13 +3538,6 @@
   "output": "Your going to love the restaurant I booked it has amazing seafood",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the investor asked why would someone pay fifty dollars a month for this product",
-  "output": "The investor asked, 'Why would someone pay $50 a month for this product?'",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
@@ -3660,13 +3590,6 @@
 }
 
 {
-  "input": "production goes live on the seventeenth of this month at midnight IST sharp",
-  "output": "Production goes live on the 17th of this month at midnight IST sharp.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
-}
-
-{
   "input": "set the cache to ten minutes no wait an hour the data barely changes",
   "output": "Set the cache to 1 hour, the data barely changes.",
   "app_category": "Work",
@@ -3699,13 +3622,6 @@
   "output": "Always run the unit tests first, skipping is too dangerous.",
   "app_category": "Work",
   "bucket": "self_correction"
-}
-
-{
-  "input": "the meeting is at quarter past three in the afternoon please do not be late",
-  "output": "The meeting is at 3:15 PM, please do not be late.",
-  "app_category": "Work",
-  "bucket": "numbers_formatting"
 }
 
 {
