@@ -1,1227 +1,1073 @@
 {
+  "input": "uh we need to deploy the application on tuesday",
+  "output": "We need to deploy the application on Tuesday.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "um the client is asking for an update on the PR",
+  "output": "The client is asking for an update on the PR.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "hmm i think we should use figma for the new design",
+  "output": "I think we should use Figma for the new design.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "er the backend is written in node",
+  "output": "The backend is written in Node.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "erm she left her laptop at the office",
+  "output": "She left her laptop at the office.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "uh i will check the YAML configuration file tomorrow",
+  "output": "I will check the YAML configuration file tomorrow.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "um my browser crashed when opening safari",
+  "output": "My browser crashed when opening Safari.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "hmm the delivery is scheduled for thursday",
+  "output": "The delivery is scheduled for Thursday.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "uh the meeting notes are attached below",
+  "output": "The meeting notes are attached below.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "um the server needs a restart",
+  "output": "The server needs a restart.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "uh did you review the API documentation",
+  "output": "Did you review the API documentation?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "um why is the dashboard returning an error",
+  "output": "Why is the dashboard returning an error?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "hmm are we going to the restaurant tonight",
+  "output": "Are we going to the restaurant tonight?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "er can you send me the latest metrics",
+  "output": "Can you send me the latest metrics?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "uh what time is the flight on tuesday",
+  "output": "What time is the flight on Tuesday?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "um do you know if the PR was merged",
+  "output": "Do you know if the PR was merged?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "hmm will this affect the Q3 roadmap",
+  "output": "Will this affect the Q3 roadmap?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "uh is it possible to rollback the deployment",
+  "output": "Is it possible to rollback the deployment?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "um did she say anything about the new layout",
+  "output": "Did she say anything about the new layout?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "er have you seen my keys anywhere",
+  "output": "Have you seen my keys anywhere?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the tests failed we need to fix the pipeline",
+  "output": "The tests failed. We need to fix the pipeline.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "i checked the logs there is a memory leak",
+  "output": "I checked the logs. There is a memory leak.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the food is getting cold we should eat now",
+  "output": "The food is getting cold. We should eat now.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the bug is critical please resolve it ASAP",
+  "output": "The bug is critical. Please resolve it ASAP.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "i cannot access the database the credentials expired",
+  "output": "I cannot access the database. The credentials expired.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the movie was great you would love it",
+  "output": "The movie was great. You would love it.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the migration is complete you can verify it now",
+  "output": "The migration is complete. You can verify it now.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the traffic is awful i will be late",
+  "output": "The traffic is awful. I will be late.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "we need more resources the current server is overloaded",
+  "output": "We need more resources. The current server is overloaded.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "the design looks clean the client approved it",
+  "output": "The design looks clean. The client approved it.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "so we need to finish the integration by tomorrow",
+  "output": "So we need to finish the integration by tomorrow.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "like i was saying the feature is not ready",
+  "output": "Like I was saying, the feature is not ready.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "well it seems the issue is on their end",
+  "output": "Well, it seems the issue is on their end.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "you know we could just use the existing API",
+  "output": "You know, we could just use the existing API.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "honestly the previous version was much faster",
+  "output": "Honestly, the previous version was much faster.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "basically the system crashed during peak hours",
+  "output": "Basically, the system crashed during peak hours.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "actually i think thursday works better for me",
+  "output": "Actually, I think Thursday works better for me.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "it is sort of an edge case",
+  "output": "It is sort of an edge case.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "okay let us review the PR together",
+  "output": "Okay, let us review the PR together.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "just let me know when you are available",
+  "output": "Just let me know when you are available.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "we should of tested it locally first",
+  "output": "We should of tested it locally first.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "their going to cancel the subscription",
+  "output": "Their going to cancel the subscription.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "can you sea the error in the console",
+  "output": "Can you sea the error in the console?",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "he past the final round of interviews",
+  "output": "He past the final round of interviews.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "we excepted the new proposal without reading it",
+  "output": "We excepted the new proposal without reading it.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "write down the exact steps to reproduce it",
+  "output": "Write down the exact steps to reproduce it.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "its not a big deal for us",
+  "output": "Its not a big deal for us.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "youre missing the main point of the document",
+  "output": "Youre missing the main point of the document.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "there not replying to any of the emails",
+  "output": "There not replying to any of the emails.",
+  "bucket": "basic_formatting"
+}
+
+{
+  "input": "they should of updated the dependencies",
+  "output": "They should of updated the dependencies.",
+  "bucket": "basic_formatting"
+}
+
+{
   "input": "yani ki basically ab naya sprint hai toh priorities set karo sab",
   "output": "Yani ki basically ab naya sprint hai toh priorities set karo sab.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the trip is from the third to the seventh of may two nights in delhi one in agra",
   "output": "The trip is from the 3rd to the 7th of May, 2 nights in Delhi, 1 in Agra",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "freeze the release this week no actually keep it open one more bug came in",
   "output": "Keep the release open, one more bug came in",
-  "app_category": "Work"
-}
-
-{
-  "input": "the bug severity is P2 no P1 users are actively impacted",
-  "output": "The bug severity is P1, users are actively impacted.",
-  "app_category": "Work"
-}
-
-{
-  "input": "so like the the book I ordered arrived today earlier than expected",
-  "output": "The book I ordered arrived today, earlier than expected",
-  "app_category": "Personal"
-}
-
-{
-  "input": "you're credentials need to be rotated every ninety days",
-  "output": "You're credentials need to be rotated every ninety days.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "we need to reduce the API response time from eight hundred to under three hundred milliseconds",
   "output": "We need to reduce the API response time from 800ms to under 300ms.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the team lead's bonus was fifteen percent of annual salary this year",
   "output": "The team lead's bonus was 15% of annual salary this year.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the launch date is Q3 actually no it got pushed to Q4",
   "output": "The launch date is Q4, it got pushed from Q3",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "the PR needs to be reviewed before it effects the main branch",
   "output": "The PR needs to be reviewed before it effects the main branch.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "yaar toh kya hua meeting mein kuch important decide hua kya",
   "output": "Yaar toh kya hua meeting mein? Kuch important decide hua kya?",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the rollout will effect all users in the european region",
-  "output": "The rollout will effect all users in the european region.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the browser reports your connection is not private NET ERR CERT AUTHORITY INVALID",
-  "output": "The browser reports 'Your connection is not private. NET::ERR_CERT_AUTHORITY_INVALID'.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "let's meet at coffee shop no actually office conference room is better",
   "output": "Let's meet at the office conference room, it's better",
-  "app_category": "Personal"
-}
-
-{
-  "input": "it's a mute point now since the feature got cancelled",
-  "output": "It's a mute point now since the feature got cancelled",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "the CTO asked me when will the dashboard be ready for beta testers",
   "output": "The CTO asked me, 'When will the dashboard be ready for beta testers?'",
-  "app_category": "Work"
+  "bucket": "voice_commands"
 }
 
 {
   "input": "toh yaar sach mein bohot thak gaya hun aaj ghar jaldi ja raha hoon",
   "output": "Toh yaar sach mein bohot thak gaya hun aaj ghar jaldi ja raha hoon",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the bug was caught write before the production deployment",
   "output": "The bug was caught write before the production deployment",
-  "app_category": "Work"
+  "bucket": "edge_cases"
 }
 
 {
   "input": "disable the feature flag no wait enable it for beta users first",
   "output": "Enable the feature flag for beta users first.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the shopping list is milk eggs butter whole grain bread and orange juice",
-  "output": "The shopping list is milk, eggs, butter, whole grain bread, and orange juice",
-  "app_category": "Personal"
+  "bucket": "self_correction"
 }
 
 {
   "input": "toh yaar kya plan hai weekend ka kuch sochaa hai kya tune",
   "output": "Toh yaar kya plan hai weekend ka? Kuch sochaa hai kya tune?",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "maintenance window is from eleven pm to two am tonight please plan accordingly",
   "output": "Maintenance window is from 11 PM to 2 AM tonight, please plan accordingly.",
-  "app_category": "Work"
-}
-
-{
-  "input": "I am DONE with this project the scope keeps changing every single week",
-  "output": "I am DONE with this project, the scope keeps changing every single week",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "toh uhh basically naya API version release ho gaya hai sab ko update karna hoga",
   "output": "Toh basically naya API version release ho gaya hai, sab ko update karna hoga.",
-  "app_category": "Work"
-}
-
-{
-  "input": "uh the gym session is cancelled today the trainer is sick",
-  "output": "The gym session is cancelled today, the trainer is sick",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the console throws type error cannot read property data of undefined",
-  "output": "The console throws 'TypeError: Cannot read property data of undefined'",
-  "app_category": "Work"
-}
-
-{
-  "input": "i past the final round of interviews feeling good about it",
-  "output": "I past the final round of interviews feeling good about it",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the SLA requires ninety nine point nine percent uptime across all production services",
   "output": "The SLA requires 99.9% uptime across all production services.",
-  "app_category": "Work"
-}
-
-{
-  "input": "um the server migration to the new region is scheduled for saturday night",
-  "output": "The server migration to the new region is scheduled for Saturday night.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "we need two more days to thoroughly test the integration",
   "output": "We need two more days to thoroughly test the integration.",
-  "app_category": "Work"
-}
-
-{
-  "input": "their too cautious about deploying on fridays",
-  "output": "Their too cautious about deploying on Fridays",
-  "app_category": "Work"
+  "bucket": "edge_cases"
 }
 
 {
   "input": "reply to the client tonight no wait in the morning it's late there",
   "output": "Reply to the client in the morning, it's late there.",
-  "app_category": "Work"
-}
-
-{
-  "input": "send a slack message no email it needs to be documented properly",
-  "output": "Email it, it needs to be documented properly.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "toh yani ki client ne approve kar diya final design ko",
   "output": "Toh yani ki client ne approve kar diya final design ko.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the app is PAINFULLY slow I had to wait forty five seconds just to open settings",
   "output": "The app is PAINFULLY slow, I had to wait 45 seconds just to open settings",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "write the test first no wait let the feature be done first then test",
   "output": "Let the feature be done first, then test",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "deploy to eu region first actually no start with the us cluster it's larger",
   "output": "Start with the US cluster, it's larger.",
-  "app_category": "Work"
-}
-
-{
-  "input": "so like basically the new pricing model goes live at the start of next quarter",
-  "output": "The new pricing model goes live at the start of next quarter.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "push the candidate to the next round no scratch that let's do one more technical round",
   "output": "Let's do one more technical round before moving the candidate forward.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we past the approval stage now waiting for deployment",
-  "output": "We past the approval stage now waiting for deployment.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "toh yani ki performance metrics improve ho gayi hain uhhh last sprint ke baad",
   "output": "Toh yani ki performance metrics improve ho gayi hain last sprint ke baad.",
-  "app_category": "Work"
-}
-
-{
-  "input": "this Wi-Fi is ABSOLUTELY TERRIBLE I cannot load a single page right now",
-  "output": "This Wi-Fi is ABSOLUTELY TERRIBLE, I cannot load a single page right now",
-  "app_category": "Personal"
-}
-
-{
-  "input": "can you advise on weather we should use redis or memcached",
-  "output": "Can you advise on weather we should use Redis or Memcached?",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "matlab toh yaar kal ka standup eleven baje pe shift ho gaya hai",
   "output": "Matlab toh yaar kal ka standup eleven baje pe shift ho gaya hai.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the meeting link is wrong I mean the time is wrong twelve not two",
   "output": "The meeting time is wrong, it's 12 PM not 2 PM.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "let's order two large pizzas no wait three we have more people tonight",
   "output": "Let's order three large pizzas, we have more people tonight",
-  "app_category": "Personal"
+  "bucket": "self_correction"
 }
 
 {
   "input": "meet at six I mean seven I always mess up time zones",
   "output": "Meet at seven, I always mess up time zones",
-  "app_category": "Personal"
-}
-
-{
-  "input": "make sure you're environment is set up correctly before running",
-  "output": "Make sure you're environment is set up correctly before running.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the webpack config says module build failed from node-sass binding not found",
-  "output": "The webpack config says 'Module build failed from node-sass: Binding not found'",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "matlab toh basically design review kal hai sab ready kar lo pehle",
   "output": "Matlab toh basically design review kal hai, sab ready kar lo pehle",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the day one checklist is join company slack read handbook set up laptop attend orientation",
   "output": "The day one checklist is:\n1. Join company Slack\n2. Read handbook\n3. Set up laptop\n4. Attend orientation.",
-  "app_category": "Work"
-}
-
-{
-  "input": "its hard to debug this issue without proper logging in place",
-  "output": "Its hard to debug this issue without proper logging in place",
-  "app_category": "Work"
-}
-
-{
-  "input": "uh the client gave positive feedback overall but wants a faster load time on mobile",
-  "output": "The client gave positive feedback overall but wants a faster load time on mobile.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "so we're like halfway through the OKR cycle and the numbers are tracking green",
   "output": "We're halfway through the OKR cycle and the numbers are tracking green.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need GPU memory headroom compute quota and network bandwidth for this to work",
-  "output": "We need GPU memory, headroom, compute quota, and network bandwidth for this to work.",
-  "app_category": "Work"
+  "bucket": "edge_cases"
 }
 
 {
   "input": "um the vendor confirmed that the SDK update is compatible with version three of our app",
   "output": "The vendor confirmed that the SDK update is compatible with version 3 of our app.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "yaar toh yeh project mein itna scope creep ho raha hai banda pagal ho jaayega teen din mein",
   "output": "Yaar toh yeh project mein itna scope creep ho raha hai, banda pagal ho jaayega 3 din mein.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "things to carry for the interview laptop charger pen notebook and photo ID",
-  "output": "Things to carry for the interview: laptop, charger, pen, notebook, and photo ID.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the pipeline processes around four thousand five hundred events per hour currently",
   "output": "The pipeline processes around 4,500 events per hour currently.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "yani uhhh ki ab vo dono teams ek saath kaam karenge is project pe",
   "output": "Yani ki ab vo dono teams ek saath kaam karenge is project pe.",
-  "app_category": "Work"
-}
-
-{
-  "input": "so like the the deployment was rolled back because the canary tests failed",
-  "output": "The deployment was rolled back because the canary tests failed",
-  "app_category": "Work"
-}
-
-{
-  "input": "your the most senior person here make the call",
-  "output": "Your the most senior person here make the call",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the pre-launch tasks are one finalize copy two get legal sign off three brief the team four publish",
   "output": "The pre-launch tasks are:\n1. Finalize copy\n2. Get legal sign off\n3. Brief the team\n4. Publish.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "toh basically on call alert aa gaya hai koi dekho jaldi",
   "output": "Toh basically on call alert aa gaya hai koi dekho jaldi.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we should of automated this process months ago",
-  "output": "We should of automated this process months ago",
-  "app_category": "Work"
-}
-
-{
-  "input": "your going to miss the release window if you don't prioritize",
-  "output": "Your going to miss the release window if you don't prioritize.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "our monthly recurring revenue hit one point five million for the first time",
   "output": "Our monthly recurring revenue hit $1.5M for the first time",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "uh just letting you know I'll be home by nine tonight don't wait for dinner",
   "output": "Just letting you know I'll be home by 9 tonight, don't wait for dinner",
-  "app_category": "Personal"
-}
-
-{
-  "input": "this is COMPLETELY against our code of conduct and needs to be addressed immediately",
-  "output": "This is COMPLETELY against our code of conduct and needs to be addressed immediately.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "matlab toh yeh jo naya feature hai usse pehle staging pe test karo",
   "output": "Matlab toh yeh jo naya feature hai usse pehle staging pe test karo",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "user reported the app crashes on startup approximately one in ten times on ios",
   "output": "User reported the app crashes on startup approximately 1 in 10 times on iOS.",
-  "app_category": "Work"
-}
-
-{
-  "input": "the new hire past all the technical assessments with ease",
-  "output": "The new hire past all the technical assessments with ease.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "let's take the highway yaar no wait the bypass is faster right now",
   "output": "Let's take the bypass yaar, it's faster right now",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "give the new feature to priya no wait to the platform squad it's infrastructure work",
   "output": "Give the new feature to the platform squad, it's infrastructure work",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "assign this to the QA team no actually the developer must fix it first",
   "output": "The developer must fix it first before it goes to QA.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "the deployment checklist is one check configs two run smoke tests three monitor for five minutes four mark complete",
   "output": "The deployment checklist is:\n1. Check configs\n2. Run smoke tests\n3. Monitor for 5 minutes\n4. Mark complete.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the monthly targets are one grow DAU by ten percent two reduce churn to five percent",
   "output": "The monthly targets are:\n1. Grow DAU by 10%\n2. Reduce churn to 5%.",
-  "app_category": "Work"
-}
-
-{
-  "input": "there going to role back the update if issues persist",
-  "output": "There going to role back the update if issues persist",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the meeting is optional for engineers no wait it's mandatory all hands",
   "output": "The meeting is mandatory, it's an all hands",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "our app store rating jumped from three point two to four point one this week",
   "output": "Our app store rating jumped from 3.2 to 4.1 this week.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "present this to the client no actually wait for the legal sign off first",
   "output": "Wait for the legal sign off first before presenting to the client.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "toh basically ab sab documentation complete ho gayi hai",
   "output": "Toh basically ab sab documentation complete ho gayi hai.",
-  "app_category": "Work"
-}
-
-{
-  "input": "he asked me did you already push the config before the meeting",
-  "output": "He asked me, 'Did you already push the config before the meeting?'",
-  "app_category": "Work"
-}
-
-{
-  "input": "so like the onboarding material is ready we just need signoff from legal",
-  "output": "The onboarding material is ready, we just need signoff from legal",
-  "app_category": "Work"
-}
-
-{
-  "input": "the terminal says permission denied cannot write to slash etc slash hosts",
-  "output": "The terminal says 'Permission denied: cannot write to /etc/hosts'",
-  "app_category": "Work"
-}
-
-{
-  "input": "dad always says never sign anything without reading it twice",
-  "output": "Dad always says, 'Never sign anything without reading it twice.'",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "update the version to three point oh no two point nine for backward compat",
   "output": "Update the version to 2.9 for backward compatibility",
-  "app_category": "Work"
-}
-
-{
-  "input": "can you sea the pattern in these error logs",
-  "output": "Can you sea the pattern in these error logs?",
-  "app_category": "Work"
-}
-
-{
-  "input": "so basically we need to refactor this module before adding any new features",
-  "output": "We need to refactor this module before adding any new features",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "close the ticket no I mean escalate it the issue is still open",
   "output": "Escalate the ticket, the issue is still open.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "there are about two hundred and sixty people expected at the wedding",
   "output": "There are about 260 people expected at the wedding",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the sprint started on april fourteenth and ends april twenty eighth",
-  "output": "The sprint started on April 14th and ends April 28th.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "let's choose react no actually vue our existing team knows it better",
   "output": "Let's choose Vue, our existing team knows it better",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "yaar toh matlab tune sahi kaha tha main pehle se hi sochna chahiye tha",
   "output": "Yaar toh matlab tune sahi kaha tha main pehle se hi sochna chahiye tha",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the system is COMPLETELY DOWN this is our most critical outage in two years",
   "output": "The system is COMPLETELY DOWN, this is our most critical outage in 2 years",
-  "app_category": "Work"
-}
-
-{
-  "input": "she told me the job offer was already accepted before I even got the call",
-  "output": "She told me, 'The job offer was already accepted before I even got the call.'",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the database size has grown by two hundred gigabytes in the last thirty days",
   "output": "The database size has grown by 200GB in the last 30 days.",
-  "app_category": "Work"
-}
-
-{
-  "input": "so basically the new signing certificate expires next tuesday so we need to renew it",
-  "output": "The new signing certificate expires next Tuesday so we need to renew it",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "ping the devops team no actually email them it's a non urgent issue",
   "output": "Email the devops team, it's a non-urgent issue.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "halt the deployment I mean pause it for thirty minutes let's verify logs",
   "output": "Pause the deployment for 30 minutes, let's verify logs",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "matlab toh yaar kya bata tujhe koi aur option dikh raha hai",
   "output": "Matlab toh yaar kya bata tujhe koi aur option dikh raha hai?",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the load balancer is configured to timeout after thirty seconds not sixty",
   "output": "The load balancer is configured to timeout after 30 seconds, not 60.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "toh basically yaar presentation gayi bahut achhi client khush hai",
   "output": "Toh basically yaar presentation gayi bahut achhi client khush hai",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the conference has six keynotes across two days and over fifty breakout sessions",
   "output": "The conference has 6 keynotes across 2 days and over 50 breakout sessions.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "book the flights for friday no actually saturday the event starts on sunday",
   "output": "Book the flights for Saturday, the event starts on Sunday",
-  "app_category": "Personal"
+  "bucket": "self_correction"
 }
 
 {
   "input": "my running goal is five kilometers every morning before work this month",
   "output": "My running goal is 5km every morning before work this month",
-  "app_category": "Personal"
-}
-
-{
-  "input": "um the automated build failed twice today and we still don't know why",
-  "output": "The automated build failed twice today and we still don't know why.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we excepted the new terms and conditions without reading them",
-  "output": "We excepted the new terms and conditions without reading them",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "so basically we scaled up the cluster from four nodes to eight during peak traffic",
   "output": "We scaled up the cluster from 4 nodes to 8 during peak traffic",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the contract value is three hundred thousand dollars for a twelve month engagement",
   "output": "The contract value is $300,000 for a 12-month engagement.",
-  "app_category": "Work"
-}
-
-{
-  "input": "its not too late too pivot on this architectural decision",
-  "output": "Its not too late too pivot on this architectural decision",
-  "app_category": "Work"
-}
-
-{
-  "input": "bring sunscreen hat sunglasses and reef-safe lotion to the beach",
-  "output": "Bring sunscreen, hat, sunglasses, and reef-safe lotion to the beach",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the cron runs daily I mean weekly we changed it last sprint",
   "output": "The cron runs weekly, we changed it last sprint.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "matlab toh basically yaar main thoda busy hoon baad mein baat karte hain shayad Chhe baje",
   "output": "Matlab toh basically yaar main thoda busy hoon baad mein baat karte hain shayad 6 baje.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "um basically the new UI components are in the design system ready to use",
-  "output": "The new UI components are in the design system and ready to use",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "schedule the review for tuesday no I mean thursday tuesday has too many conflicts",
   "output": "Schedule the review for Thursday, Tuesday has too many conflicts.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "so basically we moved the dinner reservation from seven to eight pm",
   "output": "We moved the dinner reservation from 7 to 8 PM",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "add me to the email thread no scratch that just forward the summary",
   "output": "Just forward the summary, no need to add me to the thread",
-  "app_category": "Work"
-}
-
-{
-  "input": "so basically the analytics reports are now auto generated every monday morning",
-  "output": "The analytics reports are now auto-generated every Monday morning.",
-  "app_category": "Work"
-}
-
-{
-  "input": "their server costs have been to high this quarter",
-  "output": "Their server costs have been to high this quarter.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "toh yani ki bandwidth issue resolve ho gayi hai ab normal speed hai",
   "output": "Toh yani ki bandwidth issue resolve ho gayi hai ab normal speed hai.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
-
 
 {
   "input": "yaar toh bohot zyada kaam ho gaya hai aaj thak gaya main",
   "output": "Yaar toh bohot zyada kaam ho gaya hai aaj thak gaya main.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "um the beta group conversion rate went up by twelve percent since the last update",
   "output": "The beta group conversion rate went up by 12% since the last update.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "I want pasta for dinner no wait let's just order biryani tonight",
   "output": "Let's order biryani tonight",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the investor asked why did you choose this market over the adjacent ones",
-  "output": "The investor asked, 'Why did you choose this market over the adjacent ones?'",
-  "app_category": "Work"
-}
-
-{
-  "input": "this is absolutely NOT what we agreed upon in the requirements doc",
-  "output": "This is absolutely NOT what we agreed upon in the requirements doc",
-  "app_category": "Work"
-}
-
-{
-  "input": "the principle behind this design pattern is separation of concerns",
-  "output": "The principle behind this design pattern is separation of concerns.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "our customer churn rate dropped from eight point five to four point two percent",
   "output": "Our customer churn rate dropped from 8.5% to 4.2%.",
-  "app_category": "Work"
-}
-
-
-{
-  "input": "so the ticket was assigned to the wrong person please reassign it to dev team",
-  "output": "The ticket was assigned to the wrong person, please reassign it to the dev team.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the total campaign budget is fifty thousand dollars split equally across four channels",
   "output": "The total campaign budget is $50,000 split equally across 4 channels.",
-  "app_category": "Work"
-}
-
-{
-  "input": "bare in mind the api will be deprecated end of quarter",
-  "output": "Bare in mind the API will be deprecated end of quarter.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "yani ki yaar hamara release next friday ko hai sab ready hai na",
   "output": "Yani ki yaar hamara release next Friday ko hai sab ready hai na?",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "uh the monitoring dashboard shows a spike in four hundred errors around noon",
   "output": "The monitoring dashboard shows a spike in 400 errors around noon.",
-  "app_category": "Work"
-}
-
-{
-  "input": "um basically i think the root cause was a race condition in the message queue",
-  "output": "The root cause was a race condition in the message queue",
-  "app_category": "Work"
-}
-
-{
-  "input": "uh just heads up the company holiday list has been updated for next year",
-  "output": "Just heads up, the company holiday list has been updated for next year.",
-  "app_category": "Work"
-}
-
-{
-  "input": "skip the staging test no that's too risky always test on staging first",
-  "output": "Always test on staging first, skipping is too risky.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we need to right the incident report by end of day",
-  "output": "We need to right the incident report by end of day.",
-  "app_category": "Work"
-}
-
-{
-  "input": "its effects on the performance were more severe than expected",
-  "output": "Its effects on the performance were more severe than expected.",
-  "app_category": "Work"
+  "bucket": "voice_commands"
 }
 
 {
   "input": "the fix goes in the config file no wait in the environment variable it's more secure",
   "output": "The fix goes in the environment variable, it's more secure.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "use typescript no scratch that the rest of the project is in javascript",
   "output": "Use JavaScript, the rest of the project is already in it",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "the earphones I want are discounted from six thousand to four thousand five hundred rupees only",
-  "output": "The earphones I want are discounted from ₹6,000 to ₹4,500 only",
-  "app_category": "Personal"
-}
-
-{
-  "input": "the system should of flagged that anomaly automatically",
-  "output": "The system should of flagged that anomaly automatically.",
-  "app_category": "Work"
-}
-
-
-{
-  "input": "they're approach to scaling is two reactive not proactive",
-  "output": "They're approach to scaling is two reactive not proactive.",
-  "app_category": "Work"
+  "output": "The earphones I want are discounted from \u20b96,000 to \u20b94,500 only",
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "my weight has gone down by two point five kilograms in six weeks great progress",
   "output": "My weight has gone down by 2.5kg in 6 weeks, great progress",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the log reads uncaught reference error foo is not defined at script dot js line forty two",
   "output": "The log reads 'Uncaught ReferenceError: foo is not defined at script.js line 42'",
-  "app_category": "Work"
+  "bucket": "edge_cases"
 }
 
 {
   "input": "we have forty eight open issues and sixteen critical ones need fixing today",
   "output": "We have 48 open issues and 16 critical ones need fixing today",
-  "app_category": "Work"
-}
-
-{
-  "input": "to pack for the trek thermal jacket trail shoes water bottle headlamp and first aid",
-  "output": "To pack for the trek: thermal jacket, trail shoes, water bottle, headlamp, and first aid",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "paid twenty two fifty for parking at the airport way too expensive",
   "output": "Paid $22.50 for parking at the airport, way too expensive",
-  "app_category": "Personal"
-}
-
-{
-  "input": "there adding two new engineers to are team next month",
-  "output": "There adding two new engineers to are team next month.",
-  "app_category": "Work"
-}
-
-{
-  "input": "my morning routine is first meditate then journal then run then shower then work",
-  "output": "My morning routine is:\n1. Meditate\n2. Journal\n3. Run\n4. Shower\n5. Work",
-  "app_category": "Personal"
-}
-
-
-{
-  "input": "so we like finally resolved the intermittent timeout issue on the auth service",
-  "output": "We finally resolved the intermittent timeout issue on the auth service",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "tag this as low priority I mean medium this could affect users",
   "output": "Tag this as medium priority, this could affect users.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "matlab toh toh yaar mujhe lagta hai hum yeh deadline miss karenge",
   "output": "Matlab toh toh yaar mujhe lagta hai hum yeh deadline miss karenge.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the team velocity increased by thirty five percent in the last two sprints",
   "output": "The team velocity increased by 35% in the last 2 sprints.",
-  "app_category": "Work"
-}
-
-{
-  "input": "um I think we should just take the car today not the bike it looks like rain",
-  "output": "I think we should just take the car today, not the bike, it looks like rain",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "the hackathon project won second place out of forty two submitted entries",
   "output": "The hackathon project won 2nd place out of 42 submitted entries",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "call dad no wait text him he might be in a meeting",
   "output": "Text dad, he might be in a meeting",
-  "app_category": "Personal"
+  "bucket": "self_correction"
 }
 
 {
   "input": "um the team is running at eighty percent capacity this sprint due to two people on leave",
   "output": "The team is running at 80% capacity this sprint due to 2 people on leave.",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "merge to main directly no I mean create a PR we have branch protection",
   "output": "Create a PR, we have branch protection",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "toh yani ki basically ab koi bhi change production mein bina review ke nahi jayegi",
   "output": "Toh yani ki basically ab koi bhi change production mein bina review ke nahi jayegi.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "yani ki code review complete ho gayi hai merge karo jaldi",
   "output": "Yani ki code review complete ho gayi hai merge karo jaldi.",
-  "app_category": "Work"
-}
-
-{
-  "input": "your responsible for making sure the docs are up to date",
-  "output": "Your responsible for making sure the docs are up to date.",
-  "app_category": "Work"
-}
-
-{
-  "input": "we should altar our testing approach for edge cases",
-  "output": "We should altar our testing approach for edge cases.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the new engineers complemented are architecture design thoroughly",
   "output": "The new engineers complemented are architecture design thoroughly.",
-  "app_category": "Work"
+  "bucket": "edge_cases"
 }
 
 {
   "input": "let's use the mobile first approach wait no desktop is still the primary platform",
   "output": "Let's use the desktop-first approach, it's still the primary platform",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "uh so we basically missed the sprint target by two story points not a big deal",
   "output": "We missed the sprint target by 2 story points, not a big deal",
-  "app_category": "Work"
-}
-
-{
-  "input": "i cant weight to see the benchmarks for the new model",
-  "output": "I cant weight to see the benchmarks for the new model",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "reduce the cache TTL to five minutes no I mean increase it to thirty minutes",
   "output": "Increase the cache TTL to 30 minutes.",
-  "app_category": "Work"
+  "bucket": "self_correction"
 }
 
 {
   "input": "the feature rolled out to twenty percent of users since last tuesday",
   "output": "The feature rolled out to 20% of users since last Tuesday.",
-  "app_category": "Work"
-}
-
-{
-  "input": "she herd about the acquisition before the official announcement",
-  "output": "She herd about the acquisition before the official announcement",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "my flight leaves at half past six in the morning check in two hours before",
   "output": "My flight leaves at 6:30 AM, check in 2 hours before",
-  "app_category": "Personal"
-}
-
-{
-  "input": "is you're token refreshing automatically or do you need to set it up",
-  "output": "Is you're token refreshing automatically or do you need to set it up?",
-  "app_category": "Work"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "toh shukriya yaar tune kafi help ki hai is problem mein",
   "output": "Toh shukriya yaar tune kafi help ki hai is problem mein.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "the electricity bill this month was three thousand two hundred rupees compared to two thousand last month",
-  "output": "The electricity bill this month was ₹3,200 compared to ₹2,000 last month",
-  "app_category": "Personal"
-}
-
-{
-  "input": "they're config file is pointing to the wrong database host",
-  "output": "They're config file is pointing to the wrong database host.",
-  "app_category": "Work"
-}
-
-{
-  "input": "their migration plan is to aggressive for the given timeline",
-  "output": "Their migration plan is to aggressive for the given timeline.",
-  "app_category": "Work"
+  "output": "The electricity bill this month was \u20b93,200 compared to \u20b92,000 last month",
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "so like basically I'm running fifteen minutes late the metro was delayed",
   "output": "I'm running 15 minutes late, the metro was delayed",
-  "app_category": "Personal"
+  "bucket": "numbers_formatting"
 }
 
 {
   "input": "yaar kya scene hai aaj ka kuch plan hai kya",
   "output": "Yaar kya scene hai aaj ka kuch plan hai kya?",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "bhai kal meeting mein kya decide hua kuch important tha",
   "output": "Bhai kal meeting mein kya decide hua kuch important tha?",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "arre yeh toh bahut bada bug hai production mein jaldi koi dekho",
   "output": "Arre yeh toh bahut bada bug hai production mein jaldi koi dekho.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "suno na aaj ke liye naya plan hai staging pe deploy karo pehle",
   "output": "Suno na aaj ke liye naya plan hai staging pe deploy karo pehle.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "haan haan samajh gaya main yeh task kal tak complete kar dunga",
   "output": "Haan haan samajh gaya main yeh task kal tak complete kar dunga.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "na na woh pr merge mat karo abhi review baaki hai",
   "output": "Na na woh PR merge mat karo abhi review baaki hai.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "bilkul bilkul sahi keh raha hai tu yahi approach leni chahiye thi",
   "output": "Bilkul bilkul sahi keh raha hai tu yahi approach leni chahiye thi.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "yaar yeh deployment Sunday raat ko karenge na",
   "output": "Yaar yeh deployment Sunday raat ko karenge na.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "toh basically hum kal wahi milenge na",
   "output": "Toh basically hum kal wahi milenge na.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "abhi hi push karo warna release window miss ho jaayegi",
   "output": "Abhi hi push karo warna release window miss ho jaayegi.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "yahi toh problem hai ki testing pehle nahi ki thi",
   "output": "Yahi toh problem hai ki testing pehle nahi ki thi.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "meeting saadhe teen baje hai conference room B mein",
   "output": "Meeting 3:30 baje hai conference room B mein.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "paune gyarah baje doctor ka appointment hai mat bhoolna",
   "output": "10:45 baje doctor ka appointment hai mat bhoolna.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "sawa paanch baje nikal jaana office se aaj",
   "output": "5:15 baje nikal jaana office se aaj.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "aadha ghanta aur wait karo server restart ho raha hai",
   "output": "Aadha ghanta aur wait karo server restart ho raha hai.",
-  "app_category": "Work"
-}
-
-{
-  "input": "laptop ki repair mein paanch hazaar lage mujhe",
-  "output": "Laptop ki repair mein 5,000 lage mujhe.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "rent badhke ek lakh ho gayi hai is area mein",
   "output": "Rent badhke 1 lakh ho gayi hai is area mein.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
 
 {
   "input": "gift ke liye do hazaar rupaye ka budget hai",
-  "output": "Gift ke liye ₹2,000 ka budget hai.",
-  "app_category": "Personal"
+  "output": "Gift ke liye \u20b92,000 ka budget hai.",
+  "bucket": "hinglish"
 }
 
 {
   "input": "mera naya number hai nine eight one zero four five six seven eight nine",
   "output": "Mera naya number hai 9810456789.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "do teen din mein feature ready ho jaayega",
-  "output": "Do teen din mein feature ready ho jaayega.",
-  "app_category": "Work"
-}
-
-{
-  "input": "paanch saat log aur chahiye is project mein",
-  "output": "Paanch saat log aur chahiye is project mein.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "pehle round mein vo fail ho gaye doosre mein select ho gaye",
   "output": "Pehle round mein vo fail ho gaye doosre mein select ho gaye.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "teesri baar try kar raha hoon yeh feature kaam nahi kar raha",
   "output": "Teesri baar try kar raha hoon yeh feature kaam nahi kar raha.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "ek do minute ruko main aata hoon",
   "output": "Ek do minute ruko main aata hoon.",
-  "app_category": "Personal"
-}
-
-{
-  "input": "ek do aur log aur chahiye the is sprint mein",
-  "output": "Ek do aur log aur chahiye the is sprint mein.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "yaar toh basically code review karo phir merge karo phir staging pe check karo",
   "output": "Yaar toh basically code review karo phir merge karo phir staging pe check karo.",
-  "app_category": "Work"
+  "bucket": "hinglish"
 }
 
 {
   "input": "bhai kaam ho gaya toh nikal jaate hain kuch khaate hain bahar",
   "output": "Bhai kaam ho gaya toh nikal jaate hain kuch khaate hain bahar.",
-  "app_category": "Personal"
+  "bucket": "hinglish"
 }
