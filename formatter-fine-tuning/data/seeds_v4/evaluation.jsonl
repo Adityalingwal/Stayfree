@@ -34,13 +34,6 @@
 }
 
 {
-  "input": "um I booked the table for four at seven tonight",
-  "output": "I booked the table for four at seven tonight.",
-  "app_category": "Personal",
-  "bucket": "basic_formatting"
-}
-
-{
   "input": "hmm the design review got moved to wednesday morning",
   "output": "The design review got moved to Wednesday morning.",
   "app_category": "Work",
@@ -49,7 +42,7 @@
 
 {
   "input": "er the team standup is running fifteen minutes late today",
-  "output": "The team standup is running fifteen minutes late today.",
+  "output": "The team standup is running 15 minutes late today.",
   "app_category": "Work",
   "bucket": "basic_formatting"
 }
@@ -203,7 +196,7 @@
 
 {
   "input": "the flight is delayed by two hours we have time to grab food",
-  "output": "The flight is delayed by two hours. We have time to grab food.",
+  "output": "The flight is delayed by 2 hours. We have time to grab food.",
   "app_category": "Personal",
   "bucket": "basic_formatting"
 }
@@ -217,7 +210,7 @@
 
 {
   "input": "well the client has not responded to the proposal in three days",
-  "output": "Well, the client has not responded to the proposal in three days.",
+  "output": "Well, the client has not responded to the proposal in 3 days.",
   "app_category": "Work",
   "bucket": "basic_formatting"
 }
