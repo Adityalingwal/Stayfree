@@ -2184,269 +2184,10 @@
 }
 
 {
-  "input": "hi team just checking in on the status of the final report please let me know if you need any help thanks sarah",
-  "output": "Hi team,\n\nJust checking in on the status of the final report. Please let me know if you need any help.\n\nThanks,\nSarah",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello everyone the client loved our presentation yesterday great job across the board regards management",
-  "output": "Hello everyone,\n\nThe client loved our presentation yesterday. Great job across the board.\n\nRegards,\nManagement",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear supplier we would like to order fifty units of the premium steel chairs kindly send us an invoice best alice",
-  "output": "Dear supplier,\n\nWe would like to order 50 units of the premium steel chairs. Kindly send us an invoice.\n\nBest,\nAlice",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi kevin please find attached the financial statements for q four let me know if you have any questions thanks again rahul",
-  "output": "Hi Kevin,\n\nPlease find attached the financial statements for Q4. Let me know if you have any questions.\n\nThanks again,\nRahul",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hey anita could you review the mockups i uploaded to figma yesterday i need your approval by tomorrow cheers john",
-  "output": "Hey Anita,\n\nCould you review the mockups I uploaded to Figma yesterday? I need your approval by tomorrow.\n\nCheers,\nJohn",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi everyone unfortunately i am stuck in traffic and will miss the nine am meeting please proceed without me sorry for the inconvenience mark",
-  "output": "Hi everyone,\n\nUnfortunately I am stuck in traffic and will miss the 9 AM meeting. Please proceed without me.\n\nSorry for the inconvenience,\nMark",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear team i need to reschedule our one on one to thursday afternoon hope that works for you best emily",
-  "output": "Dear team,\n\nI need to reschedule our one on one to Thursday afternoon. Hope that works for you.\n\nBest,\nEmily",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi boss i am feeling under the weather today so i will be taking a sick day let me know if anything urgent comes up thanks chris",
-  "output": "Hi boss,\n\nI am feeling under the weather today, so I will be taking a sick day. Let me know if anything urgent comes up.\n\nThanks,\nChris",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello following up on the design assets for the website completely understand if you are busy but we need them by eod strictly best team",
-  "output": "Hello,\n\nFollowing up on the design assets for the website. Completely understand if you are busy, but we need them by EOD strictly.\n\nBest,\nTeam",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hey just a quick bump on this email thread did you get a chance to read the proposal cheers priyanka",
-  "output": "Hey,\n\nJust a quick bump on this email thread. Did you get a chance to read the proposal?\n\nCheers,\nPriyanka",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear all please note that the office will be closed on friday for the public holiday have a great long weekend regards hr team",
-  "output": "Dear all,\n\nPlease note that the office will be closed on Friday for the public holiday.\n\nHave a great long weekend.\n\nRegards,\nHR team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi investors we are thrilled to announce that we crossed ten thousand active users this month thank you for your continuous support best founder",
-  "output": "Hi investors,\n\nWe are thrilled to announce that we crossed 10,000 active users this month. Thank you for your continuous support.\n\nBest,\nFounder",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello team the server migration is scheduled for tonight at eleven pm expect brief downtime thanks eng team",
-  "output": "Hello team,\n\nThe server migration is scheduled for tonight at 11 PM. Expect brief downtime.\n\nThanks,\nEng team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi everyone the new wifi password for the guest network is coffee one two three please use this going forward cheers it support",
-  "output": "Hi everyone,\n\nThe new wifi password for the guest network is coffee123. Please use this going forward.\n\nCheers,\nIT support",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi team quick reminder to submit your timesheets today thanks",
-  "output": "Hi team,\n\nQuick reminder to submit your timesheets today.\n\nThanks.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hey michael the client signed the contract let's go chat later",
-  "output": "Hey Michael,\n\nThe client signed the contract. Let's go.\n\nChat later.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear customer comma new line your order has been shipped period it will arrive in three days full stop new line best regards comma new line support",
-  "output": "Dear customer,\n\nYour order has been shipped. It will arrive in 3 days.\n\nBest regards,\nSupport",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello team comma new line the bugs are fixed exclamation mark new line new line thanks comma new line dev team",
-  "output": "Hello team,\n\nThe bugs are fixed!\n\nThanks,\nDev team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi marketing can you launch the new campaign on instagram and tik tok tomorrow cheers jessica",
-  "output": "Hi marketing,\n\nCan you launch the new campaign on Instagram and TikTok tomorrow?\n\nCheers,\nJessica",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear hiring manager i would love to apply for the backend role at slack please see my resume attached best robert",
-  "output": "Dear hiring manager,\n\nI would love to apply for the backend role at Slack. Please see my resume attached.\n\nBest,\nRobert",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello james did you get the invoice from amazon web services yet thanks finance",
-  "output": "Hello James,\n\nDid you get the invoice from Amazon Web Services yet?\n\nThanks,\nFinance",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi team please migrate all the storage buckets from azure to google cloud by tomorrow best engineering lead",
-  "output": "Hi team,\n\nPlease migrate all the storage buckets from Azure to Google Cloud by tomorrow.\n\nBest,\nEngineering lead",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hey team just testing if the new email server is routing properly let me know if you receive this cheers it guy",
-  "output": "Hey team,\n\nJust testing if the new email server is routing properly. Let me know if you receive this.\n\nCheers,\nIT guy",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear all the catering for friday's event has been confirmed expect pizza and pasta best admin",
-  "output": "Dear all,\n\nThe catering for Friday's event has been confirmed. Expect pizza and pasta.\n\nBest,\nAdmin",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi sarah the design looks perfect you're free to push it to production whenever thanks alex",
-  "output": "Hi Sarah,\n\nThe design looks perfect. You're free to push it to production whenever.\n\nThanks,\nAlex",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello priya could you send me the updated budget for q two by thursday end of day",
-  "output": "Hello Priya,\n\nCould you send me the updated budget for Q2 by Thursday, end of day?",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi team the database migration is scheduled for this sunday at two am please plan accordingly",
-  "output": "Hi team,\n\nThe database migration is scheduled for this Sunday at 2 AM. Please plan accordingly.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear mr patel i am writing to confirm our meeting on the fourteenth at three pm at our mumbai office",
-  "output": "Dear Mr. Patel,\n\nI am writing to confirm our meeting on the 14th at 3 PM at our Mumbai office.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hey lisa great working with you on this project please find the final report attached",
-  "output": "Hey Lisa,\n\nGreat working with you on this project. Please find the final report attached.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi everyone the all hands meeting next thursday is moved to two pm please update your calendars",
-  "output": "Hi everyone,\n\nThe all-hands meeting next Thursday is moved to 2 PM. Please update your calendars.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello support team my account id is a c c dash three four five one i cannot log in for the past two days",
-  "output": "Hello support team,\n\nMy account ID is ACC-3451. I cannot log in for the past 2 days.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi rohit i noticed your pull request from yesterday still needs a review can you ping me when you are free",
-  "output": "Hi Rohit,\n\nI noticed your pull request from yesterday still needs a review. Can you ping me when you are free?",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "good morning team as a reminder our q two targets are attached to this email please review before friday",
-  "output": "Good morning team,\n\nAs a reminder, our Q2 targets are attached to this email. Please review before Friday.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hello this is maya from the events team just confirming that the venue is booked for march twenty second from five pm to ten pm",
-  "output": "Hello,\n\nThis is Maya from the events team. Just confirming that the venue is booked for March 22nd from 5 PM to 10 PM.",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "yani ki toh basically ab release mein sirf ek feature aur bacha hai ship karte hain",
   "output": "Ab release mein sirf ek feature aur bacha hai, ship karte hain",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "hello support team my order number O R D dash two two two was delivered with a missing item please assist immediately cheers customer",
-  "output": "Hello Support Team,\n\nMy order number ORD-222 was delivered with a missing item. Please assist immediately.\n\nCheers,\nCustomer",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi team the sprint demo is confirmed for friday at three thirty pm client will be joining please be prepared with a crisp walkthrough thanks product",
-  "output": "Hi team,\n\nThe sprint demo is confirmed for Friday at 3:30 PM. Client will be joining, please be prepared with a crisp walkthrough.\n\nThanks,\nProduct",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear all this is to notify you of a change in office timings effective next monday new hours will be nine to six regards admin",
-  "output": "Dear all,\n\nThis is to notify you of a change in office timings effective next Monday. New hours will be 9 to 6.\n\nRegards,\nAdmin",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -2457,24 +2198,10 @@
 }
 
 {
-  "input": "hi aditya congratulations on completing a year with us wishing you continued success warm regards people team",
-  "output": "Hi Aditya,\n\nCongratulations on completing a year with us. Wishing you continued success.\n\nWarm regards,\nPeople Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "yaar toh matlab teri baat sahi thi main galat tha sorry yaar",
   "output": "Yaar toh matlab teri baat sahi thi main galat tha sorry yaar.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "hi deepak I hope this email finds you well I wanted to share the updated quarterly metrics report with you cheers analytics team",
-  "output": "Hi Deepak, I hope this email finds you well. I wanted to share the updated quarterly metrics report with you. Cheers, Analytics Team",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -2485,38 +2212,10 @@
 }
 
 {
-  "input": "hi team the server migration is complete and all services are up thanks devops",
-  "output": "Hi team, the server migration is complete and all services are up. Thanks, DevOps",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "matlab toh yaar tension mat lo ek baar agar nahi hua toh dekhenge",
   "output": "Matlab toh yaar tension mat lo ek baar agar nahi hua toh dekhenge.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "dear ms kapoor thank you for your application after careful review we would like to invite you for the next round of interviews sincerely HR",
-  "output": "Dear Ms. Kapoor, thank you for your application. After careful review, we would like to invite you for the next round of interviews. Sincerely, HR",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear subscriber your account password was recently changed if this was not you please contact support immediately sincerely security team",
-  "output": "Dear Subscriber, your account password was recently changed. If this was not you, please contact support immediately. Sincerely, Security Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi team please find the updated project timeline attached kindly review and share your inputs by wednesday regards project management",
-  "output": "Hi team,\n\nPlease find the updated project timeline attached. Kindly review and share your inputs by Wednesday.\n\nRegards,\nProject Management",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -2541,13 +2240,6 @@
 }
 
 {
-  "input": "hi karan your trial period ends on the twenty ninth if you wish to subscribe please proceed before then best billing",
-  "output": "Hi Karan,\n\nYour trial period ends on the 29th. If you wish to subscribe, please proceed before then.\n\nBest,\nBilling",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "yani ki basically next sprint ka planning meeting monday morning hai please block karo",
   "output": "Yani ki basically next sprint ka planning meeting monday morning hai please block karo.",
   "app_category": "Work",
@@ -2569,24 +2261,10 @@
 }
 
 {
-  "input": "dear guest thank you for staying with us we hope you had a pleasant experience we would love to have you back regards front desk",
-  "output": "Dear Guest,\n\nThank you for staying with us. We hope you had a pleasant experience. We would love to have you back.\n\nRegards,\nFront Desk",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "toh matlab yaar abhi toh sab busy hain but evening mein baat karte hain",
   "output": "Toh matlab yaar abhi toh sab busy hain but evening mein baat karte hain.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "dear siddharth your performance review for Q two is scheduled for the seventh at eleven am please come prepared with your self assessment regards manager",
-  "output": "Dear Siddharth,\n\nYour performance review for Q2 is scheduled for the 7th at 11 AM. Please come prepared with your self-assessment.\n\nRegards,\nManager",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -2611,13 +2289,6 @@
 }
 
 {
-  "input": "dear pooja this is to confirm your appointment on the tenth at two pm at our downtown office best regards scheduling team",
-  "output": "Dear Pooja, this is to confirm your appointment on the 10th at 2 PM at our downtown office. Best regards, Scheduling Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "toh yaar kya scene hai trip ka kab schedule kar rahe ho log",
   "output": "Toh yaar kya scene hai trip ka? Kab schedule kar rahe ho log?",
   "app_category": "Personal",
@@ -2625,24 +2296,10 @@
 }
 
 {
-  "input": "dear team this is a reminder to submit your timesheets for the week by friday five pm please ensure accuracy kind regards finance",
-  "output": "Dear team,\n\nThis is a reminder to submit your timesheets for the week by Friday 5 PM. Please ensure accuracy.\n\nKind regards,\nFinance",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "yani ki toh basically feature flag enable karo aur phir monitor karo closely",
   "output": "Yani ki toh basically feature flag enable karo aur phir monitor karo closely.",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "hi rina your reimbursement claim for the conference expenses has been approved the amount will be credited within seven working days kind regards finance",
-  "output": "Hi Rina,\n\nYour reimbursement claim for the conference expenses has been approved. The amount will be credited within 7 working days.\n\nKind regards,\nFinance",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -3059,45 +2716,10 @@
 }
 
 {
-  "input": "hi nikhil I am following up on the invoice number I N V dash eight nine zero sent last tuesday please confirm receipt thanks accounts",
-  "output": "Hi Nikhil, I am following up on invoice INV-890 sent last Tuesday. Please confirm receipt. Thanks, Accounts",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear all kindly note that parking on the third floor is reserved for visitors only employees please use floors four and five regards facilities",
-  "output": "Dear all,\n\nKindly note that parking on the third floor is reserved for visitors only. Employees please use floors 4 and 5.\n\nRegards,\nFacilities",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "toh matlab yaar ghar pe cooking try ki aaj pehli baar aur kaafi sahi bana",
   "output": "Toh matlab yaar ghar pe cooking try ki aaj pehli baar aur kaafi sahi bana.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "hi priya the contract for the vendor engagement has been signed and is effective from the first of may sincerely legal team",
-  "output": "Hi Priya, the contract for the vendor engagement has been signed and is effective from the 1st of May. Sincerely, Legal Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi all just a reminder that the monthly town hall is on the twenty first at four pm all employees are requested to attend best leadership",
-  "output": "Hi all,\n\nJust a reminder that the monthly town hall is on the 21st at 4 PM. All employees are requested to attend.\n\nBest,\nLeadership",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi nisha I am reaching out regarding the product feedback session scheduled on the fourth we would love your participation cheers research team",
-  "output": "Hi Nisha,\n\nI am reaching out regarding the product feedback session scheduled on the 4th. We would love your participation.\n\nCheers,\nResearch Team",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -3108,31 +2730,10 @@
 }
 
 {
-  "input": "dear hiring manager I am writing to express my interest in the senior product manager position please find my resume attached kind regards applicant",
-  "output": "Dear Hiring Manager, I am writing to express my interest in the Senior Product Manager position. Please find my resume attached. Kind regards, Applicant",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "matlab toh basically vo codebase itna legacy hai ki koi touch hi nahi karna chahta",
   "output": "Matlab toh basically vo codebase itna legacy hai ki koi touch hi nahi karna chahta.",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "dear all we regret to inform you that the system will be under scheduled maintenance on the fifteenth from ten pm to two am warm regards IT",
-  "output": "Dear all, we regret to inform you that the system will be under scheduled maintenance on the 15th from 10 PM to 2 AM. Warm regards, IT",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi rahul your visa application P R dash five five five has been received and is under review we will update you within five working days regards consulate",
-  "output": "Hi Rahul, your visa application PR-555 has been received and is under review. We will update you within 5 working days. Regards, Consulate",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -3143,59 +2744,10 @@
 }
 
 {
-  "input": "hi meera we are delighted to inform you that your proposal has been shortlisted we will schedule a presentation slot soon warm regards committee",
-  "output": "Hi Meera, we are delighted to inform you that your proposal has been shortlisted. We will schedule a presentation slot soon. Warm regards, Committee",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi arjun I wanted to loop you in on the status of the backend integration we are on track for the thursday release best dev team",
-  "output": "Hi Arjun, I wanted to loop you in on the status of the backend integration. We are on track for the Thursday release. Best, Dev Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear partner we are pleased to announce that the co-marketing campaign has been approved by both teams please share the next steps best strategic alliances",
-  "output": "Dear Partner,\n\nWe are pleased to announce that the co-marketing campaign has been approved by both teams. Please share the next steps.\n\nBest,\nStrategic Alliances",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "hi all the year end party is confirmed for the twenty third at seven pm at the grand hall dress code is semi formal best admin team",
-  "output": "Hi all,\n\nThe year end party is confirmed for the 23rd at 7 PM at the Grand Hall. Dress code is semi-formal.\n\nBest,\nAdmin Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear user your subscription renewal is due on the eleventh please update your payment method before then to avoid interruption regards finance",
-  "output": "Dear User, your subscription renewal is due on the 11th. Please update your payment method before then to avoid interruption. Regards, Finance",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
   "input": "matlab toh basically backend team ne API fix ki hai ab test karo please",
   "output": "Matlab toh basically backend team ne API fix ki hai ab test karo please.",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "hi vikram the training for the new CRM tool is scheduled for the twelfth and thirteenth kindly block your calendar warm regards L and D team",
-  "output": "Hi Vikram,\n\nThe training for the new CRM tool is scheduled for the 12th and 13th. Kindly block your calendar.\n\nWarm regards,\nL&D Team",
-  "app_category": "Email",
-  "bucket": "email_context"
-}
-
-{
-  "input": "dear concerned I would like to escalate a billing discrepancy of rupees three thousand on my account A C C dash four zero one please investigate regards user",
-  "output": "Dear Concerned, I would like to escalate a billing discrepancy of ₹3,000 on my account ACC-401. Please investigate. Regards, User",
-  "app_category": "Email",
-  "bucket": "email_context"
 }
 
 {
@@ -3210,4 +2762,396 @@
   "output": "Yani ki toh hum aaj shaam ko 7 baje ke baad hi plan kar sakte hain",
   "app_category": "Personal",
   "bucket": "hinglish"
+}
+
+{
+  "input": "hello michael just checking in on the status of the contract please update me when you can warm regards diana",
+  "output": "Hello Michael,\n\nJust checking in on the status of the contract. Please update me when you can.\n\nWarm regards,\nDiana",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi neha i wanted to let you know that your leave request has been approved see you when you return cheers sam",
+  "output": "Hi Neha,\n\nI wanted to let you know that your leave request has been approved. See you when you return.\n\nCheers,\nSam",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team please be reminded that the parking lot will be unavailable this weekend regards",
+  "output": "Dear team,\n\nPlease be reminded that the parking lot will be unavailable this weekend.\n\nRegards.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi all the wifi password has been updated please check your email for the new credentials thank you",
+  "output": "Hi all,\n\nThe wifi password has been updated. Please check your email for the new credentials.\n\nThank you.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "sure thing leave it with me",
+  "output": "Sure thing, leave it with me.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "sounds good see you there",
+  "output": "Sounds good, see you there.",
+  "app_category": "Personal",
+  "bucket": "email"
+}
+
+{
+  "input": "hi marketing team please share the campaign brief by wednesday regards",
+  "output": "Hi marketing team,\n\nPlease share the campaign brief by Wednesday.\n\nRegards.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear compliance team we have submitted all required documents for your review thank you",
+  "output": "Dear compliance team,\n\nWe have submitted all required documents for your review.\n\nThank you.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi everyone the quarterly targets have been updated please review them at your earliest best regards sales team",
+  "output": "Hi everyone,\n\nThe quarterly targets have been updated. Please review them at your earliest.\n\nBest regards,\nsales team",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear all please note the new escalation process is live as of today regards operations team",
+  "output": "Dear all,\n\nPlease note the new escalation process is live as of today.\n\nRegards,\noperations team",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear doctor krishna i am writing to follow up on my recent blood test results",
+  "output": "Dear Dr. Krishna,\n\nI am writing to follow up on my recent blood test results.",
+  "app_category": "Personal",
+  "bucket": "email"
+}
+
+{
+  "input": "hi doctor gupta just a quick note to confirm that i have attached the patient intake form",
+  "output": "Hi Dr. Gupta,\n\nJust a quick note to confirm that I have attached the patient intake form.",
+  "app_category": "Personal",
+  "bucket": "email"
+}
+
+{
+  "input": "dear dr verma i wanted to thank you for your feedback on the research paper",
+  "output": "Dear Dr. Verma,\n\nI wanted to thank you for your feedback on the research paper.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi dr nair please confirm whether the wednesday slot still works for you",
+  "output": "Hi Dr. Nair,\n\nPlease confirm whether the Wednesday slot still works for you.",
+  "app_category": "Personal",
+  "bucket": "email"
+}
+
+{
+  "input": "dear hiring manager my application includes the following one my updated resume two a cover letter three two professional references sincerely",
+  "output": "Dear hiring manager,\n\nMy application includes the following:\n\n1. My updated resume.\n2. A cover letter.\n3. Two professional references.\n\nSincerely.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi team please ensure the following before the release one all tests are passing two the staging environment is stable three the rollback plan is documented thanks",
+  "output": "Hi team,\n\nPlease ensure the following before the release:\n\n1. All tests are passing.\n2. The staging environment is stable.\n3. The rollback plan is documented.\n\nThanks.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi please call me back on nine eight seven zero one two three four five six at your convenience",
+  "output": "Hi,\n\nPlease call me back on 9870123456 at your convenience.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team for urgent issues please contact the helpdesk at eight zero zero one two three four five six seven",
+  "output": "Dear team,\n\nFor urgent issues please contact the helpdesk at 8001234567.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi all we need to schedule a one dash on dash one meeting with each team member this week",
+  "output": "Hi all,\n\nWe need to schedule a one-on-one meeting with each team member this week.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear priya please prepare a month dash end summary for the client by friday thanks",
+  "output": "Dear Priya,\n\nPlease prepare a month-end summary for the client by Friday.\n\nThanks.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi this is regarding your application to the marketing ampersand communications team",
+  "output": "Hi,\n\nThis is regarding your application to the marketing & communications team.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear all please send your feedback to the design ampersand product leads before thursday",
+  "output": "Dear all,\n\nPlease send your feedback to the design & product leads before Thursday.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi please coordinate with the frontend and backend teams for the handoff",
+  "output": "Hi,\n\nPlease coordinate with the frontend and backend teams for the handoff.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear leena kindly share the updated scope and timeline by end of week",
+  "output": "Dear Leena,\n\nKindly share the updated scope and timeline by end of week.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "to whom it may concern i am writing on behalf of my team to request access to the vendor portal",
+  "output": "To Whom It May Concern,\n\nI am writing on behalf of my team to request access to the vendor portal.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "to whom it may concern this letter serves as confirmation of employment for the period specified",
+  "output": "To Whom It May Concern,\n\nThis letter serves as confirmation of employment for the period specified.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team thank you for your cooperation during the audit best",
+  "output": "Dear team,\n\nThank you for your cooperation during the audit.\n\nBest regards.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi the proposal document has been shared with you please review at your earliest best",
+  "output": "Hi,\n\nThe proposal document has been shared with you. Please review at your earliest.\n\nBest regards.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear professor chen i am reaching out to enquire about your current research openings",
+  "output": "Dear Professor Chen,\n\nI am reaching out to enquire about your current research openings.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi principal anderson i wanted to follow up on the scholarship application we submitted last month",
+  "output": "Hi Principal Anderson,\n\nI wanted to follow up on the scholarship application we submitted last month.",
+  "app_category": "Personal",
+  "bucket": "email"
+}
+
+{
+  "input": "dear manager i would like to request a day off on the twenty third",
+  "output": "Dear manager,\n\nI would like to request a day off on the 23rd.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi hiring manager i am writing to express my interest in the product design role",
+  "output": "Hi hiring manager,\n\nI am writing to express my interest in the product design role.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team um just a heads up uh the server maintenance window has been moved to saturday",
+  "output": "Dear team,\n\nJust a heads up, the server maintenance window has been moved to Saturday.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi uh rohan um i just uh wanted to let you know that your invoice has been processed",
+  "output": "Hi Rohan,\n\nI just wanted to let you know that your invoice has been processed.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi lisa your request has been approved thanks",
+  "output": "Hi Lisa,\n\nYour request has been approved.\n\nThanks.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear john the documents are ready for signing regards",
+  "output": "Dear John,\n\nThe documents are ready for signing.\n\nRegards.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi team we have a new policy update em dash please read it carefully before monday",
+  "output": "Hi team,\n\nWe have a new policy update — please read it carefully before Monday.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear all the shortlisted candidates em dash as listed below em dash will be contacted by friday",
+  "output": "Dear all,\n\nThe shortlisted candidates — as listed below — will be contacted by Friday.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "quick note the backend service will be in read only mode from midnight to two am",
+  "output": "Quick note, the backend service will be in read only mode from midnight to 2 AM.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "just a reminder the deadline for submitting your feedback is tomorrow",
+  "output": "Just a reminder, the deadline for submitting your feedback is tomorrow.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "subject meeting reschedule request hi sanjay could we move our friday call to monday instead thanks",
+  "output": "Subject: Meeting Reschedule Request\n\nHi Sanjay,\n\nCould we move our Friday call to Monday instead?\n\nThanks.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "subject interview confirmation dear applicant we are pleased to confirm your interview for the role of senior developer sincerely the recruitment team",
+  "output": "Subject: Interview Confirmation\n\nDear applicant,\n\nWe are pleased to confirm your interview for the role of senior developer.\n\nSincerely,\nthe recruitment team",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi the event management budget for the conference is fifty thousand rupees please plan accordingly",
+  "output": "Hi,\n\nThe event management budget for the conference is ₹50,000. Please plan accordingly.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear raj the advance payment of twenty five thousand rupees has been transferred to your account",
+  "output": "Dear Raj,\n\nThe advance payment of ₹25,000 has been transferred to your account.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear ms singh thank you for reaching out we will get back to you shortly",
+  "output": "Dear Ms. Singh,\n\nThank you for reaching out. We will get back to you shortly.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi prof kumar i am attaching my midterm report for your evaluation",
+  "output": "Hi Prof. Kumar,\n\nI am attaching my midterm report for your evaluation.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "got it will update the tracker",
+  "output": "Got it, will update the tracker.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "noted thanks for letting me know",
+  "output": "Noted, thanks for letting me know.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear it support team we are experiencing login issues on three machines please assist at the earliest",
+  "output": "Dear IT support team,\n\nWe are experiencing login issues on 3 machines. Please assist at the earliest.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi the new hr policy document is attached please review and acknowledge receipt best regards hr department",
+  "output": "Hi,\n\nThe new HR policy document is attached. Please review and acknowledge receipt.\n\nBest regards,\nHR department",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi the sprint will cover authentication search and notification features",
+  "output": "Hi,\n\nThe sprint will cover authentication, search, and notification features.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team please ensure all timesheets receipts and approvals are submitted before friday",
+  "output": "Dear team,\n\nPlease ensure all timesheets, receipts, and approvals are submitted before Friday.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "hi all please attend the kick off session tomorrow morning at ten am",
+  "output": "Hi all,\n\nPlease attend the kick off session tomorrow morning at 10 AM.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team we will have a wrap up call on friday at four pm to close out the sprint",
+  "output": "Dear team,\n\nWe will have a wrap up call on Friday at 4 PM to close out the sprint.",
+  "app_category": "Work",
+  "bucket": "email"
+}
+
+{
+  "input": "dear sir or madam i would like to request a refund for the order placed on the twelfth",
+  "output": "Dear Sir or Madam,\n\nI would like to request a refund for the order placed on the 12th.",
+  "app_category": "Personal",
+  "bucket": "email"
+}
+
+{
+  "input": "dear sir or madam we are writing to request an update on the status of our pending application",
+  "output": "Dear Sir or Madam,\n\nWe are writing to request an update on the status of our pending application.",
+  "app_category": "Work",
+  "bucket": "email"
 }

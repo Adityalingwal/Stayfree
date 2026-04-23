@@ -2037,3 +2037,177 @@
   "output": "Bhai kaam ho gaya toh nikal jaate hain kuch khaate hain bahar.",
   "bucket": "hinglish"
 }
+
+{
+  "input": "hi priya just wanted to let you know the shipment has been delayed by two days regards ankit",
+  "output": "Hi Priya,\n\nJust wanted to let you know the shipment has been delayed by 2 days.\n\nRegards,\nAnkit",
+  "bucket": "email"
+}
+
+{
+  "input": "dear all please note that the office will remain closed on friday thanks",
+  "output": "Dear all,\n\nPlease note that the office will remain closed on Friday.\n\nThanks.",
+  "bucket": "email"
+}
+
+{
+  "input": "on it will get back to you by end of day",
+  "output": "On it, will get back to you by end of day.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi finance team just a reminder that the invoices are due tomorrow regards",
+  "output": "Hi finance team,\n\nJust a reminder that the invoices are due tomorrow.\n\nRegards.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi team please share the updated roadmap by thursday best regards product team",
+  "output": "Hi team,\n\nPlease share the updated roadmap by Thursday.\n\nBest regards,\nproduct team",
+  "bucket": "email"
+}
+
+{
+  "input": "hi doctor mehta i wanted to confirm our appointment for next week thanks",
+  "output": "Hi Dr. Mehta,\n\nI wanted to confirm our appointment for next week.\n\nThanks.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear dr sharma please find attached the test results for your review",
+  "output": "Dear Dr. Sharma,\n\nPlease find attached the test results for your review.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi team for tomorrow's standup please cover one your current blockers two any pull requests needing review three your plan for the day thanks",
+  "output": "Hi team,\n\nFor tomorrow's standup please cover:\n\n1. Your current blockers.\n2. Any pull requests needing review.\n3. Your plan for the day.\n\nThanks.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi sarah please reach me at nine one four five five five zero one two three if you have any questions",
+  "output": "Hi Sarah,\n\nPlease reach me at 9145550123 if you have any questions.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi all we have a follow dash up meeting on wednesday at three pm",
+  "output": "Hi all,\n\nWe have a follow-up meeting on Wednesday at 3 PM.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear hiring manager i am applying for the research ampersand development position",
+  "output": "Dear hiring manager,\n\nI am applying for the research & development position.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi james please send the report and the presentation slides by noon thanks",
+  "output": "Hi James,\n\nPlease send the report and the presentation slides by noon.\n\nThanks.",
+  "bucket": "email"
+}
+
+{
+  "input": "to whom it may concern i am writing to inquire about the internship openings at your company sincerely alex",
+  "output": "To Whom It May Concern,\n\nI am writing to inquire about the internship openings at your company.\n\nSincerely,\nAlex",
+  "bucket": "email"
+}
+
+{
+  "input": "hi ravi please confirm your availability for the call on thursday best",
+  "output": "Hi Ravi,\n\nPlease confirm your availability for the call on Thursday.\n\nBest regards.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear professor singh i have submitted my assignment and would appreciate your feedback",
+  "output": "Dear Professor Singh,\n\nI have submitted my assignment and would appreciate your feedback.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi uh maya um i just wanted to uh check if you received the contract",
+  "output": "Hi Maya,\n\nI just wanted to check if you received the contract.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi tom the meeting is rescheduled to four pm thanks",
+  "output": "Hi Tom,\n\nThe meeting is rescheduled to 4 PM.\n\nThanks.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi team we finally closed the deal em dash and it's a big win for us regards",
+  "output": "Hi team,\n\nWe finally closed the deal — and it's a big win for us.\n\nRegards.",
+  "bucket": "email"
+}
+
+{
+  "input": "subject quarterly review update hi all please join us for the quarterly review on friday best regards",
+  "output": "Subject: Quarterly Review Update\n\nHi all,\n\nPlease join us for the quarterly review on Friday.\n\nBest regards.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear team the agenda for this week's meeting is as follows one budget review two project timelines three open questions regards management",
+  "output": "Dear team,\n\nThe agenda for this week's meeting is as follows:\n\n1. Budget review.\n2. Project timelines.\n3. Open questions.\n\nRegards,\nmanagement",
+  "bucket": "email"
+}
+
+{
+  "input": "hi vikas we need fifty thousand rupees to complete the procurement please process the payment",
+  "output": "Hi Vikas,\n\nWe need ₹50,000 to complete the procurement. Please process the payment.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear sir or madam i am reaching out regarding your job posting for a software engineer position",
+  "output": "Dear Sir or Madam,\n\nI am reaching out regarding your job posting for a software engineer position.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear mr kapoor thank you for your interest in our services",
+  "output": "Dear Mr. Kapoor,\n\nThank you for your interest in our services.",
+  "bucket": "email"
+}
+
+{
+  "input": "perfect see you at three",
+  "output": "Perfect, see you at 3.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi everyone this is a reminder to submit your timesheets by five pm today best regards hr team",
+  "output": "Hi everyone,\n\nThis is a reminder to submit your timesheets by 5 PM today.\n\nBest regards,\nHR team",
+  "bucket": "email"
+}
+
+{
+  "input": "hi please bring your laptop charger and notebook to the session thanks",
+  "output": "Hi,\n\nPlease bring your laptop, charger, and notebook to the session.\n\nThanks.",
+  "bucket": "email"
+}
+
+{
+  "input": "hi all we have a follow up discussion scheduled for tomorrow afternoon",
+  "output": "Hi all,\n\nWe have a follow up discussion scheduled for tomorrow afternoon.",
+  "bucket": "email"
+}
+
+{
+  "input": "heads up the server will be down for maintenance tonight please save your work",
+  "output": "Heads up, the server will be down for maintenance tonight. Please save your work.",
+  "bucket": "email"
+}
+
+{
+  "input": "dear professor i am writing to request an extension on my final assignment",
+  "output": "Dear professor,\n\nI am writing to request an extension on my final assignment.",
+  "bucket": "email"
+}
