@@ -779,13 +779,13 @@
 }
 
 {
-  "input": "we will launch in Q3 actually Q4",
+  "input": "we will launch in Q3 no actually Q4",
   "output": "We will launch in Q4.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "cancel the order no actually put it on hold",
+  "input": "cancel the order no actually put the order on hold",
   "output": "Put the order on hold.",
   "bucket": "self_correction"
 }
@@ -797,7 +797,7 @@
 }
 
 {
-  "input": "use the old API actually the new one is faster",
+  "input": "use the old API no actually use the new api it's faster",
   "output": "Use the new API, it's faster.",
   "bucket": "self_correction"
 }
@@ -809,7 +809,7 @@
 }
 
 {
-  "input": "approve the request actually no reject it",
+  "input": "approve the request actually no reject the request",
   "output": "Reject the request.",
   "bucket": "self_correction"
 }
@@ -821,55 +821,49 @@
 }
 
 {
-  "input": "let us order pizza actually burgers sound better",
+  "input": "let us order pizza no actually burgers sound better",
   "output": "Burgers sound better.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the file is in the shared drive actually no it is on my desktop",
+  "input": "the file is in the shared drive actually no is on my desktop",
   "output": "The file is on my desktop.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "I will be there at six actually make it seven",
-  "output": "Make it 7.",
+  "input": "I will be there at six no wait seven",
+  "output": "I will be there at 7.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the code is written in python sorry java",
+  "input": "the code is written in python no sorry java",
   "output": "The code is written in Java.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "add john to the thread correction add jane",
-  "output": "Add Jane to the thread.",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "the project is delayed by a week sorry two weeks",
+  "input": "the project is delayed by a week no sorry two weeks",
   "output": "The project is delayed by 2 weeks.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the status is in progress correction it is blocked",
+  "input": "the status is in progress no sorry blocked",
   "output": "The status is blocked.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "my email is admin at example dot com sorry support at example dot com",
+  "input": "my email is admin at example dot com no sorry support at example dot com",
   "output": "My email is support@example.com.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "we have fifty users correction five hundred users",
+  "input": "we have fifty users wait sorry five hundred users",
   "output": "We have 500 users.",
   "bucket": "self_correction"
 }
@@ -881,19 +875,19 @@
 }
 
 {
-  "input": "schedule the interview for tomorrow correction next week",
+  "input": "schedule the interview for tomorrow no sorry next week",
   "output": "Schedule the interview for next week.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the temperature is thirty degrees sorry forty degrees",
+  "input": "the temperature is thirty degrees no sorry forty degrees",
   "output": "The temperature is 40 degrees.",
   "bucket": "self_correction"
 }
 
 {
-  "input": "he lives in new york correction boston",
+  "input": "he lives in new york no sorry boston",
   "output": "He lives in Boston.",
   "bucket": "self_correction"
 }
