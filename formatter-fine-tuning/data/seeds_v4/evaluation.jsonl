@@ -692,149 +692,310 @@
 }
 
 {
-  "input": "the presentation will be ready by monday actually tuesday",
-  "output": "The presentation will be ready by Tuesday.",
+  "input": "the backend is written in python no wait in node js they migrated it",
+  "output": "The backend is written in Node.js, they migrated it.",
   "app_category": "Work",
   "bucket": "self_correction"
 }
 
 {
-  "input": "we should order chinese food for lunch actually let's get pizza",
-  "output": "Let's get pizza.",
+  "input": "use mongodb for the session cache no actually redis is much better suited for this",
+  "output": "Redis is much better suited for this.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "our cloud provider is aws sorry we moved to gcp last year",
+  "output": "We moved to GCP last year.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "install the npm package globally wait no just add it to dev dependencies",
+  "output": "Just add it to dev dependencies.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "spin up a new ec2 instance no sorry let's just use a docker container",
+  "output": "Let's just use a Docker container.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "escalate the issue to the cto no wait the vp of engineering handles these outages",
+  "output": "The VP of Engineering handles these outages.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "forward the invoice to accounting no sorry send it directly to the cfo for approval",
+  "output": "Send it directly to the CFO for approval.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "assign the bug to priya actually give it to rahul he wrote that module",
+  "output": "Give it to Rahul, he wrote that module.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "ping the marketing channel wait sorry just message the product lead privately",
+  "output": "Just message the product lead privately.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "tell the client we need three days correction tell them a week to manage expectations",
+  "output": "Tell them a week to manage expectations.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "let's do the sprint planning on thursday no wait friday morning is our standard slot",
+  "output": "Friday morning is our standard slot.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the release window is at midnight sorry it's at two am to avoid peak traffic",
+  "output": "It's at 2 AM to avoid peak traffic.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "i'll take my PTO in august no actually september makes more sense for my trip",
+  "output": "September makes more sense for my trip.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we have a hard stop at three thirty no wait four pm the client extended it",
+  "output": "We have a hard stop at 4 PM, the client extended it.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "our mr r grew by ten percent sorry twelve percent according to the latest report",
+  "output": "Our MRR grew by 12% according to the latest report.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we need around fifty servers wait actually eighty servers to handle the expected load",
+  "output": "We need around 80 to handle the expected load.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the error rate is around five percent no wait it dropped to two percent this morning",
+  "output": "It dropped to 2% this morning.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the budget is capped at fifty thousand dollars no wait seventy five thousand was approved",
+  "output": "75,000 was approved.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "push your code to the develop branch sorry no the staging branch",
+  "output": "Push your code to the staging branch.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "revert the last commit wait no just push a fix forward it's less messy",
+  "output": "Just push a fix forward, it's less messy.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "merge the pull request actually leave it open for one more review",
+  "output": "Leave it open for one more review.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "let's grab italian for lunch no wait i had pizza yesterday let's do sushi",
+  "output": "I had pizza yesterday, let's do sushi.",
   "app_category": "Personal",
   "bucket": "self_correction"
 }
 
 {
-  "input": "we need seventy machines actually eighty machines",
-  "output": "We need 80 machines.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "tell the dev team to wait actually to start right now",
-  "output": "Tell the dev team to start right now.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "deploy the patch tonight actually in the morning",
-  "output": "Deploy the patch in the morning.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "i left my wallet in the car wait no in my bag",
-  "output": "I left my wallet in my bag.",
+  "input": "i left my keys on the counter actually no they are in my jacket pocket",
+  "output": "They are in my jacket pocket.",
   "app_category": "Personal",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the meeting room is on the third floor no wait fourth floor",
-  "output": "The meeting room is on the 4th floor.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "add the feature to the prod environment wait no staging environment",
-  "output": "Add the feature to the staging environment.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "i think the discount is twenty percent no wait fifteen percent",
-  "output": "I think the discount is 15%.",
+  "input": "the movie starts at eight fifteen sorry eight forty five we have plenty of time",
+  "output": "The movie starts at 8:45, we have plenty of time.",
   "app_category": "Personal",
   "bucket": "self_correction"
 }
 
 {
-  "input": "cancel the subscription wait no pause the subscription for a month",
-  "output": "Pause the subscription for a month.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "i'll be there in five minutes sorry ten minutes",
-  "output": "I'll be there in 10 minutes.",
+  "input": "i need to buy a new laptop no wait a monitor my laptop is fine",
+  "output": "I just need to buy a monitor, my laptop is fine.",
   "app_category": "Personal",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the error happens when you click save sorry when you click delete",
-  "output": "The error happens when you click delete.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "we are projecting thirty thousand units sorry i mean forty thousand units",
-  "output": "We are projecting 40,000 units.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "the event is hosted in london sorry berlin",
-  "output": "The event is hosted in Berlin.",
+  "input": "meet me at the coffee shop no sorry wait for me at the station entrance",
+  "output": "Wait for me at the station entrance.",
   "app_category": "Personal",
   "bucket": "self_correction"
 }
 
 {
-  "input": "his name is jonathan sorry i mean julian",
-  "output": "His name is Julian.",
+  "input": "the project is marked as complete no wait it's blocked pending client approval",
+  "output": "It's blocked pending client approval.",
   "app_category": "Work",
   "bucket": "self_correction"
 }
 
 {
-  "input": "my budget is around two hundred i mean three hundred max",
-  "output": "My budget is around 300 max.",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "we should take the highway i mean the scenic route",
-  "output": "We should take the scenic route.",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "we accept credit cards i mean debit cards",
-  "output": "We accept debit cards.",
+  "input": "add a new ticket to the backlog no wait actually put it in the current sprint we need it now",
+  "output": "Put it in the current sprint, we need it now.",
   "app_category": "Work",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the flight lands at nine am correction ten thirty am",
-  "output": "The flight lands at 10:30 AM.",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "send the document to legal no wait to hr",
-  "output": "Send the document to HR.",
+  "input": "the feature flag is turned off sorry it's enabled for five percent of users",
+  "output": "It's enabled for 5% of users.",
   "app_category": "Work",
   "bucket": "self_correction"
 }
 
 {
-  "input": "the total bill is one fifty correction one seventy five",
-  "output": "The total bill is 175.",
+  "input": "the deadline is strict wait no they are flexible as long as core features are done",
+  "output": "They are flexible as long as core features are done.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "I I think the database migration failed last night",
+  "output": "I think the database migration failed last night.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "please please review the document before you send it to legal",
+  "output": "Please review the document before you send it to legal.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we we really need to improve the test coverage on this module",
+  "output": "We really need to improve the test coverage on this module.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "can can you double check the server logs for that error",
+  "output": "Can you double check the server logs for that error?",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "don't don't deploy anything until the build is green",
+  "output": "Don't deploy anything until the build is green.",
+  "app_category": "Work",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the subscription costs ten dollars a month sorry fifteen dollars a month they raised prices",
+  "output": "The subscription costs $15 a month, they raised prices.",
   "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the total bill was three thousand rupees no actually three thousand five hundred rupees with taxes",
+  "output": "The total bill was ₹3,500 with taxes.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "I transferred fifty bucks no wait I sent sixty dollar just to be safe",
+  "output": "I sent $60 just to be safe.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the hotel is two hundred a night no sorry two hundred and fifty dollar on weekends",
+  "output": "The hotel is $250 on weekends.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "we are staying at the mariott no wait the hilton we switched at the last minute",
+  "output": "We are staying at the Hilton, we switched at the last minute.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "take the metro to the office no actually just book an uber it's raining heavily",
+  "output": "Just book an Uber, it's raining heavily.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "pack a jacket it's going to be cold wait sorry it's going to be warm don't bother",
+  "output": "It's going to be warm, don't bother.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the train leaves from platform two wait no platform four they just announced it",
+  "output": "The train leaves from platform 4, they just announced it.",
+  "app_category": "Personal",
+  "bucket": "self_correction"
+}
+
+{
+  "input": "the event is in san francisco no sorry san jose it's further south",
+  "output": "The event is in San Jose, it's further south.",
+  "app_category": "Work",
   "bucket": "self_correction"
 }
 
@@ -1728,13 +1889,6 @@
 }
 
 {
-  "input": "let's wrap up by six PM no actually five today we have dinner plans",
-  "output": "Let's wrap up by 5 PM today, we have dinner plans",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
   "input": "yani ki toh basically ab release mein sirf ek feature aur bacha hai ship karte hain",
   "output": "Ab release mein sirf ek feature aur bacha hai, ship karte hain",
   "app_category": "Work",
@@ -1756,20 +1910,6 @@
 }
 
 {
-  "input": "vote for option A no scratch that B has better long term outcomes",
-  "output": "Vote for option B, it has better long-term outcomes",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "let's go to the mall no scratch that it'll be too crowded on saturday",
-  "output": "Let's not go to the mall, it'll be too crowded on Saturday",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
   "input": "dear all this is to notify you of a change in office timings effective next monday new hours will be nine to six regards admin",
   "output": "Dear all,\n\nThis is to notify you of a change in office timings effective next Monday. New hours will be 9 to 6.\n\nRegards,\nAdmin",
   "app_category": "Email",
@@ -1781,13 +1921,6 @@
   "output": "Matlab toh basically toh ab hum Q2 mein naya vendor onboard karne wale hain",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "grab coffee at starbucks no I mean the office pantry saves time and money",
-  "output": "Grab coffee at the office pantry, it saves time and money",
-  "app_category": "Personal",
-  "bucket": "self_correction"
 }
 
 {
@@ -1826,13 +1959,6 @@
 }
 
 {
-  "input": "the feature goes to all users no wait beta users only we need more data",
-  "output": "The feature goes to beta users only, we need more data first",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "yaar toh matlab teri baat sahi thi main galat tha sorry yaar",
   "output": "Yaar toh matlab teri baat sahi thi main galat tha sorry yaar.",
   "app_category": "Personal",
@@ -1851,13 +1977,6 @@
   "output": "Hi Deepak, I hope this email finds you well. I wanted to share the updated quarterly metrics report with you. Cheers, Analytics Team",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "remove this feature flag no I mean just disable it we may need to re-enable it",
-  "output": "Just disable the feature flag, don't remove it, we may need to re-enable it.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -1903,27 +2022,6 @@
 }
 
 {
-  "input": "raise a ticket no actually dm the dev directly it's faster for urgent things",
-  "output": "DM the dev directly, it's faster for urgent things",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "migrate to the new cluster this weekend no wait next weekend we're not ready",
-  "output": "Migrate to the new cluster next weekend, we're not ready this week.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "let's pack light for the trip no it's ten days take your full luggage",
-  "output": "It's a 10-day trip, take your full luggage",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
   "input": "let's celebrate at the usual dhaba no somewhere nicer it's a big milestone",
   "output": "Let's celebrate somewhere nicer, it's a big milestone",
   "app_category": "Personal",
@@ -1959,31 +2057,10 @@
 }
 
 {
-  "input": "start with the homepage redesign no wait fix the checkout flow first it's revenue critical",
-  "output": "Fix the checkout flow first, it's revenue critical.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "put the meeting on wednesday I mean thursday wednesday has three other calls",
-  "output": "Put the meeting on Thursday, Wednesday already has 3 other calls",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "I past the final design to the engineers yesterday and they approved it",
   "output": "I past the final design to the engineers yesterday and they approved it.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the budget for this is fifty thousand no wait sixty we got the extra approval",
-  "output": "The budget for this is 60k, we got the extra approval",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -2029,24 +2106,10 @@
 }
 
 {
-  "input": "ship without a changelog no that's bad practice always add a changelog",
-  "output": "Always add a changelog, shipping without one is bad practice",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "hi team please find the updated project timeline attached kindly review and share your inputs by wednesday regards project management",
   "output": "Hi team,\n\nPlease find the updated project timeline attached. Kindly review and share your inputs by Wednesday.\n\nRegards,\nProject Management",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "send the invoice to the manager no to the client directly they asked for it",
-  "output": "Send the invoice to the client directly, they asked for it.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -2113,13 +2176,6 @@
 }
 
 {
-  "input": "stop the on call rotation for now no wait keep it going someone must be reachable",
-  "output": "Keep the on-call rotation going, someone must be reachable",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "you're latest commit broke the main branch please role it back",
   "output": "You're latest commit broke the main branch please role it back",
   "app_category": "Work",
@@ -2183,20 +2239,6 @@
 }
 
 {
-  "input": "take a cab no wait metro is faster at this time of day trust me",
-  "output": "Take the metro, it's faster at this time of day",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "the standup is at nine no wait ten today we have a client call at nine",
-  "output": "The standup is at 10 today, we have a client call at 9.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "yani ki toh yaar itna zyada stress mat lo sab theek ho jaayega",
   "output": "Yani ki toh yaar itna zyada stress mat lo sab theek ho jaayega.",
   "app_category": "Personal",
@@ -2211,13 +2253,6 @@
 }
 
 {
-  "input": "give the task to ravi no scratch that amit is better suited for this one",
-  "output": "Give the task to Amit, he's better suited for this one.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "there is a knew version of the SDK available with major performance improvements",
   "output": "There is a knew version of the SDK available with major performance improvements.",
   "app_category": "Work",
@@ -2225,24 +2260,10 @@
 }
 
 {
-  "input": "deploy after lunch no scratch that wait for QA sign off first",
-  "output": "Wait for QA sign off before deploying",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "so I like think we should stop adding features and fix the existing bugs first",
   "output": "I think we should stop adding features and fix the existing bugs first",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "let's skip the retro this sprint no we should do it team morale needs a boost",
-  "output": "Let's do the retro this sprint, team morale needs a boost.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -2288,13 +2309,6 @@
 }
 
 {
-  "input": "add a comment to the ticket no close it and open a new one it's a different issue",
-  "output": "Close the ticket and open a new one, it's a different issue.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "hi rina your reimbursement claim for the conference expenses has been approved the amount will be credited within seven working days kind regards finance",
   "output": "Hi Rina,\n\nYour reimbursement claim for the conference expenses has been approved. The amount will be credited within 7 working days.\n\nKind regards,\nFinance",
   "app_category": "Email",
@@ -2306,13 +2320,6 @@
   "output": "We need to insure the new infrastructure is fully tested before go live.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "sleep early tonight no scratch that finish the report it's due tomorrow",
-  "output": "Finish the report tonight, it's due tomorrow",
-  "app_category": "Personal",
-  "bucket": "self_correction"
 }
 
 {
@@ -2715,24 +2722,10 @@
 }
 
 {
-  "input": "reply now no wait in the morning it's past midnight for them",
-  "output": "Reply in the morning, it's past midnight for them",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "the console error reads uncaught syntax error unexpected token semicolon at index sixty two",
   "output": "The console error reads 'Uncaught SyntaxError: Unexpected token at index 62'",
   "app_category": "Work",
   "bucket": "edge_cases"
-}
-
-{
-  "input": "let's order north indian tonight no I mean chinese everyone asked for it",
-  "output": "Let's order Chinese tonight, everyone asked for it",
-  "app_category": "Personal",
-  "bucket": "self_correction"
 }
 
 {
@@ -2799,20 +2792,6 @@
 }
 
 {
-  "input": "make the cta red no wait green it's a confirmation action not a warning",
-  "output": "Make the CTA green, it's a confirmation action not a warning",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "invite the whole team no just the tech leads this is highly technical stuff",
-  "output": "Invite just the tech leads, this is highly technical.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "hi priya the contract for the vendor engagement has been signed and is effective from the first of may sincerely legal team",
   "output": "Hi Priya, the contract for the vendor engagement has been signed and is effective from the 1st of May. Sincerely, Legal Team",
   "app_category": "Email",
@@ -2845,13 +2824,6 @@
   "output": "There expecting a major spike in traffic during the sale period.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "set the ticket to in progress actually close it we finished that yesterday",
-  "output": "Close the ticket, we finished that yesterday.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -2897,31 +2869,10 @@
 }
 
 {
-  "input": "sync with the FE team tomorrow no actually today the deadline is tomorrow",
-  "output": "Sync with the FE team today, the deadline is tomorrow",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "dear all we regret to inform you that the system will be under scheduled maintenance on the fifteenth from ten pm to two am warm regards IT",
   "output": "Dear all, we regret to inform you that the system will be under scheduled maintenance on the 15th from 10 PM to 2 AM. Warm regards, IT",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "let's gift him a watch no actually a gift card he can choose what he wants",
-  "output": "Let's gift him a gift card, he can choose what he wants",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "push the change to staging no wait prod is already stable just push there",
-  "output": "Push the change to prod, it's already stable",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3002,13 +2953,6 @@
 }
 
 {
-  "input": "update the runbook no actually create a separate doc the runbook is too long already",
-  "output": "Create a separate doc, the runbook is too long already.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "the release checklist is one freeze code two tag the version three update changelog four notify stakeholders",
   "output": "The release checklist is:\n1. Freeze code\n2. Tag the version\n3. Update changelog\n4. Notify stakeholders.",
   "app_category": "Work",
@@ -3037,20 +2981,6 @@
 }
 
 {
-  "input": "notify users via email no I mean via push notification open rates are better",
-  "output": "Notify users via push notification, open rates are better.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "I'll handle the presentation no scratch that priya is better with clients",
-  "output": "Let Priya handle the presentation, she's better with clients.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "the knew cafe opened last week and the reviews are phenomenal so far",
   "output": "The knew cafe opened last week and the reviews are phenomenal so far",
   "app_category": "Personal",
@@ -3065,13 +2995,6 @@
 }
 
 {
-  "input": "report this as a UI bug no I mean a backend issue the data is wrong",
-  "output": "Report this as a backend issue, the data is wrong.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "hi all the year end party is confirmed for the twenty third at seven pm at the grand hall dress code is semi formal best admin team",
   "output": "Hi all,\n\nThe year end party is confirmed for the 23rd at 7 PM at the Grand Hall. Dress code is semi-formal.\n\nBest,\nAdmin Team",
   "app_category": "Email",
@@ -3083,13 +3006,6 @@
   "output": "Its to early to determine weather the new model is production ready.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "we should increase the retries to five no wait three five might mask real issues",
-  "output": "Increase the retries to 3, five might mask real issues.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3114,13 +3030,6 @@
 }
 
 {
-  "input": "use postgres no I mean MySQL the existing infra already supports it",
-  "output": "Use MySQL, the existing infra already supports it.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "the principle reason for the delay is insufficient QA bandwidth",
   "output": "The principle reason for the delay is insufficient QA bandwidth.",
   "app_category": "Work",
@@ -3132,27 +3041,6 @@
   "output": "She herd from a mutual friend that he's planning to propose this weekend",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "I want to watch a thriller tonight no wait comedy I need something light",
-  "output": "Let's watch a comedy tonight, I need something light",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "I'll text him no wait call him this is too important for a message",
-  "output": "Call him, this is too important for a message",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "assign this sprint goal to me no wait to the platform team it's their scope",
-  "output": "Assign this sprint goal to the platform team, it's their scope.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3198,20 +3086,6 @@
 }
 
 {
-  "input": "send a daily digest email no I mean weekly daily would overwhelm users",
-  "output": "Send a weekly digest email, daily would overwhelm users.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "book economy seats no actually business the trip is fourteen hours long",
-  "output": "Book business seats, the trip is 14 hours long",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
   "input": "hi vikram the training for the new CRM tool is scheduled for the twelfth and thirteenth kindly block your calendar warm regards L and D team",
   "output": "Hi Vikram,\n\nThe training for the new CRM tool is scheduled for the 12th and 13th. Kindly block your calendar.\n\nWarm regards,\nL&D Team",
   "app_category": "Email",
@@ -3233,31 +3107,10 @@
 }
 
 {
-  "input": "let's use the third floor conference room no wait book that only for all hands it's big",
-  "output": "Use a smaller room, the third floor conference room is only for all hands",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "go with figma for the prototype no actually miro both teams already use it",
-  "output": "Go with Miro for the prototype, both teams already use it",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "we peaked to early and now the competitors have caught up",
   "output": "We peaked to early and now the competitors have caught up.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "bring a jacket no scratch that it'll be warm there no need",
-  "output": "Don't bring a jacket, it'll be warm there",
-  "app_category": "Personal",
-  "bucket": "self_correction"
 }
 
 {
@@ -3293,13 +3146,6 @@
   "output": "Make sure you proof read the blog before it goes live.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "archive the old repo no I mean we should keep it as read only for reference",
-  "output": "Keep the old repo as read-only for reference, don't archive it.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3352,13 +3198,6 @@
 }
 
 {
-  "input": "I'll cook tonight no scratch that let's just order I'm too tired",
-  "output": "Let's just order tonight, I'm too tired to cook",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
   "input": "so today we discovered that the memory leak was happening in the background sync service",
   "output": "Today we discovered that the memory leak was happening in the background sync service.",
   "app_category": "Work",
@@ -3370,20 +3209,6 @@
   "output": "Toh matlab yaar kya kar rahe ho aaj ka koi plan hai kya?",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "let's go with the blue theme no actually keep it white it looks more professional",
-  "output": "Keep it white, it looks more professional",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "keep the old login flow no actually remove it users keep getting confused by it",
-  "output": "Remove the old login flow, users keep getting confused by it.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3401,38 +3226,10 @@
 }
 
 {
-  "input": "call anna no I mean text her she mentioned she might be in a meeting",
-  "output": "Text Anna, she might be in a meeting",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "meet me at the coffee shop no I mean the office lobby it's raining outside",
-  "output": "Meet me at the office lobby, it's raining outside",
-  "app_category": "Personal",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "let's store the token in local storage no scratch that use http only cookies more secure",
-  "output": "Store the token in HTTP-only cookies, it's more secure.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "there approach to code reviews is two lenient and causing technical debt",
   "output": "There approach to code reviews is two lenient and causing technical debt.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "add this as a P3 I mean P2 users are reporting it fairly often",
-  "output": "Add this as a P2, users are reporting it fairly often.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3443,24 +3240,10 @@
 }
 
 {
-  "input": "resolve the conflict on main branch no actually let the reviewer handle it",
-  "output": "Let the reviewer handle the conflict on the main branch",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "its a lose lose situation either we delay the launch or ship with known bugs",
   "output": "Its a lose lose situation either we delay the launch or ship with known bugs",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "ping the CEO directly no actually go through the CTO first formal channel",
-  "output": "Go through the CTO first, use the formal channel.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
@@ -3520,13 +3303,6 @@
 }
 
 {
-  "input": "the rollout is fifty percent no wait we dialed it back to twenty percent after the spike",
-  "output": "The rollout is at 20%, we dialed it back after the spike.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "they should of hired a second QA engineer months ago to avoid this backlog",
   "output": "They should of hired a second QA engineer months ago to avoid this backlog.",
   "app_category": "Work",
@@ -3555,20 +3331,6 @@
 }
 
 {
-  "input": "expose this as a public API no wait keep it internal for now premature to open up",
-  "output": "Keep it internal for now, it's premature to open up this API.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
-  "input": "lock the PR no I mean just request one more review before merging",
-  "output": "Request one more review before merging the PR",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "this is HANDS DOWN the best code review feedback I have ever received",
   "output": "This is HANDS DOWN the best code review feedback I have ever received",
   "app_category": "Work",
@@ -3590,13 +3352,6 @@
 }
 
 {
-  "input": "set the cache to ten minutes no wait an hour the data barely changes",
-  "output": "Set the cache to 1 hour, the data barely changes.",
-  "app_category": "Work",
-  "bucket": "self_correction"
-}
-
-{
   "input": "have you scene the new season it drops on friday and looks amazing",
   "output": "Have you scene the new season it drops on Friday and looks amazing?",
   "app_category": "Personal",
@@ -3615,13 +3370,6 @@
   "output": "We should altar the database schema before we migrate production",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "skip the unit tests for now no that's dangerous always run the tests first",
-  "output": "Always run the unit tests first, skipping is too dangerous.",
-  "app_category": "Work",
-  "bucket": "self_correction"
 }
 
 {
