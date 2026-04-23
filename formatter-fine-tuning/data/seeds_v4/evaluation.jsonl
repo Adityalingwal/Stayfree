@@ -1594,8 +1594,6 @@
   "bucket": "edge_cases"
 }
 
-
-
 {
   "input": "deploy the docker container to aws using the ci cd pipeline",
   "output": "Deploy the Docker container to AWS using the CI/CD pipeline.",
@@ -1671,6 +1669,343 @@
   "output": "Do you honestly believe the client won't notice?",
   "app_category": "Work",
   "bucket": "edge_cases"
+}
+
+{
+  "input": "[NOISE]",
+  "output": "",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ ♪ ♪ ♪",
+  "output": "",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "...",
+  "output": "",
+  "app_category": "Personal",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "um uh",
+  "output": "",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "ah um er",
+  "output": "",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ ♪",
+  "output": "",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "   ",
+  "output": "",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "er uh",
+  "output": "",
+  "app_category": "Personal",
+  "bucket": "asr_errors"
+}
+
+
+{
+  "input": "♪ the deployment was successful",
+  "output": "The deployment was successful.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "can you hear me now ♪",
+  "output": "Can you hear me now?",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ ♪ let's schedule a meeting for tomorrow",
+  "output": "Let's schedule a meeting for tomorrow.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the revenue is up this quarter ♪",
+  "output": "The revenue is up this quarter.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "♪ wait for the confirmation email ♪",
+  "output": "Wait for the confirmation email.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to config the env variables",
+  "output": "We need to config the env variables.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "i will send the docu to you",
+  "output": "I will send the docu to you.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "please auth the payment",
+  "output": "Please auth the payment.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the applica crashed on startup",
+  "output": "The applica crashed on startup.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "check the repo for the latest com",
+  "output": "Check the repo for the latest com.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "their going to review the pull request today",
+  "output": "Their going to review the pull request today.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "put the servers over they're in the new rack",
+  "output": "Put the servers over they're in the new rack.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "there laptops are completely out of date",
+  "output": "There laptops are completely out of date.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "i think your right about the database schema",
+  "output": "I think your right about the database schema.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "let me know when you're shift is over",
+  "output": "Let me know when you're shift is over.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to instances for the load balancer",
+  "output": "We need to instances for the load balancer.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the latency is way too high on this endpoint",
+  "output": "The latency is way too high on this endpoint.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "im going two fix the bug right now",
+  "output": "Im going two fix the bug right now.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the company lost it's major client",
+  "output": "The company lost it's major client.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we accepted all the changes accept for the styling",
+  "output": "We accepted all the changes accept for the styling.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "how will this downtime effect the users",
+  "output": "How will this downtime effect the users?",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the new policy had no affect on performance",
+  "output": "The new policy had no affect on performance.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the color pallet looks great on the homepage",
+  "output": "The color pallet looks great on the homepage.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "he is a man of strong principals",
+  "output": "He is a man of strong principals.",
+  "app_category": "Personal",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the principle reason for the crash was a memory leak",
+  "output": "The principle reason for the crash was a memory leak.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "that is a nice complement to the existing features",
+  "output": "That is a nice complement to the existing features.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "she gave me a nice compliment on my code",
+  "output": "She gave me a nice compliment on my code.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to ensure the system is secure",
+  "output": "We need to ensure the system is secure.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "can you insure that the backup is running",
+  "output": "Can you insure that the backup is running?",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "I past the certification exam yesterday",
+  "output": "I past the certification exam yesterday.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "he walked right passed the office",
+  "output": "He walked right passed the office.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the whether is supposed to be rainy tomorrow",
+  "output": "The whether is supposed to be rainy tomorrow.",
+  "app_category": "Personal",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "i don't know weather we should deploy today",
+  "output": "I don't know weather we should deploy today.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "please bare with me while I check the logs",
+  "output": "Please bare with me while I check the logs.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the bear metal servers are down",
+  "output": "The bear metal servers are down.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "we need to break the loop to avoid infinite recursion",
+  "output": "We need to break the loop to avoid infinite recursion.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the brakes on my car need to be replaced",
+  "output": "The brakes on my car need to be replaced.",
+  "app_category": "Personal",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "can you right a script for this automation",
+  "output": "Can you right a script for this automation?",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "you are absolutely write about the architecture",
+  "output": "You are absolutely write about the architecture.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
+}
+
+{
+  "input": "the site is completely stationary",
+  "output": "The site is completely stationary.",
+  "app_category": "Work",
+  "bucket": "asr_errors"
 }
 
 {
@@ -2024,174 +2359,6 @@
 }
 
 {
-  "input": "their is a massive problem with the frontend deployment",
-  "output": "Their is a massive problem with the frontend deployment.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "did you put the documents over they're by the printer",
-  "output": "Did you put the documents over they're by the printer?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "there going to cancel the contract if we don't fix this",
-  "output": "There going to cancel the contract if we don't fix this.",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "are they're any updates on the tickets from yesterday",
-  "output": "Are they're any updates on the tickets from yesterday?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "all of there users are completely locked out",
-  "output": "All of there users are completely locked out.",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "i think your going to need a bigger server for this",
-  "output": "I think your going to need a bigger server for this.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "when you're shipment arrives please notify us",
-  "output": "When you're shipment arrives please notify us.",
-  "app_category": "Email",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "can you send u code to me right now",
-  "output": "Can you send u code to me right now?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "tell me when your arriving at the station",
-  "output": "Tell me when your arriving at the station.",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "i ran to miles yesterday morning",
-  "output": "I ran to miles yesterday morning.",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we need two configure the load balancer properly",
-  "output": "We need two configure the load balancer properly.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the latency on this query is way to high",
-  "output": "The latency on this query is way to high.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "im going too send the report tomorrow",
-  "output": "Im going too send the report tomorrow.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the cost is precisely to hundred dollars",
-  "output": "The cost is precisely to hundred dollars.",
-  "app_category": "Email",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the dog lost it's bone somewhere in the yard",
-  "output": "The dog lost it's bone somewhere in the yard.",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its literally impossible to ship this by friday",
-  "output": "Its literally impossible to ship this by Friday.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the company is migrating it's entire infrastructure",
-  "output": "The company is migrating it's entire infrastructure.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the whole team past the deadline without any issues",
-  "output": "The whole team past the deadline without any issues.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "make sure your ready for the client demo tomorrow",
-  "output": "Make sure your ready for the client demo tomorrow.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the new pricing model will effect all existing subscribers",
-  "output": "The new pricing model will effect all existing subscribers.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "i can't bare this commute anymore it's killing me",
-  "output": "I can't bare this commute anymore, it's killing me.",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we cannot except this proposal in its current state",
-  "output": "We cannot except this proposal in its current state.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the new policy will effect all employees starting next week",
-  "output": "The new policy will effect all employees starting next week.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "this bug has a major affect on the final output",
-  "output": "This bug has a major affect on the final output.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "hello priya could you send me the updated budget for q two by thursday end of day",
   "output": "Hello Priya,\n\nCould you send me the updated budget for Q2 by Thursday, end of day?",
   "app_category": "Email",
@@ -2297,31 +2464,10 @@
 }
 
 {
-  "input": "I cant weight any longer we need to make a decision on the architecture today",
-  "output": "I cant weight any longer we need to make a decision on the architecture today",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its two bad the match was cancelled we where looking forward to it",
-  "output": "Its two bad the match was cancelled we where looking forward to it",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "yaar toh matlab teri baat sahi thi main galat tha sorry yaar",
   "output": "Yaar toh matlab teri baat sahi thi main galat tha sorry yaar.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "I think there plan for the trip needs to be revised its to ambitious",
-  "output": "I think there plan for the trip needs to be revised its to ambitious",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
 }
 
 {
@@ -2339,66 +2485,10 @@
 }
 
 {
-  "input": "can you reign in the scope before the project gets out of hand",
-  "output": "Can you reign in the scope before the project gets out of hand?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "I think she herd the whole conversation she was right outside the door",
-  "output": "I think she herd the whole conversation she was right outside the door",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "hi team the server migration is complete and all services are up thanks devops",
   "output": "Hi team, the server migration is complete and all services are up. Thanks, DevOps",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "the new hire seems to loose track of priorities during sprint",
-  "output": "The new hire seems to loose track of priorities during sprint.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the restaurant complemented our dessert with a free slice of cake",
-  "output": "The restaurant complemented our dessert with a free slice of cake",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we herd that the VP wants to cancel the project during the next reorg",
-  "output": "We herd that the VP wants to cancel the project during the next reorg",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the QA checklist covers login flow checkout flow and settings page",
-  "output": "The QA checklist covers login flow, checkout flow, and settings page.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "please advise me on weather I should except the counter offer or not",
-  "output": "Please advise me on weather I should except the counter offer or not",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "I past the final design to the engineers yesterday and they approved it",
-  "output": "I past the final design to the engineers yesterday and they approved it.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -2423,20 +2513,6 @@
 }
 
 {
-  "input": "you're reputation in this city speaks for itself your known everywhere",
-  "output": "You're reputation in this city speaks for itself your known everywhere",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we should of left earlier the traffic on the highway is terrible now",
-  "output": "We should of left earlier the traffic on the highway is terrible now",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "hi team please find the updated project timeline attached kindly review and share your inputs by wednesday regards project management",
   "output": "Hi team,\n\nPlease find the updated project timeline attached. Kindly review and share your inputs by Wednesday.\n\nRegards,\nProject Management",
   "app_category": "Email",
@@ -2458,13 +2534,6 @@
 }
 
 {
-  "input": "the new security policy will effect all developers starting next week",
-  "output": "The new security policy will effect all developers starting next week.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "toh yaar apna dhyan rakhna aur khaane ka time se kha lena bhai",
   "output": "Toh yaar apna dhyan rakhna aur khaane ka time se kha lena bhai.",
   "app_category": "Personal",
@@ -2476,13 +2545,6 @@
   "output": "Hi Karan,\n\nYour trial period ends on the 29th. If you wish to subscribe, please proceed before then.\n\nBest,\nBilling",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "it's a fare assessment given the incomplete information we had",
-  "output": "It's a fare assessment given the incomplete information we had.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -2504,34 +2566,6 @@
   "output": "Toh yaar raat ko thanda tha bilkul maza aaya bahar ghoomne mein.",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "you're latest commit broke the main branch please role it back",
-  "output": "You're latest commit broke the main branch please role it back",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its clear that there going to miss the flight if they don't leave now",
-  "output": "Its clear that there going to miss the flight if they don't leave now",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the backend team needs golang python and postgres experience to apply",
-  "output": "The backend team needs Golang, Python, and Postgres experience to apply.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "I past the coffee shop on my way and it was packed at seven in the morning",
-  "output": "I past the coffee shop on my way and it was packed at 7 in the morning",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
 }
 
 {
@@ -2577,27 +2611,6 @@
 }
 
 {
-  "input": "there is a knew version of the SDK available with major performance improvements",
-  "output": "There is a knew version of the SDK available with major performance improvements.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "so I like think we should stop adding features and fix the existing bugs first",
-  "output": "I think we should stop adding features and fix the existing bugs first",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we have twenty two open hires this quarter split across engineering product and design",
-  "output": "We have 22 open hires this quarter split across engineering, product, and design.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "dear pooja this is to confirm your appointment on the tenth at two pm at our downtown office best regards scheduling team",
   "output": "Dear Pooja, this is to confirm your appointment on the 10th at 2 PM at our downtown office. Best regards, Scheduling Team",
   "app_category": "Email",
@@ -2609,13 +2622,6 @@
   "output": "Toh yaar kya scene hai trip ka? Kab schedule kar rahe ho log?",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "the things I need before the hike are water bottle protein bar sunscreen and a power bank",
-  "output": "The things I need before the hike are water bottle, protein bar, sunscreen, and a power bank",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
 }
 
 {
@@ -2637,13 +2643,6 @@
   "output": "Hi Rina,\n\nYour reimbursement claim for the conference expenses has been approved. The amount will be credited within 7 working days.\n\nKind regards,\nFinance",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "we need to insure the new infrastructure is fully tested before go live",
-  "output": "We need to insure the new infrastructure is fully tested before go live.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3053,27 +3052,6 @@
 }
 
 {
-  "input": "the affects of the outage will be visible in next months retention metrics",
-  "output": "The affects of the outage will be visible in next months retention metrics.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "they where late two the meeting because there car broke down",
-  "output": "They where late two the meeting because there car broke down",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its clear that the UX team did not take the feedback in to account",
-  "output": "Its clear that the UX team did not take the feedback in to account",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "toh yaar itni mehnat ke baad bhi acknowledgement nahi mila thoda frustrating hai",
   "output": "Toh yaar itni mehnat ke baad bhi acknowledgement nahi mila thoda frustrating hai.",
   "app_category": "Personal",
@@ -3102,13 +3080,6 @@
 }
 
 {
-  "input": "please right a postmortem and share it with the leadership team",
-  "output": "Please right a postmortem and share it with the leadership team.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "hi priya the contract for the vendor engagement has been signed and is effective from the first of may sincerely legal team",
   "output": "Hi Priya, the contract for the vendor engagement has been signed and is effective from the 1st of May. Sincerely, Legal Team",
   "app_category": "Email",
@@ -3130,24 +3101,10 @@
 }
 
 {
-  "input": "there expecting a major spike in traffic during the sale period",
-  "output": "There expecting a major spike in traffic during the sale period.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "yani ki toh ab naye joinees ka onboarding process shuru ho gaya hai officially",
   "output": "Yani ki toh ab naye joinees ka onboarding process shuru ho gaya hai officially.",
   "app_category": "Work",
   "bucket": "hinglish"
-}
-
-{
-  "input": "the logging framework outputs timestamp level module name and message for every entry",
-  "output": "The logging framework outputs timestamp, level, module name, and message for every entry.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3158,13 +3115,6 @@
 }
 
 {
-  "input": "she seems to be affected by all the changes going on in the family",
-  "output": "She seems to be affected by all the changes going on in the family",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "matlab toh basically vo codebase itna legacy hai ki koi touch hi nahi karna chahta",
   "output": "Matlab toh basically vo codebase itna legacy hai ki koi touch hi nahi karna chahta.",
   "app_category": "Work",
@@ -3172,24 +3122,10 @@
 }
 
 {
-  "input": "the principle reason I didn't go was that the weather was too unpredictable",
-  "output": "The principle reason I didn't go was that the weather was too unpredictable",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "dear all we regret to inform you that the system will be under scheduled maintenance on the fifteenth from ten pm to two am warm regards IT",
   "output": "Dear all, we regret to inform you that the system will be under scheduled maintenance on the 15th from 10 PM to 2 AM. Warm regards, IT",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "I cant weight to sea your new place you've been talking about it forever",
-  "output": "I cant weight to sea your new place you've been talking about it forever",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3207,31 +3143,10 @@
 }
 
 {
-  "input": "the team lead complemented the engineers on there refactoring work",
-  "output": "The team lead complemented the engineers on there refactoring work.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "hi meera we are delighted to inform you that your proposal has been shortlisted we will schedule a presentation slot soon warm regards committee",
   "output": "Hi Meera, we are delighted to inform you that your proposal has been shortlisted. We will schedule a presentation slot soon. Warm regards, Committee",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "uh the package weighed around five kilos so it cost more to ship than expected",
-  "output": "The package weighed around 5 kilos, so it cost more to ship than expected",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the client excepted our terms without requesting any modifications",
-  "output": "The client excepted our terms without requesting any modifications.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3242,52 +3157,10 @@
 }
 
 {
-  "input": "the server was under load for about eleven minutes during the outage window",
-  "output": "The server was under load for about 11 minutes during the outage window.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "for the office setup you will need a monitor keyboard mouse and a docking station",
-  "output": "For the office setup you will need a monitor, keyboard, mouse, and a docking station.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "please buy eggs milk bread and green tea from the store today",
-  "output": "Please buy eggs, milk, bread, and green tea from the store today",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "dear partner we are pleased to announce that the co-marketing campaign has been approved by both teams please share the next steps best strategic alliances",
   "output": "Dear Partner,\n\nWe are pleased to announce that the co-marketing campaign has been approved by both teams. Please share the next steps.\n\nBest,\nStrategic Alliances",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "the tech stack is react for frontend node for backend and mongo for storage",
-  "output": "The tech stack is React for frontend, Node for backend, and Mongo for storage.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the knew cafe opened last week and the reviews are phenomenal so far",
-  "output": "The knew cafe opened last week and the reviews are phenomenal so far",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "their planning to role out a new software update for all apple devices",
-  "output": "Their planning to role out a new software update for all apple devices",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3298,52 +3171,10 @@
 }
 
 {
-  "input": "its to early to determine weather the new model is production ready",
-  "output": "Its to early to determine weather the new model is production ready.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "dear user your subscription renewal is due on the eleventh please update your payment method before then to avoid interruption regards finance",
   "output": "Dear User, your subscription renewal is due on the 11th. Please update your payment method before then to avoid interruption. Regards, Finance",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "the migration is a mute point since we decided to rebuild from scratch",
-  "output": "The migration is a mute point since we decided to rebuild from scratch",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "your going to need two approve the PR before it can be merged",
-  "output": "Your going to need two approve the PR before it can be merged",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the principle reason for the delay is insufficient QA bandwidth",
-  "output": "The principle reason for the delay is insufficient QA bandwidth.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "she herd from a mutual friend that he's planning to propose this weekend",
-  "output": "She herd from a mutual friend that he's planning to propose this weekend",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "their building a new feature but there timeline is unclear",
-  "output": "Their building a new feature but there timeline is unclear.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3354,80 +3185,10 @@
 }
 
 {
-  "input": "are you sure there not going to push back on this proposal",
-  "output": "Are you sure there not going to push back on this proposal?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "I herd your moving to bangalore for the new job congrats yaar",
-  "output": "I herd your moving to bangalore for the new job congrats yaar",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "your code changes will effect all downstream services please coordinate",
-  "output": "Your code changes will effect all downstream services please coordinate.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "I past my driving test finally after the third attempt feeling relieved",
-  "output": "I past my driving test finally after the third attempt feeling relieved",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "hi vikram the training for the new CRM tool is scheduled for the twelfth and thirteenth kindly block your calendar warm regards L and D team",
   "output": "Hi Vikram,\n\nThe training for the new CRM tool is scheduled for the 12th and 13th. Kindly block your calendar.\n\nWarm regards,\nL&D Team",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "um I think the team should just focus on the core feature before adding anything new",
-  "output": "I think the team should just focus on the core feature before adding anything new",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we peaked interest with the beta but failed to convert during launch",
-  "output": "We peaked interest with the beta but failed to convert during launch",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we peaked to early and now the competitors have caught up",
-  "output": "We peaked to early and now the competitors have caught up.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the new caching layer cut database calls by sixty percent across all services",
-  "output": "The new caching layer cut database calls by 60% across all services",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we peaked at the guest list and saw some really unexpected names there",
-  "output": "We peaked at the guest list and saw some really unexpected names there",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "make sure you proof read the blog before it goes live",
-  "output": "Make sure you proof read the blog before it goes live.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
 }
 
 {
@@ -3438,48 +3199,6 @@
 }
 
 {
-  "input": "bear the compliance requirements in mind when designing the auth flow",
-  "output": "Bear the compliance requirements in mind when designing the auth flow.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "note to self tomorrow morning call insurance company bank and the property manager",
-  "output": "Note to self: tomorrow morning call insurance company, bank, and the property manager",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its not fare that he gets credit for work the whole team contributed to",
-  "output": "Its not fare that he gets credit for work the whole team contributed to",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "who's going to right the incident response playbook for this scenario",
-  "output": "Who's going to right the incident response playbook for this scenario?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the movie got boring after the fist half but the ending was worth it",
-  "output": "The movie got boring after the fist half but the ending was worth it",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "so today we discovered that the memory leak was happening in the background sync service",
-  "output": "Today we discovered that the memory leak was happening in the background sync service.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "toh matlab yaar kya kar rahe ho aaj ka koi plan hai kya",
   "output": "Toh matlab yaar kya kar rahe ho aaj ka koi plan hai kya?",
   "app_category": "Personal",
@@ -3487,155 +3206,8 @@
 }
 
 {
-  "input": "uh basically I am going to be out of office next week please plan accordingly",
-  "output": "I am going to be out of office next week, please plan accordingly.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "there approach to code reviews is two lenient and causing technical debt",
-  "output": "There approach to code reviews is two lenient and causing technical debt.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "is you're two factor authentication set up on the production account",
-  "output": "Is you're two factor authentication set up on the production account?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its a lose lose situation either we delay the launch or ship with known bugs",
-  "output": "Its a lose lose situation either we delay the launch or ship with known bugs",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "there throwing a surprise party for amma on sunday please don't tell her",
-  "output": "There throwing a surprise party for amma on Sunday please don't tell her",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "the API is depreciated and every team needs to migrate by end of month",
-  "output": "The API is depreciated and every team needs to migrate by end of month.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "please advice the team on weather to proceed with the hotfix tonight",
-  "output": "Please advice the team on weather to proceed with the hotfix tonight.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "um I think we have about three weeks buffer before the situation becomes critical",
-  "output": "I think we have about 3 weeks of buffer before the situation becomes critical",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "she past all three rounds and gets an offer for the senior backend role",
-  "output": "She past all three rounds and gets an offer for the senior backend role",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "their kids are all grown up now its almost impossible to believe",
-  "output": "Their kids are all grown up now its almost impossible to believe",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "they should of hired a second QA engineer months ago to avoid this backlog",
-  "output": "They should of hired a second QA engineer months ago to avoid this backlog.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "your going to love the restaurant I booked it has amazing seafood",
-  "output": "Your going to love the restaurant I booked it has amazing seafood",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
   "input": "yani ki toh hum aaj shaam ko seven baje ke baad hi plan kar sakte hain",
   "output": "Yani ki toh hum aaj shaam ko 7 baje ke baad hi plan kar sakte hain",
   "app_category": "Personal",
   "bucket": "hinglish"
-}
-
-{
-  "input": "I think the engineers should of flagged this dependency issue earlier",
-  "output": "I think the engineers should of flagged this dependency issue earlier",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "he past the information to the wrong team and caused a delay",
-  "output": "He past the information to the wrong team and caused a delay.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "have you scene the new season it drops on friday and looks amazing",
-  "output": "Have you scene the new season it drops on Friday and looks amazing?",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "there code review comments were to harsh and discouraged the junior",
-  "output": "There code review comments were to harsh and discouraged the junior.",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "we should altar the database schema before we migrate production",
-  "output": "We should altar the database schema before we migrate production",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "uh the the new search algorithm reduces latency by roughly half compared to before",
-  "output": "The new search algorithm reduces latency by roughly half compared to before",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "its a grate opportunity don't let your nerves get the better of you",
-  "output": "Its a grate opportunity don't let your nerves get the better of you",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "I wonder weather the stakeholders have read the PRD thoroughly",
-  "output": "I wonder weather the stakeholders have read the PRD thoroughly?",
-  "app_category": "Work",
-  "bucket": "asr_errors"
-}
-
-{
-  "input": "they're dog literally weight more then my suitcase its hilarious",
-  "output": "They're dog literally weight more then my suitcase its hilarious",
-  "app_category": "Personal",
-  "bucket": "asr_errors"
 }
