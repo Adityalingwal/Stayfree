@@ -1145,6 +1145,301 @@
 }
 
 {
+  "input": "hello",
+  "output": "Hello.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "okay",
+  "output": "Okay.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "perfect",
+  "output": "Perfect.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "thanks",
+  "output": "Thanks.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "noted",
+  "output": "Noted.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "uh",
+  "output": "",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "hmm",
+  "output": "",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "um",
+  "output": "",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "ugh",
+  "output": "",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "yeah",
+  "output": "Yeah.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "so basically what I was thinking was",
+  "output": "So basically what I was thinking was",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "I was going to say",
+  "output": "I was going to say",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "the thing is",
+  "output": "The thing is",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "if we could just",
+  "output": "If we could just",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "I just wanted to",
+  "output": "I just wanted to",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "actually now that I think about it",
+  "output": "Actually now that I think about it",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "I mean the main concern is",
+  "output": "I mean the main concern is",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "well it depends on whether",
+  "output": "Well it depends on whether",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "so if we just look at the",
+  "output": "So if we just look at the",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "but then again",
+  "output": "But then again",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "isn't it weird that the tests pass locally but fail on ci",
+  "output": "Isn't it weird that the tests pass locally but fail on CI?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "why would anyone deploy on a friday",
+  "output": "Why would anyone deploy on a Friday?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "how many times do I have to say this",
+  "output": "How many times do I have to say this?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "can you believe they shipped that without testing",
+  "output": "Can you believe they shipped that without testing?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "who writes code like this honestly",
+  "output": "Who writes code like this, honestly?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "does anyone even read the documentation",
+  "output": "Does anyone even read the documentation?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "what were they thinking when they designed this",
+  "output": "What were they thinking when they designed this?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "is it just me or is this API really confusing",
+  "output": "Is it just me or is this API really confusing?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "why does this always happen on monday mornings",
+  "output": "Why does this always happen on Monday mornings?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "are we really going to skip the code review again",
+  "output": "Are we really going to skip the code review again?",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "she said i will be there at five and left",
+  "output": "She said, 'I will be there at five,' and left.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "the console shows error reading from undefined",
+  "output": "The console shows 'Error reading from undefined'.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "the terminal showed npm error code E four zero four package not found",
+  "output": "The terminal showed 'npm error code E404, package not found'.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "he texted just do it and send me the link",
+  "output": "He texted, 'Just do it and send me the link.'",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "the error message reads cannot read property of undefined",
+  "output": "The error message reads 'Cannot read property of undefined'.",
+  "bucket": "edge_cases"
+}
+
+
+{
+  "input": "the alert said session expired please log in again",
+  "output": "The alert said, 'Session expired, please log in again.'",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "he was like yeah that should work and moved on",
+  "output": "He was like, 'Yeah, that should work,' and moved on.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "she replied I need this by end of day no exceptions",
+  "output": "She replied, 'I need this by end of day, no exceptions.'",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "the popup said your free trial has ended please upgrade",
+  "output": "The popup said, 'Your free trial has ended, please upgrade.'",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "it took a long long long time to compile",
+  "output": "It took a long, long, long time to compile.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "never never ever push to production without a review",
+  "output": "Never, never ever push to production without a review.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "haha that bug has been there for three years",
+  "output": "Haha, that bug has been there for 3 years.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "wow the new dashboard looks incredible",
+  "output": "Wow, the new dashboard looks incredible.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "I don't not want to go it's just that I have too much work",
+  "output": "I don't not want to go, it's just that I have too much work.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "boy oh boy that was a close call",
+  "output": "Boy oh boy, that was a close call.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "whoa that refactor went way better than expected",
+  "output": "Whoa, that refactor went way better than expected.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "she was like yeah I'm on it don't worry",
+  "output": "She was like, 'Yeah, I'm on it, don't worry.'",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "it's not that I can not do it it's that I do not want to",
+  "output": "It's not that I can not do it, it's that I do not want to.",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "I'm so so tired of this on call rotation",
+  "output": "I'm so, so tired of this on call rotation.",
+  "bucket": "edge_cases"
+}
+
+{
   "input": "yani ki basically ab naya sprint hai toh priorities set karo sab",
   "output": "Yani ki basically ab naya sprint hai toh priorities set karo sab.",
   "bucket": "hinglish"
@@ -1169,12 +1464,6 @@
 }
 
 {
-  "input": "the bug was caught write before the production deployment",
-  "output": "The bug was caught write before the production deployment",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "toh yaar kya plan hai weekend ka kuch sochaa hai kya tune",
   "output": "Toh yaar kya plan hai weekend ka? Kuch sochaa hai kya tune?",
   "bucket": "hinglish"
@@ -1184,12 +1473,6 @@
   "input": "toh uhh basically naya API version release ho gaya hai sab ko update karna hoga",
   "output": "Toh basically naya API version release ho gaya hai, sab ko update karna hoga.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "we need two more days to thoroughly test the integration",
-  "output": "We need two more days to thoroughly test the integration.",
-  "bucket": "edge_cases"
 }
 
 {
@@ -1214,12 +1497,6 @@
   "input": "matlab toh basically design review kal hai sab ready kar lo pehle",
   "output": "Matlab toh basically design review kal hai, sab ready kar lo pehle",
   "bucket": "hinglish"
-}
-
-{
-  "input": "so we're like halfway through the OKR cycle and the numbers are tracking green",
-  "output": "We're halfway through the OKR cycle and the numbers are tracking green.",
-  "bucket": "edge_cases"
 }
 
 {
@@ -1301,12 +1578,6 @@
 }
 
 {
-  "input": "the log reads uncaught reference error foo is not defined at script dot js line forty two",
-  "output": "The log reads 'Uncaught ReferenceError: foo is not defined at script.js line 42'",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "matlab toh toh yaar mujhe lagta hai hum yeh deadline miss karenge",
   "output": "Matlab toh toh yaar mujhe lagta hai hum yeh deadline miss karenge.",
   "bucket": "hinglish"
@@ -1328,12 +1599,6 @@
   "input": "yani ki code review complete ho gayi hai merge karo jaldi",
   "output": "Yani ki code review complete ho gayi hai merge karo jaldi.",
   "bucket": "hinglish"
-}
-
-{
-  "input": "the new engineers complemented are architecture design thoroughly",
-  "output": "The new engineers complemented are architecture design thoroughly.",
-  "bucket": "edge_cases"
 }
 
 {
