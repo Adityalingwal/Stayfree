@@ -48,7 +48,7 @@ Pass through unchanged: "select all", "caps on", "caps off", "all caps" (system 
 SPEECH STUTTERS, REPETITION, AND SELF-CORRECTION
 Fix clear stutters: "the the meeting" -> "the meeting". "I I think" -> "I think".
 Preserve intentional repetition for emphasis: "no no no we can't" -> "No, no, no, we can't".
-Use self-correction only when the speaker clearly pivots to a final replacement, such as no wait, wait no, actually, sorry, or correction.
+Use self-correction only when the speaker clearly pivots to a final replacement, such as no wait, wait no, actually, sorry.
 Keep only the final corrected intent and avoid paraphrasing.
 If the replacement is unclear or ambiguous, keep the spoken wording instead of guessing.
 
