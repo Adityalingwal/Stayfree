@@ -1336,23 +1336,121 @@
 }
 
 {
-  "input": "but if we look at the timeline then",
-  "output": "But if we look at the timeline, then",
+  "input": "and then i realized that the whole time it was",
+  "output": "And then I realized that the whole time it was",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "i suppose we could try",
-  "output": "I suppose we could try",
+  "input": "but what if we actually tried to",
+  "output": "But what if we actually tried to",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "i guess the main issue here is",
+  "output": "I guess the main issue here is",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "so when they finally get back to us we can",
+  "output": "So when they finally get back to us we can",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "um i was hoping that maybe you could",
+  "output": "I was hoping that maybe you could",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "if the server keeps throwing these errors then",
+  "output": "If the server keeps throwing these errors then",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "that is completely fine but",
+  "output": "That is completely fine but",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "she called me yesterday to ask if",
+  "output": "She called me yesterday to ask if",
   "app_category": "Personal",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "definitely",
-  "output": "Definitely.",
+  "input": "well to be perfectly honest i",
+  "output": "Well, to be perfectly honest, I",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "because at the end of the day if we just",
+  "output": "Because at the end of the day, if we just",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "absolutely",
+  "output": "Absolutely.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "alright",
+  "output": "Alright.",
   "app_category": "Personal",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "yeah sure",
+  "output": "Yeah, sure.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "no problem",
+  "output": "No problem.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "spot on",
+  "output": "Spot on.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "maybe",
+  "output": "Maybe.",
+  "app_category": "Personal",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "definitely not",
+  "output": "Definitely not.",
+  "app_category": "Work",
   "bucket": "edge_cases"
 }
 
@@ -1364,113 +1462,213 @@
 }
 
 {
-  "input": "the servers are hosted in tokyo london sydney and frankfurt",
-  "output": "The servers are hosted in Tokyo, London, Sydney, and Frankfurt.",
+  "input": "will do",
+  "output": "Will do.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "pack your toothbrush passport charger and keys",
-  "output": "Pack your toothbrush, passport, charger, and keys.",
+  "input": "exactly",
+  "output": "Exactly.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "we need to buy coffee sugar tea and biscuits",
+  "output": "We need to buy coffee, sugar, tea, and biscuits.",
   "app_category": "Personal",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "my tasks for today are one review prs two write tests three deploy",
-  "output": "My tasks for today are:\n1. Review PRs.\n2. Write tests.\n3. Deploy.",
+  "input": "the team consists of developers designers testers and product managers",
+  "output": "The team consists of developers, designers, testers, and product managers.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "number one fix the login modal number two test the checkout flow",
-  "output": "1. Fix the login modal.\n2. Test the checkout flow.",
+  "input": "please review the frontend backend database and infrastructure",
+  "output": "Please review the frontend, backend, database, and infrastructure.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "first order the food second set the table third call everyone",
-  "output": "1. Order the food.\n2. Set the table.\n3. Call everyone.",
+  "input": "bring your laptop charger notebook and pen",
+  "output": "Bring your laptop, charger, notebook, and pen.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "i spoke to HR marketing sales and support today",
+  "output": "I spoke to HR, marketing, sales, and support today.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "then my boss was like we need this done by tomorrow",
+  "output": "Then my boss was like, 'We need this done by tomorrow.'",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "the client said this design is exactly what we wanted",
+  "output": "The client said, 'This design is exactly what we wanted.'",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "and i told him look we can't push to prod on a friday",
+  "output": "And I told him, 'Look, we can't push to prod on a Friday.'",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "she was like omg that is such a great idea",
+  "output": "She was like, 'Omg, that is such a great idea.'",
   "app_category": "Personal",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "dude that is insane you have to see this",
-  "output": "Dude, that is insane, you have to see this.",
+  "input": "they explicitly told us do not restart the server during peak hours",
+  "output": "They explicitly told us, 'Do not restart the server during peak hours.'",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "oops i completely forgot to attach the file",
+  "output": "Oops, I completely forgot to attach the file.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "yikes that error message looks really bad",
+  "output": "Yikes, that error message looks really bad.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "hahaha you actually did that",
+  "output": "Hahaha, you actually did that.",
   "app_category": "Personal",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "this bug is extremely critical right now",
-  "output": "This bug is extremely critical right now.",
+  "input": "whoa we just hit a hundred thousand users",
+  "output": "Whoa, we just hit 100,000 users.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "whoa i almost dropped production tables",
-  "output": "Whoa, I almost dropped production tables.",
+  "input": "the cto wants the api specs before the poc is approved",
+  "output": "The CTO wants the API specs before the POC is approved.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "yikes that sounds like a horrible plan",
-  "output": "Yikes, that sounds like a horrible plan.",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
-  "input": "do you actually believe that will work seriously",
-  "output": "Do you actually believe that will work, seriously?",
+  "input": "ping the pm to update the jira ticket with the new ui mocks",
+  "output": "Ping the PM to update the Jira ticket with the new UI mocks.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "is there any logical reason why this was approved",
-  "output": "Is there any logical reason why this was approved?",
+  "input": "our seo strategy improved the roi by thirty percent in q two",
+  "output": "Our SEO strategy improved the ROI by 30% in Q2.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+
+
+{
+  "input": "deploy the docker container to aws using the ci cd pipeline",
+  "output": "Deploy the Docker container to AWS using the CI/CD pipeline.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "it was a huge huge mistake from our side",
-  "output": "It was a huge, huge mistake from our side.",
+  "input": "fyi the vpn is down so rdp won't work",
+  "output": "FYI, the VPN is down so RDP won't work.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "stop stop stop you are breaking the build",
-  "output": "Stop, stop, stop! You are breaking the build.",
+  "input": "the qa team found a bug in the html parsing logic",
+  "output": "The QA team found a bug in the HTML parsing logic.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "i am so so incredibly tired right now",
-  "output": "I am so, so incredibly tired right now.",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
-  "input": "we sat in the meeting for three direct hours and honestly nothing was decided the marketing team wants us to rebuild the whole landing page in three days while the engineering team is basically saying it's impossible given our current backlog so i don't know what we are going to do",
-  "output": "We sat in the meeting for 3 direct hours and honestly nothing was decided. The marketing team wants us to rebuild the whole landing page in 3 days, while the engineering team is basically saying it's impossible given our current backlog. So I don't know what we are going to do.",
+  "input": "ask the vp of sales about the q three kpis",
+  "output": "Ask the VP of sales about the Q3 KPIs.",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
 
 {
-  "input": "i completely forgot to turn off the instance before the weekend and now we have an aws bill that is nearly double what we expected which means i have to explain this to accounting tomorrow morning and i really don't want to deal with that",
-  "output": "I completely forgot to turn off the instance before the weekend, and now we have an AWS bill that is nearly double what we expected, which means I have to explain this to accounting tomorrow morning, and I really don't want to deal with that.",
+  "input": "we need to secure the ssh keys for the ec two instances",
+  "output": "We need to secure the SSH keys for the EC2 instances.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "send an sms to the devops team if the db crashes",
+  "output": "Send an SMS to the DevOps team if the DB crashes.",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "why would anyone even write code like that",
+  "output": "Why would anyone even write code like that?",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "what were they actually thinking when they approved this",
+  "output": "What were they actually thinking when they approved this?",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "are we seriously going to rebuild the whole app from scratch",
+  "output": "Are we seriously going to rebuild the whole app from scratch?",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "how is it even possible to fail the same test ten times",
+  "output": "How is it even possible to fail the same test 10 times?",
+  "app_category": "Work",
+  "bucket": "edge_cases"
+}
+
+{
+  "input": "do you honestly believe the client won't notice",
+  "output": "Do you honestly believe the client won't notice?",
   "app_category": "Work",
   "bucket": "edge_cases"
 }
@@ -2106,20 +2304,6 @@
 }
 
 {
-  "input": "the deployment steps are one pull latest from main two run migrations three restart server four verify health check",
-  "output": "The deployment steps are:\n1. Pull latest from main\n2. Run migrations\n3. Restart server\n4. Verify health check.",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
-  "input": "the error message says max retries exceeded with url slash api slash v one slash users",
-  "output": "The error message says 'Max retries exceeded with url: /api/v1/users'",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "its two bad the match was cancelled we where looking forward to it",
   "output": "Its two bad the match was cancelled we where looking forward to it",
   "app_category": "Personal",
@@ -2183,20 +2367,6 @@
 }
 
 {
-  "input": "this experience has been THOROUGHLY DISAPPOINTING from start to finish nothing worked",
-  "output": "This experience has been THOROUGHLY DISAPPOINTING from start to finish, nothing worked",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
-  "input": "let's celebrate at the usual dhaba no somewhere nicer it's a big milestone",
-  "output": "Let's celebrate somewhere nicer, it's a big milestone",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "the restaurant complemented our dessert with a free slice of cake",
   "output": "The restaurant complemented our dessert with a free slice of cake",
   "app_category": "Personal",
@@ -2257,13 +2427,6 @@
   "output": "You're reputation in this city speaks for itself your known everywhere",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "dad always says plan your day before your day plans you",
-  "output": "Dad always says, 'Plan your day before your day plans you.'",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
 }
 
 {
@@ -2355,13 +2518,6 @@
   "output": "Its clear that there going to miss the flight if they don't leave now",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the engineer said the pull request title is fix bug in user authentication module not remove auth",
-  "output": "The engineer said the pull request title is 'Fix bug in user authentication module', not 'Remove auth'",
-  "app_category": "Work",
-  "bucket": "edge_cases"
 }
 
 {
@@ -2890,13 +3046,6 @@
 }
 
 {
-  "input": "the console error reads uncaught syntax error unexpected token semicolon at index sixty two",
-  "output": "The console error reads 'Uncaught SyntaxError: Unexpected token at index 62'",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "toh yaar kafi dino baad tumse baat ho rahi hai sab badhiya chal raha hai na",
   "output": "Toh yaar kafi dino baad tumse baat ho rahi hai sab badhiya chal raha hai na.",
   "app_category": "Personal",
@@ -2971,13 +3120,6 @@
   "output": "Hi all,\n\nJust a reminder that the monthly town hall is on the 21st at 4 PM. All employees are requested to attend.\n\nBest,\nLeadership",
   "app_category": "Email",
   "bucket": "email_context"
-}
-
-{
-  "input": "the recruiter asked where do you see yourself in five years",
-  "output": "The recruiter asked, 'Where do you see yourself in 5 years?'",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
 }
 
 {
@@ -3121,13 +3263,6 @@
 }
 
 {
-  "input": "the release checklist is one freeze code two tag the version three update changelog four notify stakeholders",
-  "output": "The release checklist is:\n1. Freeze code\n2. Tag the version\n3. Update changelog\n4. Notify stakeholders.",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "dear partner we are pleased to announce that the co-marketing campaign has been approved by both teams please share the next steps best strategic alliances",
   "output": "Dear Partner,\n\nWe are pleased to announce that the co-marketing campaign has been approved by both teams. Please share the next steps.\n\nBest,\nStrategic Alliances",
   "app_category": "Email",
@@ -3139,13 +3274,6 @@
   "output": "The tech stack is React for frontend, Node for backend, and Mongo for storage.",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the PM told us that the scope is NOT NEGOTIABLE and the deadline is final",
-  "output": "The PM told us that the scope is NOT NEGOTIABLE and the deadline is final.",
-  "app_category": "Work",
-  "bucket": "edge_cases"
 }
 
 {
@@ -3282,20 +3410,6 @@
 }
 
 {
-  "input": "the CTO said NO MORE HOTFIXES without a proper postmortem going forward",
-  "output": "The CTO said NO MORE HOTFIXES without a proper postmortem going forward",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
-  "input": "the doctor asked on a scale of one to ten how would you rate the pain",
-  "output": "The doctor asked, 'On a scale of 1 to 10, how would you rate the pain?'",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "the new caching layer cut database calls by sixty percent across all services",
   "output": "The new caching layer cut database calls by 60% across all services",
   "app_category": "Work",
@@ -3335,13 +3449,6 @@
   "output": "Note to self: tomorrow morning call insurance company, bank, and the property manager",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the system is NOT RESPONDING to any of the admin commands it was working fine yesterday",
-  "output": "The system is NOT RESPONDING to any of the admin commands, it was working fine yesterday.",
-  "app_category": "Work",
-  "bucket": "edge_cases"
 }
 
 {
@@ -3387,13 +3494,6 @@
 }
 
 {
-  "input": "the error log shows connection refused could not connect to remote host",
-  "output": "The error log shows 'Connection refused: Could not connect to remote host'",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "there approach to code reviews is two lenient and causing technical debt",
   "output": "There approach to code reviews is two lenient and causing technical debt.",
   "app_category": "Work",
@@ -3415,24 +3515,10 @@
 }
 
 {
-  "input": "this WiFi is COMPLETELY USELESS I cannot even load the meeting link",
-  "output": "This WiFi is COMPLETELY USELESS, I cannot even load the meeting link",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "there throwing a surprise party for amma on sunday please don't tell her",
   "output": "There throwing a surprise party for amma on Sunday please don't tell her",
   "app_category": "Personal",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "the onboarding has four steps create account verify email set up profile and connect integrations",
-  "output": "The onboarding has 4 steps:\n1. Create account\n2. Verify email\n3. Set up profile\n4. Connect integrations.",
-  "app_category": "Work",
-  "bucket": "edge_cases"
 }
 
 {
@@ -3499,20 +3585,6 @@
 }
 
 {
-  "input": "this is HANDS DOWN the best code review feedback I have ever received",
-  "output": "This is HANDS DOWN the best code review feedback I have ever received",
-  "app_category": "Work",
-  "bucket": "edge_cases"
-}
-
-{
-  "input": "the teacher always said never submit something you would not be proud to put your name on",
-  "output": "The teacher always said, 'Never submit something you would not be proud to put your name on.'",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "he past the information to the wrong team and caused a delay",
   "output": "He past the information to the wrong team and caused a delay.",
   "app_category": "Work",
@@ -3541,24 +3613,10 @@
 }
 
 {
-  "input": "you're going to loose your spot if you don't confirm the booking today",
-  "output": "You're going to loose your spot if you don't confirm the booking today",
-  "app_category": "Personal",
-  "bucket": "edge_cases"
-}
-
-{
   "input": "uh the the new search algorithm reduces latency by roughly half compared to before",
   "output": "The new search algorithm reduces latency by roughly half compared to before",
   "app_category": "Work",
   "bucket": "asr_errors"
-}
-
-{
-  "input": "this is ABSOLUTELY UNACCEPTABLE the service has been down for six hours now",
-  "output": "This is ABSOLUTELY UNACCEPTABLE, the service has been down for 6 hours now.",
-  "app_category": "Work",
-  "bucket": "edge_cases"
 }
 
 {
