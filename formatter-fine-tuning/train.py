@@ -79,25 +79,26 @@ MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 #   Sweep results show rank 32-64 works best for Llama-class models.
 LORA_RANK = 32
 
-# Learning rate: for continuation training from Iter2 Step 36 checkpoint.
-#   Iter1 fresh start: 2.86e-4, Iter2 continuation: 1e-4 (1/3 of fresh).
-#   Iter3: 5e-5 (half of Iter2) — dataset grows +27% (802→1022), conservative LR
-#   prevents overwriting already-learned hinglish/email patterns.
-LEARNING_RATE = 5e-5
+# Learning rate: fresh start on base Llama-3.1-8B-Instruct (i-4, full retrain).
+#   Formula-derived via tinker_cookbook.hyperparam_utils.get_lr():
+#     5e-5 × 10 (LoRA mult) × (2000/4096)^0.781 ≈ 2.86e-4
+#   Matches i-1 (fresh start, worked well). i-2/i-3 used lower LRs for continuation,
+#   but i-4 loads no checkpoint so we return to the formula-correct base-training LR.
+LEARNING_RATE = 2.86e-4
 
 # LR schedule: "linear" decays from max to 0. Prevents overfitting in later steps.
 #   Other options: "cosine" (smoother decay), "constant" (no decay — risky for small data).
 LR_SCHEDULE = "linear"
 
 # Batch size: examples processed per step.
-#   64 gives ~16 steps/epoch for 1022 examples (more granular than 128 which gives ~8).
+#   64 gives ~35 steps/epoch for 2296 examples.
 #   Execution guide recommends 64 for datasets < 5K examples.
 BATCH_SIZE = 64
 
 # Epochs: full passes through the training data.
-#   3 epochs with 1022 examples at batch 64 = ~48 total steps.
-#   Same as Iter2 — dataset size is comparable (1022 vs 802).
-NUM_EPOCHS = 3
+#   4 epochs with 2296 examples at batch 64 = ~143 total steps.
+#   i-4 decision: keep 4 epochs to clear Tinker's 100-step soft floor comfortably.
+NUM_EPOCHS = 4
 
 # Max sequence length in tokens is derived from the regenerated dataset:
 #   max_observed_length + 128 tokens of headroom, rounded up to the next 512 bucket.
@@ -111,14 +112,16 @@ MAX_LENGTH_BUCKET = 512
 TRAIN_ON_WHAT = renderers.TrainOnWhat.LAST_ASSISTANT_MESSAGE
 
 # ── Continuation Checkpoint ──────────────────────────────────────────────
-# Load Step 36 checkpoint from iteration 2 (full model weights, fresh optimizer).
-# Must use state_path ("weights/000036"), NOT sampler_path ("sampler_weights/000036").
-# Set to None for fresh training from base model.
-LOAD_CHECKPOINT_PATH = "tinker://527ecf69-90d1-50bb-83db-9d3439255aab:train:0/weights/000036"
+# i-4: Fresh LoRA on base Llama-3.1-8B-Instruct. No continuation, no inherited
+# adapter drift. This is the single most important change vs i-3.
+LOAD_CHECKPOINT_PATH = None
 
 # ── Checkpointing ────────────────────────────────────────────────────────
-# Save full checkpoint every N steps. ~16 steps/epoch → save every ~¾ epoch.
-SAVE_EVERY = 12
+# Save full checkpoint (30-day retention) every N steps.
+# 143 total steps / 20 = ~7 permanent checkpoints — manageable storage.
+# Rolling checkpoints below (every 10, auto-deleted after 1 day) give
+# fine-grained resume capability if training crashes mid-run.
+SAVE_EVERY = 20
 
 # Rolling checkpoints (lightweight, for resume if training crashes).
 # Saved every 10 steps, auto-deleted after 1 day.
@@ -138,9 +141,9 @@ WANDB_PROJECT = None  # Set to "mrmur.ai" to enable WandB logging (needs WANDB_A
 
 # ── Paths ────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
-TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "train.jsonl")
-VAL_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "val.jsonl")
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "test.jsonl")
+TRAIN_FILE = str(SCRIPT_DIR / "data" / "splits_v4" / "train.jsonl")
+VAL_FILE = str(SCRIPT_DIR / "data" / "splits_v4" / "val.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v4" / "test.jsonl")
 LOG_DIR = str(SCRIPT_DIR / "logs")
 TRAIN_PRICE_PER_MTOKENS = 0.40
 PREFILL_PRICE_PER_MTOKENS = 0.13
@@ -271,7 +274,7 @@ def main():
     from datetime import datetime
 
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-    run_name = f"mrmur-formatter-training-iteration-3"
+    run_name = f"mrmur-formatter-training-iteration-4"
     log_path = f"{LOG_DIR}/{run_name}"
     log_path_obj = Path(log_path)
 
@@ -324,7 +327,7 @@ def main():
     print("=" * 65)
     print(f"  Model:          {MODEL_NAME}")
     print(f"  LoRA rank:      {LORA_RANK}")
-    print(f"  Learning rate:  {LEARNING_RATE:.6f} (hardcoded for continuation training)")
+    print(f"  Learning rate:  {LEARNING_RATE:.6f} (formula-derived, fresh base training)")
     print(f"  LR schedule:    {LR_SCHEDULE}")
     print(f"  Batch size:     {BATCH_SIZE}")
     print(f"  Epochs:         {NUM_EPOCHS}")
@@ -334,7 +337,7 @@ def main():
     print(f"  Val file:       {VAL_FILE}")
     print(f"  Log path:       {log_path}")
     print(f"  WandB:          {WANDB_PROJECT or 'disabled'}")
-    print(f"  Save every:     {SAVE_EVERY} steps (~1 epoch)")
+    print(f"  Save every:     {SAVE_EVERY} steps (permanent, 30-day retention)")
     print(f"  NLL eval every: {EVAL_EVERY} steps")
     print("=" * 65)
     print()
