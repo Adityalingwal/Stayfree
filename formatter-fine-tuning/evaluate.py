@@ -57,7 +57,7 @@ from tinker_cookbook.tokenizer_utils import get_tokenizer
 # ── Config ───────────────────────────────────────────────────────────────
 MODEL_NAME = "meta-llama/Llama-3.1-8B-Instruct"
 SCRIPT_DIR = Path(__file__).parent
-TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v3" / "test.jsonl")
+TEST_FILE = str(SCRIPT_DIR / "data" / "splits_v4" / "test.jsonl")
 
 
 def safe_label(value: str) -> str:
@@ -143,7 +143,7 @@ def load_test_data(test_file: str) -> list[dict]:
     with open(test_file) as f:
         for line_no, line in enumerate(f, 1):
             row = json.loads(line)
-            missing = {"source_bucket", "app_category", "dictionary", "messages"} - set(row)
+            missing = {"bucket", "app_category", "messages"} - set(row)
             if missing:
                 raise ValueError(f"{test_file}:{line_no} missing keys: {sorted(missing)}")
             messages = row["messages"]
@@ -154,8 +154,7 @@ def load_test_data(test_file: str) -> list[dict]:
                 "messages": messages,
                 "input": messages[1]["content"],
                 "app_category": row["app_category"],
-                "dictionary": row["dictionary"],
-                "source_bucket": row["source_bucket"],
+                "bucket": row["bucket"],
                 "expected": messages[2]["content"],
             })
     return examples
@@ -214,7 +213,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
 
     # ── Run evaluation ───────────────────────────────────────────────────
     results = []
-    source_bucket_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
+    bucket_stats = defaultdict(lambda: {"exact": 0, "fuzzy": 0, "total": 0})
     overall = {"exact": 0, "fuzzy": 0, "total": 0, "errors": 0}
     parse_failures = 0
 
@@ -258,12 +257,12 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         if is_fuzzy:
             overall["fuzzy"] += 1
 
-        # Source bucket tracking
-        source_bucket_stats[ex["source_bucket"]]["total"] += 1
+        # Bucket tracking (per-bucket accuracy breakdown)
+        bucket_stats[ex["bucket"]]["total"] += 1
         if is_exact:
-            source_bucket_stats[ex["source_bucket"]]["exact"] += 1
+            bucket_stats[ex["bucket"]]["exact"] += 1
         if is_fuzzy:
-            source_bucket_stats[ex["source_bucket"]]["fuzzy"] += 1
+            bucket_stats[ex["bucket"]]["fuzzy"] += 1
 
 
         # Store detailed result
@@ -274,7 +273,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
             "generated": generated,
             "exact_match": is_exact,
             "fuzzy_match": is_fuzzy,
-            "source_bucket": ex["source_bucket"],
+            "bucket": ex["bucket"],
             "app_category": ex["app_category"],
         })
 
@@ -304,10 +303,10 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         log(f"    Parse fails:  {parse_failures}")
 
 
-    # Source bucket breakdown
-    log(f"\n  By Source Bucket:")
-    for bucket in sorted(source_bucket_stats):
-        s = source_bucket_stats[bucket]
+    # Bucket breakdown
+    log(f"\n  By Bucket:")
+    for bucket in sorted(bucket_stats):
+        s = bucket_stats[bucket]
         if s["total"] > 0:
             exact_pct = s["exact"] / s["total"] * 100
             log(f"    {bucket:25s}: exact={exact_pct:5.1f}%  (n={s['total']})")
@@ -318,7 +317,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
     if mismatches:
         log(f"\n  Mismatches: {len(mismatches)} total (showing first 10):")
         for r in mismatches[:10]:
-            log(f"\n    [{r['index']}] {r['source_bucket']} / {r['app_category']}")
+            log(f"\n    [{r['index']}] {r['bucket']} / {r['app_category']}")
             log(f"      Input:    {r['input'][:80]}...")
             log(f"      Expected: {r['expected'][:80]}")
             log(f"      Got:      {r['generated'][:80]}")
@@ -365,7 +364,7 @@ async def evaluate(checkpoint_path: str | None, use_base: bool = False):
         "fuzzy_match_pct": round(fuzzy_pct, 2),
         "errors": overall["errors"],
         "parse_failures": parse_failures,
-        "source_bucket_breakdown": dict(source_bucket_stats),
+        "bucket_breakdown": dict(bucket_stats),
         "gate_pass": gate_pass,
         "detailed_results": results,
     }
