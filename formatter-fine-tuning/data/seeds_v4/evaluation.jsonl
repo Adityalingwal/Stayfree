@@ -2767,391 +2767,391 @@
 {
   "input": "hello michael just checking in on the status of the contract please update me when you can warm regards diana",
   "output": "Hello Michael,\n\nJust checking in on the status of the contract. Please update me when you can.\n\nWarm regards,\nDiana",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi neha i wanted to let you know that your leave request has been approved see you when you return cheers sam",
   "output": "Hi Neha,\n\nI wanted to let you know that your leave request has been approved. See you when you return.\n\nCheers,\nSam",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear team please be reminded that the parking lot will be unavailable this weekend regards",
   "output": "Dear team,\n\nPlease be reminded that the parking lot will be unavailable this weekend.\n\nRegards.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi all the wifi password has been updated please check your email for the new credentials thank you",
   "output": "Hi all,\n\nThe wifi password has been updated. Please check your email for the new credentials.\n\nThank you.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "sure thing leave it with me",
   "output": "Sure thing, leave it with me.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "sounds good see you there",
   "output": "Sounds good, see you there.",
-  "app_category": "Personal",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi marketing team please share the campaign brief by wednesday regards",
   "output": "Hi marketing team,\n\nPlease share the campaign brief by Wednesday.\n\nRegards.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear compliance team we have submitted all required documents for your review thank you",
   "output": "Dear compliance team,\n\nWe have submitted all required documents for your review.\n\nThank you.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi everyone the quarterly targets have been updated please review them at your earliest best regards sales team",
   "output": "Hi everyone,\n\nThe quarterly targets have been updated. Please review them at your earliest.\n\nBest regards,\nsales team",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear all please note the new escalation process is live as of today regards operations team",
   "output": "Dear all,\n\nPlease note the new escalation process is live as of today.\n\nRegards,\noperations team",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear doctor krishna i am writing to follow up on my recent blood test results",
   "output": "Dear Dr. Krishna,\n\nI am writing to follow up on my recent blood test results.",
-  "app_category": "Personal",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi doctor gupta just a quick note to confirm that i have attached the patient intake form",
   "output": "Hi Dr. Gupta,\n\nJust a quick note to confirm that I have attached the patient intake form.",
-  "app_category": "Personal",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear dr verma i wanted to thank you for your feedback on the research paper",
   "output": "Dear Dr. Verma,\n\nI wanted to thank you for your feedback on the research paper.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi dr nair please confirm whether the wednesday slot still works for you",
   "output": "Hi Dr. Nair,\n\nPlease confirm whether the Wednesday slot still works for you.",
-  "app_category": "Personal",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear hiring manager my application includes the following one my updated resume two a cover letter three two professional references sincerely",
   "output": "Dear hiring manager,\n\nMy application includes the following:\n\n1. My updated resume.\n2. A cover letter.\n3. Two professional references.\n\nSincerely.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi team please ensure the following before the release one all tests are passing two the staging environment is stable three the rollback plan is documented thanks",
   "output": "Hi team,\n\nPlease ensure the following before the release:\n\n1. All tests are passing.\n2. The staging environment is stable.\n3. The rollback plan is documented.\n\nThanks.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi please call me back on nine eight seven zero one two three four five six at your convenience",
   "output": "Hi,\n\nPlease call me back on 9870123456 at your convenience.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear team for urgent issues please contact the helpdesk at eight zero zero one two three four five six seven",
   "output": "Dear team,\n\nFor urgent issues please contact the helpdesk at 8001234567.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi all we need to schedule a one dash on dash one meeting with each team member this week",
   "output": "Hi all,\n\nWe need to schedule a one-on-one meeting with each team member this week.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear priya please prepare a month dash end summary for the client by friday thanks",
   "output": "Dear Priya,\n\nPlease prepare a month-end summary for the client by Friday.\n\nThanks.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi this is regarding your application to the marketing ampersand communications team",
   "output": "Hi,\n\nThis is regarding your application to the marketing & communications team.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear all please send your feedback to the design ampersand product leads before thursday",
   "output": "Dear all,\n\nPlease send your feedback to the design & product leads before Thursday.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi please coordinate with the frontend and backend teams for the handoff",
   "output": "Hi,\n\nPlease coordinate with the frontend and backend teams for the handoff.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear leena kindly share the updated scope and timeline by end of week",
   "output": "Dear Leena,\n\nKindly share the updated scope and timeline by end of week.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "to whom it may concern i am writing on behalf of my team to request access to the vendor portal",
   "output": "To Whom It May Concern,\n\nI am writing on behalf of my team to request access to the vendor portal.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "to whom it may concern this letter serves as confirmation of employment for the period specified",
   "output": "To Whom It May Concern,\n\nThis letter serves as confirmation of employment for the period specified.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear team thank you for your cooperation during the audit best",
   "output": "Dear team,\n\nThank you for your cooperation during the audit.\n\nBest regards.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi the proposal document has been shared with you please review at your earliest best",
   "output": "Hi,\n\nThe proposal document has been shared with you. Please review at your earliest.\n\nBest regards.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear professor chen i am reaching out to enquire about your current research openings",
   "output": "Dear Professor Chen,\n\nI am reaching out to enquire about your current research openings.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi principal anderson i wanted to follow up on the scholarship application we submitted last month",
   "output": "Hi Principal Anderson,\n\nI wanted to follow up on the scholarship application we submitted last month.",
-  "app_category": "Personal",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear manager i would like to request a day off on the twenty third",
   "output": "Dear manager,\n\nI would like to request a day off on the 23rd.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi hiring manager i am writing to express my interest in the product design role",
   "output": "Hi hiring manager,\n\nI am writing to express my interest in the product design role.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear team um just a heads up uh the server maintenance window has been moved to saturday",
   "output": "Dear team,\n\nJust a heads up, the server maintenance window has been moved to Saturday.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi uh rohan um i just uh wanted to let you know that your invoice has been processed",
   "output": "Hi Rohan,\n\nI just wanted to let you know that your invoice has been processed.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi lisa your request has been approved thanks",
   "output": "Hi Lisa,\n\nYour request has been approved.\n\nThanks.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear john the documents are ready for signing regards",
   "output": "Dear John,\n\nThe documents are ready for signing.\n\nRegards.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi team we have a new policy update em dash please read it carefully before monday",
   "output": "Hi team,\n\nWe have a new policy update — please read it carefully before Monday.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear all the shortlisted candidates em dash as listed below em dash will be contacted by friday",
   "output": "Dear all,\n\nThe shortlisted candidates — as listed below — will be contacted by Friday.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "quick note the backend service will be in read only mode from midnight to two am",
   "output": "Quick note, the backend service will be in read only mode from midnight to 2 AM.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "just a reminder the deadline for submitting your feedback is tomorrow",
   "output": "Just a reminder, the deadline for submitting your feedback is tomorrow.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "subject meeting reschedule request hi sanjay could we move our friday call to monday instead thanks",
   "output": "Subject: Meeting Reschedule Request\n\nHi Sanjay,\n\nCould we move our Friday call to Monday instead?\n\nThanks.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "subject interview confirmation dear applicant we are pleased to confirm your interview for the role of senior developer sincerely the recruitment team",
   "output": "Subject: Interview Confirmation\n\nDear applicant,\n\nWe are pleased to confirm your interview for the role of senior developer.\n\nSincerely,\nthe recruitment team",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi the event management budget for the conference is fifty thousand rupees please plan accordingly",
   "output": "Hi,\n\nThe event management budget for the conference is ₹50,000. Please plan accordingly.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear raj the advance payment of twenty five thousand rupees has been transferred to your account",
   "output": "Dear Raj,\n\nThe advance payment of ₹25,000 has been transferred to your account.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear ms singh thank you for reaching out we will get back to you shortly",
   "output": "Dear Ms. Singh,\n\nThank you for reaching out. We will get back to you shortly.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi prof kumar i am attaching my midterm report for your evaluation",
   "output": "Hi Prof. Kumar,\n\nI am attaching my midterm report for your evaluation.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "got it will update the tracker",
   "output": "Got it, will update the tracker.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "noted thanks for letting me know",
   "output": "Noted, thanks for letting me know.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear it support team we are experiencing login issues on three machines please assist at the earliest",
   "output": "Dear IT support team,\n\nWe are experiencing login issues on 3 machines. Please assist at the earliest.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi the new hr policy document is attached please review and acknowledge receipt best regards hr department",
   "output": "Hi,\n\nThe new HR policy document is attached. Please review and acknowledge receipt.\n\nBest regards,\nHR department",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi the sprint will cover authentication search and notification features",
   "output": "Hi,\n\nThe sprint will cover authentication, search, and notification features.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear team please ensure all timesheets receipts and approvals are submitted before friday",
   "output": "Dear team,\n\nPlease ensure all timesheets, receipts, and approvals are submitted before Friday.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "hi all please attend the kick off session tomorrow morning at ten am",
   "output": "Hi all,\n\nPlease attend the kick off session tomorrow morning at 10 AM.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear team we will have a wrap up call on friday at four pm to close out the sprint",
   "output": "Dear team,\n\nWe will have a wrap up call on Friday at 4 PM to close out the sprint.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear sir or madam i would like to request a refund for the order placed on the twelfth",
   "output": "Dear Sir or Madam,\n\nI would like to request a refund for the order placed on the 12th.",
-  "app_category": "Personal",
+  "app_category": "email",
   "bucket": "email"
 }
 
 {
   "input": "dear sir or madam we are writing to request an update on the status of our pending application",
   "output": "Dear Sir or Madam,\n\nWe are writing to request an update on the status of our pending application.",
-  "app_category": "Work",
+  "app_category": "email",
   "bucket": "email"
 }
