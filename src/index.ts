@@ -1370,6 +1370,11 @@ app.on("ready", () => {
           console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
         }
 
+        // Ensure the text ends with a space so consecutive dictates don't stick together
+        if (!/\s$/.test(formattedText)) {
+          formattedText += " ";
+        }
+
         // Store for fallback paste shortcut
         store.set("lastTranscript", formattedText);
 
