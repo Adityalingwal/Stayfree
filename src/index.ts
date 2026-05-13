@@ -123,7 +123,7 @@ const HINDI_STREAM_MAX_ATTEMPTS = 3;
 const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 15000;
 
 /** Safety net: max time the app can stay in "processing" state before force-reset */
-const PROCESSING_TIMEOUT_MS = 30_000;
+const PROCESSING_TIMEOUT_MS = 20_000;
 
 // Prevent duplicate app instances (and duplicate tray icons).
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
