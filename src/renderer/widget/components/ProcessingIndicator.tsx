@@ -1,20 +1,16 @@
 import React from "react";
 
 /**
- * Processing state content — a row of dim grey dots on the left and a lavender
- * multi-spoke activity spinner on the right (matches the Wispr flow reference).
+ * Processing state content — a lavender multi-spoke activity spinner (matches
+ * the Wispr flow reference). The dim dots to its left are NOT rendered here:
+ * they are the frozen Waveform bars, which stay mounted through the
+ * recording → processing transition and collapse to dots via CSS.
  */
-const DOT_COUNT = 10;
 const SPOKE_COUNT = 11;
 
 export default function ProcessingIndicator() {
   return (
     <div className="proc">
-      <div className="proc-dots">
-        {Array.from({ length: DOT_COUNT }).map((_, i) => (
-          <span key={i} className="proc-dot" />
-        ))}
-      </div>
       <div className="proc-spinner">
         {Array.from({ length: SPOKE_COUNT }).map((_, i) => (
           <span

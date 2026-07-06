@@ -142,6 +142,13 @@ class AudioRecorder {
   private recordingStartMs = 0;
   private streamingFailed = false;
 
+  // Live level meter (drives the widget waveform) — works for both English and
+  // Hindi paths since both share this.stream.
+  private levelAnalyser: AnalyserNode | null = null;
+  private levelSource: MediaStreamAudioSourceNode | null = null;
+  private levelData: Float32Array | null = null;
+  private levelTimer: number | null = null;
+
   private readonly baselineWindowMs = 300;
   private readonly chunkDurationMs = 100;
   private readonly minVoicedMs = 180;
@@ -198,9 +205,70 @@ class AudioRecorder {
     this.mediaRecorder.start();
     console.log("[Recorder] Recording started (WebM)");
 
+    // --- Live level meter (both paths) ---
+    this.startLevelMeter();
+
     // --- PCM16 AudioWorklet (Hindi only) ---
     if (hindiMode) {
       await this.startPCM16Streaming();
+    }
+  }
+
+  // Taps this.stream with an AnalyserNode and emits the RMS level ~30x/sec so
+  // the widget waveform reacts to the actual voice (flat when silent, waving
+  // when speaking). Uses setInterval, not rAF — the recorder window is hidden
+  // and rAF may not tick even with backgroundThrottling disabled.
+  private startLevelMeter(): void {
+    try {
+      if (!this.stream) return;
+      const ctx = getAudioContext();
+      if (ctx.state === "suspended") {
+        ctx.resume().catch(() => undefined);
+      }
+      this.levelSource = ctx.createMediaStreamSource(this.stream);
+      this.levelAnalyser = ctx.createAnalyser();
+      this.levelAnalyser.fftSize = 512;
+      this.levelAnalyser.smoothingTimeConstant = 0.4;
+      this.levelData = new Float32Array(this.levelAnalyser.fftSize);
+      this.levelSource.connect(this.levelAnalyser);
+      // Note: intentionally NOT connected to destination (don't play the mic).
+
+      this.levelTimer = window.setInterval(() => {
+        if (!this.levelAnalyser || !this.levelData) return;
+        this.levelAnalyser.getFloatTimeDomainData(this.levelData);
+        let sum = 0;
+        for (let i = 0; i < this.levelData.length; i += 1) {
+          const v = this.levelData[i];
+          sum += v * v;
+        }
+        const rms = Math.sqrt(sum / this.levelData.length);
+        window.electron.sendAudioLevel(rms);
+      }, 33);
+    } catch (error) {
+      console.warn("[Recorder] Level meter failed to start:", error);
+    }
+  }
+
+  private stopLevelMeter(): void {
+    if (this.levelTimer !== null) {
+      window.clearInterval(this.levelTimer);
+      this.levelTimer = null;
+    }
+    if (this.levelSource) {
+      try {
+        this.levelSource.disconnect();
+      } catch {
+        // ignore
+      }
+      this.levelSource = null;
+    }
+    this.levelAnalyser = null;
+    this.levelData = null;
+    // Settle the widget waveform back to flat dots.
+    try {
+      window.electron.sendAudioLevel(0);
+    } catch {
+      // ignore
     }
   }
 
@@ -259,6 +327,9 @@ class AudioRecorder {
   }
 
   stopRecording(): void {
+    // Stop the live level meter
+    this.stopLevelMeter();
+
     // Stop PCM16 streaming first (signals flush to main process)
     if (this.isHindiMode) {
       this.stopPCM16Streaming();
@@ -358,6 +429,7 @@ class AudioRecorder {
   }
 
   cleanup(): void {
+    this.stopLevelMeter();
     this.stopPCM16Streaming();
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
@@ -393,7 +465,8 @@ recorder
 
     window.electron.onCancelRecording(() => {
       console.log("[Recorder] Received CANCEL command");
-      // Stop PCM16 first
+      // Stop level meter + PCM16 first
+      recorder["stopLevelMeter"]();
       recorder["stopPCM16Streaming"]();
 
       // Cancel: stop recording but don't process audio

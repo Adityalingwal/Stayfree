@@ -173,6 +173,17 @@ contextBridge.exposeInMainWorld("electron", {
   setWidgetIgnoreMouse: (ignore: boolean) => {
     ipcRenderer.send("widget-set-ignore-mouse", ignore);
   },
+  // Recorder → main: live mic RMS level (0..~1) at ~30fps during recording.
+  sendAudioLevel: (level: number) => {
+    ipcRenderer.send("audio-level", level);
+  },
+  // Widget: subscribe to the forwarded mic level. Returns an unsubscribe fn.
+  onWidgetAudioLevel: (
+    callback: (_event: Electron.IpcRendererEvent, level: number) => void,
+  ): (() => void) => {
+    ipcRenderer.on("widget-audio-level", callback);
+    return () => ipcRenderer.removeListener("widget-audio-level", callback);
+  },
   openSettingsFromWidget: () => {
     ipcRenderer.send("widget-open-settings");
   },
@@ -390,6 +401,10 @@ declare global {
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;
       setWidgetIgnoreMouse: (ignore: boolean) => void;
+      sendAudioLevel: (level: number) => void;
+      onWidgetAudioLevel: (
+        callback: (_event: Electron.IpcRendererEvent, level: number) => void,
+      ) => () => void;
       openSettingsFromWidget: () => void;
       // Notes
       getNotes: () => Promise<Note[]>;

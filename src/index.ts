@@ -586,6 +586,9 @@ function createRecorderWindow(): void {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: false,
       contextIsolation: true,
+      // Hidden windows are throttled to ~1fps by default, which would stall the
+      // live audio-level meter that drives the widget waveform. Keep it running.
+      backgroundThrottling: false,
     },
   });
 
@@ -935,6 +938,12 @@ function registerWidgetHandlers(): void {
     recorderWindow.webContents.send("cancel-recording");
     updateTrayState("idle");
     sendWidgetState("idle");
+  });
+
+  // Live mic level from the recorder → drives the widget waveform in real time.
+  ipcMain.on("audio-level", (_event, level: number) => {
+    if (!widgetWindow || widgetWindow.isDestroyed()) return;
+    widgetWindow.webContents.send("widget-audio-level", level);
   });
 
   ipcMain.on("widget-set-ignore-mouse", (_event, ignore: boolean) => {

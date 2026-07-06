@@ -49,16 +49,16 @@ body {
   justify-content: center;
 }
 
-/* Wraps the pill; the language badge is absolutely positioned against it so the */
-/* pill itself never shifts when the badge appears.                             */
-.widget-stage {
-  position: relative;
-  display: inline-flex;
-  align-items: flex-end;
-}
-
 .widget-clickable {
   cursor: pointer;
+}
+
+/* Relative wrapper around the pill so the language badge can be absolutely
+   positioned beside it without ever shifting the pill. */
+.widget-stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
 }
 
 /* ==================== */
@@ -70,60 +70,66 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: rgba(6, 6, 8, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #0a0a0c;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   transform-origin: bottom center;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* No backdrop-filter: re-blurring every frame during the size morph is the
+     main source of jank. The fill is opaque, so we don't need it — and dropping
+     it makes the grow/shrink noticeably smoother. */
   will-change: width, height;
-  /* One spring-ish curve drives every dimension of the morph. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* One spring-ish curve drives every dimension of the morph (~150ms in the
+     reference recording). */
   transition:
-    width 0.3s cubic-bezier(0.34, 0.85, 0.32, 1),
-    height 0.3s cubic-bezier(0.34, 0.85, 0.32, 1),
-    border-radius 0.3s cubic-bezier(0.34, 0.85, 0.32, 1),
-    background-color 0.25s ease,
-    transform 0.1s ease;
+    width 0.18s cubic-bezier(0.3, 0.9, 0.3, 1),
+    height 0.18s cubic-bezier(0.3, 0.9, 0.3, 1),
+    border-radius 0.18s cubic-bezier(0.3, 0.9, 0.3, 1),
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.12s ease;
 }
 
 /* All ratios below are matched to the reference recording (~2.4:1),      */
 /* processing (~3.3:1, wider) and idle (~5:1, thin) pill proportions.      */
 
-/* --- IDLE: thin outlined capsule --- */
+/* --- IDLE: small thin oval, black inside with a visible white outline --- */
 .pill-idle {
-  width: 44px;
-  height: 9px;
-  border-radius: 4.5px;
+  width: 40px;
+  height: 8px;
+  border-radius: 4px;
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .pill-idle:hover {
-  transform: scaleX(1.06);
-  background: rgba(20, 20, 24, 0.92);
+  transform: scaleX(1.08);
+  border-color: rgba(255, 255, 255, 0.72);
 }
 
 .pill-idle:active {
-  transform: scaleX(0.96);
+  transform: scaleX(0.95);
 }
 
-/* --- RECORDING: hotkey/command = waveform only (chunky) --- */
+/* --- RECORDING: hotkey/command = waveform only (compact) --- */
 .pill-recording-hotkey,
 .pill-recording-command {
-  width: 86px;
-  height: 34px;
-  border-radius: 17px;
+  width: 74px;
+  height: 30px;
+  border-radius: 15px;
 }
 
 /* --- RECORDING: click mode = X | waveform | stop --- */
 .pill-recording-click {
-  width: 118px;
-  height: 34px;
-  border-radius: 17px;
+  width: 124px;
+  height: 30px;
+  border-radius: 15px;
 }
 
-/* --- PROCESSING: dots + spinner (widest) --- */
+/* --- PROCESSING: frozen bars (dots) + spinner — wider than recording --- */
 .pill-processing {
-  width: 112px;
-  height: 34px;
-  border-radius: 17px;
+  width: 98px;
+  height: 30px;
+  border-radius: 15px;
 }
 
 /* Inner content fades in as the shell grows, so nothing "pops". */
@@ -133,7 +139,7 @@ body {
   justify-content: center;
   height: 100%;
   gap: 6px;
-  animation: pill-content-in 0.22s ease both;
+  animation: pill-content-in 0.12s ease both;
 }
 
 .pill-content-recording {
@@ -146,73 +152,28 @@ body {
 }
 
 /* ==================== */
-/* LANGUAGE BADGE       */
-/* ==================== */
-
-.widget-badge {
-  position: absolute;
-  right: 100%;
-  margin-right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(6, 6, 8, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.92);
-  animation: badge-in 0.24s cubic-bezier(0.34, 1.4, 0.64, 1) both;
-}
-
-@keyframes badge-in {
-  from { opacity: 0; transform: translateY(-50%) scale(0.7); }
-  to   { opacity: 1; transform: translateY(-50%) scale(1); }
-}
-
-/* ==================== */
 /* WAVEFORM (recording) */
 /* ==================== */
 
 .wf {
   display: flex;
   align-items: center;
-  height: 24px;
-  gap: 1.5px;
+  height: 18px;
+  gap: 2px;
 }
 
+/* Height is driven imperatively by the live mic level (see Waveform.tsx) via
+   transform: scaleY(). The short transition smooths the ~30fps level updates
+   into a fluid, flowing wave; at rest each bar sits at a dot. */
 .wf-bar {
-  width: 2.5px;
+  width: 2px;
+  height: 18px;
   border-radius: 2px;
-  background: #ffffff;
+  background: #fbfbfb;
   transform-origin: center;
+  transform: scaleY(0.12);
+  transition: transform 0.1s cubic-bezier(0.33, 0.9, 0.28, 1);
   will-change: transform;
-  animation: wf 0.7s ease-in-out infinite alternate;
-}
-
-/* Symmetric "bell" envelope — centre bars are tallest. */
-.wf-bar:nth-child(1)  { height: 5px;  animation-duration: 0.72s; animation-delay: -0.10s; }
-.wf-bar:nth-child(2)  { height: 8px;  animation-duration: 0.88s; animation-delay: -0.30s; }
-.wf-bar:nth-child(3)  { height: 11px; animation-duration: 0.64s; animation-delay: -0.05s; }
-.wf-bar:nth-child(4)  { height: 14px; animation-duration: 0.80s; animation-delay: -0.25s; }
-.wf-bar:nth-child(5)  { height: 18px; animation-duration: 0.70s; animation-delay: -0.15s; }
-.wf-bar:nth-child(6)  { height: 22px; animation-duration: 0.60s; animation-delay:  0.00s; }
-.wf-bar:nth-child(7)  { height: 18px; animation-duration: 0.76s; animation-delay: -0.20s; }
-.wf-bar:nth-child(8)  { height: 14px; animation-duration: 0.84s; animation-delay: -0.35s; }
-.wf-bar:nth-child(9)  { height: 11px; animation-duration: 0.66s; animation-delay: -0.10s; }
-.wf-bar:nth-child(10) { height: 8px;  animation-duration: 0.90s; animation-delay: -0.28s; }
-.wf-bar:nth-child(11) { height: 5px;  animation-duration: 0.74s; animation-delay: -0.12s; }
-
-@keyframes wf {
-  from { transform: scaleY(0.4); }
-  to   { transform: scaleY(1); }
 }
 
 /* Command mode keeps the same shape but a lavender tint to stay distinct. */
@@ -220,28 +181,70 @@ body {
   background: #b9a8f0;
 }
 
+/* Processing: the same bars stay mounted and become the dim grey dots.
+   !important beats the inline scaleY() that Waveform sets via refs. */
+.pill-processing .wf-bar {
+  transform: scaleY(0.12) !important;
+  background: #595959;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* ============================ */
+/* LANGUAGE BADGE (recording)   */
+/* ============================ */
+
+/* Circle floating 8px to the LEFT of the pill, bottom-aligned with it.
+   Fades/scales in with the recording expand, then fades out on its own
+   1.6s later. Never affects layout (absolute + pointer-events none). */
+.widget-badge {
+  position: absolute;
+  right: calc(100% + 8px);
+  bottom: 1px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0a0a0c;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform-origin: right center;
+  animation:
+    badge-in 0.18s ease both,
+    badge-out 0.35s ease 1.6s forwards;
+}
+
+@keyframes badge-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes badge-out {
+  to { opacity: 0; }
+}
+
 /* ==================== */
 /* PROCESSING content   */
-/* dots ......  spinner */
+/* (spinner — the dots  */
+/* are the frozen bars) */
 /* ==================== */
 
 .proc {
   display: flex;
   align-items: center;
-  gap: 14px;
+  /* pill-content gap (6px) + this margin ≈ 12px between bars and spinner */
+  margin-left: 6px;
+  animation: proc-in 0.15s ease both;
 }
 
-.proc-dots {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.proc-dot {
-  width: 2.5px;
-  height: 2.5px;
-  border-radius: 1px;
-  background: rgba(255, 255, 255, 0.34);
+@keyframes proc-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .proc-spinner {
@@ -263,7 +266,7 @@ body {
   height: 4px;
   margin: -2px 0 0 -0.8px;
   border-radius: 1px;
-  background: #9d90d0;
+  background: #9a8fc4;
   /* individual rotate()/opacity set inline for the comet trail */
 }
 

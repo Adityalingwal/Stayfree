@@ -19,10 +19,12 @@ type WidgetState =
  * native-frame animation glitch.
  *
  * Look (matched to the reference):
- *  - pill: pitch-black fill, thin light-grey outline, full rounded stadium
- *  - idle: tiny outlined capsule
- *  - recording: white "bell" waveform + a language badge ("HI"/"EN") on the left
- *  - processing: dim dots on the left + a lavender multi-spoke spinner on the right
+ *  - pill: pitch-black fill, thin outline, full rounded stadium
+ *  - idle: tiny thin oval with a visible white outline
+ *  - recording: white bars pulsing in sync + a language badge ("HI"/"EN")
+ *    floating to the left of the pill (fades out on its own after ~1.6s)
+ *  - processing: the SAME waveform bars stay mounted and collapse to dim grey
+ *    dots (via CSS) while a lavender multi-spoke spinner fades in at the right
  *
  * The window is much larger than the pill and click-through by default; we make
  * it interactive only while the cursor is over the pill's hit area.
@@ -84,7 +86,8 @@ export default function App() {
         onMouseLeave={handleMouseLeave}
       >
         <div className="widget-stage">
-          {/* Language badge sits to the left of the pill while recording */}
+          {/* Language badge floats to the left of the pill while recording
+              (absolutely positioned — it never shifts the pill itself). */}
           {isRecording && state !== "recording-command" && (
             <LangBadge lang={lang} />
           )}
@@ -95,7 +98,10 @@ export default function App() {
             }`}
             onClick={handleClick}
           >
-            {isRecording && (
+            {/* ONE persistent content block across recording → processing so the
+                Waveform never remounts: its bars morph into the processing dots
+                purely via CSS. */}
+            {(isRecording || state === "processing") && (
               <div className="pill-content pill-content-recording">
                 {state === "recording-click" && (
                   <button
@@ -119,6 +125,8 @@ export default function App() {
 
                 <Waveform />
 
+                {state === "processing" && <ProcessingIndicator />}
+
                 {state === "recording-click" && (
                   <button
                     className="widget-stop-btn"
@@ -129,12 +137,6 @@ export default function App() {
                     aria-label="Stop"
                   />
                 )}
-              </div>
-            )}
-
-            {state === "processing" && (
-              <div className="pill-content">
-                <ProcessingIndicator />
               </div>
             )}
           </div>
