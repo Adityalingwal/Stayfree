@@ -140,7 +140,12 @@ contextBridge.exposeInMainWorld("electron", {
   onWidgetState: (
     callback: (
       _event: Electron.IpcRendererEvent,
-      state: "idle" | "recording-hotkey" | "recording-click" | "processing",
+      state:
+        | "idle"
+        | "recording-hotkey"
+        | "recording-click"
+        | "recording-command"
+        | "processing",
     ) => void,
   ) => {
     ipcRenderer.on("widget-state", callback);
@@ -165,8 +170,8 @@ contextBridge.exposeInMainWorld("electron", {
   cancelWidgetRecording: () => {
     ipcRenderer.send("widget-cancel-recording");
   },
-  setWidgetLayout: (layout: "idle" | "recording" | "processing") => {
-    ipcRenderer.send("widget-set-layout", layout);
+  setWidgetIgnoreMouse: (ignore: boolean) => {
+    ipcRenderer.send("widget-set-ignore-mouse", ignore);
   },
   openSettingsFromWidget: () => {
     ipcRenderer.send("widget-open-settings");
@@ -384,9 +389,7 @@ declare global {
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;
-      setWidgetLayout: (
-        layout: "idle" | "recording" | "processing",
-      ) => void;
+      setWidgetIgnoreMouse: (ignore: boolean) => void;
       openSettingsFromWidget: () => void;
       // Notes
       getNotes: () => Promise<Note[]>;

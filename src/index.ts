@@ -160,7 +160,13 @@ type WidgetUiState =
   | "recording-click"
   | "recording-command"
   | "processing";
-type WidgetLayout = "idle" | "recording" | "processing";
+// The floating widget lives inside ONE fixed-size, never-resized native window.
+// All shape/size changes between idle/recording/processing happen in CSS inside
+// this window (see widget.css) so the native frame never animates — that native
+// setBounds animation was the source of the visible glitch. The window is sized
+// large enough to hold the biggest pill state with a little breathing room.
+const WIDGET_WINDOW_WIDTH = 260;
+const WIDGET_WINDOW_HEIGHT = 56;
 
 // --- Tray Icon Creation (using PNG files for reliability) ---
 
@@ -199,39 +205,30 @@ function updateTrayState(state: AppState): void {
   }
 }
 
-function getWidgetBounds(layout: WidgetLayout): Electron.Rectangle {
-  const sizes: Record<WidgetLayout, { width: number; height: number }> = {
-    idle: { width: 60, height: 16 },
-    recording: { width: 120, height: 34 },
-    processing: { width: 60, height: 24 },
-  };
-  const target = sizes[layout];
-
-  // Always position at bottom center, close to dock
+// Fixed bounds for the widget window: centered horizontally, bottom edge flush
+// with the bottom of the work area (the dock top). The pill inside is anchored to
+// the bottom via CSS padding, so it visually sits ~8px above the dock and grows
+// upward as it morphs — the native window itself never moves or resizes.
+function getWidgetWindowBounds(): Electron.Rectangle {
   const display = screen.getPrimaryDisplay();
   const workArea = display.workArea;
-  const x = Math.round(workArea.x + (workArea.width - target.width) / 2);
-  // Position very close to dock (8px from bottom of work area)
-  const y = Math.round(workArea.y + workArea.height - target.height - 8);
-  return { x, y, width: target.width, height: target.height };
-}
-
-function setWidgetLayout(layout: WidgetLayout): void {
-  if (!widgetWindow || widgetWindow.isDestroyed()) return;
-  const bounds = getWidgetBounds(layout);
-  widgetWindow.setBounds(bounds, true);
+  const x = Math.round(
+    workArea.x + (workArea.width - WIDGET_WINDOW_WIDTH) / 2,
+  );
+  const y = Math.round(
+    workArea.y + workArea.height - WIDGET_WINDOW_HEIGHT,
+  );
+  return {
+    x,
+    y,
+    width: WIDGET_WINDOW_WIDTH,
+    height: WIDGET_WINDOW_HEIGHT,
+  };
 }
 
 function sendWidgetState(state: WidgetUiState): void {
-  if (state === "idle") {
-    setWidgetLayout("idle");
-  } else if (state === "processing") {
-    setWidgetLayout("processing");
-  } else {
-    setWidgetLayout("recording");
-  }
-
   if (!widgetWindow || widgetWindow.isDestroyed()) return;
+  // No native resize — the renderer morphs the pill purely in CSS.
   widgetWindow.webContents.send("widget-state", state);
 }
 
@@ -256,8 +253,9 @@ function showErrorBubble(payload: WidgetErrorPayload | string): void {
   const width = 280;
   const height = 44;
   const x = Math.round(workArea.x + (workArea.width - width) / 2);
-  // Position above the widget (widget is 16px tall + 8px from bottom)
-  const y = Math.round(workArea.y + workArea.height - 16 - 8 - height - 8);
+  // Position above the widget pill. The pill sits ~8px above the dock and is at
+  // most ~26px tall (recording state), so clear that region plus an 8px gap.
+  const y = Math.round(workArea.y + workArea.height - 8 - 26 - 8 - height);
 
   if (!errorWindow || errorWindow.isDestroyed()) {
     errorWindow = new BrowserWindow({
@@ -491,7 +489,7 @@ function createWidgetWindow(): void {
   if (widgetWindow) return;
 
   widgetWindow = new BrowserWindow({
-    ...getWidgetBounds("idle"),
+    ...getWidgetWindowBounds(),
     show: false,
     frame: false,
     transparent: true,
@@ -514,6 +512,12 @@ function createWidgetWindow(): void {
   widgetWindow.setVisibleOnAllWorkspaces(true, {
     visibleOnFullScreen: true,
   });
+
+  // The window is much larger than the visible pill, so make the whole window
+  // click-through by default. `forward: true` still delivers mousemove events to
+  // the renderer, which toggles this off (via widget-set-ignore-mouse) while the
+  // cursor is actually over the pill so clicks/buttons still work.
+  widgetWindow.setIgnoreMouseEvents(true, { forward: true });
 
   widgetWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#widget`);
 
@@ -933,9 +937,15 @@ function registerWidgetHandlers(): void {
     sendWidgetState("idle");
   });
 
-  ipcMain.on("widget-set-layout", (_event, layout: WidgetLayout) => {
-    if (!["idle", "recording", "processing"].includes(layout)) return;
-    setWidgetLayout(layout);
+  ipcMain.on("widget-set-ignore-mouse", (_event, ignore: boolean) => {
+    if (!widgetWindow || widgetWindow.isDestroyed()) return;
+    if (ignore) {
+      // Click-through, but keep receiving mousemove so the renderer can detect
+      // when the cursor re-enters the pill.
+      widgetWindow.setIgnoreMouseEvents(true, { forward: true });
+    } else {
+      widgetWindow.setIgnoreMouseEvents(false);
+    }
   });
 
   ipcMain.on("widget-open-settings", () => {
