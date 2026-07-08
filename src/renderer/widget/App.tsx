@@ -53,6 +53,36 @@ export default function App() {
     state === "recording-click" ||
     state === "recording-command";
 
+  // The inner content (waveform / buttons / spinner) lingers for a beat while
+  // the pill shrinks back to idle, so it can fade out gracefully instead of
+  // vanishing and letting the bars snap to the top-left corner. `showInner`
+  // keeps it mounted; `innerExiting` triggers the fast opacity fade.
+  const [showInner, setShowInner] = useState(false);
+  const [innerExiting, setInnerExiting] = useState(false);
+
+  useEffect(() => {
+    const active =
+      state === "recording-hotkey" ||
+      state === "recording-click" ||
+      state === "recording-command" ||
+      state === "processing";
+
+    if (active) {
+      setShowInner(true);
+      setInnerExiting(false);
+      return;
+    }
+
+    // Going idle: play the exit fade, then unmount once it's finished (~120ms,
+    // safely longer than the 0.1s fade and clear of the pill's shrink).
+    setInnerExiting(true);
+    const timer = setTimeout(() => {
+      setShowInner(false);
+      setInnerExiting(false);
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [state]);
+
   // Start recording by clicking the idle bar (adds cancel/stop buttons).
   const handleClick = () => {
     if (state === "idle") {
@@ -101,8 +131,12 @@ export default function App() {
             {/* ONE persistent content block across recording → processing so the
                 Waveform never remounts: its bars morph into the processing dots
                 purely via CSS. */}
-            {(isRecording || state === "processing") && (
-              <div className="pill-content pill-content-recording">
+            {showInner && (
+              <div
+                className={`pill-content pill-content-recording${
+                  innerExiting ? " pill-content-exit" : ""
+                }`}
+              >
                 {state === "recording-click" && (
                   <button
                     className="widget-cancel-btn"

@@ -66,9 +66,7 @@ body {
 /* ==================== */
 
 .widget-pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative; /* anchor for the absolutely-centred .pill-content */
   overflow: hidden;
   background: #0a0a0c;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -79,12 +77,16 @@ body {
   will-change: width, height;
   transform: translateZ(0);
   backface-visibility: hidden;
-  /* One spring-ish curve drives every dimension of the morph (~150ms in the
-     reference recording). */
+  /* GROW (idle → recording/processing): elastic "rubber-band" snap. A mild
+     back-overshoot bezier gives the playful spring from the reference. Width
+     leads height (shorter duration, no delay) so the pill expands horizontally
+     slightly before it grows vertically — exactly what the video shows.
+     The CLOSING curve is overridden on .pill-idle below (no overshoot there,
+     or the pill would dip below its 8px idle height). */
   transition:
-    width 0.18s cubic-bezier(0.3, 0.9, 0.3, 1),
-    height 0.18s cubic-bezier(0.3, 0.9, 0.3, 1),
-    border-radius 0.18s cubic-bezier(0.3, 0.9, 0.3, 1),
+    width 0.2s cubic-bezier(0.34, 1.35, 0.64, 1),
+    height 0.24s cubic-bezier(0.34, 1.35, 0.64, 1) 0.03s,
+    border-radius 0.22s cubic-bezier(0.34, 1.35, 0.64, 1),
     border-color 0.2s ease,
     background-color 0.2s ease,
     transform 0.12s ease;
@@ -99,6 +101,15 @@ body {
   height: 8px;
   border-radius: 4px;
   border-color: rgba(255, 255, 255, 0.5);
+  /* CLOSING (recording/processing → idle): a smooth ease-out, NO overshoot.
+     An overshoot here would make the pill dip below its 8px height and clip.
+     Height leads slightly on the way down so it collapses cleanly. */
+  transition:
+    width 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.02s,
+    height 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease,
+    transform 0.12s ease;
 }
 
 .pill-idle:hover {
@@ -132,23 +143,52 @@ body {
   border-radius: 15px;
 }
 
-/* Inner content fades in as the shell grows, so nothing "pops". */
+/* Inner content fades in as the shell grows, so nothing "pops".
+   HARD-CENTRED: absolutely positioned at the pill's exact centre, independent
+   of the pill's (animating) bounding box. Flex centring broke during the
+   empty-close shrink — once the pill got narrower than the bars, the overflow
+   clipped from the left and the bars shot to the left edge. Absolute centring
+   keeps them dead-centre at every frame; the pill's overflow:hidden clips
+   symmetrically. */
 .pill-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  width: max-content;
   gap: 6px;
-  animation: pill-content-in 0.12s ease both;
+  animation: pill-content-in 0.14s ease both;
 }
 
 .pill-content-recording {
   padding: 0 7px;
 }
 
+/* Children keep their size while the pill shrinks — no flex-squish that would
+   shift the waveform off-centre during the exit. */
+.pill-content > * {
+  flex-shrink: 0;
+}
+
+/* EXIT (→ idle): fade the content out FAST (0.1s) — faster than the pill's
+   ~0.18s shrink — so it's invisible well before the box finishes collapsing.
+   App.tsx keeps this mounted for ~120ms to let the fade play, then unmounts. */
+.pill-content-exit {
+  animation: pill-content-out 0.1s ease both;
+  pointer-events: none;
+}
+
 @keyframes pill-content-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+@keyframes pill-content-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 
 /* ==================== */
@@ -158,21 +198,22 @@ body {
 .wf {
   display: flex;
   align-items: center;
-  height: 18px;
-  gap: 2px;
+  height: 12px;
+  gap: 3px;
 }
 
 /* Height is driven imperatively by the live mic level (see Waveform.tsx) via
-   transform: scaleY(). The short transition smooths the ~30fps level updates
-   into a fluid, flowing wave; at rest each bar sits at a dot. */
+   transform: scaleY(). NO CSS transition here — Waveform.tsx lerps every bar
+   toward its target at 60fps (rAF), which is the smoothing; a transition on
+   top would just add lag. At rest each bar sits at a round micro-dot:
+   2px wide, fully-rounded (999px), scaled to 0.167 → a 2×2 circle. */
 .wf-bar {
   width: 2px;
-  height: 18px;
-  border-radius: 2px;
+  height: 12px;
+  border-radius: 999px;
   background: #fbfbfb;
   transform-origin: center;
-  transform: scaleY(0.12);
-  transition: transform 0.1s cubic-bezier(0.33, 0.9, 0.28, 1);
+  transform: scaleY(0.167);
   will-change: transform;
 }
 
@@ -184,7 +225,7 @@ body {
 /* Processing: the same bars stay mounted and become the dim grey dots.
    !important beats the inline scaleY() that Waveform sets via refs. */
 .pill-processing .wf-bar {
-  transform: scaleY(0.12) !important;
+  transform: scaleY(0.167) !important;
   background: #595959;
   transition: transform 0.25s ease, background 0.25s ease;
 }
