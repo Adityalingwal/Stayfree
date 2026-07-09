@@ -199,35 +199,51 @@ body {
   display: flex;
   align-items: center;
   height: 12px;
-  gap: 3px;
+  gap: 2px;
+  /* Soft warm halo so the cream wave feels lit on the black pill while you
+     speak. Negligible at rest (the tiny dots cast almost no shadow) and it
+     grows naturally with the bars. */
+  filter: drop-shadow(0 0 3px rgba(233, 227, 214, 0.3));
 }
 
-/* Height is driven imperatively by the live mic level (see Waveform.tsx) via
-   transform: scaleY(). NO CSS transition here — Waveform.tsx lerps every bar
-   toward its target at 60fps (rAF), which is the smoothing; a transition on
-   top would just add lag. At rest each bar sits at a round micro-dot:
-   2px wide, fully-rounded (999px), scaled to 0.167 → a 2×2 circle. */
+/* Height is driven imperatively by the live mic level (see Waveform.tsx) by
+   setting the bar's HEIGHT directly (not transform: scaleY). Animating height
+   keeps the fully-rounded (999px) caps perfectly round at every size — scaleY
+   would squish the caps flat when the bar is short, which made the bars read as
+   thin rectangles. NO CSS transition here — Waveform.tsx eases every bar toward
+   its target at 60fps (rAF), which is the smoothing. At rest a bar is a 2px-tall
+   round dot; the flex row centres it, so it grows evenly up and down.
+   Colour: the project's warm cream (a bright cream tip → a soft cream base)
+   on the near-black pill — the brand's off-white / black theme. The vertical
+   gradient compresses cleanly when short, so silent dots are a soft cream. */
 .wf-bar {
   width: 2px;
-  height: 12px;
+  height: 2px;
   border-radius: 999px;
-  background: #fbfbfb;
-  transform-origin: center;
-  transform: scaleY(0.167);
-  will-change: transform;
+  background: linear-gradient(180deg, #f2efe6 0%, #e3ded1 100%);
+  will-change: height;
 }
 
-/* Command mode keeps the same shape but a lavender tint to stay distinct. */
+/* Command mode keeps the same cream family but a dimmer, muted tone so it's
+   still recognisable as a different mode without leaving the theme. */
 .pill-recording-command .wf-bar {
-  background: #b9a8f0;
+  background: linear-gradient(180deg, #d8d2c4 0%, #c4bdab 100%);
+}
+.pill-recording-command .wf {
+  filter: drop-shadow(0 0 3px rgba(200, 193, 175, 0.28));
 }
 
-/* Processing: the same bars stay mounted and become the dim grey dots.
-   !important beats the inline scaleY() that Waveform sets via refs. */
+/* Processing: the same bars stay mounted and become the dim warm-grey dots.
+   !important beats the inline height that Waveform sets via refs. Only the
+   shrink is transitioned (a gradient → solid colour can't interpolate anyway),
+   and the halo is dropped so the grey dots stay flat and neutral. */
 .pill-processing .wf-bar {
-  transform: scaleY(0.167) !important;
-  background: #595959;
-  transition: transform 0.25s ease, background 0.25s ease;
+  height: 2px !important;
+  background: #565149 !important;
+  transition: height 0.25s ease;
+}
+.pill-processing .wf {
+  filter: none;
 }
 
 /* ============================ */
