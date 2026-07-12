@@ -275,24 +275,30 @@ class AudioRecorder {
   private async startPCM16Streaming(): Promise<void> {
     try {
       // Create a dedicated AudioContext at 16kHz for PCM16 capture
-      this.streamingAudioCtx = new AudioContext({ sampleRate: 16000 });
+      const ctx = new AudioContext({ sampleRate: 16000 });
+      this.streamingAudioCtx = ctx;
 
       // Load worklet from data: URL (blob: URLs are blocked by Electron CSP)
       if (!this.workletDataUrl) {
         this.workletDataUrl = createWorkletDataUrl();
       }
-      await this.streamingAudioCtx.audioWorklet.addModule(this.workletDataUrl);
+      await ctx.audioWorklet.addModule(this.workletDataUrl);
+
+      // A rapid cancel/stop can tear the context down (stopPCM16Streaming)
+      // while addModule is still awaiting — the recording is already gone, so
+      // just bail instead of throwing on the nulled context.
+      if (this.streamingAudioCtx !== ctx) {
+        console.log("[Recorder] PCM16 streaming aborted (recording ended)");
+        return;
+      }
 
       // Connect mic stream → worklet
       const stream = this.stream;
       if (!stream) {
         throw new Error("Microphone stream unavailable for PCM16 streaming");
       }
-      const source = this.streamingAudioCtx.createMediaStreamSource(stream);
-      this.workletNode = new AudioWorkletNode(
-        this.streamingAudioCtx,
-        "pcm16-processor",
-      );
+      const source = ctx.createMediaStreamSource(stream);
+      this.workletNode = new AudioWorkletNode(ctx, "pcm16-processor");
 
       // Forward PCM16 chunks to main process
       this.workletNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
