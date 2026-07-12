@@ -259,8 +259,9 @@ body {
 }
 
 .widget-stop-btn {
-  width: 14px;
-  height: 14px;
+  /* Same size as .widget-cancel-btn — the X and tick must read as a pair. */
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #0b0b0b;
   border: none;
