@@ -26,6 +26,16 @@ const config: ForgeConfig = {
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
       mainConfig,
+      // The dev-server error overlay paints a fullscreen black panel over every
+      // window. Our windows are chromeless transparent overlays (widget, error
+      // bubble region), so it shows up as a giant black box floating over the
+      // desktop. Compile errors still print to the terminal; runtime errors go
+      // to the DevTools console.
+      devServer: {
+        client: {
+          overlay: false,
+        },
+      },
       renderer: {
         config: rendererConfig,
         entryPoints: [
