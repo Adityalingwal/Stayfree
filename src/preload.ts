@@ -70,17 +70,11 @@ contextBridge.exposeInMainWorld("electron", {
 
   // --- Settings / Dashboard ---
   getSettings: (): Promise<{
-    groqApiKey: string;
-    sarvamApiKey: string; // NEW
-    languagePreference: "english" | "hindi"; // NEW
+    sarvamApiKey: string;
     selectedMicId: string;
     soundEnabled: boolean;
-    dictionary: Record<string, string>;
   }> => {
     return ipcRenderer.invoke("get-settings");
-  },
-  saveApiKey: (key: string): Promise<void> => {
-    return ipcRenderer.invoke("save-api-key", key);
   },
   saveSelectedMic: (deviceId: string) => {
     ipcRenderer.send("save-selected-mic", deviceId);
@@ -88,25 +82,12 @@ contextBridge.exposeInMainWorld("electron", {
   saveSoundEnabled: (enabled: boolean) => {
     ipcRenderer.send("save-sound-enabled", enabled);
   },
-  // NEW: Language preference
-  getLanguagePreference: (): Promise<"english" | "hindi"> => {
-    return ipcRenderer.invoke("get-language-preference");
-  },
-  saveLanguagePreference: (pref: "english" | "hindi") => {
-    ipcRenderer.send("save-language-preference", pref);
-  },
-  // NEW: Sarvam API key
+  // Sarvam API key
   getSarvamApiKey: (): Promise<string> => {
     return ipcRenderer.invoke("get-sarvam-api-key");
   },
   saveSarvamApiKey: (key: string) => {
     ipcRenderer.send("save-sarvam-api-key", key);
-  },
-  getDictionary: (): Promise<Record<string, string>> => {
-    return ipcRenderer.invoke("get-dictionary");
-  },
-  saveDictionary: (dictionary: Record<string, string>) => {
-    ipcRenderer.send("save-dictionary", dictionary);
   },
   getTranscriptionHistory: (): Promise<
     Array<{
@@ -211,22 +192,14 @@ declare global {
       completeOnboarding: () => void;
       // Settings / Dashboard
       getSettings: () => Promise<{
-        groqApiKey: string;
         sarvamApiKey: string;
-        languagePreference: "english" | "hindi";
         selectedMicId: string;
         soundEnabled: boolean;
-        dictionary: Record<string, string>;
       }>;
-      saveApiKey: (key: string) => Promise<void>;
       saveSelectedMic: (deviceId: string) => void;
       saveSoundEnabled: (enabled: boolean) => void;
-      getLanguagePreference: () => Promise<"english" | "hindi">;
-      saveLanguagePreference: (pref: "english" | "hindi") => void;
       getSarvamApiKey: () => Promise<string>;
       saveSarvamApiKey: (key: string) => void;
-      getDictionary: () => Promise<Record<string, string>>;
-      saveDictionary: (dictionary: Record<string, string>) => void;
       getTranscriptionHistory: () => Promise<
         Array<{
           text: string;

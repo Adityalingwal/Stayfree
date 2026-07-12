@@ -471,9 +471,6 @@ export function getSarvamStreamTranscriber(): SarvamStreamingTranscriber {
  * and auto-reconnects on drop — no need to call this again after recordings.
  */
 export async function warmSarvamConnection(): Promise<void> {
-  const langPref = (store.get("languagePreference") as string) || "english";
-  if (langPref !== "hindi") return;
-
   const sarvamKey =
     process.env.SARVAM_API_KEY || (store.get("sarvamApiKey") as string);
   if (!sarvamKey) return;

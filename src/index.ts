@@ -11,12 +11,10 @@ import {
   screen,
 } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
-import { transcribe } from "./main/transcription";
 import {
   getSarvamStreamTranscriber,
   warmSarvamConnection,
 } from "./main/transcription-sarvam-stream";
-import { formatText } from "./main/formatting";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry } from "./main/store";
 import {
@@ -751,22 +749,14 @@ function registerPermissionHandlers(): void {
 function registerSettingsHandlers(): void {
   ipcMain.handle("get-settings", () => {
     return {
-      groqApiKey: store.get("groqApiKey"),
       sarvamApiKey: store.get("sarvamApiKey"),
-      languagePreference: store.get("languagePreference"),
       selectedMicId: store.get("selectedMicId"),
       soundEnabled: store.get("soundEnabled"),
-      dictionary: store.get("dictionary"),
     };
   });
 
   ipcMain.handle("download-audio-file", async (_event, filename: string) => {
     return await copyAudioToDownloads(filename);
-  });
-
-  ipcMain.handle("save-api-key", (_event, key: string) => {
-    store.set("groqApiKey", key);
-    console.log("[Settings] API key saved");
   });
 
   ipcMain.on("save-selected-mic", (_event, deviceId: string) => {
@@ -778,20 +768,6 @@ function registerSettingsHandlers(): void {
     store.set("soundEnabled", enabled);
     console.log(`[Settings] Sound ${enabled ? "enabled" : "disabled"}`);
   });
-
-  ipcMain.handle("get-dictionary", () => {
-    return store.get("dictionary");
-  });
-
-  ipcMain.on(
-    "save-dictionary",
-    (_event, dictionary: Record<string, string>) => {
-      store.set("dictionary", dictionary);
-      console.log(
-        `[Settings] Dictionary saved (${Object.keys(dictionary).length} entries)`,
-      );
-    },
-  );
 
   ipcMain.handle("get-transcription-history", () => {
     return store.get("transcriptionHistory");
@@ -807,20 +783,7 @@ function registerSettingsHandlers(): void {
     return app.getVersion();
   });
 
-  // NEW: Language preference handlers
-  ipcMain.on(
-    "save-language-preference",
-    (_event, pref: "english" | "hindi") => {
-      store.set("languagePreference", pref);
-      console.log(`[Settings] Language preference: ${pref}`);
-    },
-  );
-
-  ipcMain.handle("get-language-preference", () => {
-    return store.get("languagePreference");
-  });
-
-  // NEW: Sarvam API key handlers
+  // Sarvam API key handlers
   ipcMain.on("save-sarvam-api-key", (_event, key: string) => {
     store.set("sarvamApiKey", key);
     console.log("[Settings] Sarvam API key saved");
@@ -846,25 +809,18 @@ function registerWidgetHandlers(): void {
     updateTrayState("recording");
     sendWidgetState("recording-click");
 
-    const langPref = (store.get("languagePreference") as string) || "english";
-    const hindiMode = langPref === "hindi";
-    if (hindiMode) {
-      startHindiSession();
-    } else {
-      clearHindiSession();
+    startHindiSession();
+
+    // Open the Sarvam WebSocket stream before telling the renderer to start
+    try {
+      const streamer = getSarvamStreamTranscriber();
+      await streamer.connect();
+      streamer.markRecordingStart();
+    } catch (err) {
+      console.error("[Widget] Sarvam stream connect failed:", err);
     }
 
-    if (hindiMode) {
-      try {
-        const streamer = getSarvamStreamTranscriber();
-        await streamer.connect();
-        streamer.markRecordingStart();
-      } catch (err) {
-        console.error("[Widget] Sarvam stream connect failed:", err);
-      }
-    }
-
-    recorderWindow.webContents.send("start-recording", hindiMode);
+    recorderWindow.webContents.send("start-recording", true);
   });
 
   ipcMain.on("widget-stop-recording", () => {
@@ -983,28 +939,20 @@ app.on("ready", () => {
     updateTrayState("recording");
     sendWidgetState("recording-hotkey");
 
-    const langPref = (store.get("languagePreference") as string) || "english";
-    const hindiMode = langPref === "hindi";
-    if (hindiMode) {
-      startHindiSession();
-    } else {
-      clearHindiSession();
+    startHindiSession();
+
+    // Open the Sarvam WebSocket stream before telling the renderer to start
+    try {
+      const streamer = getSarvamStreamTranscriber();
+      await streamer.connect();
+      streamer.markRecordingStart();
+    } catch (err) {
+      console.error("[Main] Sarvam stream connect failed:", err);
+      // Non-fatal: the retry path will re-connect on flush
     }
 
-    // For Hindi: open WebSocket stream before telling renderer to start
-    if (hindiMode) {
-      try {
-        const streamer = getSarvamStreamTranscriber();
-        await streamer.connect();
-        streamer.markRecordingStart();
-      } catch (err) {
-        console.error("[Main] Sarvam stream connect failed:", err);
-        // Non-fatal: audio-captured fallback will handle it
-      }
-    }
-
-    // Tell recorder window to start capturing audio (with hindi flag)
-    recorderWindow.webContents.send("start-recording", hindiMode);
+    // Tell recorder window to start capturing audio (PCM16 streaming on)
+    recorderWindow.webContents.send("start-recording", true);
   });
 
   hotkeyManager.on("recording-stop", () => {
@@ -1120,17 +1068,9 @@ app.on("ready", () => {
       const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
       const audioFilename = await saveAudioFile(audioData, timestamp);
 
-      // --- Step 1: ASR (Speech-to-Text) ---
+      // --- Step 1: ASR (Sarvam streaming) ---
       const asrStart = Date.now();
-      const langPrefPipeline = (store.get("languagePreference") as string) || "english";
-      let transcript: string | null;
-
-      if (langPrefPipeline === "hindi") {
-        transcript = await transcribeHindiWithRetries(activeHindiSession);
-      } else {
-        transcript = await transcribe(audioData);
-      }
-
+      const transcript = await transcribeHindiWithRetries(activeHindiSession);
       const L_asr = Date.now() - asrStart;
 
       if (!transcript) {
@@ -1144,22 +1084,8 @@ app.on("ready", () => {
 
       console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
 
-      // --- Step 2: LLM Formatting (English only) ---
-      // For Hindi/Hinglish, skip LLM and paste raw transcript
-      let formattedText: string;
-      let L_llm = 0;
-
-      if (langPrefPipeline === "english") {
-        console.log("[Pipeline] English mode - applying LLM formatting");
-        const llmStart = Date.now();
-        formattedText = await formatText(transcript);
-        L_llm = Date.now() - llmStart;
-        console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
-      } else {
-        console.log("[Pipeline] Hindi/Hinglish mode - skipping LLM formatting");
-        formattedText = transcript; // Direct paste, no formatting
-        console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
-      }
+      // --- Step 2: Raw paste (no formatting) ---
+      let formattedText = transcript;
 
       // Ensure the text ends with a space so consecutive dictates don't stick together
       if (!/\s$/.test(formattedText)) {
@@ -1207,7 +1133,7 @@ app.on("ready", () => {
       // --- Timing Summary ---
       const L_total = Date.now() - pipelineStart;
       console.log(
-        `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
+        `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
       );
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
