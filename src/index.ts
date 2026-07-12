@@ -193,8 +193,42 @@ function getWidgetWindowBounds(): Electron.Rectangle {
   };
 }
 
+// Wispr-style pacing: an ultra-fast pipeline (empty audio fails ASR in ~25ms)
+// would flash processing → idle within a couple of frames, which reads as a
+// glitch. Hold the processing look for at least this long before going idle.
+// Any newer non-idle state (a fresh recording) cancels the hold instantly.
+const MIN_PROCESSING_VISIBLE_MS = 350;
+let widgetProcessingSince = 0;
+let widgetPendingIdleTimer: ReturnType<typeof setTimeout> | null = null;
+
 function sendWidgetState(state: WidgetUiState): void {
   if (!widgetWindow || widgetWindow.isDestroyed()) return;
+
+  if (widgetPendingIdleTimer) {
+    clearTimeout(widgetPendingIdleTimer);
+    widgetPendingIdleTimer = null;
+  }
+
+  if (state === "processing") {
+    if (!widgetProcessingSince) widgetProcessingSince = Date.now();
+  } else if (state === "idle" && widgetProcessingSince) {
+    const shownFor = Date.now() - widgetProcessingSince;
+    if (shownFor < MIN_PROCESSING_VISIBLE_MS) {
+      widgetPendingIdleTimer = setTimeout(() => {
+        widgetPendingIdleTimer = null;
+        widgetProcessingSince = 0;
+        if (widgetWindow && !widgetWindow.isDestroyed()) {
+          widgetWindow.webContents.send("widget-state", "idle");
+        }
+      }, MIN_PROCESSING_VISIBLE_MS - shownFor);
+      return;
+    }
+    widgetProcessingSince = 0;
+  } else {
+    // recording states: fresh cycle, forget the previous processing stamp
+    widgetProcessingSince = 0;
+  }
+
   // No native resize — the renderer morphs the pill purely in CSS.
   widgetWindow.webContents.send("widget-state", state);
 }

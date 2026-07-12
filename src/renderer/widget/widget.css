@@ -212,16 +212,22 @@ body {
 /* ==================== */
 
 .proc {
+  /* OUT OF FLOW: mounting the spinner must never reflow the waveform bars —
+     that reflow shoved the bars ~13px left in a single frame, which was the
+     "bars jump to the left" glitch on (fast) processing. The bars stay
+     dead-centre in the pill; the spinner floats to the right of the content
+     box (4px past its 7px padding ≈ 11px from the last bar). */
+  position: absolute;
+  left: calc(100% + 4px);
+  top: 50%;
   display: flex;
   align-items: center;
-  /* pill-content gap (6px) + this margin ≈ 12px between bars and spinner */
-  margin-left: 6px;
   animation: proc-in 0.15s ease both;
 }
 
 @keyframes proc-in {
-  from { opacity: 0; transform: scale(0.6); }
-  to   { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(-50%) scale(0.6); }
+  to   { opacity: 1; transform: translateY(-50%) scale(1); }
 }
 
 .proc-spinner {
