@@ -193,6 +193,19 @@ function getWidgetWindowBounds(): Electron.Rectangle {
   };
 }
 
+// An ultra-short tap records nothing meaningful — there is nothing to
+// transcribe, so the widget must NOT show a "thinking" state at all: it goes
+// straight from recording back to idle and the ASR round-trip is skipped.
+const MIN_MEANINGFUL_RECORDING_MS = 300;
+
+function isShortTap(): boolean {
+  return (
+    !activeHindiSession ||
+    (activeHindiSession.stopTs ?? Date.now()) - activeHindiSession.startTs <
+      MIN_MEANINGFUL_RECORDING_MS
+  );
+}
+
 // Wispr-style pacing: an ultra-fast pipeline (empty audio fails ASR in ~25ms)
 // would flash processing → idle within a couple of frames, which reads as a
 // glitch. Hold the processing look for at least this long before going idle.
@@ -772,8 +785,14 @@ function registerWidgetHandlers(): void {
 
     activeRecordingSource = null;
     stopHindiSession();
-    updateTrayState("processing");
-    sendWidgetState("processing");
+    if (isShortTap()) {
+      console.log("[Widget] Short tap — nothing to transcribe, going idle");
+      updateTrayState("idle");
+      sendWidgetState("idle");
+    } else {
+      updateTrayState("processing");
+      sendWidgetState("processing");
+    }
     recorderWindow.webContents.send("stop-recording");
   });
 
@@ -903,8 +922,14 @@ app.on("ready", () => {
     // Go directly to "processing" - avoids idle flash between recording and processing
     activeRecordingSource = null;
     stopHindiSession();
-    updateTrayState("processing");
-    sendWidgetState("processing");
+    if (isShortTap()) {
+      console.log("[Main] Short tap — nothing to transcribe, going idle");
+      updateTrayState("idle");
+      sendWidgetState("idle");
+    } else {
+      updateTrayState("processing");
+      sendWidgetState("processing");
+    }
 
     // Tell recorder window to stop and send audio
     recorderWindow.webContents.send("stop-recording");
@@ -967,7 +992,33 @@ app.on("ready", () => {
       console.warn("[Pipeline] Already processing - ignoring new audio");
       return;
     }
+
+    // A short tap goes idle instantly, so a NEW recording may already be
+    // running by the time the previous tap's audio blob lands here. That blob
+    // belongs to the superseded recording — drop it, don't touch live state.
+    if (currentState === "recording") {
+      console.log("[Pipeline] Stale audio from a superseded recording — dropping");
+      return;
+    }
     isProcessing = true;
+
+    // Short-tap fast path: nothing meaningful was recorded (see recording-stop
+    // handlers, which already kept the widget out of the processing state).
+    // Skip the whole pipeline — no ASR round-trip, settle to idle silently.
+    if (isShortTap()) {
+      console.log("[Pipeline] Short tap — skipping pipeline");
+      getSarvamStreamTranscriber().resetSession();
+      clearHindiSession();
+      activeRecordingSource = null;
+      isProcessing = false;
+      if (processingTimer) {
+        clearTimeout(processingTimer);
+        processingTimer = null;
+      }
+      updateTrayState("idle");
+      sendWidgetState("idle");
+      return;
+    }
 
     // Start processing timeout failsafe — ensures we never stay stuck forever
     if (processingTimer) clearTimeout(processingTimer);

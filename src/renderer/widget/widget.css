@@ -107,6 +107,13 @@ body {
   align-items: center;
   justify-content: center;
   width: max-content;
+}
+
+/* The in-flow row (bars + click-mode buttons). framer-motion glides this left
+   in the processing state to make room for the absolutely-positioned spinner. */
+.pill-content-inner {
+  display: flex;
+  align-items: center;
   gap: 6px;
 }
 
@@ -213,12 +220,12 @@ body {
 
 .proc {
   /* OUT OF FLOW: mounting the spinner must never reflow the waveform bars —
-     that reflow shoved the bars ~13px left in a single frame, which was the
-     "bars jump to the left" glitch on (fast) processing. The bars stay
-     dead-centre in the pill; the spinner floats to the right of the content
-     box (4px past its 7px padding ≈ 11px from the last bar). */
+     that reflow shoved the bars ~13px left in a single frame ("bars jump to
+     the left"). Fixed spot right of pill centre; the bars glide -13px (see
+     .pill-content-inner in App.tsx) so the group reads centred:
+     bars -34..+8, spinner +20..+35, pill half-width 49. */
   position: absolute;
-  left: calc(100% + 4px);
+  left: calc(50% + 20px);
   top: 50%;
   display: flex;
   align-items: center;

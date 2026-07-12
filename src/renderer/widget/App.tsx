@@ -164,40 +164,52 @@ export default function App() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.1, ease: "easeOut" }}
                 >
-                  {state === "recording-click" && (
-                    <button
-                      className="widget-cancel-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCancel();
-                      }}
-                      aria-label="Cancel"
-                    >
-                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                        <path
-                          d="M1 1L7 7M7 1L1 7"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </button>
-                  )}
+                  {/* The bars (and click-mode buttons) glide left as one unit
+                      when the spinner appears — the spinner itself is OUT of
+                      the flex flow (absolute, .proc), so its mount can never
+                      reflow/jump the bars. -13px + the spinner's fixed spot
+                      keep the bars+spinner group visually centred. */}
+                  <motion.div
+                    className="pill-content-inner"
+                    animate={{ x: state === "processing" ? -13 : 0 }}
+                    transition={growSpring}
+                    initial={false}
+                  >
+                    {state === "recording-click" && (
+                      <button
+                        className="widget-cancel-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCancel();
+                        }}
+                        aria-label="Cancel"
+                      >
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                          <path
+                            d="M1 1L7 7M7 1L1 7"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
 
-                  <Waveform />
+                    <Waveform />
+
+                    {state === "recording-click" && (
+                      <button
+                        className="widget-stop-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleStop();
+                        }}
+                        aria-label="Stop"
+                      />
+                    )}
+                  </motion.div>
 
                   {state === "processing" && <ProcessingIndicator />}
-
-                  {state === "recording-click" && (
-                    <button
-                      className="widget-stop-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleStop();
-                      }}
-                      aria-label="Stop"
-                    />
-                  )}
                 </motion.div>
               )}
             </AnimatePresence>
