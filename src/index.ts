@@ -421,6 +421,10 @@ function createWidgetWindow(): void {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: false,
       contextIsolation: true,
+      // The widget is never focused; if Chromium ever marks it backgrounded/
+      // occluded it throttles rAF to <1Hz and every animation (framer springs,
+      // waveform) freezes mid-flight. Never throttle this window.
+      backgroundThrottling: false,
     },
   });
 
