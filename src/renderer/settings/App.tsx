@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import HomePage from "./pages/HomePage";
-import DictionaryPage from "./pages/DictionaryPage";
 import SettingsPage from "./pages/SettingsPage";
-import NotesPage from "./pages/NotesPage";
 
-type Page = "home" | "dictionary" | "snippets" | "style" | "notes" | "settings";
+type Page = "home" | "settings";
 
 // ─── Logo ──────────────────────────────────────────────────────
 function Logo() {
@@ -67,10 +65,7 @@ function GearIcon() {
 // ─── Tab data ──────────────────────────────────────────────────
 const TABS: { id: Page; label: string }[] = [
   { id: "home", label: "Home" },
-  { id: "dictionary", label: "Dictionary" },
-  { id: "snippets", label: "Snippets" },
-  { id: "style", label: "Style" },
-  { id: "notes", label: "Notes" },
+  { id: "settings", label: "Settings" },
 ];
 
 // ─── Pill Navigation ──────────────────────────────────────────
@@ -170,53 +165,14 @@ export default function App() {
     window.electron.getAppVersion().then(setVersion);
   }, []);
 
-  useEffect(() => {
-    const cleanup = window.electron.onNavigateToTab?.((tab) => {
-      if (["home", "dictionary", "snippets", "style", "notes", "settings"].includes(tab)) {
-        setActivePage(tab as Page);
-      }
-    });
-    return () => cleanup?.();
-  }, []);
-
   const renderPage = () => {
     switch (activePage) {
       case "home":
         return <HomePage />;
-      case "dictionary":
-        return <DictionaryPage />;
-      case "notes":
-        return <NotesPage />;
       case "settings":
         return <SettingsPage />;
       default:
-        return (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "50vh",
-            }}
-          >
-            <div style={{ textAlign: "center" }}>
-              <h2
-                style={{
-                  fontSize: "24px",
-                  fontWeight: 700,
-                  color: "#0f172a",
-                  marginBottom: "6px",
-                  textTransform: "capitalize",
-                }}
-              >
-                {activePage}
-              </h2>
-              <p style={{ color: "#94a3b8", fontSize: "14px", margin: 0 }}>
-                Coming soon.
-              </p>
-            </div>
-          </div>
-        );
+        return <HomePage />;
     }
   };
 

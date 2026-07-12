@@ -121,9 +121,8 @@ body {
   transform: scaleX(0.95);
 }
 
-/* --- RECORDING: hotkey/command = waveform only (compact) --- */
-.pill-recording-hotkey,
-.pill-recording-command {
+/* --- RECORDING: hotkey = waveform only (compact) --- */
+.pill-recording-hotkey {
   width: 74px;
   height: 30px;
   border-radius: 15px;
@@ -222,15 +221,6 @@ body {
   border-radius: 999px;
   background: linear-gradient(180deg, #f2efe6 0%, #e3ded1 100%);
   will-change: height;
-}
-
-/* Command mode keeps the same cream family but a dimmer, muted tone so it's
-   still recognisable as a different mode without leaving the theme. */
-.pill-recording-command .wf-bar {
-  background: linear-gradient(180deg, #d8d2c4 0%, #c4bdab 100%);
-}
-.pill-recording-command .wf {
-  filter: drop-shadow(0 0 3px rgba(200, 193, 175, 0.28));
 }
 
 /* Processing: the same bars stay mounted and become the dim warm-grey dots.

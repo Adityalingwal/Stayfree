@@ -144,7 +144,6 @@ contextBridge.exposeInMainWorld("electron", {
         | "idle"
         | "recording-hotkey"
         | "recording-click"
-        | "recording-command"
         | "processing",
     ) => void,
   ) => {
@@ -387,7 +386,7 @@ declare global {
       onWidgetState: (
         callback: (
           _event: Electron.IpcRendererEvent,
-          state: "idle" | "recording-hotkey" | "recording-click" | "recording-command" | "processing",
+          state: "idle" | "recording-hotkey" | "recording-click" | "processing",
         ) => void,
       ) => void;
       onErrorMessage: (
