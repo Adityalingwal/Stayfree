@@ -17,5 +17,12 @@ export const rendererConfig: Configuration = {
   plugins,
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
+    alias: {
+      // framer-motion optionally requires this (styled-components interop) and
+      // falls back gracefully at runtime, but webpack still emits a
+      // "Module not found" WARNING that trips the dev-server overlay.
+      // `false` = resolve to an empty module.
+      '@emotion/is-prop-valid': false,
+    },
   },
 };
