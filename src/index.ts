@@ -49,17 +49,9 @@ let settingsWindow: BrowserWindow | null = null;
 let recorderWindow: BrowserWindow | null = null;
 let onboardingWindow: BrowserWindow | null = null;
 let widgetWindow: BrowserWindow | null = null;
-let errorWindow: BrowserWindow | null = null;
-let errorDismissTimer: ReturnType<typeof setTimeout> | null = null;
 
 type ErrorCode = "NO_AUDIO" | "STREAM_TIMEOUT" | "WS_CLOSED" | "SERVER_ERROR";
 type ErrorAction = "retry";
-
-interface WidgetErrorPayload {
-  code: ErrorCode;
-  message: string;
-  action?: ErrorAction;
-}
 
 interface AudioStreamStatsPayload {
   chunkCount: number;
@@ -205,98 +197,6 @@ function sendWidgetState(state: WidgetUiState): void {
   if (!widgetWindow || widgetWindow.isDestroyed()) return;
   // No native resize — the renderer morphs the pill purely in CSS.
   widgetWindow.webContents.send("widget-state", state);
-}
-
-function showErrorBubble(payload: WidgetErrorPayload | string): void {
-  const normalizedPayload: WidgetErrorPayload =
-    typeof payload === "string"
-      ? {
-          code: "SERVER_ERROR",
-          message: payload,
-        }
-      : payload;
-
-  // Clear any existing dismiss timer
-  if (errorDismissTimer) {
-    clearTimeout(errorDismissTimer);
-    errorDismissTimer = null;
-  }
-
-  // Get position: centered horizontally, just above the widget
-  const display = screen.getPrimaryDisplay();
-  const workArea = display.workArea;
-  const width = 280;
-  const height = 44;
-  const x = Math.round(workArea.x + (workArea.width - width) / 2);
-  // Position above the widget pill. The pill sits ~8px above the dock and is at
-  // most ~26px tall (recording state), so clear that region plus an 8px gap.
-  const y = Math.round(workArea.y + workArea.height - 8 - 26 - 8 - height);
-
-  if (!errorWindow || errorWindow.isDestroyed()) {
-    errorWindow = new BrowserWindow({
-      x,
-      y,
-      width,
-      height,
-      show: false,
-      frame: false,
-      transparent: true,
-      hasShadow: false,
-      resizable: false,
-      minimizable: false,
-      maximizable: false,
-      fullscreenable: false,
-      skipTaskbar: true,
-      alwaysOnTop: true,
-      movable: false,
-      webPreferences: {
-        preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-        nodeIntegration: false,
-        contextIsolation: true,
-      },
-    });
-
-    errorWindow.setAlwaysOnTop(true, "floating");
-    errorWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-    errorWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#error`);
-
-    errorWindow.once("ready-to-show", () => {
-      if (errorWindow) {
-        errorWindow.showInactive();
-        errorWindow.webContents.send("error-message", normalizedPayload);
-      }
-    });
-
-    errorWindow.on("closed", () => {
-      errorWindow = null;
-    });
-  } else {
-    errorWindow.setBounds({ x, y, width, height });
-    errorWindow.showInactive();
-    errorWindow.webContents.send("error-message", normalizedPayload);
-  }
-
-  // Auto-dismiss after 2 seconds
-  errorDismissTimer = setTimeout(() => {
-    if (errorWindow && !errorWindow.isDestroyed()) {
-      errorWindow.hide();
-    }
-    errorDismissTimer = null;
-  }, 2000);
-}
-
-function sendWidgetError(payload: WidgetErrorPayload | string): void {
-  showErrorBubble(payload);
-}
-
-function dismissErrorBubble(): void {
-  if (errorDismissTimer) {
-    clearTimeout(errorDismissTimer);
-    errorDismissTimer = null;
-  }
-  if (errorWindow && !errorWindow.isDestroyed()) {
-    errorWindow.hide();
-  }
 }
 
 function createHindiSession(): HindiRecordingSession {
@@ -882,9 +782,6 @@ function registerWidgetHandlers(): void {
     openSettingsWindow();
   });
 
-  ipcMain.on("dismiss-error-bubble", () => {
-    dismissErrorBubble();
-  });
 }
 
 // --- App Lifecycle ---
@@ -1075,11 +972,8 @@ app.on("ready", () => {
       const L_asr = Date.now() - asrStart;
 
       if (!transcript) {
+        // Error is swallowed intentionally — no user-facing bubble, log only.
         console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
-        sendWidgetError({
-          code: "SERVER_ERROR",
-          message: "Transcription failed. Please try again.",
-        });
         return; // finally block will reset tray + isProcessing
       }
 
@@ -1139,11 +1033,11 @@ app.on("ready", () => {
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
       console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);
+      // Error is swallowed intentionally — no user-facing bubble, log only.
       const mappedError = mapPipelineError(error);
-      sendWidgetError({
-        code: mappedError.code,
-        message: mappedError.message,
-      });
+      console.error(
+        `[Pipeline] ✗ ${mappedError.code}: ${mappedError.message}`,
+      );
     } finally {
       // Reset transcript state — connection stays alive for next recording
       getSarvamStreamTranscriber().resetSession();
@@ -1194,10 +1088,5 @@ app.on("before-quit", () => {
   if (widgetWindow) {
     widgetWindow.destroy();
     widgetWindow = null;
-  }
-
-  if (errorWindow) {
-    errorWindow.destroy();
-    errorWindow = null;
   }
 });

@@ -1,11 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-type WidgetErrorPayload = {
-  code: "NO_AUDIO" | "STREAM_TIMEOUT" | "WS_CLOSED" | "SERVER_ERROR";
-  message: string;
-  action?: "retry";
-};
-
 type AudioStreamStatsPayload = {
   chunkCount: number;
   pcmBytes: number;
@@ -130,17 +124,6 @@ contextBridge.exposeInMainWorld("electron", {
   ) => {
     ipcRenderer.on("widget-state", callback);
   },
-  onErrorMessage: (
-    callback: (
-      _event: Electron.IpcRendererEvent,
-      payload: WidgetErrorPayload | string,
-    ) => void,
-  ) => {
-    ipcRenderer.on("error-message", callback);
-  },
-  dismissErrorBubble: () => {
-    ipcRenderer.send("dismiss-error-bubble");
-  },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
   },
@@ -219,13 +202,6 @@ declare global {
           state: "idle" | "recording-hotkey" | "recording-click" | "processing",
         ) => void,
       ) => void;
-      onErrorMessage: (
-        callback: (
-          _event: Electron.IpcRendererEvent,
-          payload: WidgetErrorPayload | string,
-        ) => void,
-      ) => void;
-      dismissErrorBubble: () => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;

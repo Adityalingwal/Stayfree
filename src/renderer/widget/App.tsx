@@ -17,16 +17,16 @@ type WidgetState =
  * native-frame animation glitch.
  *
  * Look (matched to the reference):
- *  - pill: pitch-black fill, thin outline, full rounded stadium
- *  - idle: tiny thin oval with a visible white outline
- *  - recording: white bars pulsing in sync + a language badge ("HI"/"EN")
+ *  - pill: cream fill, thin ink outline, full rounded stadium
+ *  - idle: tiny thin oval with a visible ink outline
+ *  - recording: ink bars pulsing in sync + a language badge ("HI"/"EN")
  *    floating to the left of the pill (fades out on its own after ~1.6s)
  *  - processing: the SAME waveform bars stay mounted and collapse to dim grey
- *    dots (via CSS) while a lavender multi-spoke spinner fades in at the right
+ *    dots (via CSS) while a charcoal multi-spoke spinner fades in at the right
  *
  * The window is much larger than the pill and click-through by default; we make
  * it interactive only while the cursor is over the pill's hit area.
- * Errors are shown in a separate overlay window (#error hash).
+ * Pipeline errors are not surfaced in the UI — they are logged in main only.
  */
 export default function App() {
   const [state, setState] = useState<WidgetState>("idle");
