@@ -49,7 +49,7 @@ const pillVariants = {
     },
   },
   "recording-click": {
-    width: 108,
+    width: 104,
     height: 30,
     borderRadius: 15,
     transition: {

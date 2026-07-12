@@ -239,8 +239,8 @@ body {
 /* ==================== */
 
 .widget-cancel-btn {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: rgba(11, 11, 11, 0.12);
   border: none;
@@ -260,8 +260,8 @@ body {
 
 .widget-stop-btn {
   /* Same size as .widget-cancel-btn — the X and tick must read as a pair. */
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #0b0b0b;
   border: none;
