@@ -10,3 +10,8 @@ recordings/
 .agent/
 /CLAUDE.md
 /AGENTS.md
+
+# Editors / misc
+.vscode/
+.idea/
+coverage/

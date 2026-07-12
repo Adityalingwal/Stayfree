@@ -250,7 +250,7 @@ export default function SettingsPage() {
           }));
         setMicrophones(mics);
       })
-      .catch(() => {});
+      .catch((err) => console.warn("Mic enumeration failed:", err));
   }, []);
 
   const handleMicChange = (deviceId: string) => {

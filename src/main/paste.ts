@@ -6,7 +6,7 @@ import {
   shell,
 } from "electron";
 import { keyboard, Key } from "@nut-tree-fork/nut-js";
-import { isMac, isWindows, pasteShortcutLabel } from "./platform";
+import { isMac, pasteShortcutLabel } from "./platform";
 
 /**
  * Paste Service (nut-js powered)
