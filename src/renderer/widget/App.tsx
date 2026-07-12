@@ -49,7 +49,7 @@ const pillVariants = {
     },
   },
   "recording-click": {
-    width: 124,
+    width: 104,
     height: 30,
     borderRadius: 15,
     transition: {
@@ -58,8 +58,10 @@ const pillVariants = {
       borderRadius: growSpring,
     },
   },
+  // Processing shows ONLY the centred spinner (no bars/dots), so the pill
+  // hugs it — a compact round-ish capsule.
   processing: {
-    width: 98,
+    width: 48,
     height: 30,
     borderRadius: 15,
     transition: {
@@ -82,10 +84,10 @@ const pillVariants = {
  * Look (matched to the reference):
  *  - pill: cream fill, thin ink outline, full rounded stadium
  *  - idle: tiny thin oval with a visible ink outline
- *  - recording: ink bars pulsing in sync + a language badge ("HI"/"EN")
- *    floating to the left of the pill (fades out on its own after ~1.6s)
- *  - processing: the SAME waveform bars stay mounted and collapse to dim grey
- *    dots (via CSS) while a charcoal multi-spoke spinner fades in at the right
+ *  - recording: ink bars pulsing in sync (click mode adds an X button on the
+ *    left and an ink stop-dot on the right)
+ *  - processing: a compact capsule with ONLY the charcoal multi-spoke spinner,
+ *    centred — the bars unmount entirely (crossfade), no dots
  *
  * The window is much larger than the pill and click-through by default; we make
  * it interactive only while the cursor is over the pill's hit area.
@@ -99,11 +101,6 @@ export default function App() {
       setState(newState);
     });
   }, []);
-
-  // Inner content (waveform / buttons / spinner) is mounted while active;
-  // AnimatePresence keeps it mounted through the exit fade when going idle,
-  // so the bars never snap to a corner mid-shrink.
-  const active = state !== "idle";
 
   // Start recording by clicking the idle bar (adds cancel/stop buttons).
   const handleClick = () => {
@@ -149,67 +146,69 @@ export default function App() {
             whileTap={state === "idle" ? { scaleX: 0.95 } : undefined}
             onClick={handleClick}
           >
-            {/* ONE persistent content block across recording → processing so the
-                Waveform never remounts: its bars morph into the processing dots
-                purely via CSS. Keyed by a CONSTANT (not `state`) for the same
-                reason — a state-keyed motion.div would remount the Waveform and
-                reset its refs. */}
+            {/* TWO crossfading contents, each hard-centred in the pill:
+                - "wave": the mic bars (+ click-mode X / stop buttons) during
+                  recording. ONE element across both recording states, so the
+                  Waveform never remounts mid-recording.
+                - "proc": ONLY the spinner, centred, during processing — no
+                  bars/dots at all, so nothing can snap or shift when the
+                  processing state starts or ends. */}
             <AnimatePresence initial={false}>
-              {active && (
+              {(state === "recording-hotkey" ||
+                state === "recording-click") && (
                 <motion.div
-                  key="pill-content"
+                  key="wave"
                   className="pill-content pill-content-recording"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.1, ease: "easeOut" }}
                 >
-                  {/* The bars (and click-mode buttons) glide left as one unit
-                      when the spinner appears — the spinner itself is OUT of
-                      the flex flow (absolute, .proc), so its mount can never
-                      reflow/jump the bars. -13px + the spinner's fixed spot
-                      keep the bars+spinner group visually centred. */}
-                  <motion.div
-                    className="pill-content-inner"
-                    animate={{ x: state === "processing" ? -13 : 0 }}
-                    transition={growSpring}
-                    initial={false}
-                  >
-                    {state === "recording-click" && (
-                      <button
-                        className="widget-cancel-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCancel();
-                        }}
-                        aria-label="Cancel"
-                      >
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                          <path
-                            d="M1 1L7 7M7 1L1 7"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </button>
-                    )}
+                  {state === "recording-click" && (
+                    <button
+                      className="widget-cancel-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCancel();
+                      }}
+                      aria-label="Cancel"
+                    >
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                        <path
+                          d="M1 1L7 7M7 1L1 7"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </button>
+                  )}
 
-                    <Waveform />
+                  <Waveform />
 
-                    {state === "recording-click" && (
-                      <button
-                        className="widget-stop-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleStop();
-                        }}
-                        aria-label="Stop"
-                      />
-                    )}
-                  </motion.div>
+                  {state === "recording-click" && (
+                    <button
+                      className="widget-stop-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleStop();
+                      }}
+                      aria-label="Stop"
+                    />
+                  )}
+                </motion.div>
+              )}
 
-                  {state === "processing" && <ProcessingIndicator />}
+              {state === "processing" && (
+                <motion.div
+                  key="proc"
+                  className="pill-content"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.1, ease: "easeOut" }}
+                >
+                  <ProcessingIndicator />
                 </motion.div>
               )}
             </AnimatePresence>

@@ -107,13 +107,6 @@ body {
   align-items: center;
   justify-content: center;
   width: max-content;
-}
-
-/* The in-flow row (bars + click-mode buttons). framer-motion glides this left
-   in the processing state to make room for the absolutely-positioned spinner. */
-.pill-content-inner {
-  display: flex;
-  align-items: center;
   gap: 6px;
 }
 
@@ -158,19 +151,6 @@ body {
   border-radius: 999px;
   background: linear-gradient(180deg, #2a2a27 0%, #0b0b0b 100%);
   will-change: height;
-}
-
-/* Processing: the same bars stay mounted and become the dim warm-grey dots.
-   !important beats the inline height that Waveform sets via refs. Only the
-   shrink is transitioned (a gradient → solid colour can't interpolate anyway),
-   and the halo is dropped so the grey dots stay flat and neutral. */
-.pill-processing .wf-bar {
-  height: 2px !important;
-  background: #a39f94 !important;
-  transition: height 0.25s ease;
-}
-.pill-processing .wf {
-  filter: none;
 }
 
 /* ============================ */
@@ -219,22 +199,16 @@ body {
 /* ==================== */
 
 .proc {
-  /* OUT OF FLOW: mounting the spinner must never reflow the waveform bars —
-     that reflow shoved the bars ~13px left in a single frame ("bars jump to
-     the left"). Fixed spot right of pill centre; the bars glide -13px (see
-     .pill-content-inner in App.tsx) so the group reads centred:
-     bars -34..+8, spinner +20..+35, pill half-width 49. */
-  position: absolute;
-  left: calc(50% + 20px);
-  top: 50%;
+  /* Alone in its own centred pill-content — processing shows only the
+     spinner, never the bars, so nothing can reflow or snap. */
   display: flex;
   align-items: center;
   animation: proc-in 0.15s ease both;
 }
 
 @keyframes proc-in {
-  from { opacity: 0; transform: translateY(-50%) scale(0.6); }
-  to   { opacity: 1; transform: translateY(-50%) scale(1); }
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .proc-spinner {
@@ -288,7 +262,7 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #ef4444;
+  background: #0b0b0b;
   border: none;
   flex-shrink: 0;
   transition: background 0.08s ease;
@@ -296,6 +270,6 @@ body {
 }
 
 .widget-stop-btn:hover {
-  background: #f87171;
+  background: #2a2a27;
 }
 

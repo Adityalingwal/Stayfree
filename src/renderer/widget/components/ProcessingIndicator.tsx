@@ -1,10 +1,9 @@
 import React from "react";
 
 /**
- * Processing state content — a lavender multi-spoke activity spinner (matches
- * the Wispr flow reference). The dim dots to its left are NOT rendered here:
- * they are the frozen Waveform bars, which stay mounted through the
- * recording → processing transition and collapse to dots via CSS.
+ * Processing state content — a charcoal multi-spoke activity spinner, shown
+ * alone and centred in a compact pill (the waveform bars unmount entirely
+ * during processing; App.tsx crossfades between the two contents).
  */
 const SPOKE_COUNT = 11;
 
