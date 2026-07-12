@@ -264,6 +264,10 @@ body {
   border-radius: 50%;
   background: #0b0b0b;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e7e4dc; /* cream tick inside the ink dot */
   flex-shrink: 0;
   transition: background 0.08s ease;
   cursor: pointer;
