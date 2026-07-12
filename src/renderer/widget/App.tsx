@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Waveform from "./components/Waveform";
 import ProcessingIndicator from "./components/ProcessingIndicator";
-import LangBadge from "./components/LangBadge";
 
 type WidgetState =
   | "idle"
   | "recording-hotkey"
   | "recording-click"
-  | "recording-command"
   | "processing";
 
 /**
@@ -32,26 +30,12 @@ type WidgetState =
  */
 export default function App() {
   const [state, setState] = useState<WidgetState>("idle");
-  const [lang, setLang] = useState<"english" | "hindi">("english");
 
   useEffect(() => {
     window.electron.onWidgetState((_event, newState) => {
       setState(newState);
-      // Refresh the language badge each time recording (re)starts — the user
-      // may have switched languages since the last time.
-      if (newState.startsWith("recording")) {
-        window.electron
-          .getLanguagePreference()
-          .then(setLang)
-          .catch(() => undefined);
-      }
     });
   }, []);
-
-  const isRecording =
-    state === "recording-hotkey" ||
-    state === "recording-click" ||
-    state === "recording-command";
 
   // The inner content (waveform / buttons / spinner) lingers for a beat while
   // the pill shrinks back to idle, so it can fade out gracefully instead of
@@ -64,7 +48,6 @@ export default function App() {
     const active =
       state === "recording-hotkey" ||
       state === "recording-click" ||
-      state === "recording-command" ||
       state === "processing";
 
     if (active) {
@@ -116,12 +99,6 @@ export default function App() {
         onMouseLeave={handleMouseLeave}
       >
         <div className="widget-stage">
-          {/* Language badge floats to the left of the pill while recording
-              (absolutely positioned — it never shifts the pill itself). */}
-          {isRecording && state !== "recording-command" && (
-            <LangBadge lang={lang} />
-          )}
-
           <div
             className={`widget-pill pill-${state}${
               state === "idle" ? " widget-clickable" : ""

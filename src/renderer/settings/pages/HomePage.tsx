@@ -146,67 +146,6 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-function SaveAsNoteButton({
-  entry,
-}: {
-  entry: TranscriptionEntry;
-}) {
-  const [saved, setSaved] = useState(false);
-
-  const handleSave = useCallback(async () => {
-    if (saved) return;
-    try {
-      await window.electron.promoteToNote({
-        text: entry.text,
-        rawText: entry.rawText,
-        timestamp: entry.timestamp,
-        durationMs: entry.durationMs,
-      });
-      setSaved(true);
-      setTimeout(() => setSaved(false), 2000);
-    } catch {
-      // ignore
-    }
-  }, [entry, saved]);
-
-  return (
-    <button
-      onClick={handleSave}
-      title={saved ? "Saved to Notes!" : "Save as Note"}
-      style={{
-        background: "none",
-        border: "none",
-        cursor: "pointer",
-        color: saved ? "#7c3aed" : "#cbd5e1",
-        padding: "4px",
-        borderRadius: "6px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "color 0.2s",
-      }}
-      onMouseEnter={(e) => {
-        if (!saved)
-          (e.currentTarget as HTMLButtonElement).style.color = "#64748b";
-      }}
-      onMouseLeave={(e) => {
-        if (!saved)
-          (e.currentTarget as HTMLButtonElement).style.color = "#cbd5e1";
-      }}
-    >
-      {saved ? (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-      ) : (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-        </svg>
-      )}
-    </button>
-  );
-}
-
 function DownloadButton({ filename }: { filename?: string }) {
   const [status, setStatus] = useState<"idle" | "downloading" | "success">(
     "idle",
@@ -415,7 +354,7 @@ export default function HomePage() {
           >
             {holdKeyLabel}
           </span>{" "}
-          to dictate and let StayFree format for you
+          to dictate anywhere on your Mac
         </h2>
         <p
           style={{
@@ -426,10 +365,9 @@ export default function HomePage() {
             margin: "0 0 16px 0",
           }}
         >
-          Press and hold <strong>{holdKeyLabel}</strong> to dictate in any app. StayFree's{" "}
-          <strong>Smart Formatting</strong> and <strong>Backtrack</strong> will
-          handle punctuation, new lines, lists, and adjust when you change your
-          mind mid-sentence.
+          Press and hold <strong>{holdKeyLabel}</strong> to dictate in any app,
+          then release to paste your words instantly. Fast, accurate speech-to-text
+          that works with English and Hinglish alike.
         </p>
         <button
           style={{
@@ -660,7 +598,6 @@ function TranscriptionRow({
         }}
       >
         <CopyButton text={entry.text} />
-        <SaveAsNoteButton entry={entry} />
         <DownloadButton filename={entry.audioFilePath} />
       </div>
     </div>

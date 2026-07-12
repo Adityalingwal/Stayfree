@@ -35,16 +35,6 @@ function SoundIcon() {
   );
 }
 
-function GlobeIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="2" y1="12" x2="22" y2="12" />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  );
-}
-
 function InfoIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -193,131 +183,6 @@ function Toggle({
   );
 }
 
-// ─── Radio Option ───────────────────────────────────────────────
-
-function RadioOption({
-  label,
-  description,
-  checked,
-  onChange,
-  badge,
-}: {
-  label: string;
-  description: string;
-  checked: boolean;
-  onChange: () => void;
-  badge?: string;
-}) {
-  return (
-    <label
-      onClick={onChange}
-      style={{
-        display: "flex",
-        alignItems: "flex-start",
-        gap: "12px",
-        padding: "14px 16px",
-        borderRadius: "12px",
-        border: `1.5px solid ${checked ? "#6366f1" : "#e8eaf0"}`,
-        cursor: "pointer",
-        transition: "all 0.18s ease",
-        background: checked
-          ? "linear-gradient(135deg, #6366f108, #8b5cf608)"
-          : "#fafbff",
-        boxShadow: checked ? "0 0 0 3px #6366f115" : "none",
-      }}
-      onMouseEnter={(e) => {
-        if (!checked) {
-          (e.currentTarget as HTMLLabelElement).style.borderColor = "#c7d2fe";
-          (e.currentTarget as HTMLLabelElement).style.background = "#f8faff";
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (!checked) {
-          (e.currentTarget as HTMLLabelElement).style.borderColor = "#e8eaf0";
-          (e.currentTarget as HTMLLabelElement).style.background = "#fafbff";
-        }
-      }}
-    >
-      {/* Custom radio dot */}
-      <div
-        style={{
-          width: "18px",
-          height: "18px",
-          borderRadius: "50%",
-          border: `2px solid ${checked ? "#6366f1" : "#cbd5e1"}`,
-          background: checked ? "#6366f1" : "#fff",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-          marginTop: "1px",
-          transition: "all 0.18s ease",
-          boxShadow: checked ? "0 0 0 3px #6366f122" : "none",
-        }}
-      >
-        {checked && (
-          <div
-            style={{
-              width: "6px",
-              height: "6px",
-              borderRadius: "50%",
-              background: "#fff",
-            }}
-          />
-        )}
-      </div>
-
-      <div style={{ flex: 1 }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            marginBottom: "2px",
-          }}
-        >
-          <span
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              color: checked ? "#4f46e5" : "#0f172a",
-              transition: "color 0.18s ease",
-            }}
-          >
-            {label}
-          </span>
-          {badge && (
-            <span
-              style={{
-                fontSize: "10px",
-                fontWeight: 700,
-                color: "#6366f1",
-                background: "#ede9fe",
-                padding: "1px 7px",
-                borderRadius: "20px",
-                letterSpacing: "0.03em",
-                textTransform: "uppercase",
-              }}
-            >
-              {badge}
-            </span>
-          )}
-        </div>
-        <p
-          style={{
-            fontSize: "12px",
-            color: "#94a3b8",
-            margin: 0,
-            lineHeight: "1.5",
-          }}
-        >
-          {description}
-        </p>
-      </div>
-    </label>
-  );
-}
-
 // ─── About Row ──────────────────────────────────────────────────
 
 function AboutRow({ label, value }: { label: string; value: string }) {
@@ -360,12 +225,10 @@ export default function SettingsPage() {
   const [selectedMic, setSelectedMic] = useState("");
   const [microphones, setMicrophones] = useState<AudioDevice[]>([]);
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [languagePreference, setLanguagePreference] = useState<"english" | "hindi">("english");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.electron.getSettings().then((settings) => {
-      setLanguagePreference(settings.languagePreference || "english");
       setSelectedMic(settings.selectedMicId);
       setSoundEnabled(settings.soundEnabled);
       setLoading(false);
@@ -401,11 +264,6 @@ export default function SettingsPage() {
     window.electron.saveSoundEnabled(newValue);
   };
 
-  const handleLanguageChange = (lang: "english" | "hindi") => {
-    setLanguagePreference(lang);
-    window.electron.saveLanguagePreference(lang);
-  };
-
   if (loading) {
     return (
       <div
@@ -425,8 +283,6 @@ export default function SettingsPage() {
 
   const platformLabel = platform === "win32" ? "Windows" : "macOS";
   const hotkeyLabel = platform === "win32" ? "Left Alt" : "Left Option (Alt)";
-  const sttModel = languagePreference === "english" ? "Whisper v3 Turbo" : "Saaras v3";
-  const formatter = languagePreference === "english" ? "Llama 3.1 8B" : "None (raw)";
 
   return (
     <div style={{ maxWidth: "600px" }}>
@@ -449,30 +305,6 @@ export default function SettingsPage() {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-
-        {/* ── Language ── */}
-        <SectionCard
-          icon={<GlobeIcon />}
-          title="Language"
-          description="Choose your primary dictation language"
-          accent="#6366f1"
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            <RadioOption
-              label="English"
-              description="Pure English dictation with LLM formatting via Groq"
-              checked={languagePreference === "english"}
-              onChange={() => handleLanguageChange("english")}
-            />
-            <RadioOption
-              label="Hinglish"
-              description="Mixed Hindi-English in Roman script (bhai, meeting, etc)"
-              checked={languagePreference === "hindi"}
-              onChange={() => handleLanguageChange("hindi")}
-              badge="Beta"
-            />
-          </div>
-        </SectionCard>
 
         {/* ── Microphone ── */}
         <SectionCard
@@ -580,12 +412,6 @@ export default function SettingsPage() {
         >
           <div>
             <AboutRow label="Platform" value={platformLabel} />
-            <AboutRow
-              label="Language Mode"
-              value={languagePreference === "english" ? "English" : "Hinglish"}
-            />
-            <AboutRow label="STT Model" value={sttModel} />
-            <AboutRow label="Formatter" value={formatter} />
             <div
               style={{
                 display: "flex",

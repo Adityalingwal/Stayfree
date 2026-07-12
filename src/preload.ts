@@ -70,17 +70,11 @@ contextBridge.exposeInMainWorld("electron", {
 
   // --- Settings / Dashboard ---
   getSettings: (): Promise<{
-    groqApiKey: string;
-    sarvamApiKey: string; // NEW
-    languagePreference: "english" | "hindi"; // NEW
+    sarvamApiKey: string;
     selectedMicId: string;
     soundEnabled: boolean;
-    dictionary: Record<string, string>;
   }> => {
     return ipcRenderer.invoke("get-settings");
-  },
-  saveApiKey: (key: string): Promise<void> => {
-    return ipcRenderer.invoke("save-api-key", key);
   },
   saveSelectedMic: (deviceId: string) => {
     ipcRenderer.send("save-selected-mic", deviceId);
@@ -88,25 +82,12 @@ contextBridge.exposeInMainWorld("electron", {
   saveSoundEnabled: (enabled: boolean) => {
     ipcRenderer.send("save-sound-enabled", enabled);
   },
-  // NEW: Language preference
-  getLanguagePreference: (): Promise<"english" | "hindi"> => {
-    return ipcRenderer.invoke("get-language-preference");
-  },
-  saveLanguagePreference: (pref: "english" | "hindi") => {
-    ipcRenderer.send("save-language-preference", pref);
-  },
-  // NEW: Sarvam API key
+  // Sarvam API key
   getSarvamApiKey: (): Promise<string> => {
     return ipcRenderer.invoke("get-sarvam-api-key");
   },
   saveSarvamApiKey: (key: string) => {
     ipcRenderer.send("save-sarvam-api-key", key);
-  },
-  getDictionary: (): Promise<Record<string, string>> => {
-    return ipcRenderer.invoke("get-dictionary");
-  },
-  saveDictionary: (dictionary: Record<string, string>) => {
-    ipcRenderer.send("save-dictionary", dictionary);
   },
   getTranscriptionHistory: (): Promise<
     Array<{
@@ -144,7 +125,6 @@ contextBridge.exposeInMainWorld("electron", {
         | "idle"
         | "recording-hotkey"
         | "recording-click"
-        | "recording-command"
         | "processing",
     ) => void,
   ) => {
@@ -187,150 +167,7 @@ contextBridge.exposeInMainWorld("electron", {
   openSettingsFromWidget: () => {
     ipcRenderer.send("widget-open-settings");
   },
-
-  // --- Notes ---
-  getNotes: (): Promise<import("./main/store").Note[]> =>
-    ipcRenderer.invoke("get-notes"),
-  searchNotes: (query: string): Promise<import("./main/store").Note[]> =>
-    ipcRenderer.invoke("search-notes", query),
-  createNote: (params: {
-    content: string;
-    title?: string;
-  }): Promise<import("./main/store").Note> =>
-    ipcRenderer.invoke("create-note", params),
-  updateNote: (
-    id: string,
-    updates: Record<string, unknown>,
-  ): Promise<import("./main/store").Note | null> =>
-    ipcRenderer.invoke("update-note", id, updates),
-  deleteNote: (id: string): Promise<boolean> =>
-    ipcRenderer.invoke("delete-note", id),
-  promoteToNote: (entry: {
-    text: string;
-    rawText: string;
-    timestamp: number;
-    durationMs: number;
-  }): Promise<import("./main/store").Note> =>
-    ipcRenderer.invoke("promote-to-note", entry),
-  onNotesUpdated: (callback: () => void): (() => void) => {
-    const handler = () => callback();
-    ipcRenderer.on("notes-updated", handler);
-    return () => ipcRenderer.removeListener("notes-updated", handler);
-  },
-  onNavigateToTab: (callback: (tab: string) => void): (() => void) => {
-    const handler = (_e: Electron.IpcRendererEvent, tab: string) =>
-      callback(tab);
-    ipcRenderer.on("navigate-to-tab", handler);
-    return () => ipcRenderer.removeListener("navigate-to-tab", handler);
-  },
-  // Notes AI (Phase 2)
-  getRelatedNotes: (noteId: string): Promise<import("./main/store").Note[]> =>
-    ipcRenderer.invoke("get-related-notes", noteId),
-  restyleNote: (noteId: string, style: string): Promise<import("./main/store").Note | null> =>
-    ipcRenderer.invoke("restyle-note", noteId, style),
-  approveTag: (noteId: string, tag: string): Promise<import("./main/store").Note | null> =>
-    ipcRenderer.invoke("approve-tag", noteId, tag),
-  removeSuggestedTag: (noteId: string, tag: string): Promise<import("./main/store").Note | null> =>
-    ipcRenderer.invoke("remove-suggested-tag", noteId, tag),
-  reprocessNote: (noteId: string): Promise<import("./main/store").Note | null> =>
-    ipcRenderer.invoke("reprocess-note", noteId),
-
-  onNavigateToNotes: (callback: (opts: { search?: string }) => void): (() => void) => {
-    const handler = (_e: Electron.IpcRendererEvent, opts: { search?: string }) => callback(opts);
-    ipcRenderer.on("navigate-to-notes", handler);
-    return () => ipcRenderer.removeListener("navigate-to-notes", handler);
-  },
-
-  // --- Chat (Phase 3) ---
-  chatQuery: (question: string): Promise<import("./main/store").ChatMessage> =>
-    ipcRenderer.invoke("chat-query", question),
-  getChatHistory: (): Promise<import("./main/store").ChatMessage[]> =>
-    ipcRenderer.invoke("get-chat-history"),
-  clearChatHistory: () => {
-    ipcRenderer.send("clear-chat-history");
-  },
-
-  // --- Collections (Phase 3) ---
-  getCollections: (): Promise<import("./main/store").Collection[]> =>
-    ipcRenderer.invoke("get-collections"),
-  createCollection: (params: { name: string; description?: string; noteIds?: string[] }): Promise<import("./main/store").Collection> =>
-    ipcRenderer.invoke("create-collection", params),
-  updateCollection: (id: string, updates: Record<string, unknown>): Promise<import("./main/store").Collection | null> =>
-    ipcRenderer.invoke("update-collection", id, updates),
-  deleteCollection: (id: string): Promise<boolean> =>
-    ipcRenderer.invoke("delete-collection", id),
-  addNoteToCollection: (collectionId: string, noteId: string): Promise<import("./main/store").Collection | null> =>
-    ipcRenderer.invoke("add-note-to-collection", collectionId, noteId),
-  removeNoteFromCollection: (collectionId: string, noteId: string): Promise<import("./main/store").Collection | null> =>
-    ipcRenderer.invoke("remove-note-from-collection", collectionId, noteId),
-  mergeCollections: (sourceId: string, targetId: string): Promise<import("./main/store").Collection | null> =>
-    ipcRenderer.invoke("merge-collections", sourceId, targetId),
-  dismissCollection: (id: string) => {
-    ipcRenderer.send("dismiss-collection", id);
-  },
-  suggestCollections: (): Promise<import("./main/store").Collection[]> =>
-    ipcRenderer.invoke("suggest-collections"),
-
-  // --- Style Training (Phase 3) ---
-  addStyleExample: (text: string) => {
-    ipcRenderer.send("add-style-example", text);
-  },
-  removeStyleExample: (index: number) => {
-    ipcRenderer.send("remove-style-example", index);
-  },
-  getStyleConfig: (): Promise<{ examples: string[]; prompt: string }> =>
-    ipcRenderer.invoke("get-style-config"),
-  learnStyle: (): Promise<string> =>
-    ipcRenderer.invoke("learn-style"),
 });
-
-type StylePreset = "default" | "bullets" | "action-items" | "casual-memo" | "formal-doc" | "tweet-thread" | "my-style";
-
-type ExtractedTask = {
-  person: string;
-  action: string;
-  deadline: string;
-};
-
-type ChatMessage = {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-  timestamp: number;
-  citedNoteIds?: string[];
-};
-
-type Collection = {
-  id: string;
-  name: string;
-  description: string;
-  noteIds: string[];
-  suggested: boolean;
-  dismissed: boolean;
-  createdAt: number;
-  updatedAt: number;
-};
-
-type Note = {
-  id: string;
-  title: string;
-  content: string;
-  rawContent: string;
-  createdAt: number;
-  updatedAt: number;
-  source: "voice" | "text" | "clipboard" | "transcription";
-  pinned: boolean;
-  archived: boolean;
-  tags: string[];
-  // Phase 2
-  cleanContent: string;
-  aiProcessed: boolean;
-  aiProcessing: boolean;
-  stylePreset: StylePreset;
-  styledContent: string;
-  suggestedTags: string[];
-  tasks: ExtractedTask[];
-};
 
 // Type declaration for TypeScript
 declare global {
@@ -355,22 +192,14 @@ declare global {
       completeOnboarding: () => void;
       // Settings / Dashboard
       getSettings: () => Promise<{
-        groqApiKey: string;
         sarvamApiKey: string;
-        languagePreference: "english" | "hindi";
         selectedMicId: string;
         soundEnabled: boolean;
-        dictionary: Record<string, string>;
       }>;
-      saveApiKey: (key: string) => Promise<void>;
       saveSelectedMic: (deviceId: string) => void;
       saveSoundEnabled: (enabled: boolean) => void;
-      getLanguagePreference: () => Promise<"english" | "hindi">;
-      saveLanguagePreference: (pref: "english" | "hindi") => void;
       getSarvamApiKey: () => Promise<string>;
       saveSarvamApiKey: (key: string) => void;
-      getDictionary: () => Promise<Record<string, string>>;
-      saveDictionary: (dictionary: Record<string, string>) => void;
       getTranscriptionHistory: () => Promise<
         Array<{
           text: string;
@@ -387,7 +216,7 @@ declare global {
       onWidgetState: (
         callback: (
           _event: Electron.IpcRendererEvent,
-          state: "idle" | "recording-hotkey" | "recording-click" | "recording-command" | "processing",
+          state: "idle" | "recording-hotkey" | "recording-click" | "processing",
         ) => void,
       ) => void;
       onErrorMessage: (
@@ -406,46 +235,6 @@ declare global {
         callback: (_event: Electron.IpcRendererEvent, level: number) => void,
       ) => () => void;
       openSettingsFromWidget: () => void;
-      // Notes
-      getNotes: () => Promise<Note[]>;
-      searchNotes: (query: string) => Promise<Note[]>;
-      createNote: (params: { content: string; title?: string }) => Promise<Note>;
-      updateNote: (id: string, updates: Record<string, unknown>) => Promise<Note | null>;
-      deleteNote: (id: string) => Promise<boolean>;
-      promoteToNote: (entry: {
-        text: string;
-        rawText: string;
-        timestamp: number;
-        durationMs: number;
-      }) => Promise<Note>;
-      onNotesUpdated: (callback: () => void) => () => void;
-      onNavigateToTab: (callback: (tab: string) => void) => () => void;
-      onNavigateToNotes: (callback: (opts: { search?: string }) => void) => () => void;
-      // Notes AI (Phase 2+3)
-      getRelatedNotes: (noteId: string) => Promise<Note[]>;
-      restyleNote: (noteId: string, style: string) => Promise<Note | null>;
-      approveTag: (noteId: string, tag: string) => Promise<Note | null>;
-      removeSuggestedTag: (noteId: string, tag: string) => Promise<Note | null>;
-      reprocessNote: (noteId: string) => Promise<Note | null>;
-      // Chat (Phase 3)
-      chatQuery: (question: string) => Promise<ChatMessage>;
-      getChatHistory: () => Promise<ChatMessage[]>;
-      clearChatHistory: () => void;
-      // Collections (Phase 3)
-      getCollections: () => Promise<Collection[]>;
-      createCollection: (params: { name: string; description?: string; noteIds?: string[] }) => Promise<Collection>;
-      updateCollection: (id: string, updates: Record<string, unknown>) => Promise<Collection | null>;
-      deleteCollection: (id: string) => Promise<boolean>;
-      addNoteToCollection: (collectionId: string, noteId: string) => Promise<Collection | null>;
-      removeNoteFromCollection: (collectionId: string, noteId: string) => Promise<Collection | null>;
-      mergeCollections: (sourceId: string, targetId: string) => Promise<Collection | null>;
-      dismissCollection: (id: string) => void;
-      suggestCollections: () => Promise<Collection[]>;
-      // Style Training (Phase 3)
-      addStyleExample: (text: string) => void;
-      removeStyleExample: (index: number) => void;
-      getStyleConfig: () => Promise<{ examples: string[]; prompt: string }>;
-      learnStyle: () => Promise<string>;
     };
   }
 }

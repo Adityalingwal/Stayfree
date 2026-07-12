@@ -9,39 +9,14 @@ import {
   systemPreferences,
   shell,
   screen,
-  clipboard,
 } from "electron";
 import { getHotkeyManager } from "./main/hotkey";
-import { transcribe } from "./main/transcription";
 import {
   getSarvamStreamTranscriber,
   warmSarvamConnection,
 } from "./main/transcription-sarvam-stream";
-import { formatText } from "./main/formatting";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry } from "./main/store";
-import {
-  createNote,
-  createNoteFromClipboard,
-  deleteNote,
-  getNotes,
-  getNotesByTimeRange,
-  getTasksFromAllNotes,
-  promoteTranscriptionToNote,
-  searchNotes,
-  updateNote,
-} from "./main/notes";
-import { parseCommand } from "./main/commands";
-import { handleChatQuery } from "./main/chat";
-import { speak, stopSpeaking } from "./main/tts";
-import { processNoteInBackground, applyStyle } from "./main/note-ai";
-import { StylePreset } from "./main/store";
-import { registerNotesHandlers } from "./main/ipc/notes-handlers";
-import { registerChatHandlers } from "./main/ipc/chat-handlers";
-import { registerCollectionHandlers } from "./main/ipc/collection-handlers";
-import { registerStyleHandlers } from "./main/ipc/style-handlers";
-import { vectorStore } from "./main/vector-store";
-import { generateEmbedding } from "./main/embeddings";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -149,7 +124,7 @@ type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
 let isProcessing = false; // Guard against concurrent pipeline runs
 let processingTimer: ReturnType<typeof setTimeout> | null = null; // Failsafe timer
-type RecordingSource = "hotkey" | "widget" | "command" | null;
+type RecordingSource = "hotkey" | "widget" | null;
 let activeRecordingSource: RecordingSource = null;
 let lastRecordingSource: RecordingSource = null;
 let activeHindiSession: HindiRecordingSession | null = null;
@@ -158,7 +133,6 @@ type WidgetUiState =
   | "idle"
   | "recording-hotkey"
   | "recording-click"
-  | "recording-command"
   | "processing";
 // The floating widget lives inside ONE fixed-size, never-resized native window.
 // All shape/size changes between idle/recording/processing happen in CSS inside
@@ -312,12 +286,6 @@ function showErrorBubble(payload: WidgetErrorPayload | string): void {
 
 function sendWidgetError(payload: WidgetErrorPayload | string): void {
   showErrorBubble(payload);
-}
-
-function notifyNotesUpdated(): void {
-  if (settingsWindow && !settingsWindow.isDestroyed()) {
-    settingsWindow.webContents.send("notes-updated");
-  }
 }
 
 function dismissErrorBubble(): void {
@@ -604,12 +572,9 @@ function createRecorderWindow(): void {
 
 // --- Settings / Dashboard Window ---
 
-function openSettingsWindow(navigateToTab?: string): void {
+function openSettingsWindow(): void {
   if (settingsWindow) {
     settingsWindow.focus();
-    if (navigateToTab) {
-      settingsWindow.webContents.send("navigate-to-tab", navigateToTab);
-    }
     return;
   }
 
@@ -643,9 +608,6 @@ function openSettingsWindow(navigateToTab?: string): void {
 
   settingsWindow.once("ready-to-show", () => {
     settingsWindow.show();
-    if (navigateToTab) {
-      settingsWindow.webContents.send("navigate-to-tab", navigateToTab);
-    }
   });
 
   settingsWindow.on("closed", () => {
@@ -787,22 +749,14 @@ function registerPermissionHandlers(): void {
 function registerSettingsHandlers(): void {
   ipcMain.handle("get-settings", () => {
     return {
-      groqApiKey: store.get("groqApiKey"),
       sarvamApiKey: store.get("sarvamApiKey"),
-      languagePreference: store.get("languagePreference"),
       selectedMicId: store.get("selectedMicId"),
       soundEnabled: store.get("soundEnabled"),
-      dictionary: store.get("dictionary"),
     };
   });
 
   ipcMain.handle("download-audio-file", async (_event, filename: string) => {
     return await copyAudioToDownloads(filename);
-  });
-
-  ipcMain.handle("save-api-key", (_event, key: string) => {
-    store.set("groqApiKey", key);
-    console.log("[Settings] API key saved");
   });
 
   ipcMain.on("save-selected-mic", (_event, deviceId: string) => {
@@ -814,20 +768,6 @@ function registerSettingsHandlers(): void {
     store.set("soundEnabled", enabled);
     console.log(`[Settings] Sound ${enabled ? "enabled" : "disabled"}`);
   });
-
-  ipcMain.handle("get-dictionary", () => {
-    return store.get("dictionary");
-  });
-
-  ipcMain.on(
-    "save-dictionary",
-    (_event, dictionary: Record<string, string>) => {
-      store.set("dictionary", dictionary);
-      console.log(
-        `[Settings] Dictionary saved (${Object.keys(dictionary).length} entries)`,
-      );
-    },
-  );
 
   ipcMain.handle("get-transcription-history", () => {
     return store.get("transcriptionHistory");
@@ -843,20 +783,7 @@ function registerSettingsHandlers(): void {
     return app.getVersion();
   });
 
-  // NEW: Language preference handlers
-  ipcMain.on(
-    "save-language-preference",
-    (_event, pref: "english" | "hindi") => {
-      store.set("languagePreference", pref);
-      console.log(`[Settings] Language preference: ${pref}`);
-    },
-  );
-
-  ipcMain.handle("get-language-preference", () => {
-    return store.get("languagePreference");
-  });
-
-  // NEW: Sarvam API key handlers
+  // Sarvam API key handlers
   ipcMain.on("save-sarvam-api-key", (_event, key: string) => {
     store.set("sarvamApiKey", key);
     console.log("[Settings] Sarvam API key saved");
@@ -882,25 +809,18 @@ function registerWidgetHandlers(): void {
     updateTrayState("recording");
     sendWidgetState("recording-click");
 
-    const langPref = (store.get("languagePreference") as string) || "english";
-    const hindiMode = langPref === "hindi";
-    if (hindiMode) {
-      startHindiSession();
-    } else {
-      clearHindiSession();
+    startHindiSession();
+
+    // Open the Sarvam WebSocket stream before telling the renderer to start
+    try {
+      const streamer = getSarvamStreamTranscriber();
+      await streamer.connect();
+      streamer.markRecordingStart();
+    } catch (err) {
+      console.error("[Widget] Sarvam stream connect failed:", err);
     }
 
-    if (hindiMode) {
-      try {
-        const streamer = getSarvamStreamTranscriber();
-        await streamer.connect();
-        streamer.markRecordingStart();
-      } catch (err) {
-        console.error("[Widget] Sarvam stream connect failed:", err);
-      }
-    }
-
-    recorderWindow.webContents.send("start-recording", hindiMode);
+    recorderWindow.webContents.send("start-recording", true);
   });
 
   ipcMain.on("widget-stop-recording", () => {
@@ -966,8 +886,6 @@ function registerWidgetHandlers(): void {
   });
 }
 
-// Notes IPC handlers extracted to src/main/ipc/notes-handlers.ts
-
 // --- App Lifecycle ---
 
 app.on("ready", () => {
@@ -980,10 +898,6 @@ app.on("ready", () => {
   registerPermissionHandlers();
   registerSettingsHandlers();
   registerWidgetHandlers();
-  registerNotesHandlers({ notifyNotesUpdated });
-  registerChatHandlers();
-  registerCollectionHandlers();
-  registerStyleHandlers();
 
   // Create system tray
   tray = new Tray(createTrayIcon());
@@ -1001,31 +915,8 @@ app.on("ready", () => {
   createRecorderWindow();
   createWidgetWindow();
 
-  // Keep-warm: pre-connect Sarvam WebSocket for Hindi mode (zero first-use overhead)
+  // Keep-warm: pre-connect Sarvam WebSocket (zero first-use overhead)
   warmSarvamConnection();
-
-  // Load vector store for note embeddings
-  vectorStore.load().catch((err) =>
-    console.error("[Main] Vector store load failed:", err),
-  );
-
-  // Background re-embed interval: regenerate stale embeddings every 30s
-  setInterval(async () => {
-    const staleIds = vectorStore.getStaleIds();
-    for (const id of staleIds) {
-      const note = getNotes({ includeArchived: true }).find((n) => n.id === id);
-      if (note) {
-        try {
-          const text = note.cleanContent || note.content;
-          const embedding = await generateEmbedding(text);
-          vectorStore.add(id, embedding);
-          console.log(`[Main] Re-embedded stale note ${id}`);
-        } catch (err) {
-          console.error(`[Main] Re-embed failed for ${id}:`, err);
-        }
-      }
-    }
-  }, 30000);
 
   // Show onboarding if first launch or permissions missing
   if (needsOnboarding()) {
@@ -1048,28 +939,20 @@ app.on("ready", () => {
     updateTrayState("recording");
     sendWidgetState("recording-hotkey");
 
-    const langPref = (store.get("languagePreference") as string) || "english";
-    const hindiMode = langPref === "hindi";
-    if (hindiMode) {
-      startHindiSession();
-    } else {
-      clearHindiSession();
+    startHindiSession();
+
+    // Open the Sarvam WebSocket stream before telling the renderer to start
+    try {
+      const streamer = getSarvamStreamTranscriber();
+      await streamer.connect();
+      streamer.markRecordingStart();
+    } catch (err) {
+      console.error("[Main] Sarvam stream connect failed:", err);
+      // Non-fatal: the retry path will re-connect on flush
     }
 
-    // For Hindi: open WebSocket stream before telling renderer to start
-    if (hindiMode) {
-      try {
-        const streamer = getSarvamStreamTranscriber();
-        await streamer.connect();
-        streamer.markRecordingStart();
-      } catch (err) {
-        console.error("[Main] Sarvam stream connect failed:", err);
-        // Non-fatal: audio-captured fallback will handle it
-      }
-    }
-
-    // Tell recorder window to start capturing audio (with hindi flag)
-    recorderWindow.webContents.send("start-recording", hindiMode);
+    // Tell recorder window to start capturing audio (PCM16 streaming on)
+    recorderWindow.webContents.send("start-recording", true);
   });
 
   hotkeyManager.on("recording-stop", () => {
@@ -1092,41 +975,6 @@ app.on("ready", () => {
     sendWidgetState("processing");
 
     // Tell recorder window to stop and send audio
-    recorderWindow.webContents.send("stop-recording");
-  });
-
-  hotkeyManager.on("command-start", async () => {
-    if (isProcessing || currentState !== "idle") return;
-    if (!recorderWindow) {
-      console.error("[Main] Recorder window unavailable for command");
-      return;
-    }
-
-    console.log("[Main] Command key pressed - starting command recording");
-    activeRecordingSource = "command";
-    lastRecordingSource = "command";
-    updateTrayState("recording");
-    sendWidgetState("recording-command");
-    // Commands always use English transcription
-    recorderWindow.webContents.send("start-recording", false);
-  });
-
-  hotkeyManager.on("command-stop", () => {
-    if (currentState !== "recording" || activeRecordingSource !== "command") {
-      return;
-    }
-    if (!recorderWindow) {
-      console.error("[Main] Recorder window unavailable");
-      activeRecordingSource = null;
-      updateTrayState("idle");
-      sendWidgetState("idle");
-      return;
-    }
-
-    console.log("[Main] Command key released - stopping command recording");
-    activeRecordingSource = null;
-    updateTrayState("processing");
-    sendWidgetState("processing");
     recorderWindow.webContents.send("stop-recording");
   });
 
@@ -1215,229 +1063,78 @@ app.on("ready", () => {
     sendWidgetState("processing");
 
     try {
-      if (capturedSource === "command") {
-        // ── COMMAND PIPELINE ──────────────────────────────────────────
-        // Widget stays in "processing" state until command is fully resolved
-        // Transcribe only (English, no LLM), then parse + execute command
-        const asrStart = Date.now();
-        const transcript = await transcribe(audioData);
-        const L_asr = Date.now() - asrStart;
+      // ── DICTATION PIPELINE ───────────────────────────────────────
+      // --- Save audio to userData ---
+      const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+      const audioFilename = await saveAudioFile(audioData, timestamp);
 
-        if (!transcript) {
-          console.error(`[Command] ✗ ASR failed (${L_asr}ms)`);
-          showErrorBubble("Couldn't hear the command. Please try again.");
-          return;
-        }
+      // --- Step 1: ASR (Sarvam streaming) ---
+      const asrStart = Date.now();
+      const transcript = await transcribeHindiWithRetries(activeHindiSession);
+      const L_asr = Date.now() - asrStart;
 
-        console.log(`[Command] ✓ ASR (${L_asr}ms): "${transcript}"`);
-        const command = await parseCommand(transcript);
-        console.log(`[Command] Parsed: type=${command.type}`);
-
-        switch (command.type) {
-          case "save-note": {
-            const content = command.content ?? transcript;
-            const note = createNote({ content, rawContent: transcript, source: "voice" });
-            notifyNotesUpdated();
-            showErrorBubble("Saved to Notes");
-            // Fire background AI (non-blocking)
-            processNoteInBackground(note.id, notifyNotesUpdated).catch((err) => {
-              console.error("[NoteAI] Background processing failed:", err);
-            });
-            break;
-          }
-          case "save-clipboard": {
-            const clipText = clipboard.readText();
-            if (clipText) {
-              const note = createNoteFromClipboard(clipText);
-              notifyNotesUpdated();
-              showErrorBubble("Clipboard saved to Notes");
-              processNoteInBackground(note.id, notifyNotesUpdated).catch((err) => {
-                console.error("[NoteAI] Background processing failed:", err);
-              });
-            } else {
-              showErrorBubble("Clipboard is empty");
-            }
-            break;
-          }
-          case "open-notes":
-            openSettingsWindow("notes");
-            break;
-          case "restyle-note": {
-            const allNotes = getNotes();
-            if (allNotes.length === 0) {
-              showErrorBubble("No notes to restyle");
-              break;
-            }
-            const target = allNotes[0]; // most recent note
-            const style = command.style ?? "default";
-            try {
-              const styledContent = await applyStyle(target.cleanContent || target.content, style);
-              updateNote(target.id, { stylePreset: style, styledContent });
-              notifyNotesUpdated();
-              showErrorBubble(`Restyled as ${style.replace(/-/g, " ")}`);
-            } catch {
-              showErrorBubble("Restyle failed");
-            }
-            break;
-          }
-          case "find-notes": {
-            const topic = command.query ?? transcript;
-            openSettingsWindow("notes");
-            // Notify UI to prefill search
-            if (settingsWindow) {
-              settingsWindow.webContents.send("navigate-to-notes", { search: topic });
-            }
-            break;
-          }
-          case "summarize-notes": {
-            const topic2 = command.query ?? transcript;
-            try {
-              const answer = await handleChatQuery(`Summarize my notes about: ${topic2}`);
-              showErrorBubble(answer.content.slice(0, 300));
-              speak(answer.content).catch(() => {});
-            } catch {
-              showErrorBubble("Couldn't summarize notes");
-            }
-            break;
-          }
-          case "show-tasks": {
-            const tasks = getTasksFromAllNotes();
-            if (tasks.length === 0) {
-              showErrorBubble("No tasks found in your notes");
-            } else {
-              const taskText = tasks.slice(0, 10).map((t) =>
-                `${t.person}: ${t.action}${t.deadline !== "unspecified" ? ` (${t.deadline})` : ""}`,
-              ).join("\n");
-              showErrorBubble(taskText.slice(0, 300));
-              speak(tasks.slice(0, 5).map((t) => `${t.person}: ${t.action}`).join(". ")).catch(() => {});
-            }
-            break;
-          }
-          case "ask-question": {
-            try {
-              const answer2 = await handleChatQuery(command.query ?? transcript);
-              showErrorBubble(answer2.content.slice(0, 300));
-              speak(answer2.content).catch(() => {});
-            } catch {
-              showErrorBubble("Couldn't answer your question");
-            }
-            break;
-          }
-          case "time-query": {
-            if (command.timeRange) {
-              const timeNotes = getNotesByTimeRange(command.timeRange.start, command.timeRange.end);
-              if (timeNotes.length === 0) {
-                showErrorBubble("No notes found for that time period");
-              } else {
-                showErrorBubble(`Found ${timeNotes.length} note${timeNotes.length !== 1 ? "s" : ""}`);
-                openSettingsWindow("notes");
-              }
-            } else {
-              showErrorBubble("Couldn't determine the time period");
-            }
-            break;
-          }
-          case "unknown":
-          default:
-            showErrorBubble("Command not recognized");
-            break;
-        }
-      } else {
-        // ── DICTATION PIPELINE (unchanged) ───────────────────────────
-        // --- Save audio to userData ---
-        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        const audioFilename = await saveAudioFile(audioData, timestamp);
-
-        // --- Step 1: ASR (Speech-to-Text) ---
-        const asrStart = Date.now();
-        const langPrefPipeline = (store.get("languagePreference") as string) || "english";
-        let transcript: string | null;
-
-        if (langPrefPipeline === "hindi") {
-          transcript = await transcribeHindiWithRetries(activeHindiSession);
-        } else {
-          transcript = await transcribe(audioData);
-        }
-
-        const L_asr = Date.now() - asrStart;
-
-        if (!transcript) {
-          console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
-          sendWidgetError({
-            code: "SERVER_ERROR",
-            message: "Transcription failed. Please try again.",
-          });
-          return; // finally block will reset tray + isProcessing
-        }
-
-        console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
-
-        // --- Step 2: LLM Formatting (English only) ---
-        // For Hindi/Hinglish, skip LLM and paste raw transcript
-        let formattedText: string;
-        let L_llm = 0;
-
-        if (langPrefPipeline === "english") {
-          console.log("[Pipeline] English mode - applying LLM formatting");
-          const llmStart = Date.now();
-          formattedText = await formatText(transcript);
-          L_llm = Date.now() - llmStart;
-          console.log(`[Pipeline] ✓ LLM (${L_llm}ms): "${formattedText}"`);
-        } else {
-          console.log("[Pipeline] Hindi/Hinglish mode - skipping LLM formatting");
-          formattedText = transcript; // Direct paste, no formatting
-          console.log(`[Pipeline] ✓ Raw transcript (no LLM): "${formattedText}"`);
-        }
-
-        // Ensure the text ends with a space so consecutive dictates don't stick together
-        if (!/\s$/.test(formattedText)) {
-          formattedText += " ";
-        }
-
-        // Store for fallback paste shortcut
-        store.set("lastTranscript", formattedText);
-
-        // Save to transcription history (keep last 50)
-        const history = store.get("transcriptionHistory") as TranscriptionEntry[];
-        history.unshift({
-          text: formattedText,
-          rawText: transcript,
-          timestamp: Date.now(),
-          durationMs: Date.now() - pipelineStart,
-          audioFilePath: audioFilename ?? undefined,
+      if (!transcript) {
+        console.error(`[Pipeline] ✗ ASR failed (${L_asr}ms)`);
+        sendWidgetError({
+          code: "SERVER_ERROR",
+          message: "Transcription failed. Please try again.",
         });
-        while (history.length > 50) {
-          const removed = history.pop();
-          if (removed?.audioFilePath) {
-            deleteAudioFile(removed.audioFilePath);
-          }
+        return; // finally block will reset tray + isProcessing
+      }
+
+      console.log(`[Pipeline] ✓ ASR (${L_asr}ms): "${transcript}"`);
+
+      // --- Step 2: Raw paste (no formatting) ---
+      let formattedText = transcript;
+
+      // Ensure the text ends with a space so consecutive dictates don't stick together
+      if (!/\s$/.test(formattedText)) {
+        formattedText += " ";
+      }
+
+      // Store for fallback paste shortcut
+      store.set("lastTranscript", formattedText);
+
+      // Save to transcription history (keep last 50)
+      const history = store.get("transcriptionHistory") as TranscriptionEntry[];
+      history.unshift({
+        text: formattedText,
+        rawText: transcript,
+        timestamp: Date.now(),
+        durationMs: Date.now() - pipelineStart,
+        audioFilePath: audioFilename ?? undefined,
+      });
+      while (history.length > 50) {
+        const removed = history.pop();
+        if (removed?.audioFilePath) {
+          deleteAudioFile(removed.audioFilePath);
         }
-        store.set("transcriptionHistory", history);
+      }
+      store.set("transcriptionHistory", history);
 
-        // Notify dashboard to refresh
-        if (settingsWindow && !settingsWindow.isDestroyed()) {
-          settingsWindow.webContents.send("transcription-history-updated");
-        }
+      // Notify dashboard to refresh
+      if (settingsWindow && !settingsWindow.isDestroyed()) {
+        settingsWindow.webContents.send("transcription-history-updated");
+      }
 
-        // --- Step 3: Paste ---
-        const pasteStart = Date.now();
-        const pasted = await pasteText(formattedText);
-        const L_paste = Date.now() - pasteStart;
+      // --- Step 3: Paste ---
+      const pasteStart = Date.now();
+      const pasted = await pasteText(formattedText);
+      const L_paste = Date.now() - pasteStart;
 
-        if (pasted) {
-          console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
-        } else {
-          console.error(
-            `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual ${pasteShortcutLabel}`,
-          );
-        }
-
-        // --- Timing Summary ---
-        const L_total = Date.now() - pipelineStart;
-        console.log(
-          `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_llm=${L_llm}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
+      if (pasted) {
+        console.log(`[Pipeline] ✓ Paste (${L_paste}ms)`);
+      } else {
+        console.error(
+          `[Pipeline] ✗ Paste failed (${L_paste}ms) - text in clipboard for manual ${pasteShortcutLabel}`,
         );
       }
+
+      // --- Timing Summary ---
+      const L_total = Date.now() - pipelineStart;
+      console.log(
+        `[Pipeline] ═══ DONE ═══ L_asr=${L_asr}ms | L_paste=${L_paste}ms | L_total=${L_total}ms`,
+      );
     } catch (error) {
       const L_total = Date.now() - pipelineStart;
       console.error(`[Pipeline] ✗ FATAL ERROR after ${L_total}ms:`, error);
