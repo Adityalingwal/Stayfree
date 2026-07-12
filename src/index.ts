@@ -146,7 +146,7 @@ const WIDGET_WINDOW_HEIGHT = 56;
 
 // Get the path to icon files
 function getIconPath(): string {
-  const iconName = "trayTemplate.png";
+  const iconName = "trayIcon.png";
   // Assets are copied to 'assets' folder in webpack output
   return path.join(__dirname, "assets", iconName);
 }
@@ -159,8 +159,9 @@ function createTrayIcon(): Electron.NativeImage {
     console.error(`[StayFree] ERROR: Icon not found at: ${iconPath}`);
   }
 
-  // Mark as template so macOS can adapt icon color to menu bar style.
-  image.setTemplateImage(true);
+  // Full-color icon (cream tile + ink bars) — must NOT be a template image,
+  // or macOS would flatten it to monochrome menu-bar tint.
+  image.setTemplateImage(false);
 
   return image;
 }
