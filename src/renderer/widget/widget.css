@@ -65,90 +65,39 @@ body {
 /* THE PILL (morphs)    */
 /* ==================== */
 
+/* Geometry (width/height/border-radius) and transforms are owned by
+   framer-motion in App.tsx (pillVariants — springs on grow, tween on close).
+   CSS keeps ONLY colors, clipping and the content layout. Do not add width/
+   height/transform rules here — they would fight the motion inline styles. */
 .widget-pill {
   position: relative; /* anchor for the absolutely-centred .pill-content */
   overflow: hidden;
   background: #e7e4dc;
   border: 1px solid rgba(11, 11, 11, 0.3);
-  transform-origin: bottom center;
+  transform-origin: bottom center; /* whileHover/whileTap scaleX pivots here */
   /* No backdrop-filter: re-blurring every frame during the size morph is the
      main source of jank. The fill is opaque, so we don't need it — and dropping
      it makes the grow/shrink noticeably smoother. */
-  will-change: width, height;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  /* GROW (idle → recording/processing): elastic "rubber-band" snap. A mild
-     back-overshoot bezier gives the playful spring from the reference. Width
-     leads height (shorter duration, no delay) so the pill expands horizontally
-     slightly before it grows vertically — exactly what the video shows.
-     The CLOSING curve is overridden on .pill-idle below (no overshoot there,
-     or the pill would dip below its 8px idle height). */
-  transition:
-    width 0.2s cubic-bezier(0.34, 1.35, 0.64, 1),
-    height 0.24s cubic-bezier(0.34, 1.35, 0.64, 1) 0.03s,
-    border-radius 0.22s cubic-bezier(0.34, 1.35, 0.64, 1),
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.12s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-/* All ratios below are matched to the reference recording (~2.4:1),      */
-/* processing (~3.3:1, wider) and idle (~5:1, thin) pill proportions.      */
-
-/* --- IDLE: small thin oval, cream inside with a visible ink outline --- */
+/* --- IDLE: brighter ink outline; hover brightens it further --- */
 .pill-idle {
-  width: 40px;
-  height: 8px;
-  border-radius: 4px;
   border-color: rgba(11, 11, 11, 0.55);
-  /* CLOSING (recording/processing → idle): a smooth ease-out, NO overshoot.
-     An overshoot here would make the pill dip below its 8px height and clip.
-     Height leads slightly on the way down so it collapses cleanly. */
-  transition:
-    width 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.02s,
-    height 0.18s cubic-bezier(0.4, 0, 0.2, 1),
-    border-radius 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.2s ease,
-    transform 0.12s ease;
 }
 
 .pill-idle:hover {
-  transform: scaleX(1.08);
   border-color: rgba(11, 11, 11, 0.8);
 }
 
-.pill-idle:active {
-  transform: scaleX(0.95);
-}
-
-/* --- RECORDING: hotkey = waveform only (compact) --- */
-.pill-recording-hotkey {
-  width: 74px;
-  height: 30px;
-  border-radius: 15px;
-}
-
-/* --- RECORDING: click mode = X | waveform | stop --- */
-.pill-recording-click {
-  width: 124px;
-  height: 30px;
-  border-radius: 15px;
-}
-
-/* --- PROCESSING: frozen bars (dots) + spinner — wider than recording --- */
-.pill-processing {
-  width: 98px;
-  height: 30px;
-  border-radius: 15px;
-}
-
-/* Inner content fades in as the shell grows, so nothing "pops".
+/* Inner content fades in/out via AnimatePresence (App.tsx) — opacity only.
    HARD-CENTRED: absolutely positioned at the pill's exact centre, independent
    of the pill's (animating) bounding box. Flex centring broke during the
    empty-close shrink — once the pill got narrower than the bars, the overflow
    clipped from the left and the bars shot to the left edge. Absolute centring
    keeps them dead-centre at every frame; the pill's overflow:hidden clips
-   symmetrically. */
+   symmetrically. framer-motion animates opacity only here, so the centering
+   translate(-50%, -50%) below must never be replaced by a motion transform. */
 .pill-content {
   position: absolute;
   left: 50%;
@@ -159,7 +108,6 @@ body {
   justify-content: center;
   width: max-content;
   gap: 6px;
-  animation: pill-content-in 0.14s ease both;
 }
 
 .pill-content-recording {
@@ -170,24 +118,6 @@ body {
    shift the waveform off-centre during the exit. */
 .pill-content > * {
   flex-shrink: 0;
-}
-
-/* EXIT (→ idle): fade the content out FAST (0.1s) — faster than the pill's
-   ~0.18s shrink — so it's invisible well before the box finishes collapsing.
-   App.tsx keeps this mounted for ~120ms to let the fade play, then unmounts. */
-.pill-content-exit {
-  animation: pill-content-out 0.1s ease both;
-  pointer-events: none;
-}
-
-@keyframes pill-content-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes pill-content-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
 }
 
 /* ==================== */

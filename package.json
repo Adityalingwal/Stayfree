@@ -55,6 +55,7 @@
     "dotenv": "^17.2.4",
     "electron-squirrel-startup": "^1.0.1",
     "electron-store": "^8.2.0",
+    "framer-motion": "^12.42.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "uiohook-napi": "^1.5.4",

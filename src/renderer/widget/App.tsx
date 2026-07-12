@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Waveform from "./components/Waveform";
 import ProcessingIndicator from "./components/ProcessingIndicator";
 
@@ -8,13 +9,75 @@ type WidgetState =
   | "recording-click"
   | "processing";
 
+// Pill geometry per state, animated by framer-motion springs (the CSS classes
+// only carry colors/border now). Ratios matched to the reference recording
+// (~2.4:1), processing (~3.3:1, wider) and idle (~5:1, thin) proportions.
+//
+// GROW (idle → active): a true underdamped spring — the elastic rubber-band
+// snap. Width leads height by a beat (30ms delay), exactly like the old CSS.
+// CLOSE (→ idle): a deterministic no-overshoot tween. A spring here would
+// undershoot below the 8px idle height and visibly clip (the same bug the old
+// CSS curves were shaped around); height leads on the way down.
+const growSpring = {
+  type: "spring",
+  stiffness: 420,
+  damping: 26,
+  mass: 0.8,
+} as const;
+
+const closeEase = [0.4, 0, 0.2, 1] as const;
+
+const pillVariants = {
+  idle: {
+    width: 40,
+    height: 8,
+    borderRadius: 4,
+    transition: {
+      width: { type: "tween", duration: 0.2, ease: closeEase, delay: 0.02 },
+      height: { type: "tween", duration: 0.18, ease: closeEase },
+      borderRadius: { type: "tween", duration: 0.2, ease: closeEase },
+    },
+  },
+  "recording-hotkey": {
+    width: 74,
+    height: 30,
+    borderRadius: 15,
+    transition: {
+      width: growSpring,
+      height: { ...growSpring, delay: 0.03 },
+      borderRadius: growSpring,
+    },
+  },
+  "recording-click": {
+    width: 124,
+    height: 30,
+    borderRadius: 15,
+    transition: {
+      width: growSpring,
+      height: { ...growSpring, delay: 0.03 },
+      borderRadius: growSpring,
+    },
+  },
+  processing: {
+    width: 98,
+    height: 30,
+    borderRadius: 15,
+    transition: {
+      width: growSpring,
+      height: { ...growSpring, delay: 0.03 },
+      borderRadius: growSpring,
+    },
+  },
+} as const;
+
 /**
  * Floating Dictation Widget — Wispr Flow style.
  *
- * The native window is a fixed size and NEVER resizes. Every visual change
- * between states happens here in CSS on a single persistent ".widget-pill"
- * shell, so the pill morphs smoothly (grow → record → process → shrink) with no
- * native-frame animation glitch.
+ * The native window is a fixed size and NEVER resizes. The single persistent
+ * ".widget-pill" shell morphs between states via framer-motion springs
+ * (geometry in pillVariants above; CSS keeps only colors/layout), so the pill
+ * morphs smoothly (grow → record → process → shrink) with no native-frame
+ * animation glitch.
  *
  * Look (matched to the reference):
  *  - pill: cream fill, thin ink outline, full rounded stadium
@@ -37,34 +100,10 @@ export default function App() {
     });
   }, []);
 
-  // The inner content (waveform / buttons / spinner) lingers for a beat while
-  // the pill shrinks back to idle, so it can fade out gracefully instead of
-  // vanishing and letting the bars snap to the top-left corner. `showInner`
-  // keeps it mounted; `innerExiting` triggers the fast opacity fade.
-  const [showInner, setShowInner] = useState(false);
-  const [innerExiting, setInnerExiting] = useState(false);
-
-  useEffect(() => {
-    const active =
-      state === "recording-hotkey" ||
-      state === "recording-click" ||
-      state === "processing";
-
-    if (active) {
-      setShowInner(true);
-      setInnerExiting(false);
-      return;
-    }
-
-    // Going idle: play the exit fade, then unmount once it's finished (~120ms,
-    // safely longer than the 0.1s fade and clear of the pill's shrink).
-    setInnerExiting(true);
-    const timer = setTimeout(() => {
-      setShowInner(false);
-      setInnerExiting(false);
-    }, 120);
-    return () => clearTimeout(timer);
-  }, [state]);
+  // Inner content (waveform / buttons / spinner) is mounted while active;
+  // AnimatePresence keeps it mounted through the exit fade when going idle,
+  // so the bars never snap to a corner mid-shrink.
+  const active = state !== "idle";
 
   // Start recording by clicking the idle bar (adds cancel/stop buttons).
   const handleClick = () => {
@@ -99,58 +138,70 @@ export default function App() {
         onMouseLeave={handleMouseLeave}
       >
         <div className="widget-stage">
-          <div
+          <motion.div
             className={`widget-pill pill-${state}${
               state === "idle" ? " widget-clickable" : ""
             }`}
+            variants={pillVariants}
+            animate={state}
+            initial={false}
+            whileHover={state === "idle" ? { scaleX: 1.08 } : undefined}
+            whileTap={state === "idle" ? { scaleX: 0.95 } : undefined}
             onClick={handleClick}
           >
             {/* ONE persistent content block across recording → processing so the
                 Waveform never remounts: its bars morph into the processing dots
-                purely via CSS. */}
-            {showInner && (
-              <div
-                className={`pill-content pill-content-recording${
-                  innerExiting ? " pill-content-exit" : ""
-                }`}
-              >
-                {state === "recording-click" && (
-                  <button
-                    className="widget-cancel-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCancel();
-                    }}
-                    aria-label="Cancel"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                      <path
-                        d="M1 1L7 7M7 1L1 7"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </button>
-                )}
+                purely via CSS. Keyed by a CONSTANT (not `state`) for the same
+                reason — a state-keyed motion.div would remount the Waveform and
+                reset its refs. */}
+            <AnimatePresence initial={false}>
+              {active && (
+                <motion.div
+                  key="pill-content"
+                  className="pill-content pill-content-recording"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.1, ease: "easeOut" }}
+                >
+                  {state === "recording-click" && (
+                    <button
+                      className="widget-cancel-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCancel();
+                      }}
+                      aria-label="Cancel"
+                    >
+                      <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                        <path
+                          d="M1 1L7 7M7 1L1 7"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </button>
+                  )}
 
-                <Waveform />
+                  <Waveform />
 
-                {state === "processing" && <ProcessingIndicator />}
+                  {state === "processing" && <ProcessingIndicator />}
 
-                {state === "recording-click" && (
-                  <button
-                    className="widget-stop-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleStop();
-                    }}
-                    aria-label="Stop"
-                  />
-                )}
-              </div>
-            )}
-          </div>
+                  {state === "recording-click" && (
+                    <button
+                      className="widget-stop-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleStop();
+                      }}
+                      aria-label="Stop"
+                    />
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </div>
