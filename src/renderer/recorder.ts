@@ -20,51 +20,45 @@ function getAudioContext(): AudioContext {
   return audioCtx;
 }
 
-function playStartSound(): void {
-  const ctx = getAudioContext();
+// "Dew" sound set — modelled on what makes reference dictation sounds pleasant
+// (measured): low-mid register (not shrill), a soft ~10ms attack (a 0ms attack
+// pops/clicks), a gentle exponential tail, quiet peaks, and DISCRETE notes
+// (pitch slides read as cartoonish). Distinct identity from the reference:
+// different notes (F4 start; falling FIFTH A4→D4 stop) and slightly longer tail.
+
+// One soft sine note: 10ms attack, exponential decay (tau), auto-cleanup.
+function playNote(
+  ctx: AudioContext,
+  freq: number,
+  at: number,
+  vol: number,
+  tau: number,
+  end: number,
+): void {
   const now = ctx.currentTime;
-
-  // Pleasant ascending two-note chime
-  const osc1 = ctx.createOscillator();
-  const gain1 = ctx.createGain();
-  osc1.type = "sine";
-  osc1.frequency.value = 660; // E5
-  osc1.connect(gain1);
-  gain1.connect(ctx.destination);
-  gain1.gain.setValueAtTime(0.25, now);
-  gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
-  osc1.start(now);
-  osc1.stop(now + 0.12);
-
-  const osc2 = ctx.createOscillator();
-  const gain2 = ctx.createGain();
-  osc2.type = "sine";
-  osc2.frequency.value = 880; // A5
-  osc2.connect(gain2);
-  gain2.connect(ctx.destination);
-  gain2.gain.setValueAtTime(0, now + 0.06);
-  gain2.gain.linearRampToValueAtTime(0.25, now + 0.08);
-  gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
-  osc2.start(now + 0.06);
-  osc2.stop(now + 0.18);
-}
-
-function playStopSound(): void {
-  const ctx = getAudioContext();
-  const now = ctx.currentTime;
-
-  // Pleasant descending single tone
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
   osc.type = "sine";
-  osc.frequency.value = 660; // E5
-  osc.frequency.exponentialRampToValueAtTime(440, now + 0.15); // down to A4
+  osc.frequency.value = freq;
   osc.connect(gain);
   gain.connect(ctx.destination);
-  gain.gain.setValueAtTime(0.2, now);
-  gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-  osc.start(now);
-  osc.stop(now + 0.15);
+  gain.gain.setValueAtTime(0, now + at);
+  gain.gain.linearRampToValueAtTime(vol, now + at + 0.01);
+  gain.gain.setTargetAtTime(0, now + at + 0.01, tau);
+  osc.start(now + at);
+  osc.stop(now + end);
+}
+
+function playStartSound(): void {
+  // Single soft F4 — a calm "listening" cue.
+  playNote(getAudioContext(), 349, 0, 0.13, 0.112, 0.45);
+}
+
+function playStopSound(): void {
+  // Falling fifth, two discrete notes: A4 → D4 — a settled "done" cue.
+  const ctx = getAudioContext();
+  playNote(ctx, 440, 0, 0.11, 0.084, 0.35);
+  playNote(ctx, 294, 0.1, 0.13, 0.126, 0.55);
 }
 
 // --- PCM16 AudioWorklet (inline blob, avoids webpack bundling issues) ---
