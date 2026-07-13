@@ -11,6 +11,10 @@ recordings/
 /CLAUDE.md
 /AGENTS.md
 
+# Compiled native helper (built from native/space-watcher.m by the forge
+# generateAssets hook — source is tracked, binary is not)
+src/assets/space-watcher
+
 # Editors / misc
 .vscode/
 .idea/

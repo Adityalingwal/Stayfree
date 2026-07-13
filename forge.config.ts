@@ -1,4 +1,6 @@
 import type { ForgeConfig } from '@electron-forge/shared-types';
+import { execFileSync } from 'child_process';
+import * as path from 'path';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 import { MakerZIP } from '@electron-forge/maker-zip';
 import { MakerDeb } from '@electron-forge/maker-deb';
@@ -14,8 +16,31 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    // Ship the compiled native helper as a plain file in Contents/Resources
+    // (NOT inside app.asar — you cannot exec a binary from within asar). The
+    // main process resolves it via process.resourcesPath when packaged.
+    extraResource: ['./src/assets/space-watcher'],
   },
   rebuildConfig: {},
+  hooks: {
+    // Compile the macOS space-watcher helper (native/space-watcher.m) into
+    // src/assets so CopyWebpackPlugin bundles it. macOS-only; skipped elsewhere.
+    generateAssets: async () => {
+      if (process.platform !== 'darwin') return;
+      const src = path.resolve(__dirname, 'native', 'space-watcher.m');
+      const out = path.resolve(__dirname, 'src', 'assets', 'space-watcher');
+      execFileSync('clang', [
+        '-framework', 'Cocoa',
+        '-framework', 'CoreGraphics',
+        '-fobjc-arc',
+        '-O2',
+        src,
+        '-o', out,
+      ], { stdio: 'inherit' });
+      // eslint-disable-next-line no-console
+      console.log('[forge] compiled space-watcher ->', out);
+    },
+  },
   makers: [
     new MakerSquirrel({}),
     new MakerZIP({}, ['darwin']),
