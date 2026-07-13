@@ -193,6 +193,73 @@ function getWidgetWindowBounds(): Electron.Rectangle {
   };
 }
 
+// Wispr-style follow: when the dock is shown/hidden (or the screen changes),
+// macOS's workArea changes, so the widget must slide to the new bottom edge.
+// The vertical move is hand-tweened (ease-out cubic over ~250ms) rather than a
+// native animated setBounds — the native animation is exactly what glitched the
+// morph, so we drive it ourselves for a butter-smooth slide. X/width shifts
+// (resolution changes only) are applied instantly; just the Y slides.
+const WIDGET_REPOSITION_MS = 250;
+let widgetTweenTimer: ReturnType<typeof setInterval> | null = null;
+
+function repositionWidget(animate: boolean): void {
+  if (!widgetWindow || widgetWindow.isDestroyed()) return;
+
+  const target = getWidgetWindowBounds();
+  const current = widgetWindow.getBounds();
+
+  // Apply any horizontal / size change instantly (rare: resolution change).
+  if (
+    current.x !== target.x ||
+    current.width !== target.width ||
+    current.height !== target.height
+  ) {
+    widgetWindow.setBounds({
+      x: target.x,
+      y: current.y,
+      width: target.width,
+      height: target.height,
+    });
+  }
+
+  if (widgetTweenTimer) {
+    clearInterval(widgetTweenTimer);
+    widgetTweenTimer = null;
+  }
+
+  const startY = widgetWindow.getBounds().y;
+  const endY = target.y;
+  if (startY === endY) return;
+
+  if (!animate) {
+    widgetWindow.setBounds({
+      x: target.x,
+      y: endY,
+      width: target.width,
+      height: target.height,
+    });
+    return;
+  }
+
+  const startTs = Date.now();
+  widgetTweenTimer = setInterval(() => {
+    if (!widgetWindow || widgetWindow.isDestroyed()) {
+      if (widgetTweenTimer) clearInterval(widgetTweenTimer);
+      widgetTweenTimer = null;
+      return;
+    }
+    const t = Math.min(1, (Date.now() - startTs) / WIDGET_REPOSITION_MS);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    const y = Math.round(startY + (endY - startY) * eased);
+    const b = widgetWindow.getBounds();
+    widgetWindow.setBounds({ x: b.x, y, width: b.width, height: b.height });
+    if (t >= 1) {
+      if (widgetTweenTimer) clearInterval(widgetTweenTimer);
+      widgetTweenTimer = null;
+    }
+  }, 16);
+}
+
 // An ultra-short tap records nothing meaningful — there is nothing to
 // transcribe, so the widget must NOT show a "thinking" state at all: it goes
 // straight from recording back to idle and the ASR round-trip is skipped.
@@ -869,6 +936,18 @@ app.on("ready", () => {
   // Create hidden recorder window (for Web Audio API access)
   createRecorderWindow();
   createWidgetWindow();
+
+  // Follow the dock: when it shows/hides (or the display changes), macOS's
+  // workArea shifts. Slide the widget to the new bottom edge so it always sits
+  // just above the dock — or just above the screen bottom when the dock is gone.
+  screen.on("display-metrics-changed", (_event, _display, changedMetrics) => {
+    if (
+      changedMetrics.includes("workArea") ||
+      changedMetrics.includes("bounds")
+    ) {
+      repositionWidget(true);
+    }
+  });
 
   // Keep-warm: pre-connect Sarvam WebSocket (zero first-use overhead)
   warmSarvamConnection();
