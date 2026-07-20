@@ -119,6 +119,7 @@ class AudioRecorder {
   private mediaRecorder: MediaRecorder | null = null;
   private audioChunks: Blob[] = [];
   private stream: MediaStream | null = null;
+  private activeSessionId: string | null = null;
 
   // PCM16 streaming (Hindi path)
   private streamingAudioCtx: AudioContext | null = null;
@@ -166,45 +167,51 @@ class AudioRecorder {
     }
   }
 
-  async startRecording(hindiMode: boolean): Promise<void> {
+  async startRecording(hindiMode: boolean, sessionId: string): Promise<void> {
     if (!this.stream) {
       console.error("[Recorder] Cannot start - no audio stream");
       return;
     }
 
+    if (this.mediaRecorder && this.mediaRecorder.state !== "inactive") {
+      console.warn(
+        `[Recorder] Ignoring START for ${sessionId}; ${this.activeSessionId} is still active`,
+      );
+      return;
+    }
+
     // Reset chunks
-    this.audioChunks = [];
+    const recordingChunks: Blob[] = [];
+    this.audioChunks = recordingChunks;
+    this.activeSessionId = sessionId;
     this.isHindiMode = hindiMode;
     this.resetStreamingStats();
     this.recordingStartMs = Date.now();
 
     // --- MediaRecorder (WebM, always runs) ---
-    this.mediaRecorder = new MediaRecorder(this.stream, {
+    const mediaRecorder = new MediaRecorder(this.stream, {
       mimeType: "audio/webm;codecs=opus",
     });
+    this.mediaRecorder = mediaRecorder;
 
-    this.mediaRecorder.ondataavailable = (event) => {
+    mediaRecorder.ondataavailable = (event) => {
       if (event.data.size > 0) {
-        this.audioChunks.push(event.data);
+        recordingChunks.push(event.data);
         console.log(
           `[Recorder] Audio chunk received: ${event.data.size} bytes`,
         );
       }
     };
 
-    this.mediaRecorder.onstop = () => {
-      this.handleRecordingComplete();
-    };
-
-    this.mediaRecorder.start();
-    console.log("[Recorder] Recording started (WebM)");
+    mediaRecorder.start();
+    console.log(`[Recorder] Recording started (WebM, session=${sessionId})`);
 
     // --- Live level meter (both paths) ---
     this.startLevelMeter();
 
     // --- PCM16 AudioWorklet (Hindi only) ---
     if (hindiMode) {
-      await this.startPCM16Streaming();
+      await this.startPCM16Streaming(sessionId);
     }
   }
 
@@ -266,7 +273,7 @@ class AudioRecorder {
     }
   }
 
-  private async startPCM16Streaming(): Promise<void> {
+  private async startPCM16Streaming(sessionId: string): Promise<void> {
     try {
       // Create a dedicated AudioContext at 16kHz for PCM16 capture
       const ctx = new AudioContext({ sampleRate: 16000 });
@@ -281,7 +288,10 @@ class AudioRecorder {
       // A rapid cancel/stop can tear the context down (stopPCM16Streaming)
       // while addModule is still awaiting — the recording is already gone, so
       // just bail instead of throwing on the nulled context.
-      if (this.streamingAudioCtx !== ctx) {
+      if (
+        this.streamingAudioCtx !== ctx ||
+        this.activeSessionId !== sessionId
+      ) {
         console.log("[Recorder] PCM16 streaming aborted (recording ended)");
         return;
       }
@@ -296,9 +306,10 @@ class AudioRecorder {
 
       // Forward PCM16 chunks to main process
       this.workletNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
+        if (this.activeSessionId !== sessionId) return;
         const pcm = new Int16Array(event.data);
         this.trackAudioEnergy(pcm);
-        window.electron.sendAudioChunk(event.data);
+        window.electron.sendAudioChunk(event.data, sessionId);
       };
 
       source.connect(this.workletNode);
@@ -307,7 +318,9 @@ class AudioRecorder {
       console.log("[Recorder] PCM16 streaming started (16kHz)");
     } catch (error) {
       console.error("[Recorder] Failed to start PCM16 streaming:", error);
-      this.streamingFailed = true;
+      if (this.activeSessionId === sessionId) {
+        this.streamingFailed = true;
+      }
       // Non-fatal: WebM recording still works; main process will handle fallback
     }
   }
@@ -326,7 +339,14 @@ class AudioRecorder {
     }
   }
 
-  stopRecording(): void {
+  stopRecording(sessionId: string): boolean {
+    if (this.activeSessionId !== sessionId) {
+      console.warn(
+        `[Recorder] Ignoring stale STOP for ${sessionId}; active=${this.activeSessionId}`,
+      );
+      return false;
+    }
+
     // Stop the live level meter
     this.stopLevelMeter();
 
@@ -335,26 +355,76 @@ class AudioRecorder {
       this.stopPCM16Streaming();
     }
 
-    if (this.mediaRecorder && this.mediaRecorder.state !== "inactive") {
-      this.mediaRecorder.stop();
-      console.log("[Recorder] Recording stopped");
+    const mediaRecorder = this.mediaRecorder;
+    const recordingChunks = this.audioChunks;
+    const hindiMode = this.isHindiMode;
+    const stats = hindiMode ? this.buildStreamingStats() : null;
+
+    if (!mediaRecorder || mediaRecorder.state === "inactive") {
+      this.mediaRecorder = null;
+      this.audioChunks = [];
+      this.activeSessionId = null;
+      return false;
     }
+
+    mediaRecorder.onstop = () => {
+      void this.handleRecordingComplete(
+        sessionId,
+        recordingChunks,
+        hindiMode,
+        stats,
+      );
+    };
+    mediaRecorder.stop();
+    this.mediaRecorder = null;
+    this.audioChunks = [];
+    this.activeSessionId = null;
+    console.log(`[Recorder] Recording stopped (session=${sessionId})`);
+    return true;
   }
 
-  private async handleRecordingComplete(): Promise<void> {
-    console.log(`[Recorder] Processing ${this.audioChunks.length} chunks...`);
+  private async handleRecordingComplete(
+    sessionId: string,
+    recordingChunks: Blob[],
+    hindiMode: boolean,
+    stats: ReturnType<AudioRecorder["buildStreamingStats"]> | null,
+  ): Promise<void> {
+    console.log(`[Recorder] Processing ${recordingChunks.length} chunks...`);
 
-    const audioBlob = new Blob(this.audioChunks, { type: "audio/webm" });
+    const audioBlob = new Blob(recordingChunks, { type: "audio/webm" });
     console.log(`[Recorder] Total audio size: ${audioBlob.size} bytes`);
 
     const arrayBuffer = await audioBlob.arrayBuffer();
 
-    if (this.isHindiMode) {
-      window.electron.sendAudioStreamStats(this.buildStreamingStats());
+    if (hindiMode && stats) {
+      window.electron.sendAudioStreamStats(stats, sessionId);
     }
 
-    window.electron.sendAudioData(arrayBuffer);
-    console.log("[Recorder] Audio sent to main process");
+    window.electron.sendAudioData(arrayBuffer, sessionId);
+    console.log(`[Recorder] Audio sent to main process (session=${sessionId})`);
+  }
+
+  cancelRecording(sessionId: string): boolean {
+    if (this.activeSessionId !== sessionId) return false;
+
+    this.stopLevelMeter();
+    this.stopPCM16Streaming();
+    const mediaRecorder = this.mediaRecorder;
+    if (!mediaRecorder || mediaRecorder.state === "inactive") {
+      this.mediaRecorder = null;
+      this.audioChunks = [];
+      this.activeSessionId = null;
+      return false;
+    }
+
+    mediaRecorder.onstop = () => {
+      console.log(`[Recorder] Recording cancelled (session=${sessionId})`);
+    };
+    mediaRecorder.stop();
+    this.mediaRecorder = null;
+    this.audioChunks = [];
+    this.activeSessionId = null;
+    return true;
   }
 
   private resetStreamingStats(): void {
@@ -437,6 +507,7 @@ class AudioRecorder {
     }
     this.mediaRecorder = null;
     this.audioChunks = [];
+    this.activeSessionId = null;
     console.log("[Recorder] Cleaned up");
   }
 }
@@ -451,35 +522,20 @@ recorder
     console.log("[Recorder] Initialized and ready");
 
     // Listen for recording commands from main process
-    window.electron.onStartRecording((hindiMode: boolean) => {
-      console.log(`[Recorder] Received START command (hindi=${hindiMode})`);
+    window.electron.onStartRecording((hindiMode: boolean, sessionId: string) => {
+      console.log(`[Recorder] Received START command (hindi=${hindiMode}, session=${sessionId})`);
       playStartSound();
-      recorder.startRecording(hindiMode);
+      void recorder.startRecording(hindiMode, sessionId);
     });
 
-    window.electron.onStopRecording(() => {
-      console.log("[Recorder] Received STOP command");
-      playStopSound();
-      recorder.stopRecording();
+    window.electron.onStopRecording((sessionId: string) => {
+      console.log(`[Recorder] Received STOP command (session=${sessionId})`);
+      if (recorder.stopRecording(sessionId)) playStopSound();
     });
 
-    window.electron.onCancelRecording(() => {
-      console.log("[Recorder] Received CANCEL command");
-      // Stop level meter + PCM16 first
-      recorder["stopLevelMeter"]();
-      recorder["stopPCM16Streaming"]();
-
-      // Cancel: stop recording but don't process audio
-      if (
-        recorder["mediaRecorder"] &&
-        recorder["mediaRecorder"].state !== "inactive"
-      ) {
-        recorder["mediaRecorder"].onstop = () => {
-          console.log("[Recorder] Recording cancelled (audio discarded)");
-          recorder["audioChunks"] = [];
-        };
-        recorder["mediaRecorder"].stop();
-      }
+    window.electron.onCancelRecording((sessionId: string) => {
+      console.log(`[Recorder] Received CANCEL command (session=${sessionId})`);
+      recorder.cancelRecording(sessionId);
     });
   })
   .catch((error) => {

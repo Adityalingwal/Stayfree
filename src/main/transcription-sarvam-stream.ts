@@ -43,6 +43,9 @@ const RECONNECT_DELAY_MS = 1_000;
 /** Maximum consecutive reconnect attempts before giving up */
 const MAX_RECONNECT_ATTEMPTS = 2;
 
+/** Never let DNS/TCP/WebSocket setup hold the recording pipeline indefinitely. */
+const CONNECT_TIMEOUT_MS = 4_000;
+
 /**
  * Wrap raw PCM16 samples in a minimal WAV container.
  * Sarvam expects encoding="audio/wav" which means a proper WAV file —
@@ -109,6 +112,7 @@ export class SarvamStreamingTranscriber {
 
   // Connection-in-progress tracking
   private connectPromise: Promise<void> | null = null;
+  private connectAbort: ((error: Error) => void) | null = null;
 
   private getApiKey(): string | null {
     if (this.apiKey) return this.apiKey;
@@ -128,7 +132,7 @@ export class SarvamStreamingTranscriber {
    * - If CONNECTING: waits for the in-flight connection (no duplicate)
    * - If CLOSED/null: creates a new connection
    */
-  async connect(): Promise<void> {
+  async connect(timeoutMs = CONNECT_TIMEOUT_MS): Promise<void> {
     const apiKey = this.getApiKey();
     if (!apiKey) throw new Error("Sarvam API key not configured");
 
@@ -150,11 +154,54 @@ export class SarvamStreamingTranscriber {
     // Clean up any dead socket without throwing
     this.cleanupSocket();
 
-    this.connectPromise = this.doConnect(apiKey);
+    const connectPromise = this.connectWithTimeout(apiKey, timeoutMs);
+    this.connectPromise = connectPromise;
     try {
-      await this.connectPromise;
+      await connectPromise;
     } finally {
-      this.connectPromise = null;
+      // An aborted connection may already have been replaced by a newer one.
+      if (this.connectPromise === connectPromise) {
+        this.connectPromise = null;
+      }
+    }
+  }
+
+  private async connectWithTimeout(
+    apiKey: string,
+    timeoutMs: number,
+  ): Promise<void> {
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    let abortReject: ((error: Error) => void) | null = null;
+    const abortPromise = new Promise<void>((_resolve, reject) => {
+      abortReject = reject;
+      this.connectAbort = reject;
+    });
+    const timeoutPromise = new Promise<void>((_resolve, reject) => {
+      timeout = setTimeout(() => {
+        reject(new Error(`Sarvam connection timed out after ${timeoutMs}ms`));
+      }, timeoutMs);
+    });
+    const socketPromise = this.doConnect(apiKey);
+    const connectingSocket = this.ws;
+
+    try {
+      await Promise.race([
+        socketPromise,
+        timeoutPromise,
+        abortPromise,
+      ]);
+    } catch (error) {
+      // A timed-out/aborted CONNECTING socket must not open later and become a
+      // stale connection owned by an already-finished recording.
+      if (this.ws === connectingSocket) {
+        this.cleanupSocket();
+      }
+      throw error;
+    } finally {
+      if (timeout) clearTimeout(timeout);
+      if (this.connectAbort === abortReject) {
+        this.connectAbort = null;
+      }
     }
   }
 
@@ -195,6 +242,7 @@ export class SarvamStreamingTranscriber {
         this.rejectPendingFlush(
           new Error(`WebSocket closed before transcript (code=${code})`),
         );
+        reject(new Error(`WebSocket closed before connecting (code=${code})`));
 
         // Auto-reconnect if the close was not intentional (server timeout, network drop, etc.)
         if (!this.intentionalClose) {
@@ -278,12 +326,15 @@ export class SarvamStreamingTranscriber {
    * out on client but server still processing — its late response would
    * corrupt the next flush result if we reuse the same connection).
    */
-  async reconnect(): Promise<void> {
+  async reconnect(timeoutMs = CONNECT_TIMEOUT_MS): Promise<void> {
     this.resetSession();
     this.cancelReconnect();
     this.stopKeepalive();
+    this.abortPendingConnect(
+      new Error("Sarvam connection replaced for transcription retry"),
+    );
     this.cleanupSocket();
-    await this.connect();
+    await this.connect(timeoutMs);
   }
 
   // ─── Recording lifecycle ────────────────────────────────────────────────
@@ -369,8 +420,8 @@ export class SarvamStreamingTranscriber {
 
   // ─── Audio sending ──────────────────────────────────────────────────────
 
-  sendChunk(pcm16: Buffer): void {
-    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) return;
+  sendChunk(pcm16: Buffer): boolean {
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) return false;
     // Sarvam requires a complete WAV file per chunk (header + PCM16 samples)
     const wav = wrapPcm16InWav(pcm16);
     const frame = {
@@ -380,7 +431,13 @@ export class SarvamStreamingTranscriber {
         encoding: "audio/wav",
       },
     };
-    this.ws.send(JSON.stringify(frame));
+    try {
+      this.ws.send(JSON.stringify(frame));
+      return true;
+    } catch (error) {
+      console.warn("[Sarvam Stream] Failed to send audio chunk:", error);
+      return false;
+    }
   }
 
   flush(timeoutMs = 1500): Promise<string> {
@@ -419,8 +476,24 @@ export class SarvamStreamingTranscriber {
     this.cancelReconnect();
     this.stopKeepalive();
     this.resetSession();
+    this.abortPendingConnect(new Error("Sarvam connection shut down"));
     this.cleanupSocket();
     console.log("[Sarvam Stream] Shut down (intentional)");
+  }
+
+  /**
+   * Abort every pending network operation owned by the current pipeline.
+   * The next recording can establish a clean connection normally.
+   */
+  abortCurrentOperation(reason: string): void {
+    const error = new Error(reason);
+    this.cancelReconnect();
+    this.stopKeepalive();
+    this.rejectPendingFlush(error);
+    this.abortPendingConnect(error);
+    this.cleanupSocket();
+    this.transcriptSegments = [];
+    console.warn(`[Sarvam Stream] Current operation aborted: ${reason}`);
   }
 
   /**
@@ -443,6 +516,16 @@ export class SarvamStreamingTranscriber {
       }
       this.ws = null;
     }
+  }
+
+  private abortPendingConnect(error: Error): void {
+    if (!this.connectAbort) return;
+    const reject = this.connectAbort;
+    this.connectAbort = null;
+    // Allow a replacement connection to start immediately. The old connect()
+    // finally block uses identity checking and cannot clear the replacement.
+    this.connectPromise = null;
+    reject(error);
   }
 
   // ─── State queries ──────────────────────────────────────────────────────

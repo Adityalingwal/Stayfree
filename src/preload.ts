@@ -21,24 +21,24 @@ type AudioStreamStatsPayload = {
 
 contextBridge.exposeInMainWorld("electron", {
   // --- Recorder (hidden window) ---
-  onStartRecording: (callback: (hindiMode: boolean) => void) => {
-    ipcRenderer.on("start-recording", (_event, hindiMode: boolean) => callback(hindiMode));
+  onStartRecording: (callback: (hindiMode: boolean, sessionId: string) => void) => {
+    ipcRenderer.on("start-recording", (_event, hindiMode: boolean, sessionId: string) => callback(hindiMode, sessionId));
   },
-  onStopRecording: (callback: () => void) => {
-    ipcRenderer.on("stop-recording", callback);
+  onStopRecording: (callback: (sessionId: string) => void) => {
+    ipcRenderer.on("stop-recording", (_event, sessionId: string) => callback(sessionId));
   },
-  onCancelRecording: (callback: () => void) => {
-    ipcRenderer.on("cancel-recording", callback);
+  onCancelRecording: (callback: (sessionId: string) => void) => {
+    ipcRenderer.on("cancel-recording", (_event, sessionId: string) => callback(sessionId));
   },
-  sendAudioData: (audioBuffer: ArrayBuffer) => {
+  sendAudioData: (audioBuffer: ArrayBuffer, sessionId: string) => {
     const buffer = Buffer.from(audioBuffer);
-    ipcRenderer.send("audio-captured", buffer);
+    ipcRenderer.send("audio-captured", buffer, sessionId);
   },
-  sendAudioChunk: (chunk: ArrayBuffer) => {
-    ipcRenderer.send("audio-chunk-stream", Buffer.from(chunk));
+  sendAudioChunk: (chunk: ArrayBuffer, sessionId: string) => {
+    ipcRenderer.send("audio-chunk-stream", Buffer.from(chunk), sessionId);
   },
-  sendAudioStreamStats: (stats: AudioStreamStatsPayload) => {
-    ipcRenderer.send("audio-stream-stats", stats);
+  sendAudioStreamStats: (stats: AudioStreamStatsPayload, sessionId: string) => {
+    ipcRenderer.send("audio-stream-stats", stats, sessionId);
   },
 
   // --- Onboarding / Permissions ---
@@ -157,12 +157,12 @@ declare global {
   interface Window {
     electron: {
       // Recorder
-      onStartRecording: (callback: (hindiMode: boolean) => void) => void;
-      onStopRecording: (callback: () => void) => void;
-      onCancelRecording: (callback: () => void) => void;
-      sendAudioData: (audioBuffer: ArrayBuffer) => void;
-      sendAudioChunk: (chunk: ArrayBuffer) => void;
-      sendAudioStreamStats: (stats: AudioStreamStatsPayload) => void;
+      onStartRecording: (callback: (hindiMode: boolean, sessionId: string) => void) => void;
+      onStopRecording: (callback: (sessionId: string) => void) => void;
+      onCancelRecording: (callback: (sessionId: string) => void) => void;
+      sendAudioData: (audioBuffer: ArrayBuffer, sessionId: string) => void;
+      sendAudioChunk: (chunk: ArrayBuffer, sessionId: string) => void;
+      sendAudioStreamStats: (stats: AudioStreamStatsPayload, sessionId: string) => void;
       // Onboarding / Permissions
       checkPermissions: () => Promise<{
         mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";

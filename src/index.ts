@@ -75,6 +75,9 @@ interface HindiRecordingSession {
   chunkCount: number;
   chunkBytes: number;
   energySummary: AudioStreamStatsPayload | null;
+  needsReplay: boolean;
+  pipelineId: number | null;
+  pipelineTimer: ReturnType<typeof setTimeout> | null;
 }
 
 class PipelineError extends Error {
@@ -88,8 +91,9 @@ class PipelineError extends Error {
   }
 }
 
-const HINDI_STREAM_MAX_ATTEMPTS = 3;
-const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 15000;
+/** Initial attempt plus one clean reconnect/replay attempt. */
+const HINDI_STREAM_MAX_ATTEMPTS = 2;
+const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 7_000;
 
 /** Safety net: max time the app can stay in "processing" state before force-reset */
 const PROCESSING_TIMEOUT_MS = 20_000;
@@ -106,8 +110,17 @@ process.on("uncaughtException", (error) => {
   // If we're stuck in processing state due to the error, force reset
   if (isProcessing) {
     console.warn("[Main] Force-resetting processing state after uncaught exception");
+    getSarvamStreamTranscriber().abortCurrentOperation(
+      "Pipeline aborted after an uncaught exception",
+    );
+    activePipelineId = null;
     isProcessing = false;
     activeRecordingSource = null;
+    clearHindiSession();
+    if (processingTimer) {
+      clearTimeout(processingTimer);
+      processingTimer = null;
+    }
     updateTrayState("idle");
     sendWidgetState("idle");
   }
@@ -118,6 +131,8 @@ type AppState = "idle" | "recording" | "processing";
 let currentState: AppState = "idle";
 let isProcessing = false; // Guard against concurrent pipeline runs
 let processingTimer: ReturnType<typeof setTimeout> | null = null; // Failsafe timer
+let pipelineSequence = 0;
+let activePipelineId: number | null = null;
 type RecordingSource = "hotkey" | "widget" | null;
 let activeRecordingSource: RecordingSource = null;
 let lastRecordingSource: RecordingSource = null;
@@ -420,11 +435,15 @@ function createHindiSession(): HindiRecordingSession {
     chunkCount: 0,
     chunkBytes: 0,
     energySummary: null,
+    needsReplay: false,
+    pipelineId: null,
+    pipelineTimer: null,
   };
 }
 
-function startHindiSession(): void {
+function startHindiSession(): HindiRecordingSession {
   activeHindiSession = createHindiSession();
+  return activeHindiSession;
 }
 
 function stopHindiSession(): void {
@@ -433,8 +452,68 @@ function stopHindiSession(): void {
   }
 }
 
-function clearHindiSession(): void {
+function clearHindiSession(expectedSession?: HindiRecordingSession): void {
+  if (expectedSession && activeHindiSession !== expectedSession) return;
   activeHindiSession = null;
+}
+
+function beginRecording(
+  source: Exclude<RecordingSource, null>,
+  widgetState: Extract<WidgetUiState, "recording-hotkey" | "recording-click">,
+  logPrefix: "Main" | "Widget",
+): void {
+  if (!recorderWindow) return;
+
+  activeRecordingSource = source;
+  lastRecordingSource = source;
+  updateTrayState("recording");
+  sendWidgetState(widgetState);
+
+  const session = startHindiSession();
+  const streamer = getSarvamStreamTranscriber();
+  streamer.resetSession();
+  streamer.markRecordingStart();
+  session.needsReplay = !streamer.isConnected;
+
+  // Capture must begin immediately. Network setup runs in parallel so a slow
+  // connection can never make STOP arrive before the recorder's START.
+  recorderWindow.webContents.send("start-recording", true, session.sessionId);
+
+  void streamer.connect().catch((error) => {
+    console.error(`[${logPrefix}] Sarvam stream connect failed:`, error);
+    // PCM stays buffered in the recording session and is replayed during ASR.
+    session.needsReplay = true;
+  });
+}
+
+function armPipelineDeadline(session: HindiRecordingSession): number {
+  const pipelineId = ++pipelineSequence;
+  activePipelineId = pipelineId;
+  session.pipelineId = pipelineId;
+
+  if (processingTimer) clearTimeout(processingTimer);
+  const timer = setTimeout(() => {
+    if (activePipelineId === pipelineId) {
+      console.error(
+        `[Pipeline] ✗ Processing timeout after ${PROCESSING_TIMEOUT_MS}ms — force resetting`,
+      );
+      getSarvamStreamTranscriber().abortCurrentOperation(
+        `Pipeline timed out after ${PROCESSING_TIMEOUT_MS}ms`,
+      );
+      clearHindiSession(session);
+      activeRecordingSource = null;
+      activePipelineId = null;
+      isProcessing = false;
+      updateTrayState("idle");
+      sendWidgetState("idle");
+    }
+    if (processingTimer === timer) processingTimer = null;
+    session.pipelineTimer = null;
+  }, PROCESSING_TIMEOUT_MS);
+
+  session.pipelineTimer = timer;
+  processingTimer = timer;
+  return pipelineId;
 }
 
 function mapPipelineError(error: unknown): PipelineError {
@@ -499,18 +578,28 @@ async function transcribeHindiWithRetries(
 
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const attemptStart = Date.now();
-    const shouldReplay = attempt > 1 || !streamer.isConnected;
+    const shouldReplay =
+      attempt > 1 || session.needsReplay || !streamer.isConnected;
 
     try {
       if (shouldReplay) {
-        // Force fresh connection — reusing the same WS after a flush timeout
-        // causes stale server responses to corrupt the next flush result
-        await streamer.reconnect();
+        if (attempt > 1) {
+          // A retry gets a fresh socket so a late response from the previous
+          // flush cannot be mistaken for this recording.
+          await streamer.reconnect();
+        } else {
+          // Recording began while offline/connecting. Reuse the bounded warm
+          // connection attempt when possible, then replay the complete buffer.
+          await streamer.connect();
+        }
         streamer.markRecordingStart();
 
         for (const pcmChunk of session.pcmChunks) {
-          streamer.sendChunk(pcmChunk);
+          if (!streamer.sendChunk(pcmChunk)) {
+            throw new Error("WebSocket closed while replaying recorded audio");
+          }
         }
+        session.needsReplay = false;
       }
 
       const transcript = (
@@ -904,30 +993,14 @@ function registerSettingsHandlers(): void {
 // --- Widget IPC Handlers ---
 
 function registerWidgetHandlers(): void {
-  ipcMain.on("widget-start-recording", async () => {
+  ipcMain.on("widget-start-recording", () => {
     if (isProcessing || currentState !== "idle") return;
     if (!recorderWindow) {
       console.error("[Widget] Recorder window unavailable");
       return;
     }
 
-    activeRecordingSource = "widget";
-    lastRecordingSource = "widget";
-    updateTrayState("recording");
-    sendWidgetState("recording-click");
-
-    startHindiSession();
-
-    // Open the Sarvam WebSocket stream before telling the renderer to start
-    try {
-      const streamer = getSarvamStreamTranscriber();
-      await streamer.connect();
-      streamer.markRecordingStart();
-    } catch (err) {
-      console.error("[Widget] Sarvam stream connect failed:", err);
-    }
-
-    recorderWindow.webContents.send("start-recording", true);
+    beginRecording("widget", "recording-click", "Widget");
   });
 
   ipcMain.on("widget-stop-recording", () => {
@@ -942,6 +1015,7 @@ function registerWidgetHandlers(): void {
       return;
     }
 
+    const session = activeHindiSession;
     activeRecordingSource = null;
     stopHindiSession();
     if (isShortTap()) {
@@ -951,8 +1025,11 @@ function registerWidgetHandlers(): void {
     } else {
       updateTrayState("processing");
       sendWidgetState("processing");
+      if (session) armPipelineDeadline(session);
     }
-    recorderWindow.webContents.send("stop-recording");
+    if (session) {
+      recorderWindow.webContents.send("stop-recording", session.sessionId);
+    }
   });
 
   ipcMain.on("widget-cancel-recording", () => {
@@ -966,9 +1043,13 @@ function registerWidgetHandlers(): void {
       return;
     }
 
+    const session = activeHindiSession;
     activeRecordingSource = null;
-    clearHindiSession();
-    recorderWindow.webContents.send("cancel-recording");
+    clearHindiSession(session ?? undefined);
+    getSarvamStreamTranscriber().resetSession();
+    if (session) {
+      recorderWindow.webContents.send("cancel-recording", session.sessionId);
+    }
     updateTrayState("idle");
     sendWidgetState("idle");
   });
@@ -1052,7 +1133,7 @@ app.on("ready", () => {
   // Initialize hotkey manager (hold key push-to-talk)
   const hotkeyManager = getHotkeyManager();
 
-  hotkeyManager.on("recording-start", async () => {
+  hotkeyManager.on("recording-start", () => {
     if (isProcessing || currentState !== "idle") return;
     if (!recorderWindow) {
       console.error("[Main] Recorder window unavailable");
@@ -1060,25 +1141,7 @@ app.on("ready", () => {
     }
 
     console.log("[Main] Hotkey pressed - starting recording");
-    activeRecordingSource = "hotkey";
-    lastRecordingSource = "hotkey";
-    updateTrayState("recording");
-    sendWidgetState("recording-hotkey");
-
-    startHindiSession();
-
-    // Open the Sarvam WebSocket stream before telling the renderer to start
-    try {
-      const streamer = getSarvamStreamTranscriber();
-      await streamer.connect();
-      streamer.markRecordingStart();
-    } catch (err) {
-      console.error("[Main] Sarvam stream connect failed:", err);
-      // Non-fatal: the retry path will re-connect on flush
-    }
-
-    // Tell recorder window to start capturing audio (PCM16 streaming on)
-    recorderWindow.webContents.send("start-recording", true);
+    beginRecording("hotkey", "recording-hotkey", "Main");
   });
 
   hotkeyManager.on("recording-stop", () => {
@@ -1095,6 +1158,7 @@ app.on("ready", () => {
 
     console.log("[Main] Hotkey released - stopping recording");
     // Go directly to "processing" - avoids idle flash between recording and processing
+    const session = activeHindiSession;
     activeRecordingSource = null;
     stopHindiSession();
     if (isShortTap()) {
@@ -1104,10 +1168,13 @@ app.on("ready", () => {
     } else {
       updateTrayState("processing");
       sendWidgetState("processing");
+      if (session) armPipelineDeadline(session);
     }
 
     // Tell recorder window to stop and send audio
-    recorderWindow.webContents.send("stop-recording");
+    if (session) {
+      recorderWindow.webContents.send("stop-recording", session.sessionId);
+    }
   });
 
   // Start listening for hotkeys
@@ -1131,23 +1198,28 @@ app.on("ready", () => {
   }
 
   // IPC Handler: Forward PCM16 chunks to Sarvam streaming transcriber (Hindi)
-  ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer) => {
-    if (activeHindiSession) {
-      activeHindiSession.pcmChunks.push(chunk);
-      activeHindiSession.chunkCount += 1;
-      activeHindiSession.chunkBytes += chunk.length;
-    }
+  ipcMain.on("audio-chunk-stream", (_event, chunk: Buffer, sessionId: string) => {
+    const session = activeHindiSession;
+    if (!session || session.sessionId !== sessionId) return;
 
+    session.pcmChunks.push(chunk);
+    session.chunkCount += 1;
+    session.chunkBytes += chunk.length;
+
+    // Once any live chunk is missed, stop mixing partial live audio with later
+    // chunks. The complete local buffer will be replayed on a clean session.
     const streamer = getSarvamStreamTranscriber();
-    if (streamer.isConnected) {
-      streamer.sendChunk(chunk);
+    if (!session.needsReplay && !streamer.sendChunk(chunk)) {
+      session.needsReplay = true;
     }
   });
 
   ipcMain.on(
     "audio-stream-stats",
-    (_event, stats: AudioStreamStatsPayload) => {
-      if (!activeHindiSession) return;
+    (_event, stats: AudioStreamStatsPayload, sessionId: string) => {
+      if (!activeHindiSession || activeHindiSession.sessionId !== sessionId) {
+        return;
+      }
       activeHindiSession.energySummary = stats;
       activeHindiSession.chunkCount = Math.max(
         activeHindiSession.chunkCount,
@@ -1161,7 +1233,11 @@ app.on("ready", () => {
   );
 
   // IPC Handler: Receive audio blob from renderer — full pipeline
-  ipcMain.on("audio-captured", async (_event, audioData: Buffer) => {
+  ipcMain.on("audio-captured", async (
+    _event,
+    audioData: Buffer,
+    sessionId: string,
+  ) => {
     // Guard: prevent concurrent pipeline runs
     if (isProcessing) {
       console.warn("[Pipeline] Already processing - ignoring new audio");
@@ -1173,6 +1249,11 @@ app.on("ready", () => {
     // belongs to the superseded recording — drop it, don't touch live state.
     if (currentState === "recording") {
       console.log("[Pipeline] Stale audio from a superseded recording — dropping");
+      return;
+    }
+    const session = activeHindiSession;
+    if (!session || session.sessionId !== sessionId) {
+      console.log(`[Pipeline] Stale audio for session=${sessionId} — dropping`);
       return;
     }
     isProcessing = true;
@@ -1195,20 +1276,10 @@ app.on("ready", () => {
       return;
     }
 
-    // Start processing timeout failsafe — ensures we never stay stuck forever
-    if (processingTimer) clearTimeout(processingTimer);
-    processingTimer = setTimeout(() => {
-      if (isProcessing) {
-        console.error(`[Pipeline] ✗ Processing timeout after ${PROCESSING_TIMEOUT_MS}ms — force resetting`);
-        getSarvamStreamTranscriber().resetSession();
-        clearHindiSession();
-        activeRecordingSource = null;
-        isProcessing = false;
-        updateTrayState("idle");
-        sendWidgetState("idle");
-      }
-      processingTimer = null;
-    }, PROCESSING_TIMEOUT_MS);
+    // The deadline starts on key/button release, before MediaRecorder finishes
+    // assembling its blob. Fall back to arming here only for defensive safety.
+    const pipelineId = session.pipelineId ?? armPipelineDeadline(session);
+    const thisPipelineTimer = session.pipelineTimer;
 
     // Capture source before any async work (activeRecordingSource may change)
     const capturedSource = lastRecordingSource;
@@ -1225,11 +1296,24 @@ app.on("ready", () => {
       // --- Save audio to userData ---
       const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
       const audioFilename = await saveAudioFile(audioData, timestamp);
+      if (activePipelineId !== pipelineId) {
+        throw new PipelineError(
+          "STREAM_TIMEOUT",
+          "Transcription was cancelled after reaching its time limit.",
+        );
+      }
 
       // --- Step 1: ASR (Sarvam streaming) ---
       const asrStart = Date.now();
-      const transcript = await transcribeHindiWithRetries(activeHindiSession);
+      const transcript = await transcribeHindiWithRetries(session);
       const L_asr = Date.now() - asrStart;
+
+      if (activePipelineId !== pipelineId) {
+        throw new PipelineError(
+          "STREAM_TIMEOUT",
+          "Transcription was cancelled after reaching its time limit.",
+        );
+      }
 
       if (!transcript) {
         // Error is swallowed intentionally — no user-facing bubble, log only.
@@ -1273,6 +1357,12 @@ app.on("ready", () => {
       }
 
       // --- Step 3: Paste ---
+      if (activePipelineId !== pipelineId) {
+        throw new PipelineError(
+          "STREAM_TIMEOUT",
+          "Transcription was cancelled after reaching its time limit.",
+        );
+      }
       const pasteStart = Date.now();
       const pasted = await pasteText(formattedText);
       const L_paste = Date.now() - pasteStart;
@@ -1299,18 +1389,21 @@ app.on("ready", () => {
         `[Pipeline] ✗ ${mappedError.code}: ${mappedError.message}`,
       );
     } finally {
-      // Reset transcript state — connection stays alive for next recording
-      getSarvamStreamTranscriber().resetSession();
-      clearHindiSession();
-      activeRecordingSource = null;
-      isProcessing = false;
-      // Clear the processing timeout failsafe
-      if (processingTimer) {
-        clearTimeout(processingTimer);
-        processingTimer = null;
+      // A timed-out older pipeline must never clear a newer recording's state.
+      if (activePipelineId === pipelineId) {
+        getSarvamStreamTranscriber().resetSession();
+        clearHindiSession(session ?? undefined);
+        activeRecordingSource = null;
+        activePipelineId = null;
+        isProcessing = false;
+        updateTrayState("idle");
+        sendWidgetState("idle");
       }
-      updateTrayState("idle");
-      sendWidgetState("idle");
+      if (thisPipelineTimer && processingTimer === thisPipelineTimer) {
+        clearTimeout(thisPipelineTimer);
+        processingTimer = null;
+        session.pipelineTimer = null;
+      }
       // No re-warm needed — connection stays alive via keepalive pings
     }
   });
