@@ -486,24 +486,14 @@ async function transcribeHindiWithRetries(
 
   const stats = session.energySummary;
   console.log(
-    `[Sarvam Stream] session=${session.sessionId} chunks=${session.chunkCount} bytes=${session.chunkBytes} speech=${stats?.hasSpeech ?? "unknown"} borderline=${stats?.isBorderlineSpeech ?? "unknown"} voicedMs=${stats?.voicedMs ?? 0}`,
+    `[Sarvam Stream] session=${session.sessionId} chunks=${session.chunkCount} bytes=${session.chunkBytes} localSpeech=${stats?.hasSpeech ?? "unknown"} borderline=${stats?.isBorderlineSpeech ?? "unknown"} voicedMs=${stats?.voicedMs ?? 0}`,
   );
-  if (stats?.streamingFailed && session.chunkCount === 0) {
-    throw new PipelineError(
-      "NO_AUDIO",
-      "No audio detected. Try again and speak a bit louder.",
-    );
-  }
 
-  if (stats && !stats.hasSpeech && !stats.isBorderlineSpeech) {
-    throw new PipelineError(
-      "NO_AUDIO",
-      "No audio detected. Try again and speak a bit louder.",
-    );
-  }
-
-  const maxAttempts =
-    stats?.isBorderlineSpeech && !stats.hasSpeech ? 1 : HINDI_STREAM_MAX_ATTEMPTS;
+  // Energy stats are diagnostic only. The first 300ms can contain real speech
+  // (push-to-talk users naturally start speaking immediately), which makes the
+  // adaptive baseline misclassify that recording as silence. If PCM audio was
+  // captured, always let Sarvam decide whether it contains a transcript.
+  const maxAttempts = HINDI_STREAM_MAX_ATTEMPTS;
   const streamer = getSarvamStreamTranscriber();
   let lastError: PipelineError | null = null;
 
