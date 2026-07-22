@@ -9,11 +9,25 @@
 
 StayFree is a lightweight menu bar dictation app. Whenever you want to type — whether in VS Code, Slack, WhatsApp, Terminal, or Notes — just press and hold the hotkey (`Option` key on Mac / `Ctrl + Win` on Windows), speak naturally, and release. The raw transcript auto-pastes directly into your focused field within **200–500ms**.
 
-```mermaid
-flowchart TD
-    A["🎙️ Hold Hotkey (Option / Ctrl+Win)"] --> B["⚡ Live PCM16 Stream to Sarvam AI"]
-    B --> C["🖐️ Release Key"]
-    C --> D["✨ Instant Auto-Paste into active app"]
+```
+┌────────────────────────────────────────────────────────┐
+│  🎙️  Hold Hotkey (Mac: Left-Option | Win: Ctrl+Win)    │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│  ⚡  Live PCM16 Audio Stream to Sarvam AI (Saaras v3)  │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│  🖐️  Release Key                                       │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│  ✨  Instant Auto-Paste (Cmd+V / Ctrl+V into active app)│
+└────────────────────────────────────────────────────────┘
 ```
 
 ---
