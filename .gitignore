@@ -19,3 +19,4 @@ src/assets/space-watcher
 .vscode/
 .idea/
 coverage/
+scripts/debug/

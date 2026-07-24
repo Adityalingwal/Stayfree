@@ -2,7 +2,6 @@
 
 **Hold a key, speak in English or Hinglish, release — your text appears instantly in whatever app you're using.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform: macOS / Windows](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-lightgrey.svg)](https://apple.com)
 [![Electron](https://img.shields.io/badge/Framework-Electron-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
 [![Sarvam AI](https://img.shields.io/badge/Speech%20AI-Sarvam%20Saaras%20v3-blue)](https://www.sarvam.ai/)
@@ -75,9 +74,3 @@ When you run `npm start` for the first time:
 | **Windows** | Push-to-Talk Dictation | Press & hold **`Ctrl + Win`** key, speak, release |
 | **Both** | Re-paste Last Transcript | `Cmd + Shift + V` (Mac) / `Ctrl + Shift + V` (Win) |
 | **Both** | Open Settings UI | Click Menu Bar Tray Icon ➔ `Settings` |
-
----
-
-## 📄 License
-
-MIT © [Aditya Lingwal](https://github.com/Adityalingwal) — see [LICENSE](LICENSE).
