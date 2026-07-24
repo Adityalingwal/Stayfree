@@ -40,6 +40,18 @@ contextBridge.exposeInMainWorld("electron", {
   sendAudioStreamStats: (stats: AudioStreamStatsPayload, sessionId: string) => {
     ipcRenderer.send("audio-stream-stats", stats, sessionId);
   },
+  sendRecorderStarted: (sessionId: string) => {
+    ipcRenderer.send("recorder-started", sessionId);
+  },
+  sendRecorderError: (sessionId: string, message: string) => {
+    ipcRenderer.send("recorder-error", sessionId, message);
+  },
+  onSelectedMicChanged: (callback: (deviceId: string) => void) => {
+    const handler = (_event: Electron.IpcRendererEvent, deviceId: string) =>
+      callback(deviceId);
+    ipcRenderer.on("selected-mic-changed", handler);
+    return () => ipcRenderer.removeListener("selected-mic-changed", handler);
+  },
 
   // --- Onboarding / Permissions ---
   checkPermissions: (): Promise<{
@@ -163,6 +175,11 @@ declare global {
       sendAudioData: (audioBuffer: ArrayBuffer, sessionId: string) => void;
       sendAudioChunk: (chunk: ArrayBuffer, sessionId: string) => void;
       sendAudioStreamStats: (stats: AudioStreamStatsPayload, sessionId: string) => void;
+      sendRecorderStarted: (sessionId: string) => void;
+      sendRecorderError: (sessionId: string, message: string) => void;
+      onSelectedMicChanged: (
+        callback: (deviceId: string) => void,
+      ) => () => void;
       // Onboarding / Permissions
       checkPermissions: () => Promise<{
         mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";

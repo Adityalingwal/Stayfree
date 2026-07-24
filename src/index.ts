@@ -464,6 +464,33 @@ function clearHindiSession(expectedSession?: HindiRecordingSession): void {
   activeHindiSession = null;
 }
 
+function resetAfterRecorderError(sessionId: string, message: string): void {
+  const session = activeHindiSession;
+  if (!session || session.sessionId !== sessionId) {
+    console.log(`[Recorder] Ignoring stale error for session=${sessionId}`);
+    return;
+  }
+
+  console.error(`[Recorder] ${message} (session=${sessionId})`);
+  if (session.pipelineTimer) {
+    clearTimeout(session.pipelineTimer);
+    if (processingTimer === session.pipelineTimer) {
+      processingTimer = null;
+    }
+    session.pipelineTimer = null;
+  }
+  if (activePipelineId === session.pipelineId) {
+    activePipelineId = null;
+  }
+
+  getSarvamStreamTranscriber().resetSession();
+  clearHindiSession(session);
+  activeRecordingSource = null;
+  isProcessing = false;
+  updateTrayState("idle");
+  sendWidgetState("idle");
+}
+
 function beginRecording(
   source: Exclude<RecordingSource, null>,
   widgetState: Extract<WidgetUiState, "recording-hotkey" | "recording-click">,
@@ -1010,6 +1037,9 @@ function registerSettingsHandlers(): void {
   ipcMain.on("save-selected-mic", (_event, deviceId: string) => {
     store.set("selectedMicId", deviceId);
     console.log(`[Settings] Microphone saved: ${deviceId || "system default"}`);
+    if (recorderWindow && !recorderWindow.isDestroyed()) {
+      recorderWindow.webContents.send("selected-mic-changed", deviceId);
+    }
   });
 
   ipcMain.on("save-sound-enabled", (_event, enabled: boolean) => {
@@ -1045,6 +1075,33 @@ function registerSettingsHandlers(): void {
 // --- Widget IPC Handlers ---
 
 function registerWidgetHandlers(): void {
+  ipcMain.on("recorder-started", (event, sessionId: string) => {
+    if (
+      !recorderWindow ||
+      recorderWindow.isDestroyed() ||
+      event.sender !== recorderWindow.webContents
+    ) {
+      return;
+    }
+    if (activeHindiSession?.sessionId === sessionId) {
+      console.log(`[Recorder] Capture confirmed (session=${sessionId})`);
+    }
+  });
+
+  ipcMain.on(
+    "recorder-error",
+    (event, sessionId: string, message: string) => {
+      if (
+        !recorderWindow ||
+        recorderWindow.isDestroyed() ||
+        event.sender !== recorderWindow.webContents
+      ) {
+        return;
+      }
+      resetAfterRecorderError(sessionId, message);
+    },
+  );
+
   ipcMain.on("widget-start-recording", () => {
     if (isProcessing || currentState !== "idle") return;
     if (!recorderWindow) {

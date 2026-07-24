@@ -119,7 +119,17 @@ class AudioRecorder {
   private mediaRecorder: MediaRecorder | null = null;
   private audioChunks: Blob[] = [];
   private stream: MediaStream | null = null;
+  private currentTrack: MediaStreamTrack | null = null;
   private activeSessionId: string | null = null;
+  private preferredDeviceId = "";
+  private streamRefreshPromise: Promise<MediaStream> | null = null;
+  private refreshQueued = false;
+  private queuedRefreshReason = "";
+  private deviceChangeTimer: number | null = null;
+  private muteRecoveryTimer: number | null = null;
+  private refreshAfterRecording = false;
+  private removeSelectedMicListener: (() => void) | null = null;
+  private destroyed = false;
 
   // PCM16 streaming (Hindi path)
   private streamingAudioCtx: AudioContext | null = null;
@@ -149,70 +159,337 @@ class AudioRecorder {
   private readonly minVoicedMs = 180;
   private readonly minDelta = 0.0035;
   private readonly baselineMultiplier = 2.0;
+  private readonly deviceChangeDebounceMs = 500;
+  private readonly mutedRecoveryDelayMs = 1500;
 
   async initialize(): Promise<void> {
-    try {
-      this.stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          sampleRate: 44100,
-        },
-      });
+    const settings = await window.electron.getSettings().catch((error) => {
+      console.warn("[Recorder] Could not load microphone preference:", error);
+      return null;
+    });
+    this.preferredDeviceId = settings?.selectedMicId ?? "";
 
-      console.log("[Recorder] Microphone access granted");
+    navigator.mediaDevices.addEventListener(
+      "devicechange",
+      this.handleDeviceChange,
+    );
+    this.removeSelectedMicListener = window.electron.onSelectedMicChanged(
+      (deviceId) => {
+        this.preferredDeviceId = deviceId;
+        console.log(
+          `[Recorder] Microphone preference changed: ${deviceId || "system default"}`,
+        );
+        this.scheduleStreamRefresh("microphone preference changed", 0);
+      },
+    );
+
+    try {
+      await this.refreshStream("initialization", true);
+      console.log("[Recorder] Initialized and ready");
     } catch (error) {
-      console.error("[Recorder] Failed to get microphone access:", error);
-      throw error;
+      // Keep the recorder alive even if no device is currently available.
+      // A later devicechange or recording attempt will retry automatically.
+      console.error("[Recorder] Initial microphone setup failed:", error);
     }
   }
 
   async startRecording(hindiMode: boolean, sessionId: string): Promise<void> {
-    if (!this.stream) {
-      console.error("[Recorder] Cannot start - no audio stream");
-      return;
-    }
-
-    if (this.mediaRecorder && this.mediaRecorder.state !== "inactive") {
+    if (
+      this.activeSessionId ||
+      (this.mediaRecorder && this.mediaRecorder.state !== "inactive")
+    ) {
       console.warn(
         `[Recorder] Ignoring START for ${sessionId}; ${this.activeSessionId} is still active`,
       );
       return;
     }
 
-    // Reset chunks
-    const recordingChunks: Blob[] = [];
-    this.audioChunks = recordingChunks;
+    // Claim the session before awaiting device recovery. If STOP arrives while
+    // getUserMedia is still pending, stopRecording can cancel this attempt
+    // instead of letting recording begin after the user has released the key.
     this.activeSessionId = sessionId;
-    this.isHindiMode = hindiMode;
-    this.resetStreamingStats();
-    this.recordingStartMs = Date.now();
 
-    // --- MediaRecorder (WebM, always runs) ---
-    const mediaRecorder = new MediaRecorder(this.stream, {
-      mimeType: "audio/webm;codecs=opus",
-    });
-    this.mediaRecorder = mediaRecorder;
+    try {
+      const stream = await this.ensureHealthyStream("recording start");
+      if (this.activeSessionId !== sessionId) return;
 
-    mediaRecorder.ondataavailable = (event) => {
-      if (event.data.size > 0) {
-        recordingChunks.push(event.data);
-        console.log(
-          `[Recorder] Audio chunk received: ${event.data.size} bytes`,
+      // Reset chunks
+      const recordingChunks: Blob[] = [];
+      this.audioChunks = recordingChunks;
+      this.isHindiMode = hindiMode;
+      this.resetStreamingStats();
+      this.recordingStartMs = Date.now();
+
+      // --- MediaRecorder (WebM, always runs) ---
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: "audio/webm;codecs=opus",
+      });
+      this.mediaRecorder = mediaRecorder;
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          recordingChunks.push(event.data);
+          console.log(
+            `[Recorder] Audio chunk received: ${event.data.size} bytes`,
+          );
+        }
+      };
+      mediaRecorder.onerror = () => {
+        this.abortActiveRecording(
+          "The microphone stopped while recording. Please try again.",
         );
+      };
+
+      mediaRecorder.start();
+      playStartSound();
+      window.electron.sendRecorderStarted(sessionId);
+      console.log(`[Recorder] Recording started (WebM, session=${sessionId})`);
+
+      // --- Live level meter (both paths) ---
+      this.startLevelMeter();
+
+      // --- PCM16 AudioWorklet (Hindi only) ---
+      if (hindiMode) {
+        await this.startPCM16Streaming(sessionId);
       }
-    };
-
-    mediaRecorder.start();
-    console.log(`[Recorder] Recording started (WebM, session=${sessionId})`);
-
-    // --- Live level meter (both paths) ---
-    this.startLevelMeter();
-
-    // --- PCM16 AudioWorklet (Hindi only) ---
-    if (hindiMode) {
-      await this.startPCM16Streaming(sessionId);
+    } catch (error) {
+      if (this.activeSessionId !== sessionId) return;
+      const message = this.describeMicrophoneError(error);
+      console.error(`[Recorder] Cannot start ${sessionId}:`, error);
+      this.activeSessionId = null;
+      this.mediaRecorder = null;
+      this.audioChunks = [];
+      window.electron.sendRecorderError(sessionId, message);
     }
+  }
+
+  private buildAudioConstraints(deviceId = ""): MediaTrackConstraints {
+    return {
+      echoCancellation: true,
+      noiseSuppression: true,
+      sampleRate: 44100,
+      ...(deviceId ? { deviceId: { exact: deviceId } } : {}),
+    };
+  }
+
+  private isStreamHealthy(): boolean {
+    const track = this.stream?.getAudioTracks()[0];
+    return Boolean(
+      track &&
+        track.readyState === "live" &&
+        track.enabled &&
+        !track.muted,
+    );
+  }
+
+  private async ensureHealthyStream(reason: string): Promise<MediaStream> {
+    if (this.streamRefreshPromise) return this.streamRefreshPromise;
+    if (this.isStreamHealthy() && this.stream) return this.stream;
+    return this.refreshStream(reason, true);
+  }
+
+  private async refreshStream(
+    reason: string,
+    force = false,
+  ): Promise<MediaStream> {
+    if (!force && this.isStreamHealthy() && this.stream) return this.stream;
+    if (this.streamRefreshPromise) return this.streamRefreshPromise;
+
+    this.streamRefreshPromise = this.acquireFreshStream(reason);
+    try {
+      return await this.streamRefreshPromise;
+    } finally {
+      this.streamRefreshPromise = null;
+      if (this.refreshQueued && !this.activeSessionId && !this.destroyed) {
+        const queuedReason = this.queuedRefreshReason;
+        this.refreshQueued = false;
+        this.queuedRefreshReason = "";
+        window.setTimeout(() => {
+          void this.refreshStream(queuedReason, true).catch((error) => {
+            console.error("[Recorder] Queued microphone refresh failed:", error);
+          });
+        }, 0);
+      }
+    }
+  }
+
+  private async acquireFreshStream(reason: string): Promise<MediaStream> {
+    console.log(`[Recorder] Refreshing microphone stream (${reason})`);
+
+    let nextStream: MediaStream;
+    if (this.preferredDeviceId) {
+      try {
+        nextStream = await navigator.mediaDevices.getUserMedia({
+          audio: this.buildAudioConstraints(this.preferredDeviceId),
+        });
+      } catch (error) {
+        if (
+          error instanceof DOMException &&
+          error.name === "NotAllowedError"
+        ) {
+          throw error;
+        }
+        console.warn(
+          "[Recorder] Preferred microphone unavailable; falling back to system default:",
+          error,
+        );
+        nextStream = await navigator.mediaDevices.getUserMedia({
+          audio: this.buildAudioConstraints(),
+        });
+      }
+    } else {
+      nextStream = await navigator.mediaDevices.getUserMedia({
+        audio: this.buildAudioConstraints(),
+      });
+    }
+
+    if (this.destroyed) {
+      nextStream.getTracks().forEach((track) => track.stop());
+      throw new Error("Recorder window is closing");
+    }
+
+    this.replaceStream(nextStream);
+    const activeTrack = nextStream.getAudioTracks()[0];
+    console.log(
+      `[Recorder] Microphone ready: ${activeTrack?.label || "system default"}`,
+    );
+    return nextStream;
+  }
+
+  private replaceStream(nextStream: MediaStream): void {
+    const previousStream = this.stream;
+    this.stream = nextStream;
+    this.currentTrack = nextStream.getAudioTracks()[0] ?? null;
+
+    const track = this.currentTrack;
+    if (track) {
+      track.addEventListener("ended", () => {
+        if (this.currentTrack !== track) return;
+        console.warn("[Recorder] Microphone track ended");
+        this.handleStreamInvalidated(
+          "The microphone was disconnected. StayFree is reconnecting.",
+        );
+      });
+      track.addEventListener("mute", () => {
+        if (this.currentTrack !== track) return;
+        console.warn("[Recorder] Microphone track muted");
+        this.armMutedTrackRecovery(track);
+      });
+      track.addEventListener("unmute", () => {
+        if (this.currentTrack !== track) return;
+        console.log("[Recorder] Microphone track resumed");
+        this.clearMutedTrackRecovery();
+      });
+    }
+
+    if (previousStream && previousStream !== nextStream) {
+      previousStream.getTracks().forEach((previousTrack) => previousTrack.stop());
+    }
+  }
+
+  private readonly handleDeviceChange = (): void => {
+    console.log("[Recorder] Audio device list changed");
+    this.scheduleStreamRefresh("audio device changed");
+  };
+
+  private scheduleStreamRefresh(reason: string, delay = this.deviceChangeDebounceMs): void {
+    if (this.deviceChangeTimer !== null) {
+      window.clearTimeout(this.deviceChangeTimer);
+    }
+    this.deviceChangeTimer = window.setTimeout(() => {
+      this.deviceChangeTimer = null;
+      if (this.activeSessionId) {
+        this.refreshAfterRecording = true;
+        return;
+      }
+      if (this.streamRefreshPromise) {
+        this.refreshQueued = true;
+        this.queuedRefreshReason = reason;
+        return;
+      }
+      void this.refreshStream(reason, true).catch((error) => {
+        console.error("[Recorder] Automatic microphone recovery failed:", error);
+      });
+    }, delay);
+  }
+
+  private armMutedTrackRecovery(track: MediaStreamTrack): void {
+    this.clearMutedTrackRecovery();
+    this.muteRecoveryTimer = window.setTimeout(() => {
+      this.muteRecoveryTimer = null;
+      if (this.currentTrack !== track || !track.muted) return;
+      this.handleStreamInvalidated(
+        "The microphone stopped sending audio. StayFree is reconnecting.",
+      );
+    }, this.mutedRecoveryDelayMs);
+  }
+
+  private clearMutedTrackRecovery(): void {
+    if (this.muteRecoveryTimer !== null) {
+      window.clearTimeout(this.muteRecoveryTimer);
+      this.muteRecoveryTimer = null;
+    }
+  }
+
+  private handleStreamInvalidated(message: string): void {
+    this.clearMutedTrackRecovery();
+    if (this.activeSessionId) {
+      this.abortActiveRecording(message);
+    }
+    const invalidStream = this.stream;
+    this.stream = null;
+    this.currentTrack = null;
+    invalidStream?.getTracks().forEach((track) => track.stop());
+    void this.refreshStream("microphone stream invalidated", true).catch(
+      (error) => {
+        console.error("[Recorder] Microphone reconnection failed:", error);
+      },
+    );
+  }
+
+  private abortActiveRecording(message: string): void {
+    const sessionId = this.activeSessionId;
+    if (!sessionId) return;
+
+    this.stopLevelMeter();
+    this.stopPCM16Streaming();
+    const mediaRecorder = this.mediaRecorder;
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+      mediaRecorder.ondataavailable = null;
+      mediaRecorder.onstop = () => {
+        console.log(`[Recorder] Discarded interrupted session=${sessionId}`);
+      };
+      try {
+        mediaRecorder.stop();
+      } catch {
+        // The hardware may already have invalidated the recorder.
+      }
+    }
+    this.mediaRecorder = null;
+    this.audioChunks = [];
+    this.activeSessionId = null;
+    window.electron.sendRecorderError(sessionId, message);
+  }
+
+  private describeMicrophoneError(error: unknown): string {
+    if (error instanceof DOMException) {
+      if (error.name === "NotAllowedError") {
+        return "Microphone access is blocked. Allow it in system settings.";
+      }
+      if (
+        error.name === "NotFoundError" ||
+        error.name === "OverconstrainedError"
+      ) {
+        return "No available microphone was found.";
+      }
+      if (
+        error.name === "NotReadableError" ||
+        error.name === "AbortError"
+      ) {
+        return "The microphone is busy or unavailable. Please try again.";
+      }
+    }
+    return "StayFree could not start the microphone. Please try again.";
   }
 
   // Taps this.stream with an AnalyserNode and emits the RMS level ~30x/sec so
@@ -364,6 +641,10 @@ class AudioRecorder {
       this.mediaRecorder = null;
       this.audioChunks = [];
       this.activeSessionId = null;
+      window.electron.sendRecorderError(
+        sessionId,
+        "The microphone was still reconnecting. Please try again.",
+      );
       return false;
     }
 
@@ -402,6 +683,7 @@ class AudioRecorder {
 
     window.electron.sendAudioData(arrayBuffer, sessionId);
     console.log(`[Recorder] Audio sent to main process (session=${sessionId})`);
+    this.refreshStreamAfterRecordingIfNeeded();
   }
 
   cancelRecording(sessionId: string): boolean {
@@ -414,6 +696,7 @@ class AudioRecorder {
       this.mediaRecorder = null;
       this.audioChunks = [];
       this.activeSessionId = null;
+      this.refreshStreamAfterRecordingIfNeeded();
       return false;
     }
 
@@ -424,7 +707,18 @@ class AudioRecorder {
     this.mediaRecorder = null;
     this.audioChunks = [];
     this.activeSessionId = null;
+    this.refreshStreamAfterRecordingIfNeeded();
     return true;
+  }
+
+  private refreshStreamAfterRecordingIfNeeded(): void {
+    if (!this.refreshAfterRecording) return;
+    this.refreshAfterRecording = false;
+    void this.refreshStream("deferred audio device change", true).catch(
+      (error) => {
+        console.error("[Recorder] Deferred microphone refresh failed:", error);
+      },
+    );
   }
 
   private resetStreamingStats(): void {
@@ -499,12 +793,25 @@ class AudioRecorder {
   }
 
   cleanup(): void {
+    this.destroyed = true;
+    navigator.mediaDevices.removeEventListener(
+      "devicechange",
+      this.handleDeviceChange,
+    );
+    this.removeSelectedMicListener?.();
+    this.removeSelectedMicListener = null;
+    if (this.deviceChangeTimer !== null) {
+      window.clearTimeout(this.deviceChangeTimer);
+      this.deviceChangeTimer = null;
+    }
+    this.clearMutedTrackRecovery();
     this.stopLevelMeter();
     this.stopPCM16Streaming();
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
       this.stream = null;
     }
+    this.currentTrack = null;
     this.mediaRecorder = null;
     this.audioChunks = [];
     this.activeSessionId = null;
@@ -515,32 +822,29 @@ class AudioRecorder {
 // Create singleton instance
 const recorder = new AudioRecorder();
 
-// Initialize on load
-recorder
-  .initialize()
-  .then(() => {
-    console.log("[Recorder] Initialized and ready");
+// Register commands immediately. Initialization is allowed to fail and recover
+// later, so a temporary missing Bluetooth device can never permanently disable
+// the recorder until the app restarts.
+window.electron.onStartRecording((hindiMode: boolean, sessionId: string) => {
+  console.log(
+    `[Recorder] Received START command (hindi=${hindiMode}, session=${sessionId})`,
+  );
+  void recorder.startRecording(hindiMode, sessionId);
+});
 
-    // Listen for recording commands from main process
-    window.electron.onStartRecording((hindiMode: boolean, sessionId: string) => {
-      console.log(`[Recorder] Received START command (hindi=${hindiMode}, session=${sessionId})`);
-      playStartSound();
-      void recorder.startRecording(hindiMode, sessionId);
-    });
+window.electron.onStopRecording((sessionId: string) => {
+  console.log(`[Recorder] Received STOP command (session=${sessionId})`);
+  if (recorder.stopRecording(sessionId)) playStopSound();
+});
 
-    window.electron.onStopRecording((sessionId: string) => {
-      console.log(`[Recorder] Received STOP command (session=${sessionId})`);
-      if (recorder.stopRecording(sessionId)) playStopSound();
-    });
+window.electron.onCancelRecording((sessionId: string) => {
+  console.log(`[Recorder] Received CANCEL command (session=${sessionId})`);
+  recorder.cancelRecording(sessionId);
+});
 
-    window.electron.onCancelRecording((sessionId: string) => {
-      console.log(`[Recorder] Received CANCEL command (session=${sessionId})`);
-      recorder.cancelRecording(sessionId);
-    });
-  })
-  .catch((error) => {
-    console.error("[Recorder] Initialization failed:", error);
-  });
+// Initialize on load. The class keeps its device listeners active and retries
+// on the next device change or recording attempt if this first call fails.
+void recorder.initialize();
 
 // Cleanup on unload
 window.addEventListener("beforeunload", () => {

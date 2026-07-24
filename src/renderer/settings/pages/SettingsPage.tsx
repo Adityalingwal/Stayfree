@@ -99,9 +99,10 @@ function DevicePicker({
 }) {
   const [open, setOpen] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
-  const selectedLabel =
-    options.find((device) => device.deviceId === value)?.label ??
-    "System Default";
+  const selectedDevice = options.find((device) => device.deviceId === value);
+  const selectedLabel = value
+    ? selectedDevice?.label ?? "Selected microphone unavailable"
+    : "System Default";
 
   useEffect(() => {
     const closeOnOutsideClick = (event: MouseEvent) => {
@@ -131,7 +132,11 @@ function DevicePicker({
         <span>
           <strong>{selectedLabel}</strong>
           <small>
-            {value ? "Use this microphone for dictation" : "Follow your Mac input setting"}
+            {value
+              ? selectedDevice
+                ? "Use this microphone for dictation"
+                : "Using system default until it reconnects"
+              : "Follow your system input setting"}
           </small>
         </span>
         <ChevronIcon open={open} />
@@ -180,6 +185,26 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const refreshMicrophones = () => {
+      void navigator.mediaDevices
+        .enumerateDevices()
+        .then((devices) => {
+          setMicrophones(
+            devices
+              .filter((device) => device.kind === "audioinput")
+              .map((device) => ({
+                deviceId: device.deviceId,
+                label:
+                  device.label ||
+                  `Microphone ${device.deviceId.slice(0, 8)}`,
+              })),
+          );
+        })
+        .catch((error) =>
+          console.warn("[Settings] Microphone list unavailable:", error),
+        );
+    };
+
     window.electron.getSettings().then((settings) => {
       setSelectedMic(settings.selectedMicId);
       setSoundEnabled(settings.soundEnabled);
@@ -191,23 +216,14 @@ export default function SettingsPage() {
       .then((status) => setPlatform(status.platform))
       .catch(() => setPlatform(guessPlatform()));
 
-    navigator.mediaDevices
-      .enumerateDevices()
-      .then((devices) => {
-        setMicrophones(
-          devices
-            .filter((device) => device.kind === "audioinput")
-            .map((device) => ({
-              deviceId: device.deviceId,
-              label:
-                device.label ||
-                `Microphone ${device.deviceId.slice(0, 8)}`,
-            })),
-        );
-      })
-      .catch((error) =>
-        console.warn("[Settings] Microphone list unavailable:", error),
+    refreshMicrophones();
+    navigator.mediaDevices.addEventListener("devicechange", refreshMicrophones);
+    return () => {
+      navigator.mediaDevices.removeEventListener(
+        "devicechange",
+        refreshMicrophones,
       );
+    };
   }, []);
 
   const handleMicChange = (deviceId: string) => {
