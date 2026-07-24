@@ -60,10 +60,10 @@ npm start
 
 When you run `npm start` for the first time:
 
-1. **Automatic Onboarding Screen**: An Onboarding window will automatically appear asking for required permissions:
-   - **Microphone**: Click **Grant** to allow voice recording.
-   - **Accessibility** *(macOS only)*: Click **Open Settings** to allow hotkey detection and automated text pasting.
-2. Once permissions are granted, StayFree runs silently in your system tray / menu bar.
+1. An onboarding window will appear asking for the required permissions:
+   - **Microphone**: Click **Allow** to enable voice recording.
+   - **Accessibility** *(macOS only)*: Click **Open Settings** and enable **Electron** under Accessibility.
+2. Once the required permissions show **Granted**, click **Start using StayFree**. The app will continue running in your system tray / menu bar.
 
 ---
 
@@ -71,17 +71,10 @@ When you run `npm start` for the first time:
 
 | Platform | Action | Shortcut / Trigger |
 |---|---|---|
-| **macOS** | Push-to-Talk Dictation | Press & hold **`Left-Option`** (Alt) key, speak, release |
+| **macOS** | Push-to-Talk Dictation | Press & hold **`Left-Option`** key, speak, release |
 | **Windows** | Push-to-Talk Dictation | Press & hold **`Ctrl + Win`** key, speak, release |
-| **Both** | Re-paste Last Transcript | `Ctrl + Cmd + V` (Mac) / `Ctrl + Shift + V` (Win) |
+| **Both** | Re-paste Last Transcript | `Cmd + Shift + V` (Mac) / `Ctrl + Shift + V` (Win) |
 | **Both** | Open Settings UI | Click Menu Bar Tray Icon ➔ `Settings` |
-
----
-
-## 🔒 Privacy & Local State
-
-- **Local & ENV Config**: Your API key can be set in `.env` or saved locally via the app settings dashboard.
-- **Direct Streaming**: Audio streams directly from your device to Sarvam AI's WebSocket endpoint. No third-party proxy servers used.
 
 ---
 
