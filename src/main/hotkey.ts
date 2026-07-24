@@ -19,6 +19,7 @@ export interface HotkeyConfig {
 export class HotkeyManager extends EventEmitter {
   private pressedKeys = new Set<number>();
   private isRecording = false;
+  private isListening = false;
   private config: HotkeyConfig;
 
   constructor(config?: Partial<HotkeyConfig>) {
@@ -34,6 +35,10 @@ export class HotkeyManager extends EventEmitter {
   }
 
   start(): void {
+    if (this.isListening) {
+      return;
+    }
+
     console.log("[Hotkey] Starting hotkey listener...");
     console.log(
       `[Hotkey] Mode: ${isMac ? "Option" : "Ctrl+Win"} - HOLD to record, RELEASE to stop`,
@@ -49,12 +54,18 @@ export class HotkeyManager extends EventEmitter {
 
     // Start the hook
     uIOhook.start();
+    this.isListening = true;
     console.log("[Hotkey] Listener started");
   }
 
   stop(): void {
+    if (!this.isListening) {
+      return;
+    }
+
     console.log("[Hotkey] Stopping hotkey listener...");
     uIOhook.stop();
+    this.isListening = false;
     this.pressedKeys.clear();
     this.isRecording = false;
   }

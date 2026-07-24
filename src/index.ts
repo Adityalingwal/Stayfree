@@ -46,6 +46,13 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+// `electron-forge start` runs the generic Electron.app bundle. Override the
+// visible development identity while keeping the packaged bundle metadata
+// controlled by forge.config.ts.
+if (isMac) {
+  app.setName("StayFree");
+}
+
 let tray: Tray | null = null;
 let settingsWindow: BrowserWindow | null = null;
 let recorderWindow: BrowserWindow | null = null;
@@ -768,6 +775,28 @@ function createRecorderWindow(): void {
 
 // --- Settings / Dashboard Window ---
 
+function applyMacDockIcon(): void {
+  if (!isMac) return;
+
+  const iconPath = path.join(__dirname, "assets", "appIcon.png");
+  const icon = nativeImage.createFromPath(iconPath);
+  if (icon.isEmpty()) {
+    console.warn(`[Branding] Could not load Dock icon from ${iconPath}`);
+    return;
+  }
+
+  app.dock.setIcon(icon);
+  console.log("[Branding] StayFree Dock icon applied");
+}
+
+async function showMacDock(): Promise<void> {
+  if (!isMac) return;
+  await app.dock.show();
+  // Showing the generic Electron.app can restore its bundled icon in
+  // development, so apply StayFree only after the Dock is visible.
+  applyMacDockIcon();
+}
+
 function openSettingsWindow(): void {
   if (settingsWindow) {
     settingsWindow.focus();
@@ -776,7 +805,7 @@ function openSettingsWindow(): void {
 
   // Show dock so the dashboard window is discoverable
   if (isMac) {
-    app.dock.show();
+    void showMacDock();
   }
 
   const settingsWindowOptions: Electron.BrowserWindowConstructorOptions = {
@@ -795,7 +824,7 @@ function openSettingsWindow(): void {
 
   if (isMac) {
     settingsWindowOptions.titleBarStyle = "hiddenInset";
-    settingsWindowOptions.trafficLightPosition = { x: 14, y: 14 };
+    settingsWindowOptions.trafficLightPosition = { x: 18, y: 25 };
   }
 
   settingsWindow = new BrowserWindow(settingsWindowOptions);
@@ -822,17 +851,30 @@ function getInputAutomationStatus(): boolean | null {
 // --- Onboarding Window ---
 
 function needsOnboarding(): boolean {
-  if (store.get("onboardingComplete")) {
-    // Even if onboarding was completed, re-show if permissions were revoked
-    const micStatus = systemPreferences.getMediaAccessStatus("microphone");
-    const inputAutomation = getInputAutomationStatus();
-    const onboardingReady = isMac
-      ? micStatus === "granted" && inputAutomation
-      : micStatus === "granted";
+  const onboardingComplete = store.get("onboardingComplete");
+  const micStatus = systemPreferences.getMediaAccessStatus("microphone");
+  const inputAutomation = getInputAutomationStatus();
+  const forceOnboarding =
+    !app.isPackaged && process.env.STAYFREE_FORCE_ONBOARDING === "1";
+  const onboardingReady = isMac
+    ? micStatus === "granted" && inputAutomation
+    : micStatus === "granted";
 
-    if (onboardingReady) {
-      return false;
-    }
+  console.log(
+    `[Onboarding] Startup state: platform=${process.platform}, packaged=${app.isPackaged}, completed=${onboardingComplete}, forced=${forceOnboarding}, microphone=${micStatus}, accessibility=${inputAutomation ?? "not-required"}`,
+  );
+
+  if (forceOnboarding) {
+    console.log("[Onboarding] Forced open for development verification");
+    return true;
+  }
+
+  if (onboardingComplete && onboardingReady) {
+    return false;
+  }
+
+  if (onboardingComplete) {
+    // Even if onboarding was completed, re-show if permissions were revoked
     console.log(
       "[Onboarding] Permissions revoked since last onboarding - re-showing",
     );
@@ -848,12 +890,12 @@ function showOnboardingWindow(): void {
 
   // Temporarily show dock so the onboarding window is discoverable
   if (isMac) {
-    app.dock.show();
+    void showMacDock();
   }
 
   onboardingWindow = new BrowserWindow({
-    width: 520,
-    height: 600,
+    width: 820,
+    height: 580,
     title: "Welcome to StayFree",
     resizable: false,
     minimizable: false,
@@ -865,6 +907,13 @@ function showOnboardingWindow(): void {
       nodeIntegration: false,
       contextIsolation: true,
     },
+    ...(isMac
+      ? {
+          titleBarStyle: "hiddenInset",
+          trafficLightPosition: { x: 18, y: 18 },
+          backgroundColor: "#f4f2ec",
+        }
+      : {}),
   });
 
   // Hash routing: renderer.ts checks window.location.hash to decide what to render
@@ -934,6 +983,9 @@ function registerPermissionHandlers(): void {
   ipcMain.on("complete-onboarding", () => {
     store.set("onboardingComplete", true);
     console.log("[Onboarding] Completed");
+    if (isMac) {
+      getHotkeyManager().start();
+    }
     if (onboardingWindow) {
       onboardingWindow.close();
     }
@@ -1082,6 +1134,7 @@ function registerWidgetHandlers(): void {
 app.on("ready", () => {
   // Hide dock icon on macOS - this is a tray-only app
   if (isMac) {
+    applyMacDockIcon();
     app.dock.hide();
   }
 
@@ -1178,7 +1231,13 @@ app.on("ready", () => {
   });
 
   // Start listening for hotkeys
-  hotkeyManager.start();
+  if (!isMac || getInputAutomationStatus()) {
+    hotkeyManager.start();
+  } else {
+    console.log(
+      "[Hotkey] Waiting for Accessibility permission before starting listener",
+    );
+  }
 
   // Register fallback hotkey to paste last transcript
   const fallbackRegistered = globalShortcut.register(fallbackPasteShortcut, async () => {

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function guessPlatform(): "darwin" | "win32" | "linux" {
-  const p = navigator.platform.toLowerCase();
-  if (p.includes("mac")) return "darwin";
-  if (p.includes("win")) return "win32";
+  const platform = navigator.platform.toLowerCase();
+  if (platform.includes("mac")) return "darwin";
+  if (platform.includes("win")) return "win32";
   return "linux";
 }
 
@@ -12,211 +12,163 @@ interface AudioDevice {
   label: string;
 }
 
-// ─── Icons ──────────────────────────────────────────────────────
-
 function MicIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-      <line x1="12" y1="19" x2="12" y2="23" />
-      <line x1="8" y1="23" x2="16" y2="23" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="9" y="2" width="6" height="12" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8" />
     </svg>
   );
 }
 
 function SoundIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 5 6 9H2v6h4l5 4ZM16 9a5 5 0 0 1 0 6M19 6a9 9 0 0 1 0 12" />
     </svg>
   );
 }
 
 function InfoIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="12" y1="16" x2="12" y2="12" />
-      <line x1="12" y1="8" x2="12.01" y2="8" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5M12 8h.01" />
     </svg>
   );
 }
 
-function ChevronIcon() {
+function ChevronIcon({ open = false }: { open?: boolean }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="6 9 12 15 18 9" />
+    <svg
+      className={open ? "select-chevron is-open" : "select-chevron"}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path d="m7 9 5 5 5-5" />
     </svg>
   );
 }
 
-// ─── Section Card ───────────────────────────────────────────────
+function CheckIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m5 12 4 4L19 6" />
+    </svg>
+  );
+}
 
-function SectionCard({
+function SettingsCard({
   icon,
+  eyebrow,
   title,
   description,
+  className = "",
   children,
-  accent = "#6366f1",
 }: {
   icon: React.ReactNode;
+  eyebrow: string;
   title: string;
   description: string;
+  className?: string;
   children: React.ReactNode;
-  accent?: string;
 }) {
   return (
-    <div
-      style={{
-        background: "#fff",
-        borderRadius: "16px",
-        border: "1px solid #e8eaf0",
-        overflow: "hidden",
-        boxShadow: "0 1px 4px rgba(0,0,0,0.05), 0 0 0 0 transparent",
-        transition: "box-shadow 0.2s ease",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow =
-          "0 4px 16px rgba(0,0,0,0.08)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow =
-          "0 1px 4px rgba(0,0,0,0.05)";
-      }}
-    >
-      {/* Card Header */}
-      <div
-        style={{
-          padding: "16px 20px",
-          borderBottom: "1px solid #f1f3f8",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          background: "linear-gradient(135deg, #fafbff 0%, #ffffff 100%)",
-        }}
-      >
-        <div
-          style={{
-            width: "36px",
-            height: "36px",
-            borderRadius: "10px",
-            background: `linear-gradient(135deg, ${accent}18, ${accent}10)`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: accent,
-            flexShrink: 0,
-          }}
-        >
-          {icon}
-        </div>
+    <section className={`settings-card ${className}`}>
+      <div className="settings-card-heading">
+        <div className="settings-card-icon">{icon}</div>
         <div>
-          <div
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "#0f172a",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {title}
-          </div>
-          <div style={{ fontSize: "11.5px", color: "#94a3b8", marginTop: "1px" }}>
-            {description}
-          </div>
+          <span className="settings-eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+          <p>{description}</p>
         </div>
       </div>
-
-      {/* Card Body */}
-      <div style={{ padding: "20px" }}>{children}</div>
-    </div>
+      <div className="settings-card-body">{children}</div>
+    </section>
   );
 }
 
-// ─── Toggle Switch ──────────────────────────────────────────────
-
-function Toggle({
-  checked,
+function DevicePicker({
+  value,
+  options,
   onChange,
-  accent = "#6366f1",
 }: {
-  checked: boolean;
-  onChange: () => void;
-  accent?: string;
+  value: string;
+  options: AudioDevice[];
+  onChange: (value: string) => void;
 }) {
-  return (
-    <button
-      onClick={onChange}
-      style={{
-        position: "relative",
-        width: "44px",
-        height: "24px",
-        borderRadius: "12px",
-        border: "none",
-        cursor: "pointer",
-        background: checked
-          ? `linear-gradient(135deg, ${accent}, ${accent}cc)`
-          : "#e2e8f0",
-        transition: "background 0.25s ease",
-        flexShrink: 0,
-        padding: 0,
-        boxShadow: checked ? `0 0 0 3px ${accent}22` : "none",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: "2px",
-          left: checked ? "22px" : "2px",
-          width: "20px",
-          height: "20px",
-          borderRadius: "50%",
-          background: "#fff",
-          boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-          transition: "left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        }}
-      />
-    </button>
-  );
-}
+  const [open, setOpen] = useState(false);
+  const pickerRef = useRef<HTMLDivElement>(null);
+  const selectedLabel =
+    options.find((device) => device.deviceId === value)?.label ??
+    "System Default";
 
-// ─── About Row ──────────────────────────────────────────────────
+  useEffect(() => {
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (!pickerRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("mousedown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
 
-function AboutRow({ label, value }: { label: string; value: string }) {
+  const choices = [{ deviceId: "", label: "System Default" }, ...options];
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 0",
-        borderBottom: "1px solid #f1f3f8",
-      }}
-    >
-      <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: 500 }}>
-        {label}
-      </span>
-      <span
-        style={{
-          fontSize: "13px",
-          color: "#0f172a",
-          fontWeight: 600,
-          fontFamily: label === "Hotkey" ? "monospace" : "inherit",
-          background: label === "Hotkey" ? "#f1f5f9" : "transparent",
-          padding: label === "Hotkey" ? "2px 8px" : "0",
-          borderRadius: label === "Hotkey" ? "6px" : "0",
-        }}
+    <div className="device-picker" ref={pickerRef}>
+      <button
+        className="device-picker-trigger"
+        onClick={() => setOpen((current) => !current)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
       >
-        {value}
-      </span>
+        <span>
+          <strong>{selectedLabel}</strong>
+          <small>
+            {value ? "Use this microphone for dictation" : "Follow your Mac input setting"}
+          </small>
+        </span>
+        <ChevronIcon open={open} />
+      </button>
+
+      {open && (
+        <div className="device-picker-menu" role="listbox">
+          {choices.map((device) => {
+            const selected = device.deviceId === value;
+            return (
+              <button
+                key={device.deviceId || "system-default"}
+                className={selected ? "is-selected" : ""}
+                onClick={() => {
+                  onChange(device.deviceId);
+                  setOpen(false);
+                }}
+                role="option"
+                aria-selected={selected}
+              >
+                <span>
+                  <strong>{device.label}</strong>
+                  <small>
+                    {device.deviceId
+                      ? "Available microphone"
+                      : "Recommended"}
+                  </small>
+                </span>
+                {selected && <CheckIcon />}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
-
-// ─── Main Component ─────────────────────────────────────────────
 
 export default function SettingsPage() {
   const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
@@ -242,15 +194,20 @@ export default function SettingsPage() {
     navigator.mediaDevices
       .enumerateDevices()
       .then((devices) => {
-        const mics = devices
-          .filter((d) => d.kind === "audioinput")
-          .map((d) => ({
-            deviceId: d.deviceId,
-            label: d.label || `Microphone ${d.deviceId.slice(0, 8)}`,
-          }));
-        setMicrophones(mics);
+        setMicrophones(
+          devices
+            .filter((device) => device.kind === "audioinput")
+            .map((device) => ({
+              deviceId: device.deviceId,
+              label:
+                device.label ||
+                `Microphone ${device.deviceId.slice(0, 8)}`,
+            })),
+        );
       })
-      .catch((err) => console.warn("Mic enumeration failed:", err));
+      .catch((error) =>
+        console.warn("[Settings] Microphone list unavailable:", error),
+      );
   }, []);
 
   const handleMicChange = (deviceId: string) => {
@@ -259,188 +216,96 @@ export default function SettingsPage() {
   };
 
   const handleSoundToggle = () => {
-    const newValue = !soundEnabled;
-    setSoundEnabled(newValue);
-    window.electron.saveSoundEnabled(newValue);
+    const nextValue = !soundEnabled;
+    setSoundEnabled(nextValue);
+    window.electron.saveSoundEnabled(nextValue);
   };
 
   if (loading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "200px",
-          color: "#94a3b8",
-          fontSize: "14px",
-        }}
-      >
-        Loading…
-      </div>
-    );
+    return <div className="settings-loading">Loading settings…</div>;
   }
 
   const platformLabel = platform === "win32" ? "Windows" : "macOS";
-  const hotkeyLabel = platform === "win32" ? "Left Alt" : "Left Option (Alt)";
+  const hotkeyLabel = platform === "win32" ? "Left Alt" : "Left Option";
 
   return (
-    <div style={{ maxWidth: "600px" }}>
-      {/* Page Header */}
-      <div style={{ marginBottom: "28px" }}>
-        <h1
-          style={{
-            fontSize: "22px",
-            fontWeight: 800,
-            color: "#0f172a",
-            margin: "0 0 4px 0",
-            letterSpacing: "-0.03em",
-          }}
-        >
-          Settings
-        </h1>
-        <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0 }}>
-          Customize your StayFree experience
-        </p>
+    <div className="settings-page">
+      <div className="settings-page-heading">
+        <span className="page-kicker">Preferences</span>
+        <h1>Make StayFree work your way.</h1>
+        <p>Choose your microphone and how the app responds while you dictate.</p>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-
-        {/* ── Microphone ── */}
-        <SectionCard
+      <div className="settings-layout">
+        <SettingsCard
           icon={<MicIcon />}
+          eyebrow="Input"
           title="Microphone"
-          description="Select input device for dictation"
-          accent="#0ea5e9"
+          description="Select the device StayFree should listen to."
+          className="microphone-card"
         >
-          <div style={{ position: "relative" }}>
-            <select
-              value={selectedMic}
-              onChange={(e) => handleMicChange(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px 36px 10px 14px",
-                borderRadius: "10px",
-                border: "1.5px solid #e8eaf0",
-                fontSize: "13px",
-                fontWeight: 500,
-                color: "#0f172a",
-                background: "#fafbff",
-                appearance: "none",
-                WebkitAppearance: "none",
-                outline: "none",
-                cursor: "pointer",
-                transition: "border-color 0.18s ease, box-shadow 0.18s ease",
-              }}
-              onFocus={(e) => {
-                (e.target as HTMLSelectElement).style.borderColor = "#6366f1";
-                (e.target as HTMLSelectElement).style.boxShadow = "0 0 0 3px #6366f115";
-              }}
-              onBlur={(e) => {
-                (e.target as HTMLSelectElement).style.borderColor = "#e8eaf0";
-                (e.target as HTMLSelectElement).style.boxShadow = "none";
-              }}
-            >
-              <option value="">System Default</option>
-              {microphones.map((mic) => (
-                <option key={mic.deviceId} value={mic.deviceId}>
-                  {mic.label}
-                </option>
-              ))}
-            </select>
-            <div
-              style={{
-                position: "absolute",
-                right: "12px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                pointerEvents: "none",
-                color: "#94a3b8",
-              }}
-            >
-              <ChevronIcon />
-            </div>
-          </div>
-        </SectionCard>
+          <DevicePicker
+            value={selectedMic}
+            options={microphones}
+            onChange={handleMicChange}
+          />
+        </SettingsCard>
 
-        {/* ── Sound Effects ── */}
-        <SectionCard
+        <SettingsCard
           icon={<SoundIcon />}
-          title="Sound Effects"
-          description="Audio feedback when recording starts and stops"
-          accent="#10b981"
+          eyebrow="Feedback"
+          title="Sound effects"
+          description="Hear a short cue when recording starts and stops."
+          className="sound-card"
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "4px 0",
-            }}
-          >
+          <div className="setting-control-row">
             <div>
-              <div
-                style={{
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  color: "#0f172a",
-                  marginBottom: "2px",
-                }}
-              >
-                {soundEnabled ? "Enabled" : "Disabled"}
-              </div>
-              <div style={{ fontSize: "12px", color: "#94a3b8" }}>
+              <strong>{soundEnabled ? "Sounds are on" : "Sounds are off"}</strong>
+              <span>
                 {soundEnabled
-                  ? "You'll hear a beep on record start/stop"
-                  : "Silent mode — no audio cues"}
-              </div>
+                  ? "You will hear start and stop cues."
+                  : "StayFree will remain silent."}
+              </span>
             </div>
-            <Toggle
-              checked={soundEnabled}
-              onChange={handleSoundToggle}
-              accent="#10b981"
-            />
-          </div>
-        </SectionCard>
-
-        {/* ── About ── */}
-        <SectionCard
-          icon={<InfoIcon />}
-          title="About"
-          description="System information and configuration details"
-          accent="#f59e0b"
-        >
-          <div>
-            <AboutRow label="Platform" value={platformLabel} />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px 0 0 0",
-              }}
+            <button
+              className={soundEnabled ? "settings-toggle is-on" : "settings-toggle"}
+              onClick={handleSoundToggle}
+              role="switch"
+              aria-checked={soundEnabled}
+              aria-label="Sound effects"
             >
-              <span style={{ fontSize: "13px", color: "#94a3b8", fontWeight: 500 }}>
-                Hotkey
-              </span>
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "#0f172a",
-                  fontWeight: 700,
-                  fontFamily: "monospace",
-                  background: "#f1f5f9",
-                  padding: "3px 10px",
-                  borderRadius: "6px",
-                  border: "1px solid #e2e8f0",
-                }}
-              >
-                {hotkeyLabel}
-              </span>
-            </div>
+              <span />
+            </button>
           </div>
-        </SectionCard>
+        </SettingsCard>
 
+        <SettingsCard
+          icon={<InfoIcon />}
+          eyebrow="App"
+          title="Quick reference"
+          description="The essentials for dictating on this computer."
+          className="about-card"
+        >
+          <dl className="quick-reference">
+            <div>
+              <dt>Platform</dt>
+              <dd>{platformLabel}</dd>
+            </div>
+            <div>
+              <dt>Push to talk</dt>
+              <dd>
+                <kbd>{hotkeyLabel}</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd className="ready-status">
+                <span />
+                Ready
+              </dd>
+            </div>
+          </dl>
+        </SettingsCard>
       </div>
     </div>
   );

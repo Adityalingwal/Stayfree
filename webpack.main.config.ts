@@ -17,7 +17,21 @@ export const mainConfig: Configuration = {
   plugins: [
     ...plugins,
     new CopyWebpackPlugin({
-      patterns: [{ from: "src/assets", to: "assets" }],
+      patterns: [
+        { from: "src/assets", to: "assets" },
+        {
+          from: "node_modules/uiohook-napi",
+          to: "node_modules/uiohook-napi",
+        },
+        {
+          from: "node_modules/node-gyp-build",
+          to: "node_modules/node-gyp-build",
+        },
+        {
+          from: "node_modules/ws",
+          to: "node_modules/ws",
+        },
+      ],
     }),
   ],
   resolve: {

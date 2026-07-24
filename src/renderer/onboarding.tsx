@@ -1,5 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { createRoot } from "react-dom/client";
+import {
+  CaretRight,
+  Check,
+  LockKey,
+  Microphone,
+  PersonSimpleCircle,
+} from "@phosphor-icons/react";
+import "./onboarding.css";
+
+// Webpack emits this image as a renderer asset and returns its final URL.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const appIconUrl: string = require("../assets/appIcon.png");
 
 interface PermissionStatus {
   mic: "not-determined" | "granted" | "denied" | "restricted" | "unknown";
@@ -47,10 +59,6 @@ function OnboardingApp() {
     window.electron.openAccessibilitySettings();
   };
 
-  const handleKeyboardSettings = () => {
-    window.electron.openKeyboardSettings();
-  };
-
   const handleContinue = () => {
     window.electron.completeOnboarding();
   };
@@ -59,154 +67,119 @@ function OnboardingApp() {
     permissions.mic === "granted" &&
     (permissions.platform === "darwin" ? permissions.inputAutomation : true);
   const isMac = permissions.platform === "darwin";
-  const pasteShortcut = isMac ? "Cmd+V" : "Ctrl+V";
-  const platformLabel =
-    permissions.platform === "win32" ? "Windows" : "macOS";
+  const pushToTalkShortcut = isMac ? "Left Option" : "Ctrl + Win";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8 select-none">
-      <div className="max-w-md mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Welcome to StayFree
-          </h1>
-          <p className="text-gray-500 text-sm">
-            Voice dictation for {platformLabel}. Hold a key, speak, release — text
-            appears.
-          </p>
+    <main className="onboarding-page">
+      <div className="window-drag-region" aria-hidden="true" />
+
+      <section className="onboarding-content">
+        <div className="brand-lockup">
+          <img className="brand-icon" src={appIconUrl} alt="" />
+          <span>StayFree</span>
         </div>
 
-        {/* Permissions */}
-        <div className="space-y-4 mb-6">
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
-            Required Permissions
-          </h2>
+        <header className="setup-header">
+          <h1>Set up StayFree</h1>
+          <p>
+            {isMac
+              ? "Allow two permissions, then hold Left Option to dictate anywhere."
+              : "Allow microphone access, then hold Ctrl + Win to dictate anywhere."}
+          </p>
+        </header>
 
-          {/* Microphone */}
-          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-            <div className="flex items-start justify-between">
-              <div className="flex items-start gap-3">
-                <div className="text-2xl mt-0.5">
-                  {permissions.mic === "granted" ? (
-                    <span className="text-green-500">&#10003;</span>
-                  ) : (
-                    <span className="text-red-400">&#10007;</span>
-                  )}
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900">
-                    Microphone Access
-                  </h3>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    To capture your voice for transcription
-                  </p>
-                </div>
+        <div className="permission-list">
+          <article
+            className={`permission-row ${
+              permissions.mic === "granted" ? "is-complete" : ""
+            }`}
+          >
+            <Microphone className="permission-icon" size={30} weight="regular" />
+            <div className="permission-copy">
+              <h2>Microphone</h2>
+              <p>Capture your voice while you dictate.</p>
+            </div>
+            {permissions.mic === "granted" ? (
+              <div className="permission-granted">
+                <span className="granted-icon" aria-hidden="true">
+                  <Check size={15} weight="bold" />
+                </span>
+                <span>Granted</span>
+                <CaretRight size={18} aria-hidden="true" />
               </div>
-              {permissions.mic !== "granted" && (
+            ) : (
+              <button
+                className="permission-action"
+                onClick={handleMicPermission}
+                disabled={micRequesting}
+              >
+                {micRequesting ? "Requesting…" : "Allow"}
+              </button>
+            )}
+          </article>
+
+          {isMac && (
+            <article
+              className={`permission-row ${
+                permissions.inputAutomation ? "is-complete" : ""
+              }`}
+            >
+              <PersonSimpleCircle
+                className="permission-icon"
+                size={30}
+                weight="regular"
+              />
+              <div className="permission-copy">
+                <h2>Accessibility</h2>
+                <p>Paste the transcript into your active field.</p>
+              </div>
+              {permissions.inputAutomation ? (
+                <div className="permission-granted">
+                  <span className="granted-icon" aria-hidden="true">
+                    <Check size={15} weight="bold" />
+                  </span>
+                  <span>Granted</span>
+                  <CaretRight size={18} aria-hidden="true" />
+                </div>
+              ) : (
                 <button
-                  onClick={handleMicPermission}
-                  disabled={micRequesting}
-                  className="px-3 py-1.5 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
+                  className="permission-action"
+                  onClick={handleAccessibilitySettings}
                 >
-                  {micRequesting ? "Requesting..." : "Grant"}
+                  Open Settings
                 </button>
               )}
-            </div>
-          </div>
-
-          {/* Input Automation / Accessibility */}
-          {isMac && (
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-              <div className="flex items-start justify-between">
-                <div className="flex items-start gap-3">
-                  <div className="text-2xl mt-0.5">
-                    {permissions.inputAutomation ? (
-                      <span className="text-green-500">&#10003;</span>
-                    ) : (
-                      <span className="text-red-400">&#10007;</span>
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">
-                      Accessibility Access
-                    </h3>
-                    <p className="text-sm text-gray-500 mt-0.5">
-                      To paste text into your active app via {pasteShortcut}
-                    </p>
-                  </div>
-                </div>
-                {!permissions.inputAutomation && (
-                  <button
-                    onClick={handleAccessibilitySettings}
-                    className="px-3 py-1.5 bg-blue-500 text-white text-sm font-medium rounded-lg hover:bg-blue-600 transition-colors whitespace-nowrap"
-                  >
-                    Open Settings
-                  </button>
-                )}
-              </div>
-              {!permissions.inputAutomation && (
-                <p className="text-xs text-gray-400 mt-3 ml-9">
-                  System Settings &rarr; Privacy &amp; Security &rarr;
-                  Accessibility &rarr; Enable StayFree (or Electron)
-                </p>
-              )}
-            </div>
+            </article>
           )}
         </div>
 
-        {/* Fn Key Setup (Optional) */}
-        <div className="mb-8">
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
-            Recommended Setup
-          </h2>
-          <div className="bg-amber-50 rounded-xl p-4 border border-amber-200">
-            <div className="flex items-start gap-3">
-              <div className="text-xl mt-0.5">&#9881;</div>
-              <div>
-                <h3 className="font-medium text-gray-900 text-sm">
-                  Fn Key Configuration
-                </h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  {isMac
-                    ? 'For the best experience, set your Fn key to "Do Nothing" in macOS settings so it can be used as push-to-talk.'
-                    : "For the best experience on Windows, keep your Alt key available for push-to-talk and avoid remapping it globally."}
-                </p>
-                {isMac && (
-                  <button
-                    onClick={handleKeyboardSettings}
-                    className="mt-2 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
-                  >
-                    Open Keyboard Settings &rarr;
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
+        <div className="privacy-note">
+          <LockKey size={17} weight="regular" aria-hidden="true" />
+          <span>
+            Audio is sent securely to Sarvam AI for transcription and isn’t
+            stored by StayFree.
+          </span>
         </div>
 
-        {/* Continue Button */}
-        <button
-          onClick={handleContinue}
-          disabled={!allPermissionsGranted}
-          className={`w-full py-3 rounded-xl font-semibold text-base transition-all ${
-            allPermissionsGranted
-              ? "bg-blue-500 text-white hover:bg-blue-600 shadow-md hover:shadow-lg"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed"
-          }`}
-        >
-          {allPermissionsGranted
-            ? "Get Started"
-            : "Grant all permissions to continue"}
-        </button>
-
-        {allPermissionsGranted && (
-          <p className="text-center text-xs text-gray-400 mt-3">
-            StayFree will run in your system tray.
-          </p>
-        )}
-      </div>
-    </div>
+        <div className="setup-footer">
+          <button
+            className="continue-button"
+            onClick={handleContinue}
+            disabled={!allPermissionsGranted}
+          >
+            {allPermissionsGranted
+              ? "Start using StayFree"
+              : isMac
+                ? "Complete both permissions"
+                : "Allow microphone access"}
+          </button>
+          <div className="shortcut-hint">
+            <kbd>{pushToTalkShortcut}</kbd>
+            <span>to dictate</span>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 

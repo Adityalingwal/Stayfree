@@ -16,6 +16,8 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    appBundleId: 'com.adityalingwal.stayfree',
+    icon: process.platform === 'darwin' ? './src/assets/appIcon.icns' : undefined,
     // Ship the compiled native helper as a plain file in Contents/Resources
     // (NOT inside app.asar — you cannot exec a binary from within asar). The
     // main process resolves it via process.resourcesPath when packaged.
