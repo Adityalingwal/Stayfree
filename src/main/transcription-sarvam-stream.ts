@@ -32,7 +32,7 @@ import store from "./store";
  */
 
 const SARVAM_WS_URL =
-  "wss://api.sarvam.ai/speech-to-text/ws?language-code=hi-IN&model=saaras:v3&mode=translit&flush_signal=true";
+  "wss://api.sarvam.ai/speech-to-text/ws?language-code=hi-IN&model=saaras:v3&mode=translit&sample_rate=16000&input_audio_codec=wav&flush_signal=true";
 
 /** Keepalive interval — must be well under Sarvam's ~60s idle timeout */
 const KEEPALIVE_INTERVAL_MS = 30_000;
@@ -45,6 +45,12 @@ const MAX_RECONNECT_ATTEMPTS = 2;
 
 /** Never let DNS/TCP/WebSocket setup hold the recording pipeline indefinitely. */
 const CONNECT_TIMEOUT_MS = 4_000;
+
+/**
+ * A VAD segment and the manual-flush result can arrive almost together.
+ * Wait briefly for adjacent final segments before resolving the transcript.
+ */
+const TRANSCRIPT_SETTLE_MS = 160;
 
 /**
  * Wrap raw PCM16 samples in a minimal WAV container.
@@ -100,7 +106,9 @@ export class SarvamStreamingTranscriber {
   private connectTime = 0;
   private recordingStartTime = 0;
   private flushTimeout: ReturnType<typeof setTimeout> | null = null;
-  // VAD sends interim segments mid-stream even with flush_signal=true — accumulate all of them
+  private flushSettleTimer: ReturnType<typeof setTimeout> | null = null;
+  private recordingActive = false;
+  // VAD can finalize multiple utterance segments before manual flush.
   private transcriptSegments: string[] = [];
 
   // Keepalive & auto-reconnect
@@ -261,7 +269,12 @@ export class SarvamStreamingTranscriber {
       this.silentChunkPayload = createSilentKeepAliveChunk();
     }
     this.keepaliveTimer = setInterval(() => {
-      if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+      if (
+        !this.recordingActive &&
+        !this.transcriptResolve &&
+        this.ws &&
+        this.ws.readyState === WebSocket.OPEN
+      ) {
         try {
           this.ws.send(this.silentChunkPayload!);
         } catch {
@@ -343,6 +356,7 @@ export class SarvamStreamingTranscriber {
   markRecordingStart(): void {
     this.recordingStartTime = Date.now();
     this.transcriptSegments = [];
+    this.recordingActive = true;
   }
 
   /**
@@ -350,15 +364,16 @@ export class SarvamStreamingTranscriber {
    * The WebSocket connection stays alive — only the per-recording state is cleared.
    */
   resetSession(): void {
-    this.clearFlushTimeout();
-    if (this.transcriptReject) {
+    this.clearFlushTimers();
+    if (this.transcriptResolve) {
       // Don't leave dangling promises — resolve with empty string rather than rejecting
       // to avoid unhandled promise rejections in the pipeline
-      this.transcriptResolve?.("");
+      this.transcriptResolve("");
     }
     this.transcriptResolve = null;
     this.transcriptReject = null;
     this.transcriptSegments = [];
+    this.recordingActive = false;
   }
 
   // ─── Message handling ───────────────────────────────────────────────────
@@ -376,22 +391,16 @@ export class SarvamStreamingTranscriber {
       const data = parsed.data as Record<string, unknown>;
       const transcript = (data.transcript as string) || "";
       const elapsed = Date.now() - this.recordingStartTime;
+      this.appendTranscriptSegment(transcript);
+      this.logServerMetrics(data);
 
       if (this.transcriptResolve) {
-        // Response to our flush signal — join with any VAD interim segments collected so far
-        if (transcript) this.transcriptSegments.push(transcript);
-        const fullTranscript = this.transcriptSegments.join(" ").trim();
-        console.log(
-          `[Sarvam Stream] transcript in ${elapsed}ms: "${fullTranscript}"`,
-        );
-        this.clearFlushTimeout();
-        this.transcriptResolve(fullTranscript);
-        this.transcriptResolve = null;
-        this.transcriptReject = null;
+        // A VAD-final segment may race with the explicit flush result. Resolve
+        // only after the short burst of final messages has settled.
+        this.scheduleFlushSettlement(elapsed);
       } else {
-        // VAD interim segment — accumulate it, will be joined on flush
+        // VAD-final segment — accumulate it, will be joined on flush
         if (transcript) {
-          this.transcriptSegments.push(transcript);
           console.log(`[Sarvam Stream] segment (+${elapsed}ms): "${transcript}"`);
         }
       }
@@ -403,19 +412,60 @@ export class SarvamStreamingTranscriber {
   }
 
   private rejectPendingFlush(err: Error): void {
-    this.clearFlushTimeout();
+    this.clearFlushTimers();
     if (this.transcriptReject) {
       this.transcriptReject(err);
       this.transcriptResolve = null;
       this.transcriptReject = null;
     }
+    this.recordingActive = false;
   }
 
-  private clearFlushTimeout(): void {
+  private clearFlushTimers(): void {
     if (this.flushTimeout) {
       clearTimeout(this.flushTimeout);
       this.flushTimeout = null;
     }
+    if (this.flushSettleTimer) {
+      clearTimeout(this.flushSettleTimer);
+      this.flushSettleTimer = null;
+    }
+  }
+
+  private appendTranscriptSegment(transcript: string): void {
+    const normalized = transcript.trim();
+    if (!normalized) return;
+    this.transcriptSegments.push(normalized);
+  }
+
+  private scheduleFlushSettlement(elapsed: number): void {
+    if (this.flushSettleTimer) clearTimeout(this.flushSettleTimer);
+    this.flushSettleTimer = setTimeout(() => {
+      this.flushSettleTimer = null;
+      const resolve = this.transcriptResolve;
+      if (!resolve) return;
+
+      const fullTranscript = this.transcriptSegments.join(" ").trim();
+      console.log(
+        `[Sarvam Stream] transcript in ${elapsed}ms: "${fullTranscript}"`,
+      );
+      this.clearFlushTimers();
+      this.transcriptResolve = null;
+      this.transcriptReject = null;
+      this.recordingActive = false;
+      resolve(fullTranscript);
+    }, TRANSCRIPT_SETTLE_MS);
+  }
+
+  private logServerMetrics(data: Record<string, unknown>): void {
+    const metrics = data.metrics as Record<string, unknown> | undefined;
+    if (!metrics) return;
+    const audioDuration = metrics.audio_duration;
+    const processingLatency = metrics.processing_latency;
+    if (audioDuration === undefined && processingLatency === undefined) return;
+    console.log(
+      `[Sarvam Stream] server metrics audio=${String(audioDuration ?? "n/a")}s processing=${String(processingLatency ?? "n/a")}s`,
+    );
   }
 
   // ─── Audio sending ──────────────────────────────────────────────────────
@@ -449,9 +499,22 @@ export class SarvamStreamingTranscriber {
 
       this.transcriptResolve = resolve;
       this.transcriptReject = reject;
+      this.clearFlushTimers();
 
       const flushStart = Date.now();
-      this.ws.send(JSON.stringify({ type: "flush" }));
+      try {
+        this.ws.send(JSON.stringify({ type: "flush" }));
+      } catch (error) {
+        this.transcriptResolve = null;
+        this.transcriptReject = null;
+        this.recordingActive = false;
+        reject(
+          error instanceof Error
+            ? error
+            : new Error("Failed to send Sarvam flush signal"),
+        );
+        return;
+      }
       console.log(`[Sarvam Stream] flush sent (timeout=${timeoutMs}ms)`);
 
       // Safety timeout per attempt

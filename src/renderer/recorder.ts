@@ -73,8 +73,28 @@ class PCM16Processor extends AudioWorkletProcessor {
     this.samplesPerChunk = Math.round(TARGET_SAMPLE_RATE * CHUNK_DURATION_S);
     this.buffer = new Float32Array(this.samplesPerChunk);
     this.bufferIndex = 0;
+    this.nextSourceIndex = 0;
     this.active = true;
-    this.port.onmessage = (e) => { if (e.data === 'stop') this.active = false; };
+    this.port.onmessage = (e) => {
+      if (e.data?.type !== 'stop') return;
+      this.emitChunk(this.bufferIndex);
+      this.bufferIndex = 0;
+      this.active = false;
+      this.port.postMessage({ type: 'drained' });
+    };
+  }
+
+  emitChunk(sampleCount) {
+    if (sampleCount <= 0) return;
+    const pcm16 = new Int16Array(sampleCount);
+    for (let i = 0; i < sampleCount; i++) {
+      const s = Math.max(-1, Math.min(1, this.buffer[i]));
+      pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+    }
+    this.port.postMessage(
+      { type: 'chunk', buffer: pcm16.buffer },
+      [pcm16.buffer],
+    );
   }
 
   process(inputs) {
@@ -83,26 +103,25 @@ class PCM16Processor extends AudioWorkletProcessor {
     if (!input || !input[0]) return true;
     const inputChannel = input[0];
     const ratio = sampleRate / TARGET_SAMPLE_RATE;
-    const outputLen = Math.floor(inputChannel.length / ratio);
-    for (let i = 0; i < outputLen; i++) {
-      const srcIdx = Math.floor(i * ratio);
+    while (this.nextSourceIndex < inputChannel.length) {
+      const srcIdx = Math.floor(this.nextSourceIndex);
       this.buffer[this.bufferIndex++] = inputChannel[srcIdx];
       if (this.bufferIndex >= this.samplesPerChunk) {
-        const pcm16 = new Int16Array(this.samplesPerChunk);
-        for (let j = 0; j < this.samplesPerChunk; j++) {
-          const s = Math.max(-1, Math.min(1, this.buffer[j]));
-          pcm16[j] = s < 0 ? s * 0x8000 : s * 0x7fff;
-        }
-        this.port.postMessage(pcm16.buffer, [pcm16.buffer]);
+        this.emitChunk(this.samplesPerChunk);
         this.bufferIndex = 0;
       }
+      this.nextSourceIndex += ratio;
     }
+    this.nextSourceIndex -= inputChannel.length;
     return true;
   }
 }
 
 registerProcessor('pcm16-processor', PCM16Processor);
 `;
+
+/** Preserve the final phoneme still moving through the OS audio pipeline. */
+const RELEASE_TAIL_CAPTURE_MS = 80;
 
 function createWorkletDataUrl(): string {
   // Use data: URL instead of blob: URL — blob: is blocked by Electron's CSP,
@@ -133,8 +152,11 @@ class AudioRecorder {
 
   // PCM16 streaming (Hindi path)
   private streamingAudioCtx: AudioContext | null = null;
+  private streamingSource: MediaStreamAudioSourceNode | null = null;
   private workletNode: AudioWorkletNode | null = null;
   private workletDataUrl: string | null = null;
+  private workletModuleReady: Promise<void> | null = null;
+  private workletDrainResolve: (() => void) | null = null;
   private isHindiMode = false;
   private pcmChunkCount = 0;
   private pcmBytes = 0;
@@ -185,6 +207,7 @@ class AudioRecorder {
 
     try {
       await this.refreshStream("initialization", true);
+      await this.prepareStreamingContext();
       console.log("[Recorder] Initialized and ready");
     } catch (error) {
       // Keep the recorder alive even if no device is currently available.
@@ -240,6 +263,12 @@ class AudioRecorder {
         );
       };
 
+      // --- PCM16 AudioWorklet (Hindi only) ---
+      if (hindiMode) {
+        await this.startPCM16Streaming(sessionId);
+      }
+      if (this.activeSessionId !== sessionId) return;
+
       mediaRecorder.start();
       playStartSound();
       window.electron.sendRecorderStarted(sessionId);
@@ -247,11 +276,6 @@ class AudioRecorder {
 
       // --- Live level meter (both paths) ---
       this.startLevelMeter();
-
-      // --- PCM16 AudioWorklet (Hindi only) ---
-      if (hindiMode) {
-        await this.startPCM16Streaming(sessionId);
-      }
     } catch (error) {
       if (this.activeSessionId !== sessionId) return;
       const message = this.describeMicrophoneError(error);
@@ -452,7 +476,7 @@ class AudioRecorder {
     if (!sessionId) return;
 
     this.stopLevelMeter();
-    this.stopPCM16Streaming();
+    void this.stopPCM16Streaming(false);
     const mediaRecorder = this.mediaRecorder;
     if (mediaRecorder && mediaRecorder.state !== "inactive") {
       mediaRecorder.ondataavailable = null;
@@ -552,23 +576,14 @@ class AudioRecorder {
 
   private async startPCM16Streaming(sessionId: string): Promise<void> {
     try {
-      // Create a dedicated AudioContext at 16kHz for PCM16 capture
-      const ctx = new AudioContext({ sampleRate: 16000 });
-      this.streamingAudioCtx = ctx;
+      // The worklet is prepared during initialization so speech that begins
+      // immediately after pressing the hotkey is not lost while addModule loads.
+      await this.prepareStreamingContext();
+      const ctx = this.streamingAudioCtx;
+      if (!ctx) throw new Error("PCM16 audio context unavailable");
+      if (ctx.state === "suspended") await ctx.resume();
 
-      // Load worklet from data: URL (blob: URLs are blocked by Electron CSP)
-      if (!this.workletDataUrl) {
-        this.workletDataUrl = createWorkletDataUrl();
-      }
-      await ctx.audioWorklet.addModule(this.workletDataUrl);
-
-      // A rapid cancel/stop can tear the context down (stopPCM16Streaming)
-      // while addModule is still awaiting — the recording is already gone, so
-      // just bail instead of throwing on the nulled context.
-      if (
-        this.streamingAudioCtx !== ctx ||
-        this.activeSessionId !== sessionId
-      ) {
+      if (this.activeSessionId !== sessionId) {
         console.log("[Recorder] PCM16 streaming aborted (recording ended)");
         return;
       }
@@ -579,14 +594,24 @@ class AudioRecorder {
         throw new Error("Microphone stream unavailable for PCM16 streaming");
       }
       const source = ctx.createMediaStreamSource(stream);
+      this.streamingSource = source;
       this.workletNode = new AudioWorkletNode(ctx, "pcm16-processor");
 
       // Forward PCM16 chunks to main process
-      this.workletNode.port.onmessage = (event: MessageEvent<ArrayBuffer>) => {
+      this.workletNode.port.onmessage = (
+        event: MessageEvent<
+          | { type: "chunk"; buffer: ArrayBuffer }
+          | { type: "drained" }
+        >,
+      ) => {
+        if (event.data.type === "drained") {
+          this.workletDrainResolve?.();
+          return;
+        }
         if (this.activeSessionId !== sessionId) return;
-        const pcm = new Int16Array(event.data);
+        const pcm = new Int16Array(event.data.buffer);
         this.trackAudioEnergy(pcm);
-        window.electron.sendAudioChunk(event.data, sessionId);
+        window.electron.sendAudioChunk(event.data.buffer, sessionId);
       };
 
       source.connect(this.workletNode);
@@ -602,21 +627,94 @@ class AudioRecorder {
     }
   }
 
-  private stopPCM16Streaming(): void {
-    if (this.workletNode) {
-      this.workletNode.port.postMessage("stop");
-      this.workletNode.disconnect();
-      this.workletNode = null;
+  private async prepareStreamingContext(): Promise<void> {
+    if (
+      this.streamingAudioCtx &&
+      this.streamingAudioCtx.state !== "closed" &&
+      this.workletModuleReady
+    ) {
+      await this.workletModuleReady;
+      return;
     }
-    if (this.streamingAudioCtx) {
-      this.streamingAudioCtx.close().catch((error) => {
-        console.warn("[Recorder] Failed to close streaming audio context:", error);
-      });
-      this.streamingAudioCtx = null;
+
+    const ctx = new AudioContext({ sampleRate: 16000 });
+    this.streamingAudioCtx = ctx;
+    if (!this.workletDataUrl) {
+      this.workletDataUrl = createWorkletDataUrl();
+    }
+    const moduleReady = ctx.audioWorklet.addModule(this.workletDataUrl);
+    this.workletModuleReady = moduleReady;
+    try {
+      await moduleReady;
+      console.log(
+        `[Recorder] PCM16 processor ready (${ctx.sampleRate}Hz context)`,
+      );
+    } catch (error) {
+      if (this.streamingAudioCtx === ctx) {
+        this.streamingAudioCtx = null;
+        this.workletModuleReady = null;
+      }
+      void ctx.close();
+      throw error;
     }
   }
 
-  stopRecording(sessionId: string): boolean {
+  private disconnectPCM16Node(): void {
+    this.workletDrainResolve?.();
+    this.workletDrainResolve = null;
+    if (this.streamingSource) {
+      try {
+        this.streamingSource.disconnect();
+      } catch {
+        // ignore
+      }
+      this.streamingSource = null;
+    }
+    if (this.workletNode) {
+      this.workletNode.port.onmessage = null;
+      try {
+        this.workletNode.disconnect();
+      } catch {
+        // ignore
+      }
+      this.workletNode = null;
+    }
+  }
+
+  private async stopPCM16Streaming(drainTail = true): Promise<void> {
+    const node = this.workletNode;
+    if (!node) return;
+
+    if (drainTail) {
+      await new Promise<void>((resolve) => {
+        window.setTimeout(resolve, RELEASE_TAIL_CAPTURE_MS);
+      });
+      if (this.workletNode !== node) return;
+
+      await new Promise<void>((resolve) => {
+        let settled = false;
+        const finish = () => {
+          if (settled) return;
+          settled = true;
+          window.clearTimeout(timeout);
+          if (this.workletDrainResolve === finish) {
+            this.workletDrainResolve = null;
+          }
+          resolve();
+        };
+        const timeout = window.setTimeout(() => {
+          console.warn("[Recorder] PCM16 tail drain timed out");
+          finish();
+        }, 300);
+        this.workletDrainResolve = finish;
+        node.port.postMessage({ type: "stop" });
+      });
+    }
+
+    this.disconnectPCM16Node();
+  }
+
+  async stopRecording(sessionId: string): Promise<boolean> {
     if (this.activeSessionId !== sessionId) {
       console.warn(
         `[Recorder] Ignoring stale STOP for ${sessionId}; active=${this.activeSessionId}`,
@@ -629,8 +727,9 @@ class AudioRecorder {
 
     // Stop PCM16 streaming first (signals flush to main process)
     if (this.isHindiMode) {
-      this.stopPCM16Streaming();
+      await this.stopPCM16Streaming(true);
     }
+    if (this.activeSessionId !== sessionId) return false;
 
     const mediaRecorder = this.mediaRecorder;
     const recordingChunks = this.audioChunks;
@@ -690,7 +789,7 @@ class AudioRecorder {
     if (this.activeSessionId !== sessionId) return false;
 
     this.stopLevelMeter();
-    this.stopPCM16Streaming();
+    void this.stopPCM16Streaming(false);
     const mediaRecorder = this.mediaRecorder;
     if (!mediaRecorder || mediaRecorder.state === "inactive") {
       this.mediaRecorder = null;
@@ -806,7 +905,15 @@ class AudioRecorder {
     }
     this.clearMutedTrackRecovery();
     this.stopLevelMeter();
-    this.stopPCM16Streaming();
+    void this.stopPCM16Streaming(false);
+    const streamingAudioCtx = this.streamingAudioCtx;
+    this.streamingAudioCtx = null;
+    this.workletModuleReady = null;
+    if (streamingAudioCtx) {
+      void streamingAudioCtx.close().catch((error) => {
+        console.warn("[Recorder] Failed to close streaming audio context:", error);
+      });
+    }
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
       this.stream = null;
@@ -834,7 +941,9 @@ window.electron.onStartRecording((hindiMode: boolean, sessionId: string) => {
 
 window.electron.onStopRecording((sessionId: string) => {
   console.log(`[Recorder] Received STOP command (session=${sessionId})`);
-  if (recorder.stopRecording(sessionId)) playStopSound();
+  void recorder.stopRecording(sessionId).then((stopped) => {
+    if (stopped) playStopSound();
+  });
 });
 
 window.electron.onCancelRecording((sessionId: string) => {

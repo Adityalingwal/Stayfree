@@ -100,7 +100,7 @@ class PipelineError extends Error {
 
 /** Initial attempt plus one clean reconnect/replay attempt. */
 const HINDI_STREAM_MAX_ATTEMPTS = 2;
-const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 7_000;
+const HINDI_STREAM_ATTEMPT_TIMEOUT_MS = 4_500;
 
 /** Safety net: max time the app can stay in "processing" state before force-reset */
 const PROCESSING_TIMEOUT_MS = 20_000;
@@ -598,8 +598,13 @@ async function transcribeHindiWithRetries(
   }
 
   const stats = session.energySummary;
+  const capturedAudioMs = Math.round(session.chunkBytes / 32);
+  const recordingWallMs =
+    session.stopTs && session.startTs
+      ? Math.max(0, session.stopTs - session.startTs)
+      : null;
   console.log(
-    `[Sarvam Stream] session=${session.sessionId} chunks=${session.chunkCount} bytes=${session.chunkBytes} localSpeech=${stats?.hasSpeech ?? "unknown"} borderline=${stats?.isBorderlineSpeech ?? "unknown"} voicedMs=${stats?.voicedMs ?? 0}`,
+    `[Sarvam Stream] session=${session.sessionId} chunks=${session.chunkCount} bytes=${session.chunkBytes} capturedMs=${capturedAudioMs} wallMs=${recordingWallMs ?? "unknown"} localSpeech=${stats?.hasSpeech ?? "unknown"} borderline=${stats?.isBorderlineSpeech ?? "unknown"} voicedMs=${stats?.voicedMs ?? 0}`,
   );
 
   // Energy stats are diagnostic only. The first 300ms can contain real speech
