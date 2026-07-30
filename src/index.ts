@@ -14,7 +14,7 @@ import { getHotkeyManager } from "./main/hotkey";
 import { getWhisperServer } from "./main/whisper/server";
 import { transcribePcm, PipelineError } from "./main/whisper/transcriber";
 import { pasteText } from "./main/paste";
-import store, { TranscriptionEntry } from "./main/store";
+import store, { TranscriptionEntry, purgeLegacySarvamApiKey } from "./main/store";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -1060,6 +1060,9 @@ function registerWidgetHandlers(): void {
 // --- App Lifecycle ---
 
 app.on("ready", () => {
+  // One-time credential purge — see purgeLegacySarvamApiKey() doc comment.
+  purgeLegacySarvamApiKey();
+
   // Hide dock icon on macOS - this is a tray-only app
   if (isMac) {
     applyMacDockIcon();
@@ -1398,7 +1401,7 @@ app.on("ready", () => {
       }
       // No re-warm needed — the whisper sidecar is a persistent local
       // process kept alive across recordings (crash auto-restart handles
-      // the rest), unlike the old per-recording Sarvam WS connection.
+      // the rest), unlike the old per-recording cloud WS connection.
     }
   });
 });

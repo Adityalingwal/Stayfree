@@ -14,7 +14,6 @@ export interface TranscriptionEntry {
 }
 
 interface StoreSchema {
-  sarvamApiKey: string; // Sarvam AI API key
   hotkey: {
     useFnKey: boolean;
     fnKeyCode: number;
@@ -29,7 +28,6 @@ interface StoreSchema {
 
 const store = new Store<StoreSchema>({
   defaults: {
-    sarvamApiKey: "",
     hotkey: {
       useFnKey: false,
       fnKeyCode: 56, // Left Option/Alt
@@ -42,5 +40,20 @@ const store = new Store<StoreSchema>({
     soundEnabled: true,
   },
 });
+
+/**
+ * One-time credential purge (D8). `sarvamApiKey` was removed from
+ * StoreSchema above, but electron-store persists to disk as plain JSON —
+ * removing a field from the TS schema does NOT delete an already-saved
+ * value, it would sit in the user's on-disk store forever. `.delete()` on
+ * a key outside the current schema needs a cast since electron-store's
+ * types only allow schema keys; idempotent (a no-op once the key is gone).
+ * Call once at app startup.
+ */
+export function purgeLegacySarvamApiKey(): void {
+  (store as unknown as { delete: (key: string) => void }).delete(
+    "sarvamApiKey",
+  );
+}
 
 export default store;

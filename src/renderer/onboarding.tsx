@@ -156,8 +156,8 @@ function OnboardingApp() {
         <div className="privacy-note">
           <LockKey size={17} weight="regular" aria-hidden="true" />
           <span>
-            Audio is sent securely to Sarvam AI for transcription and isn’t
-            stored by StayFree.
+            Audio is transcribed locally on your Mac — it never leaves your
+            device.
           </span>
         </div>
 
