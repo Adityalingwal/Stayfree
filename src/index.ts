@@ -80,8 +80,13 @@ interface RecordingSession {
   pipelineTimer: ReturnType<typeof setTimeout> | null;
 }
 
-/** Safety net: max time the app can stay in "processing" state before force-reset */
-const PROCESSING_TIMEOUT_MS = 20_000;
+/** Safety net: max time the app can stay in "processing" state before
+ * force-reset. 12s (was 20s — FIX 8, 2026-07-30): the engine is local
+ * (measured ASR 0.15-1.2s), and the worst legitimate chain — a hung-server
+ * self-heal (attempt 1 timeout ~8.5s + instant-SIGKILL restart ~1s +
+ * attempt 2 ~1s ≈ 11s) — still fits. Stale retries/restarts after this
+ * deadline are blocked by transcribePcm's shouldContinue callback. */
+const PROCESSING_TIMEOUT_MS = 12_000;
 
 // Prevent duplicate app instances (and duplicate tray icons).
 const gotSingleInstanceLock = app.requestSingleInstanceLock();
@@ -135,7 +140,10 @@ type WidgetUiState =
  * channel. `pipelineId` mirrors the main-side `activePipelineId` guard so a
  * stale pipeline's error can never be sent for a superseded recording (every
  * call site below only sends "error" when `activePipelineId === pipelineId`,
- * same check already used for every other end-of-pipeline reset). */
+ * same check already used for every other end-of-pipeline reset).
+ * `pipelineId` is informational for the renderer (a future error-UI PR may
+ * use it); the renderer does not read it today — staleness is enforced
+ * main-side, which is sufficient. */
 interface WidgetStatePayload {
   state: WidgetUiState;
   message?: string;
@@ -471,6 +479,12 @@ function resetAfterRecorderError(sessionId: string, message: string): void {
   }
 
   console.error(`[Recorder] ${message} (session=${sessionId})`);
+  // Capture failures must be visible too (FIX 7 — same D1 principle as ASR
+  // failures): surface the recorder's user-safe message through the widget
+  // error mechanism (same auto-revert pill) before resetting to idle. The
+  // trailing "idle" send below is safe — the widget ignores idle while its
+  // error pill's own revert timer is pending.
+  sendWidgetState("error", { message, pipelineId: session.pipelineId });
   if (session.pipelineTimer) {
     clearTimeout(session.pipelineTimer);
     if (processingTimer === session.pipelineTimer) {
@@ -1110,7 +1124,20 @@ app.on("ready", () => {
   // loaded by the time a dictation happens. Never awaited — must not block
   // onboarding/hotkey/recorder setup (D3). ensureReady() inside
   // transcribePcm() covers the case where a dictation races this.
-  void getWhisperServer().start();
+  // Rejection is expected when assets aren't installed (or a quit races the
+  // warm-up) — log quietly (FIX 6), never let it reach the emergency
+  // uncaughtException handler. No state mutation needed: start() already
+  // left the server "unavailable" and the first dictation surfaces the
+  // actionable ENGINE_UNAVAILABLE error (D9.6).
+  getWhisperServer()
+    .start()
+    .catch((err: unknown) => {
+      console.warn(
+        `[Whisper] Warm-up start failed (engine unavailable until fixed): ${
+          err instanceof Error ? err.message : String(err)
+        }`,
+      );
+    });
 
   // Show onboarding if first launch or permissions missing
   if (needsOnboarding()) {
@@ -1303,7 +1330,12 @@ app.on("ready", () => {
       );
 
       const asrStart = Date.now();
-      const transcript = await transcribePcm(Buffer.concat(session.pcmChunks));
+      // The staleness callback (FIX 8) lets transcribePcm skip its engine
+      // restart + second attempt once this pipeline's deadline has fired.
+      const transcript = await transcribePcm(
+        Buffer.concat(session.pcmChunks),
+        () => activePipelineId === pipelineId,
+      );
       const L_asr = Date.now() - asrStart;
 
       if (activePipelineId !== pipelineId) {
@@ -1452,7 +1484,7 @@ app.on("before-quit", (event) => {
   if (!whisperStopped) {
     event.preventDefault();
     whisperStopped = true;
-    void getWhisperServer()
+    getWhisperServer()
       .stop()
       .catch((err) => {
         console.error("[Whisper] error stopping sidecar during quit:", err);

@@ -130,13 +130,16 @@ contextBridge.exposeInMainWorld("electron", {
   },
 
   // --- Floating Widget ---
+  // Returns an unsubscribe fn (consistent with onSelectedMicChanged /
+  // onWidgetAudioLevel — the widget mounts once, so behavior is unchanged).
   onWidgetState: (
     callback: (
       _event: Electron.IpcRendererEvent,
       payload: WidgetStatePayload,
     ) => void,
-  ) => {
+  ): (() => void) => {
     ipcRenderer.on("widget-state", callback);
+    return () => ipcRenderer.removeListener("widget-state", callback);
   },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
@@ -217,7 +220,7 @@ declare global {
           _event: Electron.IpcRendererEvent,
           payload: WidgetStatePayload,
         ) => void,
-      ) => void;
+      ) => () => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;

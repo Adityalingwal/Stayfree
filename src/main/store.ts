@@ -2,7 +2,10 @@ import Store from "electron-store";
 
 /**
  * Settings Store
- * Persists user settings (API key, hotkey config, dictionary, etc.)
+ * Persists user settings and app data: hotkey config, selected mic,
+ * sound toggle, onboarding flag, last transcript, and the transcription
+ * history (capped at 50). No credentials — the legacy Sarvam API key was
+ * removed (see purgeLegacySarvamApiKey below).
  */
 
 export interface TranscriptionEntry {

@@ -13,16 +13,12 @@ export type ErrorCode =
   | "ASR_TIMEOUT"
   | "ASR_FAILED";
 
-export type ErrorAction = "retry";
-
 export class PipelineError extends Error {
   code: ErrorCode;
-  action?: ErrorAction;
 
-  constructor(code: ErrorCode, message: string, action?: ErrorAction) {
+  constructor(code: ErrorCode, message: string) {
     super(message);
     this.code = code;
-    this.action = action;
   }
 }
 
@@ -36,8 +32,27 @@ const MAX_ATTEMPTS = 2;
  * audio into a transcript. No formal Transcriber interface (YAGNI for a
  * single implementation) — a future streaming phase swaps the body behind
  * this same call site. See docs/LOCAL-STT-MIGRATION-PLAN.md §1.
+ *
+ * CONCURRENCY WARNING: concurrent calls are unreachable by construction —
+ * the pipeline's `isProcessing` guard plus this function's single call site
+ * (the audio-captured handler in src/index.ts) guarantee at most one
+ * in-flight transcription. whisper-server's behavior under concurrent
+ * /inference POSTs is unvalidated (plan §4 risk table) — do NOT introduce
+ * parallel callers.
+ *
+ * `shouldContinue` (optional, FIX 8): staleness check consulted at every
+ * retry decision point. When it returns false (the pipeline deadline fired
+ * / the pipeline was superseded), no engine restart and no second attempt
+ * happen — the mapped error is thrown immediately (the pipeline already
+ * ignores results from stale runs). The in-flight HTTP request is NOT
+ * force-aborted: it self-settles within ASR_REQUEST_TIMEOUT_MS and its
+ * result is discarded by the caller's stale-pipeline check. (Full
+ * AbortController plumbing is deferred to the streaming phase.)
  */
-export async function transcribePcm(pcm16: Buffer): Promise<string> {
+export async function transcribePcm(
+  pcm16: Buffer,
+  shouldContinue?: () => boolean,
+): Promise<string> {
   if (!pcm16 || pcm16.length === 0) {
     // Empty PCM never reaches the HTTP layer — nothing to send.
     throw new PipelineError(
@@ -49,6 +64,17 @@ export async function transcribePcm(pcm16: Buffer): Promise<string> {
   let lastError: PipelineError | null = null;
 
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    // FIX 8: never START a retry attempt for a stale pipeline (the deadline
+    // may have fired while the engine restarted between attempts).
+    if (attempt > 1 && shouldContinue && !shouldContinue()) {
+      throw (
+        lastError ??
+        new PipelineError(
+          "ASR_TIMEOUT",
+          "Transcription was cancelled after reaching its time limit.",
+        )
+      );
+    }
     try {
       const server = getWhisperServer();
       await server.ensureReady(READY_TIMEOUT_MS);
@@ -82,6 +108,12 @@ export async function transcribePcm(pcm16: Buffer): Promise<string> {
         throw mapped;
       }
       if (attempt >= MAX_ATTEMPTS) {
+        throw mapped;
+      }
+      // FIX 8: a stale pipeline (deadline expired) must never restart the
+      // engine — the SIGKILL/respawn could hit a server a NEWER recording
+      // is about to use. Bail with the mapped error; no restart, no retry.
+      if (shouldContinue && !shouldContinue()) {
         throw mapped;
       }
 
