@@ -20,3 +20,9 @@ src/assets/space-watcher
 .idea/
 coverage/
 scripts/debug/
+
+# pnpm cache (project uses npm)
+.pnpm-store/
+
+# internal working docs — public documentation banegi baad mein
+docs/

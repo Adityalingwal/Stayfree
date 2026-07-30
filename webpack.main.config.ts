@@ -27,10 +27,6 @@ export const mainConfig: Configuration = {
           from: "node_modules/node-gyp-build",
           to: "node_modules/node-gyp-build",
         },
-        {
-          from: "node_modules/ws",
-          to: "node_modules/ws",
-        },
       ],
     }),
   ],
@@ -40,7 +36,5 @@ export const mainConfig: Configuration = {
   externals: {
     // Mark uiohook-napi as external so webpack doesn't bundle the native module
     "uiohook-napi": "commonjs uiohook-napi",
-    // ws uses native Node.js http/https — keep as external
-    "ws": "commonjs ws",
   },
 };

@@ -12,6 +12,20 @@ type AudioStreamStatsPayload = {
   streamingFailed: boolean;
 };
 
+type WidgetUiState =
+  | "idle"
+  | "recording-hotkey"
+  | "recording-click"
+  | "processing"
+  | "error";
+
+/** Typed widget-state IPC payload (D1) — replaces the old bare-string channel. */
+type WidgetStatePayload = {
+  state: WidgetUiState;
+  message?: string;
+  pipelineId?: number | null;
+};
+
 /**
  * Preload script - exposes safe IPC APIs to renderer process
  *
@@ -76,7 +90,6 @@ contextBridge.exposeInMainWorld("electron", {
 
   // --- Settings / Dashboard ---
   getSettings: (): Promise<{
-    sarvamApiKey: string;
     selectedMicId: string;
     soundEnabled: boolean;
   }> => {
@@ -87,13 +100,6 @@ contextBridge.exposeInMainWorld("electron", {
   },
   saveSoundEnabled: (enabled: boolean) => {
     ipcRenderer.send("save-sound-enabled", enabled);
-  },
-  // Sarvam API key
-  getSarvamApiKey: (): Promise<string> => {
-    return ipcRenderer.invoke("get-sarvam-api-key");
-  },
-  saveSarvamApiKey: (key: string) => {
-    ipcRenderer.send("save-sarvam-api-key", key);
   },
   getTranscriptionHistory: (): Promise<
     Array<{
@@ -124,17 +130,16 @@ contextBridge.exposeInMainWorld("electron", {
   },
 
   // --- Floating Widget ---
+  // Returns an unsubscribe fn (consistent with onSelectedMicChanged /
+  // onWidgetAudioLevel — the widget mounts once, so behavior is unchanged).
   onWidgetState: (
     callback: (
       _event: Electron.IpcRendererEvent,
-      state:
-        | "idle"
-        | "recording-hotkey"
-        | "recording-click"
-        | "processing",
+      payload: WidgetStatePayload,
     ) => void,
-  ) => {
+  ): (() => void) => {
     ipcRenderer.on("widget-state", callback);
+    return () => ipcRenderer.removeListener("widget-state", callback);
   },
   startWidgetRecording: () => {
     ipcRenderer.send("widget-start-recording");
@@ -192,14 +197,11 @@ declare global {
       completeOnboarding: () => void;
       // Settings / Dashboard
       getSettings: () => Promise<{
-        sarvamApiKey: string;
         selectedMicId: string;
         soundEnabled: boolean;
       }>;
       saveSelectedMic: (deviceId: string) => void;
       saveSoundEnabled: (enabled: boolean) => void;
-      getSarvamApiKey: () => Promise<string>;
-      saveSarvamApiKey: (key: string) => void;
       getTranscriptionHistory: () => Promise<
         Array<{
           text: string;
@@ -216,9 +218,9 @@ declare global {
       onWidgetState: (
         callback: (
           _event: Electron.IpcRendererEvent,
-          state: "idle" | "recording-hotkey" | "recording-click" | "processing",
+          payload: WidgetStatePayload,
         ) => void,
-      ) => void;
+      ) => () => void;
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;

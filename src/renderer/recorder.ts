@@ -623,7 +623,10 @@ class AudioRecorder {
       if (this.activeSessionId === sessionId) {
         this.streamingFailed = true;
       }
-      // Non-fatal: WebM recording still works; main process will handle fallback
+      // Non-fatal for the session: WebM capture still runs (used for the
+      // saved audio file), but there is NO transcription fallback — the
+      // transcript comes only from the streamed PCM16 buffer, so with no
+      // chunks streamed the pipeline surfaces a NO_AUDIO error.
     }
   }
 
