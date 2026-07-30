@@ -43,7 +43,7 @@ No formal `Transcriber` interface with one implementation (YAGNI): the pipeline 
 **D3 — Lifecycle.** States: `stopped → starting → ready → crashed (→ restarting) → stopping`. API: `start()`, `ensureReady(timeoutMs)`, `restart(reason)`, `stop()`, `getStatus()`.
 - Start async right after `app.whenReady` — never blocks onboarding/hotkey/recorder setup.
 - **Readiness signal is established in the blocking preflight (see §4), not assumed** — TCP-open alone is unproven as "model loaded" for v1.9.1. Whatever the preflight proves (HTTP probe answering = ready, or a stdout marker) becomes the implementation.
-- Crash restart: backoff 0/0.5/1/2/4s; >5 crashes in 60s → circuit-break to `unavailable`, retry every 30s; a dictation's `ensureReady` may force one clean attempt. Intentional stop/restart suppresses auto-restart.
+- Crash restart: backoff 0/0.5/1/2/4s; the **5th crash in a rolling 60s window trips the circuit-breaker** to `unavailable` (contract unified 2026-07-30 — conservative, brakes early), retry every 30s (looping — every failed retry re-arms the next); a dictation's `ensureReady` may force one clean attempt. Intentional stop/restart suppresses auto-restart. The crash streak is cleared only after a proven-stable interval (ready + 60s without a crash), never on mere readiness.
 - Spawn: `cwd` = asset dir, `--tmp-dir <userData>/whisper/tmp` (owned, cleared at startup), `stdio: pipe` with stderr → console prefixed `[Whisper]`, exec-bit chmod (space-watcher precedent, src/index.ts:316).
 - `before-quit`: SIGTERM → 2s grace → SIGKILL (replaces Sarvam shutdown at src/index.ts:1555).
 
@@ -53,7 +53,7 @@ No formal `Transcriber` interface with one implementation (YAGNI): the pipeline 
 - Error codes recast (internal-only today, grep-verified): `NO_AUDIO`, `NO_TRANSCRIPT`, `ENGINE_UNAVAILABLE`, `ASR_TIMEOUT`, `ASR_FAILED`. `mapPipelineError` (src/index.ts:553) shrinks; messages stay user-readable (D1 displays them).
 - Session: `pcmChunks` becomes the primary payload. **`needsReplay` + live-forward + replay logic DIES** (src/index.ts:85, 514-521, 620-642, 1332-1335 — existed only to heal a broken cloud stream). `audio-chunk-stream` handler = accumulate only. Energy stats stay (diagnostics; possible future silence gate).
 
-**D5 — Timeouts (end-to-end budget, not just request math).** `READY_TIMEOUT_MS = 4000`, `ASR_REQUEST_TIMEOUT_MS = 4500`, `PROCESSING_TIMEOUT_MS = 20000` (unchanged). The deadline arms at key RELEASE (src/index.ts:1286), so the budget must cover everything after release: WebM blob assembly + file save + attempt 1 (≤4.5s incl. its ready-wait) + **failed-process kill = immediate SIGKILL, zero grace** (the 2s SIGTERM grace applies ONLY to app-quit shutdown — a process being restarted because it failed has no state worth preserving) + respawn/ready (≤4s) + attempt 2 (≤4.5s) + paste ≈ **13s worst + overhead, ~7s margin under 20s**. Deadline expiry itself surfaces the D1 error (see D1) instead of today's silent reset, and the existing `activePipelineId` guard prevents a stale retry from completing after the deadline fired. Warm request measured 0.106s; cold-after-spawn 0.558s; long clips measured in preflight (§4) before these numbers are frozen.
+**D5 — Timeouts (end-to-end budget, not just request math). [REWRITTEN 2026-07-30 — post-review amendment]** `READY_TIMEOUT_MS = 4000`, `ASR_REQUEST_TIMEOUT_MS = 4500`, `PROCESSING_TIMEOUT_MS = 12000` (was 20000; the original "13s worst + ~7s margin" arithmetic was also wrong — the true sequential worst chain was ~17s: ready 4 + request 4.5 + restart-ready 4 + request 4.5). The deadline arms at key RELEASE, and the engine is local (measured warm ASR 0.15-1.2s; warm request 0.106s, cold-after-spawn 0.558s). The worst *legitimate* chain the deadline must cover is the hung-server self-heal: attempt 1 (ready-wait + request timeout ≈ 8.5s) + **failed-process kill = immediate SIGKILL, zero grace** (the 2s SIGTERM grace applies ONLY to app-quit shutdown) + respawn-to-ready (~1s) + attempt 2 (~1s) ≈ **10.5-11s, fits under 12s**. (10s was considered and rejected — it cut the self-heal window.) Once the deadline fires, `transcribePcm`'s `shouldContinue` cancellation callback blocks any further stale retry/restart — a superseded dictation can never SIGKILL/respawn the server a newer recording is about to use; the in-flight HTTP request self-settles via its own AbortController and its result is discarded by the `activePipelineId` guard. Deadline expiry itself surfaces the D1 error instead of a silent reset.
 
 **D6 — Naming.** Rename all main-process-only "Hindi" concepts now (same-diff, near-zero marginal churn; misleading names fail the contributor bar): `HindiRecordingSession→RecordingSession`, `activeHindiSession→activeRecordingSession`, `start/stop/clearHindiSession→…RecordingSession`, `transcribeHindiWithRetries→` (replaced by transcriber call), `HINDI_STREAM_*` constants die. **Do NOT touch renderer wire names** (`hindiMode` arg, `audio-chunk-stream`, recorder.ts internals) — locked unchanged; one comment at the main-side send site records the deferred rename; also noted in docs.
 
@@ -102,9 +102,9 @@ Results recorded in the plan's verification log; unverified assumptions may not 
 | rpath copy resolves to source tree (CONFIRMED absolute LC_RPATH) | Phase-0 patch + renamed-source-dir proof; setup script owns the fix |
 | Silence → Whisper hallucinates filler | Phase-0 silence matrix is DECISIVE: adopt `-sns` only if it removes hallucination AND passes the short-clip regression (gold-set <3s clips unchanged). NO pre-ASR `hasSpeech` gate — the code itself documents that the energy baseline misclassifies immediate push-to-talk speech as silence (src/index.ts:607-613); adding that gate would eat real first-words. If `-sns` fails AND hallucination is confirmed real → surface to the owner as a ship/no-ship decision, never silently accept. Paste never fires on `NO_TRANSCRIPT` |
 | First dictation races model load | `ensureReady(4s)` inside transcribe; widget shows normal processing; ~1-2s once per launch worst case |
-| Crash loop (bad model/binary) | Backoff + circuit breaker (5 crashes/60s → 30s retry cadence); no hot respawn; heat-safe |
-| Orphan server after app SIGKILL | Startup pkill sweep on unique userData path (cannot match foreign/benchmark processes); dynamic port means it never blocks us either way |
-| 20s failsafe kills a legitimate retry | Budget arithmetic (17s worst < 20s); exercised by kill-mid-recording smoke test |
+| Crash loop (bad model/binary) | Backoff + circuit breaker (5th crash in a rolling 60s window trips → 30s retry cadence — same contract as D3); no hot respawn; heat-safe |
+| Orphan server after app SIGKILL | Startup owned-PID validated sweep — exact executable match (`ps -o comm=` equality against the recorded binary path; D2 rejected pkill/substring matching); dynamic port means it never blocks us either way |
+| 12s failsafe kills a legitimate retry | Amended budget (hung-server self-heal ≈ 11s < 12s — see D5); stale post-deadline retries/restarts blocked by transcribePcm's cancellation callback; exercised by kill-mid-recording smoke test |
 | Concurrent requests to server (behavior unknown) | Unreachable by construction: `isProcessing` guard (src/index.ts:1363) + single call site; comment at export warns future contributors |
 | Long recordings (buffer RAM + latency) | Preflight measures 30/60/120s; cap only if measured necessary |
 | Deleted Sarvam file hides shared util | `wrapPcm16InWav` → wav.ts move-then-delete; grep confirms no other consumers |
@@ -113,7 +113,7 @@ Results recorded in the plan's verification log; unverified assumptions may not 
 ## 5. Verification protocol
 
 1. **Build:** `npm run package` clean (the repo's only working type-check) + `npm run lint`.
-2. **Repo hygiene:** `rg -i 'sarvam|SARVAM_API_KEY' src package.json webpack.main.config.ts README.md` → zero hits (docs/LOCAL-FIRST-STT.md historical mentions exempt).
+2. **Repo hygiene [AMENDED 2026-07-30]:** the real check is **no RUNTIME Sarvam integration** — no imports, no endpoints, no env/credential access, no deps. `rg -i 'sarvam|SARVAM_API_KEY' src package.json webpack.main.config.ts README.md` is the tool, with these exemptions (which D8 itself mandates and which made the original "zero hits" self-contradictory): (i) the D8-mandated `purgeLegacySarvamApiKey` in `src/main/store.ts` + its `src/index.ts` call site — deleting the legacy key requires naming it; (ii) historical-context comments (module headers in `src/main/whisper/server.ts` / `wav.ts` / `transcriber.ts`, and D6's deferred-rename comments). docs/LOCAL-FIRST-STT.md historical mentions exempt as before.
 3. **Accuracy parity:** 3-5 gold-set clips through the real app path == Test 4 stored transcripts. (Full 82-clip re-run optional; WER-vs-Sarvam framing stays "disagreement", not absolute accuracy.)
 4. **Smoke (npm start):** short Hinglish → paste + L_asr log (<1s expected) · 60s+ dictation → complete paste · English jargon (known weakness, not a gate) · silent 3s hold → NO_TRANSCRIPT error pill, NO hallucinated paste · <300ms tap → instant idle, zero ASR call · 5 rapid dictations → no state leak · `kill -9` server mid-recording → release → auto-restart+retry → transcript or clean error, then idle · `kill -9` app → relaunch → sweep reaps orphan (pgrep before/after) · normal quit → `pgrep whisper-server` empty · assets renamed away → dictate → actionable error pill; restore → recovers next dictation.
 5. **Offline test:** network fully off → app + dictation work end-to-end (the whole point of local-first).
@@ -127,3 +127,40 @@ Results recorded in the plan's verification log; unverified assumptions may not 
 - Streaming sidecar, packaged distribution (extraResources + rpath/signing interplay noted), model download-on-first-run, idle-unload, VAD, Windows
 - Failed-dictation history entries (product decision)
 - `install_name_tool` vs future code-signing: packaged assets must be re-patched before signing/notarization (noted for the packaging phase)
+
+## 7. Post-review amendments (2026-07-30)
+
+A dual independent review (Claude Fable + Codex) of the implementation was run against this
+plan — raw reports: `docs/reviews/claude-review-findings.md`,
+`docs/reviews/codex-review-findings.md`. The approved fix plan is
+`docs/reviews/FIX-PLAN-2026-07-30.md` (FIX 1, 3-12 approved and implemented; FIX 2
+deferred). The following implementation deviations are now **canon**:
+
+- **12s processing deadline** — `PROCESSING_TIMEOUT_MS = 12000` (was 20000); D5 above
+  rewritten with the corrected arithmetic and rationale.
+- **Exact-match zombie sweep** — orphan-PID identity is validated by *equality* of
+  `ps -p PID -o comm=` (the process's own executable path) against the recorded binary
+  path, not by command-line substring.
+- **Bounded bind-failure port retry** — inside one start attempt, a child that exits
+  before ever becoming ready triggers a fresh-port respawn (max 5 ports); these retries
+  are **not** crash-accounted (port collision ≠ crash).
+- **lateReady adoption window** — a child that misses the 4s readiness poll but is still
+  alive (cold Metal shader compile, ~7.5s measured) is *not* killed: a background poll
+  gives it up to 15s to converge and adopts it as `ready`; only then is it killed and
+  crash-accounted.
+- **Terminal `shuttingDown` state** — `stop()` sets a permanent flag first;
+  `start()`/`restart()`/`ensureReady()` reject and any in-flight startup aborts (killing
+  its own child) — no spawn is possible after quit begins.
+- **Crash accounting** — the crash streak is cleared only after 60s of proven-stable
+  readiness; the 5th crash in the rolling 60s window trips the breaker; the breaker's 30s
+  retry loops (every failed retry re-arms the next).
+- **Transcriber cancellation callback** — `transcribePcm(pcm16, shouldContinue?)`: a
+  stale (deadline-expired/superseded) pipeline never restarts the engine or starts a
+  second attempt. Full AbortController plumbing stays deferred to the streaming phase.
+- **Staged atomic setup script** — `scripts/setup-whisper.sh` stages, verifies (per-file
+  completeness, real-LC_RPATH-based patch, alive+HTTP smoke on a dynamic free port) and
+  only then atomically swaps the install; failures leave an existing install untouched.
+- **`CLAUDE.md` untracked by choice** — active development phase; it will be handed to
+  other developers when complete. D9.4's rewrite deliverable is local-disk-only.
+- **Widget error-message UI = separate future PR** — visible error text, an `error`
+  widget layout, and CSS-state cleanup (FIX 2, DEFERRED).
