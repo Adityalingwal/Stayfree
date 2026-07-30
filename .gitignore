@@ -20,3 +20,6 @@ src/assets/space-watcher
 .idea/
 coverage/
 scripts/debug/
+
+# pnpm cache (project uses npm)
+.pnpm-store/
