@@ -8,13 +8,13 @@
 
 StayFree is a lightweight, macOS-only menu bar dictation app. Whenever you want to type — whether in VS Code, Slack, WhatsApp, Terminal, or Notes — just press and hold the hotkey (`Option` key), speak naturally, and release. The raw transcript auto-pastes directly into your focused field.
 
-Transcription runs **entirely on your Mac** via a local `whisper.cpp` sidecar (Metal-accelerated) — no cloud API, no API key, no audio ever leaves your device. Works fully offline.
+Transcription runs entirely on your Mac via a local `whisper.cpp` engine (Metal-accelerated) — works fully offline.
 
 ---
 
 ## ✨ Features
 
-- 🔒 **Local-First Transcription**: Audio is transcribed on-device by a local `whisper.cpp` server (Metal-accelerated, a warm background process) — nothing is sent over the network.
+- 🔒 **Local-First Transcription**: Audio is transcribed on-device by a local `whisper.cpp` server (Metal-accelerated, a warm background process).
 - 🗣️ **English & Hinglish Support**: A Hinglish-tuned `whisper.cpp` model (Oriserve Swift, q8_0 quantized) transcribes both languages to Roman-script text.
 - 🎯 **Works System-Wide**: Pastes directly into whichever text input field is currently active (VS Code, Cursor, Slack, WhatsApp, Terminal, Browser, etc.).
 - 🎈 **Floating Dock Widget**: Minimalist floating overlay near the dock providing real-time visual feedback (`Recording` / `Processing` / `Error`).
@@ -46,11 +46,8 @@ npm install
 ./scripts/setup-whisper.sh
 ```
 
-`setup-whisper.sh` copies a whisper.cpp build + a Hinglish-tuned model into
-`~/Library/Application Support/StayFree/whisper/`, patches it to be
-self-contained, and runs a one-time smoke test. See the script for the
-`WHISPER_CPP_SRC` / `WHISPER_MODEL_SRC` environment variables if your
-whisper.cpp build lives somewhere other than the script's default.
+`setup-whisper.sh` installs the whisper.cpp engine + model into
+`~/Library/Application Support/StayFree/whisper/` and runs a quick smoke test.
 
 Then start the app:
 ```bash
@@ -71,8 +68,6 @@ When you run `npm start` for the first time:
    - **Microphone**: Click **Allow** to enable voice recording.
    - **Accessibility**: Click **Open Settings** and enable **Electron** under Accessibility.
 2. Once the required permissions show **Granted**, click **Start using StayFree**. The app will continue running in your system tray / menu bar.
-
-No API key or account is needed — transcription is entirely local.
 
 ---
 
