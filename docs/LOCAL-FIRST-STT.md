@@ -173,7 +173,31 @@ Key decisions:
 
 ## 9. NEXT STEPS (yahan se continue karo)
 
-1. **[NEXT] App integration:** whisper.cpp sidecar + local WS + Sarvam fallback toggle (§5 architecture). Pehle simple record→transcribe, streaming baad mein layer karo
+1. **[DONE — 2026-07-30, branch `feat/local-stt`] App integration:** whisper.cpp
+   sidecar shipped as `src/main/whisper/{server,transcriber,wav}.ts`,
+   fully replacing Sarvam (not a fallback toggle — Sarvam cloud ASR was
+   removed entirely, `src/main/transcription-sarvam-stream.ts` deleted).
+   **Deviated from this line's original sketch** on two points, both
+   resolved during fusion-plan synthesis (see
+   `docs/LOCAL-STT-MIGRATION-PLAN.md`):
+   - **HTTP, not a local WebSocket** — `whisper-server`'s stock
+     `/inference` endpoint (multipart POST) is used as-is; no custom WS
+     protocol needed.
+   - **No Sarvam fallback** — v1 ships local-only per the owner's
+     direction; Sarvam is fully gone, not kept as a toggle.
+   Still true to the original plan: **v1 is full-buffer
+   record→stop→transcribe** (streaming deferred, see item 2 below) and
+   the model stays warm across recordings (a persistent child process,
+   not per-recording connection setup).
+   **Deferred renderer-rename note (D6):** the renderer-side wire names
+   (`hindiMode` arg on `onStartRecording`/`start-recording`, the
+   `audio-chunk-stream` channel name) were deliberately left unrenamed —
+   only main-process-internal "Hindi" naming was recast
+   (`RecordingSession`, `activeRecordingSession`, etc.). The renderer
+   names are locked until the streaming phase below touches that code
+   anyway; renaming them now would be same-diff churn for no reader
+   benefit today. Full details: `docs/LOCAL-STT-MIGRATION-PLAN.md` D6 and
+   §6 "Explicitly deferred".
 2. **Streaming layer:** chunked transcribe-while-recording (perceived ~0.2-0.4s any length)
 3. **Data collection shuru** (parallel): app usage se pairs accumulate + YouTube pipeline + quality filter
 4. **Pilot fine-tune run** (₹0-1000, Colab) — jargon learnability proof
