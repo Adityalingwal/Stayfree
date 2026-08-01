@@ -121,6 +121,9 @@ contextBridge.exposeInMainWorld("electron", {
   downloadAudioFile: (filename: string): Promise<boolean> => {
     return ipcRenderer.invoke("download-audio-file", filename);
   },
+  getTotalWordsSpoken: (): Promise<number> => {
+    return ipcRenderer.invoke("get-total-words-spoken");
+  },
   onTranscriptionHistoryUpdated: (callback: () => void): (() => void) => {
     const handler = () => callback();
     ipcRenderer.on("transcription-history-updated", handler);
@@ -213,6 +216,7 @@ declare global {
       clearTranscriptionHistory: () => void;
       getAppVersion: () => Promise<string>;
       downloadAudioFile: (filename: string) => Promise<boolean>;
+      getTotalWordsSpoken: () => Promise<number>;
       onTranscriptionHistoryUpdated: (callback: () => void) => () => void;
       // Floating Widget
       onWidgetState: (

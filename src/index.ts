@@ -14,7 +14,7 @@ import { getHotkeyManager } from "./main/hotkey";
 import { getWhisperServer } from "./main/whisper/server";
 import { transcribePcm, PipelineError } from "./main/whisper/transcriber";
 import { pasteText } from "./main/paste";
-import store, { TranscriptionEntry, purgeLegacySarvamApiKey } from "./main/store";
+import store, { TranscriptionEntry, purgeLegacySarvamApiKey, seedWordCountFromHistory } from "./main/store";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -947,9 +947,15 @@ function registerSettingsHandlers(): void {
     return store.get("transcriptionHistory");
   });
 
+  ipcMain.handle("get-total-words-spoken", () => {
+    return store.get("totalWordsSpoken");
+  });
+
   ipcMain.on("clear-transcription-history", () => {
     cleanupAllAudioFiles();
     store.set("transcriptionHistory", []);
+    // Note: totalWordsSpoken is intentionally NOT reset on clear — it is a
+    // permanent lifetime counter unaffected by history management.
     console.log("[Settings] History cleared (audio files deleted)");
   });
 
@@ -1076,6 +1082,8 @@ function registerWidgetHandlers(): void {
 app.on("ready", () => {
   // One-time credential purge — see purgeLegacySarvamApiKey() doc comment.
   purgeLegacySarvamApiKey();
+  // One-time migration: seed cumulative word count from pre-existing history.
+  seedWordCountFromHistory();
 
   // Hide dock icon on macOS - this is a tray-only app
   if (isMac) {
@@ -1374,6 +1382,13 @@ app.on("ready", () => {
         }
       }
       store.set("transcriptionHistory", history);
+
+      // Accumulate cumulative word count — persists independently of the
+      // 50-entry history cap. Words are never subtracted when old entries
+      // are pruned; this counter only ever grows.
+      const newWords = formattedText.trim().split(/\s+/).filter(Boolean).length;
+      const prevTotal = store.get("totalWordsSpoken") as number;
+      store.set("totalWordsSpoken", prevTotal + newWords);
 
       // Notify dashboard to refresh
       if (settingsWindow && !settingsWindow.isDestroyed()) {

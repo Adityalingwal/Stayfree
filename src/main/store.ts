@@ -27,6 +27,11 @@ interface StoreSchema {
   selectedMicId: string; // '' = system default
   transcriptionHistory: TranscriptionEntry[];
   soundEnabled: boolean;
+  /**
+   * Cumulative total of all words ever spoken — persists even when
+   * transcriptionHistory entries are pruned (50-entry cap). Never decreases.
+   */
+  totalWordsSpoken: number;
 }
 
 const store = new Store<StoreSchema>({
@@ -41,6 +46,7 @@ const store = new Store<StoreSchema>({
     selectedMicId: "",
     transcriptionHistory: [],
     soundEnabled: true,
+    totalWordsSpoken: 0,
   },
 });
 
@@ -56,6 +62,37 @@ const store = new Store<StoreSchema>({
 export function purgeLegacySarvamApiKey(): void {
   (store as unknown as { delete: (key: string) => void }).delete(
     "sarvamApiKey",
+  );
+}
+
+/**
+ * One-time migration: seed `totalWordsSpoken` from existing transcription
+ * history for users who had recordings before this field was introduced.
+ *
+ * Detection logic:
+ *   - If totalWordsSpoken > 0  → already seeded, skip (idempotent).
+ *   - If history is empty      → brand-new user, nothing to seed.
+ *   - Otherwise               → first run after upgrade; count words from
+ *                               every history entry and write the total.
+ *
+ * Call once at app startup, after purgeLegacySarvamApiKey().
+ */
+export function seedWordCountFromHistory(): void {
+  const current = store.get("totalWordsSpoken");
+  if (current > 0) return; // already seeded
+
+  const history = store.get("transcriptionHistory") as TranscriptionEntry[];
+  if (history.length === 0) return; // nothing to seed
+
+  const seeded = history.reduce(
+    (sum, entry) =>
+      sum + (entry.text ?? "").trim().split(/\s+/).filter(Boolean).length,
+    0,
+  );
+
+  store.set("totalWordsSpoken", seeded);
+  console.log(
+    `[Store] Seeded totalWordsSpoken=${seeded} from ${history.length} existing history entries.`,
   );
 }
 

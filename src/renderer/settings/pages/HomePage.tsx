@@ -54,21 +54,6 @@ function groupByDate(
   return groups;
 }
 
-function computeStats(entries: TranscriptionEntry[]) {
-  const totalWords = entries.reduce(
-    (s, e) => s + e.text.split(/\s+/).filter(Boolean).length,
-    0,
-  );
-  const totalTranscriptions = entries.length;
-  const avgDuration =
-    entries.length > 0
-      ? Math.round(
-          entries.reduce((s, e) => s + e.durationMs, 0) / entries.length,
-        )
-      : 0;
-  return { totalWords, totalTranscriptions, avgDuration };
-}
-
 // ─── Copy Button ───────────────────────────────────────────────
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -238,6 +223,7 @@ function DownloadButton({ filename }: { filename?: string }) {
 export default function HomePage() {
   const [history, setHistory] = useState<TranscriptionEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [totalWordsSpoken, setTotalWordsSpoken] = useState<number>(0);
   const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
     guessPlatform(),
   );
@@ -246,6 +232,10 @@ export default function HomePage() {
     window.electron.getTranscriptionHistory().then((h) => {
       setHistory(h);
       setLoading(false);
+    });
+    // Fetch the persistent lifetime word count (unaffected by 50-entry cap)
+    window.electron.getTotalWordsSpoken().then((n) => {
+      setTotalWordsSpoken(n);
     });
   };
 
@@ -265,7 +255,6 @@ export default function HomePage() {
     return () => cleanup?.();
   }, []);
 
-  const stats = computeStats(history);
   const grouped = groupByDate(history);
   const holdKeyLabel = platform === "win32" ? "alt" : "option";
 
@@ -294,34 +283,16 @@ export default function HomePage() {
           Welcome back
         </h1>
 
-        {/* Stats (Wispr style inline) */}
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-            <span style={{ fontSize: "14px" }}>🔥</span>
-            <span
-              style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a" }}
-            >
-              10 days
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-            <span style={{ fontSize: "14px" }}>✏️</span>
-            <span
-              style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a" }}
-            >
-              {stats.totalWords >= 1000
-                ? `${(stats.totalWords / 1000).toFixed(1)}K words`
-                : `${stats.totalWords} words`}
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-            <span style={{ fontSize: "14px" }}>🏆</span>
-            <span
-              style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a" }}
-            >
-              {stats.totalTranscriptions} notes
-            </span>
-          </div>
+        {/* Stats — only word count, persistent lifetime total */}
+        <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+          <span style={{ fontSize: "14px" }}>✏️</span>
+          <span
+            style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a" }}
+          >
+            {totalWordsSpoken >= 1000
+              ? `${(totalWordsSpoken / 1000).toFixed(1)}K words`
+              : `${totalWordsSpoken} words`}
+          </span>
         </div>
       </div>
 
