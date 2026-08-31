@@ -220,10 +220,118 @@ function DownloadButton({ filename }: { filename?: string }) {
     </button>
   );
 }
-export default function HomePage() {
+// ─── Stats Card (right column, opens Insights) ─────────────────
+function formatCompactNumber(n: number): string {
+  return n >= 1000 ? `${(n / 1000).toFixed(1)}K` : `${n}`;
+}
+
+function StatsCard({
+  totalWords,
+  wpm,
+  onClick,
+}: {
+  totalWords: number;
+  wpm: number | null;
+  onClick: () => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  const stat = (value: string, label: string) => (
+    <div>
+      <div
+        style={{
+          fontSize: "28px",
+          fontWeight: 700,
+          color: "#0f172a",
+          letterSpacing: "-0.02em",
+          lineHeight: 1.15,
+          fontFamily: "Georgia, 'Times New Roman', serif",
+        }}
+      >
+        {value}
+      </div>
+      <div
+        style={{
+          fontSize: "11px",
+          fontWeight: 600,
+          color: "#94a3b8",
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          marginTop: "2px",
+        }}
+      >
+        {label}
+      </div>
+    </div>
+  );
+
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      aria-label="Open Insights"
+      title="Open Insights"
+      style={{
+        width: "225px",
+        flexShrink: 0,
+        position: "sticky",
+        top: 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: "18px",
+        textAlign: "left",
+        backgroundColor: hovered ? "#f5f5f4" : "#fafaf9",
+        border: `1px solid ${hovered ? "#e7e5e4" : "#f1f5f9"}`,
+        borderRadius: "14px",
+        padding: "22px 24px",
+        cursor: "pointer",
+        transition:
+          "background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease",
+        boxShadow: hovered ? "0 4px 14px rgba(15, 23, 42, 0.06)" : "none",
+      }}
+    >
+      {stat(formatCompactNumber(totalWords), "total words")}
+      {stat(wpm === null ? "—" : `${wpm}`, "words per minute")}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "4px",
+          fontSize: "12px",
+          fontWeight: 600,
+          color: hovered ? "#0f172a" : "#94a3b8",
+          transition: "color 0.2s ease",
+        }}
+      >
+        View insights
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </div>
+    </button>
+  );
+}
+
+export default function HomePage({
+  onOpenInsights,
+}: {
+  onOpenInsights: () => void;
+}) {
   const [history, setHistory] = useState<TranscriptionEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [totalWordsSpoken, setTotalWordsSpoken] = useState<number>(0);
+  const [totalWords, setTotalWords] = useState<number>(0);
+  const [wpm, setWpm] = useState<number | null>(null);
   const [platform, setPlatform] = useState<"darwin" | "win32" | "linux">(
     guessPlatform(),
   );
@@ -233,9 +341,10 @@ export default function HomePage() {
       setHistory(h);
       setLoading(false);
     });
-    // Fetch the persistent lifetime word count (unaffected by 50-entry cap)
-    window.electron.getTotalWordsSpoken().then((n) => {
-      setTotalWordsSpoken(n);
+    // Lifetime stats for the side card (unaffected by the 50-entry cap)
+    window.electron.getInsightsStats().then((s) => {
+      setTotalWords(s.totalWords);
+      setWpm(s.wpm);
     });
   };
 
@@ -259,7 +368,9 @@ export default function HomePage() {
   const holdKeyLabel = platform === "win32" ? "alt" : "option";
 
   return (
-    <div>
+    <div style={{ display: "flex", gap: "28px", alignItems: "flex-start" }}>
+      {/* ─── Main column ─── */}
+      <div style={{ flex: 1, minWidth: 0 }}>
       {/* ─── Header Row ─── */}
       <div
         style={{
@@ -282,18 +393,6 @@ export default function HomePage() {
         >
           Welcome back
         </h1>
-
-        {/* Stats — only word count, persistent lifetime total */}
-        <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-          <span style={{ fontSize: "14px" }}>✏️</span>
-          <span
-            style={{ fontSize: "13px", fontWeight: 600, color: "#0f172a" }}
-          >
-            {totalWordsSpoken >= 1000
-              ? `${(totalWordsSpoken / 1000).toFixed(1)}K words`
-              : `${totalWordsSpoken} words`}
-          </span>
-        </div>
       </div>
 
       {/* ─── Feature Card (Wispr cream/warm) ─── */}
@@ -506,6 +605,10 @@ export default function HomePage() {
       </div>
 
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+
+      {/* ─── Stats card (opens Insights) ─── */}
+      <StatsCard totalWords={totalWords} wpm={wpm} onClick={onOpenInsights} />
     </div>
   );
 }

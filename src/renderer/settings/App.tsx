@@ -76,7 +76,7 @@ export default function App() {
 
       <main className="dashboard-content">
         {activePage === "home" ? (
-          <HomePage />
+          <HomePage onOpenInsights={() => setActivePage("insights")} />
         ) : activePage === "insights" ? (
           <InsightsPage />
         ) : (
