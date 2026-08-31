@@ -26,7 +26,14 @@ type WidgetStatePayload = {
 const ERROR_VISIBLE_MS = 3000;
 
 // Pill geometry per state, animated by framer-motion springs (the CSS classes
-// only carry colors/border now). Ratios matched to the reference recording
+// only carry colors/border now).
+//
+// !!! KEEP THE width/height VALUES IN SYNC with `PILL_SIZES` in src/index.ts !!!
+// The main process hit-tests the real cursor position against this rect to
+// decide when the widget window stops being click-through. This file owns the
+// animation; main owns the hit-test, and it only reads the target sizes.
+//
+// Ratios matched to the reference recording
 // (~2.4:1), processing (~3.3:1, wider) and idle (~5:1, thin) proportions.
 //
 // GROW (idle → active): a true underdamped spring — the elastic rubber-band
@@ -121,8 +128,14 @@ const pillVariants = {
  *    follows right behind it is ignored while this is showing; a genuinely
  *    new recording still clears it immediately
  *
- * The window is much larger than the pill and click-through by default; we make
- * it interactive only while the cursor is over the pill's hit area.
+ * The window is much larger than the pill and click-through by default. This
+ * side no longer has any say in that: the MAIN process polls the real cursor
+ * position against the pill's real rect (PILL_SIZES / startWidgetHitPoll in
+ * src/index.ts) and flips setIgnoreMouseEvents itself. The old approach —
+ * onMouseEnter/onMouseLeave on a 236x46 `.widget-hit` div — made a ~98px dead
+ * band on each side of the 40x8 idle pill swallow the user's clicks, and could
+ * get permanently stuck interactive whenever the window moved out from under a
+ * stationary cursor (dock show/hide) so no mouseleave ever fired.
  */
 export default function App() {
   const [state, setState] = useState<WidgetState>("idle");
@@ -182,19 +195,12 @@ export default function App() {
     }
   };
 
-  // The native window is click-through by default (see index.ts). Make it
-  // interactive only while the cursor is actually over the pill hit area, then
-  // release it again so clicks pass through everywhere else.
-  const handleMouseEnter = () => window.electron.setWidgetIgnoreMouse(false);
-  const handleMouseLeave = () => window.electron.setWidgetIgnoreMouse(true);
-
   return (
     <div className="widget-root">
-      <div
-        className="widget-hit"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      {/* Layout only — this div bottom-anchors and centres the pill. Click-
+          through is decided in the main process (see the doc comment above);
+          do not re-add hover handlers here. */}
+      <div className="widget-hit">
         <div className="widget-stage">
           <motion.div
             className={`widget-pill pill-${state}${

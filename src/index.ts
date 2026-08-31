@@ -160,9 +160,167 @@ const WIDGET_WINDOW_WIDTH = 260;
 // short 56px window could never sit flush at the screen bottom in a fullscreen
 // Space. A tall window's top stays above that line, so its bottom edge is free
 // to reach the very bottom of the screen. The pill is anchored to the window's
-// bottom via CSS and only the bottom ~46px is interactive; the rest is
-// transparent and click-through, so the extra height is invisible and inert.
+// bottom via CSS; everything outside the pill's own rect is transparent AND
+// click-through (see the hit-test poller below), so the extra height is
+// invisible and inert.
 const WIDGET_WINDOW_HEIGHT = 140;
+
+// ============================================================================
+// Widget click-through hit-testing (main-process owned)
+// ============================================================================
+//
+// WHY this lives in main and not in the renderer:
+//
+// The widget's native window is 260x140 but the visible idle pill is only 40x8.
+// The window must therefore be click-through by default so the user can keep
+// using whatever app sits behind it. The old mechanism let the RENDERER decide:
+// a large invisible `.widget-hit` div (236x46) carried onMouseEnter/onMouseLeave
+// which toggled setIgnoreMouseEvents. That had three problems:
+//
+//   1. The hover target was the div, not the pill — so a ~98px-wide invisible
+//      dead band on each side of the 40px idle pill silently swallowed clicks
+//      meant for the app underneath.
+//   2. `repositionWidget()` tweens the window's Y when the dock shows/hides. If
+//      the window slid out from under a stationary cursor, no `mouseleave` ever
+//      fired, so click-through stayed OFF forever — a permanent dead zone.
+//   3. If the widget renderer reloaded or crashed while click-through was OFF,
+//      main never learned about it and never reset the flag.
+//
+// Polling the real cursor position against the pill's real rect in main fixes
+// all three at once: every tick re-reads `getBounds()` fresh, so a repositioned
+// (or fullscreen-Space-relocated) window self-heals on the very next tick, and
+// a renderer reload/crash cannot leave a stale interactive state behind because
+// the renderer is no longer part of the decision at all.
+const WIDGET_HIT_POLL_MS = 50;
+
+// Extra margin grown on all sides of the pill rect. An 8px-tall idle pill is a
+// brutal hover target, so this buys back comfort without recreating the old
+// dead band: idle becomes ~52x20 instead of the old 236x46 (~20x smaller).
+// It also covers framer's `whileHover` scaleX 1.08 on the idle pill, which
+// visually widens 40px -> ~43.2px (1.6px per side). Don't grow this past 6px
+// without a concrete reason — every px here is dead space for the app behind.
+const PILL_HIT_PADDING = 6;
+
+// The pill sits 8px above the window's bottom edge. That 8px is the
+// `.widget-hit { padding-bottom: 8px }` rule in widget.css — if that value ever
+// changes, this must change with it.
+const PILL_BOTTOM_OFFSET = 8;
+
+// Pill size per widget state, in CSS px.
+//
+// !!! KEEP IN SYNC with `pillVariants` in src/renderer/widget/App.tsx !!!
+// The renderer owns the animation (framer springs morph between these sizes);
+// main owns the hit-test and only needs the target geometry. There is no way to
+// share one table across the process boundary without an IPC round-trip on
+// every state change, so the two tables are duplicated deliberately.
+const PILL_SIZES: Record<WidgetUiState, { width: number; height: number }> = {
+  idle: { width: 40, height: 8 },
+  "recording-hotkey": { width: 74, height: 30 },
+  "recording-click": { width: 108, height: 30 },
+  processing: { width: 48, height: 30 },
+  error: { width: 56, height: 30 },
+};
+
+// What the renderer is currently showing, tracked so the poller can pick the
+// right pill size. Updated at the actual `webContents.send("widget-state")`
+// call sites in sendWidgetState() — not at its entry — because that function
+// can DEFER an idle send (MIN_PROCESSING_VISIBLE_MS), and tracking the deferred
+// send early would shrink the hit rect while the processing pill is still up.
+//
+// Known, accepted mismatch — the error pill: the renderer owns a 3000ms
+// ERROR_VISIBLE_MS timer and deliberately ignores main's routine "idle" reset
+// while it runs, so for up to 3s main hit-tests the 40x8 idle rect while a
+// 56x30 error pill is on screen. That is safe: the tracked rect is SMALLER than
+// what's drawn (never a phantom dead zone), the error pill has no click
+// handlers, and it self-corrects the moment the timer fires. Mirroring the
+// renderer's timer here would mean duplicating ERROR_VISIBLE_MS across the
+// process boundary and interleaving a second timer with the existing
+// widgetPendingIdleTimer machinery — more sync surface than the bug is worth.
+// The only hard requirement is that main can never get STUCK on a large rect,
+// and it can't: every `sendWidgetState("error")` call site is immediately
+// followed by a `sendWidgetState("idle")` under the same guard.
+let currentWidgetUiState: WidgetUiState = "idle";
+
+// Mirrors the window's actual setIgnoreMouseEvents value so the poller only
+// calls into Electron on a real transition instead of 20x/second.
+let widgetIgnoresMouse = true;
+let widgetHitPollTimer: ReturnType<typeof setInterval> | null = null;
+
+/** The pill's rect in GLOBAL screen coordinates, already padded.
+ * `getBounds()` is global screen coords and so is `screen.getCursorScreenPoint()`,
+ * so no workArea/display offset conversion belongs anywhere in here — mixing one
+ * in would break the moment a second display exists. */
+function getPaddedPillScreenRect(bounds: Electron.Rectangle): {
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
+} {
+  // Use the TARGET state's size immediately on a state change. The pill spends
+  // ~200-300ms springing between sizes, so the rect briefly disagrees with what
+  // is drawn; that's fine and far simpler than tracking the animation.
+  const pill = PILL_SIZES[currentWidgetUiState];
+
+  // Bottom-anchored, horizontally centred inside the window (widget.css:
+  // .widget-root centres .widget-hit, which centres the pill and pads it 8px
+  // off the bottom).
+  const bottom = bounds.y + bounds.height - PILL_BOTTOM_OFFSET;
+  const top = bottom - pill.height;
+  const left = bounds.x + Math.round((bounds.width - pill.width) / 2);
+  const right = left + pill.width;
+
+  return {
+    left: left - PILL_HIT_PADDING,
+    right: right + PILL_HIT_PADDING,
+    top: top - PILL_HIT_PADDING,
+    bottom: bottom + PILL_HIT_PADDING,
+  };
+}
+
+function setWidgetIgnoresMouse(ignore: boolean): void {
+  if (!widgetWindow || widgetWindow.isDestroyed()) return;
+  if (widgetIgnoresMouse === ignore) return;
+  widgetIgnoresMouse = ignore;
+  // Plain `true` — NO `{ forward: true }`. Forwarding existed only so the old
+  // renderer-side hover handlers could see mousemove through a click-through
+  // window; main does its own hit-testing now, so forwarding would just be
+  // pointless event traffic (and a source of stale renderer hover states).
+  widgetWindow.setIgnoreMouseEvents(ignore);
+}
+
+function startWidgetHitPoll(): void {
+  if (widgetHitPollTimer) return;
+  widgetHitPollTimer = setInterval(() => {
+    if (!widgetWindow || widgetWindow.isDestroyed()) return;
+
+    // Hidden window: drive toward click-through rather than skipping the tick.
+    // Skipping would freeze whatever value was last set, which is exactly the
+    // "stuck interactive" failure this rewrite exists to kill.
+    if (!widgetWindow.isVisible()) {
+      setWidgetIgnoresMouse(true);
+      return;
+    }
+
+    // Fresh bounds EVERY tick — this is what makes the reposition tween (dock
+    // show/hide) and fullscreen-Space moves self-heal with no special-casing.
+    const rect = getPaddedPillScreenRect(widgetWindow.getBounds());
+    const cursor = screen.getCursorScreenPoint();
+    const overPill =
+      cursor.x >= rect.left &&
+      cursor.x <= rect.right &&
+      cursor.y >= rect.top &&
+      cursor.y <= rect.bottom;
+
+    setWidgetIgnoresMouse(!overPill);
+  }, WIDGET_HIT_POLL_MS);
+}
+
+function stopWidgetHitPoll(): void {
+  if (widgetHitPollTimer) {
+    clearInterval(widgetHitPollTimer);
+    widgetHitPollTimer = null;
+  }
+}
 
 // --- Tray Icon Creation (using PNG files for reliability) ---
 
@@ -421,6 +579,9 @@ function sendWidgetState(
         widgetProcessingSince = 0;
         if (widgetWindow && !widgetWindow.isDestroyed()) {
           const idlePayload: WidgetStatePayload = { state: "idle", pipelineId: null };
+          // Track at the SEND, not when the deferral was scheduled — the
+          // processing pill is still on screen until this fires.
+          currentWidgetUiState = "idle";
           widgetWindow.webContents.send("widget-state", idlePayload);
         }
       }, MIN_PROCESSING_VISIBLE_MS - shownFor);
@@ -438,6 +599,9 @@ function sendWidgetState(
     message: opts?.message,
     pipelineId: opts?.pipelineId ?? null,
   };
+  // Keep main's hit-test rect in step with what the renderer is about to draw
+  // (see currentWidgetUiState's doc comment for the one accepted mismatch).
+  currentWidgetUiState = state;
   widgetWindow.webContents.send("widget-state", payload);
 }
 
@@ -608,11 +772,13 @@ function createWidgetWindow(): void {
     visibleOnFullScreen: true,
   });
 
-  // The window is much larger than the visible pill, so make the whole window
-  // click-through by default. `forward: true` still delivers mousemove events to
-  // the renderer, which toggles this off (via widget-set-ignore-mouse) while the
-  // cursor is actually over the pill so clicks/buttons still work.
-  widgetWindow.setIgnoreMouseEvents(true, { forward: true });
+  // The window is much larger than the visible pill, so it is click-through by
+  // default; the hit-test poller below flips it interactive only while the
+  // cursor is genuinely inside the pill's (padded) rect. Reset both tracked
+  // values here so a recreated window never inherits stale state.
+  currentWidgetUiState = "idle";
+  widgetIgnoresMouse = true;
+  widgetWindow.setIgnoreMouseEvents(true);
 
   widgetWindow.loadURL(`${MAIN_WINDOW_WEBPACK_ENTRY}#widget`);
 
@@ -623,7 +789,11 @@ function createWidgetWindow(): void {
     }
   });
 
+  // Cursor-vs-pill hit-testing runs for as long as the window exists.
+  startWidgetHitPoll();
+
   widgetWindow.on("closed", () => {
+    stopWidgetHitPoll();
     widgetWindow = null;
   });
 }
@@ -1060,17 +1230,6 @@ function registerWidgetHandlers(): void {
     widgetWindow.webContents.send("widget-audio-level", level);
   });
 
-  ipcMain.on("widget-set-ignore-mouse", (_event, ignore: boolean) => {
-    if (!widgetWindow || widgetWindow.isDestroyed()) return;
-    if (ignore) {
-      // Click-through, but keep receiving mousemove so the renderer can detect
-      // when the cursor re-enters the pill.
-      widgetWindow.setIgnoreMouseEvents(true, { forward: true });
-    } else {
-      widgetWindow.setIgnoreMouseEvents(false);
-    }
-  });
-
   ipcMain.on("widget-open-settings", () => {
     openSettingsWindow();
   });
@@ -1490,6 +1649,11 @@ app.on("before-quit", (event) => {
     tray.destroy();
     tray = null;
   }
+
+  // destroy() fires "closed", which also stops the poller — but stop it here
+  // too so quitting can never leave a live interval behind (both calls are
+  // idempotent).
+  stopWidgetHitPoll();
 
   if (widgetWindow) {
     widgetWindow.destroy();
