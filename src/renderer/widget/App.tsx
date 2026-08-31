@@ -136,6 +136,12 @@ const pillVariants = {
  * band on each side of the 40x8 idle pill swallow the user's clicks, and could
  * get permanently stuck interactive whenever the window moved out from under a
  * stationary cursor (dock show/hide) so no mouseleave ever fired.
+ *
+ * This side's only remaining obligation is the `widget-renderer-ready`
+ * handshake fired at the end of the mount effect below: main keeps the window
+ * fully click-through until it arrives, then replays the state it believes is
+ * authoritative. Without it, a reload/crash would remount this tree at "idle"
+ * while main went on hit-testing the last rect it sent.
  */
 export default function App() {
   const [state, setState] = useState<WidgetState>("idle");
@@ -174,6 +180,15 @@ export default function App() {
       }
       setState(payload.state);
     });
+
+    // Handshake — MUST be last, i.e. only once the listener above is installed.
+    // Main replays its authoritative state in response and only then re-enables
+    // cursor hit-testing. On a reload/crash this React tree remounts at "idle"
+    // while main may still be tracking, say, a 108x30 recording-click pill; the
+    // replay is what puts the two back in agreement instead of leaving an
+    // invisible phantom hit rect on screen. Runs on EVERY mount, not just the
+    // first launch.
+    window.electron.notifyWidgetRendererReady();
   }, []);
 
   // Start recording by clicking the idle bar (adds cancel/stop buttons).
