@@ -16,6 +16,13 @@ import { transcribePcm, PipelineError } from "./main/whisper/transcriber";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry, purgeLegacySarvamApiKey, seedWordCountFromHistory } from "./main/store";
 import {
+  computeInsightsStats,
+  countWords,
+  localDateKey,
+  normalizeDayStats,
+  type DayStats,
+} from "./main/stats";
+import {
   saveAudioFile,
   deleteAudioFile,
   cleanupAllAudioFiles,
@@ -1317,11 +1324,19 @@ function registerSettingsHandlers(): void {
     return store.get("totalWordsSpoken");
   });
 
+  ipcMain.handle("get-insights-stats", () => {
+    return computeInsightsStats(
+      store.get("totalWordsSpoken"),
+      store.get("dailyStats"),
+    );
+  });
+
   ipcMain.on("clear-transcription-history", () => {
     cleanupAllAudioFiles();
     store.set("transcriptionHistory", []);
-    // Note: totalWordsSpoken is intentionally NOT reset on clear — it is a
-    // permanent lifetime counter unaffected by history management.
+    // Note: totalWordsSpoken and dailyStats are intentionally NOT reset on
+    // clear — they are permanent lifetime counters unaffected by history
+    // management.
     console.log("[Settings] History cleared (audio files deleted)");
   });
 
@@ -1734,13 +1749,22 @@ app.on("ready", () => {
       // Store for fallback paste shortcut
       store.set("lastTranscript", formattedText);
 
-      // Save to transcription history (keep last 50)
-      const history = store.get("transcriptionHistory") as TranscriptionEntry[];
+      // Save to transcription history (keep last 50). Sanitize the stored
+      // shape first — a hand-edited store must not fail the pipeline with a
+      // TypeError here (same corrupt-disk class as the stats guard below).
+      const rawHistory = store.get("transcriptionHistory") as unknown;
+      const history = Array.isArray(rawHistory)
+        ? (rawHistory as TranscriptionEntry[])
+        : [];
+      const safeAudioMs = Number.isFinite(capturedAudioMs)
+        ? Math.max(0, capturedAudioMs)
+        : 0;
       history.unshift({
         text: formattedText,
         rawText: transcript,
         timestamp: Date.now(),
         durationMs: Date.now() - pipelineStart,
+        audioMs: safeAudioMs,
         audioFilePath: audioFilename ?? undefined,
       });
       while (history.length > 50) {
@@ -1751,12 +1775,44 @@ app.on("ready", () => {
       }
       store.set("transcriptionHistory", history);
 
-      // Accumulate cumulative word count — persists independently of the
-      // 50-entry history cap. Words are never subtracted when old entries
-      // are pruned; this counter only ever grows.
-      const newWords = formattedText.trim().split(/\s+/).filter(Boolean).length;
-      const prevTotal = store.get("totalWordsSpoken") as number;
-      store.set("totalWordsSpoken", prevTotal + newWords);
+      // Accumulate lifetime + daily counters. Stats are secondary to the
+      // paste — a corrupt on-disk store must never fail the pipeline, so the
+      // block is guarded and every stored value is sanitized before use
+      // (electron-store defaults only apply when a key is MISSING, not when
+      // its value has the wrong shape).
+      try {
+        // Words are never subtracted when old history entries are pruned;
+        // these counters only ever grow.
+        const newWords = countWords(formattedText);
+        const prevTotal = store.get("totalWordsSpoken");
+        const safePrevTotal =
+          typeof prevTotal === "number" &&
+          Number.isFinite(prevTotal) &&
+          prevTotal >= 0
+            ? prevTotal
+            : 0;
+        store.set("totalWordsSpoken", safePrevTotal + newWords);
+
+        // dailyStats is the only safe WPM source (totalWordsSpoken predates
+        // speaking-time tracking) — words + speaking time accrue together.
+        const dayKey = localDateKey(Date.now());
+        const rawDaily = store.get("dailyStats") as unknown;
+        const daily =
+          typeof rawDaily === "object" &&
+          rawDaily !== null &&
+          !Array.isArray(rawDaily)
+            ? (rawDaily as Record<string, DayStats>)
+            : {};
+        const day = normalizeDayStats(daily[dayKey]);
+        day.words += newWords;
+        day.speakingMs += safeAudioMs;
+        store.set("dailyStats", { ...daily, [dayKey]: day });
+      } catch (statsError) {
+        console.error(
+          "[Pipeline] Stats accumulation failed (non-fatal):",
+          statsError,
+        );
+      }
 
       // Notify dashboard to refresh
       if (settingsWindow && !settingsWindow.isDestroyed()) {

@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import HomePage from "./pages/HomePage";
+import InsightsPage from "./pages/InsightsPage";
 import SettingsPage from "./pages/SettingsPage";
 import "./dashboard.css";
 
-type Page = "home" | "settings";
+type Page = "home" | "insights" | "settings";
 // Webpack emits this image as a renderer asset and returns its final URL.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const appIconUrl: string = require("../../assets/appIcon.png");
 
 const TABS: { id: Page; label: string }[] = [
   { id: "home", label: "Home" },
+  { id: "insights", label: "Insights" },
   { id: "settings", label: "Settings" },
 ];
 
@@ -73,7 +75,13 @@ export default function App() {
       </header>
 
       <main className="dashboard-content">
-        {activePage === "home" ? <HomePage /> : <SettingsPage />}
+        {activePage === "home" ? (
+          <HomePage onOpenInsights={() => setActivePage("insights")} />
+        ) : activePage === "insights" ? (
+          <InsightsPage />
+        ) : (
+          <SettingsPage />
+        )}
       </main>
     </div>
   );

@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
+import type { InsightsStats } from "./main/stats";
 
 type AudioStreamStatsPayload = {
   chunkCount: number;
@@ -107,6 +108,8 @@ contextBridge.exposeInMainWorld("electron", {
       rawText: string;
       timestamp: number;
       durationMs: number;
+      audioMs?: number;
+      audioFilePath?: string;
     }>
   > => {
     return ipcRenderer.invoke("get-transcription-history");
@@ -123,6 +126,9 @@ contextBridge.exposeInMainWorld("electron", {
   },
   getTotalWordsSpoken: (): Promise<number> => {
     return ipcRenderer.invoke("get-total-words-spoken");
+  },
+  getInsightsStats: (): Promise<InsightsStats> => {
+    return ipcRenderer.invoke("get-insights-stats");
   },
   onTranscriptionHistoryUpdated: (callback: () => void): (() => void) => {
     const handler = () => callback();
@@ -215,12 +221,15 @@ declare global {
           rawText: string;
           timestamp: number;
           durationMs: number;
+          audioMs?: number;
+          audioFilePath?: string;
         }>
       >;
       clearTranscriptionHistory: () => void;
       getAppVersion: () => Promise<string>;
-      downloadAudioFile: (filename: string) => Promise<boolean>;
       getTotalWordsSpoken: () => Promise<number>;
+      getInsightsStats: () => Promise<InsightsStats>;
+      downloadAudioFile: (filename: string) => Promise<boolean>;
       onTranscriptionHistoryUpdated: (callback: () => void) => () => void;
       // Floating Widget
       onWidgetState: (

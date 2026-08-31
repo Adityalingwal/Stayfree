@@ -1,4 +1,5 @@
 import Store from "electron-store";
+import { countWords, type DayStats } from "./stats";
 
 /**
  * Settings Store
@@ -12,7 +13,15 @@ export interface TranscriptionEntry {
   text: string;
   rawText: string;
   timestamp: number;
+  /** Pipeline processing time (ASR + save) — NOT speaking time. */
   durationMs: number;
+  /**
+   * Actual speaking duration, derived from the captured PCM byte count.
+   * Optional: entries recorded before this field existed lack it, and it
+   * cannot be backfilled. Recorded per entry for debugging/future use —
+   * WPM never reads history; it reads the dailyStats aggregates.
+   */
+  audioMs?: number;
   audioFilePath?: string;
 }
 
@@ -32,6 +41,13 @@ interface StoreSchema {
    * transcriptionHistory entries are pruned (50-entry cap). Never decreases.
    */
   totalWordsSpoken: number;
+  /**
+   * Per-day words + speaking time, keyed by LOCAL date "YYYY-MM-DD".
+   * Both counters accrue together per recording, which is what makes them
+   * safe to divide for WPM (unlike totalWordsSpoken, which predates
+   * speaking-time tracking). Survives history clears, like totalWordsSpoken.
+   */
+  dailyStats: Record<string, DayStats>;
 }
 
 const store = new Store<StoreSchema>({
@@ -47,6 +63,7 @@ const store = new Store<StoreSchema>({
     transcriptionHistory: [],
     soundEnabled: true,
     totalWordsSpoken: 0,
+    dailyStats: {},
   },
 });
 
@@ -85,8 +102,7 @@ export function seedWordCountFromHistory(): void {
   if (history.length === 0) return; // nothing to seed
 
   const seeded = history.reduce(
-    (sum, entry) =>
-      sum + (entry.text ?? "").trim().split(/\s+/).filter(Boolean).length,
+    (sum, entry) => sum + countWords(entry.text ?? ""),
     0,
   );
 
