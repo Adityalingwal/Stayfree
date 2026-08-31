@@ -276,7 +276,7 @@ function StatsCard({
         width: "225px",
         flexShrink: 0,
         position: "sticky",
-        top: 0,
+        top: "16px",
         display: "flex",
         flexDirection: "column",
         gap: "18px",

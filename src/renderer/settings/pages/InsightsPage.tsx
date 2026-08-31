@@ -196,9 +196,11 @@ export default function InsightsPage() {
               marginTop: "8px",
             }}
           >
-            {stats?.wpm === null || stats === null
-              ? "not enough data yet"
-              : "your average speaking pace"}
+            {stats === null
+              ? " "
+              : stats.wpm === null
+                ? "not enough data yet"
+                : "your average speaking pace"}
           </div>
         </StatCard>
 
