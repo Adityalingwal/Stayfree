@@ -50,6 +50,18 @@ export function countWords(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
+/**
+ * Coerce a possibly-corrupt stored day entry to a safe DayStats copy.
+ * Write-path counterpart of the read-side skipping in computeInsightsStats:
+ * electron-store defaults only apply when a key is MISSING, not when its
+ * value has the wrong shape, so the pipeline must never trust disk shape.
+ */
+export function normalizeDayStats(value: unknown): DayStats {
+  return isValidDayStats(value)
+    ? { words: value.words, speakingMs: value.speakingMs }
+    : { words: 0, speakingMs: 0 };
+}
+
 function isValidDayStats(value: unknown): value is DayStats {
   if (typeof value !== "object" || value === null) return false;
   const { words, speakingMs } = value as Record<string, unknown>;

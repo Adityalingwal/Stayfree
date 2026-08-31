@@ -15,7 +15,13 @@ import { getWhisperServer } from "./main/whisper/server";
 import { transcribePcm, PipelineError } from "./main/whisper/transcriber";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry, purgeLegacySarvamApiKey, seedWordCountFromHistory } from "./main/store";
-import { computeInsightsStats, countWords, localDateKey } from "./main/stats";
+import {
+  computeInsightsStats,
+  countWords,
+  localDateKey,
+  normalizeDayStats,
+  type DayStats,
+} from "./main/stats";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -1761,21 +1767,44 @@ app.on("ready", () => {
       }
       store.set("transcriptionHistory", history);
 
-      // Accumulate cumulative word count — persists independently of the
-      // 50-entry history cap. Words are never subtracted when old entries
-      // are pruned; this counter only ever grows.
-      const newWords = countWords(formattedText);
-      const prevTotal = store.get("totalWordsSpoken") as number;
-      store.set("totalWordsSpoken", prevTotal + newWords);
+      // Accumulate lifetime + daily counters. Stats are secondary to the
+      // paste — a corrupt on-disk store must never fail the pipeline, so the
+      // block is guarded and every stored value is sanitized before use
+      // (electron-store defaults only apply when a key is MISSING, not when
+      // its value has the wrong shape).
+      try {
+        // Words are never subtracted when old history entries are pruned;
+        // these counters only ever grow.
+        const newWords = countWords(formattedText);
+        const prevTotal = store.get("totalWordsSpoken");
+        const safePrevTotal =
+          typeof prevTotal === "number" &&
+          Number.isFinite(prevTotal) &&
+          prevTotal >= 0
+            ? prevTotal
+            : 0;
+        store.set("totalWordsSpoken", safePrevTotal + newWords);
 
-      // Accumulate today's words + speaking time together — dailyStats is the
-      // only safe WPM source (totalWordsSpoken predates speaking-time tracking).
-      const dayKey = localDateKey(Date.now());
-      const daily = store.get("dailyStats");
-      const day = daily[dayKey] ?? { words: 0, speakingMs: 0 };
-      day.words += newWords;
-      day.speakingMs += Math.max(0, capturedAudioMs);
-      store.set("dailyStats", { ...daily, [dayKey]: day });
+        // dailyStats is the only safe WPM source (totalWordsSpoken predates
+        // speaking-time tracking) — words + speaking time accrue together.
+        const dayKey = localDateKey(Date.now());
+        const rawDaily = store.get("dailyStats") as unknown;
+        const daily =
+          typeof rawDaily === "object" &&
+          rawDaily !== null &&
+          !Array.isArray(rawDaily)
+            ? (rawDaily as Record<string, DayStats>)
+            : {};
+        const day = normalizeDayStats(daily[dayKey]);
+        day.words += newWords;
+        day.speakingMs += Math.max(0, capturedAudioMs);
+        store.set("dailyStats", { ...daily, [dayKey]: day });
+      } catch (statsError) {
+        console.error(
+          "[Pipeline] Stats accumulation failed (non-fatal):",
+          statsError,
+        );
+      }
 
       // Notify dashboard to refresh
       if (settingsWindow && !settingsWindow.isDestroyed()) {
