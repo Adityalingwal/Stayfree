@@ -153,8 +153,12 @@ contextBridge.exposeInMainWorld("electron", {
   cancelWidgetRecording: () => {
     ipcRenderer.send("widget-cancel-recording");
   },
-  setWidgetIgnoreMouse: (ignore: boolean) => {
-    ipcRenderer.send("widget-set-ignore-mouse", ignore);
+  // Widget → main handshake: "my widget-state listener is installed, tell me
+  // what to draw". Main replays its authoritative state and only then re-enables
+  // cursor hit-testing, so a reload/crash can never leave main hit-testing a
+  // pill the remounted renderer isn't drawing. Must be sent on EVERY load.
+  notifyWidgetRendererReady: () => {
+    ipcRenderer.send("widget-renderer-ready");
   },
   // Recorder → main: live mic RMS level (0..~1) at ~30fps during recording.
   sendAudioLevel: (level: number) => {
@@ -228,7 +232,7 @@ declare global {
       startWidgetRecording: () => void;
       stopWidgetRecording: () => void;
       cancelWidgetRecording: () => void;
-      setWidgetIgnoreMouse: (ignore: boolean) => void;
+      notifyWidgetRendererReady: () => void;
       sendAudioLevel: (level: number) => void;
       onWidgetAudioLevel: (
         callback: (_event: Electron.IpcRendererEvent, level: number) => void,

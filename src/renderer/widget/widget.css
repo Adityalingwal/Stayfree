@@ -37,9 +37,12 @@ body {
   -webkit-user-select: none;
 }
 
-/* Comfortable, mostly-transparent hover/click target around the pill. The rest */
-/* of the (large) window stays click-through; only this area toggles the window */
-/* interactive so clicks land on the pill and its buttons.                      */
+/* LAYOUT ONLY — this box bottom-anchors and horizontally centres the pill      */
+/* (padding-bottom is the 8px gap between the pill and the window's bottom      */
+/* edge). It is NOT a hit target any more: the main process hit-tests the       */
+/* cursor against the pill's own rect to toggle click-through (see PILL_SIZES / */
+/* PILL_BOTTOM_OFFSET in src/index.ts — main assumes this 8px value). Changing  */
+/* the geometry below moves the pill on screen and desyncs main's hit rect.     */
 .widget-hit {
   width: 236px;
   height: 46px;
