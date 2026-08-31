@@ -1749,14 +1749,22 @@ app.on("ready", () => {
       // Store for fallback paste shortcut
       store.set("lastTranscript", formattedText);
 
-      // Save to transcription history (keep last 50)
-      const history = store.get("transcriptionHistory") as TranscriptionEntry[];
+      // Save to transcription history (keep last 50). Sanitize the stored
+      // shape first — a hand-edited store must not fail the pipeline with a
+      // TypeError here (same corrupt-disk class as the stats guard below).
+      const rawHistory = store.get("transcriptionHistory") as unknown;
+      const history = Array.isArray(rawHistory)
+        ? (rawHistory as TranscriptionEntry[])
+        : [];
+      const safeAudioMs = Number.isFinite(capturedAudioMs)
+        ? Math.max(0, capturedAudioMs)
+        : 0;
       history.unshift({
         text: formattedText,
         rawText: transcript,
         timestamp: Date.now(),
         durationMs: Date.now() - pipelineStart,
-        audioMs: capturedAudioMs,
+        audioMs: safeAudioMs,
         audioFilePath: audioFilename ?? undefined,
       });
       while (history.length > 50) {
@@ -1797,7 +1805,7 @@ app.on("ready", () => {
             : {};
         const day = normalizeDayStats(daily[dayKey]);
         day.words += newWords;
-        day.speakingMs += Math.max(0, capturedAudioMs);
+        day.speakingMs += safeAudioMs;
         store.set("dailyStats", { ...daily, [dayKey]: day });
       } catch (statsError) {
         console.error(

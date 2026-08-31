@@ -197,7 +197,7 @@ export default function InsightsPage() {
             }}
           >
             {stats === null
-              ? " "
+              ? "\u00A0"
               : stats.wpm === null
                 ? "not enough data yet"
                 : "your average speaking pace"}

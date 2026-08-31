@@ -18,7 +18,8 @@ export interface TranscriptionEntry {
   /**
    * Actual speaking duration, derived from the captured PCM byte count.
    * Optional: entries recorded before this field existed lack it, and it
-   * cannot be backfilled — WPM only counts entries that have it.
+   * cannot be backfilled. Recorded per entry for debugging/future use —
+   * WPM never reads history; it reads the dailyStats aggregates.
    */
   audioMs?: number;
   audioFilePath?: string;

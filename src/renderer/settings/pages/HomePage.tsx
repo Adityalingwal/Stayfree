@@ -222,6 +222,7 @@ function DownloadButton({ filename }: { filename?: string }) {
 }
 // ─── Stats Card (right column, opens Insights) ─────────────────
 function formatCompactNumber(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
   return n >= 1000 ? `${(n / 1000).toFixed(1)}K` : `${n}`;
 }
 
@@ -277,6 +278,7 @@ function StatsCard({
         flexShrink: 0,
         position: "sticky",
         top: "16px",
+        fontFamily: "inherit",
         display: "flex",
         flexDirection: "column",
         gap: "18px",
