@@ -15,6 +15,7 @@ import { getWhisperServer } from "./main/whisper/server";
 import { transcribePcm, PipelineError } from "./main/whisper/transcriber";
 import { pasteText } from "./main/paste";
 import store, { TranscriptionEntry, purgeLegacySarvamApiKey, seedWordCountFromHistory } from "./main/store";
+import { computeInsightsStats, countWords, localDateKey } from "./main/stats";
 import {
   saveAudioFile,
   deleteAudioFile,
@@ -1317,11 +1318,19 @@ function registerSettingsHandlers(): void {
     return store.get("totalWordsSpoken");
   });
 
+  ipcMain.handle("get-insights-stats", () => {
+    return computeInsightsStats(
+      store.get("totalWordsSpoken"),
+      store.get("dailyStats"),
+    );
+  });
+
   ipcMain.on("clear-transcription-history", () => {
     cleanupAllAudioFiles();
     store.set("transcriptionHistory", []);
-    // Note: totalWordsSpoken is intentionally NOT reset on clear — it is a
-    // permanent lifetime counter unaffected by history management.
+    // Note: totalWordsSpoken and dailyStats are intentionally NOT reset on
+    // clear — they are permanent lifetime counters unaffected by history
+    // management.
     console.log("[Settings] History cleared (audio files deleted)");
   });
 
@@ -1741,6 +1750,7 @@ app.on("ready", () => {
         rawText: transcript,
         timestamp: Date.now(),
         durationMs: Date.now() - pipelineStart,
+        audioMs: capturedAudioMs,
         audioFilePath: audioFilename ?? undefined,
       });
       while (history.length > 50) {
@@ -1754,9 +1764,18 @@ app.on("ready", () => {
       // Accumulate cumulative word count — persists independently of the
       // 50-entry history cap. Words are never subtracted when old entries
       // are pruned; this counter only ever grows.
-      const newWords = formattedText.trim().split(/\s+/).filter(Boolean).length;
+      const newWords = countWords(formattedText);
       const prevTotal = store.get("totalWordsSpoken") as number;
       store.set("totalWordsSpoken", prevTotal + newWords);
+
+      // Accumulate today's words + speaking time together — dailyStats is the
+      // only safe WPM source (totalWordsSpoken predates speaking-time tracking).
+      const dayKey = localDateKey(Date.now());
+      const daily = store.get("dailyStats");
+      const day = daily[dayKey] ?? { words: 0, speakingMs: 0 };
+      day.words += newWords;
+      day.speakingMs += Math.max(0, capturedAudioMs);
+      store.set("dailyStats", { ...daily, [dayKey]: day });
 
       // Notify dashboard to refresh
       if (settingsWindow && !settingsWindow.isDestroyed()) {
